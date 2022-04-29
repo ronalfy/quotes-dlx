@@ -1,0 +1,62 @@
+
+.quotes-dlx-meatball-icon {
+	& * ,
+	&:before,
+	&:after,
+	span {
+		pointer-events: none;
+	}
+}
+
+.quotes-dlx-meatball-content {
+	li.quotes-dlx-meatball-menu-item {
+		margin: 0;
+		padding: 0;
+		border-bottom: 1px solid #6c757d;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		button.button-reset {
+			display: flex;
+			width: 100%;
+			padding: 10px 20px;
+			align-items: center;
+			font-size: 14px;
+			color: #6c757d;
+			transition: all 0.3s ease-in-out;
+			text-transform: unset;
+			
+			svg path,
+			svg use {
+				fill: #6c757d;
+				transition: all 0.3s ease-in-out;
+			}
+			
+
+			&:hover {
+				background: #343a40;
+				color: #FFF;
+				transition: all 0.3s ease-in-out;
+
+				svg path,
+				svg use {
+					fill: #FFF;
+					transition: all 0.3s ease-in-out;
+				}
+			}
+
+			.quotes-dlx-meatball-menu-icon {
+				display: inline-flex;
+				margin-right: 8px;
+
+				svg {
+					max-width: 16px;
+					height: auto;
+					transition: all 0.3s ease-in-out;
+				}
+			} 
+		}
+	}
+}

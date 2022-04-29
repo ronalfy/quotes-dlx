@@ -1,0 +1,11 @@
+@import './colors.scss';
+@import './themes.scss';
+@import './button-resets.scss';
+@import './meatball-menu.scss';
+@import '../js/components/MeatballMenu/editor.scss';
+
+.quotes-dlx-text {
+	p:last-child {
+		margin-bottom: 0;	
+	}
+}

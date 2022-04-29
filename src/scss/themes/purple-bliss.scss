@@ -1,0 +1,452 @@
+@import "../colors.scss";
+
+.quotes-dlx-block-theme-purple-bliss {
+	font-size: 16px;
+
+	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
+		padding-right: 0;
+	}
+
+	.quotes-dlx-text-wrapper {
+		a {
+			color: #ff6900;
+			text-transform: none;
+			padding-bottom: 4px;
+			border-bottom: 2px solid transparent;
+			transition: all .35s ease-in-out;
+
+			&:hover {
+				transition: all 0.35s ease-in-out;
+				color: darken( #ff6900, 5% );
+				border-bottom: 2px solid #ff6900;
+			}
+		}
+	}
+
+	.quotes-dlx-wrapper {
+		position: relative;
+		background: #FFFFFF;
+
+		figure {
+			position: relative;
+			margin: 0;
+			margin-top: 40px;
+		}
+
+		figure:before {
+			display: inline-block;
+			content: '\201C';
+			position: absolute;
+			border: 1px solid $dark-purple;
+			border-radius: 100%;
+			background-color: $dark-purple;
+			color: $white;
+			width: 100px;
+			height: 100px;
+			font-size: 95px;
+			line-height: 145px;
+			font-family: serif;
+			text-align: center;
+			top: -50px;
+			left: calc(50% - 50px );
+			z-index: 2;
+		}
+
+		figure blockquote.quotes-dlx-text-wrapper {
+			font-family: "Lato", serif;
+			font-weight: 300;
+			font-size: 1.5em;
+			line-height: 1.65;
+			min-height: 200px;
+			background: #f8f7fb;
+			color: #393838;
+			margin: 0 !important; /* override core style */
+			border: 0;
+			border-top: 5px solid $dark-purple;
+			quotes: none;
+			vertical-align:baseline;
+			font-style: inherit;
+			padding: 60px 35px 20px 35px;
+			text-align: center;
+		}
+		.quotes-dlx-button-wrapper {
+			display: flex;
+			position: relative;
+			background: #f8f7fb;
+			border-bottom: 2px solid #cbc3e3;
+			padding: 20px 35px;
+			padding-top: 0;
+
+			.quotes-dlx-button-icon {
+				position: absolute;
+				width: 1.2em;
+				height: 1.2em;
+				top: calc(50% + 6px - 0.9em);
+				bottom: 0;
+				right: 20px;
+
+				svg path,
+				svg use {
+					fill: $white;
+					transition: all 0.3s ease-in-out;
+				}
+			}
+
+			.quotes-dlx-button-container {
+				position: relative;
+				display: inline-block;
+			}
+
+			&.left {
+				justify-content: flex-start;
+			}
+
+			&.right {
+				justify-content: flex-end;
+			}
+
+			&.center {
+				justify-content: center;
+			}
+		}
+
+		.quotes-dlx-button {
+			position: relative;
+			background: $dark-purple;
+			color: $white;
+			padding: 12px 25px;
+			border-radius: 4px;
+			border: 1px solid $dark-purple;
+			display: inline-block;
+			transition: all 0.3s ease-in-out;
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 400;
+			font-size: 1.2em;
+			line-height: 1.0em;
+
+			&:hover {
+				transition: all 0.3s ease-in-out;
+				color: $dark-purple;
+				background: $white;
+
+				svg path,
+				svg use {
+					fill: $dark-purple;
+					transition: all 0.3s ease-in-out;
+				}
+			}
+
+			&:not(.text):not(.icon) {
+				&.quotes-dlx-button-icon-left {
+					.quotes-dlx-button-icon {
+						right: auto;
+						left: 15px;
+					}
+
+					.quotes-dlx-button-text {
+						display: inline-block;
+						padding-left: 28px;
+						padding-right: 0;
+					}
+				}
+			}
+
+			&.icon {
+				padding: 8px 20px;
+				line-height: 0;
+
+				.quotes-dlx-button-icon {
+					position: relative;
+					top: auto;
+					bottom: auto;
+					right: auto;
+					padding: 0;
+					margin: 0;
+				}
+			}
+
+			&.full .quotes-dlx-button-text {
+				display: inline-block;
+				padding-right: 28px;
+			}
+
+			&.text .quotes-dlx-button-text {
+				display: inline-block;
+				padding-right: 0;
+			}
+		}
+
+		.quotes-dlx-meatball-menu {
+			top: 90px;
+			right: 3.75em;
+		}
+
+		.quotes-dlx-meatball-content {
+			position: relative;
+			min-width: 100%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			display: flex;
+
+			input {
+				position: relative;
+				display: block;
+				min-width: 40px;
+				min-height: 40px;
+				right: 0;
+				top: 0;
+				z-index: 3;
+				order: 3;
+				opacity: 0;
+
+				& ~ ul {
+					z-index: -1;
+					list-style-type: none;
+					width: 0;
+				}
+
+				&:not(:checked) ~ ul {
+					background: white;
+					position: relative;
+					transition: opacity 0.75s ease-in-out;
+					margin-right: 2px;
+					margin-top: 0;
+					border-radius: 5px;
+					opacity: 0;
+					visibility: hidden;
+					height: 0;
+					overflow: hidden;
+					border-radius: 5px;
+					width: 0;
+					li {
+						background: inherit;
+					}
+				}
+
+				&:checked ~ ul {
+					position: relative;
+					width: 100%;
+					left: 0;
+					transition: opacity 0.75s ease-in-out;
+					opacity: 1;
+					visibility: visible;
+					height: 100%;
+					padding: 0;
+					margin: 0;
+					border-radius: 5px;
+					margin-right: 12px;
+					background: #FFF;
+					border: 1px solid $dark-purple;
+					z-index: 10;
+				}
+			}
+
+			input ~ .quotes-dlx-meatball-icon-wrapper {
+				z-index: 2;
+				& > div {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					z-index: 2;
+					top: 0;
+		
+					&:before,
+					&:after,
+					span {
+						content: '';
+						display: inline-block;
+						width: 5px;
+						height: 5px;
+						border-radius: 100%;
+						transform: rotate(0deg);
+						transition: all 0.3s ease-in-out;
+						background: #FFF;
+						margin-right: 5px;
+					}
+					&:after {
+						margin-bottom: 0;
+						margin-right: 0;
+					}
+				}
+			}
+
+			input:checked ~ .quotes-dlx-meatball-icon-wrapper {
+
+				& > div {
+					transition: all 0.3s linear;
+					&:before,
+					&:after,
+					span {
+						transition: all 0.3s linear;
+						background: #FFF;
+					}
+		
+					&:after {
+						position: absolute;
+						transition: all 0.3s linear;
+						border-radius: 2px;
+						height: 4px;
+						z-index: 1;
+						width: 50%;
+						height: 4px;
+						bottom: unset;
+						transform: rotate(-45deg) translate(0px, 0px);
+					}
+				
+					&:before {
+						position: absolute;
+						transition: all 0.3s linear;
+						border-radius: 2px;
+						height: 4px;
+						z-index: 3;
+						width: 50%;
+						height: 4px;
+						margin: 0;
+						bottom: unset;
+						transform: rotate(45deg) translate(0px, 0px);
+					}
+				}
+				
+		
+				span {
+					width: 0;
+					height: 0;
+					opacity: 0;
+				}
+			}
+	
+			li.quotes-dlx-meatball-menu-item {
+				border-bottom: 1px solid #ddd;
+	
+				button.button-reset {
+					color: #333;
+	
+					&:hover {
+						background: $dark-purple;
+						color: $white;
+	
+						svg use {
+							fill: $white;
+						}
+					}
+				}
+			}
+	
+			input {
+				cursor: pointer;
+	
+				&:hover {
+					.quotes-dlx-meatball-icon-wrapper {
+						background: #FFF;
+	
+	
+					}
+				}
+			}
+	
+			input:hover~.quotes-dlx-meatball-icon-wrapper {
+				background: #FFF;
+	
+				&>div {
+	
+					&:before,
+					&:after,
+					span {
+						transition: all 0.3s linear;
+						background: $blue;
+					}
+				}
+			}
+
+			input:checked~.quotes-dlx-meatball-icon-wrapper {
+				max-width: 30px;
+				max-height: 30px;
+			}
+	
+			input~.quotes-dlx-meatball-icon-wrapper {
+	
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: flex;
+				z-index: 2;
+				padding: 20px;
+				background: $white;
+				box-shadow: none;
+				border-radius: 100%;
+				text-align: center;
+				line-height: 1;
+				appearance: none;
+				outline: none;
+				cursor: pointer;
+				font-size: 0;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				max-width: 30px;
+				max-height: 30px;
+				transition: all 0.3s linear;
+				box-sizing: border-box;
+	
+				&:hover {
+					transition: all 0.3s linear;
+					background: $white;
+	
+					&>div {
+	
+						&:before,
+						&:after,
+						span {
+							transition: all 0.3s linear;
+	
+							&:before,
+							&:after {
+								background: $dark-purple;
+							}
+						}
+					}
+				}
+	
+				&>div {
+	
+					&:before,
+					&:after,
+					span {
+						transition: all 0.3s linear;
+						background: $dark-purple;
+					}
+				}
+	
+			}
+	
+			input:checked~.quotes-dlx-meatball-icon-wrapper {
+				background: $white;
+	
+				&>div {
+	
+					&:before,
+					&:after,
+					span {
+						transition: all 0.3s linear;
+						background: $dark-purple;
+					}
+	
+					span {
+	
+						&:before,
+						&:after {
+							display: inline-block;
+							background: $dark-purple;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

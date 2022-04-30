@@ -67,7 +67,10 @@ const TweetQuotes = ( props ) => {
 	// Shortcuts.
 	const { attributes, setAttributes } = props;
 
-	const generatedUniqueId = useInstanceId( TweetQuotes, attributes.anchor_prefix );
+	const generatedUniqueId = useInstanceId(
+		TweetQuotes,
+		attributes.anchor_prefix
+	);
 
 	const postObject = useSelect( ( select ) => {
 		// Useful functions: getCurrentPost, getCurrentPostId, getPermalink
@@ -149,7 +152,9 @@ const TweetQuotes = ( props ) => {
 					enable_links_in_tweet: originalAtts.enable_links_in_tweet,
 					has_anchor: originalAtts.has_anchor,
 					url_shortener: originalAtts.has_anchor,
-					url_shortening_service: originalAtts.permalink ? 'manual' : defaults.url_shortening_service,
+					url_shortening_service: originalAtts.permalink
+						? 'manual'
+						: defaults.url_shortening_service,
 					transforming: false,
 				} );
 			}
@@ -174,13 +179,20 @@ const TweetQuotes = ( props ) => {
 		const manualLink = manualPermalink ?? postObject.link;
 		switch ( url_shortening_service ) {
 			case 'none':
-				setAttributes( { permalink: manualPermalink, manualPermalink: postObject.link } );
+				setAttributes( {
+					permalink: manualPermalink,
+					manualPermalink: postObject.link,
+				} );
 				break;
 			case 'bitly':
-				setAttributes( { manualPermalink: tweet_quotes_block_vars.bitly_plugin_short_url } );
+				setAttributes( {
+					manualPermalink: tweet_quotes_block_vars.bitly_plugin_short_url,
+				} );
 				break;
 			case 'jetpack':
-				setAttributes( { manualPermalink: tweet_quotes_block_vars.jetpack_plugin_short_url } );
+				setAttributes( {
+					manualPermalink: tweet_quotes_block_vars.jetpack_plugin_short_url,
+				} );
 				break;
 			case 'manual':
 				setAttributes( { manualPermalink: link } );
@@ -292,15 +304,13 @@ const TweetQuotes = ( props ) => {
 
 	const getClickToShareButton = () => {
 		if ( ! tweet_button_enabled ) {
-			return ( <></> );
+			return <></>;
 		}
 		return (
-			<div
-				className={ `quotes-dlx-button-wrapper  ${ tweet_button_alignment } ` }
-			>
+			<div className={ `quotes-dlx-button-wrapper  ${ tweet_button_alignment } ` }>
 				<button
 					className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-					onClick={ ( value ) => { } }
+					onClick={ ( value ) => {} }
 				>
 					<>
 						{ ( tweet_button_display === 'full' ||
@@ -323,10 +333,7 @@ const TweetQuotes = ( props ) => {
 
 	const inspectorControls = (
 		<>
-			<PanelBody
-				initialOpen={ true }
-				title={ __( 'Characters', 'quotes-dlx' ) }
-			>
+			<PanelBody initialOpen={ true } title={ __( 'Characters', 'quotes-dlx' ) }>
 				<CircularCount chars={ tweetCharacterTotal } />
 			</PanelBody>
 			<PanelBody
@@ -452,7 +459,10 @@ const TweetQuotes = ( props ) => {
 										enable_copy_text: value,
 									} );
 								} }
-								help={ __( 'Not recommended for most cases. Format is rich text, which may confuse some users.', 'quotes-dlx' ) }
+								help={ __(
+									'Not recommended for most cases. Format is rich text, which may confuse some users.',
+									'quotes-dlx'
+								) }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -501,12 +511,16 @@ const TweetQuotes = ( props ) => {
 		toolbarThemes.push( {
 			title: theme.name,
 			isActive: template === theme.slug,
-			icon: <IconCircle
-				height={ 24 }
-				width={ 24 }
-				gradient={ theme.gradient }
-				className={ template === theme.name ? 'has selected quotes-dlx' : 'quotes-dlx' }
-			/>,
+			icon: (
+				<IconCircle
+					height={ 24 }
+					width={ 24 }
+					gradient={ theme.gradient }
+					className={
+						template === theme.name ? 'has selected quotes-dlx' : 'quotes-dlx'
+					}
+				/>
+			),
 			onClick: () => {
 				setAttributes( {
 					template: theme.slug,
@@ -548,9 +562,7 @@ const TweetQuotes = ( props ) => {
 		<BlockControls>
 			<>
 				<ToolbarGroup
-					icon={
-						<PaintbrushIcon width={ 24 } height={ 24 } fill="#000000" />
-					}
+					icon={ <PaintbrushIcon width={ 24 } height={ 24 } fill="#000000" /> }
 					label={ __( 'Select a Theme', 'quotes-dlx' ) }
 					isCollapsed={ true }
 					popoverProps={ { className: `quotes-dlx-popover ${ template }` } }
@@ -588,10 +600,7 @@ const TweetQuotes = ( props ) => {
 						setAttributes( { preview: false } );
 					} }
 				>
-					{ __(
-						'Turn Preview Mode Off',
-						'quotes-dlx'
-					) }
+					{ __( 'Turn Preview Mode Off', 'quotes-dlx' ) }
 				</Button>
 			</PanelBody>
 		</>
@@ -600,9 +609,7 @@ const TweetQuotes = ( props ) => {
 	const htmlToReactParser = new HtmlToReactParser();
 	const previewBlock = (
 		<>
-			{ ! blockOnly &&
-				blockToolbar
-			}
+			{ ! blockOnly && blockToolbar }
 			<InspectorControls>{ previewBlockInspectorControls }</InspectorControls>
 			<div
 				className={ classnames( 'quotes-dlx', {
@@ -615,16 +622,19 @@ const TweetQuotes = ( props ) => {
 				<div className="quotes-dlx-wrapper">
 					<figure>
 						<blockquote className="quotes-dlx-text-wrapper">
-							<div className="quotes-dlx-text">{ htmlToReactParser.parse( share_text ) }</div>
+							<div className="quotes-dlx-text">
+								{ htmlToReactParser.parse( share_text ) }
+							</div>
 						</blockquote>
 					</figure>
 					{ getClickToShareButton() }
-					{ ( enable_contextual_menu ) && ( ! blockOnly ) &&
+					{ enable_contextual_menu &&
+						! blockOnly &&
 						( enable_copy_text ||
 							enable_copy_tweet ||
 							enable_copy_link ||
 							enable_tweet_this ) && (
-							<MeatballMenu id={ uniqueId } { ...attributes } />
+						<MeatballMenu id={ uniqueId } { ...attributes } />
 					) }
 				</div>
 			</div>
@@ -674,10 +684,7 @@ const TweetQuotes = ( props ) => {
 												<figure>
 													<RichText
 														tagName="blockquote"
-														placeholder={ __(
-															'Add text to share',
-															'quotes-dlx'
-														) }
+														placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
 														value={ share_text }
 														preserveWhiteSpace={ true }
 														className="quotes-dlx-text quotes-dlx-text-wrapper"
@@ -711,10 +718,7 @@ const TweetQuotes = ( props ) => {
 								tabContent = (
 									<>
 										<ToggleControl
-											label={ __(
-												'Customize Twitter Content',
-												'quotes-dlx'
-											) }
+											label={ __( 'Customize Twitter Content', 'quotes-dlx' ) }
 											checked={ share_text_override_enabled }
 											onChange={ ( value ) => {
 												setAttributes( {
@@ -836,10 +840,7 @@ const TweetQuotes = ( props ) => {
 													/>
 												) }
 												<ToggleControl
-													label={ __(
-														'Enable URL Shortening',
-														'quotes-dlx'
-													) }
+													label={ __( 'Enable URL Shortening', 'quotes-dlx' ) }
 													checked={ url_shortener }
 													onChange={ ( value ) => {
 														setAttributes( {
@@ -854,10 +855,7 @@ const TweetQuotes = ( props ) => {
 												{ url_shortener && (
 													<>
 														<RadioControl
-															label={ __(
-																'Shortlink Service',
-																'quotes-dlx'
-															) }
+															label={ __( 'Shortlink Service', 'quotes-dlx' ) }
 															selected={ url_shortening_service }
 															options={ [
 																{

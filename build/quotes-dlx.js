@@ -13141,6 +13141,17 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
+/***/ "@wordpress/rich-text":
+/*!**********************************!*\
+  !*** external ["wp","richText"] ***!
+  \**********************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["richText"];
+
+/***/ }),
+
 /***/ "./node_modules/html-to-react/node_modules/dom-serializer/node_modules/entities/lib/maps/decode.json":
 /*!***********************************************************************************************************!*\
   !*** ./node_modules/html-to-react/node_modules/dom-serializer/node_modules/entities/lib/maps/decode.json ***!
@@ -13309,19 +13320,22 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _php_blocks_tweet_quotes_block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../php/blocks/tweet-quotes/block.json */ "./php/blocks/tweet-quotes/block.json");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/tweet-quotes/edit.js");
-/* harmony import */ var _components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/icons/QuotesIcon */ "./src/js/components/icons/QuotesIcon.js");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _php_blocks_tweet_quotes_block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../php/blocks/tweet-quotes/block.json */ "./php/blocks/tweet-quotes/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/tweet-quotes/edit.js");
+/* harmony import */ var _components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/QuotesIcon */ "./src/js/components/icons/QuotesIcon.js");
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_php_blocks_tweet_quotes_block_json__WEBPACK_IMPORTED_MODULE_1__, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_php_blocks_tweet_quotes_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: function save() {
     return null;
   },
-  icon: /*#__PURE__*/React.createElement(_components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  icon: /*#__PURE__*/React.createElement(_components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fill: "#9932cc"
   }),
   transforms: {
@@ -13370,13 +13384,13 @@ __webpack_require__.r(__webpack_exports__);
       type: 'block',
       blocks: ['core/paragraph'],
       isMultiBlock: true,
+      // eslint-disable-next-line no-unused-vars
       transform: function transform(paragraphs, innerBlocks) {
         var content = paragraphs.map(function (attributes) {
-          return attributes.content;
-        }).join("\r\n\r\n");
-        console.log(content); // Trim spacing at end.
+          return attributes.content; // eslint-disable-next-line quotes
+        }).join('\r\n\r\n'); // Trim spacing at end.
 
-        content.replace('/\s+$/', '');
+        content.replace('/s+$/', '');
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
           share_text: content
         });
@@ -13403,11 +13417,23 @@ __webpack_require__.r(__webpack_exports__);
       }
     }, {
       type: 'block',
-      blocks: ['coblocks/click-to-tweet'],
+      blocks: ['has/click-to-share'],
       transform: function transform(_ref5) {
-        var buttonText = _ref5.buttonText,
-            content = _ref5.content,
-            via = _ref5.via;
+        var shareText = _ref5.shareText,
+            clickText = _ref5.clickText;
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
+          share_text: shareText,
+          share_button_text: clickText,
+          transforming: true
+        });
+      }
+    }, {
+      type: 'block',
+      blocks: ['coblocks/click-to-tweet'],
+      transform: function transform(_ref6) {
+        var buttonText = _ref6.buttonText,
+            content = _ref6.content,
+            via = _ref6.via;
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
           share_text: content,
           share_button_text: buttonText,
@@ -13420,6 +13446,53 @@ __webpack_require__.r(__webpack_exports__);
       regExp: /^quotesdlx$/,
       transform: function transform() {
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx');
+      }
+    }],
+    to: [{
+      type: 'block',
+      blocks: ['core/paragraph'],
+      transform: function transform(_ref7) {
+        var share_text = _ref7.share_text;
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('core/paragraph', {
+          content: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.toHTMLString)({
+            // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+            value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.create)({
+              html: share_text,
+              preserveWhiteSpace: true
+            }),
+            multilineTag: 'p'
+          })
+        });
+      }
+    }, {
+      type: 'block',
+      blocks: ['core/quote'],
+      transform: function transform(_ref8) {
+        var share_text = _ref8.share_text;
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('core/quote', {
+          value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.toHTMLString)({
+            // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+            value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.create)({
+              html: share_text
+            }),
+            multilineTag: 'p'
+          })
+        });
+      }
+    }, {
+      type: 'block',
+      blocks: ['core/pullquote'],
+      transform: function transform(_ref9) {
+        var share_text = _ref9.share_text;
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('core/pullquote', {
+          value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.toHTMLString)({
+            // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+            value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_1__.create)({
+              html: share_text
+            }),
+            multilineTag: 'p'
+          })
+        });
       }
     }]
   }

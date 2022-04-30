@@ -1,4 +1,5 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
+import { create, toHTMLString } from '@wordpress/rich-text';
 import metadata from '../../../../php/blocks/tweet-quotes/block.json';
 import Edit from './edit';
 import QuotesIcon from '../../components/icons/QuotesIcon';
@@ -49,13 +50,16 @@ registerBlockType( metadata, {
 				type: 'block',
 				blocks: [ 'core/paragraph' ],
 				isMultiBlock: true,
-				transform: (paragraphs, innerBlocks ) => {
-					const content = paragraphs.map( ( attributes ) => {
-						return attributes.content;
-					} ).join( "\r\n\r\n" );
-					console.log( content );
+				// eslint-disable-next-line no-unused-vars
+				transform: ( paragraphs, innerBlocks ) => {
+					const content = paragraphs
+						.map( ( attributes ) => {
+							return attributes.content;
+							// eslint-disable-next-line quotes
+						} )
+						.join( '\r\n\r\n' );
 					// Trim spacing at end.
-					content.replace( '/\s+$/', '' );
+					content.replace( '/s+$/', '' );
 					return createBlock( 'mediaron/quotes-dlx', {
 						share_text: content,
 					} );
@@ -82,6 +86,17 @@ registerBlockType( metadata, {
 			},
 			{
 				type: 'block',
+				blocks: [ 'has/click-to-share' ],
+				transform: ( { shareText, clickText } ) => {
+					return createBlock( 'mediaron/quotes-dlx', {
+						share_text: shareText,
+						share_button_text: clickText,
+						transforming: true,
+					} );
+				},
+			},
+			{
+				type: 'block',
 				blocks: [ 'coblocks/click-to-tweet' ],
 				transform: ( { buttonText, content, via } ) => {
 					return createBlock( 'mediaron/quotes-dlx', {
@@ -98,6 +113,53 @@ registerBlockType( metadata, {
 				transform: () => createBlock( 'mediaron/quotes-dlx' ),
 			},
 		],
+		to: [
+			{
+				type: 'block',
+				blocks: [ 'core/paragraph' ],
+				transform: ( { share_text } ) => {
+					return createBlock( 'core/paragraph', {
+						content: toHTMLString( {
+							// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+							value: create( {
+								html: share_text,
+								preserveWhiteSpace: true,
+							} ),
+							multilineTag: 'p',
+						} ),
+					} );
+				},
+			},
+			{
+				type: 'block',
+				blocks: [ 'core/quote' ],
+				transform: ( { share_text } ) => {
+					return createBlock( 'core/quote', {
+						value: toHTMLString( {
+							// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+							value: create( {
+								html: share_text,
+							} ),
+							multilineTag: 'p',
+						} ),
+					} );
+				},
+			},
+			{
+				type: 'block',
+				blocks: [ 'core/pullquote' ],
+				transform: ( { share_text } ) => {
+					return createBlock( 'core/pullquote', {
+						value: toHTMLString( {
+							// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+							value: create( {
+								html: share_text,
+							} ),
+							multilineTag: 'p',
+						} ),
+					} );
+				},
+			},
+		],
 	},
 } );
-

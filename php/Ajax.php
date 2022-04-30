@@ -159,9 +159,9 @@ class Ajax {
 		$form_data = $_POST['form_data']; // expect array.
 
 		// Ajax doesn't like empty arrays.
-		if ( isset( $form_data['twitterHashtags'] ) ) {
-			if ( empty( $form_data['twitterHashtags'] ) ) {
-				$form_data['twitterHashtags'] = array();
+		if ( isset( $form_data['hashtags'] ) ) {
+			if ( empty( $form_data['hashtags'] ) ) {
+				$form_data['hashtags'] = array();
 			}
 		}
 
@@ -286,8 +286,8 @@ class Ajax {
 
 		wp_send_json_success(
 			array(
-				'theme' => $theme_slug,
-				'categories'    => $categories,
+				'theme'      => $theme_slug,
+				'categories' => $categories,
 			)
 		);
 	}

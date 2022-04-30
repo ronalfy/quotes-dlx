@@ -111,6 +111,7 @@ const TweetQuotes = ( props ) => {
 		preview,
 		blockOnly,
 		defaultsApplied,
+		transforming,
 	} = attributes;
 
 	useEffect( () => {
@@ -133,8 +134,25 @@ const TweetQuotes = ( props ) => {
 
 		// Check to see if defaults have been applied.
 		if ( ! defaultsApplied ) {
+			// Get original values before defaults applied.
+			const originalAtts = attributes;
+
+			// Override with defaults.
 			setAttributes( { ...defaults } );
 			setAttributes( { defaultsApplied: true } );
+
+			// If transforming form certain blocks, set the button text and username (override the override).
+			if ( transforming ) {
+				setAttributes( {
+					share_button_text: originalAtts.share_button_text,
+					twitter_username: originalAtts.twitter_username,
+					enable_links_in_tweet: originalAtts.enable_links_in_tweet,
+					has_anchor: originalAtts.has_anchor,
+					url_shortener: originalAtts.has_anchor,
+					url_shortening_service: originalAtts.permalink ? 'manual' : defaults.url_shortening_service,
+					transforming: false,
+				} );
+			}
 		}
 	}, [] );
 

@@ -516,12 +516,32 @@ class Blocks {
 		// Attempt to get post ID.
 		global $post;
 		$post_id = isset( $post->ID ) ? $post->ID : 0;
+
+		// Get block defaults.
+		$block_defaults = Options_Defaults::get_options();
+		// Do a fix for hashtags. Null check.
+		$hashtags = $block_defaults['hashtags'] ?? null;
+		if ( ! is_array( $hashtags ) ) {
+			$block_defaults['hashtags'] = array();
+		}
+
+		/**
+		 * Filter: quotes_dlx_block_defaults
+		 *
+		 * Add in block defaults from admin settings.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array Key value pair of admin defaults.
+		 */
+		$block_defaults = apply_filters( 'quotes_dlx_block_defaults', $block_defaults );
+
 		wp_localize_script(
 			'quotes-dlx-block',
 			'tweet_quotes_block_vars',
 			array(
 				'themes'                   => Themes::get_theme_data(),
-				'defaults'                 => Options_Defaults::get_options(), // todo: make filterable.
+				'defaults'                 => $block_defaults,
 				'twp_nonce'                => wp_create_nonce( 'twp-click-to-tweet-ajax' ),
 				'bitly_plugin_active'      => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 				'bitly_plugin_short_url'   => get_post_meta( $post_id, '_wpbitly', true ),

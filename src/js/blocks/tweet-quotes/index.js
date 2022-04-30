@@ -47,10 +47,17 @@ registerBlockType( metadata, {
 			},
 			{
 				type: 'block',
-				blocks: [ 'core/pullquote' ],
-				transform: ( { value } ) => {
+				blocks: [ 'core/paragraph' ],
+				isMultiBlock: true,
+				transform: (paragraphs, innerBlocks ) => {
+					const content = paragraphs.map( ( attributes ) => {
+						return attributes.content;
+					} ).join( "\r\n\r\n" );
+					console.log( content );
+					// Trim spacing at end.
+					content.replace( '/\s+$/', '' );
 					return createBlock( 'mediaron/quotes-dlx', {
-						share_text: value,
+						share_text: content,
 					} );
 				},
 			},
@@ -84,6 +91,11 @@ registerBlockType( metadata, {
 						transforming: true,
 					} );
 				},
+			},
+			{
+				type: 'enter',
+				regExp: /^quotesdlx$/,
+				transform: () => createBlock( 'mediaron/quotes-dlx' ),
 			},
 		],
 	},

@@ -13368,19 +13368,25 @@ __webpack_require__.r(__webpack_exports__);
       }
     }, {
       type: 'block',
-      blocks: ['core/pullquote'],
-      transform: function transform(_ref3) {
-        var value = _ref3.value;
+      blocks: ['core/paragraph'],
+      isMultiBlock: true,
+      transform: function transform(paragraphs, innerBlocks) {
+        var content = paragraphs.map(function (attributes) {
+          return attributes.content;
+        }).join("\r\n\r\n");
+        console.log(content); // Trim spacing at end.
+
+        content.replace('/\s+$/', '');
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
-          share_text: value
+          share_text: content
         });
       }
     }, {
       type: 'block',
       blocks: ['core/quote'],
-      transform: function transform(_ref4) {
-        var value = _ref4.value,
-            align = _ref4.align;
+      transform: function transform(_ref3) {
+        var value = _ref3.value,
+            align = _ref3.align;
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
           share_text: value,
           align: align
@@ -13389,8 +13395,8 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       type: 'block',
       blocks: ['core/verse'],
-      transform: function transform(_ref5) {
-        var content = _ref5.content;
+      transform: function transform(_ref4) {
+        var content = _ref4.content;
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
           share_text: content
         });
@@ -13398,16 +13404,22 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       type: 'block',
       blocks: ['coblocks/click-to-tweet'],
-      transform: function transform(_ref6) {
-        var buttonText = _ref6.buttonText,
-            content = _ref6.content,
-            via = _ref6.via;
+      transform: function transform(_ref5) {
+        var buttonText = _ref5.buttonText,
+            content = _ref5.content,
+            via = _ref5.via;
         return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx', {
           share_text: content,
           share_button_text: buttonText,
           twitter_username: via,
           transforming: true
         });
+      }
+    }, {
+      type: 'enter',
+      regExp: /^quotesdlx$/,
+      transform: function transform() {
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('mediaron/quotes-dlx');
       }
     }]
   }

@@ -20,6 +20,7 @@ $dark-bg: #2B2B2B;
 			transition: all .35s ease-in-out;
 
 			&:hover {
+				color: $twitter-blue;
 				transition: all 0.35s ease-in-out;
 				border-bottom: 2px solid $twitter-blue;
 			}

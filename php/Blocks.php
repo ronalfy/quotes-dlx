@@ -60,6 +60,20 @@ class Blocks {
 	public function frontend( array $attributes, string $content ) {
 
 		/**
+		 * Filter: quotes_dlx_block_attributes
+		 *
+		 * Override attributes (useful for overriding defaults or output).
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array  $attributes Pre-sanitized attributes.
+		 * @param string $content    Block content.
+		 *
+		 * @return array Block attributes and values.
+		 */
+		$attributes = apply_filters( 'quotes_dlx_block_attributes', $attributes, $content );
+
+		/**
 		 * Filter: quotes_dlx_block_output
 		 *
 		 * Short circuit this render and output your own block output.

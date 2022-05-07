@@ -81,7 +81,7 @@ class Register_Menu {
 		$defaults = apply_filters(
 			'quotes_dlx_block_defaults',
 			array(
-				'theme' => 'blue',
+				'template' => 'light-branded',
 			)
 		);
 
@@ -96,7 +96,6 @@ class Register_Menu {
 			'options_retrieve_nonce' => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
 			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 			'jetpack_plugin_active'  => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
-			'core_theme_blue'        => Functions::get_plugin_url( 'images/core-theme-blue.jpg' ),
 			'image_dir'              => Functions::get_plugin_url( 'images' ),
 		);
 

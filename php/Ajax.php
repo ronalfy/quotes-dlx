@@ -266,7 +266,7 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$theme_slug = Options_Defaults::get_options( 'theme' );
+		$theme_slug = Options_Defaults::get_options( 'template' );
 
 		// Retrieve categories.
 		$categories = Themes\Themes_Addon_Categories::get_categories();
@@ -286,7 +286,7 @@ class Ajax {
 
 		wp_send_json_success(
 			array(
-				'theme'      => $theme_slug,
+				'template'   => $theme_slug,
 				'categories' => $categories,
 			)
 		);

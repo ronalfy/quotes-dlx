@@ -45,7 +45,7 @@ const Interface = ( props ) => {
 	const { data, success } = response.data;
 
 	const [ activeTheme, setActiveTheme ] = useState(
-		data.theme
+		data.template
 	);
 
 	const [ loading, setLoading ] = useState( true );
@@ -55,7 +55,7 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 
 	const {
-		theme,
+		template,
 		categories,
 	} = data;
 

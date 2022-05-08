@@ -11,7 +11,17 @@ import {
 import { faHandWave, faLightbulbExclamationOn } from '@fortawesome/pro-solid-svg-icons';
 import { faWordpress, faGithub } from '@fortawesome/free-brands-svg-icons';
 import CircularQuestionIcon from '../../components/icons/CircularQuestion';
+
+const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
+	const outputDefaultTheme = () => {
+		const { template } = defaults;
+		const defaultTheme = themes.find( ( { slug } ) => slug === template );
+		return (
+			<div>hi</div>
+		);
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--home-grid">
@@ -47,6 +57,7 @@ const AdminHome = () => {
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Current Default Theme', 'quotes-dlx' ) }
 									</span>
+									{ outputDefaultTheme() }
 								</h1>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">

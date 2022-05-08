@@ -8,6 +8,8 @@
 namespace MediaRonLLC\QuotesDLX\Admin;
 
 use MediaRonLLC\QuotesDLX\Functions as Functions;
+use MediaRonLLC\QuotesDLX\Options_Defaults as Options_Defaults;
+use MediaRonLLC\QuotesDLX\Themes\Themes_Addon as Themes;
 
 /**
  * Create the admin menu.
@@ -80,10 +82,10 @@ class Register_Menu {
 		 */
 		$defaults = apply_filters(
 			'quotes_dlx_block_defaults',
-			array(
-				'template' => 'light-branded',
-			)
+			Options_Defaults::get_options()
 		);
+
+		$themes = Themes::get_theme_data();
 
 		$script_options = array(
 			'plugin_url'             => Functions::get_plugin_uri(),
@@ -92,6 +94,7 @@ class Register_Menu {
 			'plugin_support_url'     => Functions::get_plugin_support_uri(),
 			'plugin_settings_url'    => Functions::get_plugin_settings_uri(),
 			'defaults'               => $defaults,
+			'themes'                 => $themes,
 			'options_save_nonce'     => wp_create_nonce( Functions::get_admin_save_nonce() ),
 			'options_retrieve_nonce' => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
 			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),

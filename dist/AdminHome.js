@@ -29,8 +29,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _quotes_dlx_admin = quotes_dlx_admin,
+    defaults = _quotes_dlx_admin.defaults,
+    themes = _quotes_dlx_admin.themes;
 
 var AdminHome = function AdminHome() {
+  var outputDefaultTheme = function outputDefaultTheme() {
+    var template = defaults.template;
+    var defaultTheme = themes.find(function (_ref) {
+      var slug = _ref.slug;
+      return slug === template;
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "hi");
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--home-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -71,7 +83,7 @@ var AdminHome = function AdminHome() {
     icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLightbulbExclamationOn
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Current Default Theme', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Current Default Theme', 'quotes-dlx')), outputDefaultTheme())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "The current defalt theme is x."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-button-primary"

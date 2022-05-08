@@ -11,4 +11,7 @@ button {
 		outline: inherit;
 		text-transform: unset;
 	}
+	&.button-reset.show-cursor {
+		cursor: pointer;
+	}
 }

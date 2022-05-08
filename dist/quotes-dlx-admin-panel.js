@@ -42997,7 +42997,7 @@ var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE
   return Promise.all(/*! import() | AdminDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-d0a1e5"), __webpack_require__.e("AdminDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js"));
 });
 var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemesDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("AdminThemesDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
+  return Promise.all(/*! import() | AdminThemesDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css"), __webpack_require__.e("AdminThemesDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminSupport */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_fortawesome_free-brands-svg-icons_index_es_js"), __webpack_require__.e("AdminSupport")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js"));
@@ -100445,7 +100445,7 @@ function combine (array, callback) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.miniCssF = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return undefined;
+/******/ 			return "" + chunkId + ".css";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -100565,6 +100565,78 @@ function combine (array, callback) {
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
 /******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
 /******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/css loading */
+/******/ 	(() => {
+/******/ 		var createStylesheet = (chunkId, fullhref, resolve, reject) => {
+/******/ 			var linkTag = document.createElement("link");
+/******/ 		
+/******/ 			linkTag.rel = "stylesheet";
+/******/ 			linkTag.type = "text/css";
+/******/ 			var onLinkComplete = (event) => {
+/******/ 				// avoid mem leaks.
+/******/ 				linkTag.onerror = linkTag.onload = null;
+/******/ 				if (event.type === 'load') {
+/******/ 					resolve();
+/******/ 				} else {
+/******/ 					var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 					var realHref = event && event.target && event.target.href || fullhref;
+/******/ 					var err = new Error("Loading CSS chunk " + chunkId + " failed.\n(" + realHref + ")");
+/******/ 					err.code = "CSS_CHUNK_LOAD_FAILED";
+/******/ 					err.type = errorType;
+/******/ 					err.request = realHref;
+/******/ 					linkTag.parentNode.removeChild(linkTag)
+/******/ 					reject(err);
+/******/ 				}
+/******/ 			}
+/******/ 			linkTag.onerror = linkTag.onload = onLinkComplete;
+/******/ 			linkTag.href = fullhref;
+/******/ 		
+/******/ 			document.head.appendChild(linkTag);
+/******/ 			return linkTag;
+/******/ 		};
+/******/ 		var findStylesheet = (href, fullhref) => {
+/******/ 			var existingLinkTags = document.getElementsByTagName("link");
+/******/ 			for(var i = 0; i < existingLinkTags.length; i++) {
+/******/ 				var tag = existingLinkTags[i];
+/******/ 				var dataHref = tag.getAttribute("data-href") || tag.getAttribute("href");
+/******/ 				if(tag.rel === "stylesheet" && (dataHref === href || dataHref === fullhref)) return tag;
+/******/ 			}
+/******/ 			var existingStyleTags = document.getElementsByTagName("style");
+/******/ 			for(var i = 0; i < existingStyleTags.length; i++) {
+/******/ 				var tag = existingStyleTags[i];
+/******/ 				var dataHref = tag.getAttribute("data-href");
+/******/ 				if(dataHref === href || dataHref === fullhref) return tag;
+/******/ 			}
+/******/ 		};
+/******/ 		var loadStylesheet = (chunkId) => {
+/******/ 			return new Promise((resolve, reject) => {
+/******/ 				var href = __webpack_require__.miniCssF(chunkId);
+/******/ 				var fullhref = __webpack_require__.p + href;
+/******/ 				if(findStylesheet(href, fullhref)) return resolve();
+/******/ 				createStylesheet(chunkId, fullhref, resolve, reject);
+/******/ 			});
+/******/ 		}
+/******/ 		// object to store loaded CSS chunks
+/******/ 		var installedCssChunks = {
+/******/ 			"quotes-dlx-admin-panel": 0
+/******/ 		};
+/******/ 		
+/******/ 		__webpack_require__.f.miniCss = (chunkId, promises) => {
+/******/ 			var cssChunks = {"vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css":1};
+/******/ 			if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
+/******/ 			else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
+/******/ 				promises.push(installedCssChunks[chunkId] = loadStylesheet(chunkId).then(() => {
+/******/ 					installedCssChunks[chunkId] = 0;
+/******/ 				}, (e) => {
+/******/ 					delete installedCssChunks[chunkId];
+/******/ 					throw e;
+/******/ 				}));
+/******/ 			}
+/******/ 		};
+/******/ 		
+/******/ 		// no hmr
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */

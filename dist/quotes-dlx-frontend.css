@@ -29,6 +29,9 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   outline: inherit;
   text-transform: unset;
 }
+button.button-reset.show-cursor {
+  cursor: pointer;
+}
 
 .quotes-dlx-meatball-icon *, .quotes-dlx-meatball-icon:before, .quotes-dlx-meatball-icon:after,
 .quotes-dlx-meatball-icon span {

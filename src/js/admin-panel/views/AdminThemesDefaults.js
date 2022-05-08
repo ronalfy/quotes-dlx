@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { more } from '@wordpress/icons';
@@ -13,15 +14,14 @@ import {
 	PanelBody,
 } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
-import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import classNames from 'classnames';
 import sendCommand from '../../utils/SendCommand';
 import Notice from '../admin-components/Notice';
 import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefaultsLoader';
 import CircularInfo from '../../components/icons/CircularInfo';
-import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import PaintbrushIcon from '../../components/icons/paintbrush';
+import Fancybox from '../admin-components/Fancybox';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -133,7 +133,9 @@ const Interface = ( props ) => {
 			category.themes.map( ( theme, themeIndex ) => (
 				<div className="qdlx-admin__themes--content-panel" key={ themeIndex }>
 					<div className="qdlx-admin__themes--content-panel-body">
-						<img src={ theme.preview_image_url } alt="" style={ { maxWidth: '100%', height: 'auto' } } />
+						<button className="button-reset show-cursor" data-fancybox data-src={ theme.preview_image_url } data-caption={ theme.name }>
+							<img src={ theme.preview_image_url } alt="" style={ { maxWidth: '100%', height: 'auto' } } />
+						</button>
 						<div className="qdlx-admin__themes--content-panel-heading">
 							<h3>{ theme.name }</h3>
 						</div>
@@ -207,7 +209,9 @@ const Interface = ( props ) => {
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						<div className="qdlx-admin__themes--wrapper">
-							{ getCategories() }
+							<Fancybox>
+								{ getCategories() }
+							</Fancybox>
 						</div>
 					</div>
 				</div>

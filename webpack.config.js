@@ -84,6 +84,10 @@ module.exports = ( env ) => {
 								__dirname,
 								'node_modules/react-loading-skeleton/dist'
 							),
+							path.resolve(
+								__dirname,
+								'node_modules/@fancyapps/ui/dist/fancybox.css'
+							),
 						],
 						use: [
 							{

@@ -76,6 +76,7 @@
     "webpack-shell-plugin-next": "^2.2.2"
   },
   "dependencies": {
+    "@fancyapps/ui": "^4.0.26",
     "@fortawesome/fontawesome-pro": "^6.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
@@ -87,8 +88,6 @@
     "html-to-react": "^1.4.8",
     "react": "^18.0.0",
     "react-loading-skeleton": "^3.0.3",
-    "react-router-dom": "^6.2.2",
-    "sweetalert2": "^11.4.8",
-    "sweetalert2-react-content": "^5.0.0"
+    "react-router-dom": "^6.2.2"
   }
 }

@@ -103,6 +103,20 @@
   animation-iteration-count: infinite;
 }
 
+button.button-reset, button.button-reset:focus, button.button-reset:hover {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+button.button-reset.show-cursor {
+  cursor: pointer;
+}
+
 /* Make interface full-width/full-height */
 #wpcontent {
   padding-left: 0 !important;

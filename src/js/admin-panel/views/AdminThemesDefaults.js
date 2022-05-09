@@ -134,7 +134,7 @@ const Interface = ( props ) => {
 				<div className="qdlx-admin__themes--content-panel" key={ themeIndex }>
 					<div className="qdlx-admin__themes--content-panel-body">
 						<button className="button-reset show-cursor" data-fancybox data-src={ theme.preview_image_url } data-caption={ theme.name }>
-							<img src={ theme.preview_image_url } alt="" style={ { maxWidth: '100%', height: 'auto' } } />
+							<img src={ theme.preview_image_url } alt={ theme.name } style={ { maxWidth: '100%', height: 'auto' } } />
 						</button>
 						<div className="qdlx-admin__themes--content-panel-heading">
 							<h3>{ theme.name }</h3>

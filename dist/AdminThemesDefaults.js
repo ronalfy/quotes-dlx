@@ -330,7 +330,7 @@ var Interface = function Interface(props) {
         "data-caption": theme.name
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: theme.preview_image_url,
-        alt: "",
+        alt: theme.name,
         style: {
           maxWidth: '100%',
           height: 'auto'

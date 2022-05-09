@@ -1053,6 +1053,20 @@
 /* Main button styles */
 .qdlx-admin__themes--button-select,
 .qdlx-button-primary {
+	&.left,
+	&.right,
+	&.center {
+		display: flex;
+	}
+	&.left {
+		justify-content: flex-start;
+	}
+	&.center {
+		justify-content: center;
+	}
+	&.right {
+		justify-content: flex-end;
+	}
 	button,
 	.qdlx__btn-primary {
 		width: 100%;

@@ -3,14 +3,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
 import {
 	Button,
 } from '@wordpress/components';
-import { faHandWave, faLightbulbExclamationOn } from '@fortawesome/pro-solid-svg-icons';
-import { faWordpress, faGithub } from '@fortawesome/free-brands-svg-icons';
-import CircularQuestionIcon from '../../components/icons/CircularQuestion';
+import { faHandWave, faLightbulbExclamationOn, faPalette } from '@fortawesome/pro-solid-svg-icons';
+import Fancybox from '../admin-components/Fancybox';
 
 const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
@@ -18,7 +16,38 @@ const AdminHome = () => {
 		const { template } = defaults;
 		const defaultTheme = themes.find( ( { slug } ) => slug === template );
 		return (
-			<div>hi</div>
+			<div className="qdlx-admin__tabs--content-wrap">
+				<div className="qdlx-admin__tabs--content-panel">
+					<div className="qdlx-admin__tabs--content-heading">
+						<h1>
+							<FontAwesomeIcon size={ '1x' } icon={ faPalette } />
+							<span className="qdlx-admin__heading--text">
+								{ __( 'Default Theme', 'quotes-dlx' ) }
+							</span>
+						</h1>
+					</div>
+					<div className="qdlx-admin__tabs--content-inner">
+						<Fancybox>
+							<button className="button-reset show-cursor" data-fancybox data-src={ defaultTheme.preview_image_url } data-caption={ defaultTheme.name }>
+								<figure>
+									<img src={ defaultTheme.preview_image_url } alt={ defaultTheme.name } style={ { maxWidth: '100%', height: 'auto' } } />
+									<figcaption>
+										{ defaultTheme.name }
+									</figcaption>
+								</figure>
+							</button>
+							<hr />
+							<div className="qdlx-button-primary center">
+								<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/themes` }>
+									{
+										__( 'Change the Default Theme.', 'quotes-dlx' )
+									}
+								</a>
+							</div>
+						</Fancybox>
+					</div>
+				</div>
+			</div>
 		);
 	};
 
@@ -49,33 +78,7 @@ const AdminHome = () => {
 							</div>
 						</div>
 					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faLightbulbExclamationOn } />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Current Default Theme', 'quotes-dlx' ) }
-									</span>
-									{ outputDefaultTheme() }
-								</h1>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<p>The current defalt theme is x.</p>
-								<div className="qdlx-button-primary">
-									>
-									<Button
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-									><Link to="/themes">
-										{
-												__( 'Select a New Default Theme', 'quotes-dlx' )
-											}
-									</Link>
-									</Button>
-								</div>
-							</div>
-						</div>
-					</div>
+					{ outputDefaultTheme() }
 					<div className="qdlx-admin__tabs--content-wrap">
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
@@ -93,10 +96,10 @@ const AdminHome = () => {
 									<Button
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
 									><Link to="/themes">
-										{
+											{
 												__( 'Change the default Twitter username.', 'quotes-dlx' )
 											}
-									</Link>
+										</Link>
 									</Button>
 								</div>
 							</div>
@@ -119,10 +122,10 @@ const AdminHome = () => {
 									<Button
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
 									><Link to="/themes">
-										{
+											{
 												__( 'Change the default Twitter username.', 'quotes-dlx' )
 											}
-									</Link>
+										</Link>
 									</Button>
 								</div>
 							</div>
@@ -146,10 +149,10 @@ const AdminHome = () => {
 									<Button
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
 									><Link to="/themes">
-										{
+											{
 												__( 'Toggle Switch for contextual menus.', 'quotes-dlx' )
 											}
-									</Link>
+										</Link>
 									</Button>
 								</div>
 							</div>

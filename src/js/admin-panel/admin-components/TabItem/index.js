@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { _n, sprintf } from '@wordpress/i18n';
 
 const TabItem = ( props ) => {
 	const location = useLocation();
+	console.log( location );
 
 	const getIcon = ( Icon ) => {
 		return <Icon width={ 16 } height={ 16 } fill="#6c757d" />;

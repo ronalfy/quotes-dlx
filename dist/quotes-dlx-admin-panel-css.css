@@ -1002,6 +1002,24 @@ button.button-reset.show-cursor {
 }
 
 /* Main button styles */
+.qdlx-admin__themes--button-select.left, .qdlx-admin__themes--button-select.right, .qdlx-admin__themes--button-select.center,
+.qdlx-button-primary.left,
+.qdlx-button-primary.right,
+.qdlx-button-primary.center {
+  display: flex;
+}
+.qdlx-admin__themes--button-select.left,
+.qdlx-button-primary.left {
+  justify-content: flex-start;
+}
+.qdlx-admin__themes--button-select.center,
+.qdlx-button-primary.center {
+  justify-content: center;
+}
+.qdlx-admin__themes--button-select.right,
+.qdlx-button-primary.right {
+  justify-content: flex-end;
+}
 .qdlx-admin__themes--button-select button,
 .qdlx-admin__themes--button-select .qdlx__btn-primary,
 .qdlx-button-primary button,

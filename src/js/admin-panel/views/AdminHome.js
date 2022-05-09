@@ -7,7 +7,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import {
 	Button,
 } from '@wordpress/components';
-import { faHandWave, faLightbulbExclamationOn, faPalette } from '@fortawesome/pro-solid-svg-icons';
+import { faHandWave, faLightbulbExclamationOn, faPalette, faGears, faPuzzle } from '@fortawesome/pro-solid-svg-icons';
 import Fancybox from '../admin-components/Fancybox';
 
 const { defaults, themes } = quotes_dlx_admin;
@@ -40,7 +40,7 @@ const AdminHome = () => {
 							<div className="qdlx-button-primary center">
 								<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/themes` }>
 									{
-										__( 'Change the Default Theme.', 'quotes-dlx' )
+										__( 'Change the Default Theme', 'quotes-dlx' )
 									}
 								</a>
 							</div>
@@ -83,24 +83,20 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faLightbulbExclamationOn } />
+									<FontAwesomeIcon size={ '1x' } icon={ faGears } />
 									<span className="qdlx-admin__heading--text">
-										{ __( 'Twitter Username', 'quotes-dlx' ) }
+										{ __( 'Block Defaults', 'quotes-dlx' ) }
 									</span>
 								</h1>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<p>The current Twitter Username is ronaldhuereca. (edit|save).</p>
-								<div className="qdlx-button-primary">
-									>
-									<Button
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-									><Link to="/themes">
-											{
-												__( 'Change the default Twitter username.', 'quotes-dlx' )
-											}
-										</Link>
-									</Button>
+								<p>{ __( 'Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx' ) }</p>
+								<div className="qdlx-button-primary center">
+									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/defaults` }>
+										{
+											__( 'Change the Block Defaults', 'quotes-dlx' )
+										}
+									</a>
 								</div>
 							</div>
 						</div>
@@ -109,70 +105,26 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faLightbulbExclamationOn } />
+									<FontAwesomeIcon size={ '1x' } icon={ faPuzzle } />
 									<span className="qdlx-admin__heading--text">
-										{ __( 'Share Button Text Defaults', 'quotes-dlx' ) }
+										{ __( 'Coming to an add-on near you…', 'quotes-dlx' ) }
 									</span>
 								</h1>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<p>The current share button text is: Click to Tweet (edit|save).</p>
-								<div className="qdlx-button-primary">
-									>
-									<Button
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-									><Link to="/themes">
-											{
-												__( 'Change the default Twitter username.', 'quotes-dlx' )
-											}
-										</Link>
-									</Button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faLightbulbExclamationOn } />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Contextual Menu Defaults', 'quotes-dlx' ) }
-									</span>
-								</h1>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<p>Contextual Menu is (Enabled|disabled)</p>
-								<p>This is what the contextual menu looks like (animated gif)</p>
-								<div className="qdlx-button-primary">
-									>
-									<Button
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-									><Link to="/themes">
-											{
-												__( 'Toggle Switch for contextual menus.', 'quotes-dlx' )
-											}
-										</Link>
-									</Button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faLightbulbExclamationOn } />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'What\'s New?', 'quotes-dlx' ) }
-									</span>
-								</h1>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
+								<p>{ __( 'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.', 'quotes-dlx' ) }.</p>
 								<ul>
-									<li>Feature 1</li>
-									<li>Feature 2</li>
+									<li><strong>Presets</strong>: Similar to block patterns and reusable blocks, these will allow you to save and re-use presets depending on what type of quote you are creating.</li>
+									<li><strong>Overrides</strong>: Globally override the block settings regardless of what was set when the block was.</li>
+									<li><strong>Themes</strong>: More DLX themes are planned.</li>
 								</ul>
+								<div className="qdlx-button-primary center">
+									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href="https://mediaron.com/plugins/quotes-dlx/newsletter/">
+										{
+											__( 'Sign-up for Updates (external link)', 'quotes-dlx' )
+										}
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

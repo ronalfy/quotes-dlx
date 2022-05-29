@@ -9,6 +9,7 @@ import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
+import KeyIcon from '../../../components/icons/KeyIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
 
@@ -36,6 +37,10 @@ const AdminSupport = lazy( () =>
 	import(
 		/* webpackChunkName: "AdminSupport" */ '../../views/AdminSupport'
 	)
+);
+
+const AdminLicense = lazy( () =>
+	import( /* webpackChunkName: "AdminLicense" */ '../../views/AdminLicense' )
 );
 
 const AdminTabs = ( props ) => {
@@ -80,6 +85,14 @@ const AdminTabs = ( props ) => {
 		<>
 			<Suspense fallback={ <AdminDefaultsLoader /> }>
 				<AdminDefaults />
+			</Suspense>
+		</>
+	);
+
+	const getAdminLicense = (
+		<>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<AdminLicense />
 			</Suspense>
 		</>
 	);
@@ -156,6 +169,17 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ themesDefaultsDirtyCount }
 					/>
 					<TabItem
+						icon={ KeyIcon }
+						slug="licenses"
+						description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
+						label={ __( 'License', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ 0 }
+					/>
+					<TabItem
 						icon={ CircularQuestionIcon }
 						slug="support"
 						description={ __( 'Quick links for docs and support.', 'quotes-dlx' ) }
@@ -187,6 +211,11 @@ const AdminTabs = ( props ) => {
 							path="/support"
 							exact
 							element={ getAdminSupport }
+						/>
+						<Route
+							path="/licenses"
+							exact
+							element={ getAdminLicense }
 						/>
 						<Route path="/" exact element={ getAdminHome } />
 						<Route path="*" element={ <Navigate to="/" /> } />

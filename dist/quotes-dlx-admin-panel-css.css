@@ -1094,7 +1094,8 @@ button.button-reset.show-cursor {
   font-size: 0.8125rem;
   font-weight: 500;
 }
-.qdlx-admin__license--wrapper .qdlx-admin__text-control-license input[type=text] {
+.qdlx-admin__license--wrapper .qdlx-admin__text-control-license input[type=text],
+.qdlx-admin__license--wrapper .qdlx-admin__text-control-license input[type=password] {
   max-width: 100%;
   width: 100%;
   background-color: #fff;

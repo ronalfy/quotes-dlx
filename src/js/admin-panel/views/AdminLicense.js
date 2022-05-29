@@ -46,20 +46,12 @@ const Interface = ( props ) => {
 	const response = defaults();
 	const { data, success } = response.data;
 
-	const [ showButtonOptions, setShowButtonOptions ] = useState(
-		data.tweet_button_enabled
-	);
-	const [ buttonDisplay, setButtonDisplay ] = useState( data.tweet_button_display );
-	const [ anchorDisplay, setAnchorDisplay ] = useState( data.has_anchor );
-	const [ enableLinks, setEnableLinks ] = useState( data.enable_links_in_tweet );
-	const [ enableUrlShortener, setEnableUrlShortener ] = useState(
-		data.url_shortener
-	);
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
+	const [ showSecret, setShowSecret ] = useState( false );
 
 	const {
 		maximum_width,
@@ -273,6 +265,7 @@ const Interface = ( props ) => {
 													'Entering a license will enable support and updates.',
 													'quotes-dlx'
 												) }
+												type={ showSecret ? 'text' : 'password' }
 											/>
 										) }
 									/>
@@ -281,13 +274,26 @@ const Interface = ( props ) => {
 											id="quotes-dlx-license-show-hide"
 											type="checkbox"
 											aria-label={ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
+											onClick={ () => {
+												if ( showSecret ) {
+													setShowSecret( false );
+												} else {
+													setShowSecret( true );
+												}
+											} }
+											title={ showSecret ? __( 'Hide License', 'quotes-dlx' ) : __( 'Show License', 'quotes-dlx' ) }
 										/>
 										<label htmlFor="quotes-dlx-license-show-hide not-is-required">
 											<span className="quotes-dlx-license-show-hide--label">
 												{ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
 											</span>
 											<span className="quotes-dlx-license-show-hide--icon">
-												<FontAwesomeIcon size={'1x'} icon={faEye} />
+												{ ! showSecret ? (
+													<FontAwesomeIcon size={'1x'} icon={faEye} />
+												) : (
+													<FontAwesomeIcon size={'1x'} icon={faEyeSlash} />
+												) }
+												
 											</span>
 
 										</label>

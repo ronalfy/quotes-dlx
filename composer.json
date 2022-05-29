@@ -12,8 +12,6 @@
     "config": {
         "vendor-dir": "lib"
     },
-    "require": {
-    },
       "autoload": {
         "psr-4": {
             "MediaRonLLC\\QuotesDLX\\": "php/"

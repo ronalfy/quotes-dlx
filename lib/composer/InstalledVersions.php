@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e1d3dbc354ddeb86c0259cb46cb9d1b203863013',
+    'reference' => 'bb54c3e6707921469bbf8c3acd2dfea84b219e90',
     'name' => 'mediaronllc/quotes-dlx',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e1d3dbc354ddeb86c0259cb46cb9d1b203863013',
+      'reference' => 'bb54c3e6707921469bbf8c3acd2dfea84b219e90',
     ),
   ),
 );

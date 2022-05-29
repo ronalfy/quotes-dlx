@@ -776,7 +776,7 @@ button.button-reset.show-cursor {
 .is-required label {
   position: relative;
 }
-.is-required label::not(.not-is-required)::after {
+.is-required label::after {
   position: absolute;
   display: inline-block;
   vertical-align: middle;
@@ -786,6 +786,9 @@ button.button-reset.show-cursor {
   color: var(--quotes-dlx-admin--color-red--required);
   font-size: 1.4em;
   line-height: 1.3;
+}
+.is-required .not-is-required::after {
+  display: none;
 }
 
 .qdlx-admin__button-group--align label {

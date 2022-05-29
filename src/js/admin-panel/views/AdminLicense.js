@@ -312,7 +312,25 @@ const Interface = ( props ) => {
 									text={
 										saving
 											? __( 'Saving…', 'quotes-dlx' )
-											: __( 'Save Defaults', 'quotes-dlx' )
+											: __( 'Save License', 'quotes-dlx' )
+									}
+									icon={ saving ? Spinner : false }
+									iconSize="18"
+									iconPosition="right"
+									disabled={ saving || resetting }
+								/>
+								<Button
+									className={ classNames(
+										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+										{ 'has-error': hasErrors() },
+										{ 'has-icon': saving },
+										{ 'is-saving': { saving } }
+									) }
+									type="submit"
+									text={
+										saving
+											? __( 'Saving…', 'quotes-dlx' )
+											: __( 'Check License', 'quotes-dlx' )
 									}
 									icon={ saving ? Spinner : false }
 									iconSize="18"
@@ -329,7 +347,7 @@ const Interface = ( props ) => {
 									text={
 										resetting
 											? __( 'Resetting…', 'quotes-dlx' )
-											: __( 'Reset Defaults', 'quotes-dlx' )
+											: __( 'Revoke License', 'quotes-dlx' )
 									}
 									icon={ resetting ? Spinner : false }
 									iconSize="18"

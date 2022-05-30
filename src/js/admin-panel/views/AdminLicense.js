@@ -19,11 +19,12 @@ import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader
 import KeyIcon from '../../components/icons/KeyIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from "@fortawesome/pro-solid-svg-icons";
+import CircularExclamationIcon from '../../components/icons/CircularExplanation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/pro-solid-svg-icons';
 
 const retrieveDefaults = () => {
-	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
+	return sendCommand( 'quotes_dlx_retrieve_admin_license_core', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
 	} );
 };
@@ -39,7 +40,7 @@ const AdminLicense = ( props ) => {
 };
 
 const Interface = ( props ) => {
-	const localStorageKey = 'quotes_dlx_form_defaults';
+	const localStorageKey = 'quotes_dlx_licenses';
 
 	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } = useContext( TabsContext );
 	const { defaults } = props;
@@ -54,27 +55,25 @@ const Interface = ( props ) => {
 	const [ showSecret, setShowSecret ] = useState( false );
 
 	const {
-		maximum_width,
-		maximum_width_unit,
-		twitter_username,
-		hashtags,
-		align,
-		tweet_button_enabled,
-		share_button_text,
-		tweet_button_alignment,
-		tweet_icon_alignment,
-		tweet_button_display,
-		has_anchor,
-		anchor_prefix,
-		enable_links_in_tweet,
-		url_shortening_service,
-		url_shortener,
+		license_key,
+		license_id,
+		license_status,
+		license_activation_limit,
+		license_created_at,
+		license_expires_at,
+		instance_id,
+		instance_name,
+		instance_created_at,
+		meta_store_id,
+		meta_order_id,
+		meta_order_item_id,
+		meta_product_id,
 	} = data;
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
-				quotesdlxLicense: 'test123',
+				quotesdlxLicense: license_key,
 			},
 		} );
 
@@ -132,13 +131,6 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					reset( ajaxData );
 					localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
-
-					// Reset toggles.
-					setShowButtonOptions( ajaxData.tweetButtonEnabled );
-					setEnableLinks( ajaxData.enableLinksInTweet );
-					setEnableUrlShortener( ajaxData.urlShortener );
-					setAnchorDisplay( ajaxData.hasAnchor );
-					setButtonDisplay( ajaxData.tweetButtonDisplay );
 
 					setIsReset( true );
 					setTimeout( () => {
@@ -289,15 +281,35 @@ const Interface = ( props ) => {
 											</span>
 											<span className="quotes-dlx-license-show-hide--icon">
 												{ ! showSecret ? (
-													<FontAwesomeIcon size={'1x'} icon={faEye} />
+													<FontAwesomeIcon size={ '1x' } icon={ faEye } />
 												) : (
-													<FontAwesomeIcon size={'1x'} icon={faEyeSlash} />
+													<FontAwesomeIcon size={ '1x' } icon={ faEyeSlash } />
 												) }
-												
+
 											</span>
 
 										</label>
 									</div>
+									{ 'required' === errors.quotesdlxLicense?.type && (
+										<Notice
+											message={ __( 'This field is a required field.' ) }
+											status="error"
+											politeness="assertive"
+											inline={ true }
+											icon={ CircularExclamationIcon }
+										/>
+									) }
+									{ 'pattern' === errors.quotesdlxLicense?.type && (
+										<Notice
+											message={ __(
+												'It appears there are invalid characters in the license.'
+											) }
+											status="error"
+											politeness="assertive"
+											inline={ true }
+											icon={ CircularExclamationIcon }
+										/>
+									) }
 								</div>
 							</div>
 							<div className="qdlx-admin__tabs--content-actions">

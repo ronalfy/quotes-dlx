@@ -20,7 +20,7 @@ class Ajax {
 	public static function run() {
 		$self = new self();
 
-		// For saving/resettign the default options.
+		// For saving/resetting the default options.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_defaults', array( static::class, 'ajax_retrieve_options_defaults' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_admin_options_defaults', array( static::class, 'ajax_save_options_defaults' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_defaults', array( static::class, 'ajax_reset_options_defaults' ) );
@@ -32,6 +32,9 @@ class Ajax {
 
 		// For saving/resetting the themes defaults.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_themes_defaults', array( static::class, 'ajax_retrieve_themes_defaults' ) );
+
+		// For retrieving/validating/revoking plugin license.
+		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_license_core', array( static::class, 'ajax_retrieve_license_core' ) );
 
 		return $self;
 	}
@@ -289,6 +292,20 @@ class Ajax {
 				'template'   => $theme_slug,
 				'categories' => $categories,
 			)
+		);
+	}
+
+	/**
+	 * Retrieve any saved license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_retrieve_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$license = Options_License::get_options();
+		wp_send_json_success(
+			$license
 		);
 	}
 }

@@ -174,7 +174,7 @@ var AdminLicense = function AdminLicense(props) {
 };
 
 var Interface = function Interface(props) {
-  var _errors$quotesdlxLice3, _errors$quotesdlxLice4;
+  var _errors$quotesdlxLice3, _errors$quotesdlxLice4, _errors$quotesdlxLice5;
 
   var localStorageKey = 'quotes_dlx_licenses';
 
@@ -218,6 +218,21 @@ var Interface = function Interface(props) {
       showSecret = _useState12[0],
       setShowSecret = _useState12[1];
 
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      validLicense = _useState14[0],
+      setValidLicense = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      revokingLicense = _useState16[0],
+      setRevokingLicense = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      licenseData = _useState18[0],
+      setLicenseData = _useState18[1];
+
   var license_key = data.license_key,
       license_id = data.license_id,
       license_status = data.license_status,
@@ -241,6 +256,7 @@ var Interface = function Interface(props) {
       control = _useForm.control,
       handleSubmit = _useForm.handleSubmit,
       setValue = _useForm.setValue,
+      setError = _useForm.setError,
       getValues = _useForm.getValues,
       reset = _useForm.reset;
 
@@ -257,29 +273,31 @@ var Interface = function Interface(props) {
       touchedFields = _useFormState.touchedFields;
 
   var onSubmit = function onSubmit(formData) {
-    setSaving(true); // Populate possible empty hashtags.
-
-    if (formData.hashtags.length === 0) {
-      formData.hashtags = null;
-    }
-
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_save_admin_options_defaults', {
+    setSaving(true);
+    var quotesdlxLicense = formData.quotesdlxLicense;
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_save_admin_license_core', {
       nonce: quotes_dlx_admin.options_save_nonce,
-      form_data: formData
+      license_key: quotesdlxLicense
     }).then(function (ajaxResponse) {
+      console.log(ajaxResponse);
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
         // Reset count.
-        setBlockDefaultsDirtyCount(0); // Clear form dirty.
-
-        reset(ajaxData);
+        //setBlockDefaultsDirtyCount( 0 );
+        // Clear form dirty.
+        //reset( ajaxData );
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
         }, 3000);
-      } else {// Error stuff.
+      } else {
+        // Error stuff.
+        setError('quotesdlxLicense', {
+          type: 'validate',
+          message: ajaxData.message
+        });
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setSaving(false);
@@ -410,7 +428,8 @@ var Interface = function Interface(props) {
     control: control,
     rules: {
       required: true,
-      pattern: /^[0-9A-Za-z]+$/i
+      pattern: /^[0-9A-Za-z]+$/i,
+      validate: true
     },
     render: function render(_ref) {
       var _errors$quotesdlxLice, _errors$quotesdlxLice2;
@@ -462,6 +481,12 @@ var Interface = function Interface(props) {
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), 'pattern' === ((_errors$quotesdlxLice4 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice4 === void 0 ? void 0 : _errors$quotesdlxLice4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('It appears there are invalid characters in the license.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), 'validate' === ((_errors$quotesdlxLice5 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice5 === void 0 ? void 0 : _errors$quotesdlxLice5.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: errors.quotesdlxLicense.message,
     status: "error",
     politeness: "assertive",
     inline: true,

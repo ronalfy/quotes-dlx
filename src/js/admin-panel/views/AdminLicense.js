@@ -53,6 +53,9 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 	const [ showSecret, setShowSecret ] = useState( false );
+	const [ validLicense, setValidLicense ] = useState( false );
+	const [ revokingLicense, setRevokingLicense ] = useState( false );
+	const [ licenseData, setLicenseData ] = useState( false );
 
 	const {
 		license_key,
@@ -70,7 +73,7 @@ const Interface = ( props ) => {
 		meta_product_id,
 	} = data;
 
-	const { register, control, handleSubmit, setValue, getValues, reset } =
+	const { register, control, handleSubmit, setValue, setError, getValues, reset } =
 		useForm( {
 			defaultValues: {
 				quotesdlxLicense: license_key,
@@ -84,23 +87,22 @@ const Interface = ( props ) => {
 	const onSubmit = ( formData ) => {
 		setSaving( true );
 
-		// Populate possible empty hashtags.
-		if ( formData.hashtags.length === 0 ) {
-			formData.hashtags = null;
-		}
-		sendCommand( 'quotes_dlx_save_admin_options_defaults', {
+		const { quotesdlxLicense } = formData;
+
+		sendCommand( 'quotes_dlx_save_admin_license_core', {
 			nonce: quotes_dlx_admin.options_save_nonce,
-			form_data: formData,
+			license_key: quotesdlxLicense,
 		} )
 			.then( ( ajaxResponse ) => {
+				console.log( ajaxResponse );
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
 					// Reset count.
-					setBlockDefaultsDirtyCount( 0 );
+					//setBlockDefaultsDirtyCount( 0 );
 
 					// Clear form dirty.
-					reset( ajaxData );
+					//reset( ajaxData );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -108,6 +110,7 @@ const Interface = ( props ) => {
 					}, 3000 );
 				} else {
 					// Error stuff.
+					setError( 'quotesdlxLicense', { type: 'validate', message: ajaxData.message } );
 				}
 			} )
 			.catch( ( ajaxResponse ) => {} )
@@ -234,7 +237,7 @@ const Interface = ( props ) => {
 									<Controller
 										name="quotesdlxLicense"
 										control={ control }
-										rules={ { required: true, pattern: /^[0-9A-Za-z]+$/i } }
+										rules={ { required: true, pattern: /^[0-9A-Za-z]+$/i, validate: true } }
 										render={ ( { field } ) => (
 											<TextControl
 												{ ...field }
@@ -304,6 +307,15 @@ const Interface = ( props ) => {
 											message={ __(
 												'It appears there are invalid characters in the license.'
 											) }
+											status="error"
+											politeness="assertive"
+											inline={ true }
+											icon={ CircularExclamationIcon }
+										/>
+									) }
+									{ 'validate' === errors.quotesdlxLicense?.type && (
+										<Notice
+											message={ errors.quotesdlxLicense.message }
 											status="error"
 											politeness="assertive"
 											inline={ true }

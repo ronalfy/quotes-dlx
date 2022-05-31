@@ -50,6 +50,7 @@ class Options_License extends Options_Abstract {
 			'license_key'              => '',
 			'license_id'               => '',
 			'license_status'           => '',
+			'license_valid'            => '',
 			'license_activation_limit' => '',
 			'license_created_at'       => '',
 			'license_expires_at'       => '',

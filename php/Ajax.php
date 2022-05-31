@@ -7,6 +7,8 @@
 
 namespace MediaRonLLC\QuotesDLX;
 
+use MediaRonLLC\QuotesDLX\Admin\Plugin_License as License;
+
 /**
  * Helper class for registering Ajax calls.
  */
@@ -35,6 +37,7 @@ class Ajax {
 
 		// For retrieving/validating/revoking plugin license.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_license_core', array( static::class, 'ajax_retrieve_license_core' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
 
 		return $self;
 	}
@@ -302,10 +305,32 @@ class Ajax {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'check_license', '', true );
 
-		$license = Options_License::get_options();
-		wp_send_json_success(
-			$license
-		);
+		if ( $response['errors'] ) {
+			wp_send_json_error( $response );
+		}
+
+		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Save license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_save_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$license_key    = sanitize_text_field( filter_input( INPUT_POST, 'license_key', FILTER_DEFAULT ) );
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'activate_license', $license_key, true );
+
+		if ( $response['license_errors'] ) {
+			wp_send_json_error( $response );
+		}
+
+		wp_send_json_success( $response );
 	}
 }

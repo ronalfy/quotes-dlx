@@ -151,13 +151,13 @@ class Plugin_License {
 			} else {
 				$options = wp_parse_args(
 					array(
-						'license_key'   => $response['license'] ?? '',
+						'license_key'   => $response['license_key'] ?? '',
 						'license_valid' => $response['license_valid'] ?? '',
 					),
 					$options
 				);
 			}
-			Options::update_options( $options );
+			Options::update_options( '', $options, true );
 		}
 
 		// Add query flag for checking the license so we don't ping the API every time.
@@ -193,12 +193,17 @@ class Plugin_License {
 		$errors = false;
 
 		$return_defaults = array(
-			'license_errors' => false,
-			'license_key'    => $this->license,
-			'license_valid'  => true,
-			'message'        => '',
-			'data'           => $response,
-			'action'         => $action,
+			'license'          => $response['license'],
+			'license_errors'   => false,
+			'license_key'      => $this->license,
+			'message'          => '',
+			'item_name'        => $response['item_name'],
+			'expires'          => $response['expires'],
+			'license_limit'    => $response['license_limit'],
+			'site_count'       => $response['site_count'],
+			'activations_left' => $response['activations_left'],
+			'data'             => $response,
+			'action'           => $action,
 		);
 
 		// Format the date.

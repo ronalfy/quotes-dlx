@@ -20,6 +20,7 @@ import KeyIcon from '../../components/icons/KeyIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
+import CircularInfo from '../../components/icons/CircularInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/pro-solid-svg-icons';
 
@@ -53,24 +54,17 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 	const [ showSecret, setShowSecret ] = useState( false );
-	const [ validLicense, setValidLicense ] = useState( false );
+	const [ validLicense, setValidLicense ] = useState( data.license );
 	const [ revokingLicense, setRevokingLicense ] = useState( false );
 	const [ licenseData, setLicenseData ] = useState( false );
 
 	const {
 		license_key,
-		license_id,
-		license_status,
-		license_activation_limit,
-		license_created_at,
-		license_expires_at,
-		instance_id,
-		instance_name,
-		instance_created_at,
-		meta_store_id,
-		meta_order_id,
-		meta_order_item_id,
-		meta_product_id,
+		item_name,
+		expires,
+		license_limit,
+		site_count,
+		activations_left,
 	} = data;
 
 	const { register, control, handleSubmit, setValue, setError, getValues, reset } =
@@ -94,7 +88,6 @@ const Interface = ( props ) => {
 			license_key: quotesdlxLicense,
 		} )
 			.then( ( ajaxResponse ) => {
-				console.log( ajaxResponse );
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
@@ -113,7 +106,7 @@ const Interface = ( props ) => {
 					setError( 'quotesdlxLicense', { type: 'validate', message: ajaxData.message } );
 				}
 			} )
-			.catch( ( ajaxResponse ) => {} )
+			.catch( ( ajaxResponse ) => { } )
 			.then( ( ajaxResponse ) => {
 				setSaving( false );
 			} );
@@ -143,7 +136,7 @@ const Interface = ( props ) => {
 					// Error stuff.
 				}
 			} )
-			.catch( ( ajaxResponse ) => {} )
+			.catch( ( ajaxResponse ) => { } )
 			.then( ( ajaxResponse ) => {
 				setResetting( false );
 			} );
@@ -214,201 +207,227 @@ const Interface = ( props ) => {
 
 	return (
 		<>
-			<div className="qdlx-admin__tabs--content-wrap">
-				<form onSubmit={ handleSubmit( onSubmit ) }>
-					<div className="qdlx-admin__tabs--content-panel">
-						<div className="qdlx-admin__tabs--content-heading">
-							<h1>
-								<KeyIcon width={ 48 } height={ 48 } aria-hidden="true" />
-								<span className="qdlx-admin__heading--text">
-									{ __( 'License', 'quotes-dlx' ) }
-								</span>
-							</h1>
-							<p className="description">
-								{ __(
-									'Add a license key to receive support and updates.',
-									'quotes-dlx'
-								) }
-							</p>
-						</div>
-						<div className="qdlx-admin__tabs--content-inner">
-							<div className="qdlx-admin__license--wrapper is-required">
-								<div className="qdlx-admin__license--input-wrapper">
-									<Controller
-										name="quotesdlxLicense"
-										control={ control }
-										rules={ { required: true, pattern: /^[0-9A-Za-z]+$/i, validate: true } }
-										render={ ( { field } ) => (
-											<TextControl
-												{ ...field }
-												label={ __( 'License Key', 'quotes-dlx' ) }
-												id="search-quotes-dlx-license-secret"
-												className={ classNames(
-													'qdlx-admin__text-control',
-													'qdlx-admin__text-control-license',
-													{
-														'has-error':
-														'pattern' ===
-															errors.quotesdlxLicense?.type ||
-														'required' ===
-															errors.quotesdlxLicense?.type,
-														'is-required': true,
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<div className="qdlx-admin__tabs--content-wrap">
+					<form onSubmit={ handleSubmit( onSubmit ) }>
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<KeyIcon width={ 48 } height={ 48 } aria-hidden="true" />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'License', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'Add a license key to receive support and updates.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<div className="qdlx-admin__license--wrapper is-required">
+									<div className="qdlx-admin__license--input-wrapper">
+										<Controller
+											name="quotesdlxLicense"
+											control={ control }
+											rules={ { required: true, pattern: /^[0-9A-Za-z]+$/i, validate: true } }
+											render={ ( { field } ) => (
+												<TextControl
+													{ ...field }
+													label={ __( 'License Key', 'quotes-dlx' ) }
+													id="search-quotes-dlx-license-secret"
+													className={ classNames(
+														'qdlx-admin__text-control',
+														'qdlx-admin__text-control-license',
+														{
+															'has-error':
+																'pattern' ===
+																errors.quotesdlxLicense?.type ||
+																'required' ===
+																errors.quotesdlxLicense?.type,
+															'is-required': true,
+														}
+													) }
+													aria-required="true"
+													help={ __(
+														'Entering a license will enable support and updates.',
+														'quotes-dlx'
+													) }
+													type={ showSecret ? 'text' : 'password' }
+												/>
+											) }
+										/>
+										<div className="qdlx-admin__license--input-preview">
+											<input
+												id="quotes-dlx-license-show-hide"
+												type="checkbox"
+												aria-label={ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
+												onClick={ () => {
+													if ( showSecret ) {
+														setShowSecret( false );
+													} else {
+														setShowSecret( true );
 													}
-												) }
-												aria-required="true"
-												help={ __(
-													'Entering a license will enable support and updates.',
-													'quotes-dlx'
-												) }
-												type={ showSecret ? 'text' : 'password' }
+												} }
+												title={ showSecret ? __( 'Hide License', 'quotes-dlx' ) : __( 'Show License', 'quotes-dlx' ) }
+											/>
+											<label htmlFor="quotes-dlx-license-show-hide not-is-required">
+												<span className="quotes-dlx-license-show-hide--label">
+													{ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
+												</span>
+												<span className="quotes-dlx-license-show-hide--icon">
+													{ ! showSecret ? (
+														<FontAwesomeIcon size={ '1x' } icon={ faEye } />
+													) : (
+														<FontAwesomeIcon size={ '1x' } icon={ faEyeSlash } />
+													) }
+
+												</span>
+
+											</label>
+										</div>
+										{ 'required' === errors.quotesdlxLicense?.type && (
+											<Notice
+												message={ __( 'This field is a required field.' ) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
 											/>
 										) }
-									/>
-									<div className="qdlx-admin__license--input-preview">
-										<input
-											id="quotes-dlx-license-show-hide"
-											type="checkbox"
-											aria-label={ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
-											onClick={ () => {
-												if ( showSecret ) {
-													setShowSecret( false );
-												} else {
-													setShowSecret( true );
-												}
-											} }
-											title={ showSecret ? __( 'Hide License', 'quotes-dlx' ) : __( 'Show License', 'quotes-dlx' ) }
-										/>
-										<label htmlFor="quotes-dlx-license-show-hide not-is-required">
-											<span className="quotes-dlx-license-show-hide--label">
-												{ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
-											</span>
-											<span className="quotes-dlx-license-show-hide--icon">
-												{ ! showSecret ? (
-													<FontAwesomeIcon size={ '1x' } icon={ faEye } />
-												) : (
-													<FontAwesomeIcon size={ '1x' } icon={ faEyeSlash } />
+										{ 'pattern' === errors.quotesdlxLicense?.type && (
+											<Notice
+												message={ __(
+													'It appears there are invalid characters in the license.'
 												) }
-
-											</span>
-
-										</label>
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+										{ 'validate' === errors.quotesdlxLicense?.type && (
+											<Notice
+												message={ errors.quotesdlxLicense.message }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
 									</div>
-									{ 'required' === errors.quotesdlxLicense?.type && (
-										<Notice
-											message={ __( 'This field is a required field.' ) }
-											status="error"
-											politeness="assertive"
-											inline={ true }
-											icon={ CircularExclamationIcon }
-										/>
-									) }
-									{ 'pattern' === errors.quotesdlxLicense?.type && (
-										<Notice
-											message={ __(
-												'It appears there are invalid characters in the license.'
-											) }
-											status="error"
-											politeness="assertive"
-											inline={ true }
-											icon={ CircularExclamationIcon }
-										/>
-									) }
-									{ 'validate' === errors.quotesdlxLicense?.type && (
-										<Notice
-											message={ errors.quotesdlxLicense.message }
-											status="error"
-											politeness="assertive"
-											inline={ true }
-											icon={ CircularExclamationIcon }
-										/>
-									) }
+								</div>
+								<div className="qdlx-admin__tabs--content-actions">
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+											{ 'has-error': hasErrors() },
+											{ 'has-icon': saving },
+											{ 'is-saving': { saving } }
+										) }
+										type="submit"
+										text={
+											saving
+												? __( 'Saving…', 'quotes-dlx' )
+												: __( 'Save License', 'quotes-dlx' )
+										}
+										icon={ saving ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+									/>
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+											{ 'has-error': hasErrors() },
+											{ 'has-icon': saving },
+											{ 'is-saving': { saving } }
+										) }
+										type="submit"
+										text={
+											saving
+												? __( 'Saving…', 'quotes-dlx' )
+												: __( 'Check License', 'quotes-dlx' )
+										}
+										icon={ saving ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+									/>
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+											{ 'has-icon': resetting },
+											{ 'is-resetting': { resetting } }
+										) }
+										type="button"
+										text={
+											resetting
+												? __( 'Resetting…', 'quotes-dlx' )
+												: __( 'Revoke License', 'quotes-dlx' )
+										}
+										icon={ resetting ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+										onClick={ ( e ) => {
+											setResetting( true );
+											handleReset( e );
+										} }
+									/>
+								</div>
+								{ hasErrors() && (
+									<Notice
+										message={ __(
+											'There are form validation errors. Please correct them above.'
+										) }
+										status="error"
+										politeness="polite"
+									/>
+								) }
+								{ isSaved && (
+									<Notice
+										message={ __( 'Your settings have been saved.' ) }
+										status="success"
+										politeness="assertive"
+									/>
+								) }
+								{ isReset && (
+									<Notice
+										message={ __( 'Your settings have been reset to defaults.' ) }
+										status="success"
+										politeness="assertive"
+									/>
+								) }
+							</div>
+						</div>
+					</form>
+				</div>
+				{ validLicense &&
+					<div className="qdlx-admin__tabs--content-wrap">
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<CircularInfo width={ 48 } height={ 48 } aria-hidden="true" />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'License Information', 'quotes-dlx' ) }
+									</span>
+								</h1>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<p>{ __( 'Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx' ) }</p>
+								<div className="qdlx-button-primary center">
+									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/defaults` }>
+										{
+											__( 'Change the Block Defaults', 'quotes-dlx' )
+										}
+									</a>
 								</div>
 							</div>
-							<div className="qdlx-admin__tabs--content-actions">
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-										{ 'has-error': hasErrors() },
-										{ 'has-icon': saving },
-										{ 'is-saving': { saving } }
-									) }
-									type="submit"
-									text={
-										saving
-											? __( 'Saving…', 'quotes-dlx' )
-											: __( 'Save License', 'quotes-dlx' )
-									}
-									icon={ saving ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-								/>
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-										{ 'has-error': hasErrors() },
-										{ 'has-icon': saving },
-										{ 'is-saving': { saving } }
-									) }
-									type="submit"
-									text={
-										saving
-											? __( 'Saving…', 'quotes-dlx' )
-											: __( 'Check License', 'quotes-dlx' )
-									}
-									icon={ saving ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-								/>
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
-										{ 'has-icon': resetting },
-										{ 'is-resetting': { resetting } }
-									) }
-									type="button"
-									text={
-										resetting
-											? __( 'Resetting…', 'quotes-dlx' )
-											: __( 'Revoke License', 'quotes-dlx' )
-									}
-									icon={ resetting ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-									onClick={ ( e ) => {
-										setResetting( true );
-										handleReset( e );
-									} }
-								/>
-							</div>
-							{ hasErrors() && (
-								<Notice
-									message={ __(
-										'There are form validation errors. Please correct them above.'
-									) }
-									status="error"
-									politeness="polite"
-								/>
-							) }
-							{ isSaved && (
-								<Notice
-									message={ __( 'Your settings have been saved.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
-							{ isReset && (
-								<Notice
-									message={ __( 'Your settings have been reset to defaults.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
 						</div>
 					</div>
-				</form>
+				}
 			</div>
 		</>
 	);

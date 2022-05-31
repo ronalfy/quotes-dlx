@@ -308,7 +308,7 @@ class Ajax {
 		$license_helper = new License();
 		$response       = $license_helper->perform_action( 'check_license', '', true );
 
-		if ( $response['errors'] ) {
+		if ( $response['license_errors'] ) {
 			wp_send_json_error( $response );
 		}
 
@@ -329,6 +329,12 @@ class Ajax {
 
 		if ( $response['license_errors'] ) {
 			wp_send_json_error( $response );
+		}
+
+		if ( 'valid' === $response['license'] ) {
+			$response['license_valid'] = true;
+		} else {
+			$response['license_valid'] = false;
 		}
 
 		wp_send_json_success( $response );

@@ -107,11 +107,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
@@ -121,8 +121,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -138,6 +139,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable no-unused-vars */
+
 
 
 
@@ -218,7 +220,7 @@ var Interface = function Interface(props) {
       showSecret = _useState12[0],
       setShowSecret = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
       _useState14 = _slicedToArray(_useState13, 2),
       validLicense = _useState14[0],
       setValidLicense = _useState14[1];
@@ -234,20 +236,13 @@ var Interface = function Interface(props) {
       setLicenseData = _useState18[1];
 
   var license_key = data.license_key,
-      license_id = data.license_id,
-      license_status = data.license_status,
-      license_activation_limit = data.license_activation_limit,
-      license_created_at = data.license_created_at,
-      license_expires_at = data.license_expires_at,
-      instance_id = data.instance_id,
-      instance_name = data.instance_name,
-      instance_created_at = data.instance_created_at,
-      meta_store_id = data.meta_store_id,
-      meta_order_id = data.meta_order_id,
-      meta_order_item_id = data.meta_order_item_id,
-      meta_product_id = data.meta_product_id;
+      item_name = data.item_name,
+      expires = data.expires,
+      license_limit = data.license_limit,
+      site_count = data.site_count,
+      activations_left = data.activations_left;
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_12__.useForm)({
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useForm)({
     defaultValues: {
       quotesdlxLicense: license_key
     }
@@ -260,11 +255,11 @@ var Interface = function Interface(props) {
       getValues = _useForm.getValues,
       reset = _useForm.reset;
 
-  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_12__.useWatch)({
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useWatch)({
     control: control
   });
 
-  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_12__.useFormState)({
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useFormState)({
     control: control
   }),
       errors = _useFormState.errors,
@@ -279,7 +274,6 @@ var Interface = function Interface(props) {
       nonce: quotes_dlx_admin.options_save_nonce,
       license_key: quotesdlxLicense
     }).then(function (ajaxResponse) {
-      console.log(ajaxResponse);
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
 
@@ -402,6 +396,8 @@ var Interface = function Interface(props) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--home-grid-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     onSubmit: handleSubmit(onSubmit)
@@ -423,7 +419,7 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__license--wrapper is-required"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__license--input-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_12__.Controller, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
     name: "quotesdlxLicense",
     control: control,
     rules: {
@@ -435,7 +431,7 @@ var Interface = function Interface(props) {
       var _errors$quotesdlxLice, _errors$quotesdlxLice2;
 
       var field = _ref.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({}, field, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Key', 'quotes-dlx'),
         id: "search-quotes-dlx-license-secret",
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', 'qdlx-admin__text-control-license', {
@@ -467,12 +463,12 @@ var Interface = function Interface(props) {
     className: "quotes-dlx-license-show-hide--label"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Show or Hide the License', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "quotes-dlx-license-show-hide--icon"
-  }, !showSecret ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_11__.FontAwesomeIcon, {
+  }, !showSecret ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faEye
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_11__.FontAwesomeIcon, {
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEye
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faEyeSlash
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEyeSlash
   })))), 'required' === ((_errors$quotesdlxLice3 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice3 === void 0 ? void 0 : _errors$quotesdlxLice3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
     status: "error",
@@ -493,7 +489,7 @@ var Interface = function Interface(props) {
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
       'has-error': hasErrors()
     }, {
@@ -509,7 +505,7 @@ var Interface = function Interface(props) {
     iconSize: "18",
     iconPosition: "right",
     disabled: saving || resetting
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
       'has-error': hasErrors()
     }, {
@@ -525,7 +521,7 @@ var Interface = function Interface(props) {
     iconSize: "18",
     iconPosition: "right",
     disabled: saving || resetting
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': resetting
     }, {
@@ -555,7 +551,26 @@ var Interface = function Interface(props) {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
     status: "success",
     politeness: "assertive"
-  }))))));
+  }))))), validLicense && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Information', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-button-primary center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
+    href: "#/defaults"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Change the Block Defaults', 'quotes-dlx'))))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminLicense);
@@ -603,6 +618,50 @@ CircularExclamationIcon.propTypes = {
   fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularExclamationIcon);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularInfo.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/icons/CircularInfo.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularInfo = function CircularInfo(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"
+  }));
+};
+
+CircularInfo.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularInfo.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularInfo);
 
 /***/ }),
 

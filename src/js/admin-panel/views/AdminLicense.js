@@ -437,12 +437,11 @@ const Interface = ( props ) => {
 								</h1>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<table className="gform-table gform-table--responsive gform-table--no-outer-border gform-table--license-ui">
+								<table className="quotes-dlx-table quotes-dlx-table--responsive quotes-dlx-table--license-ui">
 									<thead>
 										<tr>
 											<th scope="col">{ __( 'Item Name', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'License Type', 'quotes-dlx' ) }</th>
-											<th scope="col">{ __( 'License Status', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'License Activations', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'Expires On', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'Days Left', 'quotes-dlx' ) }</th>
@@ -456,17 +455,10 @@ const Interface = ( props ) => {
 											<td data-header="License Type">
 												<p>{ getLicenseType() }</p>
 											</td>
-											<td data-header="License Status">
-												<p>
-													<span className="gform-status-indicator gform-status--active gform-status--static gform-status--no-icon">
-														<span className="gform-status-indicator-status">{ ( 'Active', 'quotes-dlx' ) }</span>
-													</span>
-												</p>
-											</td>
 											<td data-header="License Activations">
 												<p>
 													<span className="">
-														{ site_count } of { license_limit }
+														{ site_count } of { license_limit === 0 ? __( 'Unlimited', 'quotes-dlx' ) : license_limit }
 													</span>
 												</p>
 											</td>

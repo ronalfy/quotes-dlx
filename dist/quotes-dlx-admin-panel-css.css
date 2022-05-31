@@ -1166,4 +1166,28 @@ button.button-reset.show-cursor {
   fill: var(--quotes-dlx-admin--color-text-link-color);
 }
 
+/* Table Styles */
+.quotes-dlx-table {
+  box-sizing: border-box;
+  border: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+.quotes-dlx-table tr {
+  border-bottom: 0.0625rem solid var(--quotes-dlx-admin--color-accent);
+}
+.quotes-dlx-table th {
+  font-weight: 500;
+  padding: 0.8125rem 1.125rem;
+  font-size: 1.3em;
+  text-align: left;
+}
+.quotes-dlx-table tbody tr:last-child {
+  border-bottom: 0;
+}
+.quotes-dlx-table td {
+  padding: 1.25rem 1.125rem;
+  text-align: left;
+}
+
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

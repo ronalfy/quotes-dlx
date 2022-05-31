@@ -1218,3 +1218,32 @@
 		}
 	}
 }
+
+/* Table Styles */
+.quotes-dlx-table {
+	box-sizing: border-box;
+	border: 0;
+	border-collapse: collapse;
+	width: 100%;
+	tr {
+		border-bottom: 0.0625rem solid var( --quotes-dlx-admin--color-accent );
+	}
+
+	th {
+		font-weight: 500;
+		padding: 0.8125rem 1.125rem;
+		font-size: 1.3em;
+		text-align: left;
+	}
+
+	tbody tr {
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	td {
+		padding: 1.25rem 1.125rem;
+		text-align: left;
+	}
+}

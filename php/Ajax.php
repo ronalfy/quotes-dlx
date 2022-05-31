@@ -38,6 +38,7 @@ class Ajax {
 		// For retrieving/validating/revoking plugin license.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_license_core', array( static::class, 'ajax_retrieve_license_core' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
+		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
 		return $self;
 	}
@@ -328,15 +329,39 @@ class Ajax {
 		$response       = $license_helper->perform_action( 'activate_license', $license_key, true );
 
 		if ( $response['license_errors'] ) {
+			$license_helper->set_activated_status( false );
 			wp_send_json_error( $response );
 		}
 
 		if ( 'valid' === $response['license'] ) {
-			$response['license_valid'] = true;
+			$license_helper->set_activated_status( true );
+			$response['license_valid']     = true;
+			$response['license_activated'] = true;
 		} else {
-			$response['license_valid'] = false;
+			$license_helper->set_activated_status( false );
+			$response['license_valid']     = false;
+			$response['license_activated'] = false;
 		}
 
 		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Revoke license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_revoke_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'deactivate_license' );
+
+		if ( ! $response['license_errors'] ) {
+			$license_helper->set_activated_status( false );
+			wp_send_json_success( $response );
+		}
+
+		wp_send_json_error( array() );
 	}
 }

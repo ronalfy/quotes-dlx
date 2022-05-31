@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 
@@ -51,20 +52,23 @@ const Interface = ( props ) => {
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
-	const [ resetting, setResetting ] = useState( false );
-	const [ isReset, setIsReset ] = useState( false );
+	const [ revokingLicense, setRevokingLicense ] = useState( false );
+	const [ isRevoked, setIsRevoked ] = useState( false );
 	const [ showSecret, setShowSecret ] = useState( false );
 	const [ validLicense, setValidLicense ] = useState( data.license );
-	const [ revokingLicense, setRevokingLicense ] = useState( false );
+	const [ licenseActivated, setLicenseActivated ] = useState( data.license_activated );
 	const [ licenseData, setLicenseData ] = useState( false );
 
 	const {
 		license_key,
 		item_name,
 		expires,
+		expires_human_time_diff,
 		license_limit,
 		site_count,
 		activations_left,
+		license_activated,
+		price_id,
 	} = data;
 
 	const { register, control, handleSubmit, setValue, setError, getValues, reset } =
@@ -97,6 +101,12 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					//reset( ajaxData );
 
+					if ( ajaxData.license_activated ) {
+						setLicenseActivated( true );
+					} else {
+						setLicenseActivated( false );
+					}
+
 					setIsSaved( true );
 					setTimeout( () => {
 						setIsSaved( false );
@@ -112,38 +122,90 @@ const Interface = ( props ) => {
 			} );
 	};
 
-	const handleReset = ( e ) => {
-		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_admin_options_defaults', {
+	const revokeLicense = ( e ) => {
+		setRevokingLicense( true );
+		sendCommand( 'quotes_dlx_revoke_admin_license_core', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 		} )
 			.then( ( ajaxResponse ) => {
-				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					// Reset local storage.
-					setBlockDefaultsDirtyCount( 0 );
+					// // Reset local storage.
+					// setBlockDefaultsDirtyCount( 0 );
 
-					// Clear form dirty.
-					reset( ajaxData );
-					localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
-
-					setIsReset( true );
+					// // Clear form dirty.
+					// reset( ajaxData );
+					// localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
+					setLicenseActivated( false );
+					setIsRevoked( true );
 					setTimeout( () => {
-						setIsReset( false );
+						setIsRevoked( false );
 					}, 3000 );
 				} else {
-					// Error stuff.
+					setError( 'quotesdlxLicense', { type: 'validate', message: __( 'Revoking the license resulted in an error and could not be deactivated.', 'quotes-dlx' ) } );
 				}
 			} )
 			.catch( ( ajaxResponse ) => { } )
 			.then( ( ajaxResponse ) => {
-				setResetting( false );
+				setRevokingLicense( false );
 			} );
 	};
 
 	const hasErrors = () => {
 		return Object.keys( errors ).length > 0;
+	};
+
+	const getLicenseType = () => {
+		switch ( price_id ) {
+			case '1':
+				return 'Hobbyist';
+				break;
+			case '2':
+				return 'Freelancer';
+				break;
+			case '3':
+				return 'Agency';
+				break;
+			case '4':
+				return 'Unlimited';
+				break;
+			default:
+				return 'Unknown';
+				break;
+		}
+		return 'Unkown';
+	};
+
+	const getSaveButton = () => {
+		let saveText = __( 'Save License', 'quotes-dlx' );
+		let saveTextLoading = __( 'Saving…', 'quotes-dlx' );
+
+		if ( ! licenseActivated ) {
+			saveText = __( 'Activate License', 'quotes-dlx' );
+			saveTextLoading = __( 'Activating…', 'quotes-dlx' );
+		}
+		return (
+			<>
+				<Button
+					className={ classNames(
+						'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+						{ 'has-error': hasErrors() },
+						{ 'has-icon': saving },
+						{ 'is-saving': { saving } }
+					) }
+					type="submit"
+					text={
+						saving
+							? saveTextLoading
+							: saveText
+					}
+					icon={ saving ? Spinner : false }
+					iconSize="18"
+					iconPosition="right"
+					disabled={ saving || revokingLicense }
+				/>
+			</>
+		);
 	};
 
 	useEffect( () => {
@@ -164,7 +226,7 @@ const Interface = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		if ( saving || resetting || loading ) {
+		if ( saving || revokingLicense || loading ) {
 			return;
 		}
 		if ( isDirty || blockDefaultsDirtyCount > 0 ) {
@@ -183,23 +245,6 @@ const Interface = ( props ) => {
 		}
 		setLoading( false );
 	}, [ formValues ] );
-
-	// Get URL Shortening services (i.e., bitly, jetpack).
-	const linkShortenerServices = [
-		{ label: __( 'None', 'quotes-dlx' ), value: 'none' },
-	];
-	if ( quotes_dlx_admin.bitly_plugin_active ) {
-		linkShortenerServices.push( {
-			label: __( 'Bitly', 'quotes-dlx' ),
-			value: 'bitly',
-		} );
-	}
-	if ( quotes_dlx_admin.jetpack_plugin_active ) {
-		linkShortenerServices.push( {
-			label: __( 'Jetpack', 'quotes-dlx' ),
-			value: 'jetpack',
-		} );
-	}
 
 	if ( loading ) {
 		return <AdminDefaultsLoader />;
@@ -227,6 +272,15 @@ const Interface = ( props ) => {
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
 								<div className="qdlx-admin__license--wrapper is-required">
+									{ ! licenseActivated &&
+										<Notice
+											message={ __(
+												'Please enter a valid license to receive support and updates', 'quotes-dlx'
+											) }
+											status="warning"
+											politeness="polite"
+										/>
+									}
 									<div className="qdlx-admin__license--input-wrapper">
 										<Controller
 											name="quotesdlxLicense"
@@ -319,68 +373,35 @@ const Interface = ( props ) => {
 									</div>
 								</div>
 								<div className="qdlx-admin__tabs--content-actions">
-									<Button
-										className={ classNames(
-											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-											{ 'has-error': hasErrors() },
-											{ 'has-icon': saving },
-											{ 'is-saving': { saving } }
-										) }
-										type="submit"
-										text={
-											saving
-												? __( 'Saving…', 'quotes-dlx' )
-												: __( 'Save License', 'quotes-dlx' )
-										}
-										icon={ saving ? Spinner : false }
-										iconSize="18"
-										iconPosition="right"
-										disabled={ saving || resetting }
-									/>
-									<Button
-										className={ classNames(
-											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-											{ 'has-error': hasErrors() },
-											{ 'has-icon': saving },
-											{ 'is-saving': { saving } }
-										) }
-										type="submit"
-										text={
-											saving
-												? __( 'Saving…', 'quotes-dlx' )
-												: __( 'Check License', 'quotes-dlx' )
-										}
-										icon={ saving ? Spinner : false }
-										iconSize="18"
-										iconPosition="right"
-										disabled={ saving || resetting }
-									/>
-									<Button
-										className={ classNames(
-											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
-											{ 'has-icon': resetting },
-											{ 'is-resetting': { resetting } }
-										) }
-										type="button"
-										text={
-											resetting
-												? __( 'Resetting…', 'quotes-dlx' )
-												: __( 'Revoke License', 'quotes-dlx' )
-										}
-										icon={ resetting ? Spinner : false }
-										iconSize="18"
-										iconPosition="right"
-										disabled={ saving || resetting }
-										onClick={ ( e ) => {
-											setResetting( true );
-											handleReset( e );
-										} }
-									/>
+									{ getSaveButton() }
+									{ licenseActivated &&
+										<Button
+											className={ classNames(
+												'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+												{ 'has-icon': revokingLicense },
+												{ 'is-resetting': { revokingLicense } }
+											) }
+											type="button"
+											text={
+												revokingLicense
+													? __( 'Revoking License…', 'quotes-dlx' )
+													: __( 'Revoke License', 'quotes-dlx' )
+											}
+											icon={ revokingLicense ? Spinner : false }
+											iconSize="18"
+											iconPosition="right"
+											disabled={ saving || revokingLicense }
+											onClick={ ( e ) => {
+												setRevokingLicense( true );
+												revokeLicense( e );
+											} }
+										/>
+									}
 								</div>
 								{ hasErrors() && (
 									<Notice
 										message={ __(
-											'There are form validation errors. Please correct them above.'
+											'There are form validation errors. Please correct them above.', 'quotes-dlx'
 										) }
 										status="error"
 										politeness="polite"
@@ -388,14 +409,14 @@ const Interface = ( props ) => {
 								) }
 								{ isSaved && (
 									<Notice
-										message={ __( 'Your settings have been saved.' ) }
+										message={ __( 'Your settings have been saved.', 'quotes-dlx' ) }
 										status="success"
 										politeness="assertive"
 									/>
 								) }
-								{ isReset && (
+								{ isRevoked && (
 									<Notice
-										message={ __( 'Your settings have been reset to defaults.' ) }
+										message={ __( 'Your license has been deactivated for this site.', 'quotes-dlx' ) }
 										status="success"
 										politeness="assertive"
 									/>
@@ -404,7 +425,7 @@ const Interface = ( props ) => {
 						</div>
 					</form>
 				</div>
-				{ validLicense &&
+				{ licenseActivated &&
 					<div className="qdlx-admin__tabs--content-wrap">
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
@@ -416,14 +437,52 @@ const Interface = ( props ) => {
 								</h1>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<p>{ __( 'Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx' ) }</p>
-								<div className="qdlx-button-primary center">
-									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/defaults` }>
-										{
-											__( 'Change the Block Defaults', 'quotes-dlx' )
-										}
-									</a>
-								</div>
+								<table className="gform-table gform-table--responsive gform-table--no-outer-border gform-table--license-ui">
+									<thead>
+										<tr>
+											<th scope="col">{ __( 'Item Name', 'quotes-dlx' ) }</th>
+											<th scope="col">{ __( 'License Type', 'quotes-dlx' ) }</th>
+											<th scope="col">{ __( 'License Status', 'quotes-dlx' ) }</th>
+											<th scope="col">{ __( 'License Activations', 'quotes-dlx' ) }</th>
+											<th scope="col">{ __( 'Expires On', 'quotes-dlx' ) }</th>
+											<th scope="col">{ __( 'Days Left', 'quotes-dlx' ) }</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td data-header="Item Name">
+												<p>{ item_name }</p>
+											</td>
+											<td data-header="License Type">
+												<p>{ getLicenseType() }</p>
+											</td>
+											<td data-header="License Status">
+												<p>
+													<span className="gform-status-indicator gform-status--active gform-status--static gform-status--no-icon">
+														<span className="gform-status-indicator-status">{ ( 'Active', 'quotes-dlx' ) }</span>
+													</span>
+												</p>
+											</td>
+											<td data-header="License Activations">
+												<p>
+													<span className="">
+														{ site_count } of { license_limit }
+													</span>
+												</p>
+											</td>
+											<td data-header="Expires On">
+												<p>
+													{ expires }
+												</p>
+											</td>
+											<td data-header="Days Left">
+												<p>
+													{ expires_human_time_diff }
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>

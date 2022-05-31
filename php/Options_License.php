@@ -47,14 +47,15 @@ class Options_License extends Options_Abstract {
 	 */
 	public static function get_defaults() {
 		$defaults = array(
-			'license_valid'    => '',
-			'license_key'      => '',
-			'license_status'   => '',
-			'item_name'        => '',
-			'expires'          => '',
-			'license_limit'    => '',
-			'site_count'       => '',
-			'activations_left' => '',
+			'license_valid'     => '',
+			'license_key'       => '',
+			'license_activated' => false,
+			'license_status'    => '',
+			'item_name'         => '',
+			'expires'           => '',
+			'license_limit'     => '',
+			'site_count'        => '',
+			'activations_left'  => '',
 		);
 
 		/**

@@ -193,25 +193,28 @@ class Plugin_License {
 		$errors = false;
 
 		$return_defaults = array(
-			'license'          => $response['license'],
-			'license_errors'   => false,
-			'license_key'      => $this->license,
-			'message'          => '',
-			'item_name'        => $response['item_name'],
-			'expires'          => $response['expires'],
-			'license_limit'    => $response['license_limit'],
-			'site_count'       => $response['site_count'],
-			'activations_left' => $response['activations_left'],
-			'data'             => $response,
-			'action'           => $action,
+			'license'                 => $response['license'],
+			'license_errors'          => false,
+			'license_key'             => $this->license,
+			'message'                 => '',
+			'item_name'               => $response['item_name'],
+			'expires'                 => $response['expires'],
+			'license_limit'           => $response['license_limit'],
+			'site_count'              => $response['site_count'],
+			'activations_left'        => $response['activations_left'],
+			'data'                    => $response,
+			'action'                  => $action,
+			'license_activated'       => Options::get_options( 'license_activated' ),
+			'expires_human_time_diff' => '',
+			'price_id'                => $response['price_id'],
 		);
 
 		// Format the date.
 		$expires = $return_defaults['data']['expires'] ?? '';
 		if ( ! empty( $expires ) ) {
 
-			$return_defaults['data']['expires_human_time_diff'] = human_time_diff( time(), strtotime( $expires ) );
-			$return_defaults['data']['expires']                 = date_i18n( 'F jS, Y', strtotime( $expires ) );
+			$return_defaults['expires_human_time_diff'] = human_time_diff( time(), strtotime( $expires ) );
+			$return_defaults['expires']                 = date_i18n( 'F jS, Y', strtotime( $expires ) );
 		}
 
 		if ( true === $response['success'] ) {
@@ -278,6 +281,17 @@ class Plugin_License {
 			),
 			$return_defaults
 		);
+	}
+
+	/**
+	 * Set whether the license is activated or not.
+	 *
+	 * @param bool $activated true if activated, false if not.
+	 */
+	public function set_activated_status( $activated = false ) {
+		$options                      = Options::get_options();
+		$options['license_activated'] = $activated;
+		Options::update_options( '', $options, true );
 
 	}
 }

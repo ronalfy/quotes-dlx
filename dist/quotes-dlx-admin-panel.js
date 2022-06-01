@@ -42447,6 +42447,11 @@ var Wrapper = function Wrapper() {
       licensesDirtyCount = _useState8[0],
       setLicensesDirtyCount = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      defaultTheme = _useState10[0],
+      setDefaultTheme = _useState10[1];
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
       blockDefaultsDirtyCount: blockDefaultsDirtyCount,
@@ -42456,7 +42461,9 @@ var Wrapper = function Wrapper() {
       themesDefaultsDirtyCount: themesDefaultsDirtyCount,
       setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
       licensesDirtyCount: licensesDirtyCount,
-      setLicensesDirtyCount: setLicensesDirtyCount
+      setLicensesDirtyCount: setLicensesDirtyCount,
+      defaultTheme: defaultTheme,
+      setDefaultTheme: setDefaultTheme
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };

@@ -22,6 +22,7 @@ import CircularInfo from '../../components/icons/CircularInfo';
 import Spinner from '../../components/icons/Spinner';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import Fancybox from '../admin-components/Fancybox';
+import TabsContext from '../contexts/TabsContext';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -40,6 +41,7 @@ const AdminDefaults = ( props ) => {
 
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_themes_defaults';
+	const { defaultTheme, setDefaultTheme } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
@@ -68,6 +70,7 @@ const Interface = ( props ) => {
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
 				if ( 'template' === key ) {
 					setActiveTheme( value );
+					setDefaultTheme( value );
 				}
 			}
 		}
@@ -162,6 +165,7 @@ const Interface = ( props ) => {
 									onClick={ ( e ) => {
 										setSaving( true );
 										setActiveTheme( theme.slug );
+										setDefaultTheme( theme.slug );
 										onThemeSelect( theme.slug );
 									} }
 									disabled={ ( activeTheme === theme.slug ) || saving }

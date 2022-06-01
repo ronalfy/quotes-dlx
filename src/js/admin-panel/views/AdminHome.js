@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
@@ -9,12 +9,17 @@ import {
 } from '@wordpress/components';
 import { faHandWave, faLightbulbExclamationOn, faPalette, faGears, faPuzzle } from '@fortawesome/pro-solid-svg-icons';
 import Fancybox from '../admin-components/Fancybox';
-
+import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
-	const outputDefaultTheme = () => {
-		const { template } = defaults;
-		const defaultTheme = themes.find( ( { slug } ) => slug === template );
+	const { defaultTheme, setCurrentTheme } = useContext( TabsContext );
+	const outputCurrentTheme = () => {
+		// Get default theme from options or override with context.
+		let selectedTemplate = defaults.template;
+		if ( '' !== defaultTheme ) {
+			selectedTemplate = defaultTheme;
+		}
+		const currentTheme = themes.find( ( { slug } ) => slug === selectedTemplate );
 		return (
 			<div className="qdlx-admin__tabs--content-wrap">
 				<div className="qdlx-admin__tabs--content-panel">
@@ -28,11 +33,11 @@ const AdminHome = () => {
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						<Fancybox>
-							<button className="button-reset show-cursor" data-fancybox data-src={ defaultTheme.preview_image_url } data-caption={ defaultTheme.name }>
+							<button className="button-reset show-cursor" data-fancybox data-src={ currentTheme.preview_image_url } data-caption={ currentTheme.name }>
 								<figure>
-									<img src={ defaultTheme.preview_image_url } alt={ defaultTheme.name } style={ { maxWidth: '100%', height: 'auto' } } />
+									<img src={ currentTheme.preview_image_url } alt={ currentTheme.name } style={ { maxWidth: '100%', height: 'auto' } } />
 									<figcaption>
-										{ defaultTheme.name }
+										{ currentTheme.name }
 									</figcaption>
 								</figure>
 							</button>
@@ -78,7 +83,7 @@ const AdminHome = () => {
 							</div>
 						</div>
 					</div>
-					{ outputDefaultTheme() }
+					{ outputCurrentTheme() }
 					<div className="qdlx-admin__tabs--content-wrap">
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">

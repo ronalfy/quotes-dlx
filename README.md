@@ -2,6 +2,10 @@
 
 A WordPress quote block that makes it dead simple for users to share your quotes.
 
+
+
+[![GPL License](https://img.shields.io/badge/License-GPL-green)]([https://github.com/10up/wpcs-action/blob/develop/LICENSE](https://raw.githubusercontent.com/DLXPlugins/quotes-dlx/development/LICENSE))
+
 <a href="https://github.com/MediaRon/quotes-dlx/releases/tag/quotes-dlx-1.0.0-beta-1">View the Current Release (1.0.0-beta-1)</a>.
 
 

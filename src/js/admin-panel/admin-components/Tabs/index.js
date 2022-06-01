@@ -123,7 +123,7 @@ const AdminTabs = ( props ) => {
 	);
 
 	return (
-		<div className="qdlx-admin-container__wrap">
+		<div className="qdlx-admin-container__wrap" id="qdlx-admin-container">
 			<nav className="qdlx-admin__tabs--nav">
 				<Router>
 					<TabItem
@@ -195,33 +195,35 @@ const AdminTabs = ( props ) => {
 			</nav>
 			<span aria-hidden="true"></span>
 			<>
-				<Router>
-					<Routes>
-						<Route path="/defaults" exact element={ getAdminDefaults } />
-						<Route
-							path="/menu"
-							exact
-							element={ getAdminContextualMenuDefaults }
-						/>
-						<Route
-							path="/themes"
-							exact
-							element={ getAdminThemesDefaults }
-						/>
-						<Route
-							path="/support"
-							exact
-							element={ getAdminSupport }
-						/>
-						<Route
-							path="/licenses"
-							exact
-							element={ getAdminLicense }
-						/>
-						<Route path="/" exact element={ getAdminHome } />
-						<Route path="*" element={ <Navigate to="/" /> } />
-					</Routes>
-				</Router>
+				<div id="qdlx-tab-content">
+					<Router>
+						<Routes>
+							<Route path="/defaults" exact element={ getAdminDefaults } />
+							<Route
+								path="/menu"
+								exact
+								element={ getAdminContextualMenuDefaults }
+							/>
+							<Route
+								path="/themes"
+								exact
+								element={ getAdminThemesDefaults }
+							/>
+							<Route
+								path="/support"
+								exact
+								element={ getAdminSupport }
+							/>
+							<Route
+								path="/licenses"
+								exact
+								element={ getAdminLicense }
+							/>
+							<Route path="/" exact element={ getAdminHome } />
+							<Route path="*" element={ <Navigate to="/" /> } />
+						</Routes>
+					</Router>
+				</div>
 			</>
 		</div>
 	);

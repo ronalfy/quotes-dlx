@@ -42901,7 +42901,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var TabItem = function TabItem(props) {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
-  console.log(location);
 
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
@@ -42919,6 +42918,12 @@ var TabItem = function TabItem(props) {
   var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()('qdlx-admin__nav--item', {
     active: props.isActive(location.pathname, slug)
   });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Can also use qdlx-tab-content
+    document.getElementById('qdlx-admin-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }, [location]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     onClick: function onClick(e) {
       return props.tabClicked(slug);
@@ -43073,7 +43078,8 @@ var AdminTabs = function AdminTabs(props) {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null)));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin-container__wrap"
+    className: "qdlx-admin-container__wrap",
+    id: "qdlx-admin-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     className: "qdlx-admin__tabs--nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -43137,7 +43143,9 @@ var AdminTabs = function AdminTabs(props) {
     dirtyCount: 0
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     "aria-hidden": "true"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "qdlx-tab-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
     path: "/defaults",
     exact: true,
     element: getAdminDefaults
@@ -43166,7 +43174,7 @@ var AdminTabs = function AdminTabs(props) {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Navigate, {
       to: "/"
     })
-  })))));
+  }))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminTabs);

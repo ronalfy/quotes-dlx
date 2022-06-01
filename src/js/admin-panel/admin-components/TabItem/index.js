@@ -6,7 +6,6 @@ import { _n, sprintf } from '@wordpress/i18n';
 
 const TabItem = ( props ) => {
 	const location = useLocation();
-	console.log( location );
 
 	const getIcon = ( Icon ) => {
 		return <Icon width={ 16 } height={ 16 } fill="#6c757d" />;
@@ -17,6 +16,13 @@ const TabItem = ( props ) => {
 	const classes = classNames( 'qdlx-admin__nav--item', {
 		active: props.isActive( location.pathname, slug ),
 	} );
+
+	useEffect( () => {
+		// Can also use qdlx-tab-content
+		document.getElementById( 'qdlx-admin-container' ).scrollIntoView( {
+			behavior: 'smooth',
+		} );
+	}, [ location ] );
 
 	return (
 		<a

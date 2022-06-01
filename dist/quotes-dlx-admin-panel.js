@@ -42442,6 +42442,11 @@ var Wrapper = function Wrapper() {
       themesDefaultsDirtyCount = _useState6[0],
       setThemesDefaultsDirtyCount = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      licensesDirtyCount = _useState8[0],
+      setLicensesDirtyCount = _useState8[1];
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
       blockDefaultsDirtyCount: blockDefaultsDirtyCount,
@@ -42449,7 +42454,9 @@ var Wrapper = function Wrapper() {
       setBlockDefaultsDirtyCount: setBlockDefaultsDirtyCount,
       setContextualMenuDefaultsDirtyCount: setContextualMenuDefaultsDirtyCount,
       themesDefaultsDirtyCount: themesDefaultsDirtyCount,
-      setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount
+      setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
+      licensesDirtyCount: licensesDirtyCount,
+      setLicensesDirtyCount: setLicensesDirtyCount
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
@@ -43015,11 +43022,12 @@ var AdminTabs = function AdminTabs(props) {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_12__["default"]),
       blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
       contextualMenuDefaultsDirtyCount = _useContext.contextualMenuDefaultsDirtyCount,
-      themesDefaultsDirtyCount = _useContext.themesDefaultsDirtyCount;
+      themesDefaultsDirtyCount = _useContext.themesDefaultsDirtyCount,
+      licensesDirtyCount = _useContext.licensesDirtyCount;
 
   var onTabClick = function onTabClick(tab) {};
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount]);
   /**
    *
    * @param {string} pathname Browser location.
@@ -43109,7 +43117,7 @@ var AdminTabs = function AdminTabs(props) {
       onTabClick(tab);
     },
     isActive: isActive,
-    dirtyCount: 0
+    dirtyCount: licensesDirtyCount
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_11__["default"], {
     icon: _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_5__["default"],
     slug: "support",

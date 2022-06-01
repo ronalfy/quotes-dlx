@@ -46,7 +46,7 @@ const AdminLicense = lazy( () =>
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount } =
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount } =
 		useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
@@ -55,6 +55,7 @@ const AdminTabs = ( props ) => {
 		blockDefaultsDirtyCount,
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
+		licensesDirtyCount,
 	] );
 
 	/**
@@ -177,7 +178,7 @@ const AdminTabs = ( props ) => {
 							onTabClick( tab );
 						} }
 						isActive={ isActive }
-						dirtyCount={ 0 }
+						dirtyCount={ licensesDirtyCount }
 					/>
 					<TabItem
 						icon={ CircularQuestionIcon }

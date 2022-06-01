@@ -44,7 +44,7 @@ const AdminLicense = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_licenses';
 
-	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } = useContext( TabsContext );
+	const { licensesDirtyCount, setLicensesDirtyCount } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
@@ -96,10 +96,7 @@ const Interface = ( props ) => {
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
 					// Reset count.
-					//setBlockDefaultsDirtyCount( 0 );
-
-					// Clear form dirty.
-					//reset( ajaxData );
+					setLicensesDirtyCount( 0 );
 
 					if ( ajaxData.license_activated ) {
 						setLicenseActivated( true );
@@ -130,12 +127,8 @@ const Interface = ( props ) => {
 			.then( ( ajaxResponse ) => {
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					// // Reset local storage.
-					// setBlockDefaultsDirtyCount( 0 );
-
-					// // Clear form dirty.
-					// reset( ajaxData );
-					// localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
+					// // Reset count.
+					setLicensesDirtyCount( 0 );
 					setLicenseActivated( false );
 					setIsRevoked( true );
 					setTimeout( () => {
@@ -215,12 +208,12 @@ const Interface = ( props ) => {
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: blockDefaultsDirtyCount !== 0 ? true : false, shouldValidate: true } );
+				setValue( key, value, { shouldDirty: licensesDirtyCount !== 0 ? true : false, shouldValidate: true } );
 			}
 		}
 		if ( isDirty ) {
 			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
+			setLicensesDirtyCount( touchedFieldsCountToSave );
 		}
 		setLoading( false );
 	}, [] );
@@ -229,19 +222,19 @@ const Interface = ( props ) => {
 		if ( saving || revokingLicense || loading ) {
 			return;
 		}
-		if ( isDirty || blockDefaultsDirtyCount > 0 ) {
+		if ( isDirty || licensesDirtyCount > 0 ) {
 			// Get current form values.
 			const formValuesToSave = JSON.stringify( getValues() );
 
 			// Get the length of the fields that need to be saved.
 			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
 
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
+			setLicensesDirtyCount( touchedFieldsCountToSave );
 
 			// Store touched fields.
 			localStorage.setItem( localStorageKey, formValuesToSave );
 		} else {
-			setBlockDefaultsDirtyCount( 0 );
+			setLicensesDirtyCount( 0 );
 		}
 		setLoading( false );
 	}, [ formValues ] );

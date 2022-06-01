@@ -183,8 +183,8 @@ var Interface = function Interface(props) {
   var localStorageKey = 'quotes_dlx_licenses';
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__["default"]),
-      blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
-      setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount;
+      licensesDirtyCount = _useContext.licensesDirtyCount,
+      setLicensesDirtyCount = _useContext.setLicensesDirtyCount;
 
   var defaults = props.defaults;
   var response = defaults();
@@ -284,9 +284,8 @@ var Interface = function Interface(props) {
 
       if (ajaxSuccess) {
         // Reset count.
-        //setBlockDefaultsDirtyCount( 0 );
-        // Clear form dirty.
-        //reset( ajaxData );
+        setLicensesDirtyCount(0);
+
         if (ajaxData.license_activated) {
           setLicenseActivated(true);
         } else {
@@ -317,11 +316,8 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        // // Reset local storage.
-        // setBlockDefaultsDirtyCount( 0 );
-        // // Clear form dirty.
-        // reset( ajaxData );
-        // localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
+        // // Reset count.
+        setLicensesDirtyCount(0);
         setLicenseActivated(false);
         setIsRevoked(true);
         setTimeout(function () {
@@ -409,7 +405,7 @@ var Interface = function Interface(props) {
             value = _Object$entries$_i[1];
 
         setValue(key, value, {
-          shouldDirty: blockDefaultsDirtyCount !== 0 ? true : false,
+          shouldDirty: licensesDirtyCount !== 0 ? true : false,
           shouldValidate: true
         });
       }
@@ -417,7 +413,7 @@ var Interface = function Interface(props) {
 
     if (isDirty) {
       var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setBlockDefaultsDirtyCount(touchedFieldsCountToSave);
+      setLicensesDirtyCount(touchedFieldsCountToSave);
     }
 
     setLoading(false);
@@ -427,16 +423,16 @@ var Interface = function Interface(props) {
       return;
     }
 
-    if (isDirty || blockDefaultsDirtyCount > 0) {
+    if (isDirty || licensesDirtyCount > 0) {
       // Get current form values.
       var formValuesToSave = JSON.stringify(getValues()); // Get the length of the fields that need to be saved.
 
       var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setBlockDefaultsDirtyCount(touchedFieldsCountToSave); // Store touched fields.
+      setLicensesDirtyCount(touchedFieldsCountToSave); // Store touched fields.
 
       localStorage.setItem(localStorageKey, formValuesToSave);
     } else {
-      setBlockDefaultsDirtyCount(0);
+      setLicensesDirtyCount(0);
     }
 
     setLoading(false);

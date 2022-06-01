@@ -504,10 +504,14 @@ const TweetQuotes = ( props ) => {
 		</>
 	);
 
-	// Todo - Make this readable via JSON.
+	// Load themes and display them in a dropdown menu.
 	let toolbarThemes = [];
+	let hasTheme = false; // Make sure there is a theme installed.
 
 	themes.forEach( ( theme ) => {
+		if ( template === theme.slug ) {
+			hasTheme = true;
+		}
 		toolbarThemes.push( {
 			title: theme.name,
 			isActive: template === theme.slug,
@@ -528,6 +532,11 @@ const TweetQuotes = ( props ) => {
 			},
 		} );
 	} );
+
+	// In case there is no theme, load default.
+	if ( ! hasTheme ) {
+		setAttributes( { template: 'light-branded' } );
+	}
 
 	// Calculate max width.
 	const maxWidthStyle = {

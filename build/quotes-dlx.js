@@ -1192,10 +1192,16 @@ var TweetQuotes = function TweetQuotes(props) {
         enable_tweet_this: value
       });
     }
-  }))))); // Todo - Make this readable via JSON.
+  }))))); // Load themes and display them in a dropdown menu.
 
   var toolbarThemes = [];
+  var hasTheme = false; // Make sure there is a theme installed.
+
   themes.forEach(function (theme) {
+    if (template === theme.slug) {
+      hasTheme = true;
+    }
+
     toolbarThemes.push({
       title: theme.name,
       isActive: template === theme.slug,
@@ -1211,7 +1217,14 @@ var TweetQuotes = function TweetQuotes(props) {
         });
       }
     });
-  }); // Calculate max width.
+  }); // In case there is no theme, load default.
+
+  if (!hasTheme) {
+    setAttributes({
+      template: 'light-branded'
+    });
+  } // Calculate max width.
+
 
   var maxWidthStyle = {
     maxWidth: maximum_width + maximum_width_unit

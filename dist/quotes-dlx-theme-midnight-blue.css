@@ -310,7 +310,7 @@
   z-index: 2;
   padding: 25px;
   background: transparent;
-  border: 1.5px solid #dbdbdb;
+  border: 1.5px solid rgb(219, 219, 219);
   box-shadow: none;
   border-radius: 100%;
   text-align: center;
@@ -344,7 +344,7 @@
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #dbdbdb;
+  background: rgb(219, 219, 219);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   background: #FFF;

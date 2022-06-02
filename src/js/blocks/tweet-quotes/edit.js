@@ -67,7 +67,9 @@ const TweetQuotes = ( props ) => {
 	const [ urlShortener, setUrlShortener ] = useState( 'default' );
 
 	// Shortcuts.
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, isSelected } = props;
+
+	console.log( isSelected );
 
 	const generatedUniqueId = useInstanceId(
 		TweetQuotes,
@@ -164,10 +166,10 @@ const TweetQuotes = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		if ( selectedTab === 'appearance' && shareTextInput.current !== null ) {
+		if ( selectedTab === 'appearance' && shareTextInput.current !== null && isSelected ) {
 			shareTextInput.current.focus();
 		}
-	}, [ shareTextInput.current ] );
+	}, [ isSelected, shareTextInput.current, selectedTab ] );
 
 	useEffect( () => {
 		if ( manualUrlInput.current !== null && 'manual' === urlShortener ) {
@@ -647,7 +649,7 @@ const TweetQuotes = ( props ) => {
 							enable_copy_tweet ||
 							enable_copy_link ||
 							enable_tweet_this ) && (
-						<MeatballMenu id={ uniqueId } { ...attributes } />
+							<MeatballMenu id={ uniqueId } { ...attributes } />
 					) }
 				</div>
 			</div>
@@ -669,6 +671,9 @@ const TweetQuotes = ( props ) => {
 				<div className="quotes-dlx-tabs">
 					<TabPanel
 						activeClass="active-tab"
+						onSelect={ ( currentTab ) => {
+							setSelectedTab( currentTab );
+						} }
 						tabs={ [
 							{
 								title: __( 'Appearance', 'quotes-dlx' ),
@@ -713,6 +718,7 @@ const TweetQuotes = ( props ) => {
 														onChange={ ( value ) => {
 															setAttributes( { share_text: value } );
 														} }
+														ref={ shareTextInput }
 													/>
 												</figure>
 												{ getClickToShareButton() }
@@ -721,7 +727,7 @@ const TweetQuotes = ( props ) => {
 														enable_copy_tweet ||
 														enable_copy_link ||
 														enable_tweet_this ) && (
-													<MeatballMenu id={ uniqueId } { ...attributes } />
+														<MeatballMenu id={ uniqueId } { ...attributes } />
 												) }
 											</>
 										</div>

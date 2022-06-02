@@ -825,7 +825,9 @@ var TweetQuotes = function TweetQuotes(props) {
 
 
   var attributes = props.attributes,
-      setAttributes = props.setAttributes;
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected;
+  console.log(isSelected);
   var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_18__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
   var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_14__.useSelect)(function (select) {
     // Useful functions: getCurrentPost, getCurrentPostId, getPermalink
@@ -903,10 +905,10 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }, []);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
-    if (selectedTab === 'appearance' && shareTextInput.current !== null) {
+    if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {
       shareTextInput.current.focus();
     }
-  }, [shareTextInput.current]);
+  }, [isSelected, shareTextInput.current, selectedTab]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
     if (manualUrlInput.current !== null && 'manual' === urlShortener) {
       manualUrlInput.current.focus();
@@ -1306,6 +1308,9 @@ var TweetQuotes = function TweetQuotes(props) {
     className: "quotes-dlx-tabs"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TabPanel, {
     activeClass: "active-tab",
+    onSelect: function onSelect(currentTab) {
+      setSelectedTab(currentTab);
+    },
     tabs: [{
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Appearance', 'quotes-dlx'),
       name: 'appearance',
@@ -1336,7 +1341,8 @@ var TweetQuotes = function TweetQuotes(props) {
           setAttributes({
             share_text: value
           });
-        }
+        },
+        ref: shareTextInput
       })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
         id: uniqueId
       }, attributes)))));

@@ -911,8 +911,8 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }, [url_shortening_service]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
-    var link = permalink !== null && permalink !== void 0 ? permalink : postObject.link;
-    var manualLink = manualPermalink !== null && manualPermalink !== void 0 ? manualPermalink : postObject.link;
+    var link = '' === permalink ? postObject.link : permalink;
+    var manualLink = '' === manualPermalink ? postObject.link : permalink;
 
     switch (url_shortening_service) {
       case 'none':
@@ -1213,11 +1213,7 @@ var TweetQuotes = function TweetQuotes(props) {
         });
       }
     });
-  }); // In case there is no theme, load default.
-
-  if (!hasTheme) {//setAttributes( { template: 'light-branded' } );
-  } // Calculate max width.
-
+  }); // Calculate max width.
 
   var maxWidthStyle = {
     maxWidth: maximum_width + maximum_width_unit

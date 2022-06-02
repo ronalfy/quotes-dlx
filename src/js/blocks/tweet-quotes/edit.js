@@ -175,8 +175,9 @@ const TweetQuotes = ( props ) => {
 	}, [ url_shortening_service ] );
 
 	useEffect( () => {
-		const link = permalink ?? postObject.link;
-		const manualLink = manualPermalink ?? postObject.link;
+		const link = '' === permalink ? postObject.link : permalink;
+		const manualLink = '' === manualPermalink ? postObject.link : permalink;
+
 		switch ( url_shortening_service ) {
 			case 'none':
 				setAttributes( {
@@ -529,11 +530,6 @@ const TweetQuotes = ( props ) => {
 			},
 		} );
 	} );
-
-	// In case there is no theme, load default.
-	if ( ! hasTheme ) {
-		//setAttributes( { template: 'light-branded' } );
-	}
 
 	// Calculate max width.
 	const maxWidthStyle = {

@@ -53,10 +53,9 @@ import {
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
 
-const manualUrlInput = createRef( null );
-const shareTextInput = createRef( null );
-
 const TweetQuotes = ( props ) => {
+	const manualUrlInput = createRef( null );
+	const shareTextInput = createRef( null );
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
 	const [ tweetHashtagCharLength, setTweetHashtagCharLength ] = useState( 0 );

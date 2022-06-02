@@ -781,13 +781,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
 
-var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
-var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
-
 var TweetQuotes = function TweetQuotes(props) {
   var _classnames, _classnames2;
 
-  // State.
+  var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
+  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null); // State.
+
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       tweetCharacterTotal = _useState2[0],

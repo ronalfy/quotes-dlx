@@ -42,25 +42,19 @@
 		}
 
 		// Click to Tweet.
-		wrapper.querySelector( 'button.quotes-dlx-button' ).addEventListener( 'click', ( e ) => {
-			tweet();
-		} );
+		const dlxTweetButton = wrapper.querySelector( 'button.quotes-dlx-button' );
+		if ( null !== dlxTweetButton ) {
+			dlxTweetButton.addEventListener( 'click', ( e ) => {
+				tweet( e );
+			} );
+		}
 		const tweetButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-tweet-this > button' );
 		if ( null !== tweetButtonWrapper ) {
 			tweetButtonWrapper.addEventListener( 'click', ( e ) => {
-				tweet();
+				tweet( e );
 			} );
 		}
 	} );
-
-	/**
-	 * Close the input checkbox menu.
-	 *
-	 * @param {element} element Element in which to close the menu input box.
-	 */
-	const closeMenu = ( element ) => {
-		element.querySelector( '.quotes-dlx-meatball-menu input' ).checked = false;
-	};
 
 	/**
 	 * Do some behavior when the Copy Quote button is clicked.
@@ -200,7 +194,8 @@
 	};
 
 	const tweet = ( e ) => {
-		const tweetButton = document.querySelector( 'button.quotes-dlx-button' );
+		console.log( e );
+		const tweetButton = e.target;
 		const hashtags = tweetButton.getAttribute( 'data-hashtags' );
 		const tweetText = tweetButton.getAttribute( 'data-tweet' );
 		const username = tweetButton.getAttribute( 'data-username' );

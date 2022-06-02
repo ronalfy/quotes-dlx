@@ -59,6 +59,13 @@ class Blocks {
 	 */
 	public function frontend( array $attributes, string $content ) {
 
+		// Get themes.
+		$themes = wp_cache_get( 'quotes-dlx-themes' );
+		if ( ! $themes ) {
+			$themes = Themes::get_theme_data();
+			wp_cache_set( 'quotes-dlx-themes', $theme, '', 3600 );
+		}
+
 		/**
 		 * Filter: quotes_dlx_block_attributes
 		 *
@@ -104,6 +111,38 @@ class Blocks {
 		$permalink               = $this->get_permalink( $attributes );
 		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
 		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+
+		// If a theme is removed, find a default fallback.
+		$has_theme = false;
+		$first_theme = null;
+		if ( is_array( $themes ) ) {
+			foreach ( $themes as $theme ) {
+				if ( null === $first_theme ) {
+					$first_theme = $theme['slug'];
+				}
+				if ( $template_name === $theme['slug'] ) {
+					$has_theme = true;
+				}
+			}
+		}
+		if ( ! $has_theme && null !== $first_theme ) {
+			$template_name = $first_theme;
+		}
+
+		/**
+		 * Filter: quotes_dlx_block_template
+		 *
+		 * Set a new default template.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string Template name (slug).
+		 *
+		 * @return string new template name (slug).
+		 */
+		$template_name = apply_filters( 'quotes_dlx_block_template', $template_name );
+
+		// Set wrapper classes.
 		$default_wrapper_classes = array(
 			'quotes-dlx',
 			'quotes-dlx-container',
@@ -286,7 +325,7 @@ class Blocks {
 									if ( $enable_tweet_this ) :
 										?>
 										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
-											<button class="button-reset">
+											<button class="button-reset" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
 												<span class="quotes-dlx-meatball-menu-icon">
 													<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
 												</span>

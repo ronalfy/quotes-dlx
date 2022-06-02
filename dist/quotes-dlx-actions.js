@@ -43,26 +43,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     } // Click to Tweet.
 
 
-    wrapper.querySelector('button.quotes-dlx-button').addEventListener('click', function (e) {
-      tweet();
-    });
+    var dlxTweetButton = wrapper.querySelector('button.quotes-dlx-button');
+
+    if (null !== dlxTweetButton) {
+      dlxTweetButton.addEventListener('click', function (e) {
+        tweet(e);
+      });
+    }
+
     var tweetButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-tweet-this > button');
 
     if (null !== tweetButtonWrapper) {
       tweetButtonWrapper.addEventListener('click', function (e) {
-        tweet();
+        tweet(e);
       });
     }
   });
-  /**
-   * Close the input checkbox menu.
-   *
-   * @param {element} element Element in which to close the menu input box.
-   */
-
-  var closeMenu = function closeMenu(element) {
-    element.querySelector('.quotes-dlx-meatball-menu input').checked = false;
-  };
   /**
    * Do some behavior when the Copy Quote button is clicked.
    *
@@ -70,7 +66,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * @param {element} listItemElement Wrapper Element.
    * @param {element} parentElement   Wrapper Element.
    */
-
 
   var copyQuoteCallback = function copyQuoteCallback(event, listItemElement, parentElement) {
     var text = listItemElement.getAttribute('data-text-full');
@@ -163,7 +158,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   };
 
   var tweet = function tweet(e) {
-    var tweetButton = document.querySelector('button.quotes-dlx-button');
+    console.log(e);
+    var tweetButton = e.target;
     var hashtags = tweetButton.getAttribute('data-hashtags');
     var tweetText = tweetButton.getAttribute('data-tweet');
     var username = tweetButton.getAttribute('data-username');

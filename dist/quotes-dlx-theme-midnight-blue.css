@@ -27,6 +27,7 @@
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   position: relative;
   font-size: 1.3em;
+  font-family: "Lato", serif;
   padding-left: 3.43em;
   /* 5em:before / 2 + ( 1.875em / 2 ) */
   padding-bottom: 1.075em;
@@ -38,6 +39,7 @@
   border: 0;
   quotes: none;
   background: transparent;
+  color: #FFFFFF;
   vertical-align: baseline;
   font-style: inherit;
 }

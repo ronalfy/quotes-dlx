@@ -505,13 +505,10 @@ const TweetQuotes = ( props ) => {
 	);
 
 	// Load themes and display them in a dropdown menu.
+	// There's a side-effect here if a theme is deleted. Need to use useEffect to
+	// set default theme. This causes more issues, so solution is to set default on PHP side (front-end).
 	let toolbarThemes = [];
-	let hasTheme = false; // Make sure there is a theme installed.
-
 	themes.forEach( ( theme ) => {
-		if ( template === theme.slug ) {
-			hasTheme = true;
-		}
 		toolbarThemes.push( {
 			title: theme.name,
 			isActive: template === theme.slug,
@@ -535,7 +532,7 @@ const TweetQuotes = ( props ) => {
 
 	// In case there is no theme, load default.
 	if ( ! hasTheme ) {
-		setAttributes( { template: 'light-branded' } );
+		//setAttributes( { template: 'light-branded' } );
 	}
 
 	// Calculate max width.

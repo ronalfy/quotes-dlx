@@ -904,7 +904,7 @@ var TweetQuotes = function TweetQuotes(props) {
   }, []);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
     if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {
-      shareTextInput.current.focus();
+      shareTextInput.current.focus(); // Note to self: not possible with component to focus on last character.
     }
   }, [isSelected, shareTextInput.current, selectedTab]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {

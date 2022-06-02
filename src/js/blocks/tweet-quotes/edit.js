@@ -27,6 +27,8 @@ import { createHooks } from '@wordpress/hooks';
 
 import { __ } from '@wordpress/i18n';
 
+import { create, toHTMLString } from '@wordpress/rich-text';
+
 import { useInstanceId } from '@wordpress/compose';
 import {
 	PanelBody,
@@ -625,7 +627,16 @@ const TweetQuotes = ( props ) => {
 					<figure>
 						<blockquote className="quotes-dlx-text-wrapper">
 							<div className="quotes-dlx-text">
-								{ htmlToReactParser.parse( share_text ) }
+								{ htmlToReactParser.parse(
+									toHTMLString( {
+										// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+										value: create( {
+											html: share_text,
+											preserveWhiteSpace: true,
+										} ),
+										multilineTag: 'p',
+									} )
+								) }
 							</div>
 						</blockquote>
 					</figure>

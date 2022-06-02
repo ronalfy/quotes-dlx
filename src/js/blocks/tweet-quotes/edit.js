@@ -69,8 +69,6 @@ const TweetQuotes = ( props ) => {
 	// Shortcuts.
 	const { attributes, setAttributes, isSelected } = props;
 
-	console.log( isSelected );
-
 	const generatedUniqueId = useInstanceId(
 		TweetQuotes,
 		attributes.anchor_prefix

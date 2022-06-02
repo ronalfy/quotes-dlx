@@ -827,7 +827,6 @@ var TweetQuotes = function TweetQuotes(props) {
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
       isSelected = props.isSelected;
-  console.log(isSelected);
   var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_18__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
   var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_14__.useSelect)(function (select) {
     // Useful functions: getCurrentPost, getCurrentPostId, getPermalink

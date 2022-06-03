@@ -80,6 +80,10 @@
 	display: none;
 }
 
+.qdlx-admin__tabs--home-grid-wrap {
+	overflow: hidden;
+}
+
 .quotes-dlx-plugin {
 	font-size: 16px;
 	/* Main wrapper container */
@@ -112,18 +116,54 @@
 		/* Overides for wrapper container */
 		.qdlx-admin-container__wrap {
 			display: grid;
-			grid-template-columns: 450px 1fr;
+			grid-template-columns: 1fr;
 			align-items: center;
+
+			@include respond-to('small') {
+				grid-template-columns: 1fr 2fr;
+			}
+
+			@include respond-to('medium') {
+				grid-template-columns: 275px 1fr;
+			}
+
+			@include respond-to('large') {
+				grid-template-columns: 375px 1fr;
+			}
 		}
 
 		.header__logo-wrap {
-			text-align: left;
+			text-align: center;
+			@include respond-to('small') {
+				text-align: left;
+			}
 		}
 
 		.qdlx__btn-primary {
 			width: 100%;
-			max-width: 150px;
+			max-width: 100%;
+
+			@include respond-to('small') {
+				max-width: 80%;
+			}
+			@include respond-to('medium') {
+				max-width: 75%;
+			}
+			@include respond-to('xl') {
+				max-width: 250px;
+			}
 		}
+	}
+
+	.header__btn-wrap {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		margin-top: 35px;
+		@include respond-to('small') {
+			margin-top: 0;
+		}
+
 	}
 
 	#qdlx__content-wrap {
@@ -133,10 +173,18 @@
 	#svg--logo {
 		width: 375px;
 		height: auto;
+
+		@include respond-to('small') {
+			width: 275px;
+		}
+
+		@include respond-to('large') {
+			width: 375px;
+		}
 	}
 
 	.qdlx__btn {
-		display: inline-block;
+		display: block;
 		padding: 15px 15px;
 		margin: 0;
 		height: auto;
@@ -146,6 +194,29 @@
 		text-decoration: none;
 		border-radius: 5px;
 		text-align: center;
+		margin-bottom: 15px;
+
+		@include respond-to('small') {
+			padding: 12px 10px;
+			margin-bottom: 15px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		@include respond-to('xl') {
+			display: inline-block;
+			margin-right: 15px;
+			margin-bottom: 0;
+			padding: 15px 15px;
+			font-size: 18px;
+			line-height: 1;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
 
 		svg {
 			display: inline-block;
@@ -384,7 +455,7 @@
 			display: flex;
 			align-items: center;
 			color: #4f4350;
-			font-size: 2.25em;
+			font-size: 1.6em;
 			margin: 0;
 			padding: 0;
 			font-weight: 300;
@@ -403,6 +474,10 @@
 				&.qdlx-admin__heading--text {
 					margin-left: 8px;
 				}
+			}
+
+			@include respond-to('small') {
+				font-size: 2.25em;
 			}
 		}
 	}
@@ -1045,6 +1120,11 @@
 
 /* Themes tab theme list */
 .qdlx-admin__themes--wrapper {
+	
+	iframe {
+		max-width: 100%;
+	}
+
 	.qdlx-admin__themes--content-inner {
 		display: grid;
 		grid-template-columns: 1fr 1fr;

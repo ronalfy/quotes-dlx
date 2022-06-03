@@ -42515,9 +42515,6 @@ var Header = function Header() {
     }),
     iconSize: 36,
     iconPosition: "right",
-    style: {
-      marginRight: '15px'
-    },
     target: "_blank"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-right",

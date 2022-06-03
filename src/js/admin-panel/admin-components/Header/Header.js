@@ -22,7 +22,6 @@ const Header = () => {
 						icon={ <NewWindow fill={ 'var( --quotes-dlx-admin--color-button-text-color)' } /> }
 						iconSize={ 36 }
 						iconPosition="right"
-						style={ { marginRight: '15px' } }
 						target="_blank"
 					/>
 					<Button

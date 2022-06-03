@@ -11,3 +11,14 @@
     position: absolute;
     width: 1px;
 }
+
+@mixin show-a11y {
+	border: inherit;
+	clip: unset;
+	height: unset;
+	margin: unset;
+	overflow: unset;
+	padding: unset;
+	position: unset;
+	width: inherit;
+}

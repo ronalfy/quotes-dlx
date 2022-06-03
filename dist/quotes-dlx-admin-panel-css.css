@@ -349,6 +349,14 @@ button.button-reset.show-cursor {
 }
 @media (min-width: 48em) {
   .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-description {
+    border: inherit;
+    clip: unset;
+    height: unset;
+    margin: unset;
+    overflow: unset;
+    padding: unset;
+    position: unset;
+    width: inherit;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;

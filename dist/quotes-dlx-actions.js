@@ -158,7 +158,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   };
 
   var tweet = function tweet(e) {
-    console.log(e);
     var tweetButton = e.target;
     var hashtags = tweetButton.getAttribute('data-hashtags');
     var tweetText = tweetButton.getAttribute('data-tweet');

@@ -194,7 +194,6 @@
 	};
 
 	const tweet = ( e ) => {
-		console.log( e );
 		const tweetButton = e.target;
 		const hashtags = tweetButton.getAttribute( 'data-hashtags' );
 		const tweetText = tweetButton.getAttribute( 'data-tweet' );

@@ -43087,7 +43087,14 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemesDefaults, null)));
   var getAdminSupport = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null))); // Set browser unload event if dirtycounts are not zero.
+
+  window.onbeforeunload = function () {
+    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount) {
+      return true;
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin-container__wrap",
     id: "qdlx-admin-container"

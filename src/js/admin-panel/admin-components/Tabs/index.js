@@ -122,6 +122,13 @@ const AdminTabs = ( props ) => {
 		</>
 	);
 
+	// Set browser unload event if dirtycounts are not zero.
+	window.onbeforeunload = function() {
+		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount ) {
+			return true;
+		}
+	};
+
 	return (
 		<div className="qdlx-admin-container__wrap" id="qdlx-admin-container">
 			<nav className="qdlx-admin__tabs--nav">

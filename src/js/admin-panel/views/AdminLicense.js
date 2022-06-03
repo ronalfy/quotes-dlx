@@ -105,6 +105,9 @@ const Interface = ( props ) => {
 					}
 
 					setIsSaved( true );
+					localStorage.removeItem(
+						localStorageKey
+					);
 					setTimeout( () => {
 						setIsSaved( false );
 					}, 3000 );
@@ -131,6 +134,9 @@ const Interface = ( props ) => {
 					setLicensesDirtyCount( 0 );
 					setLicenseActivated( false );
 					setIsRevoked( true );
+					localStorage.removeItem(
+						localStorageKey
+					);
 					setTimeout( () => {
 						setIsRevoked( false );
 					}, 3000 );
@@ -208,7 +214,7 @@ const Interface = ( props ) => {
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: licensesDirtyCount !== 0 ? true : false, shouldValidate: true } );
+				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
 			}
 		}
 		if ( isDirty ) {

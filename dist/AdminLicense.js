@@ -293,6 +293,7 @@ var Interface = function Interface(props) {
         }
 
         setIsSaved(true);
+        localStorage.removeItem(localStorageKey);
         setTimeout(function () {
           setIsSaved(false);
         }, 3000);
@@ -320,6 +321,7 @@ var Interface = function Interface(props) {
         setLicensesDirtyCount(0);
         setLicenseActivated(false);
         setIsRevoked(true);
+        localStorage.removeItem(localStorageKey);
         setTimeout(function () {
           setIsRevoked(false);
         }, 3000);
@@ -405,7 +407,7 @@ var Interface = function Interface(props) {
             value = _Object$entries$_i[1];
 
         setValue(key, value, {
-          shouldDirty: licensesDirtyCount !== 0 ? true : false,
+          shouldDirty: true,
           shouldValidate: true
         });
       }

@@ -95,6 +95,9 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
+					localStorage.removeItem(
+						localStorageFieldValuesKey
+					);
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -125,7 +128,9 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					// Set form fields.
 					reset( ajaxData );
-					localStorage.setItem( localStorageFieldValuesKey, JSON.stringify( getValues() ) );
+					localStorage.removeItem(
+						localStorageFieldValuesKey
+					);
 
 					setContextMenuActive( ajaxData.enableContextualMenu );
 
@@ -157,7 +162,7 @@ const Interface = ( props ) => {
 				if ( 'enableContextualMenu' === key && false === value ) {
 					setContextMenuActive( false );
 				}
-				setValue( key, value, { shouldDirty: contextualMenuDefaultsDirtyCount !== 0 ? true : false, shouldValidate: true } );
+				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
 			}
 		}
 		if ( isDirty ) {

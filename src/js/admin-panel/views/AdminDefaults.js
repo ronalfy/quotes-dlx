@@ -42,6 +42,7 @@ const AdminDefaults = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_form_defaults';
 
+
 	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
@@ -125,6 +126,9 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
+					localStorage.removeItem(
+						localStorageKey
+					);
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -154,7 +158,9 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.setItem( localStorageKey, JSON.stringify( getValues() ) );
+					localStorage.removeItem(
+						localStorageKey
+					);
 
 					// Reset toggles.
 					setShowButtonOptions( ajaxData.tweetButtonEnabled );
@@ -185,10 +191,11 @@ const Interface = ( props ) => {
 		const maybeSavedFormFields = localStorage.getItem(
 			localStorageKey
 		);
+
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: blockDefaultsDirtyCount !== 0 ? true : false, shouldValidate: true } );
+				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
 			}
 		}
 		if ( isDirty ) {

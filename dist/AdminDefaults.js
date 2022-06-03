@@ -261,6 +261,7 @@ var Interface = function Interface(props) {
         setContextualMenuDefaultsDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
+        localStorage.removeItem(localStorageFieldValuesKey);
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
@@ -286,7 +287,7 @@ var Interface = function Interface(props) {
         // Set form fields.
 
         reset(ajaxData);
-        localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(getValues()));
+        localStorage.removeItem(localStorageFieldValuesKey);
         setContextMenuActive(ajaxData.enableContextualMenu);
         setIsReset(true);
         setTimeout(function () {
@@ -319,7 +320,7 @@ var Interface = function Interface(props) {
         }
 
         setValue(key, value, {
-          shouldDirty: contextualMenuDefaultsDirtyCount !== 0 ? true : false,
+          shouldDirty: true,
           shouldValidate: true
         });
       }
@@ -750,6 +751,7 @@ var Interface = function Interface(props) {
         setBlockDefaultsDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
+        localStorage.removeItem(localStorageKey);
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
@@ -774,7 +776,7 @@ var Interface = function Interface(props) {
         setBlockDefaultsDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
-        localStorage.setItem(localStorageKey, JSON.stringify(getValues())); // Reset toggles.
+        localStorage.removeItem(localStorageKey); // Reset toggles.
 
         setShowButtonOptions(ajaxData.tweetButtonEnabled);
         setEnableLinks(ajaxData.enableLinksInTweet);
@@ -808,7 +810,7 @@ var Interface = function Interface(props) {
             value = _Object$entries$_i[1];
 
         setValue(key, value, {
-          shouldDirty: blockDefaultsDirtyCount !== 0 ? true : false,
+          shouldDirty: true,
           shouldValidate: true
         });
       }

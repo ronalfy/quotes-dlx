@@ -57,4 +57,28 @@ class Plugin_Settings_Links {
 		}
 		return $links;
 	}
+
+	/**
+	 * Redirects user to import screen after QuotesDLX is activated.
+	 *
+	 * Redirect user to import screen.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public static function redirect_to_import_screen() {
+		if ( is_admin() && Functions::get_plugin_file() === get_option( 'quotes-dlx-activate' ) ) {
+			$settings_url = admin_url( 'options-general.php?page=quotes-dlx' );
+			delete_option( 'quotes-dlx-activate' );
+			wp_safe_redirect( $settings_url );
+			exit;
+		}
+	}
+
+	/**
+	 * Set an option upon activation so we can retrieve it later.
+	 */
+	public static function plugin_activate() {
+		add_option( 'quotes-dlx-activate', Functions::get_plugin_file() );
+	}
 }

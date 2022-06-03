@@ -42924,6 +42924,7 @@ var TabItem = function TabItem(props) {
       behavior: 'smooth'
     });
   }, [location]);
+  var tabId = 'dlx' + slug;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     onClick: function onClick(e) {
       return props.tabClicked(slug);
@@ -42931,15 +42932,25 @@ var TabItem = function TabItem(props) {
     href: "#/".concat(slug),
     className: classes
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__tabs--nav-icon"
+    className: "qdlx-admin__tabs--nav-icon",
+    "aria-label": label,
+    "data-caption": label,
+    "aria-describedby": tabId
   }, getIcon(icon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__tabs--nav-title"
+    className: "qdlx-admin__tabs--nav-title",
+    "aria-hidden": "true"
   }, label), dirtyCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--save-count",
     "data-caption": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.sprintf)(
     /* Translators: %d is the number of unsaved items */
+    (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__._n)('You have %d unsaved item.', 'You have %d unsaved items', dirtyCount, 'quotes-dlx'), dirtyCount),
+    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.sprintf)(
+    /* Translators: %d is the number of unsaved items */
     (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__._n)('You have %d unsaved item.', 'You have %d unsaved items', dirtyCount, 'quotes-dlx'), dirtyCount)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, dirtyCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    "aria-hidden": "true"
+  }, dirtyCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: tabId,
     className: "qdlx-admin__tabs--nav-description"
   }, description));
 };

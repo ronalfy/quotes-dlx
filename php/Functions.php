@@ -238,7 +238,7 @@ class Functions {
 		 *
 		 * @param string Plugin Support URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_support_uri', 'https://wordpress.org/support/plugin/quotes-dlx/' );
+		return apply_filters( 'quotes_dlx_plugin_support_uri', 'https://dlxplugins.com/support/' );
 	}
 
 	/**
@@ -254,7 +254,7 @@ class Functions {
 		 *
 		 * @param string Plugin Docs URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://mediaron.com/plugins/quotes-dlx/docs/' );
+		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://qdlx.dlxplugins.com/' );
 	}
 
 	/**
@@ -270,7 +270,7 @@ class Functions {
 		 *
 		 * @param string Plugin ratings URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://wordpress.org/support/plugin/quotes-dlx/reviews/' );
+		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://dlxplugins.com/support/' );
 	}
 
 	/**

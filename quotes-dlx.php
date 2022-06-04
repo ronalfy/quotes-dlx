@@ -70,9 +70,6 @@ class QuotesDLX {
 		Admin\Plugin_Settings_Links::run();
 		Admin\Register_Menu::run();
 
-		// Example of accessing static class.
-		// $hi = Admin\Blah::run();
-
 		add_action( 'init', array( $this, 'init' ) );
 
 		/**

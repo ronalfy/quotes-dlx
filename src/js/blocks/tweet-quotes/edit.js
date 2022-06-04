@@ -893,8 +893,6 @@ const TweetQuotes = ( props ) => {
 																},
 															] }
 															onChange={ ( value ) => {
-																console.log( value );
-																console.log( url_shortening_service );
 																setAttributes( {
 																	url_shortening_service: value,
 																} );

@@ -42,7 +42,6 @@ const AdminDefaults = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_form_defaults';
 
-
 	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();

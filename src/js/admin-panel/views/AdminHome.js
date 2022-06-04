@@ -42,7 +42,7 @@ const AdminHome = () => {
 								</figure>
 							</button>
 							<hr />
-							<div className="qdlx-button-primary center">
+							<div className="qdlx-button-primary">
 								<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/themes` }>
 									{
 										__( 'Change the Default Theme', 'quotes-dlx' )
@@ -93,10 +93,10 @@ const AdminHome = () => {
 										{ __( 'Block Defaults', 'quotes-dlx' ) }
 									</span>
 								</h1>
+								<p className="description">{ __( 'Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx' ) }</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<p>{ __( 'Set block defaults to save you time when inserting the QuotesDLX block', 'quotes-dlx' ) }</p>
-								<div className="qdlx-button-primary center">
+								<div className="qdlx-button-primary">
 									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/defaults` }>
 										{
 											__( 'Change the Block Defaults', 'quotes-dlx' )
@@ -112,18 +112,19 @@ const AdminHome = () => {
 								<h1>
 									<FontAwesomeIcon size={ '1x' } icon={ faPuzzle } />
 									<span className="qdlx-admin__heading--text">
-										{ __( 'Coming to an add-on near you…', 'quotes-dlx' ) }
+										{ __( 'Planning for…', 'quotes-dlx' ) }
 									</span>
 								</h1>
+								<p className="description">{ __( 'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.', 'quotes-dlx' ) }.</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<p>{ __( 'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.', 'quotes-dlx' ) }.</p>
+								
 								<ul>
 									<li><strong>Presets</strong>: Similar to block patterns and reusable blocks, these will allow you to save and re-use presets depending on what type of quote you are creating.</li>
 									<li><strong>Overrides</strong>: Globally override the block settings regardless of what was set when the block was.</li>
 									<li><strong>Themes</strong>: More DLX themes are planned.</li>
 								</ul>
-								<div className="qdlx-button-primary center">
+								<div className="qdlx-button-primary">
 									<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href="https://mediaron.com/plugins/quotes-dlx/newsletter/">
 										{
 											__( 'Sign-up for Updates (external link)', 'quotes-dlx' )

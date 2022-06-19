@@ -63,7 +63,7 @@ var AdminSupport = function AdminSupport() {
     size: '1x',
     iconSize: "1x",
     iconPosition: "left",
-    href: "https://mediaron.com/quotes-dlx"
+    href: "https://qdlx.dlxplugins.com/"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Go to the Documentation', 'quotes-dlx'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__support--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -83,7 +83,7 @@ var AdminSupport = function AdminSupport() {
     size: '1x',
     iconSize: "1x",
     iconPosition: "left",
-    href: "https://dlxplugins.com/plugins/quotes/"
+    href: "https://dlxplugins.com/plugins/quotesdlx/"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View QuotesDLX', 'quotes-dlx'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__support--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -103,7 +103,7 @@ var AdminSupport = function AdminSupport() {
     size: '1x',
     iconSize: "1x",
     iconPosition: "left",
-    href: "https://dlxpugins.com/contact/"
+    href: "https://dlxplugins.com/support/"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Get Personalized Support', 'quotes-dlx')))))));
 };
 

@@ -47,7 +47,7 @@ const AdminSupport = () => {
 								size={ '1x' }
 								iconSize="1x"
 								iconPosition="left"
-								href="https://mediaron.com/quotes-dlx"
+								href="https://qdlx.dlxplugins.com/"
 							>
 								{
 									__( 'Go to the Documentation', 'quotes-dlx' )
@@ -73,7 +73,7 @@ const AdminSupport = () => {
 								size={ '1x' }
 								iconSize="1x"
 								iconPosition="left"
-								href="https://dlxplugins.com/plugins/quotes/"
+								href="https://dlxplugins.com/plugins/quotesdlx/"
 							>
 								{
 									__( 'View QuotesDLX', 'quotes-dlx' )
@@ -99,7 +99,7 @@ const AdminSupport = () => {
 								size={ '1x' }
 								iconSize="1x"
 								iconPosition="left"
-								href="https://dlxpugins.com/contact/"
+								href="https://dlxplugins.com/support/"
 							>
 								{
 									__( 'Get Personalized Support', 'quotes-dlx' )

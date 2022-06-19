@@ -217,25 +217,25 @@ var Interface = function Interface(props) {
       isRevoked = _useState10[0],
       setIsRevoked = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
       _useState12 = _slicedToArray(_useState11, 2),
-      showSecret = _useState12[0],
-      setShowSecret = _useState12[1];
+      validLicense = _useState12[0],
+      setValidLicense = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated),
       _useState14 = _slicedToArray(_useState13, 2),
-      validLicense = _useState14[0],
-      setValidLicense = _useState14[1];
+      licenseActivated = _useState14[0],
+      setLicenseActivated = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data),
       _useState16 = _slicedToArray(_useState15, 2),
-      licenseActivated = _useState16[0],
-      setLicenseActivated = _useState16[1];
+      licenseData = _useState16[0],
+      setLicenseData = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated ? false : true),
       _useState18 = _slicedToArray(_useState17, 2),
-      licenseData = _useState18[0],
-      setLicenseData = _useState18[1];
+      showSecret = _useState18[0],
+      setShowSecret = _useState18[1];
 
   var license_key = data.license_key,
       item_name = data.item_name,
@@ -249,7 +249,7 @@ var Interface = function Interface(props) {
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useForm)({
     defaultValues: {
-      quotesdlxLicense: license_key
+      quotesdlxLicense: license_key.substr(0, 8) + '********'
     }
   }),
       register = _useForm.register,
@@ -467,7 +467,11 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__license--wrapper is-required"
-  }, !licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your license is valid.', 'quotes-dlx'),
+    status: "success",
+    politeness: "polite"
+  }), !licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please enter a valid license to receive support and updates', 'quotes-dlx'),
     status: "warning",
     politeness: "polite"
@@ -492,6 +496,7 @@ var Interface = function Interface(props) {
           'has-error': 'pattern' === ((_errors$quotesdlxLice = errors.quotesdlxLicense) === null || _errors$quotesdlxLice === void 0 ? void 0 : _errors$quotesdlxLice.type) || 'required' === ((_errors$quotesdlxLice2 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice2 === void 0 ? void 0 : _errors$quotesdlxLice2.type),
           'is-required': true
         }),
+        disabled: licenseActivated,
         "aria-required": "true",
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Entering a license will enable support and updates.', 'quotes-dlx'),
         type: showSecret ? 'text' : 'password'
@@ -543,7 +548,7 @@ var Interface = function Interface(props) {
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, getSaveButton(), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, !licenseActivated && getSaveButton(), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': revokingLicense
     }, {
@@ -607,7 +612,7 @@ var Interface = function Interface(props) {
     "data-header": "License Activations"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: ""
-  }, licenseData.site_count, " of ", licenseData.license_limit === 0 ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unlimited', 'quotes-dlx') : licenseData.license_limit))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+  }, licenseData.site_count, " of", ' ', licenseData.license_limit === 0 ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unlimited', 'quotes-dlx') : licenseData.license_limit))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
     "data-header": "Expires On"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
     "data-header": "Days Left"

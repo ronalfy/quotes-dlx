@@ -54,10 +54,14 @@ const Interface = ( props ) => {
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ revokingLicense, setRevokingLicense ] = useState( false );
 	const [ isRevoked, setIsRevoked ] = useState( false );
-	const [ showSecret, setShowSecret ] = useState( false );
 	const [ validLicense, setValidLicense ] = useState( data.license );
-	const [ licenseActivated, setLicenseActivated ] = useState( data.license_activated );
+	const [ licenseActivated, setLicenseActivated ] = useState(
+		data.license_activated
+	);
 	const [ licenseData, setLicenseData ] = useState( data );
+	const [ showSecret, setShowSecret ] = useState(
+		data.license_activated ? false : true
+	);
 
 	const {
 		license_key,
@@ -71,16 +75,25 @@ const Interface = ( props ) => {
 		price_id,
 	} = data;
 
-	const { register, control, handleSubmit, setValue, setError, getValues, reset } =
-		useForm( {
-			defaultValues: {
-				quotesdlxLicense: license_key,
-			},
-		} );
+	const {
+		register,
+		control,
+		handleSubmit,
+		setValue,
+		setError,
+		getValues,
+		reset,
+	} = useForm( {
+		defaultValues: {
+			quotesdlxLicense: license_key.substr( 0, 8 ) + '********',
+		},
+	} );
 
 	const formValues = useWatch( { control } );
 
-	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( { control } );
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
 
 	const onSubmit = ( formData ) => {
 		setSaving( true );
@@ -107,18 +120,19 @@ const Interface = ( props ) => {
 					}
 
 					setIsSaved( true );
-					localStorage.removeItem(
-						localStorageKey
-					);
+					localStorage.removeItem( localStorageKey );
 					setTimeout( () => {
 						setIsSaved( false );
 					}, 3000 );
 				} else {
 					// Error stuff.
-					setError( 'quotesdlxLicense', { type: 'validate', message: ajaxData.message } );
+					setError( 'quotesdlxLicense', {
+						type: 'validate',
+						message: ajaxData.message,
+					} );
 				}
 			} )
-			.catch( ( ajaxResponse ) => { } )
+			.catch( ( ajaxResponse ) => {} )
 			.then( ( ajaxResponse ) => {
 				setSaving( false );
 			} );
@@ -136,17 +150,21 @@ const Interface = ( props ) => {
 					setLicensesDirtyCount( 0 );
 					setLicenseActivated( false );
 					setIsRevoked( true );
-					localStorage.removeItem(
-						localStorageKey
-					);
+					localStorage.removeItem( localStorageKey );
 					setTimeout( () => {
 						setIsRevoked( false );
 					}, 3000 );
 				} else {
-					setError( 'quotesdlxLicense', { type: 'validate', message: __( 'Revoking the license resulted in an error and could not be deactivated.', 'quotes-dlx' ) } );
+					setError( 'quotesdlxLicense', {
+						type: 'validate',
+						message: __(
+							'Revoking the license resulted in an error and could not be deactivated.',
+							'quotes-dlx'
+						),
+					} );
 				}
 			} )
-			.catch( ( ajaxResponse ) => { } )
+			.catch( ( ajaxResponse ) => {} )
 			.then( ( ajaxResponse ) => {
 				setRevokingLicense( false );
 			} );
@@ -195,11 +213,7 @@ const Interface = ( props ) => {
 						{ 'is-saving': { saving } }
 					) }
 					type="submit"
-					text={
-						saving
-							? saveTextLoading
-							: saveText
-					}
+					text={ saving ? saveTextLoading : saveText }
 					icon={ saving ? Spinner : false }
 					iconSize="18"
 					iconPosition="right"
@@ -210,9 +224,7 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
-		const maybeSavedFormFields = localStorage.getItem(
-			localStorageKey
-		);
+		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
@@ -273,20 +285,32 @@ const Interface = ( props ) => {
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
 								<div className="qdlx-admin__license--wrapper is-required">
-									{ ! licenseActivated &&
+									{ licenseActivated && (
+										<Notice
+											message={ __( 'Your license is valid.', 'quotes-dlx' ) }
+											status="success"
+											politeness="polite"
+										/>
+									) }
+									{ ! licenseActivated && (
 										<Notice
 											message={ __(
-												'Please enter a valid license to receive support and updates', 'quotes-dlx'
+												'Please enter a valid license to receive support and updates',
+												'quotes-dlx'
 											) }
 											status="warning"
 											politeness="polite"
 										/>
-									}
+									) }
 									<div className="qdlx-admin__license--input-wrapper">
 										<Controller
 											name="quotesdlxLicense"
 											control={ control }
-											rules={ { required: true, pattern: /^[0-9A-Za-z]+$/i, validate: true } }
+											rules={ {
+												required: true,
+												pattern: /^[0-9A-Za-z]+$/i,
+												validate: true,
+											} }
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
@@ -297,13 +321,12 @@ const Interface = ( props ) => {
 														'qdlx-admin__text-control-license',
 														{
 															'has-error':
-																'pattern' ===
-																errors.quotesdlxLicense?.type ||
-																'required' ===
-																errors.quotesdlxLicense?.type,
+																'pattern' === errors.quotesdlxLicense?.type ||
+																'required' === errors.quotesdlxLicense?.type,
 															'is-required': true,
 														}
 													) }
+													disabled={ licenseActivated }
 													aria-required="true"
 													help={ __(
 														'Entering a license will enable support and updates.',
@@ -317,7 +340,10 @@ const Interface = ( props ) => {
 											<input
 												id="quotes-dlx-license-show-hide"
 												type="checkbox"
-												aria-label={ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
+												aria-label={ __(
+													'Click to Show or Hide the License',
+													'quotes-dlx'
+												) }
 												onClick={ () => {
 													if ( showSecret ) {
 														setShowSecret( false );
@@ -325,11 +351,18 @@ const Interface = ( props ) => {
 														setShowSecret( true );
 													}
 												} }
-												title={ showSecret ? __( 'Hide License', 'quotes-dlx' ) : __( 'Show License', 'quotes-dlx' ) }
+												title={
+													showSecret
+														? __( 'Hide License', 'quotes-dlx' )
+														: __( 'Show License', 'quotes-dlx' )
+												}
 											/>
 											<label htmlFor="quotes-dlx-license-show-hide not-is-required">
 												<span className="quotes-dlx-license-show-hide--label">
-													{ __( 'Click to Show or Hide the License', 'quotes-dlx' ) }
+													{ __(
+														'Click to Show or Hide the License',
+														'quotes-dlx'
+													) }
 												</span>
 												<span className="quotes-dlx-license-show-hide--icon">
 													{ ! showSecret ? (
@@ -337,9 +370,7 @@ const Interface = ( props ) => {
 													) : (
 														<FontAwesomeIcon size={ '1x' } icon={ faEyeSlash } />
 													) }
-
 												</span>
-
 											</label>
 										</div>
 										{ 'required' === errors.quotesdlxLicense?.type && (
@@ -374,8 +405,8 @@ const Interface = ( props ) => {
 									</div>
 								</div>
 								<div className="qdlx-admin__tabs--content-actions">
-									{ getSaveButton() }
-									{ licenseActivated &&
+									{ ! licenseActivated && getSaveButton() }
+									{ licenseActivated && (
 										<Button
 											className={ classNames(
 												'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
@@ -397,12 +428,13 @@ const Interface = ( props ) => {
 												revokeLicense( e );
 											} }
 										/>
-									}
+									) }
 								</div>
 								{ hasErrors() && (
 									<Notice
 										message={ __(
-											'There are form validation errors. Please correct them above.', 'quotes-dlx'
+											'There are form validation errors. Please correct them above.',
+											'quotes-dlx'
 										) }
 										status="error"
 										politeness="polite"
@@ -417,7 +449,10 @@ const Interface = ( props ) => {
 								) }
 								{ isRevoked && (
 									<Notice
-										message={ __( 'Your license has been deactivated for this site.', 'quotes-dlx' ) }
+										message={ __(
+											'Your license has been deactivated for this site.',
+											'quotes-dlx'
+										) }
 										status="success"
 										politeness="assertive"
 									/>
@@ -426,7 +461,7 @@ const Interface = ( props ) => {
 						</div>
 					</form>
 				</div>
-				{ licenseActivated &&
+				{ licenseActivated && (
 					<div className="qdlx-admin__tabs--content-wrap">
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
@@ -443,7 +478,9 @@ const Interface = ( props ) => {
 										<tr>
 											<th scope="col">{ __( 'Item Name', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'License Type', 'quotes-dlx' ) }</th>
-											<th scope="col">{ __( 'License Activations', 'quotes-dlx' ) }</th>
+											<th scope="col">
+												{ __( 'License Activations', 'quotes-dlx' ) }
+											</th>
 											<th scope="col">{ __( 'Expires On', 'quotes-dlx' ) }</th>
 											<th scope="col">{ __( 'Days Left', 'quotes-dlx' ) }</th>
 										</tr>
@@ -459,19 +496,18 @@ const Interface = ( props ) => {
 											<td data-header="License Activations">
 												<p>
 													<span className="">
-														{licenseData.site_count } of {licenseData.license_limit === 0 ? __( 'Unlimited', 'quotes-dlx' ) : licenseData.license_limit }
+														{ licenseData.site_count } of{ ' ' }
+														{ licenseData.license_limit === 0
+															? __( 'Unlimited', 'quotes-dlx' )
+															: licenseData.license_limit }
 													</span>
 												</p>
 											</td>
 											<td data-header="Expires On">
-												<p>
-													{ licenseData.expires }
-												</p>
+												<p>{ licenseData.expires }</p>
 											</td>
 											<td data-header="Days Left">
-												<p>
-													{ licenseData.expires_human_time_diff }
-												</p>
+												<p>{ licenseData.expires_human_time_diff }</p>
 											</td>
 										</tr>
 									</tbody>
@@ -479,7 +515,7 @@ const Interface = ( props ) => {
 							</div>
 						</div>
 					</div>
-				}
+				) }
 			</div>
 		</>
 	);

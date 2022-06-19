@@ -275,7 +275,9 @@ class Blocks {
 									<?php
 									if ( $enable_copy_text ) :
 										// Get all text and put in data attribute.
-										$share_text_kses = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
+
+										// Convert rich text to plain text.
+										$share_text_kses = (string) $attributes['share_text'];
 										?>
 										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( $share_text_kses ) ); ?> ">
 											<button class="button-reset">

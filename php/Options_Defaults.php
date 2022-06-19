@@ -65,7 +65,7 @@ class Options_Defaults extends Options_Abstract {
 			'url_shortening_service' => 'manual',
 			'url_shortener'          => true,
 			'enable_contextual_menu' => true,
-			'enable_copy_text'       => false,
+			'enable_copy_text'       => true,
 			'enable_copy_tweet'      => true,
 			'enable_copy_link'       => true,
 			'enable_tweet_this'      => true,

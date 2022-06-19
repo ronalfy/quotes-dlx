@@ -63,7 +63,7 @@ class Blocks {
 		$themes = wp_cache_get( 'quotes-dlx-themes' );
 		if ( ! $themes ) {
 			$themes = Themes::get_theme_data();
-			wp_cache_set( 'quotes-dlx-themes', $theme, '', 3600 );
+			wp_cache_set( 'quotes-dlx-themes', $themes, '', 3600 );
 		}
 
 		/**

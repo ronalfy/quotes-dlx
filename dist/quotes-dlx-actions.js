@@ -159,25 +159,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   var tweet = function tweet(e) {
     var tweetButton = e.target;
+    var element = e.target.nodeName.toLowerCase(); // Check element type.
+
+    if ('span' === element) {
+      tweetButton = tweetButton.parentElement;
+    }
+
     var hashtags = tweetButton.getAttribute('data-hashtags');
     var tweetText = tweetButton.getAttribute('data-tweet');
     var username = tweetButton.getAttribute('data-username');
     var permalink = tweetButton.getAttribute('data-url');
     var newTweet = '';
 
-    if (username !== '') {
+    if (username !== '' && username !== null) {
       newTweet += '&via=' + username;
     }
 
-    if (permalink !== '') {
+    if (permalink !== '' && permalink !== null) {
       newTweet += '&url=' + permalink.trim();
     }
 
-    if (hashtags !== '') {
+    if (hashtags !== '' && hashtags !== null) {
       newTweet += '&hashtags=' + hashtags;
     }
 
-    if (tweetText !== '') {
+    if (tweetText !== '' && tweetText !== null) {
       newTweet += '&text=' + tweetText + "\n\r";
     }
 

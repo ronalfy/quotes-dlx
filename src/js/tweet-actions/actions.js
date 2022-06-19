@@ -194,23 +194,29 @@
 	};
 
 	const tweet = ( e ) => {
-		const tweetButton = e.target;
+		let tweetButton = e.target;
+		const element = e.target.nodeName.toLowerCase();
+
+		// Check element type.
+		if ( 'span' === element ) {
+			tweetButton = tweetButton.parentElement;
+		}
 		const hashtags = tweetButton.getAttribute( 'data-hashtags' );
 		const tweetText = tweetButton.getAttribute( 'data-tweet' );
 		const username = tweetButton.getAttribute( 'data-username' );
 		const permalink = tweetButton.getAttribute( 'data-url' );
 
 		let newTweet = '';
-		if ( username !== '' ) {
+		if ( username !== '' && username !== null ) {
 			newTweet += '&via=' + username;
 		}
-		if ( permalink !== '' ) {
+		if ( permalink !== '' && permalink !== null ) {
 			newTweet += '&url=' + permalink.trim();
 		}
-		if ( hashtags !== '' ) {
+		if ( hashtags !== '' && hashtags !== null ) {
 			newTweet += '&hashtags=' + hashtags;
 		}
-		if ( tweetText !== '' ) {
+		if ( tweetText !== '' && tweetText !== null ) {
 			newTweet += '&text=' + tweetText + "\n\r";
 		}
 

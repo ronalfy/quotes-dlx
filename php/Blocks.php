@@ -618,12 +618,15 @@ class Blocks {
 		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
 		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-
+		$manual_permalink =  Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
 		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$permalink = esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
+			return $permalink;
+		} else {
+			$permalink = esc_url( $manual_permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 			return $permalink;
 		}
 		return false;

@@ -287,7 +287,7 @@ const Interface = ( props ) => {
 														label={ __( 'Tweet Credit', 'quotes-dlx' ) }
 														className="qdlx-admin__text-control"
 														register="tweet_credit"
-														placeholder="@TwitterUsername"
+														placeholder="TwitterUsername"
 														value={ value }
 														onChange={ ( currentValue ) => {
 															let twitterUsername = '';
@@ -298,7 +298,7 @@ const Interface = ( props ) => {
 																		'@' + replacement
 																	);
 																	if ( typeof usernames[ 0 ] !== 'undefined' ) {
-																		twitterUsername = '@' + usernames[ 0 ];
+																		twitterUsername = usernames[ 0 ];
 																	} else {
 																		twitterUsername = replacement;
 																	}

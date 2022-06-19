@@ -909,7 +909,7 @@ var Interface = function Interface(props) {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Credit', 'quotes-dlx'),
         className: "qdlx-admin__text-control",
         register: "tweet_credit",
-        placeholder: "@TwitterUsername",
+        placeholder: "TwitterUsername",
         value: value,
         onChange: function onChange(currentValue) {
           var twitterUsername = '';
@@ -921,7 +921,7 @@ var Interface = function Interface(props) {
               var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.extractMentions('@' + replacement);
 
               if (typeof usernames[0] !== 'undefined') {
-                twitterUsername = '@' + usernames[0];
+                twitterUsername = usernames[0];
               } else {
                 twitterUsername = replacement;
               }

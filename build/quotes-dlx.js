@@ -1393,18 +1393,18 @@ var TweetQuotes = function TweetQuotes(props) {
           var replacement = value.replace('@', ''); // Strip @ symbol.
 
           if (value.length > 0) {
-            var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractMentions('@' + replacement);
+            var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractMentions(replacement);
 
             if (typeof usernames[0] !== 'undefined') {
               setAttributes({
-                twitter_username: '@' + usernames[0]
+                twitter_username: usernames[0].replace('@', '')
               });
               return;
             }
           }
 
           setAttributes({
-            twitter_username: value
+            twitter_username: replacement
           });
         }
       }));

@@ -101,19 +101,19 @@ class Blocks {
 		// Begin the output buffer.
 		ob_start();
 
-		$has_anchor              = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
-		$anchor                  = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
-		$rtl                     = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
-		$align                   = Functions::sanitize_attribute( $attributes, 'align', 'text' );
-		$template_name           = Functions::sanitize_attribute( $attributes, 'template', 'text' );
-		$maximum_width           = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
-		$maximum_width_unit      = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
-		$permalink               = $this->get_permalink( $attributes );
-		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
-		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+		$has_anchor             = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
+		$anchor                 = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
+		$rtl                    = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
+		$align                  = Functions::sanitize_attribute( $attributes, 'align', 'text' );
+		$template_name          = Functions::sanitize_attribute( $attributes, 'template', 'text' );
+		$maximum_width          = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
+		$maximum_width_unit     = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
+		$permalink              = $this->get_permalink( $attributes );
+		$tweet_button_enabled   = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
+		$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 
 		// If a theme is removed, find a default fallback.
-		$has_theme = false;
+		$has_theme   = false;
 		$first_theme = null;
 		if ( is_array( $themes ) ) {
 			foreach ( $themes as $theme ) {
@@ -618,7 +618,7 @@ class Blocks {
 		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
 		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-		$manual_permalink =  Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
+		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
 		if ( ! $enable_copy_link ) {
 			return false;
 		}

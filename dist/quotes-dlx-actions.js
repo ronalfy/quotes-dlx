@@ -70,7 +70,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var copyQuoteCallback = function copyQuoteCallback(event, listItemElement, parentElement) {
     var text = listItemElement.getAttribute('data-text-full');
     var copyBlog = new Blob([text], {
-      type: 'text/html'
+      type: 'text/plain'
     });
     var data = [new ClipboardItem(_defineProperty({}, copyBlog.type, copyBlog))];
 

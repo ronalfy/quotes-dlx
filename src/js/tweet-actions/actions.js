@@ -65,7 +65,7 @@
 	 */
 	const copyQuoteCallback = ( event, listItemElement, parentElement ) => {
 		const text = listItemElement.getAttribute( 'data-text-full' );
-		const copyBlog = new Blob( [ text ], { type: 'text/html' } );
+		const copyBlog = new Blob( [ text ], { type: 'text/plain' } );
 		const data = [ new ClipboardItem( { [ copyBlog.type ]: copyBlog } ) ];
 
 		const successMessage = __(

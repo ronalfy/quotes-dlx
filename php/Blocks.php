@@ -279,7 +279,7 @@ class Blocks {
 										// Convert rich text to plain text.
 										$share_text_kses = (string) $attributes['share_text'];
 										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( $share_text_kses ) ); ?> ">
+										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( wp_strip_all_tags( $share_text_kses ) ) ); ?> ">
 											<button class="button-reset">
 												<span class="quotes-dlx-meatball-menu-icon">
 													<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>

@@ -124,7 +124,7 @@
 		},
 		"enable_copy_text": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"enable_copy_tweet": {
 			"type": "boolean",

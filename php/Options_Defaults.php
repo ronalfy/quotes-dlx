@@ -62,7 +62,7 @@ class Options_Defaults extends Options_Abstract {
 			'has_anchor'             => true,
 			'anchor_prefix'          => 'qdlx',
 			'enable_links_in_tweet'  => true,
-			'url_shortening_service' => 'none',
+			'url_shortening_service' => 'manual',
 			'url_shortener'          => true,
 			'enable_contextual_menu' => true,
 			'enable_copy_text'       => false,

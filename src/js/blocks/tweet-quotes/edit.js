@@ -876,10 +876,6 @@ const TweetQuotes = ( props ) => {
 															selected={ url_shortening_service }
 															options={ [
 																{
-																	label: __( 'None', 'quotes-dlx' ),
-																	value: 'none',
-																},
-																{
 																	label: __( 'Bitly', 'quotes-dlx' ),
 																	value: 'bitly',
 																},

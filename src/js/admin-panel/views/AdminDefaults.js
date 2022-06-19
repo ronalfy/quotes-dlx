@@ -42,7 +42,8 @@ const AdminDefaults = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_form_defaults';
 
-	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } = useContext( TabsContext );
+	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } =
+		useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
@@ -103,7 +104,9 @@ const Interface = ( props ) => {
 
 	const formValues = useWatch( { control } );
 
-	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( { control } );
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
 
 	const onSubmit = ( formData ) => {
 		setSaving( true );
@@ -125,9 +128,7 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem(
-						localStorageKey
-					);
+					localStorage.removeItem( localStorageKey );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -157,9 +158,7 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem(
-						localStorageKey
-					);
+					localStorage.removeItem( localStorageKey );
 
 					// Reset toggles.
 					setShowButtonOptions( ajaxData.tweetButtonEnabled );
@@ -187,9 +186,7 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
-		const maybeSavedFormFields = localStorage.getItem(
-			localStorageKey
-		);
+		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
 
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
@@ -226,9 +223,7 @@ const Interface = ( props ) => {
 	}, [ formValues ] );
 
 	// Get URL Shortening services (i.e., bitly, jetpack).
-	const linkShortenerServices = [
-		{ label: __( 'None', 'quotes-dlx' ), value: 'none' },
-	];
+	const linkShortenerServices = [];
 	if ( quotes_dlx_admin.bitly_plugin_active ) {
 		linkShortenerServices.push( {
 			label: __( 'Bitly', 'quotes-dlx' ),
@@ -292,7 +287,10 @@ const Interface = ( props ) => {
 														onChange={ ( currentValue ) => {
 															let twitterUsername = '';
 															if ( currentValue.length > 0 ) {
-																const replacement = currentValue.replace( '@', '' ); // Strip @ symbol.
+																const replacement = currentValue.replace(
+																	'@',
+																	''
+																); // Strip @ symbol.
 																if ( currentValue.length > 0 ) {
 																	const usernames = twttr.txt.extractMentions(
 																		'@' + replacement
@@ -401,7 +399,10 @@ const Interface = ( props ) => {
 																} }
 																options={ [
 																	{
-																		label: __( 'Show text and icon', 'quotes-dlx' ),
+																		label: __(
+																			'Show text and icon',
+																			'quotes-dlx'
+																		),
 																		value: 'full',
 																	},
 																	{
@@ -417,7 +418,7 @@ const Interface = ( props ) => {
 														) }
 													/>
 													{ ( 'text' === buttonDisplay ||
-													'full' === buttonDisplay ) && (
+														'full' === buttonDisplay ) && (
 														<>
 															<Controller
 																name="shareButtonText"
@@ -426,13 +427,16 @@ const Interface = ( props ) => {
 																render={ ( { field } ) => (
 																	<TextControl
 																		{ ...field }
-																		label={ __( 'Click Button Text', 'quotes-dlx' ) }
+																		label={ __(
+																			'Click Button Text',
+																			'quotes-dlx'
+																		) }
 																		className={ classNames(
 																			'qdlx-admin__text-control',
 																			{
 																				'has-error':
-																				'required' ===
-																				errors.shareButtonText?.type,
+																					'required' ===
+																					errors.shareButtonText?.type,
 																				'is-required': true,
 																			}
 																		) }
@@ -446,7 +450,9 @@ const Interface = ( props ) => {
 															/>
 															{ 'required' === errors.shareButtonText?.type && (
 																<Notice
-																	message={ __( 'This field is a required field.' ) }
+																	message={ __(
+																		'This field is a required field.'
+																	) }
 																	status="error"
 																	politeness="assertive"
 																	inline={ true }
@@ -519,7 +525,7 @@ const Interface = ( props ) => {
 														) }
 													/>
 													{ ( 'icon' === buttonDisplay ||
-													'full' === buttonDisplay ) && (
+														'full' === buttonDisplay ) && (
 														<Controller
 															name="tweetIconAlignment"
 															control={ control }
@@ -589,7 +595,10 @@ const Interface = ( props ) => {
 												control={ control }
 												render={ ( { field: { onChange, value } } ) => (
 													<ToggleControl
-														label={ __( 'Enable Links in the Tweet', 'quotes-dlx' ) }
+														label={ __(
+															'Enable Links in the Tweet',
+															'quotes-dlx'
+														) }
 														className="qdlx-admin__toggle-control"
 														checked={ value }
 														onChange={ ( boolValue ) => {
@@ -638,10 +647,10 @@ const Interface = ( props ) => {
 																			'qdlx-admin__text-control',
 																			{
 																				'has-error':
-																				'pattern' ===
-																					errors.anchorPrefix?.type ||
-																				'required' ===
-																					errors.anchorPrefix?.type,
+																					'pattern' ===
+																						errors.anchorPrefix?.type ||
+																					'required' ===
+																						errors.anchorPrefix?.type,
 																				'is-required': true,
 																			}
 																		) }
@@ -655,7 +664,9 @@ const Interface = ( props ) => {
 															/>
 															{ 'required' === errors.anchorPrefix?.type && (
 																<Notice
-																	message={ __( 'This field is a required field.' ) }
+																	message={ __(
+																		'This field is a required field.'
+																	) }
 																	status="error"
 																	politeness="assertive"
 																	inline={ true }
@@ -698,7 +709,7 @@ const Interface = ( props ) => {
 														<>
 															<Notice
 																message={ __(
-																	'Both Bitly and Jetpack are supported. You will need the plugins activated and configured.',
+																	'Both Bitly and Jetpack are supported. You will need the plugins activated and configured to set a default.',
 																	'quotes-dlx'
 																) }
 																status="info"
@@ -709,13 +720,16 @@ const Interface = ( props ) => {
 																<p className="description">
 																	<a
 																		href="https://wordpress.org/plugins/wp-bitly/"
-																		target="_blank" rel="noreferrer"
+																		target="_blank"
+																		rel="noreferrer"
 																	>
 																		{ __( 'Visit the Bitly plugin', 'quotes-dlx' ) }
-																	</a>&nbsp;|&nbsp;
+																	</a>
+																	&nbsp;|&nbsp;
 																	<a
 																		href="https://wordpress.org/plugins/jetpack/"
-																		target="_blank" rel="noreferrer"
+																		target="_blank"
+																		rel="noreferrer"
 																	>
 																		{ __(
 																			'Visit the Jetpack plugin',
@@ -724,27 +738,29 @@ const Interface = ( props ) => {
 																	</a>
 																</p>
 															</Notice>
-															<Controller
-																control={ control }
-																name="urlShorteningService"
-																render={ ( { field: { onChange, value } } ) => (
-																	<RadioControl
-																		label={ __(
-																			'URL Shortening Service',
-																			'quotes-dlx'
-																		) }
-																		help={ __(
-																			'Choose a URL shortening service. Select none for no link shortener.',
-																			'quotes-dlx'
-																		) }
-																		selected={ value }
-																		onChange={ ( shorteningValue ) => {
-																			onChange( shorteningValue );
-																		} }
-																		options={ linkShortenerServices }
-																	/>
-																) }
-															/>
+															{ linkShortenerServices.length > 0 && (
+																<Controller
+																	control={ control }
+																	name="urlShorteningService"
+																	render={ ( { field: { onChange, value } } ) => (
+																		<RadioControl
+																			label={ __(
+																				'URL Shortening Service',
+																				'quotes-dlx'
+																			) }
+																			help={ __(
+																				'Choose a URL shortening service. Select none for no link shortener.',
+																				'quotes-dlx'
+																			) }
+																			selected={ value }
+																			onChange={ ( shorteningValue ) => {
+																				onChange( shorteningValue );
+																			} }
+																			options={ linkShortenerServices }
+																		/>
+																	) }
+																/>
+															) }
 														</>
 													) }
 												</>
@@ -752,7 +768,9 @@ const Interface = ( props ) => {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">{ __( 'Container Settings', 'quotes-dlx' ) }</th>
+										<th scope="row">
+											{ __( 'Container Settings', 'quotes-dlx' ) }
+										</th>
 										<td>
 											<Controller
 												name="maximumWidth"
@@ -764,8 +782,8 @@ const Interface = ( props ) => {
 														label={ __( 'Block Maximum Width', 'quotes-dlx' ) }
 														className={ classNames( 'qdlx-admin__text-control', {
 															'has-error':
-															'pattern' === errors.maximumWidth?.type ||
-															'required' === errors.maximumWidth?.type,
+																'pattern' === errors.maximumWidth?.type ||
+																'required' === errors.maximumWidth?.type,
 															'is-required': true,
 														} ) }
 														help={ __(

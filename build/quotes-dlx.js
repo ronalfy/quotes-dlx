@@ -1449,9 +1449,6 @@ var TweetQuotes = function TweetQuotes(props) {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Shortlink Service', 'quotes-dlx'),
         selected: url_shortening_service,
         options: [{
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('None', 'quotes-dlx'),
-          value: 'none'
-        }, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Bitly', 'quotes-dlx'),
           value: 'bitly'
         }, {

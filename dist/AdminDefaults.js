@@ -843,10 +843,7 @@ var Interface = function Interface(props) {
     setLoading(false);
   }, [formValues]); // Get URL Shortening services (i.e., bitly, jetpack).
 
-  var linkShortenerServices = [{
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('None', 'quotes-dlx'),
-    value: 'none'
-  }];
+  var linkShortenerServices = [];
 
   if (quotes_dlx_admin.bitly_plugin_active) {
     linkShortenerServices.push({
@@ -1240,7 +1237,7 @@ var Interface = function Interface(props) {
       });
     }
   }), enableUrlShortener && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Both Bitly and Jetpack are supported. You will need the plugins activated and configured.', 'quotes-dlx'),
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Both Bitly and Jetpack are supported. You will need the plugins activated and configured to set a default.', 'quotes-dlx'),
     status: "info",
     politeness: "polite",
     inline: false,
@@ -1255,7 +1252,7 @@ var Interface = function Interface(props) {
     href: "https://wordpress.org/plugins/jetpack/",
     target: "_blank",
     rel: "noreferrer"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit the Jetpack plugin', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit the Jetpack plugin', 'quotes-dlx')))), linkShortenerServices.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
     control: control,
     name: "urlShorteningService",
     render: function render(_ref12) {

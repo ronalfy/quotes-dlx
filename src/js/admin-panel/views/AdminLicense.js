@@ -57,7 +57,7 @@ const Interface = ( props ) => {
 	const [ showSecret, setShowSecret ] = useState( false );
 	const [ validLicense, setValidLicense ] = useState( data.license );
 	const [ licenseActivated, setLicenseActivated ] = useState( data.license_activated );
-	const [ licenseData, setLicenseData ] = useState( false );
+	const [ licenseData, setLicenseData ] = useState( data );
 
 	const {
 		license_key,
@@ -94,6 +94,8 @@ const Interface = ( props ) => {
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
+
+				setLicenseData( ajaxData );
 				if ( ajaxSuccess ) {
 					// Reset count.
 					setLicensesDirtyCount( 0 );
@@ -449,7 +451,7 @@ const Interface = ( props ) => {
 									<tbody>
 										<tr>
 											<td data-header="Item Name">
-												<p>{ item_name }</p>
+												<p>{ licenseData.item_name }</p>
 											</td>
 											<td data-header="License Type">
 												<p>{ getLicenseType() }</p>
@@ -457,18 +459,18 @@ const Interface = ( props ) => {
 											<td data-header="License Activations">
 												<p>
 													<span className="">
-														{ site_count } of { license_limit === 0 ? __( 'Unlimited', 'quotes-dlx' ) : license_limit }
+														{licenseData.site_count } of {licenseData.license_limit === 0 ? __( 'Unlimited', 'quotes-dlx' ) : licenseData.license_limit }
 													</span>
 												</p>
 											</td>
 											<td data-header="Expires On">
 												<p>
-													{ expires }
+													{ licenseData.expires }
 												</p>
 											</td>
 											<td data-header="Days Left">
 												<p>
-													{ expires_human_time_diff }
+													{ licenseData.expires_human_time_diff }
 												</p>
 											</td>
 										</tr>

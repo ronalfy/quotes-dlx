@@ -213,8 +213,13 @@ class Plugin_License {
 		$expires = $return_defaults['data']['expires'] ?? '';
 		if ( ! empty( $expires ) ) {
 
-			$return_defaults['expires_human_time_diff'] = human_time_diff( time(), strtotime( $expires ) );
-			$return_defaults['expires']                 = date_i18n( 'F jS, Y', strtotime( $expires ) );
+			if ( 'lifetime' === $expires ) {
+				$return_defaults['expires_human_time_diff'] = esc_html__( 'Lifetime', 'quotes-dlx' );
+				$return_defaults['expires']                 = esc_html__( 'Lifetime', 'quotes-dlx' );
+			} else {
+				$return_defaults['expires_human_time_diff'] = human_time_diff( time(), strtotime( $expires ) );
+				$return_defaults['expires']                 = date_i18n( 'F jS, Y', strtotime( $expires ) );
+			}
 		}
 
 		if ( true === $response['success'] ) {

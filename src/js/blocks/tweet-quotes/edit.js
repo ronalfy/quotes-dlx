@@ -163,7 +163,6 @@ const TweetQuotes = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		console.log( isSelected );
 		if ( selectedTab === 'appearance' && shareTextInput.current !== null && isSelected ) {
 			shareTextInput.current.focus();
 			// Note to self: not possible with component to focus on last character.

@@ -903,8 +903,6 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }, []);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
-    console.log(isSelected);
-
     if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {
       shareTextInput.current.focus(); // Note to self: not possible with component to focus on last character.
     }

@@ -54,8 +54,7 @@
   line-height: 1.65;
   background: #f8f7fb;
   color: #393838;
-  margin: 0 !important;
-  /* override core style */
+  margin: 0 !important; /* override core style */
   border: 0;
   border-top: 5px solid #67009C;
   quotes: none;

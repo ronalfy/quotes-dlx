@@ -58,8 +58,7 @@
   font-size: 1.5em;
   line-height: 1.65;
   color: #2B2B2B;
-  margin: 0 !important;
-  /* override core style */
+  margin: 0 !important; /* override core style */
   border: 0;
   quotes: none;
   vertical-align: baseline;

@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { __, sprintf } from '@wordpress/i18n';
+
 import { faHandWave, faLightbulbExclamationOn, faPalette, faGears, faPuzzle } from '@fortawesome/pro-solid-svg-icons';
-import Fancybox from '../admin-components/Fancybox';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
@@ -28,24 +28,22 @@ const AdminHome = () => {
 						</h1>
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
-						<Fancybox>
-							<button className="button-reset show-cursor" data-fancybox data-src={ currentTheme.preview_image_url } data-caption={ currentTheme.name }>
-								<figure>
-									<img src={ currentTheme.preview_image_url } alt={ currentTheme.name } style={ { maxWidth: '100%', height: 'auto' } } />
-									<figcaption>
-										{ currentTheme.name }
-									</figcaption>
-								</figure>
-							</button>
-							<hr />
-							<div className="qdlx-button-primary">
-								<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/themes` }>
-									{
-										__( 'Change the Default Theme', 'quotes-dlx' )
-									}
-								</a>
-							</div>
-						</Fancybox>
+						<button className="button-reset show-cursor" data-fancybox data-src={ currentTheme.preview_image_url } data-caption={ currentTheme.name }>
+							<figure>
+								<img src={ currentTheme.preview_image_url } alt={ currentTheme.name } style={ { maxWidth: '100%', height: 'auto' } } />
+								<figcaption>
+									{ currentTheme.name }
+								</figcaption>
+							</figure>
+						</button>
+						<hr />
+						<div className="qdlx-button-primary">
+							<a className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left" href={ `#/themes` }>
+								{
+									__( 'Change the Default Theme', 'quotes-dlx' )
+								}
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -114,6 +112,7 @@ const AdminHome = () => {
 								<p className="description">{ __( 'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.', 'quotes-dlx' ) }.</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
+
 								<ul>
 									<li><strong>Presets</strong>: Similar to block patterns and reusable blocks, these will allow you to save and re-use presets depending on what type of quote you are creating.</li>
 									<li><strong>Overrides</strong>: Globally override the block settings regardless of what was set when the block was.</li>

@@ -72,8 +72,7 @@
   --highlight-color: var( --quotes-dlx-admin--color-skeleton--highlight );
   --animation-duration: 1.5s;
   --animation-direction: normal;
-  --pseudo-element-display: block;
-  /* Enable animation */
+  --pseudo-element-display: block; /* Enable animation */
   background-color: var(--base-color);
   width: 100%;
   border-radius: 0.25rem;
@@ -81,8 +80,7 @@
   line-height: 1;
   position: relative;
   overflow: hidden;
-  z-index: 1;
-  /* Necessary for overflow: hidden to work correctly in Safari */
+  z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
 .react-loading-skeleton::after {
@@ -145,8 +143,7 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin .qdlx-admin-container__wrap {
   display: grid;
   grid-column-gap: 0.8rem;
-  grid-template-columns: 54px 2px 1fr;
-  /* Thanks: https://stackoverflow.com/questions/50500305/css-grid-with-padding-overflows-container */
+  grid-template-columns: 54px 2px 1fr; /* Thanks: https://stackoverflow.com/questions/50500305/css-grid-with-padding-overflows-container */
   max-width: 69.5rem;
   margin: 0 auto;
   padding: 1.1rem;
@@ -155,8 +152,7 @@ button.button-reset.show-cursor {
 @media (min-width: 48em) {
   .quotes-dlx-plugin .qdlx-admin-container__wrap {
     grid-column-gap: 1.975rem;
-    grid-template-columns: 2fr 2px 8fr;
-    /* Thanks: https://stackoverflow.com/questions/50500305/css-grid-with-padding-overflows-container */
+    grid-template-columns: 2fr 2px 8fr; /* Thanks: https://stackoverflow.com/questions/50500305/css-grid-with-padding-overflows-container */
     max-width: 69.5rem;
     padding: 1.5rem;
   }
@@ -415,8 +411,7 @@ button.button-reset.show-cursor {
 }
 .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-description {
   border: 0;
-  clip: rect(1px 1px 1px 1px);
-  /* IE6, IE7 */
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   margin: -1px;
@@ -1315,8 +1310,7 @@ button.button-reset.show-cursor {
   width: 40px;
   height: 40px;
   overflow: hidden;
-  top: calc(0.8125rem + 8px + 0.6875rem);
-  /* Label font-size + bottom margin + input padding */
+  top: calc(0.8125rem + 8px + 0.6875rem); /* Label font-size + bottom margin + input padding */
   right: 1rem;
   line-height: 0;
   font-size: 0;

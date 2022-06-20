@@ -9,15 +9,14 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "noop": () => (/* binding */ noop)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -25,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
  * External dependencies
  */
 
-
+const noop = () => {};
 
 function FormToggle(_ref) {
   let {
@@ -33,25 +32,25 @@ function FormToggle(_ref) {
     checked,
     id,
     disabled,
-    onChange = lodash__WEBPACK_IMPORTED_MODULE_2__.noop,
+    onChange = noop,
     ...props
   } = _ref;
   const wrapperClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-form-toggle', className, {
     'is-checked': checked,
     'is-disabled': disabled
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
     className: wrapperClasses
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: "components-form-toggle__input",
     id: id,
     type: "checkbox",
     checked: checked,
     onChange: onChange,
     disabled: disabled
-  }, props)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", {
+  }, props)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
     className: "components-form-toggle__track"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
     className: "components-form-toggle__thumb"
   }));
 }
@@ -72,21 +71,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ToggleControl)
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
-/* harmony import */ var _form_toggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../form-toggle */ "./node_modules/@wordpress/components/build-module/form-toggle/index.js");
-/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
+/* harmony import */ var _form_toggle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form-toggle */ "./node_modules/@wordpress/components/build-module/form-toggle/index.js");
+/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
 
 
 /**
  * External dependencies
  */
-
 
 /**
  * WordPress dependencies
@@ -113,26 +109,26 @@ function ToggleControl(_ref) {
     onChange(event.target.checked);
   }
 
-  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__["default"])(ToggleControl);
+  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(ToggleControl);
   const id = `inspector-toggle-control-${instanceId}`;
   let describedBy, helpLabel;
 
   if (help) {
     describedBy = id + '__help';
-    helpLabel = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.isFunction)(help) ? help(checked) : help;
+    helpLabel = typeof help === 'function' ? help(checked) : help;
   }
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
     id: id,
     help: helpLabel,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-toggle-control', className)
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)(_form_toggle__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('components-toggle-control', className)
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_form_toggle__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: id,
     checked: checked,
     onChange: onChangeToggle,
     "aria-describedby": describedBy,
     disabled: disabled
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)("label", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("label", {
     htmlFor: id,
     className: "components-toggle-control__label"
   }, label));

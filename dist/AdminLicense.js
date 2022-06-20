@@ -9,6 +9,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TextControl": () => (/* binding */ TextControl),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
@@ -20,6 +21,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * External dependencies
+ */
+
+/**
  * WordPress dependencies
  */
 
@@ -29,27 +34,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-/**
- * @typedef OwnProps
- * @property {string}                  label                 Label for the control.
- * @property {boolean}                 [hideLabelFromVision] Whether to accessibly hide the label.
- * @property {string}                  value                 Value of the input.
- * @property {string}                  [help]                Optional help text for the control.
- * @property {string}                  [className]           Classname passed to BaseControl wrapper
- * @property {(value: string) => void} onChange              Handle changes.
- * @property {string}                  [type='text']         Type of the input.
- */
 
-/** @typedef {OwnProps & import('react').ComponentProps<'input'>} Props */
-
-/**
- *
- * @param {Props}                                          props Props
- * @param {import('react').ForwardedRef<HTMLInputElement>} ref
- */
-
-function TextControl(_ref, ref) {
-  let {
+function UnforwardedTextControl(props, ref) {
+  const {
     label,
     hideLabelFromVision,
     value,
@@ -57,14 +44,12 @@ function TextControl(_ref, ref) {
     className,
     onChange,
     type = 'text',
-    ...props
-  } = _ref;
+    ...additionalProps
+  } = props;
   const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(TextControl);
   const id = `inspector-text-control-${instanceId}`;
 
-  const onChangeValue = (
-  /** @type {import('react').ChangeEvent<HTMLInputElement>} */
-  event) => onChange(event.target.value);
+  const onChangeValue = event => onChange(event.target.value);
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: label,
@@ -80,10 +65,34 @@ function TextControl(_ref, ref) {
     onChange: onChangeValue,
     "aria-describedby": !!help ? id + '__help' : undefined,
     ref: ref
-  }, props)));
+  }, additionalProps)));
 }
+/**
+ * TextControl components let users enter and edit text.
+ *
+ *
+ * @example
+ * ```jsx
+ * import { TextControl } from '@wordpress/components';
+ * import { useState } from '@wordpress/element';
+ *
+ * const MyTextControl = () => {
+ *   const [ className, setClassName ] = useState( '' );
+ *
+ *   return (
+ *     <TextControl
+ *       label="Additional CSS Class"
+ *       value={ className }
+ *       onChange={ ( value ) => setClassName( value ) }
+ *     />
+ *   );
+ * };
+ * ```
+ */
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(TextControl));
+
+const TextControl = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(UnforwardedTextControl);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextControl);
 //# sourceMappingURL=index.js.map
 
 /***/ }),

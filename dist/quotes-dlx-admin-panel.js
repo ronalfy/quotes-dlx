@@ -260,8 +260,7 @@ var createCache = function createCache(options) {
     }
   }
 
-  var inserted = {}; // $FlowFixMe
-
+  var inserted = {};
   var container;
   var nodesToHydrate = [];
 
@@ -1142,6 +1141,8 @@ if (true) {
   };
 }
 
+var noComponentSelectorMessage = 'Component selectors can only be used in conjunction with ' + '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' + 'compiler transform.';
+
 function handleInterpolation(mergedProps, registered, interpolation) {
   if (interpolation == null) {
     return '';
@@ -1149,7 +1150,7 @@ function handleInterpolation(mergedProps, registered, interpolation) {
 
   if (interpolation.__emotion_styles !== undefined) {
     if ( true && interpolation.toString() === 'NO_COMPONENT_SELECTOR') {
-      throw new Error('Component selectors can only be used in conjunction with @emotion/babel-plugin.');
+      throw new Error(noComponentSelectorMessage);
     }
 
     return interpolation;
@@ -1259,7 +1260,7 @@ function createStringFromObject(mergedProps, registered, obj) {
         }
       } else {
         if (_key === 'NO_COMPONENT_SELECTOR' && "development" !== 'production') {
-          throw new Error('Component selectors can only be used in conjunction with @emotion/babel-plugin.');
+          throw new Error(noComponentSelectorMessage);
         }
 
         if (Array.isArray(value) && typeof value[0] === 'string' && (registered == null || registered[value[0]] === undefined)) {
@@ -1451,6 +1452,7 @@ function createStyleElement(options) {
 }
 
 var StyleSheet = /*#__PURE__*/function () {
+  // Using Node instead of HTMLElement since container may be a ShadowRoot
   function StyleSheet(options) {
     var _this = this;
 
@@ -2417,17 +2419,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/deprecated */ "./node_modules/@wordpress/deprecated/build-module/index.js");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
-/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../tooltip */ "./node_modules/@wordpress/components/build-module/tooltip/index.js");
-/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icon */ "./node_modules/@wordpress/components/build-module/icon/index.js");
-/* harmony import */ var _visually_hidden__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../visually-hidden */ "./node_modules/@wordpress/components/build-module/visually-hidden/component.js");
+/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/deprecated */ "./node_modules/@wordpress/deprecated/build-module/index.js");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
+/* harmony import */ var _tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../tooltip */ "./node_modules/@wordpress/components/build-module/tooltip/index.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../icon */ "./node_modules/@wordpress/components/build-module/icon/index.js");
+/* harmony import */ var _visually_hidden__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../visually-hidden */ "./node_modules/@wordpress/components/build-module/visually-hidden/component.js");
 
 
 // @ts-nocheck
@@ -2435,7 +2435,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * External dependencies
  */
-
 
 /**
  * WordPress dependencies
@@ -2486,7 +2485,7 @@ function useDeprecatedProps(_ref) {
   if (isDefault) {
     var _computedVariant4;
 
-    (0,_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_3__["default"])('Button isDefault prop', {
+    (0,_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_2__["default"])('Button isDefault prop', {
       since: '5.4',
       alternative: 'variant="secondary"',
       version: '6.2'
@@ -2529,7 +2528,7 @@ function Button(props, ref) {
     describedBy,
     ...additionalProps
   } = useDeprecatedProps(props);
-  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["default"])(Button, 'components-button__description');
+  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["default"])(Button, 'components-button__description');
   const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-button', className, {
     'is-secondary': variant === 'secondary',
     'is-primary': variant === 'primary',
@@ -2570,39 +2569,39 @@ function Button(props, ref) {
   const shouldShowTooltip = !trulyDisabled && ( // An explicit tooltip is passed or...
   showTooltip && label || // There's a shortcut or...
   shortcut || // There's a label and...
-  !!label && ( // The children are empty and...
-  !children || (0,lodash__WEBPACK_IMPORTED_MODULE_2__.isArray)(children) && !children.length) && // The tooltip is not explicitly disabled.
+  !!label && // The children are empty and...
+  !(children !== null && children !== void 0 && children.length) && // The tooltip is not explicitly disabled.
   false !== showTooltip);
   const descriptionId = describedBy ? instanceId : null;
   const describedById = additionalProps['aria-describedby'] || descriptionId;
-  const element = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, tagProps, additionalProps, {
+  const element = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, tagProps, additionalProps, {
     className: classes,
     "aria-label": additionalProps['aria-label'] || label,
     "aria-describedby": describedById,
     ref: ref
-  }), icon && iconPosition === 'left' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), icon && iconPosition === 'left' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
     icon: icon,
     size: iconSize
-  }), text && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, text), icon && iconPosition === 'right' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), text && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, text), icon && iconPosition === 'right' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
     icon: icon,
     size: iconSize
   }), children);
 
   if (!shouldShowTooltip) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, element, describedBy && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_visually_hidden__WEBPACK_IMPORTED_MODULE_7__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)("span", {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, element, describedBy && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_visually_hidden__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)("span", {
       id: descriptionId
     }, describedBy)));
   }
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_tooltip__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    text: describedBy ? describedBy : label,
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_tooltip__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    text: children !== null && children !== void 0 && children.length && describedBy ? describedBy : label,
     shortcut: shortcut,
     position: tooltipPosition
-  }, element), describedBy && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)(_visually_hidden__WEBPACK_IMPORTED_MODULE_7__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.createElement)("span", {
+  }, element), describedBy && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_visually_hidden__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)("span", {
     id: descriptionId
   }, describedBy)));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.forwardRef)(Button));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(Button));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -2761,18 +2760,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/dom */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/index.js");
+/* harmony import */ var _floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @floating-ui/react-dom */ "./node_modules/@floating-ui/core/dist/floating-ui.core.esm.development.js");
+/* harmony import */ var _floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @floating-ui/react-dom */ "./node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js");
+/* harmony import */ var _floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @floating-ui/react-dom */ "./node_modules/@floating-ui/dom/dist/floating-ui.dom.esm.development.js");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js");
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js");
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./node_modules/@wordpress/components/build-module/popover/utils.js");
-/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../button */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var _scroll_lock__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../scroll-lock */ "./node_modules/@wordpress/components/build-module/scroll-lock/index.js");
-/* harmony import */ var _slot_fill__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../slot-fill */ "./node_modules/@wordpress/components/build-module/slot-fill/bubbles-virtually/use-slot.js");
-/* harmony import */ var _slot_fill__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../slot-fill */ "./node_modules/@wordpress/components/build-module/slot-fill/index.js");
-/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../animate */ "./node_modules/@wordpress/components/build-module/animate/index.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js");
+/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/deprecated */ "./node_modules/@wordpress/deprecated/build-module/index.js");
+/* harmony import */ var _button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../button */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _scroll_lock__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../scroll-lock */ "./node_modules/@wordpress/components/build-module/scroll-lock/index.js");
+/* harmony import */ var _slot_fill__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../slot-fill */ "./node_modules/@wordpress/components/build-module/slot-fill/bubbles-virtually/use-slot.js");
+/* harmony import */ var _slot_fill__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../slot-fill */ "./node_modules/@wordpress/components/build-module/slot-fill/index.js");
+/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../animate */ "./node_modules/@wordpress/components/build-module/animate/index.js");
 
 
 // @ts-nocheck
@@ -2780,6 +2780,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * External dependencies
  */
+
 
 /**
  * WordPress dependencies
@@ -2797,7 +2798,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Name of slot in which popover should fill.
  *
@@ -2807,368 +2807,170 @@ __webpack_require__.r(__webpack_exports__);
 const SLOT_NAME = 'Popover';
 const slotNameContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createContext)();
 
-function computeAnchorRect(anchorRefFallback, anchorRect, getAnchorRect) {
-  let anchorRef = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  let shouldAnchorIncludePadding = arguments.length > 4 ? arguments[4] : undefined;
-  let container = arguments.length > 5 ? arguments[5] : undefined;
+const positionToPlacement = position => {
+  const [x, y, z] = position.split(' ');
 
-  if (anchorRect) {
-    return anchorRect;
-  }
+  if (['top', 'bottom'].includes(x)) {
+    let suffix = '';
 
-  if (getAnchorRect) {
-    if (!anchorRefFallback.current) {
-      return;
+    if (!!z && z === 'left' || y === 'right') {
+      suffix = '-start';
+    } else if (!!z && z === 'right' || y === 'left') {
+      suffix = '-end';
     }
 
-    const rect = getAnchorRect(anchorRefFallback.current);
-    return (0,_utils__WEBPACK_IMPORTED_MODULE_3__.offsetIframe)(rect, rect.ownerDocument || anchorRefFallback.current.ownerDocument, container);
+    return x + suffix;
   }
 
-  if (anchorRef !== false) {
-    if (!anchorRef || !window.Range || !window.Element || !window.DOMRect) {
-      return;
-    } // Duck-type to check if `anchorRef` is an instance of Range
-    // `anchorRef instanceof window.Range` checks will break across document boundaries
-    // such as in an iframe.
+  return y;
+};
 
+const placementToAnimationOrigin = placement => {
+  const [a, b] = placement.split('-');
+  let x, y;
 
-    if (typeof (anchorRef === null || anchorRef === void 0 ? void 0 : anchorRef.cloneRange) === 'function') {
-      return (0,_utils__WEBPACK_IMPORTED_MODULE_3__.offsetIframe)((0,_wordpress_dom__WEBPACK_IMPORTED_MODULE_4__["default"])(anchorRef), anchorRef.endContainer.ownerDocument, container);
-    } // Duck-type to check if `anchorRef` is an instance of Element
-    // `anchorRef instanceof window.Element` checks will break across document boundaries
-    // such as in an iframe.
+  if (a === 'top' || a === 'bottom') {
+    x = a === 'top' ? 'bottom' : 'top';
+    y = 'middle';
 
-
-    if (typeof (anchorRef === null || anchorRef === void 0 ? void 0 : anchorRef.getBoundingClientRect) === 'function') {
-      const rect = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.offsetIframe)(anchorRef.getBoundingClientRect(), anchorRef.ownerDocument, container);
-
-      if (shouldAnchorIncludePadding) {
-        return rect;
-      }
-
-      return withoutPadding(rect, anchorRef);
+    if (b === 'start') {
+      y = 'left';
+    } else if (b === 'end') {
+      y = 'right';
     }
+  }
 
-    const {
-      top,
-      bottom
-    } = anchorRef;
-    const topRect = top.getBoundingClientRect();
-    const bottomRect = bottom.getBoundingClientRect();
-    const rect = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.offsetIframe)(new window.DOMRect(topRect.left, topRect.top, topRect.width, bottomRect.bottom - topRect.top), top.ownerDocument, container);
+  if (a === 'left' || a === 'right') {
+    x = 'center';
+    y = a === 'left' ? 'right' : 'left';
 
-    if (shouldAnchorIncludePadding) {
-      return rect;
+    if (b === 'start') {
+      x = 'top';
+    } else if (b === 'end') {
+      x = 'bottom';
     }
-
-    return withoutPadding(rect, anchorRef);
   }
 
-  if (!anchorRefFallback.current) {
-    return;
-  }
-
-  const {
-    parentNode
-  } = anchorRefFallback.current;
-  const rect = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.offsetIframe)(parentNode.getBoundingClientRect(), parentNode.ownerDocument, container);
-
-  if (shouldAnchorIncludePadding) {
-    return rect;
-  }
-
-  return withoutPadding(rect, parentNode);
-}
-
-function getComputedStyle(node) {
-  return node.ownerDocument.defaultView.getComputedStyle(node);
-}
-
-function withoutPadding(rect, element) {
-  const {
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight
-  } = getComputedStyle(element);
-  const top = paddingTop ? parseInt(paddingTop, 10) : 0;
-  const bottom = paddingBottom ? parseInt(paddingBottom, 10) : 0;
-  const left = paddingLeft ? parseInt(paddingLeft, 10) : 0;
-  const right = paddingRight ? parseInt(paddingRight, 10) : 0;
-  return {
-    x: rect.left + left,
-    y: rect.top + top,
-    width: rect.width - left - right,
-    height: rect.height - top - bottom,
-    left: rect.left + left,
-    right: rect.right - right,
-    top: rect.top + top,
-    bottom: rect.bottom - bottom
-  };
-}
-/**
- * Sets or removes an element attribute.
- *
- * @param {Element} element The element to modify.
- * @param {string}  name    The attribute name to set or remove.
- * @param {?string} value   The value to set. A falsy value will remove the
- *                          attribute.
- */
-
-
-function setAttribute(element, name, value) {
-  if (!value) {
-    if (element.hasAttribute(name)) {
-      element.removeAttribute(name);
-    }
-  } else if (element.getAttribute(name) !== value) {
-    element.setAttribute(name, value);
-  }
-}
-/**
- * Sets or removes an element style property.
- *
- * @param {Element} element  The element to modify.
- * @param {string}  property The property to set or remove.
- * @param {?string} value    The value to set. A falsy value will remove the
- *                           property.
- */
-
-
-function setStyle(element, property) {
-  let value = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-
-  if (element.style[property] !== value) {
-    element.style[property] = value;
-  }
-}
-/**
- * Sets or removes an element class.
- *
- * @param {Element} element The element to modify.
- * @param {string}  name    The class to set or remove.
- * @param {boolean} toggle  True to set the class, false to remove.
- */
-
-
-function setClass(element, name, toggle) {
-  if (toggle) {
-    if (!element.classList.contains(name)) {
-      element.classList.add(name);
-    }
-  } else if (element.classList.contains(name)) {
-    element.classList.remove(name);
-  }
-}
-
-function getAnchorDocument(anchor) {
-  if (!anchor) {
-    return;
-  }
-
-  if (anchor.endContainer) {
-    return anchor.endContainer.ownerDocument;
-  }
-
-  if (anchor.top) {
-    return anchor.top.ownerDocument;
-  }
-
-  return anchor.ownerDocument;
-}
+  return x + ' ' + y;
+};
 
 const Popover = (_ref, ref) => {
   let {
+    range,
+    animate = true,
     headerTitle,
     onClose,
     children,
     className,
     noArrow = true,
     isAlternate,
-    // Disable reason: We generate the `...contentProps` rest as remainder
-    // of props which aren't explicitly handled by this component.
-
-    /* eslint-disable no-unused-vars */
-    position = 'bottom right',
-    range,
+    position,
+    placement = 'bottom-start',
+    offset,
     focusOnMount = 'firstElement',
     anchorRef,
-    shouldAnchorIncludePadding,
     anchorRect,
     getAnchorRect,
     expandOnMobile,
-    animate = true,
     onFocusOutside,
-    __unstableStickyBoundaryElement,
     __unstableSlotName = SLOT_NAME,
     __unstableObserveElement,
-    __unstableBoundaryParent,
     __unstableForcePosition,
-    __unstableForceXAlignment,
-    __unstableEditorCanvasWrapper,
-
-    /* eslint-enable no-unused-vars */
+    __unstableShift = false,
     ...contentProps
   } = _ref;
-  const anchorRefFallback = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-  const contentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-  const containerRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)();
-  const isMobileViewport = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__["default"])('medium', '<');
-  const [animateOrigin, setAnimateOrigin] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)();
 
-  const slotName = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useContext)(slotNameContext) || __unstableSlotName;
+  if (range) {
+    (0,_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_3__["default"])('range prop in Popover component', {
+      since: '6.1',
+      version: '6.3'
+    });
+  }
 
-  const slot = (0,_slot_fill__WEBPACK_IMPORTED_MODULE_6__["default"])(slotName);
+  const arrowRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+  const isMobileViewport = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["default"])('medium', '<');
   const isExpanded = expandOnMobile && isMobileViewport;
-  const [containerResizeListener, contentSize] = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  noArrow = isExpanded || noArrow;
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
-    if (isExpanded) {
-      setClass(containerRef.current, 'is-without-arrow', noArrow);
-      setClass(containerRef.current, 'is-alternate', isAlternate);
-      setAttribute(containerRef.current, 'data-x-axis');
-      setAttribute(containerRef.current, 'data-y-axis');
-      setStyle(containerRef.current, 'top');
-      setStyle(containerRef.current, 'left');
-      setStyle(contentRef.current, 'maxHeight');
-      setStyle(contentRef.current, 'maxWidth');
-      return;
+  const hasArrow = !isExpanded && !noArrow;
+  const usedPlacement = position ? positionToPlacement(position) : placement;
+  const ownerDocument = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
+    if (anchorRef !== null && anchorRef !== void 0 && anchorRef.top) {
+      return anchorRef === null || anchorRef === void 0 ? void 0 : anchorRef.top.ownerDocument;
+    } else if (anchorRef !== null && anchorRef !== void 0 && anchorRef.startContainer) {
+      return anchorRef.startContainer.ownerDocument;
+    } else if (anchorRef !== null && anchorRef !== void 0 && anchorRef.current) {
+      return anchorRef.current.ownerDocument;
+    } else if (anchorRef) {
+      // This one should be deprecated.
+      return anchorRef.ownerDocument;
+    } else if (anchorRect && anchorRect !== null && anchorRect !== void 0 && anchorRect.ownerDocument) {
+      return anchorRect.ownerDocument;
+    } else if (getAnchorRect) {
+      var _getAnchorRect$ownerD, _getAnchorRect;
+
+      return (_getAnchorRect$ownerD = (_getAnchorRect = getAnchorRect()) === null || _getAnchorRect === void 0 ? void 0 : _getAnchorRect.ownerDocument) !== null && _getAnchorRect$ownerD !== void 0 ? _getAnchorRect$ownerD : document;
     }
 
-    const refresh = () => {
-      if (!containerRef.current || !contentRef.current) {
-        return;
-      }
+    return document;
+  }, [anchorRef, anchorRect, getAnchorRect]);
+  /**
+   * Offsets the the position of the popover when the anchor is inside an iframe.
+   */
 
-      let anchor = computeAnchorRect(anchorRefFallback, anchorRect, getAnchorRect, anchorRef, shouldAnchorIncludePadding, containerRef.current);
-
-      if (!anchor) {
-        return;
-      }
-
-      const {
-        offsetParent,
-        ownerDocument
-      } = containerRef.current;
-      let relativeOffsetTop = 0; // If there is a positioned ancestor element that is not the body,
-      // subtract the position from the anchor rect. If the position of
-      // the popover is fixed, the offset parent is null or the body
-      // element, in which case the position is relative to the viewport.
-      // See https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent
-
-      if (offsetParent && offsetParent !== ownerDocument.body) {
-        const offsetParentRect = offsetParent.getBoundingClientRect();
-        relativeOffsetTop = offsetParentRect.top;
-        anchor = new window.DOMRect(anchor.left - offsetParentRect.left, anchor.top - offsetParentRect.top, anchor.width, anchor.height);
-      }
-
-      let boundaryElement;
-
-      if (__unstableBoundaryParent) {
-        boundaryElement = containerRef.current.parentElement;
-      }
-
-      const usedContentSize = !contentSize.height ? contentRef.current.getBoundingClientRect() : contentSize;
-      const {
-        popoverTop,
-        popoverLeft,
-        xAxis,
-        yAxis,
-        contentHeight,
-        contentWidth
-      } = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.computePopoverPosition)(anchor, usedContentSize, position, __unstableStickyBoundaryElement, containerRef.current, relativeOffsetTop, boundaryElement, __unstableForcePosition, __unstableForceXAlignment, __unstableEditorCanvasWrapper);
-
-      if (typeof popoverTop === 'number' && typeof popoverLeft === 'number') {
-        setStyle(containerRef.current, 'top', popoverTop + 'px');
-        setStyle(containerRef.current, 'left', popoverLeft + 'px');
-      }
-
-      setClass(containerRef.current, 'is-without-arrow', noArrow || xAxis === 'center' && yAxis === 'middle');
-      setClass(containerRef.current, 'is-alternate', isAlternate);
-      setAttribute(containerRef.current, 'data-x-axis', xAxis);
-      setAttribute(containerRef.current, 'data-y-axis', yAxis);
-      setStyle(contentRef.current, 'maxHeight', typeof contentHeight === 'number' ? contentHeight + 'px' : '');
-      setStyle(contentRef.current, 'maxWidth', typeof contentWidth === 'number' ? contentWidth + 'px' : ''); // Compute the animation position.
-
-      const yAxisMapping = {
-        top: 'bottom',
-        bottom: 'top'
-      };
-      const xAxisMapping = {
-        left: 'right',
-        right: 'left'
-      };
-      const animateYAxis = yAxisMapping[yAxis] || 'middle';
-      const animateXAxis = xAxisMapping[xAxis] || 'center';
-      setAnimateOrigin(animateXAxis + ' ' + animateYAxis);
-    };
-
-    refresh();
-    const {
-      ownerDocument
-    } = containerRef.current;
+  const frameOffset = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
     const {
       defaultView
     } = ownerDocument;
-    /*
-     * There are sometimes we need to reposition or resize the popover that
-     * are not handled by the resize/scroll window events (i.e. CSS changes
-     * in the layout that changes the position of the anchor).
-     *
-     * For these situations, we refresh the popover every 0.5s
-     */
+    const {
+      frameElement
+    } = defaultView;
 
-    const intervalHandle = defaultView.setInterval(refresh, 500);
-    let rafId;
-
-    const refreshOnAnimationFrame = () => {
-      defaultView.cancelAnimationFrame(rafId);
-      rafId = defaultView.requestAnimationFrame(refresh);
-    }; // Sometimes a click trigger a layout change that affects the popover
-    // position. This is an opportunity to immediately refresh rather than
-    // at the interval.
-
-
-    defaultView.addEventListener('click', refreshOnAnimationFrame);
-    defaultView.addEventListener('resize', refresh);
-    defaultView.addEventListener('scroll', refresh, true);
-    const anchorDocument = getAnchorDocument(anchorRef); // If the anchor is within an iframe, the popover position also needs
-    // to refrest when the iframe content is scrolled or resized.
-
-    if (anchorDocument && anchorDocument !== ownerDocument) {
-      anchorDocument.defaultView.addEventListener('resize', refresh);
-      anchorDocument.defaultView.addEventListener('scroll', refresh, true);
+    if (!frameElement || ownerDocument === document) {
+      return undefined;
     }
 
-    let observer;
+    const iframeRect = frameElement.getBoundingClientRect();
+    return {
+      name: 'iframeOffset',
 
-    if (__unstableObserveElement) {
-      observer = new defaultView.MutationObserver(refresh);
-      observer.observe(__unstableObserveElement, {
-        attributes: true
+      fn(_ref2) {
+        let {
+          x,
+          y
+        } = _ref2;
+        return {
+          x: x + iframeRect.left,
+          y: y + iframeRect.top
+        };
+      }
+
+    };
+  }, [ownerDocument]);
+  const middlewares = [frameOffset, offset ? (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__.offset)(offset) : undefined, __unstableForcePosition ? undefined : (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__.flip)(), __unstableForcePosition ? undefined : (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__.size)({
+    apply(sizeProps) {
+      const {
+        height
+      } = sizeProps;
+      if (!refs.floating.current) return; // Reduce the height of the popover to the available space.
+
+      Object.assign(refs.floating.current.firstChild.style, {
+        maxHeight: `${height}px`,
+        overflow: 'auto'
       });
     }
 
-    return () => {
-      defaultView.clearInterval(intervalHandle);
-      defaultView.removeEventListener('resize', refresh);
-      defaultView.removeEventListener('scroll', refresh, true);
-      defaultView.removeEventListener('click', refreshOnAnimationFrame);
-      defaultView.cancelAnimationFrame(rafId);
+  }), __unstableShift ? (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__.shift)({
+    crossAxis: true,
+    limiter: (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_5__.limitShift)(),
+    padding: 1 // Necessary to avoid flickering at the edge of the viewport.
 
-      if (anchorDocument && anchorDocument !== ownerDocument) {
-        var _anchorDocument$defau, _anchorDocument$defau2;
+  }) : undefined, hasArrow ? (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_6__.arrow)({
+    element: arrowRef
+  }) : undefined].filter(m => !!m);
+  const anchorRefFallback = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
 
-        (_anchorDocument$defau = anchorDocument.defaultView) === null || _anchorDocument$defau === void 0 ? void 0 : _anchorDocument$defau.removeEventListener('resize', refresh);
-        (_anchorDocument$defau2 = anchorDocument.defaultView) === null || _anchorDocument$defau2 === void 0 ? void 0 : _anchorDocument$defau2.removeEventListener('scroll', refresh, true);
-      }
+  const slotName = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useContext)(slotNameContext) || __unstableSlotName;
 
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, [isExpanded, anchorRect, getAnchorRect, anchorRef, shouldAnchorIncludePadding, position, contentSize, __unstableStickyBoundaryElement, __unstableObserveElement, __unstableBoundaryParent]);
+  const slot = (0,_slot_fill__WEBPACK_IMPORTED_MODULE_7__["default"])(slotName);
 
   const onDialogClose = (type, event) => {
     // Ideally the popover should have just a single onClose prop and
@@ -3185,12 +2987,108 @@ const Popover = (_ref, ref) => {
     __unstableOnClose: onDialogClose,
     onClose: onDialogClose
   });
-  const mergedRefs = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_9__["default"])([containerRef, dialogRef, ref]);
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    refs,
+    update,
+    placement: placementData,
+    middlewareData: {
+      arrow: arrowData = {}
+    }
+  } = (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_6__.useFloating)({
+    placement: usedPlacement,
+    middleware: middlewares
+  });
+  const staticSide = {
+    top: 'bottom',
+    right: 'left',
+    bottom: 'top',
+    left: 'right'
+  }[placementData.split('-')[0]];
+  const mergedRefs = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_9__["default"])([floating, dialogRef, ref]); // Updates references
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
+    // No ref or position have been passed
+    let usedRef;
+
+    if (anchorRef !== null && anchorRef !== void 0 && anchorRef.top) {
+      usedRef = {
+        getBoundingClientRect() {
+          const topRect = anchorRef.top.getBoundingClientRect();
+          const bottomRect = anchorRef.bottom.getBoundingClientRect();
+          return new window.DOMRect(topRect.x, topRect.y, topRect.width, bottomRect.bottom - topRect.top);
+        }
+
+      };
+    } else if (anchorRef !== null && anchorRef !== void 0 && anchorRef.current) {
+      usedRef = anchorRef.current;
+    } else if (anchorRef) {
+      usedRef = anchorRef;
+    } else if (anchorRect) {
+      usedRef = {
+        getBoundingClientRect() {
+          return anchorRect;
+        }
+
+      };
+    } else if (getAnchorRect) {
+      usedRef = {
+        getBoundingClientRect() {
+          var _rect$x, _rect$y, _rect$width, _rect$height;
+
+          const rect = getAnchorRect();
+          return new window.DOMRect((_rect$x = rect.x) !== null && _rect$x !== void 0 ? _rect$x : rect.left, (_rect$y = rect.y) !== null && _rect$y !== void 0 ? _rect$y : rect.top, (_rect$width = rect.width) !== null && _rect$width !== void 0 ? _rect$width : rect.right - rect.left, (_rect$height = rect.height) !== null && _rect$height !== void 0 ? _rect$height : rect.bottom - rect.top);
+        }
+
+      };
+    } else if (anchorRefFallback.current) {
+      usedRef = anchorRefFallback.current;
+    }
+
+    if (!usedRef) {
+      return;
+    }
+
+    reference(usedRef);
+
+    if (!refs.floating.current) {
+      return;
+    }
+
+    return (0,_floating_ui_react_dom__WEBPACK_IMPORTED_MODULE_10__.autoUpdate)(usedRef, refs.floating.current, update);
+  }, [anchorRef, anchorRect, getAnchorRect]); // This is only needed for a smoth transition when moving blocks.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
+    if (!__unstableObserveElement) {
+      return;
+    }
+
+    const observer = new window.MutationObserver(update);
+    observer.observe(__unstableObserveElement, {
+      attributes: true
+    });
+    return () => {
+      observer.disconnect();
+    };
+  }, [__unstableObserveElement]); // If we're using getAnchorRect, we need to update the position as we scroll the iframe.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
+    if (ownerDocument === document) {
+      return;
+    }
+
+    ownerDocument.addEventListener('scroll', update);
+    return () => ownerDocument.removeEventListener('scroll', update);
+  }, [ownerDocument]);
   /** @type {false | string} */
 
-  const animateClassName = Boolean(animate && animateOrigin) && (0,_animate__WEBPACK_IMPORTED_MODULE_10__.getAnimateClassName)({
+  const animateClassName = !!animate && (0,_animate__WEBPACK_IMPORTED_MODULE_11__.getAnimateClassName)({
     type: 'appear',
-    origin: animateOrigin
+    origin: placementToAnimationOrigin(placementData)
   }); // Disable reason: We care to capture the _bubbled_ events from inputs
   // within popover as inferring close intent.
 
@@ -3199,32 +3097,41 @@ const Popover = (_ref, ref) => {
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-popover', className, animateClassName, {
       'is-expanded': isExpanded,
-      'is-without-arrow': noArrow,
       'is-alternate': isAlternate
     })
   }, contentProps, {
     ref: mergedRefs
   }, dialogProps, {
-    tabIndex: "-1"
-  }), isExpanded && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_scroll_lock__WEBPACK_IMPORTED_MODULE_11__["default"], null), isExpanded && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", {
+    tabIndex: "-1",
+    style: isExpanded ? undefined : {
+      position: strategy,
+      left: Number.isNaN(x) ? 0 : x,
+      top: Number.isNaN(y) ? 0 : y
+    }
+  }), isExpanded && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_scroll_lock__WEBPACK_IMPORTED_MODULE_12__["default"], null), isExpanded && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", {
     className: "components-popover__header"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
     className: "components-popover__header-title"
-  }, headerTitle), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_button__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, headerTitle), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: "components-popover__close",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     onClick: onClose
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", {
-    ref: contentRef,
     className: "components-popover__content"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", {
+  }, children), hasArrow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("div", {
+    className: "components-popover__arrow",
+    ref: arrowRef,
     style: {
-      position: 'relative'
+      left: !(arrowData !== null && arrowData !== void 0 && arrowData.x) || Number.isNaN(arrowData === null || arrowData === void 0 ? void 0 : arrowData.x) ? 0 : arrowData.x,
+      top: !(arrowData !== null && arrowData !== void 0 && arrowData.y) || Number.isNaN(arrowData === null || arrowData === void 0 ? void 0 : arrowData.y) ? 0 : arrowData.y,
+      right: undefined,
+      bottom: undefined,
+      [staticSide]: '-4px'
     }
-  }, containerResizeListener, children)));
+  }));
 
   if (slot.ref) {
-    content = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_slot_fill__WEBPACK_IMPORTED_MODULE_14__.Fill, {
+    content = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_slot_fill__WEBPACK_IMPORTED_MODULE_15__.Fill, {
       name: slotName
     }, content);
   }
@@ -3240,11 +3147,11 @@ const Popover = (_ref, ref) => {
 
 const PopoverContainer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(Popover);
 
-function PopoverSlot(_ref2, ref) {
+function PopoverSlot(_ref3, ref) {
   let {
     name = SLOT_NAME
-  } = _ref2;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_slot_fill__WEBPACK_IMPORTED_MODULE_14__.Slot, {
+  } = _ref3;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_slot_fill__WEBPACK_IMPORTED_MODULE_15__.Slot, {
     bubblesVirtually: true,
     name: name,
     className: "popover-slot",
@@ -3256,332 +3163,6 @@ PopoverContainer.Slot = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwa
 PopoverContainer.__unstableSlotNameProvider = slotNameContext.Provider;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopoverContainer);
 //# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/build-module/popover/utils.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/build-module/popover/utils.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "computePopoverPosition": () => (/* binding */ computePopoverPosition),
-/* harmony export */   "computePopoverXAxisPosition": () => (/* binding */ computePopoverXAxisPosition),
-/* harmony export */   "computePopoverYAxisPosition": () => (/* binding */ computePopoverYAxisPosition),
-/* harmony export */   "offsetIframe": () => (/* binding */ offsetIframe)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/index.js");
-// @ts-nocheck
-
-/**
- * WordPress dependencies
- */
-
-/**
- * Module constants
- */
-
-const HEIGHT_OFFSET = 10; // Used by the arrow and a bit of empty space.
-
-/**
- * Utility used to compute the popover position over the xAxis
- *
- * @param {Object}  anchorRect            Anchor Rect.
- * @param {Object}  contentSize           Content Size.
- * @param {string}  xAxis                 Desired xAxis.
- * @param {string}  corner                Desired corner.
- * @param {boolean} stickyBoundaryElement The boundary element to use when
- *                                        switching between sticky and normal
- *                                        position.
- * @param {string}  chosenYAxis           yAxis to be used.
- * @param {Element} boundaryElement       Boundary element.
- * @param {boolean} forcePosition         Don't adjust position based on anchor.
- * @param {boolean} forceXAlignment       Don't adjust alignment based on YAxis
- *
- * @return {Object} Popover xAxis position and constraints.
- */
-
-function computePopoverXAxisPosition(anchorRect, contentSize, xAxis, corner, stickyBoundaryElement, chosenYAxis, boundaryElement, forcePosition, forceXAlignment) {
-  const {
-    width
-  } = contentSize; // Correct xAxis for RTL support.
-
-  if (xAxis === 'left' && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.isRTL)()) {
-    xAxis = 'right';
-  } else if (xAxis === 'right' && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.isRTL)()) {
-    xAxis = 'left';
-  }
-
-  if (corner === 'left' && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.isRTL)()) {
-    corner = 'right';
-  } else if (corner === 'right' && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.isRTL)()) {
-    corner = 'left';
-  } // X axis alignment choices.
-
-
-  const anchorMidPoint = Math.round(anchorRect.left + anchorRect.width / 2);
-  const centerAlignment = {
-    popoverLeft: anchorMidPoint,
-    contentWidth: (anchorMidPoint - width / 2 > 0 ? width / 2 : anchorMidPoint) + (anchorMidPoint + width / 2 > window.innerWidth ? window.innerWidth - anchorMidPoint : width / 2)
-  };
-  let leftAlignmentX = anchorRect.left;
-
-  if (corner === 'right') {
-    leftAlignmentX = anchorRect.right;
-  } else if (chosenYAxis !== 'middle' && !forceXAlignment) {
-    leftAlignmentX = anchorMidPoint;
-  }
-
-  let rightAlignmentX = anchorRect.right;
-
-  if (corner === 'left') {
-    rightAlignmentX = anchorRect.left;
-  } else if (chosenYAxis !== 'middle' && !forceXAlignment) {
-    rightAlignmentX = anchorMidPoint;
-  }
-
-  const leftAlignment = {
-    popoverLeft: leftAlignmentX,
-    contentWidth: leftAlignmentX - width > 0 ? width : leftAlignmentX
-  };
-  const rightAlignment = {
-    popoverLeft: rightAlignmentX,
-    contentWidth: rightAlignmentX + width > window.innerWidth ? window.innerWidth - rightAlignmentX : width
-  }; // Choosing the x axis.
-
-  let chosenXAxis = xAxis;
-  let contentWidth = null;
-
-  if (!stickyBoundaryElement && !forcePosition) {
-    if (xAxis === 'center' && centerAlignment.contentWidth === width) {
-      chosenXAxis = 'center';
-    } else if (xAxis === 'left' && leftAlignment.contentWidth === width) {
-      chosenXAxis = 'left';
-    } else if (xAxis === 'right' && rightAlignment.contentWidth === width) {
-      chosenXAxis = 'right';
-    } else {
-      chosenXAxis = leftAlignment.contentWidth > rightAlignment.contentWidth ? 'left' : 'right';
-      const chosenWidth = chosenXAxis === 'left' ? leftAlignment.contentWidth : rightAlignment.contentWidth; // Limit width of the content to the viewport width
-
-      if (width > window.innerWidth) {
-        contentWidth = window.innerWidth;
-      } // If we can't find any alignment options that could fit
-      // our content, then let's fallback to the center of the viewport.
-
-
-      if (chosenWidth !== width) {
-        chosenXAxis = 'center';
-        centerAlignment.popoverLeft = window.innerWidth / 2;
-      }
-    }
-  }
-
-  let popoverLeft;
-
-  if (chosenXAxis === 'center') {
-    popoverLeft = centerAlignment.popoverLeft;
-  } else if (chosenXAxis === 'left') {
-    popoverLeft = leftAlignment.popoverLeft;
-  } else {
-    popoverLeft = rightAlignment.popoverLeft;
-  }
-
-  if (boundaryElement) {
-    popoverLeft = Math.min(popoverLeft, boundaryElement.offsetLeft + boundaryElement.offsetWidth - width); // Avoid the popover being position beyond the left boundary if the
-    // direction is left to right.
-
-    if (!(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.isRTL)()) {
-      popoverLeft = Math.max(popoverLeft, 0);
-    }
-  }
-
-  return {
-    xAxis: chosenXAxis,
-    popoverLeft,
-    contentWidth
-  };
-}
-/**
- * Utility used to compute the popover position over the yAxis
- *
- * @param {Object}       anchorRect            Anchor Rect.
- * @param {Object}       contentSize           Content Size.
- * @param {string}       yAxis                 Desired yAxis.
- * @param {string}       corner                Desired corner.
- * @param {boolean}      stickyBoundaryElement The boundary element to use when switching between sticky
- *                                             and normal position.
- * @param {Element}      anchorRef             The anchor element.
- * @param {Element}      relativeOffsetTop     If applicable, top offset of the relative positioned
- *                                             parent container.
- * @param {boolean}      forcePosition         Don't adjust position based on anchor.
- * @param {Element|null} editorWrapper         Element that wraps the editor content. Used to access
- *                                             scroll position to determine sticky behavior.
- * @return {Object} Popover xAxis position and constraints.
- */
-
-function computePopoverYAxisPosition(anchorRect, contentSize, yAxis, corner, stickyBoundaryElement, anchorRef, relativeOffsetTop, forcePosition, editorWrapper) {
-  const {
-    height
-  } = contentSize;
-
-  if (stickyBoundaryElement) {
-    const stickyRect = stickyBoundaryElement.getBoundingClientRect();
-    const stickyPositionTop = stickyRect.top + height - relativeOffsetTop;
-    const stickyPositionBottom = stickyRect.bottom - height - relativeOffsetTop;
-
-    if (anchorRect.top <= stickyPositionTop) {
-      if (editorWrapper) {
-        // If a popover cannot be positioned above the anchor, even after scrolling, we must
-        // ensure we use the bottom position instead of the popover slot.  This prevents the
-        // popover from always restricting block content and interaction while selected if the
-        // block is near the top of the site editor.
-        const isRoomAboveInCanvas = height + HEIGHT_OFFSET < editorWrapper.scrollTop + anchorRect.top;
-
-        if (!isRoomAboveInCanvas) {
-          return {
-            yAxis: 'bottom',
-            // If the bottom of the block is also below the bottom sticky position (ex -
-            // block is also taller than the editor window), return the bottom sticky
-            // position instead.  We do this instead of the top sticky position both to
-            // allow a smooth transition and more importantly to ensure every section of
-            // the block can be free from popover obscuration at some point in the
-            // scroll position.
-            popoverTop: Math.min(anchorRect.bottom, stickyPositionBottom)
-          };
-        }
-      } // Default sticky behavior.
-
-
-      return {
-        yAxis,
-        popoverTop: Math.min(anchorRect.bottom, stickyPositionTop)
-      };
-    }
-  } // Y axis alignment choices.
-
-
-  let anchorMidPoint = anchorRect.top + anchorRect.height / 2;
-
-  if (corner === 'bottom') {
-    anchorMidPoint = anchorRect.bottom;
-  } else if (corner === 'top') {
-    anchorMidPoint = anchorRect.top;
-  }
-
-  const middleAlignment = {
-    popoverTop: anchorMidPoint,
-    contentHeight: (anchorMidPoint - height / 2 > 0 ? height / 2 : anchorMidPoint) + (anchorMidPoint + height / 2 > window.innerHeight ? window.innerHeight - anchorMidPoint : height / 2)
-  };
-  const topAlignment = {
-    popoverTop: anchorRect.top,
-    contentHeight: anchorRect.top - HEIGHT_OFFSET - height > 0 ? height : anchorRect.top - HEIGHT_OFFSET
-  };
-  const bottomAlignment = {
-    popoverTop: anchorRect.bottom,
-    contentHeight: anchorRect.bottom + HEIGHT_OFFSET + height > window.innerHeight ? window.innerHeight - HEIGHT_OFFSET - anchorRect.bottom : height
-  }; // Choosing the y axis.
-
-  let chosenYAxis = yAxis;
-  let contentHeight = null;
-
-  if (!stickyBoundaryElement && !forcePosition) {
-    if (yAxis === 'middle' && middleAlignment.contentHeight === height) {
-      chosenYAxis = 'middle';
-    } else if (yAxis === 'top' && topAlignment.contentHeight === height) {
-      chosenYAxis = 'top';
-    } else if (yAxis === 'bottom' && bottomAlignment.contentHeight === height) {
-      chosenYAxis = 'bottom';
-    } else {
-      chosenYAxis = topAlignment.contentHeight > bottomAlignment.contentHeight ? 'top' : 'bottom';
-      const chosenHeight = chosenYAxis === 'top' ? topAlignment.contentHeight : bottomAlignment.contentHeight;
-      contentHeight = chosenHeight !== height ? chosenHeight : null;
-    }
-  }
-
-  let popoverTop;
-
-  if (chosenYAxis === 'middle') {
-    popoverTop = middleAlignment.popoverTop;
-  } else if (chosenYAxis === 'top') {
-    popoverTop = topAlignment.popoverTop;
-  } else {
-    popoverTop = bottomAlignment.popoverTop;
-  }
-
-  return {
-    yAxis: chosenYAxis,
-    popoverTop,
-    contentHeight
-  };
-}
-/**
- * Utility used to compute the popover position and the content max width/height for a popover given
- * its anchor rect and its content size.
- *
- * @param {Object}       anchorRect            Anchor Rect.
- * @param {Object}       contentSize           Content Size.
- * @param {string}       position              Position.
- * @param {boolean}      stickyBoundaryElement The boundary element to use when switching between
- *                                             sticky and normal position.
- * @param {Element}      anchorRef             The anchor element.
- * @param {number}       relativeOffsetTop     If applicable, top offset of the relative positioned
- *                                             parent container.
- * @param {Element}      boundaryElement       Boundary element.
- * @param {boolean}      forcePosition         Don't adjust position based on anchor.
- * @param {boolean}      forceXAlignment       Don't adjust alignment based on YAxis
- * @param {Element|null} editorWrapper         Element that wraps the editor content. Used to access
- *                                             scroll position to determine sticky behavior.
- * @return {Object} Popover position and constraints.
- */
-
-function computePopoverPosition(anchorRect, contentSize) {
-  let position = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'top';
-  let stickyBoundaryElement = arguments.length > 3 ? arguments[3] : undefined;
-  let anchorRef = arguments.length > 4 ? arguments[4] : undefined;
-  let relativeOffsetTop = arguments.length > 5 ? arguments[5] : undefined;
-  let boundaryElement = arguments.length > 6 ? arguments[6] : undefined;
-  let forcePosition = arguments.length > 7 ? arguments[7] : undefined;
-  let forceXAlignment = arguments.length > 8 ? arguments[8] : undefined;
-  let editorWrapper = arguments.length > 9 ? arguments[9] : undefined;
-  const [yAxis, xAxis = 'center', corner] = position.split(' ');
-  const yAxisPosition = computePopoverYAxisPosition(anchorRect, contentSize, yAxis, corner, stickyBoundaryElement, anchorRef, relativeOffsetTop, forcePosition, editorWrapper);
-  const xAxisPosition = computePopoverXAxisPosition(anchorRect, contentSize, xAxis, corner, stickyBoundaryElement, yAxisPosition.yAxis, boundaryElement, forcePosition, forceXAlignment);
-  return { ...xAxisPosition,
-    ...yAxisPosition
-  };
-}
-/**
- * Offsets the given rect by the position of the iframe that contains the
- * element. If the owner document is not in an iframe then it returns with the
- * original rect. If the popover container document and the anchor document are
- * the same, the original rect will also be returned.
- *
- * @param {DOMRect}  rect          bounds of the element
- * @param {Document} ownerDocument document of the element
- * @param {Element}  container     The popover container to position.
- *
- * @return {DOMRect} offsetted bounds
- */
-
-function offsetIframe(rect, ownerDocument, container) {
-  const {
-    defaultView
-  } = ownerDocument;
-  const {
-    frameElement
-  } = defaultView;
-
-  if (!frameElement || ownerDocument === container.ownerDocument) {
-    return rect;
-  }
-
-  const iframeRect = frameElement.getBoundingClientRect();
-  return new defaultView.DOMRect(rect.left + iframeRect.left, rect.top + iframeRect.top, rect.width, rect.height);
-}
-//# sourceMappingURL=utils.js.map
 
 /***/ }),
 
@@ -3740,7 +3321,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/components/node_modules/react-dom/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/element/node_modules/react-dom/index.js");
 /* harmony import */ var _use_slot__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./use-slot */ "./node_modules/@wordpress/components/build-module/slot-fill/bubbles-virtually/use-slot.js");
 /* harmony import */ var _style_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../style-provider */ "./node_modules/@wordpress/components/build-module/style-provider/index.js");
 
@@ -4130,25 +3711,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/components/node_modules/react-dom/index.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./context */ "./node_modules/@wordpress/components/build-module/slot-fill/context.js");
-/* harmony import */ var _use_slot__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./use-slot */ "./node_modules/@wordpress/components/build-module/slot-fill/use-slot.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/element/node_modules/react-dom/index.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context */ "./node_modules/@wordpress/components/build-module/slot-fill/context.js");
+/* harmony import */ var _use_slot__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./use-slot */ "./node_modules/@wordpress/components/build-module/slot-fill/use-slot.js");
 
 
 // @ts-nocheck
 
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
 
 /**
  * Internal dependencies
@@ -4164,23 +3738,23 @@ function FillComponent(_ref) {
     registerFill,
     unregisterFill
   } = _ref;
-  const slot = (0,_use_slot__WEBPACK_IMPORTED_MODULE_2__["default"])(name);
-  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)({
+  const slot = (0,_use_slot__WEBPACK_IMPORTED_MODULE_1__["default"])(name);
+  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useRef)({
     name,
     children
   });
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useLayoutEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
     registerFill(name, ref.current);
     return () => unregisterFill(name, ref.current);
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useLayoutEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
     ref.current.children = children;
 
     if (slot) {
       slot.forceUpdate();
     }
   }, [children]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useLayoutEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
     if (name === ref.current.name) {
       // Ignore initial effect.
       return;
@@ -4196,19 +3770,19 @@ function FillComponent(_ref) {
   } // If a function is passed as a child, provide it with the fillProps.
 
 
-  if ((0,lodash__WEBPACK_IMPORTED_MODULE_1__.isFunction)(children)) {
+  if (typeof children === 'function') {
     children = children(slot.props.fillProps);
   }
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createPortal)(children, slot.node);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createPortal)(children, slot.node);
 }
 
-const Fill = props => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)(_context__WEBPACK_IMPORTED_MODULE_5__["default"].Consumer, null, _ref2 => {
+const Fill = props => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_context__WEBPACK_IMPORTED_MODULE_4__["default"].Consumer, null, _ref2 => {
   let {
     registerFill,
     unregisterFill
   } = _ref2;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createElement)(FillComponent, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(FillComponent, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
     registerFill: registerFill,
     unregisterFill: unregisterFill
   }));
@@ -4474,7 +4048,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/utils.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/element/build-module/utils.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context */ "./node_modules/@wordpress/components/build-module/slot-fill/context.js");
 
 
@@ -4494,6 +4068,16 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+/**
+ * Whether the argument is a function.
+ *
+ * @param {*} maybeFunc The argument to check.
+ * @return {boolean} True if the argument is a function, false otherwise.
+ */
+
+function isFunction(maybeFunc) {
+  return typeof maybeFunc === 'function';
+}
 
 class SlotComponent extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Component {
   constructor() {
@@ -4550,7 +4134,7 @@ class SlotComponent extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Comp
       getFills
     } = this.props;
     const fills = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.map)(getFills(name, this), fill => {
-      const fillChildren = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.isFunction)(fill.children) ? fill.children(fillProps) : fill.children;
+      const fillChildren = isFunction(fill.children) ? fill.children(fillProps) : fill.children;
       return _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Children.map(fillChildren, (child, childIndex) => {
         if (!child || (0,lodash__WEBPACK_IMPORTED_MODULE_1__.isString)(child)) {
           return child;
@@ -4564,8 +4148,8 @@ class SlotComponent extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Comp
     }).filter( // In some cases fills are rendered only when some conditions apply.
     // This ensures that we only use non-empty fills when rendering, i.e.,
     // it allows us to render wrappers only when the fills are actually present.
-    (0,lodash__WEBPACK_IMPORTED_MODULE_1__.negate)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.isEmptyElement));
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, (0,lodash__WEBPACK_IMPORTED_MODULE_1__.isFunction)(children) ? children(fills) : fills);
+    element => !(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.isEmptyElement)(element));
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, isFunction(children) ? children(fills) : fills);
   }
 
 }
@@ -4719,7 +4303,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/react.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/element/build-module/react.js");
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js");
 /* harmony import */ var _popover__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../popover */ "./node_modules/@wordpress/components/build-module/popover/index.js");
 /* harmony import */ var _shortcut__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shortcut */ "./node_modules/@wordpress/components/build-module/shortcut/index.js");
@@ -4791,7 +4375,8 @@ const addPopoverToGrandchildren = _ref3 => {
     className: "components-tooltip",
     "aria-hidden": "true",
     animate: false,
-    noArrow: true
+    offset: 12,
+    __unstableShift: true
   }, text, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shortcut__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "components-tooltip__shortcut",
     shortcut: shortcut
@@ -4817,7 +4402,7 @@ const emitToChild = (children, eventName, event) => {
 function Tooltip(props) {
   const {
     children,
-    position,
+    position = 'bottom middle',
     text,
     shortcut,
     delay = TOOLTIP_DELAY
@@ -5661,10 +5246,4009 @@ const visuallyHidden = {
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/react.js":
+/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "./node_modules/@wordpress/primitives/build-module/svg/index.js");
+
+
+/**
+ * WordPress dependencies
+ */
+
+const close = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+  d: "M13 11.8l6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"
+}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (close);
+//# sourceMappingURL=close.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/index.js":
 /*!**************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/react.js ***!
+  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/index.js ***!
   \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ warning)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js");
+/**
+ * Internal dependencies
+ */
+
+
+function isDev() {
+  return typeof process !== 'undefined' && process.env && "development" !== 'production';
+}
+/**
+ * Shows a warning with `message` if environment is not `production`.
+ *
+ * @param {string} message Message to show in the warning.
+ *
+ * @example
+ * ```js
+ * import warning from '@wordpress/warning';
+ *
+ * function MyComponent( props ) {
+ *   if ( ! props.title ) {
+ *     warning( '`props.title` was not passed' );
+ *   }
+ *   ...
+ * }
+ * ```
+ */
+
+
+function warning(message) {
+  if (!isDev()) {
+    return;
+  } // Skip if already logged.
+
+
+  if (_utils__WEBPACK_IMPORTED_MODULE_0__.logged.has(message)) {
+    return;
+  } // eslint-disable-next-line no-console
+
+
+  console.warn(message); // Throwing an error and catching it immediately to improve debugging
+  // A consumer can use 'pause on caught exceptions'
+  // https://github.com/facebook/react/issues/4216
+
+  try {
+    throw Error(message);
+  } catch (x) {// Do nothing.
+  }
+
+  _utils__WEBPACK_IMPORTED_MODULE_0__.logged.add(message);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "logged": () => (/* binding */ logged)
+/* harmony export */ });
+/**
+ * Object map tracking messages which have been logged, for use in ensuring a
+ * message is only logged once.
+ *
+ * @type {Set<string>}
+ */
+const logged = new Set();
+//# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/keycodes */ "./node_modules/@wordpress/keycodes/build-module/index.js");
+/* harmony import */ var _wordpress_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/dom */ "./node_modules/@wordpress/dom/build-module/index.js");
+/* harmony import */ var _use_ref_effect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../use-ref-effect */ "./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * In Dialogs/modals, the tabbing must be constrained to the content of
+ * the wrapper element. This hook adds the behavior to the returned ref.
+ *
+ * @return {import('react').RefCallback<Element>} Element Ref.
+ *
+ * @example
+ * ```js
+ * import { useConstrainedTabbing } from '@wordpress/compose';
+ *
+ * const ConstrainedTabbingExample = () => {
+ *     const constrainedTabbingRef = useConstrainedTabbing()
+ *     return (
+ *         <div ref={ constrainedTabbingRef }>
+ *             <Button />
+ *             <Button />
+ *         </div>
+ *     );
+ * }
+ * ```
+ */
+
+function useConstrainedTabbing() {
+  return (0,_use_ref_effect__WEBPACK_IMPORTED_MODULE_0__["default"])((
+  /** @type {HTMLElement} */
+  node) => {
+    /** @type {number|undefined} */
+    let timeoutId;
+
+    function onKeyDown(
+    /** @type {KeyboardEvent} */
+    event) {
+      const {
+        keyCode,
+        shiftKey,
+        target
+      } = event;
+
+      if (keyCode !== _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_1__.TAB) {
+        return;
+      }
+
+      const action = shiftKey ? 'findPrevious' : 'findNext';
+      const nextElement = _wordpress_dom__WEBPACK_IMPORTED_MODULE_2__.focus.tabbable[action](
+      /** @type {HTMLElement} */
+      target) || null; // If the element that is about to receive focus is outside the
+      // area, move focus to a div and insert it at the start or end of
+      // the area, depending on the direction. Without preventing default
+      // behaviour, the browser will then move focus to the next element.
+
+      if (node.contains(nextElement)) {
+        return;
+      }
+
+      const domAction = shiftKey ? 'append' : 'prepend';
+      const {
+        ownerDocument
+      } = node;
+      const trap = ownerDocument.createElement('div');
+      trap.tabIndex = -1;
+      node[domAction](trap);
+      trap.focus(); // Remove after the browser moves focus to the next element.
+
+      timeoutId = setTimeout(() => node.removeChild(trap));
+    }
+
+    node.addEventListener('keydown', onKeyDown);
+    return () => {
+      node.removeEventListener('keydown', onKeyDown);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useConstrainedTabbing);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useDebounce)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var use_memo_one__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! use-memo-one */ "./node_modules/use-memo-one/dist/use-memo-one.esm.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * Debounces a function with Lodash's `debounce`. A new debounced function will
+ * be returned and any scheduled calls cancelled if any of the arguments change,
+ * including the function to debounce, so please wrap functions created on
+ * render in components in `useCallback`.
+ *
+ * @see https://docs-lodash.com/v4/debounce/
+ *
+ * @template {(...args: any[]) => void} TFunc
+ *
+ * @param {TFunc}                             fn        The function to debounce.
+ * @param {number}                            [wait]    The number of milliseconds to delay.
+ * @param {import('lodash').DebounceSettings} [options] The options object.
+ * @return {import('lodash').DebouncedFunc<TFunc>} Debounced function.
+ */
+
+function useDebounce(fn, wait, options) {
+  /* eslint-enable jsdoc/valid-types */
+  const debounced = (0,use_memo_one__WEBPACK_IMPORTED_MODULE_1__.useMemoOne)(() => (0,lodash__WEBPACK_IMPORTED_MODULE_0__.debounce)(fn, wait, options), [fn, wait, options]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => () => debounced.cancel(), [debounced]);
+  return debounced;
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/keycodes */ "./node_modules/@wordpress/keycodes/build-module/index.js");
+/* harmony import */ var _use_constrained_tabbing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../use-constrained-tabbing */ "./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js");
+/* harmony import */ var _use_focus_on_mount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../use-focus-on-mount */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js");
+/* harmony import */ var _use_focus_return__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../use-focus-return */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js");
+/* harmony import */ var _use_focus_outside__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../use-focus-outside */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js");
+/* harmony import */ var _use_merge_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../use-merge-refs */ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @typedef DialogOptions
+ * @property {Parameters<useFocusOnMount>[0]} focusOnMount Focus on mount arguments.
+ * @property {() => void}                     onClose      Function to call when the dialog is closed.
+ */
+
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * Returns a ref and props to apply to a dialog wrapper to enable the following behaviors:
+ *  - constrained tabbing.
+ *  - focus on mount.
+ *  - return focus on unmount.
+ *  - focus outside.
+ *
+ * @param {DialogOptions} options Dialog Options.
+ */
+
+function useDialog(options) {
+  /**
+   * @type {import('react').MutableRefObject<DialogOptions | undefined>}
+   */
+  const currentOptions = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    currentOptions.current = options;
+  }, Object.values(options));
+  const constrainedTabbingRef = (0,_use_constrained_tabbing__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  const focusOnMountRef = (0,_use_focus_on_mount__WEBPACK_IMPORTED_MODULE_2__["default"])(options.focusOnMount);
+  const focusReturnRef = (0,_use_focus_return__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  const focusOutsideProps = (0,_use_focus_outside__WEBPACK_IMPORTED_MODULE_4__["default"])(event => {
+    var _currentOptions$curre, _currentOptions$curre2;
+
+    // This unstable prop  is here only to manage backward compatibility
+    // for the Popover component otherwise, the onClose should be enough.
+    // @ts-ignore unstable property
+    if ((_currentOptions$curre = currentOptions.current) !== null && _currentOptions$curre !== void 0 && _currentOptions$curre.__unstableOnClose) {
+      // @ts-ignore unstable property
+      currentOptions.current.__unstableOnClose('focus-outside', event);
+    } else if ((_currentOptions$curre2 = currentOptions.current) !== null && _currentOptions$curre2 !== void 0 && _currentOptions$curre2.onClose) {
+      currentOptions.current.onClose();
+    }
+  });
+  const closeOnEscapeRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
+    if (!node) {
+      return;
+    }
+
+    node.addEventListener('keydown', (
+    /** @type {KeyboardEvent} */
+    event) => {
+      var _currentOptions$curre3;
+
+      // Close on escape.
+      if (event.keyCode === _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_5__.ESCAPE && !event.defaultPrevented && (_currentOptions$curre3 = currentOptions.current) !== null && _currentOptions$curre3 !== void 0 && _currentOptions$curre3.onClose) {
+        event.preventDefault();
+        currentOptions.current.onClose();
+      }
+    });
+  }, []);
+  return [(0,_use_merge_refs__WEBPACK_IMPORTED_MODULE_6__["default"])([options.focusOnMount !== false ? constrainedTabbingRef : null, options.focusOnMount !== false ? focusReturnRef : null, options.focusOnMount !== false ? focusOnMountRef : null, closeOnEscapeRef]), { ...focusOutsideProps,
+    tabIndex: '-1'
+  }];
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDialog);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useFocusOnMount)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom */ "./node_modules/@wordpress/dom/build-module/index.js");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Hook used to focus the first tabbable element on mount.
+ *
+ * @param {boolean | 'firstElement'} focusOnMount Focus on mount mode.
+ * @return {import('react').RefCallback<HTMLElement>} Ref callback.
+ *
+ * @example
+ * ```js
+ * import { useFocusOnMount } from '@wordpress/compose';
+ *
+ * const WithFocusOnMount = () => {
+ *     const ref = useFocusOnMount()
+ *     return (
+ *         <div ref={ ref }>
+ *             <Button />
+ *             <Button />
+ *         </div>
+ *     );
+ * }
+ * ```
+ */
+
+function useFocusOnMount() {
+  let focusOnMount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'firstElement';
+  const focusOnMountRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(focusOnMount);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    focusOnMountRef.current = focusOnMount;
+  }, [focusOnMount]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
+    var _node$ownerDocument$a, _node$ownerDocument;
+
+    if (!node || focusOnMountRef.current === false) {
+      return;
+    }
+
+    if (node.contains((_node$ownerDocument$a = (_node$ownerDocument = node.ownerDocument) === null || _node$ownerDocument === void 0 ? void 0 : _node$ownerDocument.activeElement) !== null && _node$ownerDocument$a !== void 0 ? _node$ownerDocument$a : null)) {
+      return;
+    }
+
+    let target = node;
+
+    if (focusOnMountRef.current === 'firstElement') {
+      const firstTabbable = _wordpress_dom__WEBPACK_IMPORTED_MODULE_1__.focus.tabbable.find(node)[0];
+
+      if (firstTabbable) {
+        target =
+        /** @type {HTMLElement} */
+        firstTabbable;
+      }
+    }
+
+    target.focus({
+      // When focusing newly mounted dialogs,
+      // the position of the popover is often not right on the first render
+      // This prevents the layout shifts when focusing the dialogs.
+      preventScroll: true
+    });
+  }, []);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useFocusOutside)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Input types which are classified as button types, for use in considering
+ * whether element is a (focus-normalized) button.
+ *
+ * @type {string[]}
+ */
+
+const INPUT_BUTTON_TYPES = ['button', 'submit'];
+/**
+ * @typedef {HTMLButtonElement | HTMLLinkElement | HTMLInputElement} FocusNormalizedButton
+ */
+// Disable reason: Rule doesn't support predicate return types.
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * Returns true if the given element is a button element subject to focus
+ * normalization, or false otherwise.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
+ *
+ * @param {EventTarget} eventTarget The target from a mouse or touch event.
+ *
+ * @return {eventTarget is FocusNormalizedButton} Whether element is a button.
+ */
+
+function isFocusNormalizedButton(eventTarget) {
+  if (!(eventTarget instanceof window.HTMLElement)) {
+    return false;
+  }
+
+  switch (eventTarget.nodeName) {
+    case 'A':
+    case 'BUTTON':
+      return true;
+
+    case 'INPUT':
+      return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(INPUT_BUTTON_TYPES,
+      /** @type {HTMLInputElement} */
+      eventTarget.type);
+  }
+
+  return false;
+}
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * @typedef {import('react').SyntheticEvent} SyntheticEvent
+ */
+
+/**
+ * @callback EventCallback
+ * @param {SyntheticEvent} event input related event.
+ */
+
+/**
+ * @typedef FocusOutsideReactElement
+ * @property {EventCallback} handleFocusOutside callback for a focus outside event.
+ */
+
+/**
+ * @typedef {import('react').MutableRefObject<FocusOutsideReactElement | undefined>} FocusOutsideRef
+ */
+
+/**
+ * @typedef {Object} FocusOutsideReturnValue
+ * @property {EventCallback} onFocus      An event handler for focus events.
+ * @property {EventCallback} onBlur       An event handler for blur events.
+ * @property {EventCallback} onMouseDown  An event handler for mouse down events.
+ * @property {EventCallback} onMouseUp    An event handler for mouse up events.
+ * @property {EventCallback} onTouchStart An event handler for touch start events.
+ * @property {EventCallback} onTouchEnd   An event handler for touch end events.
+ */
+
+/**
+ * A react hook that can be used to check whether focus has moved outside the
+ * element the event handlers are bound to.
+ *
+ * @param {EventCallback} onFocusOutside A callback triggered when focus moves outside
+ *                                       the element the event handlers are bound to.
+ *
+ * @return {FocusOutsideReturnValue} An object containing event handlers. Bind the event handlers
+ *                                   to a wrapping element element to capture when focus moves
+ *                                   outside that element.
+ */
+
+
+function useFocusOutside(onFocusOutside) {
+  const currentOnFocusOutside = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(onFocusOutside);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    currentOnFocusOutside.current = onFocusOutside;
+  }, [onFocusOutside]);
+  const preventBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
+  /**
+   * @type {import('react').MutableRefObject<number | undefined>}
+   */
+
+  const blurCheckTimeoutId = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  /**
+   * Cancel a blur check timeout.
+   */
+
+  const cancelBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
+    clearTimeout(blurCheckTimeoutId.current);
+  }, []); // Cancel blur checks on unmount.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    return () => cancelBlurCheck();
+  }, []); // Cancel a blur check if the callback or ref is no longer provided.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (!onFocusOutside) {
+      cancelBlurCheck();
+    }
+  }, [onFocusOutside, cancelBlurCheck]);
+  /**
+   * Handles a mousedown or mouseup event to respectively assign and
+   * unassign a flag for preventing blur check on button elements. Some
+   * browsers, namely Firefox and Safari, do not emit a focus event on
+   * button elements when clicked, while others do. The logic here
+   * intends to normalize this as treating click on buttons as focus.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
+   *
+   * @param {SyntheticEvent} event Event for mousedown or mouseup.
+   */
+
+  const normalizeButtonFocus = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(event => {
+    const {
+      type,
+      target
+    } = event;
+    const isInteractionEnd = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(['mouseup', 'touchend'], type);
+
+    if (isInteractionEnd) {
+      preventBlurCheck.current = false;
+    } else if (isFocusNormalizedButton(target)) {
+      preventBlurCheck.current = true;
+    }
+  }, []);
+  /**
+   * A callback triggered when a blur event occurs on the element the handler
+   * is bound to.
+   *
+   * Calls the `onFocusOutside` callback in an immediate timeout if focus has
+   * move outside the bound element and is still within the document.
+   *
+   * @param {SyntheticEvent} event Blur event.
+   */
+
+  const queueBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(event => {
+    // React does not allow using an event reference asynchronously
+    // due to recycling behavior, except when explicitly persisted.
+    event.persist(); // Skip blur check if clicking button. See `normalizeButtonFocus`.
+
+    if (preventBlurCheck.current) {
+      return;
+    }
+
+    blurCheckTimeoutId.current = setTimeout(() => {
+      // If document is not focused then focus should remain
+      // inside the wrapped component and therefore we cancel
+      // this blur event thereby leaving focus in place.
+      // https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus.
+      if (!document.hasFocus()) {
+        event.preventDefault();
+        return;
+      }
+
+      if ('function' === typeof currentOnFocusOutside.current) {
+        currentOnFocusOutside.current(event);
+      }
+    }, 0);
+  }, []);
+  return {
+    onFocus: cancelBlurCheck,
+    onMouseDown: normalizeButtonFocus,
+    onMouseUp: normalizeButtonFocus,
+    onTouchStart: normalizeButtonFocus,
+    onTouchEnd: normalizeButtonFocus,
+    onBlur: queueBlurCheck
+  };
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * When opening modals/sidebars/dialogs, the focus
+ * must move to the opened area and return to the
+ * previously focused element when closed.
+ * The current hook implements the returning behavior.
+ *
+ * @param {() => void} [onFocusReturn] Overrides the default return behavior.
+ * @return {import('react').RefCallback<HTMLElement>} Element Ref.
+ *
+ * @example
+ * ```js
+ * import { useFocusReturn } from '@wordpress/compose';
+ *
+ * const WithFocusReturn = () => {
+ *     const ref = useFocusReturn()
+ *     return (
+ *         <div ref={ ref }>
+ *             <Button />
+ *             <Button />
+ *         </div>
+ *     );
+ * }
+ * ```
+ */
+
+function useFocusReturn(onFocusReturn) {
+  /** @type {import('react').MutableRefObject<null | HTMLElement>} */
+  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  /** @type {import('react').MutableRefObject<null | Element>} */
+
+  const focusedBeforeMount = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const onFocusReturnRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(onFocusReturn);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    onFocusReturnRef.current = onFocusReturn;
+  }, [onFocusReturn]);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
+    if (node) {
+      // Set ref to be used when unmounting.
+      ref.current = node; // Only set when the node mounts.
+
+      if (focusedBeforeMount.current) {
+        return;
+      }
+
+      focusedBeforeMount.current = node.ownerDocument.activeElement;
+    } else if (focusedBeforeMount.current) {
+      var _ref$current, _ref$current2, _ref$current3;
+
+      const isFocused = (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.contains((_ref$current2 = ref.current) === null || _ref$current2 === void 0 ? void 0 : _ref$current2.ownerDocument.activeElement);
+
+      if ((_ref$current3 = ref.current) !== null && _ref$current3 !== void 0 && _ref$current3.isConnected && !isFocused) {
+        return;
+      } // Defer to the component's own explicit focus return behavior, if
+      // specified. This allows for support that the `onFocusReturn`
+      // decides to allow the default behavior to occur under some
+      // conditions.
+
+
+      if (onFocusReturnRef.current) {
+        onFocusReturnRef.current();
+      } else {
+        var _focusedBeforeMount$c;
+
+        /** @type {null | HTMLElement} */
+        (_focusedBeforeMount$c = focusedBeforeMount.current) === null || _focusedBeforeMount$c === void 0 ? void 0 : _focusedBeforeMount$c.focus();
+      }
+    }
+  }, []);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useFocusReturn);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useInstanceId)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+// Disable reason: Object and object are distinctly different types in TypeScript and we mean the lowercase object in thise case
+// but eslint wants to force us to use `Object`. See https://stackoverflow.com/questions/49464634/difference-between-object-and-object-in-typescript
+
+/* eslint-disable jsdoc/check-types */
+
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * @type {WeakMap<object, number>}
+ */
+
+const instanceMap = new WeakMap();
+/**
+ * Creates a new id for a given object.
+ *
+ * @param {object} object Object reference to create an id for.
+ * @return {number} The instance id (index).
+ */
+
+function createId(object) {
+  const instances = instanceMap.get(object) || 0;
+  instanceMap.set(object, instances + 1);
+  return instances;
+}
+/**
+ * Provides a unique instance ID.
+ *
+ * @param {object}          object           Object reference to create an id for.
+ * @param {string}          [prefix]         Prefix for the unique id.
+ * @param {string | number} [preferredId=''] Default ID to use.
+ * @return {string | number} The unique instance id.
+ */
+
+
+function useInstanceId(object, prefix) {
+  let preferredId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
+    if (preferredId) return preferredId;
+    const id = createId(object);
+    return prefix ? `${prefix}-${id}` : id;
+  }, [object]);
+}
+/* eslint-enable jsdoc/check-types */
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useMediaQuery)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Runs a media query and returns its value when it changes.
+ *
+ * @param {string} [query] Media Query.
+ * @return {boolean} return value of the media query.
+ */
+
+function useMediaQuery(query) {
+  const [match, setMatch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(() => !!(query && typeof window !== 'undefined' && window.matchMedia(query).matches));
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!query) {
+      return;
+    }
+
+    const updateMatch = () => setMatch(window.matchMedia(query).matches);
+
+    updateMatch();
+    const list = window.matchMedia(query);
+    list.addListener(updateMatch);
+    return () => {
+      list.removeListener(updateMatch);
+    };
+  }, [query]);
+  return !!query && match;
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useMergeRefs)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * WordPress dependencies
+ */
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @template T
+ * @typedef {T extends import('react').Ref<infer R> ? R : never} TypeFromRef
+ */
+
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * @template T
+ * @param {import('react').Ref<T>} ref
+ * @param {T}                      value
+ */
+
+function assignRef(ref, value) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref && ref.hasOwnProperty('current')) {
+    /* eslint-disable jsdoc/no-undefined-types */
+
+    /** @type {import('react').MutableRefObject<T>} */
+    ref.current = value;
+    /* eslint-enable jsdoc/no-undefined-types */
+  }
+}
+/**
+ * Merges refs into one ref callback.
+ *
+ * It also ensures that the merged ref callbacks are only called when they
+ * change (as a result of a `useCallback` dependency update) OR when the ref
+ * value changes, just as React does when passing a single ref callback to the
+ * component.
+ *
+ * As expected, if you pass a new function on every render, the ref callback
+ * will be called after every render.
+ *
+ * If you don't wish a ref callback to be called after every render, wrap it
+ * with `useCallback( callback, dependencies )`. When a dependency changes, the
+ * old ref callback will be called with `null` and the new ref callback will be
+ * called with the same value.
+ *
+ * To make ref callbacks easier to use, you can also pass the result of
+ * `useRefEffect`, which makes cleanup easier by allowing you to return a
+ * cleanup function instead of handling `null`.
+ *
+ * It's also possible to _disable_ a ref (and its behaviour) by simply not
+ * passing the ref.
+ *
+ * ```jsx
+ * const ref = useRefEffect( ( node ) => {
+ *   node.addEventListener( ... );
+ *   return () => {
+ *     node.removeEventListener( ... );
+ *   };
+ * }, [ ...dependencies ] );
+ * const otherRef = useRef();
+ * const mergedRefs useMergeRefs( [
+ *   enabled && ref,
+ *   otherRef,
+ * ] );
+ * return <div ref={ mergedRefs } />;
+ * ```
+ *
+ * @template {import('react').Ref<any>} TRef
+ * @param {Array<TRef>} refs The refs to be merged.
+ *
+ * @return {import('react').RefCallback<TypeFromRef<TRef>>} The merged ref callback.
+ */
+
+
+function useMergeRefs(refs) {
+  const element = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  const didElementChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  /* eslint-disable jsdoc/no-undefined-types */
+
+  /** @type {import('react').MutableRefObject<TRef[]>} */
+
+  /* eslint-enable jsdoc/no-undefined-types */
+
+  const previousRefs = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
+  const currentRefs = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(refs); // Update on render before the ref callback is called, so the ref callback
+  // always has access to the current refs.
+
+  currentRefs.current = refs; // If any of the refs change, call the previous ref with `null` and the new
+  // ref with the node, except when the element changes in the same cycle, in
+  // which case the ref callbacks will already have been called.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    if (didElementChange.current === false) {
+      refs.forEach((ref, index) => {
+        const previousRef = previousRefs.current[index];
+
+        if (ref !== previousRef) {
+          assignRef(previousRef, null);
+          assignRef(ref, element.current);
+        }
+      });
+    }
+
+    previousRefs.current = refs;
+  }, refs); // No dependencies, must be reset after every render so ref callbacks are
+  // correctly called after a ref change.
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
+    didElementChange.current = false;
+  }); // There should be no dependencies so that `callback` is only called when
+  // the node changes.
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(value => {
+    // Update the element so it can be used when calling ref callbacks on a
+    // dependency change.
+    assignRef(element, value);
+    didElementChange.current = true; // When an element changes, the current ref callback should be called
+    // with the new element and the previous one with `null`.
+
+    const refsToAssign = value ? currentRefs.current : previousRefs.current; // Update the latest refs.
+
+    for (const ref of refsToAssign) {
+      assignRef(ref, value);
+    }
+  }, []);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useRefEffect)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Effect-like ref callback. Just like with `useEffect`, this allows you to
+ * return a cleanup function to be run if the ref changes or one of the
+ * dependencies changes. The ref is provided as an argument to the callback
+ * functions. The main difference between this and `useEffect` is that
+ * the `useEffect` callback is not called when the ref changes, but this is.
+ * Pass the returned ref callback as the component's ref and merge multiple refs
+ * with `useMergeRefs`.
+ *
+ * It's worth noting that if the dependencies array is empty, there's not
+ * strictly a need to clean up event handlers for example, because the node is
+ * to be removed. It *is* necessary if you add dependencies because the ref
+ * callback will be called multiple times for the same node.
+ *
+ * @param  callback     Callback with ref as argument.
+ * @param  dependencies Dependencies of the callback.
+ *
+ * @return Ref callback.
+ */
+
+function useRefEffect(callback, dependencies) {
+  const cleanup = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
+    if (node) {
+      cleanup.current = callback(node);
+    } else if (cleanup.current) {
+      cleanup.current();
+    }
+  }, dependencies);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _use_media_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../use-media-query */ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js");
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * @typedef {"huge" | "wide" | "large" | "medium" | "small" | "mobile"} WPBreakpoint
+ */
+
+/**
+ * Hash of breakpoint names with pixel width at which it becomes effective.
+ *
+ * @see _breakpoints.scss
+ *
+ * @type {Record<WPBreakpoint, number>}
+ */
+
+const BREAKPOINTS = {
+  huge: 1440,
+  wide: 1280,
+  large: 960,
+  medium: 782,
+  small: 600,
+  mobile: 480
+};
+/**
+ * @typedef {">=" | "<"} WPViewportOperator
+ */
+
+/**
+ * Object mapping media query operators to the condition to be used.
+ *
+ * @type {Record<WPViewportOperator, string>}
+ */
+
+const CONDITIONS = {
+  '>=': 'min-width',
+  '<': 'max-width'
+};
+/**
+ * Object mapping media query operators to a function that given a breakpointValue and a width evaluates if the operator matches the values.
+ *
+ * @type {Record<WPViewportOperator, (breakpointValue: number, width: number) => boolean>}
+ */
+
+const OPERATOR_EVALUATORS = {
+  '>=': (breakpointValue, width) => width >= breakpointValue,
+  '<': (breakpointValue, width) => width < breakpointValue
+};
+const ViewportMatchWidthContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)(
+/** @type {null | number} */
+null);
+/**
+ * Returns true if the viewport matches the given query, or false otherwise.
+ *
+ * @param {WPBreakpoint}       breakpoint      Breakpoint size name.
+ * @param {WPViewportOperator} [operator=">="] Viewport operator.
+ *
+ * @example
+ *
+ * ```js
+ * useViewportMatch( 'huge', '<' );
+ * useViewportMatch( 'medium' );
+ * ```
+ *
+ * @return {boolean} Whether viewport matches query.
+ */
+
+const useViewportMatch = function (breakpoint) {
+  let operator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '>=';
+  const simulatedWidth = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(ViewportMatchWidthContext);
+  const mediaQuery = !simulatedWidth && `(${CONDITIONS[operator]}: ${BREAKPOINTS[breakpoint]}px)`;
+  const mediaQueryResult = (0,_use_media_query__WEBPACK_IMPORTED_MODULE_1__["default"])(mediaQuery || undefined);
+
+  if (simulatedWidth) {
+    return OPERATOR_EVALUATORS[operator](BREAKPOINTS[breakpoint], simulatedWidth);
+  }
+
+  return mediaQueryResult;
+};
+
+useViewportMatch.__experimentalWidthProvider = ViewportMatchWidthContext.Provider;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useViewportMatch);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/deprecated/build-module/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@wordpress/deprecated/build-module/index.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ deprecated),
+/* harmony export */   "logged": () => (/* binding */ logged)
+/* harmony export */ });
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "./node_modules/@wordpress/hooks/build-module/index.js");
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Object map tracking messages which have been logged, for use in ensuring a
+ * message is only logged once.
+ *
+ * @type {Record<string, true | undefined>}
+ */
+
+const logged = Object.create(null);
+/**
+ * Logs a message to notify developers about a deprecated feature.
+ *
+ * @param {string} feature               Name of the deprecated feature.
+ * @param {Object} [options]             Personalisation options
+ * @param {string} [options.since]       Version in which the feature was deprecated.
+ * @param {string} [options.version]     Version in which the feature will be removed.
+ * @param {string} [options.alternative] Feature to use instead
+ * @param {string} [options.plugin]      Plugin name if it's a plugin feature
+ * @param {string} [options.link]        Link to documentation
+ * @param {string} [options.hint]        Additional message to help transition away from the deprecated feature.
+ *
+ * @example
+ * ```js
+ * import deprecated from '@wordpress/deprecated';
+ *
+ * deprecated( 'Eating meat', {
+ * 	since: '2019.01.01'
+ * 	version: '2020.01.01',
+ * 	alternative: 'vegetables',
+ * 	plugin: 'the earth',
+ * 	hint: 'You may find it beneficial to transition gradually.',
+ * } );
+ *
+ * // Logs: 'Eating meat is deprecated since version 2019.01.01 and will be removed from the earth in version 2020.01.01. Please use vegetables instead. Note: You may find it beneficial to transition gradually.'
+ * ```
+ */
+
+function deprecated(feature) {
+  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const {
+    since,
+    version,
+    alternative,
+    plugin,
+    link,
+    hint
+  } = options;
+  const pluginMessage = plugin ? ` from ${plugin}` : '';
+  const sinceMessage = since ? ` since version ${since}` : '';
+  const versionMessage = version ? ` and will be removed${pluginMessage} in version ${version}` : '';
+  const useInsteadMessage = alternative ? ` Please use ${alternative} instead.` : '';
+  const linkMessage = link ? ` See: ${link}` : '';
+  const hintMessage = hint ? ` Note: ${hint}` : '';
+  const message = `${feature} is deprecated${sinceMessage}${versionMessage}.${useInsteadMessage}${linkMessage}${hintMessage}`; // Skip if already logged.
+
+  if (message in logged) {
+    return;
+  }
+  /**
+   * Fires whenever a deprecated feature is encountered
+   *
+   * @param {string}  feature             Name of the deprecated feature.
+   * @param {?Object} options             Personalisation options
+   * @param {string}  options.since       Version in which the feature was deprecated.
+   * @param {?string} options.version     Version in which the feature will be removed.
+   * @param {?string} options.alternative Feature to use instead
+   * @param {?string} options.plugin      Plugin name if it's a plugin feature
+   * @param {?string} options.link        Link to documentation
+   * @param {?string} options.hint        Additional message to help transition away from the deprecated feature.
+   * @param {?string} message             Message sent to console.warn
+   */
+
+
+  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.doAction)('deprecated', feature, options, message); // eslint-disable-next-line no-console
+
+  console.warn(message);
+  logged[message] = true;
+}
+/** @typedef {import('utility-types').NonUndefined<Parameters<typeof deprecated>[1]>} DeprecatedOptions */
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/data-transfer.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/data-transfer.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getFilesFromDataTransfer": () => (/* binding */ getFilesFromDataTransfer)
+/* harmony export */ });
+/**
+ * Gets all files from a DataTransfer object.
+ *
+ * @param {DataTransfer} dataTransfer DataTransfer object to inspect.
+ *
+ * @return {File[]} An array containing all files.
+ */
+function getFilesFromDataTransfer(dataTransfer) {
+  const files = Array.from(dataTransfer.files);
+  Array.from(dataTransfer.items).forEach(item => {
+    const file = item.getAsFile();
+
+    if (file && !files.find(_ref => {
+      let {
+        name,
+        type,
+        size
+      } = _ref;
+      return name === file.name && type === file.type && size === file.size;
+    })) {
+      files.push(file);
+    }
+  });
+  return files;
+}
+//# sourceMappingURL=data-transfer.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ caretRangeFromPoint)
+/* harmony export */ });
+/**
+ * Polyfill.
+ * Get a collapsed range for a given point.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
+ *
+ * @param {DocumentMaybeWithCaretPositionFromPoint} doc The document of the range.
+ * @param {number}                                  x   Horizontal position within the current viewport.
+ * @param {number}                                  y   Vertical position within the current viewport.
+ *
+ * @return {Range | null} The best range for the given point.
+ */
+function caretRangeFromPoint(doc, x, y) {
+  if (doc.caretRangeFromPoint) {
+    return doc.caretRangeFromPoint(x, y);
+  }
+
+  if (!doc.caretPositionFromPoint) {
+    return null;
+  }
+
+  const point = doc.caretPositionFromPoint(x, y); // If x or y are negative, outside viewport, or there is no text entry node.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
+
+  if (!point) {
+    return null;
+  }
+
+  const range = doc.createRange();
+  range.setStart(point.offsetNode, point.offset);
+  range.collapse(true);
+  return range;
+}
+/**
+ * @typedef {{caretPositionFromPoint?: (x: number, y: number)=> CaretPosition | null} & Document } DocumentMaybeWithCaretPositionFromPoint
+ * @typedef {{ readonly offset: number; readonly offsetNode: Node; getClientRect(): DOMRect | null; }} CaretPosition
+ */
+//# sourceMappingURL=caret-range-from-point.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ cleanNodeList)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _is_empty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-empty */ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js");
+/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
+/* harmony import */ var _unwrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./unwrap */ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js");
+/* harmony import */ var _phrasing_content__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../phrasing-content */ "./node_modules/@wordpress/dom/build-module/phrasing-content.js");
+/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
+/* harmony import */ var _is_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-element */ "./node_modules/@wordpress/dom/build-module/dom/is-element.js");
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+
+const noop = () => {};
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @typedef SchemaItem
+ * @property {string[]}                            [attributes] Attributes.
+ * @property {(string | RegExp)[]}                 [classes]    Classnames or RegExp to test against.
+ * @property {'*' | { [tag: string]: SchemaItem }} [children]   Child schemas.
+ * @property {string[]}                            [require]    Selectors to test required children against. Leave empty or undefined if there are no requirements.
+ * @property {boolean}                             allowEmpty   Whether to allow nodes without children.
+ * @property {(node: Node) => boolean}             [isMatch]    Function to test whether a node is a match. If left undefined any node will be assumed to match.
+ */
+
+/** @typedef {{ [tag: string]: SchemaItem }} Schema */
+
+/* eslint-enable jsdoc/valid-types */
+
+/**
+ * Given a schema, unwraps or removes nodes, attributes and classes on a node
+ * list.
+ *
+ * @param {NodeList} nodeList The nodeList to filter.
+ * @param {Document} doc      The document of the nodeList.
+ * @param {Schema}   schema   An array of functions that can mutate with the provided node.
+ * @param {boolean}  inline   Whether to clean for inline mode.
+ */
+
+
+function cleanNodeList(nodeList, doc, schema, inline) {
+  Array.from(nodeList).forEach((
+  /** @type {Node & { nextElementSibling?: unknown }} */
+  node) => {
+    var _schema$tag$isMatch, _schema$tag;
+
+    const tag = node.nodeName.toLowerCase(); // It's a valid child, if the tag exists in the schema without an isMatch
+    // function, or with an isMatch function that matches the node.
+
+    if (schema.hasOwnProperty(tag) && (!schema[tag].isMatch || (_schema$tag$isMatch = (_schema$tag = schema[tag]).isMatch) !== null && _schema$tag$isMatch !== void 0 && _schema$tag$isMatch.call(_schema$tag, node))) {
+      if ((0,_is_element__WEBPACK_IMPORTED_MODULE_1__["default"])(node)) {
+        const {
+          attributes = [],
+          classes = [],
+          children,
+          require = [],
+          allowEmpty
+        } = schema[tag]; // If the node is empty and it's supposed to have children,
+        // remove the node.
+
+        if (children && !allowEmpty && (0,_is_empty__WEBPACK_IMPORTED_MODULE_2__["default"])(node)) {
+          (0,_remove__WEBPACK_IMPORTED_MODULE_3__["default"])(node);
+          return;
+        }
+
+        if (node.hasAttributes()) {
+          // Strip invalid attributes.
+          Array.from(node.attributes).forEach(_ref => {
+            let {
+              name
+            } = _ref;
+
+            if (name !== 'class' && !(0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(attributes, name)) {
+              node.removeAttribute(name);
+            }
+          }); // Strip invalid classes.
+          // In jsdom-jscore, 'node.classList' can be undefined.
+          // TODO: Explore patching this in jsdom-jscore.
+
+          if (node.classList && node.classList.length) {
+            const mattchers = classes.map(item => {
+              if (typeof item === 'string') {
+                return (
+                /** @type {string} */
+                className) => className === item;
+              } else if (item instanceof RegExp) {
+                return (
+                /** @type {string} */
+                className) => item.test(className);
+              }
+
+              return noop;
+            });
+            Array.from(node.classList).forEach(name => {
+              if (!mattchers.some(isMatch => isMatch(name))) {
+                node.classList.remove(name);
+              }
+            });
+
+            if (!node.classList.length) {
+              node.removeAttribute('class');
+            }
+          }
+        }
+
+        if (node.hasChildNodes()) {
+          // Do not filter any content.
+          if (children === '*') {
+            return;
+          } // Continue if the node is supposed to have children.
+
+
+          if (children) {
+            // If a parent requires certain children, but it does
+            // not have them, drop the parent and continue.
+            if (require.length && !node.querySelector(require.join(','))) {
+              cleanNodeList(node.childNodes, doc, schema, inline);
+              (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node); // If the node is at the top, phrasing content, and
+              // contains children that are block content, unwrap
+              // the node because it is invalid.
+            } else if (node.parentNode && node.parentNode.nodeName === 'BODY' && (0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(node)) {
+              cleanNodeList(node.childNodes, doc, schema, inline);
+
+              if (Array.from(node.childNodes).some(child => !(0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(child))) {
+                (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node);
+              }
+            } else {
+              cleanNodeList(node.childNodes, doc, children, inline);
+            } // Remove children if the node is not supposed to have any.
+
+          } else {
+            while (node.firstChild) {
+              (0,_remove__WEBPACK_IMPORTED_MODULE_3__["default"])(node.firstChild);
+            }
+          }
+        }
+      } // Invalid child. Continue with schema at the same place and unwrap.
+
+    } else {
+      cleanNodeList(node.childNodes, doc, schema, inline); // For inline mode, insert a line break when unwrapping nodes that
+      // are not phrasing content.
+
+      if (inline && !(0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(node) && node.nextElementSibling) {
+        (0,_insert_after__WEBPACK_IMPORTED_MODULE_6__["default"])(doc.createElement('br'), node);
+      }
+
+      (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node);
+    }
+  });
+}
+//# sourceMappingURL=clean-node-list.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ computeCaretRect)
+/* harmony export */ });
+/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Get the rectangle for the selection in a container.
+ *
+ * @param {Window} win The window of the selection.
+ *
+ * @return {DOMRect | null} The rectangle.
+ */
+
+function computeCaretRect(win) {
+  const selection = win.getSelection();
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(selection, 'selection');
+  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+
+  if (!range) {
+    return null;
+  }
+
+  return (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_1__["default"])(range);
+}
+//# sourceMappingURL=compute-caret-rect.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ documentHasSelection)
+/* harmony export */ });
+/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
+/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
+/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Check whether the current document has a selection. This includes focus in
+ * input fields, textareas, and general rich-text selection.
+ *
+ * @param {Document} doc The document to check.
+ *
+ * @return {boolean} True if there is selection, false if not.
+ */
+
+function documentHasSelection(doc) {
+  return !!doc.activeElement && ((0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_0__["default"])(doc.activeElement) || (0,_is_text_field__WEBPACK_IMPORTED_MODULE_1__["default"])(doc.activeElement) || (0,_document_has_text_selection__WEBPACK_IMPORTED_MODULE_2__["default"])(doc));
+}
+//# sourceMappingURL=document-has-selection.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ documentHasTextSelection)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Check whether the current document has selected text. This applies to ranges
+ * of text in the document, and not selection inside `<input>` and `<textarea>`
+ * elements.
+ *
+ * See: https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection#Related_objects.
+ *
+ * @param {Document} doc The document to check.
+ *
+ * @return {boolean} True if there is selection, false if not.
+ */
+
+function documentHasTextSelection(doc) {
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(doc.defaultView, 'doc.defaultView');
+  const selection = doc.defaultView.getSelection();
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(selection, 'selection');
+  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+  return !!range && !range.collapsed;
+}
+//# sourceMappingURL=document-has-text-selection.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ documentHasUncollapsedSelection)
+/* harmony export */ });
+/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
+/* harmony import */ var _input_field_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./input-field-has-uncollapsed-selection */ "./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Check whether the current document has any sort of (uncollapsed) selection.
+ * This includes ranges of text across elements and any selection inside
+ * textual `<input>` and `<textarea>` elements.
+ *
+ * @param {Document} doc The document to check.
+ *
+ * @return {boolean} Whether there is any recognizable text selection in the document.
+ */
+
+function documentHasUncollapsedSelection(doc) {
+  return (0,_document_has_text_selection__WEBPACK_IMPORTED_MODULE_0__["default"])(doc) || !!doc.activeElement && (0,_input_field_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_1__["default"])(doc.activeElement);
+}
+//# sourceMappingURL=document-has-uncollapsed-selection.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getComputedStyle)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @param {Element} element
+ * @return {ReturnType<Window['getComputedStyle']>} The computed style for the element.
+ */
+
+function getComputedStyle(element) {
+  /* eslint-enable jsdoc/valid-types */
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(element.ownerDocument.defaultView, 'element.ownerDocument.defaultView');
+  return element.ownerDocument.defaultView.getComputedStyle(element);
+}
+//# sourceMappingURL=get-computed-style.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getOffsetParent)
+/* harmony export */ });
+/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Returns the closest positioned element, or null under any of the conditions
+ * of the offsetParent specification. Unlike offsetParent, this function is not
+ * limited to HTMLElement and accepts any Node (e.g. Node.TEXT_NODE).
+ *
+ * @see https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsetparent
+ *
+ * @param {Node} node Node from which to find offset parent.
+ *
+ * @return {Node | null} Offset parent.
+ */
+
+function getOffsetParent(node) {
+  // Cannot retrieve computed style or offset parent only anything other than
+  // an element node, so find the closest element node.
+  let closestElement;
+
+  while (closestElement =
+  /** @type {Node} */
+  node.parentNode) {
+    if (closestElement.nodeType === closestElement.ELEMENT_NODE) {
+      break;
+    }
+  }
+
+  if (!closestElement) {
+    return null;
+  } // If the closest element is already positioned, return it, as offsetParent
+  // does not otherwise consider the node itself.
+
+
+  if ((0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  /** @type {Element} */
+  closestElement).position !== 'static') {
+    return closestElement;
+  } // offsetParent is undocumented/draft.
+
+
+  return (
+    /** @type {Node & { offsetParent: Node }} */
+    closestElement.offsetParent
+  );
+}
+//# sourceMappingURL=get-offset-parent.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/get-range-height.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/get-range-height.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getRangeHeight)
+/* harmony export */ });
+/**
+ * Gets the height of the range without ignoring zero width rectangles, which
+ * some browsers ignore when creating a union.
+ *
+ * @param {Range} range The range to check.
+ * @return {number | undefined} Height of the range or undefined if the range has no client rectangles.
+ */
+function getRangeHeight(range) {
+  const rects = Array.from(range.getClientRects());
+
+  if (!rects.length) {
+    return;
+  }
+
+  const highestTop = Math.min(...rects.map(_ref => {
+    let {
+      top
+    } = _ref;
+    return top;
+  }));
+  const lowestBottom = Math.max(...rects.map(_ref2 => {
+    let {
+      bottom
+    } = _ref2;
+    return bottom;
+  }));
+  return lowestBottom - highestTop;
+}
+//# sourceMappingURL=get-range-height.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getRectangleFromRange)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Get the rectangle of a given Range.
+ *
+ * @param {Range} range The range.
+ *
+ * @return {DOMRect} The rectangle.
+ */
+
+function getRectangleFromRange(range) {
+  // For uncollapsed ranges, get the rectangle that bounds the contents of the
+  // range; this a rectangle enclosing the union of the bounding rectangles
+  // for all the elements in the range.
+  if (!range.collapsed) {
+    const rects = Array.from(range.getClientRects()); // If there's just a single rect, return it.
+
+    if (rects.length === 1) {
+      return rects[0];
+    } // Ignore tiny selection at the edge of a range.
+
+
+    const filteredRects = rects.filter(_ref => {
+      let {
+        width
+      } = _ref;
+      return width > 1;
+    }); // If it's full of tiny selections, return browser default.
+
+    if (filteredRects.length === 0) {
+      return range.getBoundingClientRect();
+    }
+
+    if (filteredRects.length === 1) {
+      return filteredRects[0];
+    }
+
+    let {
+      top: furthestTop,
+      bottom: furthestBottom,
+      left: furthestLeft,
+      right: furthestRight
+    } = filteredRects[0];
+
+    for (const {
+      top,
+      bottom,
+      left,
+      right
+    } of filteredRects) {
+      if (top < furthestTop) furthestTop = top;
+      if (bottom > furthestBottom) furthestBottom = bottom;
+      if (left < furthestLeft) furthestLeft = left;
+      if (right > furthestRight) furthestRight = right;
+    }
+
+    return new window.DOMRect(furthestLeft, furthestTop, furthestRight - furthestLeft, furthestBottom - furthestTop);
+  }
+
+  const {
+    startContainer
+  } = range;
+  const {
+    ownerDocument
+  } = startContainer; // Correct invalid "BR" ranges. The cannot contain any children.
+
+  if (startContainer.nodeName === 'BR') {
+    const {
+      parentNode
+    } = startContainer;
+    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(parentNode, 'parentNode');
+    const index =
+    /** @type {Node[]} */
+    Array.from(parentNode.childNodes).indexOf(startContainer);
+    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(ownerDocument, 'ownerDocument');
+    range = ownerDocument.createRange();
+    range.setStart(parentNode, index);
+    range.setEnd(parentNode, index);
+  }
+
+  let rect = range.getClientRects()[0]; // If the collapsed range starts (and therefore ends) at an element node,
+  // `getClientRects` can be empty in some browsers. This can be resolved
+  // by adding a temporary text node with zero-width space to the range.
+  //
+  // See: https://stackoverflow.com/a/6847328/995445
+
+  if (!rect) {
+    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(ownerDocument, 'ownerDocument');
+    const padNode = ownerDocument.createTextNode('\u200b'); // Do not modify the live range.
+
+    range = range.cloneRange();
+    range.insertNode(padNode);
+    rect = range.getClientRects()[0];
+    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(padNode.parentNode, 'padNode.parentNode');
+    padNode.parentNode.removeChild(padNode);
+  }
+
+  return rect;
+}
+//# sourceMappingURL=get-rectangle-from-range.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getScrollContainer)
+/* harmony export */ });
+/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Given a DOM node, finds the closest scrollable container node.
+ *
+ * @param {Element | null} node Node from which to start.
+ *
+ * @return {Element | undefined} Scrollable container node, if found.
+ */
+
+function getScrollContainer(node) {
+  if (!node) {
+    return undefined;
+  } // Scrollable if scrollable height exceeds displayed...
+
+
+  if (node.scrollHeight > node.clientHeight) {
+    // ...except when overflow is defined to be hidden or visible
+    const {
+      overflowY
+    } = (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(node);
+
+    if (/(auto|scroll)/.test(overflowY)) {
+      return node;
+    }
+  } // Continue traversing.
+
+
+  return getScrollContainer(
+  /** @type {Element} */
+  node.parentNode);
+}
+//# sourceMappingURL=get-scroll-container.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ hiddenCaretRangeFromPoint)
+/* harmony export */ });
+/* harmony import */ var _caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js");
+/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Get a collapsed range for a given point.
+ * Gives the container a temporary high z-index (above any UI).
+ * This is preferred over getting the UI nodes and set styles there.
+ *
+ * @param {Document}    doc       The document of the range.
+ * @param {number}      x         Horizontal position within the current viewport.
+ * @param {number}      y         Vertical position within the current viewport.
+ * @param {HTMLElement} container Container in which the range is expected to be found.
+ *
+ * @return {?Range} The best range for the given point.
+ */
+
+function hiddenCaretRangeFromPoint(doc, x, y, container) {
+  const originalZIndex = container.style.zIndex;
+  const originalPosition = container.style.position;
+  const {
+    position = 'static'
+  } = (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(container); // A z-index only works if the element position is not static.
+
+  if (position === 'static') {
+    container.style.position = 'relative';
+  }
+
+  container.style.zIndex = '10000';
+  const range = (0,_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__["default"])(doc, x, y);
+  container.style.zIndex = originalZIndex;
+  container.style.position = originalPosition;
+  return range;
+}
+//# sourceMappingURL=hidden-caret-range-from-point.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__unstableStripHTML": () => (/* reexport safe */ _strip_html__WEBPACK_IMPORTED_MODULE_21__["default"]),
+/* harmony export */   "computeCaretRect": () => (/* reexport safe */ _compute_caret_rect__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "documentHasSelection": () => (/* reexport safe */ _document_has_selection__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "documentHasTextSelection": () => (/* reexport safe */ _document_has_text_selection__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   "documentHasUncollapsedSelection": () => (/* reexport safe */ _document_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   "getOffsetParent": () => (/* reexport safe */ _get_offset_parent__WEBPACK_IMPORTED_MODULE_6__["default"]),
+/* harmony export */   "getRectangleFromRange": () => (/* reexport safe */ _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   "getScrollContainer": () => (/* reexport safe */ _get_scroll_container__WEBPACK_IMPORTED_MODULE_5__["default"]),
+/* harmony export */   "insertAfter": () => (/* reexport safe */ _insert_after__WEBPACK_IMPORTED_MODULE_17__["default"]),
+/* harmony export */   "isEmpty": () => (/* reexport safe */ _is_empty__WEBPACK_IMPORTED_MODULE_22__["default"]),
+/* harmony export */   "isEntirelySelected": () => (/* reexport safe */ _is_entirely_selected__WEBPACK_IMPORTED_MODULE_7__["default"]),
+/* harmony export */   "isFormElement": () => (/* reexport safe */ _is_form_element__WEBPACK_IMPORTED_MODULE_8__["default"]),
+/* harmony export */   "isHorizontalEdge": () => (/* reexport safe */ _is_horizontal_edge__WEBPACK_IMPORTED_MODULE_9__["default"]),
+/* harmony export */   "isNumberInput": () => (/* reexport safe */ _is_number_input__WEBPACK_IMPORTED_MODULE_10__["default"]),
+/* harmony export */   "isRTL": () => (/* reexport safe */ _is_rtl__WEBPACK_IMPORTED_MODULE_24__["default"]),
+/* harmony export */   "isTextField": () => (/* reexport safe */ _is_text_field__WEBPACK_IMPORTED_MODULE_11__["default"]),
+/* harmony export */   "isVerticalEdge": () => (/* reexport safe */ _is_vertical_edge__WEBPACK_IMPORTED_MODULE_12__["default"]),
+/* harmony export */   "placeCaretAtHorizontalEdge": () => (/* reexport safe */ _place_caret_at_horizontal_edge__WEBPACK_IMPORTED_MODULE_13__["default"]),
+/* harmony export */   "placeCaretAtVerticalEdge": () => (/* reexport safe */ _place_caret_at_vertical_edge__WEBPACK_IMPORTED_MODULE_14__["default"]),
+/* harmony export */   "remove": () => (/* reexport safe */ _remove__WEBPACK_IMPORTED_MODULE_16__["default"]),
+/* harmony export */   "removeInvalidHTML": () => (/* reexport safe */ _remove_invalid_html__WEBPACK_IMPORTED_MODULE_23__["default"]),
+/* harmony export */   "replace": () => (/* reexport safe */ _replace__WEBPACK_IMPORTED_MODULE_15__["default"]),
+/* harmony export */   "replaceTag": () => (/* reexport safe */ _replace_tag__WEBPACK_IMPORTED_MODULE_19__["default"]),
+/* harmony export */   "safeHTML": () => (/* reexport safe */ _safe_html__WEBPACK_IMPORTED_MODULE_25__["default"]),
+/* harmony export */   "unwrap": () => (/* reexport safe */ _unwrap__WEBPACK_IMPORTED_MODULE_18__["default"]),
+/* harmony export */   "wrap": () => (/* reexport safe */ _wrap__WEBPACK_IMPORTED_MODULE_20__["default"])
+/* harmony export */ });
+/* harmony import */ var _compute_caret_rect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compute-caret-rect */ "./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js");
+/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
+/* harmony import */ var _document_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./document-has-uncollapsed-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js");
+/* harmony import */ var _document_has_selection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./document-has-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js");
+/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
+/* harmony import */ var _get_scroll_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./get-scroll-container */ "./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js");
+/* harmony import */ var _get_offset_parent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./get-offset-parent */ "./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js");
+/* harmony import */ var _is_entirely_selected__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./is-entirely-selected */ "./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js");
+/* harmony import */ var _is_form_element__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./is-form-element */ "./node_modules/@wordpress/dom/build-module/dom/is-form-element.js");
+/* harmony import */ var _is_horizontal_edge__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./is-horizontal-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js");
+/* harmony import */ var _is_number_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./is-number-input */ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js");
+/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
+/* harmony import */ var _is_vertical_edge__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./is-vertical-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js");
+/* harmony import */ var _place_caret_at_horizontal_edge__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./place-caret-at-horizontal-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js");
+/* harmony import */ var _place_caret_at_vertical_edge__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./place-caret-at-vertical-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js");
+/* harmony import */ var _replace__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./replace */ "./node_modules/@wordpress/dom/build-module/dom/replace.js");
+/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
+/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
+/* harmony import */ var _unwrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./unwrap */ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js");
+/* harmony import */ var _replace_tag__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./replace-tag */ "./node_modules/@wordpress/dom/build-module/dom/replace-tag.js");
+/* harmony import */ var _wrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./wrap */ "./node_modules/@wordpress/dom/build-module/dom/wrap.js");
+/* harmony import */ var _strip_html__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./strip-html */ "./node_modules/@wordpress/dom/build-module/dom/strip-html.js");
+/* harmony import */ var _is_empty__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./is-empty */ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js");
+/* harmony import */ var _remove_invalid_html__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./remove-invalid-html */ "./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js");
+/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
+/* harmony import */ var _safe_html__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./safe-html */ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ inputFieldHasUncollapsedSelection)
+/* harmony export */ });
+/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
+/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Check whether the given input field or textarea contains a (uncollapsed)
+ * selection of text.
+ *
+ * CAVEAT: Only specific text-based HTML inputs support the selection APIs
+ * needed to determine whether they have a collapsed or uncollapsed selection.
+ * This function defaults to returning `true` when the selection cannot be
+ * inspected, such as with `<input type="time">`. The rationale is that this
+ * should cause the block editor to defer to the browser's native selection
+ * handling (e.g. copying and pasting), thereby reducing friction for the user.
+ *
+ * See: https://html.spec.whatwg.org/multipage/input.html#do-not-apply
+ *
+ * @param {Element} element The HTML element.
+ *
+ * @return {boolean} Whether the input/textareaa element has some "selection".
+ */
+
+function inputFieldHasUncollapsedSelection(element) {
+  if (!(0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_0__["default"])(element) && !(0,_is_text_field__WEBPACK_IMPORTED_MODULE_1__["default"])(element)) {
+    return false;
+  } // Safari throws a type error when trying to get `selectionStart` and
+  // `selectionEnd` on non-text <input> elements, so a try/catch construct is
+  // necessary.
+
+
+  try {
+    const {
+      selectionStart,
+      selectionEnd
+    } =
+    /** @type {HTMLInputElement | HTMLTextAreaElement} */
+    element;
+    return (// `null` means the input type doesn't implement selection, thus we
+      // cannot determine whether the selection is collapsed, so we
+      // default to true.
+      selectionStart === null || // when not null, compare the two points
+      selectionStart !== selectionEnd
+    );
+  } catch (error) {
+    // This is Safari's way of saying that the input type doesn't implement
+    // selection, so we default to true.
+    return true;
+  }
+}
+//# sourceMappingURL=input-field-has-uncollapsed-selection.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/insert-after.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ insertAfter)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Given two DOM nodes, inserts the former in the DOM as the next sibling of
+ * the latter.
+ *
+ * @param {Node} newNode       Node to be inserted.
+ * @param {Node} referenceNode Node after which to perform the insertion.
+ * @return {void}
+ */
+
+function insertAfter(newNode, referenceNode) {
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(referenceNode.parentNode, 'referenceNode.parentNode');
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+//# sourceMappingURL=insert-after.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-edge.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isEdge)
+/* harmony export */ });
+/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
+/* harmony import */ var _get_range_height__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./get-range-height */ "./node_modules/@wordpress/dom/build-module/dom/get-range-height.js");
+/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
+/* harmony import */ var _is_selection_forward__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-selection-forward */ "./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js");
+/* harmony import */ var _hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./hidden-caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js");
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * Check whether the selection is at the edge of the container. Checks for
+ * horizontal position by default. Set `onlyVertical` to true to check only
+ * vertically.
+ *
+ * @param {Element} container            Focusable element.
+ * @param {boolean} isReverse            Set to true to check left, false to check right.
+ * @param {boolean} [onlyVertical=false] Set to true to check only vertical position.
+ *
+ * @return {boolean} True if at the edge, false if not.
+ */
+
+function isEdge(container, isReverse) {
+  let onlyVertical = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(container) && typeof container.selectionStart === 'number') {
+    if (container.selectionStart !== container.selectionEnd) {
+      return false;
+    }
+
+    if (isReverse) {
+      return container.selectionStart === 0;
+    }
+
+    return container.value.length === container.selectionStart;
+  }
+
+  if (!
+  /** @type {HTMLElement} */
+  container.isContentEditable) {
+    return true;
+  }
+
+  const {
+    ownerDocument
+  } = container;
+  const {
+    defaultView
+  } = ownerDocument;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(defaultView, 'defaultView');
+  const selection = defaultView.getSelection();
+
+  if (!selection || !selection.rangeCount) {
+    return false;
+  }
+
+  const range = selection.getRangeAt(0);
+  const collapsedRange = range.cloneRange();
+  const isForward = (0,_is_selection_forward__WEBPACK_IMPORTED_MODULE_2__["default"])(selection);
+  const isCollapsed = selection.isCollapsed; // Collapse in direction of selection.
+
+  if (!isCollapsed) {
+    collapsedRange.collapse(!isForward);
+  }
+
+  const collapsedRangeRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(collapsedRange);
+  const rangeRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(range);
+
+  if (!collapsedRangeRect || !rangeRect) {
+    return false;
+  } // Only consider the multiline selection at the edge if the direction is
+  // towards the edge. The selection is multiline if it is taller than the
+  // collapsed  selection.
+
+
+  const rangeHeight = (0,_get_range_height__WEBPACK_IMPORTED_MODULE_4__["default"])(range);
+
+  if (!isCollapsed && rangeHeight && rangeHeight > collapsedRangeRect.height && isForward === isReverse) {
+    return false;
+  } // In the case of RTL scripts, the horizontal edge is at the opposite side.
+
+
+  const isReverseDir = (0,_is_rtl__WEBPACK_IMPORTED_MODULE_5__["default"])(container) ? !isReverse : isReverse;
+  const containerRect = container.getBoundingClientRect(); // To check if a selection is at the edge, we insert a test selection at the
+  // edge of the container and check if the selections have the same vertical
+  // or horizontal position. If they do, the selection is at the edge.
+  // This method proves to be better than a DOM-based calculation for the
+  // horizontal edge, since it ignores empty textnodes and a trailing line
+  // break element. In other words, we need to check visual positioning, not
+  // DOM positioning.
+  // It also proves better than using the computed style for the vertical
+  // edge, because we cannot know the padding and line height reliably in
+  // pixels. `getComputedStyle` may return a value with different units.
+
+  const x = isReverseDir ? containerRect.left + 1 : containerRect.right - 1;
+  const y = isReverse ? containerRect.top + 1 : containerRect.bottom - 1;
+  const testRange = (0,_hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerDocument, x, y,
+  /** @type {HTMLElement} */
+  container);
+
+  if (!testRange) {
+    return false;
+  }
+
+  const testRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(testRange);
+
+  if (!testRect) {
+    return false;
+  }
+
+  const verticalSide = isReverse ? 'top' : 'bottom';
+  const horizontalSide = isReverseDir ? 'left' : 'right';
+  const verticalDiff = testRect[verticalSide] - rangeRect[verticalSide];
+  const horizontalDiff = testRect[horizontalSide] - collapsedRangeRect[horizontalSide]; // Allow the position to be 1px off.
+
+  const hasVerticalDiff = Math.abs(verticalDiff) <= 1;
+  const hasHorizontalDiff = Math.abs(horizontalDiff) <= 1;
+  return onlyVertical ? hasVerticalDiff : hasVerticalDiff && hasHorizontalDiff;
+}
+//# sourceMappingURL=is-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-element.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-element.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isElement)
+/* harmony export */ });
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @param {Node | null | undefined} node
+ * @return {node is Element} True if node is an Element node
+ */
+function isElement(node) {
+  /* eslint-enable jsdoc/valid-types */
+  return !!node && node.nodeType === node.ELEMENT_NODE;
+}
+//# sourceMappingURL=is-element.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-empty.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isEmpty)
+/* harmony export */ });
+/**
+ * Recursively checks if an element is empty. An element is not empty if it
+ * contains text or contains elements with attributes such as images.
+ *
+ * @param {Element} element The element to check.
+ *
+ * @return {boolean} Whether or not the element is empty.
+ */
+function isEmpty(element) {
+  switch (element.nodeType) {
+    case element.TEXT_NODE:
+      // We cannot use \s since it includes special spaces which we want
+      // to preserve.
+      return /^[ \f\n\r\t\v\u00a0]*$/.test(element.nodeValue || '');
+
+    case element.ELEMENT_NODE:
+      if (element.hasAttributes()) {
+        return false;
+      } else if (!element.hasChildNodes()) {
+        return true;
+      }
+
+      return (
+        /** @type {Element[]} */
+        Array.from(element.childNodes).every(isEmpty)
+      );
+
+    default:
+      return true;
+  }
+}
+//# sourceMappingURL=is-empty.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isEntirelySelected)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Check whether the contents of the element have been entirely selected.
+ * Returns true if there is no possibility of selection.
+ *
+ * @param {HTMLElement} element The element to check.
+ *
+ * @return {boolean} True if entirely selected, false if not.
+ */
+
+function isEntirelySelected(element) {
+  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(element)) {
+    return element.selectionStart === 0 && element.value.length === element.selectionEnd;
+  }
+
+  if (!element.isContentEditable) {
+    return true;
+  }
+
+  const {
+    ownerDocument
+  } = element;
+  const {
+    defaultView
+  } = ownerDocument;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(defaultView, 'defaultView');
+  const selection = defaultView.getSelection();
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(selection, 'selection');
+  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+
+  if (!range) {
+    return true;
+  }
+
+  const {
+    startContainer,
+    endContainer,
+    startOffset,
+    endOffset
+  } = range;
+
+  if (startContainer === element && endContainer === element && startOffset === 0 && endOffset === element.childNodes.length) {
+    return true;
+  }
+
+  const lastChild = element.lastChild;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(lastChild, 'lastChild');
+  const endContainerContentLength = endContainer.nodeType === endContainer.TEXT_NODE ?
+  /** @type {Text} */
+  endContainer.data.length : endContainer.childNodes.length;
+  return isDeepChild(startContainer, element, 'firstChild') && isDeepChild(endContainer, element, 'lastChild') && startOffset === 0 && endOffset === endContainerContentLength;
+}
+/**
+ * Check whether the contents of the element have been entirely selected.
+ * Returns true if there is no possibility of selection.
+ *
+ * @param {HTMLElement|Node}         query     The element to check.
+ * @param {HTMLElement}              container The container that we suspect "query" may be a first or last child of.
+ * @param {"firstChild"|"lastChild"} propName  "firstChild" or "lastChild"
+ *
+ * @return {boolean} True if query is a deep first/last child of container, false otherwise.
+ */
+
+function isDeepChild(query, container, propName) {
+  /** @type {HTMLElement | ChildNode | null} */
+  let candidate = container;
+
+  do {
+    if (query === candidate) {
+      return true;
+    }
+
+    candidate = candidate[propName];
+  } while (candidate);
+
+  return false;
+}
+//# sourceMappingURL=is-entirely-selected.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-form-element.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-form-element.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isFormElement)
+/* harmony export */ });
+/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ *
+ * Detects if element is a form element.
+ *
+ * @param {Element} element The element to check.
+ *
+ * @return {boolean} True if form element and false otherwise.
+ */
+
+function isFormElement(element) {
+  const {
+    tagName
+  } = element;
+  const checkForInputTextarea = (0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+  return checkForInputTextarea || tagName === 'BUTTON' || tagName === 'SELECT';
+}
+//# sourceMappingURL=is-form-element.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isHorizontalEdge)
+/* harmony export */ });
+/* harmony import */ var _is_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Check whether the selection is horizontally at the edge of the container.
+ *
+ * @param {Element} container Focusable element.
+ * @param {boolean} isReverse Set to true to check left, false for right.
+ *
+ * @return {boolean} True if at the horizontal edge, false if not.
+ */
+
+function isHorizontalEdge(container, isReverse) {
+  return (0,_is_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse);
+}
+//# sourceMappingURL=is-horizontal-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isHTMLInputElement)
+/* harmony export */ });
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @param {Node} node
+ * @return {node is HTMLInputElement} Whether the node is an HTMLInputElement.
+ */
+function isHTMLInputElement(node) {
+  /* eslint-enable jsdoc/valid-types */
+  return (node === null || node === void 0 ? void 0 : node.nodeName) === 'INPUT';
+}
+//# sourceMappingURL=is-html-input-element.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isInputOrTextArea)
+/* harmony export */ });
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * @param {Element} element
+ * @return {element is HTMLInputElement | HTMLTextAreaElement} Whether the element is an input or textarea
+ */
+function isInputOrTextArea(element) {
+  /* eslint-enable jsdoc/valid-types */
+  return element.tagName === 'INPUT' || element.tagName === 'TEXTAREA';
+}
+//# sourceMappingURL=is-input-or-text-area.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-number-input.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isNumberInput)
+/* harmony export */ });
+/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/deprecated */ "./node_modules/@wordpress/deprecated/build-module/index.js");
+/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * Check whether the given element is an input field of type number.
+ *
+ * @param {Node} node The HTML node.
+ *
+ * @return {node is HTMLInputElement} True if the node is number input.
+ */
+
+function isNumberInput(node) {
+  (0,_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0__["default"])('wp.dom.isNumberInput', {
+    since: '6.1',
+    version: '6.5'
+  });
+  /* eslint-enable jsdoc/valid-types */
+
+  return (0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_1__["default"])(node) && node.type === 'number' && !isNaN(node.valueAsNumber);
+}
+//# sourceMappingURL=is-number-input.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-rtl.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isRTL)
+/* harmony export */ });
+/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Whether the element's text direction is right-to-left.
+ *
+ * @param {Element} element The element to check.
+ *
+ * @return {boolean} True if rtl, false if ltr.
+ */
+
+function isRTL(element) {
+  return (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(element).direction === 'rtl';
+}
+//# sourceMappingURL=is-rtl.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isSelectionForward)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Returns true if the given selection object is in the forward direction, or
+ * false otherwise.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition
+ *
+ * @param {Selection} selection Selection object to check.
+ *
+ * @return {boolean} Whether the selection is forward.
+ */
+
+function isSelectionForward(selection) {
+  const {
+    anchorNode,
+    focusNode,
+    anchorOffset,
+    focusOffset
+  } = selection;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(anchorNode, 'anchorNode');
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(focusNode, 'focusNode');
+  const position = anchorNode.compareDocumentPosition(focusNode); // Disable reason: `Node#compareDocumentPosition` returns a bitmask value,
+  // so bitwise operators are intended.
+
+  /* eslint-disable no-bitwise */
+  // Compare whether anchor node precedes focus node. If focus node (where
+  // end of selection occurs) is after the anchor node, it is forward.
+
+  if (position & anchorNode.DOCUMENT_POSITION_PRECEDING) {
+    return false;
+  }
+
+  if (position & anchorNode.DOCUMENT_POSITION_FOLLOWING) {
+    return true;
+  }
+  /* eslint-enable no-bitwise */
+  // `compareDocumentPosition` returns 0 when passed the same node, in which
+  // case compare offsets.
+
+
+  if (position === 0) {
+    return anchorOffset <= focusOffset;
+  } // This should never be reached, but return true as default case.
+
+
+  return true;
+}
+//# sourceMappingURL=is-selection-forward.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-text-field.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isTextField)
+/* harmony export */ });
+/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
+/**
+ * Internal dependencies
+ */
+
+/* eslint-disable jsdoc/valid-types */
+
+/**
+ * Check whether the given element is a text field, where text field is defined
+ * by the ability to select within the input, or that it is contenteditable.
+ *
+ * See: https://html.spec.whatwg.org/#textFieldSelection
+ *
+ * @param {Node} node The HTML element.
+ * @return {node is HTMLElement} True if the element is an text field, false if not.
+ */
+
+function isTextField(node) {
+  /* eslint-enable jsdoc/valid-types */
+  const nonTextInputs = ['button', 'checkbox', 'hidden', 'file', 'radio', 'image', 'range', 'reset', 'submit', 'number', 'email', 'time'];
+  return (0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_0__["default"])(node) && node.type && !nonTextInputs.includes(node.type) || node.nodeName === 'TEXTAREA' ||
+  /** @type {HTMLElement} */
+  node.contentEditable === 'true';
+}
+//# sourceMappingURL=is-text-field.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isVerticalEdge)
+/* harmony export */ });
+/* harmony import */ var _is_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Check whether the selection is vertically at the edge of the container.
+ *
+ * @param {Element} container Focusable element.
+ * @param {boolean} isReverse Set to true to check top, false for bottom.
+ *
+ * @return {boolean} True if at the vertical edge, false if not.
+ */
+
+function isVerticalEdge(container, isReverse) {
+  return (0,_is_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, true);
+}
+//# sourceMappingURL=is-vertical-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ placeCaretAtEdge)
+/* harmony export */ });
+/* harmony import */ var _hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hidden-caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js");
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
+/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
+/**
+ * Internal dependencies
+ */
+
+
+
+
+/**
+ * Gets the range to place.
+ *
+ * @param {HTMLElement}      container Focusable element.
+ * @param {boolean}          isReverse True for end, false for start.
+ * @param {number|undefined} x         X coordinate to vertically position.
+ *
+ * @return {Range|null} The range to place.
+ */
+
+function getRange(container, isReverse, x) {
+  const {
+    ownerDocument
+  } = container; // In the case of RTL scripts, the horizontal edge is at the opposite side.
+
+  const isReverseDir = (0,_is_rtl__WEBPACK_IMPORTED_MODULE_0__["default"])(container) ? !isReverse : isReverse;
+  const containerRect = container.getBoundingClientRect(); // When placing at the end (isReverse), find the closest range to the bottom
+  // right corner. When placing at the start, to the top left corner.
+
+  if (x === undefined) {
+    x = isReverse ? containerRect.right - 1 : containerRect.left + 1;
+  }
+
+  const y = isReverseDir ? containerRect.bottom - 1 : containerRect.top + 1;
+  return (0,_hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__["default"])(ownerDocument, x, y, container);
+}
+/**
+ * Places the caret at start or end of a given element.
+ *
+ * @param {HTMLElement}      container Focusable element.
+ * @param {boolean}          isReverse True for end, false for start.
+ * @param {number|undefined} x         X coordinate to vertically position.
+ */
+
+
+function placeCaretAtEdge(container, isReverse, x) {
+  if (!container) {
+    return;
+  }
+
+  container.focus();
+
+  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_2__["default"])(container)) {
+    // The element may not support selection setting.
+    if (typeof container.selectionStart !== 'number') {
+      return;
+    }
+
+    if (isReverse) {
+      container.selectionStart = container.value.length;
+      container.selectionEnd = container.value.length;
+    } else {
+      container.selectionStart = 0;
+      container.selectionEnd = 0;
+    }
+
+    return;
+  }
+
+  if (!container.isContentEditable) {
+    return;
+  }
+
+  let range = getRange(container, isReverse, x); // If no range range can be created or it is outside the container, the
+  // element may be out of view.
+
+  if (!range || !range.startContainer || !container.contains(range.startContainer)) {
+    container.scrollIntoView(isReverse);
+    range = range = getRange(container, isReverse, x);
+
+    if (!range || !range.startContainer || !container.contains(range.startContainer)) {
+      return;
+    }
+  }
+
+  const {
+    ownerDocument
+  } = container;
+  const {
+    defaultView
+  } = ownerDocument;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__.assertIsDefined)(defaultView, 'defaultView');
+  const selection = defaultView.getSelection();
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__.assertIsDefined)(selection, 'selection');
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+//# sourceMappingURL=place-caret-at-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ placeCaretAtHorizontalEdge)
+/* harmony export */ });
+/* harmony import */ var _place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./place-caret-at-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Places the caret at start or end of a given element.
+ *
+ * @param {HTMLElement} container Focusable element.
+ * @param {boolean}     isReverse True for end, false for start.
+ */
+
+function placeCaretAtHorizontalEdge(container, isReverse) {
+  return (0,_place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, undefined);
+}
+//# sourceMappingURL=place-caret-at-horizontal-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ placeCaretAtVerticalEdge)
+/* harmony export */ });
+/* harmony import */ var _place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./place-caret-at-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Places the caret at the top or bottom of a given element.
+ *
+ * @param {HTMLElement} container Focusable element.
+ * @param {boolean}     isReverse True for bottom, false for top.
+ * @param {DOMRect}     [rect]    The rectangle to position the caret with.
+ */
+
+function placeCaretAtVerticalEdge(container, isReverse, rect) {
+  return (0,_place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, rect === null || rect === void 0 ? void 0 : rect.left);
+}
+//# sourceMappingURL=place-caret-at-vertical-edge.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ removeInvalidHTML)
+/* harmony export */ });
+/* harmony import */ var _clean_node_list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clean-node-list */ "./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Given a schema, unwraps or removes nodes, attributes and classes on HTML.
+ *
+ * @param {string}                             HTML   The HTML to clean up.
+ * @param {import('./clean-node-list').Schema} schema Schema for the HTML.
+ * @param {boolean}                            inline Whether to clean for inline mode.
+ *
+ * @return {string} The cleaned up HTML.
+ */
+
+function removeInvalidHTML(HTML, schema, inline) {
+  const doc = document.implementation.createHTMLDocument('');
+  doc.body.innerHTML = HTML;
+  (0,_clean_node_list__WEBPACK_IMPORTED_MODULE_0__["default"])(doc.body.childNodes, doc, schema, inline);
+  return doc.body.innerHTML;
+}
+//# sourceMappingURL=remove-invalid-html.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/remove.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/remove.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ remove)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Given a DOM node, removes it from the DOM.
+ *
+ * @param {Node} node Node to be removed.
+ * @return {void}
+ */
+
+function remove(node) {
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(node.parentNode, 'node.parentNode');
+  node.parentNode.removeChild(node);
+}
+//# sourceMappingURL=remove.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/replace-tag.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/replace-tag.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ replaceTag)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Replaces the given node with a new node with the given tag name.
+ *
+ * @param {Element} node    The node to replace
+ * @param {string}  tagName The new tag name.
+ *
+ * @return {Element} The new node.
+ */
+
+function replaceTag(node, tagName) {
+  const newNode = node.ownerDocument.createElement(tagName);
+
+  while (node.firstChild) {
+    newNode.appendChild(node.firstChild);
+  }
+
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(node.parentNode, 'node.parentNode');
+  node.parentNode.replaceChild(newNode, node);
+  return newNode;
+}
+//# sourceMappingURL=replace-tag.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/replace.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/replace.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ replace)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
+/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Given two DOM nodes, replaces the former with the latter in the DOM.
+ *
+ * @param {Element} processedNode Node to be removed.
+ * @param {Element} newNode       Node to be inserted in its place.
+ * @return {void}
+ */
+
+function replace(processedNode, newNode) {
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(processedNode.parentNode, 'processedNode.parentNode');
+  (0,_insert_after__WEBPACK_IMPORTED_MODULE_1__["default"])(newNode, processedNode.parentNode);
+  (0,_remove__WEBPACK_IMPORTED_MODULE_2__["default"])(processedNode);
+}
+//# sourceMappingURL=replace.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/safe-html.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ safeHTML)
+/* harmony export */ });
+/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Strips scripts and on* attributes from HTML.
+ *
+ * @param {string} html HTML to sanitize.
+ *
+ * @return {string} The sanitized HTML.
+ */
+
+function safeHTML(html) {
+  const {
+    body
+  } = document.implementation.createHTMLDocument('');
+  body.innerHTML = html;
+  const elements = body.getElementsByTagName('*');
+  let elementIndex = elements.length;
+
+  while (elementIndex--) {
+    const element = elements[elementIndex];
+
+    if (element.tagName === 'SCRIPT') {
+      (0,_remove__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+    } else {
+      let attributeIndex = element.attributes.length;
+
+      while (attributeIndex--) {
+        const {
+          name: key
+        } = element.attributes[attributeIndex];
+
+        if (key.startsWith('on')) {
+          element.removeAttribute(key);
+        }
+      }
+    }
+  }
+
+  return body.innerHTML;
+}
+//# sourceMappingURL=safe-html.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/strip-html.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/strip-html.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ stripHTML)
+/* harmony export */ });
+/* harmony import */ var _safe_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./safe-html */ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Removes any HTML tags from the provided string.
+ *
+ * @param {string} html The string containing html.
+ *
+ * @return {string} The text content with any html removed.
+ */
+
+function stripHTML(html) {
+  // Remove any script tags or on* attributes otherwise their *contents* will be left
+  // in place following removal of HTML tags.
+  html = (0,_safe_html__WEBPACK_IMPORTED_MODULE_0__["default"])(html);
+  const doc = document.implementation.createHTMLDocument('');
+  doc.body.innerHTML = html;
+  return doc.body.textContent || '';
+}
+//# sourceMappingURL=strip-html.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/unwrap.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ unwrap)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Unwrap the given node. This means any child nodes are moved to the parent.
+ *
+ * @param {Node} node The node to unwrap.
+ *
+ * @return {void}
+ */
+
+function unwrap(node) {
+  const parent = node.parentNode;
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(parent, 'node.parentNode');
+
+  while (node.firstChild) {
+    parent.insertBefore(node.firstChild, node);
+  }
+
+  parent.removeChild(node);
+}
+//# sourceMappingURL=unwrap.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/dom/wrap.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/dom/wrap.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ wrap)
+/* harmony export */ });
+/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Wraps the given node with a new node with the given tag name.
+ *
+ * @param {Element} newNode       The node to insert.
+ * @param {Element} referenceNode The node to wrap.
+ */
+
+function wrap(newNode, referenceNode) {
+  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(referenceNode.parentNode, 'referenceNode.parentNode');
+  referenceNode.parentNode.insertBefore(newNode, referenceNode);
+  newNode.appendChild(referenceNode);
+}
+//# sourceMappingURL=wrap.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/focusable.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/focusable.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "find": () => (/* binding */ find)
+/* harmony export */ });
+/**
+ * References:
+ *
+ * Focusable:
+ *  - https://www.w3.org/TR/html5/editing.html#focus-management
+ *
+ * Sequential focus navigation:
+ *  - https://www.w3.org/TR/html5/editing.html#sequential-focus-navigation-and-the-tabindex-attribute
+ *
+ * Disabled elements:
+ *  - https://www.w3.org/TR/html5/disabled-elements.html#disabled-elements
+ *
+ * getClientRects algorithm (requiring layout box):
+ *  - https://www.w3.org/TR/cssom-view-1/#extension-to-the-element-interface
+ *
+ * AREA elements associated with an IMG:
+ *  - https://w3c.github.io/html/editing.html#data-model
+ */
+
+/**
+ * Returns a CSS selector used to query for focusable elements.
+ *
+ * @param {boolean} sequential If set, only query elements that are sequentially
+ *                             focusable. Non-interactive elements with a
+ *                             negative `tabindex` are focusable but not
+ *                             sequentially focusable.
+ *                             https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute
+ *
+ * @return {string} CSS selector.
+ */
+function buildSelector(sequential) {
+  return [sequential ? '[tabindex]:not([tabindex^="-"])' : '[tabindex]', 'a[href]', 'button:not([disabled])', 'input:not([type="hidden"]):not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'iframe:not([tabindex^="-"])', 'object', 'embed', 'area[href]', '[contenteditable]:not([contenteditable=false])'].join(',');
+}
+/**
+ * Returns true if the specified element is visible (i.e. neither display: none
+ * nor visibility: hidden).
+ *
+ * @param {HTMLElement} element DOM element to test.
+ *
+ * @return {boolean} Whether element is visible.
+ */
+
+
+function isVisible(element) {
+  return element.offsetWidth > 0 || element.offsetHeight > 0 || element.getClientRects().length > 0;
+}
+/**
+ * Returns true if the specified area element is a valid focusable element, or
+ * false otherwise. Area is only focusable if within a map where a named map
+ * referenced by an image somewhere in the document.
+ *
+ * @param {HTMLAreaElement} element DOM area element to test.
+ *
+ * @return {boolean} Whether area element is valid for focus.
+ */
+
+
+function isValidFocusableArea(element) {
+  /** @type {HTMLMapElement | null} */
+  const map = element.closest('map[name]');
+
+  if (!map) {
+    return false;
+  }
+  /** @type {HTMLImageElement | null} */
+
+
+  const img = element.ownerDocument.querySelector('img[usemap="#' + map.name + '"]');
+  return !!img && isVisible(img);
+}
+/**
+ * Returns all focusable elements within a given context.
+ *
+ * @param {Element} context              Element in which to search.
+ * @param {Object}  [options]
+ * @param {boolean} [options.sequential] If set, only return elements that are
+ *                                       sequentially focusable.
+ *                                       Non-interactive elements with a
+ *                                       negative `tabindex` are focusable but
+ *                                       not sequentially focusable.
+ *                                       https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute
+ *
+ * @return {Element[]} Focusable elements.
+ */
+
+
+function find(context) {
+  let {
+    sequential = false
+  } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  /* eslint-disable jsdoc/no-undefined-types */
+
+  /** @type {NodeListOf<HTMLElement>} */
+
+  /* eslint-enable jsdoc/no-undefined-types */
+  const elements = context.querySelectorAll(buildSelector(sequential));
+  return Array.from(elements).filter(element => {
+    if (!isVisible(element)) {
+      return false;
+    }
+
+    const {
+      nodeName
+    } = element;
+
+    if ('AREA' === nodeName) {
+      return isValidFocusableArea(
+      /** @type {HTMLAreaElement} */
+      element);
+    }
+
+    return true;
+  });
+}
+//# sourceMappingURL=focusable.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/index.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__unstableStripHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.__unstableStripHTML),
+/* harmony export */   "computeCaretRect": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.computeCaretRect),
+/* harmony export */   "documentHasSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasSelection),
+/* harmony export */   "documentHasTextSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasTextSelection),
+/* harmony export */   "documentHasUncollapsedSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasUncollapsedSelection),
+/* harmony export */   "focus": () => (/* binding */ focus),
+/* harmony export */   "getFilesFromDataTransfer": () => (/* reexport safe */ _data_transfer__WEBPACK_IMPORTED_MODULE_4__.getFilesFromDataTransfer),
+/* harmony export */   "getOffsetParent": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getOffsetParent),
+/* harmony export */   "getPhrasingContentSchema": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.getPhrasingContentSchema),
+/* harmony export */   "getRectangleFromRange": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getRectangleFromRange),
+/* harmony export */   "getScrollContainer": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getScrollContainer),
+/* harmony export */   "insertAfter": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.insertAfter),
+/* harmony export */   "isEmpty": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isEmpty),
+/* harmony export */   "isEntirelySelected": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isEntirelySelected),
+/* harmony export */   "isFormElement": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isFormElement),
+/* harmony export */   "isHorizontalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isHorizontalEdge),
+/* harmony export */   "isNumberInput": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isNumberInput),
+/* harmony export */   "isPhrasingContent": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.isPhrasingContent),
+/* harmony export */   "isRTL": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isRTL),
+/* harmony export */   "isTextContent": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.isTextContent),
+/* harmony export */   "isTextField": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isTextField),
+/* harmony export */   "isVerticalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isVerticalEdge),
+/* harmony export */   "placeCaretAtHorizontalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.placeCaretAtHorizontalEdge),
+/* harmony export */   "placeCaretAtVerticalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.placeCaretAtVerticalEdge),
+/* harmony export */   "remove": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.remove),
+/* harmony export */   "removeInvalidHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.removeInvalidHTML),
+/* harmony export */   "replace": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.replace),
+/* harmony export */   "replaceTag": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.replaceTag),
+/* harmony export */   "safeHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.safeHTML),
+/* harmony export */   "unwrap": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.unwrap),
+/* harmony export */   "wrap": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.wrap)
+/* harmony export */ });
+/* harmony import */ var _focusable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./focusable */ "./node_modules/@wordpress/dom/build-module/focusable.js");
+/* harmony import */ var _tabbable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabbable */ "./node_modules/@wordpress/dom/build-module/tabbable.js");
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom */ "./node_modules/@wordpress/dom/build-module/dom/index.js");
+/* harmony import */ var _phrasing_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phrasing-content */ "./node_modules/@wordpress/dom/build-module/phrasing-content.js");
+/* harmony import */ var _data_transfer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data-transfer */ "./node_modules/@wordpress/dom/build-module/data-transfer.js");
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Object grouping `focusable` and `tabbable` utils
+ * under the keys with the same name.
+ */
+
+const focus = {
+  focusable: _focusable__WEBPACK_IMPORTED_MODULE_0__,
+  tabbable: _tabbable__WEBPACK_IMPORTED_MODULE_1__
+};
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/phrasing-content.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/phrasing-content.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getPhrasingContentSchema": () => (/* binding */ getPhrasingContentSchema),
+/* harmony export */   "isPhrasingContent": () => (/* binding */ isPhrasingContent),
+/* harmony export */   "isTextContent": () => (/* binding */ isTextContent)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * External dependencies
+ */
+
+/**
+ * All phrasing content elements.
+ *
+ * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#phrasing-content-0
+ */
+
+/**
+ * @typedef {Record<string,SemanticElementDefinition>} ContentSchema
+ */
+
+/**
+ * @typedef SemanticElementDefinition
+ * @property {string[]}      [attributes] Content attributes
+ * @property {ContentSchema} [children]   Content attributes
+ */
+
+/**
+ * All text-level semantic elements.
+ *
+ * @see https://html.spec.whatwg.org/multipage/text-level-semantics.html
+ *
+ * @type {ContentSchema}
+ */
+
+const textContentSchema = {
+  strong: {},
+  em: {},
+  s: {},
+  del: {},
+  ins: {},
+  a: {
+    attributes: ['href', 'target', 'rel', 'id']
+  },
+  code: {},
+  abbr: {
+    attributes: ['title']
+  },
+  sub: {},
+  sup: {},
+  br: {},
+  small: {},
+  // To do: fix blockquote.
+  // cite: {},
+  q: {
+    attributes: ['cite']
+  },
+  dfn: {
+    attributes: ['title']
+  },
+  data: {
+    attributes: ['value']
+  },
+  time: {
+    attributes: ['datetime']
+  },
+  var: {},
+  samp: {},
+  kbd: {},
+  i: {},
+  b: {},
+  u: {},
+  mark: {},
+  ruby: {},
+  rt: {},
+  rp: {},
+  bdi: {
+    attributes: ['dir']
+  },
+  bdo: {
+    attributes: ['dir']
+  },
+  wbr: {},
+  '#text': {}
+}; // Recursion is needed.
+// Possible: strong > em > strong.
+// Impossible: strong > strong.
+
+(0,lodash__WEBPACK_IMPORTED_MODULE_0__.without)(Object.keys(textContentSchema), '#text', 'br').forEach(tag => {
+  textContentSchema[tag].children = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.omit)(textContentSchema, tag);
+});
+/**
+ * Embedded content elements.
+ *
+ * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#embedded-content-0
+ *
+ * @type {ContentSchema}
+ */
+
+const embeddedContentSchema = {
+  audio: {
+    attributes: ['src', 'preload', 'autoplay', 'mediagroup', 'loop', 'muted']
+  },
+  canvas: {
+    attributes: ['width', 'height']
+  },
+  embed: {
+    attributes: ['src', 'type', 'width', 'height']
+  },
+  img: {
+    attributes: ['alt', 'src', 'srcset', 'usemap', 'ismap', 'width', 'height']
+  },
+  object: {
+    attributes: ['data', 'type', 'name', 'usemap', 'form', 'width', 'height']
+  },
+  video: {
+    attributes: ['src', 'poster', 'preload', 'autoplay', 'mediagroup', 'loop', 'muted', 'controls', 'width', 'height']
+  }
+};
+/**
+ * Phrasing content elements.
+ *
+ * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#phrasing-content-0
+ */
+
+const phrasingContentSchema = { ...textContentSchema,
+  ...embeddedContentSchema
+};
+/**
+ * Get schema of possible paths for phrasing content.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
+ *
+ * @param {string} [context] Set to "paste" to exclude invisible elements and
+ *                           sensitive data.
+ *
+ * @return {Partial<ContentSchema>} Schema.
+ */
+
+function getPhrasingContentSchema(context) {
+  if (context !== 'paste') {
+    return phrasingContentSchema;
+  }
+
+  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.omit)({ ...phrasingContentSchema,
+    // We shouldn't paste potentially sensitive information which is not
+    // visible to the user when pasted, so strip the attributes.
+    ins: {
+      children: phrasingContentSchema.ins.children
+    },
+    del: {
+      children: phrasingContentSchema.del.children
+    }
+  }, ['u', // Used to mark misspelling. Shouldn't be pasted.
+  'abbr', // Invisible.
+  'data', // Invisible.
+  'time', // Invisible.
+  'wbr', // Invisible.
+  'bdi', // Invisible.
+  'bdo' // Invisible.
+  ]);
+}
+/**
+ * Find out whether or not the given node is phrasing content.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
+ *
+ * @param {Node} node The node to test.
+ *
+ * @return {boolean} True if phrasing content, false if not.
+ */
+
+function isPhrasingContent(node) {
+  const tag = node.nodeName.toLowerCase();
+  return getPhrasingContentSchema().hasOwnProperty(tag) || tag === 'span';
+}
+/**
+ * @param {Node} node
+ * @return {boolean} Node is text content
+ */
+
+function isTextContent(node) {
+  const tag = node.nodeName.toLowerCase();
+  return textContentSchema.hasOwnProperty(tag) || tag === 'span';
+}
+//# sourceMappingURL=phrasing-content.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/tabbable.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/tabbable.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "find": () => (/* binding */ find),
+/* harmony export */   "findNext": () => (/* binding */ findNext),
+/* harmony export */   "findPrevious": () => (/* binding */ findPrevious),
+/* harmony export */   "isTabbableIndex": () => (/* binding */ isTabbableIndex)
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _focusable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./focusable */ "./node_modules/@wordpress/dom/build-module/focusable.js");
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Returns the tab index of the given element. In contrast with the tabIndex
+ * property, this normalizes the default (0) to avoid browser inconsistencies,
+ * operating under the assumption that this function is only ever called with a
+ * focusable node.
+ *
+ * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1190261
+ *
+ * @param {Element} element Element from which to retrieve.
+ *
+ * @return {number} Tab index of element (default 0).
+ */
+
+function getTabIndex(element) {
+  const tabIndex = element.getAttribute('tabindex');
+  return tabIndex === null ? 0 : parseInt(tabIndex, 10);
+}
+/**
+ * Returns true if the specified element is tabbable, or false otherwise.
+ *
+ * @param {Element} element Element to test.
+ *
+ * @return {boolean} Whether element is tabbable.
+ */
+
+
+function isTabbableIndex(element) {
+  return getTabIndex(element) !== -1;
+}
+/** @typedef {Element & { type?: string, checked?: boolean, name?: string }} MaybeHTMLInputElement */
+
+/**
+ * Returns a stateful reducer function which constructs a filtered array of
+ * tabbable elements, where at most one radio input is selected for a given
+ * name, giving priority to checked input, falling back to the first
+ * encountered.
+ *
+ * @return {(acc: MaybeHTMLInputElement[], el: MaybeHTMLInputElement) => MaybeHTMLInputElement[]} Radio group collapse reducer.
+ */
+
+function createStatefulCollapseRadioGroup() {
+  /** @type {Record<string, MaybeHTMLInputElement>} */
+  const CHOSEN_RADIO_BY_NAME = {};
+  return function collapseRadioGroup(
+  /** @type {MaybeHTMLInputElement[]} */
+  result,
+  /** @type {MaybeHTMLInputElement} */
+  element) {
+    const {
+      nodeName,
+      type,
+      checked,
+      name
+    } = element; // For all non-radio tabbables, construct to array by concatenating.
+
+    if (nodeName !== 'INPUT' || type !== 'radio' || !name) {
+      return result.concat(element);
+    }
+
+    const hasChosen = CHOSEN_RADIO_BY_NAME.hasOwnProperty(name); // Omit by skipping concatenation if the radio element is not chosen.
+
+    const isChosen = checked || !hasChosen;
+
+    if (!isChosen) {
+      return result;
+    } // At this point, if there had been a chosen element, the current
+    // element is checked and should take priority. Retroactively remove
+    // the element which had previously been considered the chosen one.
+
+
+    if (hasChosen) {
+      const hadChosenElement = CHOSEN_RADIO_BY_NAME[name];
+      result = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.without)(result, hadChosenElement);
+    }
+
+    CHOSEN_RADIO_BY_NAME[name] = element;
+    return result.concat(element);
+  };
+}
+/**
+ * An array map callback, returning an object with the element value and its
+ * array index location as properties. This is used to emulate a proper stable
+ * sort where equal tabIndex should be left in order of their occurrence in the
+ * document.
+ *
+ * @param {Element} element Element.
+ * @param {number}  index   Array index of element.
+ *
+ * @return {{ element: Element, index: number }} Mapped object with element, index.
+ */
+
+
+function mapElementToObjectTabbable(element, index) {
+  return {
+    element,
+    index
+  };
+}
+/**
+ * An array map callback, returning an element of the given mapped object's
+ * element value.
+ *
+ * @param {{ element: Element }} object Mapped object with element.
+ *
+ * @return {Element} Mapped object element.
+ */
+
+
+function mapObjectTabbableToElement(object) {
+  return object.element;
+}
+/**
+ * A sort comparator function used in comparing two objects of mapped elements.
+ *
+ * @see mapElementToObjectTabbable
+ *
+ * @param {{ element: Element, index: number }} a First object to compare.
+ * @param {{ element: Element, index: number }} b Second object to compare.
+ *
+ * @return {number} Comparator result.
+ */
+
+
+function compareObjectTabbables(a, b) {
+  const aTabIndex = getTabIndex(a.element);
+  const bTabIndex = getTabIndex(b.element);
+
+  if (aTabIndex === bTabIndex) {
+    return a.index - b.index;
+  }
+
+  return aTabIndex - bTabIndex;
+}
+/**
+ * Givin focusable elements, filters out tabbable element.
+ *
+ * @param {Element[]} focusables Focusable elements to filter.
+ *
+ * @return {Element[]} Tabbable elements.
+ */
+
+
+function filterTabbable(focusables) {
+  return focusables.filter(isTabbableIndex).map(mapElementToObjectTabbable).sort(compareObjectTabbables).map(mapObjectTabbableToElement).reduce(createStatefulCollapseRadioGroup(), []);
+}
+/**
+ * @param {Element} context
+ * @return {Element[]} Tabbable elements within the context.
+ */
+
+
+function find(context) {
+  return filterTabbable((0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(context));
+}
+/**
+ * Given a focusable element, find the preceding tabbable element.
+ *
+ * @param {Element} element The focusable element before which to look. Defaults
+ *                          to the active element.
+ *
+ * @return {Element|undefined} Preceding tabbable element.
+ */
+
+function findPrevious(element) {
+  const focusables = (0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(element.ownerDocument.body);
+  const index = focusables.indexOf(element);
+
+  if (index === -1) {
+    return undefined;
+  } // Remove all focusables after and including `element`.
+
+
+  focusables.length = index;
+  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.last)(filterTabbable(focusables));
+}
+/**
+ * Given a focusable element, find the next tabbable element.
+ *
+ * @param {Element} element The focusable element after which to look. Defaults
+ *                          to the active element.
+ */
+
+function findNext(element) {
+  const focusables = (0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(element.ownerDocument.body);
+  const index = focusables.indexOf(element); // Remove all focusables before and including `element`.
+
+  const remaining = focusables.slice(index + 1);
+  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.first)(filterTabbable(remaining));
+}
+//# sourceMappingURL=tabbable.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "assertIsDefined": () => (/* binding */ assertIsDefined)
+/* harmony export */ });
+function assertIsDefined(val, name) {
+  if ( true && (val === undefined || val === null)) {
+    throw new Error(`Expected '${name}' to be defined, but received ${val}`);
+  }
+}
+//# sourceMappingURL=assert-is-defined.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/element/build-module/react.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@wordpress/element/build-module/react.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5930,10 +9514,10 @@ function switchChildrenNodeName(children, nodeName) {
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/utils.js":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/element/build-module/utils.js ***!
-  \**************************************************************************************************/
+/***/ "./node_modules/@wordpress/element/build-module/utils.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@wordpress/element/build-module/utils.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5959,7 +9543,7 @@ const isEmptyElement = element => {
     return false;
   }
 
-  if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isString)(element) || (0,lodash__WEBPACK_IMPORTED_MODULE_0__.isArray)(element)) {
+  if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isString)(element) || Array.isArray(element)) {
     return !element.length;
   }
 
@@ -5969,1662 +9553,10 @@ const isEmptyElement = element => {
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createAddHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createAddHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback AddHook
- *
- * Adds the hook to the appropriate hooks container.
- *
- * @param {string}               hookName      Name of hook to add
- * @param {string}               namespace     The unique namespace identifying the callback in the form `vendor/plugin/function`.
- * @param {import('.').Callback} callback      Function to call when the hook is run
- * @param {number}               [priority=10] Priority of this hook
- */
-
-/**
- * Returns a function which, when invoked, will add a hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {AddHook} Function that adds a new hook.
- */
-
-function createAddHook(hooks, storeKey) {
-  return function addHook(hookName, namespace, callback) {
-    let priority = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    }
-
-    if ('function' !== typeof callback) {
-      // eslint-disable-next-line no-console
-      console.error('The hook callback must be a function.');
-      return;
-    } // Validate numeric priority
-
-
-    if ('number' !== typeof priority) {
-      // eslint-disable-next-line no-console
-      console.error('If specified, the hook priority must be a number.');
-      return;
-    }
-
-    const handler = {
-      callback,
-      priority,
-      namespace
-    };
-
-    if (hooksStore[hookName]) {
-      // Find the correct insert index of the new hook.
-      const handlers = hooksStore[hookName].handlers;
-      /** @type {number} */
-
-      let i;
-
-      for (i = handlers.length; i > 0; i--) {
-        if (priority >= handlers[i - 1].priority) {
-          break;
-        }
-      }
-
-      if (i === handlers.length) {
-        // If append, operate via direct assignment.
-        handlers[i] = handler;
-      } else {
-        // Otherwise, insert before index via splice.
-        handlers.splice(i, 0, handler);
-      } // We may also be currently executing this hook.  If the callback
-      // we're adding would come after the current callback, there's no
-      // problem; otherwise we need to increase the execution index of
-      // any other runs by 1 to account for the added element.
-
-
-      hooksStore.__current.forEach(hookInfo => {
-        if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-          hookInfo.currentIndex++;
-        }
-      });
-    } else {
-      // This is the first hook of its type.
-      hooksStore[hookName] = {
-        handlers: [handler],
-        runs: 0
-      };
-    }
-
-    if (hookName !== 'hookAdded') {
-      hooks.doAction('hookAdded', hookName, namespace, callback, priority);
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createAddHook);
-//# sourceMappingURL=createAddHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createCurrentHook.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createCurrentHook.js ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will return the name of the
- * currently running hook, or `null` if no hook of the given type is currently
- * running.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {() => string | null} Function that returns the current hook name or null.
- */
-function createCurrentHook(hooks, storeKey) {
-  return function currentHook() {
-    var _hooksStore$__current, _hooksStore$__current2;
-
-    const hooksStore = hooks[storeKey];
-    return (_hooksStore$__current = (_hooksStore$__current2 = hooksStore.__current[hooksStore.__current.length - 1]) === null || _hooksStore$__current2 === void 0 ? void 0 : _hooksStore$__current2.name) !== null && _hooksStore$__current !== void 0 ? _hooksStore$__current : null;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCurrentHook);
-//# sourceMappingURL=createCurrentHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDidHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDidHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-/**
- * @callback DidHook
- *
- * Returns the number of times an action has been fired.
- *
- * @param {string} hookName The hook name to check.
- *
- * @return {number | undefined} The number of times the hook has run.
- */
-
-/**
- * Returns a function which, when invoked, will return the number of times a
- * hook has been called.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DidHook} Function that returns a hook's call count.
- */
-
-function createDidHook(hooks, storeKey) {
-  return function didHook(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(hookName)) {
-      return;
-    }
-
-    return hooksStore[hookName] && hooksStore[hookName].runs ? hooksStore[hookName].runs : 0;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDidHook);
-//# sourceMappingURL=createDidHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDoingHook.js":
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDoingHook.js ***!
-  \**********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback DoingHook
- * Returns whether a hook is currently being executed.
- *
- * @param {string} [hookName] The name of the hook to check for.  If
- *                            omitted, will check for any hook being executed.
- *
- * @return {boolean} Whether the hook is being executed.
- */
-
-/**
- * Returns a function which, when invoked, will return whether a hook is
- * currently being executed.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DoingHook} Function that returns whether a hook is currently
- *                     being executed.
- */
-function createDoingHook(hooks, storeKey) {
-  return function doingHook(hookName) {
-    const hooksStore = hooks[storeKey]; // If the hookName was not passed, check for any current hook.
-
-    if ('undefined' === typeof hookName) {
-      return 'undefined' !== typeof hooksStore.__current[0];
-    } // Return the __current hook.
-
-
-    return hooksStore.__current[0] ? hookName === hooksStore.__current[0].name : false;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDoingHook);
-//# sourceMappingURL=createDoingHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHasHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHasHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback HasHook
- *
- * Returns whether any handlers are attached for the given hookName and optional namespace.
- *
- * @param {string} hookName    The name of the hook to check for.
- * @param {string} [namespace] Optional. The unique namespace identifying the callback
- *                             in the form `vendor/plugin/function`.
- *
- * @return {boolean} Whether there are handlers that are attached to the given hook.
- */
-
-/**
- * Returns a function which, when invoked, will return whether any handlers are
- * attached to a particular hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {HasHook} Function that returns whether any handlers are
- *                   attached to a particular hook and optional namespace.
- */
-function createHasHook(hooks, storeKey) {
-  return function hasHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey]; // Use the namespace if provided.
-
-    if ('undefined' !== typeof namespace) {
-      return hookName in hooksStore && hooksStore[hookName].handlers.some(hook => hook.namespace === namespace);
-    }
-
-    return hookName in hooksStore;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHasHook);
-//# sourceMappingURL=createHasHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHooks.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHooks.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_Hooks": () => (/* binding */ _Hooks),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _createAddHook__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createAddHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createAddHook.js");
-/* harmony import */ var _createRemoveHook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createRemoveHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRemoveHook.js");
-/* harmony import */ var _createHasHook__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createHasHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHasHook.js");
-/* harmony import */ var _createRunHook__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createRunHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRunHook.js");
-/* harmony import */ var _createCurrentHook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createCurrentHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createCurrentHook.js");
-/* harmony import */ var _createDoingHook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createDoingHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDoingHook.js");
-/* harmony import */ var _createDidHook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createDidHook */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createDidHook.js");
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-/**
- * Internal class for constructing hooks. Use `createHooks()` function
- *
- * Note, it is necessary to expose this class to make its type public.
- *
- * @private
- */
-
-class _Hooks {
-  constructor() {
-    /** @type {import('.').Store} actions */
-    this.actions = Object.create(null);
-    this.actions.__current = [];
-    /** @type {import('.').Store} filters */
-
-    this.filters = Object.create(null);
-    this.filters.__current = [];
-    this.addAction = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'actions');
-    this.addFilter = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'filters');
-    this.removeAction = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions');
-    this.removeFilter = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters');
-    this.hasAction = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'actions');
-    this.hasFilter = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'filters');
-    this.removeAllActions = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions', true);
-    this.removeAllFilters = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters', true);
-    this.doAction = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'actions');
-    this.applyFilters = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'filters', true);
-    this.currentAction = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'actions');
-    this.currentFilter = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'filters');
-    this.doingAction = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'actions');
-    this.doingFilter = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'filters');
-    this.didAction = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'actions');
-    this.didFilter = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'filters');
-  }
-
-}
-/** @typedef {_Hooks} Hooks */
-
-/**
- * Returns an instance of the hooks object.
- *
- * @return {Hooks} A Hooks instance.
- */
-
-function createHooks() {
-  return new _Hooks();
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHooks);
-//# sourceMappingURL=createHooks.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRemoveHook.js":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRemoveHook.js ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback RemoveHook
- * Removes the specified callback (or all callbacks) from the hook with a given hookName
- * and namespace.
- *
- * @param {string} hookName  The name of the hook to modify.
- * @param {string} namespace The unique namespace identifying the callback in the
- *                           form `vendor/plugin/function`.
- *
- * @return {number | undefined} The number of callbacks removed.
- */
-
-/**
- * Returns a function which, when invoked, will remove a specified hook or all
- * hooks by the given name.
- *
- * @param {import('.').Hooks}    hooks             Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [removeAll=false] Whether to remove all callbacks for a hookName,
- *                                                 without regard to namespace. Used to create
- *                                                 `removeAll*` functions.
- *
- * @return {RemoveHook} Function that removes hooks.
- */
-
-function createRemoveHook(hooks, storeKey) {
-  let removeAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function removeHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!removeAll && !(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    } // Bail if no hooks exist by this name.
-
-
-    if (!hooksStore[hookName]) {
-      return 0;
-    }
-
-    let handlersRemoved = 0;
-
-    if (removeAll) {
-      handlersRemoved = hooksStore[hookName].handlers.length;
-      hooksStore[hookName] = {
-        runs: hooksStore[hookName].runs,
-        handlers: []
-      };
-    } else {
-      // Try to find the specified callback to remove.
-      const handlers = hooksStore[hookName].handlers;
-
-      for (let i = handlers.length - 1; i >= 0; i--) {
-        if (handlers[i].namespace === namespace) {
-          handlers.splice(i, 1);
-          handlersRemoved++; // This callback may also be part of a hook that is
-          // currently executing.  If the callback we're removing
-          // comes after the current callback, there's no problem;
-          // otherwise we need to decrease the execution index of any
-          // other runs by 1 to account for the removed element.
-
-          hooksStore.__current.forEach(hookInfo => {
-            if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-              hookInfo.currentIndex--;
-            }
-          });
-        }
-      }
-    }
-
-    if (hookName !== 'hookRemoved') {
-      hooks.doAction('hookRemoved', hookName, namespace);
-    }
-
-    return handlersRemoved;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRemoveHook);
-//# sourceMappingURL=createRemoveHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRunHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createRunHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will execute all callbacks
- * registered to a hook of the specified type, optionally returning the final
- * value of the call chain.
- *
- * @param {import('.').Hooks}    hooks                  Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [returnFirstArg=false] Whether each hook callback is expected to
- *                                                      return its first argument.
- *
- * @return {(hookName:string, ...args: unknown[]) => unknown} Function that runs hook callbacks.
- */
-function createRunHook(hooks, storeKey) {
-  let returnFirstArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function runHooks(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!hooksStore[hookName]) {
-      hooksStore[hookName] = {
-        handlers: [],
-        runs: 0
-      };
-    }
-
-    hooksStore[hookName].runs++;
-    const handlers = hooksStore[hookName].handlers; // The following code is stripped from production builds.
-
-    if (true) {
-      // Handle any 'all' hooks registered.
-      if ('hookAdded' !== hookName && hooksStore.all) {
-        handlers.push(...hooksStore.all.handlers);
-      }
-    }
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    if (!handlers || !handlers.length) {
-      return returnFirstArg ? args[0] : undefined;
-    }
-
-    const hookInfo = {
-      name: hookName,
-      currentIndex: 0
-    };
-
-    hooksStore.__current.push(hookInfo);
-
-    while (hookInfo.currentIndex < handlers.length) {
-      const handler = handlers[hookInfo.currentIndex];
-      const result = handler.callback.apply(null, args);
-
-      if (returnFirstArg) {
-        args[0] = result;
-      }
-
-      hookInfo.currentIndex++;
-    }
-
-    hooksStore.__current.pop();
-
-    if (returnFirstArg) {
-      return args[0];
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRunHook);
-//# sourceMappingURL=createRunHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/index.js":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/index.js ***!
-  \************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "actions": () => (/* binding */ actions),
-/* harmony export */   "addAction": () => (/* binding */ addAction),
-/* harmony export */   "addFilter": () => (/* binding */ addFilter),
-/* harmony export */   "applyFilters": () => (/* binding */ applyFilters),
-/* harmony export */   "createHooks": () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "currentAction": () => (/* binding */ currentAction),
-/* harmony export */   "currentFilter": () => (/* binding */ currentFilter),
-/* harmony export */   "defaultHooks": () => (/* binding */ defaultHooks),
-/* harmony export */   "didAction": () => (/* binding */ didAction),
-/* harmony export */   "didFilter": () => (/* binding */ didFilter),
-/* harmony export */   "doAction": () => (/* binding */ doAction),
-/* harmony export */   "doingAction": () => (/* binding */ doingAction),
-/* harmony export */   "doingFilter": () => (/* binding */ doingFilter),
-/* harmony export */   "filters": () => (/* binding */ filters),
-/* harmony export */   "hasAction": () => (/* binding */ hasAction),
-/* harmony export */   "hasFilter": () => (/* binding */ hasFilter),
-/* harmony export */   "removeAction": () => (/* binding */ removeAction),
-/* harmony export */   "removeAllActions": () => (/* binding */ removeAllActions),
-/* harmony export */   "removeAllFilters": () => (/* binding */ removeAllFilters),
-/* harmony export */   "removeFilter": () => (/* binding */ removeFilter)
-/* harmony export */ });
-/* harmony import */ var _createHooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createHooks */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/createHooks.js");
-/**
- * Internal dependencies
- */
-
-/** @typedef {(...args: any[])=>any} Callback */
-
-/**
- * @typedef Handler
- * @property {Callback} callback  The callback
- * @property {string}   namespace The namespace
- * @property {number}   priority  The namespace
- */
-
-/**
- * @typedef Hook
- * @property {Handler[]} handlers Array of handlers
- * @property {number}    runs     Run counter
- */
-
-/**
- * @typedef Current
- * @property {string} name         Hook name
- * @property {number} currentIndex The index
- */
-
-/**
- * @typedef {Record<string, Hook> & {__current: Current[]}} Store
- */
-
-/**
- * @typedef {'actions' | 'filters'} StoreKey
- */
-
-/**
- * @typedef {import('./createHooks').Hooks} Hooks
- */
-
-const defaultHooks = (0,_createHooks__WEBPACK_IMPORTED_MODULE_0__["default"])();
-const {
-  addAction,
-  addFilter,
-  removeAction,
-  removeFilter,
-  hasAction,
-  hasFilter,
-  removeAllActions,
-  removeAllFilters,
-  doAction,
-  applyFilters,
-  currentAction,
-  currentFilter,
-  doingAction,
-  doingFilter,
-  didAction,
-  didFilter,
-  actions,
-  filters
-} = defaultHooks;
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateHookName.js":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateHookName.js ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a hookName string.
- *
- * @param {string} hookName The hook name to validate. Should be a non empty string containing
- *                          only numbers, letters, dashes, periods and underscores. Also,
- *                          the hook name cannot begin with `__`.
- *
- * @return {boolean} Whether the hook name is valid.
- */
-function validateHookName(hookName) {
-  if ('string' !== typeof hookName || '' === hookName) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name must be a non-empty string.');
-    return false;
-  }
-
-  if (/^__/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name cannot begin with `__`.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name can only contain numbers, letters, dashes, periods and underscores.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateHookName);
-//# sourceMappingURL=validateHookName.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateNamespace.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/validateNamespace.js ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a namespace string.
- *
- * @param {string} namespace The namespace to validate - should take the form
- *                           `vendor/plugin/function`.
- *
- * @return {boolean} Whether the namespace is valid.
- */
-function validateNamespace(namespace) {
-  if ('string' !== typeof namespace || '' === namespace) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace must be a non-empty string.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace can only contain numbers, letters, dashes, periods, underscores and slashes.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateNamespace);
-//# sourceMappingURL=validateNamespace.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/create-i18n.js":
-/*!*****************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/create-i18n.js ***!
-  \*****************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createI18n": () => (/* binding */ createI18n)
-/* harmony export */ });
-/* harmony import */ var tannin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tannin */ "./node_modules/tannin/index.js");
-/**
- * External dependencies
- */
-
-/**
- * @typedef {Record<string,any>} LocaleData
- */
-
-/**
- * Default locale data to use for Tannin domain when not otherwise provided.
- * Assumes an English plural forms expression.
- *
- * @type {LocaleData}
- */
-
-const DEFAULT_LOCALE_DATA = {
-  '': {
-    /** @param {number} n */
-    plural_forms(n) {
-      return n === 1 ? 0 : 1;
-    }
-
-  }
-};
-/*
- * Regular expression that matches i18n hooks like `i18n.gettext`, `i18n.ngettext`,
- * `i18n.gettext_domain` or `i18n.ngettext_with_context` or `i18n.has_translation`.
- */
-
-const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
-/**
- * @typedef {(domain?: string) => LocaleData} GetLocaleData
- *
- * Returns locale data by domain in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} SetLocaleData
- *
- * Merges locale data into the Tannin instance by domain. Note that this
- * function will overwrite the domain configuration. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} AddLocaleData
- *
- * Merges locale data into the Tannin instance by domain. Note that this
- * function will also merge the domain configuration. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} ResetLocaleData
- *
- * Resets all current Tannin instance locale data and sets the specified
- * locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/** @typedef {() => void} SubscribeCallback */
-
-/** @typedef {() => void} UnsubscribeCallback */
-
-/**
- * @typedef {(callback: SubscribeCallback) => UnsubscribeCallback} Subscribe
- *
- * Subscribes to changes of locale data
- */
-
-/**
- * @typedef {(domain?: string) => string} GetFilterDomain
- * Retrieve the domain to use when calling domain-specific filters.
- */
-
-/**
- * @typedef {(text: string, domain?: string) => string} __
- *
- * Retrieve the translation of text.
- *
- * @see https://developer.wordpress.org/reference/functions/__/
- */
-
-/**
- * @typedef {(text: string, context: string, domain?: string) => string} _x
- *
- * Retrieve translated string with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_x/
- */
-
-/**
- * @typedef {(single: string, plural: string, number: number, domain?: string) => string} _n
- *
- * Translates and retrieves the singular or plural form based on the supplied
- * number.
- *
- * @see https://developer.wordpress.org/reference/functions/_n/
- */
-
-/**
- * @typedef {(single: string, plural: string, number: number, context: string, domain?: string) => string} _nx
- *
- * Translates and retrieves the singular or plural form based on the supplied
- * number, with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_nx/
- */
-
-/**
- * @typedef {() => boolean} IsRtl
- *
- * Check if current locale is RTL.
- *
- * **RTL (Right To Left)** is a locale property indicating that text is written from right to left.
- * For example, the `he` locale (for Hebrew) specifies right-to-left. Arabic (ar) is another common
- * language written RTL. The opposite of RTL, LTR (Left To Right) is used in other languages,
- * including English (`en`, `en-US`, `en-GB`, etc.), Spanish (`es`), and French (`fr`).
- */
-
-/**
- * @typedef {(single: string, context?: string, domain?: string) => boolean} HasTranslation
- *
- * Check if there is a translation for a given string in singular form.
- */
-
-/** @typedef {import('@wordpress/hooks').Hooks} Hooks */
-
-/**
- * An i18n instance
- *
- * @typedef I18n
- * @property {GetLocaleData}   getLocaleData   Returns locale data by domain in a Jed-formatted JSON object shape.
- * @property {SetLocaleData}   setLocaleData   Merges locale data into the Tannin instance by domain. Note that this
- *                                             function will overwrite the domain configuration. Accepts data in a
- *                                             Jed-formatted JSON object shape.
- * @property {AddLocaleData}   addLocaleData   Merges locale data into the Tannin instance by domain. Note that this
- *                                             function will also merge the domain configuration. Accepts data in a
- *                                             Jed-formatted JSON object shape.
- * @property {ResetLocaleData} resetLocaleData Resets all current Tannin instance locale data and sets the specified
- *                                             locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- * @property {Subscribe}       subscribe       Subscribes to changes of Tannin locale data.
- * @property {__}              __              Retrieve the translation of text.
- * @property {_x}              _x              Retrieve translated string with gettext context.
- * @property {_n}              _n              Translates and retrieves the singular or plural form based on the supplied
- *                                             number.
- * @property {_nx}             _nx             Translates and retrieves the singular or plural form based on the supplied
- *                                             number, with gettext context.
- * @property {IsRtl}           isRTL           Check if current locale is RTL.
- * @property {HasTranslation}  hasTranslation  Check if there is a translation for a given string.
- */
-
-/**
- * Create an i18n instance
- *
- * @param {LocaleData} [initialData]   Locale data configuration.
- * @param {string}     [initialDomain] Domain for which configuration applies.
- * @param {Hooks}      [hooks]         Hooks implementation.
- *
- * @return {I18n} I18n instance.
- */
-
-const createI18n = (initialData, initialDomain, hooks) => {
-  /**
-   * The underlying instance of Tannin to which exported functions interface.
-   *
-   * @type {Tannin}
-   */
-  const tannin = new tannin__WEBPACK_IMPORTED_MODULE_0__["default"]({});
-  const listeners = new Set();
-
-  const notifyListeners = () => {
-    listeners.forEach(listener => listener());
-  };
-  /**
-   * Subscribe to changes of locale data.
-   *
-   * @param {SubscribeCallback} callback Subscription callback.
-   * @return {UnsubscribeCallback} Unsubscribe callback.
-   */
-
-
-  const subscribe = callback => {
-    listeners.add(callback);
-    return () => listeners.delete(callback);
-  };
-  /** @type {GetLocaleData} */
-
-
-  const getLocaleData = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return tannin.data[domain];
-  };
-  /**
-   * @param {LocaleData} [data]
-   * @param {string}     [domain]
-   */
-
-
-  const doSetLocaleData = function (data) {
-    var _tannin$data$domain;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
-      ...data
-    }; // Populate default domain configuration (supported locale date which omits
-    // a plural forms expression).
-
-    tannin.data[domain][''] = { ...DEFAULT_LOCALE_DATA[''],
-      ...((_tannin$data$domain = tannin.data[domain]) === null || _tannin$data$domain === void 0 ? void 0 : _tannin$data$domain[''])
-    }; // Clean up cached plural forms functions cache as it might be updated.
-
-    delete tannin.pluralForms[domain];
-  };
-  /** @type {SetLocaleData} */
-
-
-  const setLocaleData = (data, domain) => {
-    doSetLocaleData(data, domain);
-    notifyListeners();
-  };
-  /** @type {AddLocaleData} */
-
-
-  const addLocaleData = function (data) {
-    var _tannin$data$domain2;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
-      ...data,
-      // Populate default domain configuration (supported locale date which omits
-      // a plural forms expression).
-      '': { ...DEFAULT_LOCALE_DATA[''],
-        ...((_tannin$data$domain2 = tannin.data[domain]) === null || _tannin$data$domain2 === void 0 ? void 0 : _tannin$data$domain2['']),
-        ...(data === null || data === void 0 ? void 0 : data[''])
-      }
-    }; // Clean up cached plural forms functions cache as it might be updated.
-
-    delete tannin.pluralForms[domain];
-    notifyListeners();
-  };
-  /** @type {ResetLocaleData} */
-
-
-  const resetLocaleData = (data, domain) => {
-    // Reset all current Tannin locale data.
-    tannin.data = {}; // Reset cached plural forms functions cache.
-
-    tannin.pluralForms = {};
-    setLocaleData(data, domain);
-  };
-  /**
-   * Wrapper for Tannin's `dcnpgettext`. Populates default locale data if not
-   * otherwise previously assigned.
-   *
-   * @param {string|undefined} domain   Domain to retrieve the translated text.
-   * @param {string|undefined} context  Context information for the translators.
-   * @param {string}           single   Text to translate if non-plural. Used as
-   *                                    fallback return value on a caught error.
-   * @param {string}           [plural] The text to be used if the number is
-   *                                    plural.
-   * @param {number}           [number] The number to compare against to use
-   *                                    either the singular or plural form.
-   *
-   * @return {string} The translated string.
-   */
-
-
-  const dcnpgettext = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    let context = arguments.length > 1 ? arguments[1] : undefined;
-    let single = arguments.length > 2 ? arguments[2] : undefined;
-    let plural = arguments.length > 3 ? arguments[3] : undefined;
-    let number = arguments.length > 4 ? arguments[4] : undefined;
-
-    if (!tannin.data[domain]) {
-      // Use `doSetLocaleData` to set silently, without notifying listeners.
-      doSetLocaleData(undefined, domain);
-    }
-
-    return tannin.dcnpgettext(domain, context, single, plural, number);
-  };
-  /** @type {GetFilterDomain} */
-
-
-  const getFilterDomain = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return domain;
-  };
-  /** @type {__} */
-
-
-  const __ = (text, domain) => {
-    let translation = dcnpgettext(domain, undefined, text);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters text with its translation.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} text        Text to translate.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext', translation, text, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_' + getFilterDomain(domain), translation, text, domain)
-    );
-  };
-  /** @type {_x} */
-
-
-  const _x = (text, context, domain) => {
-    let translation = dcnpgettext(domain, context, text);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters text with its translation based on context information.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} text        Text to translate.
-     * @param {string} context     Context information for the translators.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext_with_context', translation, text, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_with_context_' + getFilterDomain(domain), translation, text, context, domain)
-    );
-  };
-  /** @type {_n} */
-
-
-  const _n = (single, plural, number, domain) => {
-    let translation = dcnpgettext(domain, undefined, single, plural, number);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters the singular or plural form of a string.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} single      The text to be used if the number is singular.
-     * @param {string} plural      The text to be used if the number is plural.
-     * @param {string} number      The number to compare against to use either the singular or plural form.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext', translation, single, plural, number, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_' + getFilterDomain(domain), translation, single, plural, number, domain)
-    );
-  };
-  /** @type {_nx} */
-
-
-  const _nx = (single, plural, number, context, domain) => {
-    let translation = dcnpgettext(domain, context, single, plural, number);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters the singular or plural form of a string with gettext context.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} single      The text to be used if the number is singular.
-     * @param {string} plural      The text to be used if the number is plural.
-     * @param {string} number      The number to compare against to use either the singular or plural form.
-     * @param {string} context     Context information for the translators.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext_with_context', translation, single, plural, number, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_with_context_' + getFilterDomain(domain), translation, single, plural, number, context, domain)
-    );
-  };
-  /** @type {IsRtl} */
-
-
-  const isRTL = () => {
-    return 'rtl' === _x('ltr', 'text direction');
-  };
-  /** @type {HasTranslation} */
-
-
-  const hasTranslation = (single, context, domain) => {
-    var _tannin$data, _tannin$data2;
-
-    const key = context ? context + '\u0004' + single : single;
-    let result = !!((_tannin$data = tannin.data) !== null && _tannin$data !== void 0 && (_tannin$data2 = _tannin$data[domain !== null && domain !== void 0 ? domain : 'default']) !== null && _tannin$data2 !== void 0 && _tannin$data2[key]);
-
-    if (hooks) {
-      /**
-       * Filters the presence of a translation in the locale data.
-       *
-       * @param {boolean} hasTranslation Whether the translation is present or not..
-       * @param {string}  single         The singular form of the translated text (used as key in locale data)
-       * @param {string}  context        Context information for the translators.
-       * @param {string}  domain         Text domain. Unique identifier for retrieving translated strings.
-       */
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation', result, single, context, domain);
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation_' + getFilterDomain(domain), result, single, context, domain);
-    }
-
-    return result;
-  };
-
-  if (initialData) {
-    setLocaleData(initialData, initialDomain);
-  }
-
-  if (hooks) {
-    /**
-     * @param {string} hookName
-     */
-    const onHookAddedOrRemoved = hookName => {
-      if (I18N_HOOK_REGEXP.test(hookName)) {
-        notifyListeners();
-      }
-    };
-
-    hooks.addAction('hookAdded', 'core/i18n', onHookAddedOrRemoved);
-    hooks.addAction('hookRemoved', 'core/i18n', onHookAddedOrRemoved);
-  }
-
-  return {
-    getLocaleData,
-    setLocaleData,
-    addLocaleData,
-    resetLocaleData,
-    subscribe,
-    __,
-    _x,
-    _n,
-    _nx,
-    isRTL,
-    hasTranslation
-  };
-};
-//# sourceMappingURL=create-i18n.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/default-i18n.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/default-i18n.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* binding */ __),
-/* harmony export */   "_n": () => (/* binding */ _n),
-/* harmony export */   "_nx": () => (/* binding */ _nx),
-/* harmony export */   "_x": () => (/* binding */ _x),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getLocaleData": () => (/* binding */ getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* binding */ hasTranslation),
-/* harmony export */   "isRTL": () => (/* binding */ isRTL),
-/* harmony export */   "resetLocaleData": () => (/* binding */ resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* binding */ setLocaleData),
-/* harmony export */   "subscribe": () => (/* binding */ subscribe)
-/* harmony export */ });
-/* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/create-i18n.js");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "./node_modules/@wordpress/components/node_modules/@wordpress/hooks/build-module/index.js");
-/**
- * Internal dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-const i18n = (0,_create_i18n__WEBPACK_IMPORTED_MODULE_0__.createI18n)(undefined, undefined, _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.defaultHooks);
-/**
- * Default, singleton instance of `I18n`.
- */
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (i18n);
-/*
- * Comments in this file are duplicated from ./i18n due to
- * https://github.com/WordPress/gutenberg/pull/20318#issuecomment-590837722
- */
-
-/**
- * @typedef {import('./create-i18n').LocaleData} LocaleData
- * @typedef {import('./create-i18n').SubscribeCallback} SubscribeCallback
- * @typedef {import('./create-i18n').UnsubscribeCallback} UnsubscribeCallback
- */
-
-/**
- * Returns locale data by domain in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {string} [domain] Domain for which to get the data.
- * @return {LocaleData} Locale data.
- */
-
-const getLocaleData = i18n.getLocaleData.bind(i18n);
-/**
- * Merges locale data into the Tannin instance by domain. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {LocaleData} [data]   Locale data configuration.
- * @param {string}     [domain] Domain for which configuration applies.
- */
-
-const setLocaleData = i18n.setLocaleData.bind(i18n);
-/**
- * Resets all current Tannin instance locale data and sets the specified
- * locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {LocaleData} [data]   Locale data configuration.
- * @param {string}     [domain] Domain for which configuration applies.
- */
-
-const resetLocaleData = i18n.resetLocaleData.bind(i18n);
-/**
- * Subscribes to changes of locale data
- *
- * @param {SubscribeCallback} callback Subscription callback
- * @return {UnsubscribeCallback} Unsubscribe callback
- */
-
-const subscribe = i18n.subscribe.bind(i18n);
-/**
- * Retrieve the translation of text.
- *
- * @see https://developer.wordpress.org/reference/functions/__/
- *
- * @param {string} text     Text to translate.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} Translated text.
- */
-
-const __ = i18n.__.bind(i18n);
-/**
- * Retrieve translated string with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_x/
- *
- * @param {string} text     Text to translate.
- * @param {string} context  Context information for the translators.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} Translated context string without pipe.
- */
-
-const _x = i18n._x.bind(i18n);
-/**
- * Translates and retrieves the singular or plural form based on the supplied
- * number.
- *
- * @see https://developer.wordpress.org/reference/functions/_n/
- *
- * @param {string} single   The text to be used if the number is singular.
- * @param {string} plural   The text to be used if the number is plural.
- * @param {number} number   The number to compare against to use either the
- *                          singular or plural form.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} The translated singular or plural form.
- */
-
-const _n = i18n._n.bind(i18n);
-/**
- * Translates and retrieves the singular or plural form based on the supplied
- * number, with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_nx/
- *
- * @param {string} single   The text to be used if the number is singular.
- * @param {string} plural   The text to be used if the number is plural.
- * @param {number} number   The number to compare against to use either the
- *                          singular or plural form.
- * @param {string} context  Context information for the translators.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} The translated singular or plural form.
- */
-
-const _nx = i18n._nx.bind(i18n);
-/**
- * Check if current locale is RTL.
- *
- * **RTL (Right To Left)** is a locale property indicating that text is written from right to left.
- * For example, the `he` locale (for Hebrew) specifies right-to-left. Arabic (ar) is another common
- * language written RTL. The opposite of RTL, LTR (Left To Right) is used in other languages,
- * including English (`en`, `en-US`, `en-GB`, etc.), Spanish (`es`), and French (`fr`).
- *
- * @return {boolean} Whether locale is RTL.
- */
-
-const isRTL = i18n.isRTL.bind(i18n);
-/**
- * Check if there is a translation for a given string (in singular form).
- *
- * @param {string} single    Singular form of the string to look up.
- * @param {string} [context] Context information for the translators.
- * @param {string} [domain]  Domain to retrieve the translated text.
- * @return {boolean} Whether the translation exists or not.
- */
-
-const hasTranslation = i18n.hasTranslation.bind(i18n);
-//# sourceMappingURL=default-i18n.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/index.js":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/index.js ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.__),
-/* harmony export */   "_n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._n),
-/* harmony export */   "_nx": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._nx),
-/* harmony export */   "_x": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._x),
-/* harmony export */   "createI18n": () => (/* reexport safe */ _create_i18n__WEBPACK_IMPORTED_MODULE_1__.createI18n),
-/* harmony export */   "defaultI18n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   "getLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.hasTranslation),
-/* harmony export */   "isRTL": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.isRTL),
-/* harmony export */   "resetLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.setLocaleData),
-/* harmony export */   "sprintf": () => (/* reexport safe */ _sprintf__WEBPACK_IMPORTED_MODULE_0__.sprintf),
-/* harmony export */   "subscribe": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.subscribe)
-/* harmony export */ });
-/* harmony import */ var _sprintf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprintf */ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/sprintf.js");
-/* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/create-i18n.js");
-/* harmony import */ var _default_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./default-i18n */ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/default-i18n.js");
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/sprintf.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/i18n/build-module/sprintf.js ***!
-  \*************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sprintf": () => (/* binding */ sprintf)
-/* harmony export */ });
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! memize */ "./node_modules/memize/index.js");
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(memize__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sprintf-js */ "./node_modules/sprintf-js/src/sprintf.js");
-/* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sprintf_js__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * External dependencies
- */
-
-
-/**
- * Log to console, once per message; or more precisely, per referentially equal
- * argument set. Because Jed throws errors, we log these to the console instead
- * to avoid crashing the application.
- *
- * @param {...*} args Arguments to pass to `console.error`
- */
-
-const logErrorOnce = memize__WEBPACK_IMPORTED_MODULE_0___default()(console.error); // eslint-disable-line no-console
-
-/**
- * Returns a formatted string. If an error occurs in applying the format, the
- * original format string is returned.
- *
- * @param {string} format The format of the string to generate.
- * @param {...*}   args   Arguments to apply to the format.
- *
- * @see https://www.npmjs.com/package/sprintf-js
- *
- * @return {string} The formatted string.
- */
-
-function sprintf(format) {
-  try {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    return sprintf_js__WEBPACK_IMPORTED_MODULE_1___default().sprintf(format, ...args);
-  } catch (error) {
-    if (error instanceof Error) {
-      logErrorOnce('sprintf error: \n\n' + error.toString());
-    }
-
-    return format;
-  }
-}
-//# sourceMappingURL=sprintf.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/icons/build-module/library/close.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "./node_modules/@wordpress/primitives/build-module/svg/index.js");
-
-
-/**
- * WordPress dependencies
- */
-
-const close = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M13 11.8l6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"
-}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (close);
-//# sourceMappingURL=close.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/index.js":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/index.js ***!
-  \**************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ warning)
-/* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js");
-/**
- * Internal dependencies
- */
-
-
-function isDev() {
-  return typeof process !== 'undefined' && process.env && "development" !== 'production';
-}
-/**
- * Shows a warning with `message` if environment is not `production`.
- *
- * @param {string} message Message to show in the warning.
- *
- * @example
- * ```js
- * import warning from '@wordpress/warning';
- *
- * function MyComponent( props ) {
- *   if ( ! props.title ) {
- *     warning( '`props.title` was not passed' );
- *   }
- *   ...
- * }
- * ```
- */
-
-
-function warning(message) {
-  if (!isDev()) {
-    return;
-  } // Skip if already logged.
-
-
-  if (_utils__WEBPACK_IMPORTED_MODULE_0__.logged.has(message)) {
-    return;
-  } // eslint-disable-next-line no-console
-
-
-  console.warn(message); // Throwing an error and catching it immediately to improve debugging
-  // A consumer can use 'pause on caught exceptions'
-  // https://github.com/facebook/react/issues/4216
-
-  try {
-    throw Error(message);
-  } catch (x) {// Do nothing.
-  }
-
-  _utils__WEBPACK_IMPORTED_MODULE_0__.logged.add(message);
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/@wordpress/warning/build-module/utils.js ***!
-  \**************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "logged": () => (/* binding */ logged)
-/* harmony export */ });
-/**
- * Object map tracking messages which have been logged, for use in ensuring a
- * message is only logged once.
- *
- * @type {Set<string>}
- */
-const logged = new Set();
-//# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/node_modules/react-dom/cjs/react-dom.development.js":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/react-dom/cjs/react-dom.development.js ***!
-  \************************************************************************************************/
+/***/ "./node_modules/@wordpress/element/node_modules/react-dom/cjs/react-dom.development.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@wordpress/element/node_modules/react-dom/cjs/react-dom.development.js ***!
+  \*********************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -33889,10 +35821,10 @@ exports.version = ReactVersion;
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/components/node_modules/react-dom/index.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/node_modules/react-dom/index.js ***!
-  \****************************************************************************/
+/***/ "./node_modules/@wordpress/element/node_modules/react-dom/index.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@wordpress/element/node_modules/react-dom/index.js ***!
+  \*************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -33927,4671 +35859,9 @@ function checkDCE() {
 }
 
 if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ "./node_modules/@wordpress/components/node_modules/react-dom/cjs/react-dom.development.js");
+  module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ "./node_modules/@wordpress/element/node_modules/react-dom/cjs/react-dom.development.js");
 }
 
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js":
-/*!*********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js ***!
-  \*********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/keycodes */ "./node_modules/@wordpress/keycodes/build-module/index.js");
-/* harmony import */ var _wordpress_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/dom */ "./node_modules/@wordpress/dom/build-module/index.js");
-/* harmony import */ var _use_ref_effect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../use-ref-effect */ "./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js");
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * In Dialogs/modals, the tabbing must be constrained to the content of
- * the wrapper element. This hook adds the behavior to the returned ref.
- *
- * @return {import('react').RefCallback<Element>} Element Ref.
- *
- * @example
- * ```js
- * import { useConstrainedTabbing } from '@wordpress/compose';
- *
- * const ConstrainedTabbingExample = () => {
- *     const constrainedTabbingRef = useConstrainedTabbing()
- *     return (
- *         <div ref={ constrainedTabbingRef }>
- *             <Button />
- *             <Button />
- *         </div>
- *     );
- * }
- * ```
- */
-
-function useConstrainedTabbing() {
-  return (0,_use_ref_effect__WEBPACK_IMPORTED_MODULE_0__["default"])((
-  /** @type {HTMLElement} */
-  node) => {
-    /** @type {number|undefined} */
-    let timeoutId;
-
-    function onKeyDown(
-    /** @type {KeyboardEvent} */
-    event) {
-      const {
-        keyCode,
-        shiftKey,
-        target
-      } = event;
-
-      if (keyCode !== _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_1__.TAB) {
-        return;
-      }
-
-      const action = shiftKey ? 'findPrevious' : 'findNext';
-      const nextElement = _wordpress_dom__WEBPACK_IMPORTED_MODULE_2__.focus.tabbable[action](
-      /** @type {HTMLElement} */
-      target) || null; // If the element that is about to receive focus is outside the
-      // area, move focus to a div and insert it at the start or end of
-      // the area, depending on the direction. Without preventing default
-      // behaviour, the browser will then move focus to the next element.
-
-      if (node.contains(nextElement)) {
-        return;
-      }
-
-      const domAction = shiftKey ? 'append' : 'prepend';
-      const {
-        ownerDocument
-      } = node;
-      const trap = ownerDocument.createElement('div');
-      trap.tabIndex = -1;
-      node[domAction](trap);
-      trap.focus(); // Remove after the browser moves focus to the next element.
-
-      timeoutId = setTimeout(() => node.removeChild(trap));
-    }
-
-    node.addEventListener('keydown', onKeyDown);
-    return () => {
-      node.removeEventListener('keydown', onKeyDown);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useConstrainedTabbing);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-debounce/index.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useDebounce)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var use_memo_one__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! use-memo-one */ "./node_modules/use-memo-one/dist/use-memo-one.esm.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/**
- * External dependencies
- */
-
-
-/**
- * WordPress dependencies
- */
-
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * Debounces a function with Lodash's `debounce`. A new debounced function will
- * be returned and any scheduled calls cancelled if any of the arguments change,
- * including the function to debounce, so please wrap functions created on
- * render in components in `useCallback`.
- *
- * @see https://docs-lodash.com/v4/debounce/
- *
- * @template {(...args: any[]) => void} TFunc
- *
- * @param {TFunc}                             fn        The function to debounce.
- * @param {number}                            [wait]    The number of milliseconds to delay.
- * @param {import('lodash').DebounceSettings} [options] The options object.
- * @return {import('lodash').DebouncedFunc<TFunc>} Debounced function.
- */
-
-function useDebounce(fn, wait, options) {
-  /* eslint-enable jsdoc/valid-types */
-  const debounced = (0,use_memo_one__WEBPACK_IMPORTED_MODULE_1__.useMemoOne)(() => (0,lodash__WEBPACK_IMPORTED_MODULE_0__.debounce)(fn, wait, options), [fn, wait, options]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => () => debounced.cancel(), [debounced]);
-  return debounced;
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-dialog/index.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/keycodes */ "./node_modules/@wordpress/keycodes/build-module/index.js");
-/* harmony import */ var _use_constrained_tabbing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../use-constrained-tabbing */ "./node_modules/@wordpress/compose/build-module/hooks/use-constrained-tabbing/index.js");
-/* harmony import */ var _use_focus_on_mount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../use-focus-on-mount */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js");
-/* harmony import */ var _use_focus_return__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../use-focus-return */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js");
-/* harmony import */ var _use_focus_outside__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../use-focus-outside */ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js");
-/* harmony import */ var _use_merge_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../use-merge-refs */ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js");
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @typedef DialogOptions
- * @property {Parameters<useFocusOnMount>[0]} focusOnMount Focus on mount arguments.
- * @property {() => void}                     onClose      Function to call when the dialog is closed.
- */
-
-/* eslint-enable jsdoc/valid-types */
-
-/**
- * Returns a ref and props to apply to a dialog wrapper to enable the following behaviors:
- *  - constrained tabbing.
- *  - focus on mount.
- *  - return focus on unmount.
- *  - focus outside.
- *
- * @param {DialogOptions} options Dialog Options.
- */
-
-function useDialog(options) {
-  /**
-   * @type {import('react').MutableRefObject<DialogOptions | undefined>}
-   */
-  const currentOptions = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    currentOptions.current = options;
-  }, Object.values(options));
-  const constrainedTabbingRef = (0,_use_constrained_tabbing__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  const focusOnMountRef = (0,_use_focus_on_mount__WEBPACK_IMPORTED_MODULE_2__["default"])(options.focusOnMount);
-  const focusReturnRef = (0,_use_focus_return__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  const focusOutsideProps = (0,_use_focus_outside__WEBPACK_IMPORTED_MODULE_4__["default"])(event => {
-    var _currentOptions$curre, _currentOptions$curre2;
-
-    // This unstable prop  is here only to manage backward compatibility
-    // for the Popover component otherwise, the onClose should be enough.
-    // @ts-ignore unstable property
-    if ((_currentOptions$curre = currentOptions.current) !== null && _currentOptions$curre !== void 0 && _currentOptions$curre.__unstableOnClose) {
-      // @ts-ignore unstable property
-      currentOptions.current.__unstableOnClose('focus-outside', event);
-    } else if ((_currentOptions$curre2 = currentOptions.current) !== null && _currentOptions$curre2 !== void 0 && _currentOptions$curre2.onClose) {
-      currentOptions.current.onClose();
-    }
-  });
-  const closeOnEscapeRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
-    if (!node) {
-      return;
-    }
-
-    node.addEventListener('keydown', (
-    /** @type {KeyboardEvent} */
-    event) => {
-      var _currentOptions$curre3;
-
-      // Close on escape.
-      if (event.keyCode === _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_5__.ESCAPE && !event.defaultPrevented && (_currentOptions$curre3 = currentOptions.current) !== null && _currentOptions$curre3 !== void 0 && _currentOptions$curre3.onClose) {
-        event.preventDefault();
-        currentOptions.current.onClose();
-      }
-    });
-  }, []);
-  return [(0,_use_merge_refs__WEBPACK_IMPORTED_MODULE_6__["default"])([options.focusOnMount !== false ? constrainedTabbingRef : null, options.focusOnMount !== false ? focusReturnRef : null, options.focusOnMount !== false ? focusOnMountRef : null, closeOnEscapeRef]), { ...focusOutsideProps,
-    tabIndex: '-1'
-  }];
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useDialog);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-on-mount/index.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useFocusOnMount)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom */ "./node_modules/@wordpress/dom/build-module/index.js");
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Hook used to focus the first tabbable element on mount.
- *
- * @param {boolean | 'firstElement'} focusOnMount Focus on mount mode.
- * @return {import('react').RefCallback<HTMLElement>} Ref callback.
- *
- * @example
- * ```js
- * import { useFocusOnMount } from '@wordpress/compose';
- *
- * const WithFocusOnMount = () => {
- *     const ref = useFocusOnMount()
- *     return (
- *         <div ref={ ref }>
- *             <Button />
- *             <Button />
- *         </div>
- *     );
- * }
- * ```
- */
-
-function useFocusOnMount() {
-  let focusOnMount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'firstElement';
-  const focusOnMountRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(focusOnMount);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    focusOnMountRef.current = focusOnMount;
-  }, [focusOnMount]);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
-    var _node$ownerDocument$a, _node$ownerDocument;
-
-    if (!node || focusOnMountRef.current === false) {
-      return;
-    }
-
-    if (node.contains((_node$ownerDocument$a = (_node$ownerDocument = node.ownerDocument) === null || _node$ownerDocument === void 0 ? void 0 : _node$ownerDocument.activeElement) !== null && _node$ownerDocument$a !== void 0 ? _node$ownerDocument$a : null)) {
-      return;
-    }
-
-    let target = node;
-
-    if (focusOnMountRef.current === 'firstElement') {
-      const firstTabbable = _wordpress_dom__WEBPACK_IMPORTED_MODULE_1__.focus.tabbable.find(node)[0];
-
-      if (firstTabbable) {
-        target =
-        /** @type {HTMLElement} */
-        firstTabbable;
-      }
-    }
-
-    target.focus();
-  }, []);
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js":
-/*!***************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-outside/index.js ***!
-  \***************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useFocusOutside)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Input types which are classified as button types, for use in considering
- * whether element is a (focus-normalized) button.
- *
- * @type {string[]}
- */
-
-const INPUT_BUTTON_TYPES = ['button', 'submit'];
-/**
- * @typedef {HTMLButtonElement | HTMLLinkElement | HTMLInputElement} FocusNormalizedButton
- */
-// Disable reason: Rule doesn't support predicate return types.
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * Returns true if the given element is a button element subject to focus
- * normalization, or false otherwise.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
- *
- * @param {EventTarget} eventTarget The target from a mouse or touch event.
- *
- * @return {eventTarget is FocusNormalizedButton} Whether element is a button.
- */
-
-function isFocusNormalizedButton(eventTarget) {
-  if (!(eventTarget instanceof window.HTMLElement)) {
-    return false;
-  }
-
-  switch (eventTarget.nodeName) {
-    case 'A':
-    case 'BUTTON':
-      return true;
-
-    case 'INPUT':
-      return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(INPUT_BUTTON_TYPES,
-      /** @type {HTMLInputElement} */
-      eventTarget.type);
-  }
-
-  return false;
-}
-/* eslint-enable jsdoc/valid-types */
-
-/**
- * @typedef {import('react').SyntheticEvent} SyntheticEvent
- */
-
-/**
- * @callback EventCallback
- * @param {SyntheticEvent} event input related event.
- */
-
-/**
- * @typedef FocusOutsideReactElement
- * @property {EventCallback} handleFocusOutside callback for a focus outside event.
- */
-
-/**
- * @typedef {import('react').MutableRefObject<FocusOutsideReactElement | undefined>} FocusOutsideRef
- */
-
-/**
- * @typedef {Object} FocusOutsideReturnValue
- * @property {EventCallback} onFocus      An event handler for focus events.
- * @property {EventCallback} onBlur       An event handler for blur events.
- * @property {EventCallback} onMouseDown  An event handler for mouse down events.
- * @property {EventCallback} onMouseUp    An event handler for mouse up events.
- * @property {EventCallback} onTouchStart An event handler for touch start events.
- * @property {EventCallback} onTouchEnd   An event handler for touch end events.
- */
-
-/**
- * A react hook that can be used to check whether focus has moved outside the
- * element the event handlers are bound to.
- *
- * @param {EventCallback} onFocusOutside A callback triggered when focus moves outside
- *                                       the element the event handlers are bound to.
- *
- * @return {FocusOutsideReturnValue} An object containing event handlers. Bind the event handlers
- *                                   to a wrapping element element to capture when focus moves
- *                                   outside that element.
- */
-
-
-function useFocusOutside(onFocusOutside) {
-  const currentOnFocusOutside = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(onFocusOutside);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    currentOnFocusOutside.current = onFocusOutside;
-  }, [onFocusOutside]);
-  const preventBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
-  /**
-   * @type {import('react').MutableRefObject<number | undefined>}
-   */
-
-  const blurCheckTimeoutId = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  /**
-   * Cancel a blur check timeout.
-   */
-
-  const cancelBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
-    clearTimeout(blurCheckTimeoutId.current);
-  }, []); // Cancel blur checks on unmount.
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    return () => cancelBlurCheck();
-  }, []); // Cancel a blur check if the callback or ref is no longer provided.
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (!onFocusOutside) {
-      cancelBlurCheck();
-    }
-  }, [onFocusOutside, cancelBlurCheck]);
-  /**
-   * Handles a mousedown or mouseup event to respectively assign and
-   * unassign a flag for preventing blur check on button elements. Some
-   * browsers, namely Firefox and Safari, do not emit a focus event on
-   * button elements when clicked, while others do. The logic here
-   * intends to normalize this as treating click on buttons as focus.
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
-   *
-   * @param {SyntheticEvent} event Event for mousedown or mouseup.
-   */
-
-  const normalizeButtonFocus = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(event => {
-    const {
-      type,
-      target
-    } = event;
-    const isInteractionEnd = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(['mouseup', 'touchend'], type);
-
-    if (isInteractionEnd) {
-      preventBlurCheck.current = false;
-    } else if (isFocusNormalizedButton(target)) {
-      preventBlurCheck.current = true;
-    }
-  }, []);
-  /**
-   * A callback triggered when a blur event occurs on the element the handler
-   * is bound to.
-   *
-   * Calls the `onFocusOutside` callback in an immediate timeout if focus has
-   * move outside the bound element and is still within the document.
-   *
-   * @param {SyntheticEvent} event Blur event.
-   */
-
-  const queueBlurCheck = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useCallback)(event => {
-    // React does not allow using an event reference asynchronously
-    // due to recycling behavior, except when explicitly persisted.
-    event.persist(); // Skip blur check if clicking button. See `normalizeButtonFocus`.
-
-    if (preventBlurCheck.current) {
-      return;
-    }
-
-    blurCheckTimeoutId.current = setTimeout(() => {
-      // If document is not focused then focus should remain
-      // inside the wrapped component and therefore we cancel
-      // this blur event thereby leaving focus in place.
-      // https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus.
-      if (!document.hasFocus()) {
-        event.preventDefault();
-        return;
-      }
-
-      if ('function' === typeof currentOnFocusOutside.current) {
-        currentOnFocusOutside.current(event);
-      }
-    }, 0);
-  }, []);
-  return {
-    onFocus: cancelBlurCheck,
-    onMouseDown: normalizeButtonFocus,
-    onMouseUp: normalizeButtonFocus,
-    onTouchStart: normalizeButtonFocus,
-    onTouchEnd: normalizeButtonFocus,
-    onBlur: queueBlurCheck
-  };
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-focus-return/index.js ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * WordPress dependencies
- */
-
-/**
- * When opening modals/sidebars/dialogs, the focus
- * must move to the opened area and return to the
- * previously focused element when closed.
- * The current hook implements the returning behavior.
- *
- * @param {() => void} [onFocusReturn] Overrides the default return behavior.
- * @return {import('react').RefCallback<HTMLElement>} Element Ref.
- *
- * @example
- * ```js
- * import { useFocusReturn } from '@wordpress/compose';
- *
- * const WithFocusReturn = () => {
- *     const ref = useFocusReturn()
- *     return (
- *         <div ref={ ref }>
- *             <Button />
- *             <Button />
- *         </div>
- *     );
- * }
- * ```
- */
-
-function useFocusReturn(onFocusReturn) {
-  /** @type {import('react').MutableRefObject<null | HTMLElement>} */
-  const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  /** @type {import('react').MutableRefObject<null | Element>} */
-
-  const focusedBeforeMount = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const onFocusReturnRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(onFocusReturn);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    onFocusReturnRef.current = onFocusReturn;
-  }, [onFocusReturn]);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
-    if (node) {
-      // Set ref to be used when unmounting.
-      ref.current = node; // Only set when the node mounts.
-
-      if (focusedBeforeMount.current) {
-        return;
-      }
-
-      focusedBeforeMount.current = node.ownerDocument.activeElement;
-    } else if (focusedBeforeMount.current) {
-      var _ref$current, _ref$current2, _ref$current3;
-
-      const isFocused = (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.contains((_ref$current2 = ref.current) === null || _ref$current2 === void 0 ? void 0 : _ref$current2.ownerDocument.activeElement);
-
-      if ((_ref$current3 = ref.current) !== null && _ref$current3 !== void 0 && _ref$current3.isConnected && !isFocused) {
-        return;
-      } // Defer to the component's own explicit focus return behavior, if
-      // specified. This allows for support that the `onFocusReturn`
-      // decides to allow the default behavior to occur under some
-      // conditions.
-
-
-      if (onFocusReturnRef.current) {
-        onFocusReturnRef.current();
-      } else {
-        var _focusedBeforeMount$c;
-
-        /** @type {null | HTMLElement} */
-        (_focusedBeforeMount$c = focusedBeforeMount.current) === null || _focusedBeforeMount$c === void 0 ? void 0 : _focusedBeforeMount$c.focus();
-      }
-    }
-  }, []);
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useFocusReturn);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js":
-/*!*************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useInstanceId)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-// Disable reason: Object and object are distinctly different types in TypeScript and we mean the lowercase object in thise case
-// but eslint wants to force us to use `Object`. See https://stackoverflow.com/questions/49464634/difference-between-object-and-object-in-typescript
-
-/* eslint-disable jsdoc/check-types */
-
-/**
- * WordPress dependencies
- */
-
-/**
- * @type {WeakMap<object, number>}
- */
-
-const instanceMap = new WeakMap();
-/**
- * Creates a new id for a given object.
- *
- * @param {object} object Object reference to create an id for.
- * @return {number} The instance id (index).
- */
-
-function createId(object) {
-  const instances = instanceMap.get(object) || 0;
-  instanceMap.set(object, instances + 1);
-  return instances;
-}
-/**
- * Provides a unique instance ID.
- *
- * @param {object}          object           Object reference to create an id for.
- * @param {string}          [prefix]         Prefix for the unique id.
- * @param {string | number} [preferredId=''] Default ID to use.
- * @return {string | number} The unique instance id.
- */
-
-
-function useInstanceId(object, prefix) {
-  let preferredId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
-    if (preferredId) return preferredId;
-    const id = createId(object);
-    return prefix ? `${prefix}-${id}` : id;
-  }, [object]);
-}
-/* eslint-enable jsdoc/check-types */
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js":
-/*!*************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useMediaQuery)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * WordPress dependencies
- */
-
-/**
- * Runs a media query and returns its value when it changes.
- *
- * @param {string} [query] Media Query.
- * @return {boolean} return value of the media query.
- */
-
-function useMediaQuery(query) {
-  const [match, setMatch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(() => !!(query && typeof window !== 'undefined' && window.matchMedia(query).matches));
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (!query) {
-      return;
-    }
-
-    const updateMatch = () => setMatch(window.matchMedia(query).matches);
-
-    updateMatch();
-    const list = window.matchMedia(query);
-    list.addListener(updateMatch);
-    return () => {
-      list.removeListener(updateMatch);
-    };
-  }, [query]);
-  return !!query && match;
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js":
-/*!************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-merge-refs/index.js ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useMergeRefs)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * WordPress dependencies
- */
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @template T
- * @typedef {T extends import('react').Ref<infer R> ? R : never} TypeFromRef
- */
-
-/* eslint-enable jsdoc/valid-types */
-
-/**
- * @template T
- * @param {import('react').Ref<T>} ref
- * @param {T}                      value
- */
-
-function assignRef(ref, value) {
-  if (typeof ref === 'function') {
-    ref(value);
-  } else if (ref && ref.hasOwnProperty('current')) {
-    /* eslint-disable jsdoc/no-undefined-types */
-
-    /** @type {import('react').MutableRefObject<T>} */
-    ref.current = value;
-    /* eslint-enable jsdoc/no-undefined-types */
-  }
-}
-/**
- * Merges refs into one ref callback.
- *
- * It also ensures that the merged ref callbacks are only called when they
- * change (as a result of a `useCallback` dependency update) OR when the ref
- * value changes, just as React does when passing a single ref callback to the
- * component.
- *
- * As expected, if you pass a new function on every render, the ref callback
- * will be called after every render.
- *
- * If you don't wish a ref callback to be called after every render, wrap it
- * with `useCallback( callback, dependencies )`. When a dependency changes, the
- * old ref callback will be called with `null` and the new ref callback will be
- * called with the same value.
- *
- * To make ref callbacks easier to use, you can also pass the result of
- * `useRefEffect`, which makes cleanup easier by allowing you to return a
- * cleanup function instead of handling `null`.
- *
- * It's also possible to _disable_ a ref (and its behaviour) by simply not
- * passing the ref.
- *
- * ```jsx
- * const ref = useRefEffect( ( node ) => {
- *   node.addEventListener( ... );
- *   return () => {
- *     node.removeEventListener( ... );
- *   };
- * }, [ ...dependencies ] );
- * const otherRef = useRef();
- * const mergedRefs useMergeRefs( [
- *   enabled && ref,
- *   otherRef,
- * ] );
- * return <div ref={ mergedRefs } />;
- * ```
- *
- * @template {import('react').Ref<any>} TRef
- * @param {Array<TRef>} refs The refs to be merged.
- *
- * @return {import('react').RefCallback<TypeFromRef<TRef>>} The merged ref callback.
- */
-
-
-function useMergeRefs(refs) {
-  const element = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  const didElementChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-  /* eslint-disable jsdoc/no-undefined-types */
-
-  /** @type {import('react').MutableRefObject<TRef[]>} */
-
-  /* eslint-enable jsdoc/no-undefined-types */
-
-  const previousRefs = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
-  const currentRefs = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(refs); // Update on render before the ref callback is called, so the ref callback
-  // always has access to the current refs.
-
-  currentRefs.current = refs; // If any of the refs change, call the previous ref with `null` and the new
-  // ref with the node, except when the element changes in the same cycle, in
-  // which case the ref callbacks will already have been called.
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
-    if (didElementChange.current === false) {
-      refs.forEach((ref, index) => {
-        const previousRef = previousRefs.current[index];
-
-        if (ref !== previousRef) {
-          assignRef(previousRef, null);
-          assignRef(ref, element.current);
-        }
-      });
-    }
-
-    previousRefs.current = refs;
-  }, refs); // No dependencies, must be reset after every render so ref callbacks are
-  // correctly called after a ref change.
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {
-    didElementChange.current = false;
-  }); // There should be no dependencies so that `callback` is only called when
-  // the node changes.
-
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(value => {
-    // Update the element so it can be used when calling ref callbacks on a
-    // dependency change.
-    assignRef(element, value);
-    didElementChange.current = true; // When an element changes, the current ref callback should be called
-    // with the new element and the previous one with `null`.
-
-    const refsToAssign = value ? currentRefs.current : previousRefs.current; // Update the latest refs.
-
-    for (const ref of refsToAssign) {
-      assignRef(ref, value);
-    }
-  }, []);
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js":
-/*!************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-ref-effect/index.js ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useRefEffect)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-/**
- * Effect-like ref callback. Just like with `useEffect`, this allows you to
- * return a cleanup function to be run if the ref changes or one of the
- * dependencies changes. The ref is provided as an argument to the callback
- * functions. The main difference between this and `useEffect` is that
- * the `useEffect` callback is not called when the ref changes, but this is.
- * Pass the returned ref callback as the component's ref and merge multiple refs
- * with `useMergeRefs`.
- *
- * It's worth noting that if the dependencies array is empty, there's not
- * strictly a need to clean up event handlers for example, because the node is
- * to be removed. It *is* necessary if you add dependencies because the ref
- * callback will be called multiple times for the same node.
- *
- * @param  callback     Callback with ref as argument.
- * @param  dependencies Dependencies of the callback.
- *
- * @return Ref callback.
- */
-
-function useRefEffect(callback, dependencies) {
-  const cleanup = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(node => {
-    if (node) {
-      cleanup.current = callback(node);
-    } else if (cleanup.current) {
-      cleanup.current();
-    }
-  }, dependencies);
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/index.js":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-resize-observer/index.js ***!
-  \*****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_resize_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-resize-aware */ "./node_modules/react-resize-aware/dist/index.js");
-/* harmony import */ var react_resize_aware__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_resize_aware__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * External dependencies
- */
-
-/**
- * Hook which allows to listen the resize event of any target element when it changes sizes.
- * _Note: `useResizeObserver` will report `null` until after first render_
- *
- * Simply a re-export of `react-resize-aware` so refer to its documentation <https://github.com/FezVrasta/react-resize-aware>
- * for more details.
- *
- * @see https://github.com/FezVrasta/react-resize-aware
- *
- * @example
- *
- * ```js
- * const App = () => {
- * 	const [ resizeListener, sizes ] = useResizeObserver();
- *
- * 	return (
- * 		<div>
- * 			{ resizeListener }
- * 			Your content here
- * 		</div>
- * 	);
- * };
- * ```
- *
- */
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((react_resize_aware__WEBPACK_IMPORTED_MODULE_0___default()));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/@wordpress/compose/build-module/hooks/use-viewport-match/index.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _use_media_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../use-media-query */ "./node_modules/@wordpress/compose/build-module/hooks/use-media-query/index.js");
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * @typedef {"huge" | "wide" | "large" | "medium" | "small" | "mobile"} WPBreakpoint
- */
-
-/**
- * Hash of breakpoint names with pixel width at which it becomes effective.
- *
- * @see _breakpoints.scss
- *
- * @type {Record<WPBreakpoint, number>}
- */
-
-const BREAKPOINTS = {
-  huge: 1440,
-  wide: 1280,
-  large: 960,
-  medium: 782,
-  small: 600,
-  mobile: 480
-};
-/**
- * @typedef {">=" | "<"} WPViewportOperator
- */
-
-/**
- * Object mapping media query operators to the condition to be used.
- *
- * @type {Record<WPViewportOperator, string>}
- */
-
-const CONDITIONS = {
-  '>=': 'min-width',
-  '<': 'max-width'
-};
-/**
- * Object mapping media query operators to a function that given a breakpointValue and a width evaluates if the operator matches the values.
- *
- * @type {Record<WPViewportOperator, (breakpointValue: number, width: number) => boolean>}
- */
-
-const OPERATOR_EVALUATORS = {
-  '>=': (breakpointValue, width) => width >= breakpointValue,
-  '<': (breakpointValue, width) => width < breakpointValue
-};
-const ViewportMatchWidthContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)(
-/** @type {null | number} */
-null);
-/**
- * Returns true if the viewport matches the given query, or false otherwise.
- *
- * @param {WPBreakpoint}       breakpoint      Breakpoint size name.
- * @param {WPViewportOperator} [operator=">="] Viewport operator.
- *
- * @example
- *
- * ```js
- * useViewportMatch( 'huge', '<' );
- * useViewportMatch( 'medium' );
- * ```
- *
- * @return {boolean} Whether viewport matches query.
- */
-
-const useViewportMatch = function (breakpoint) {
-  let operator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '>=';
-  const simulatedWidth = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(ViewportMatchWidthContext);
-  const mediaQuery = !simulatedWidth && `(${CONDITIONS[operator]}: ${BREAKPOINTS[breakpoint]}px)`;
-  const mediaQueryResult = (0,_use_media_query__WEBPACK_IMPORTED_MODULE_1__["default"])(mediaQuery || undefined);
-
-  if (simulatedWidth) {
-    return OPERATOR_EVALUATORS[operator](BREAKPOINTS[breakpoint], simulatedWidth);
-  }
-
-  return mediaQueryResult;
-};
-
-useViewportMatch.__experimentalWidthProvider = ViewportMatchWidthContext.Provider;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useViewportMatch);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/build-module/index.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/build-module/index.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ deprecated),
-/* harmony export */   "logged": () => (/* binding */ logged)
-/* harmony export */ });
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/index.js");
-/**
- * WordPress dependencies
- */
-
-/**
- * Object map tracking messages which have been logged, for use in ensuring a
- * message is only logged once.
- *
- * @type {Record<string, true | undefined>}
- */
-
-const logged = Object.create(null);
-/**
- * Logs a message to notify developers about a deprecated feature.
- *
- * @param {string} feature               Name of the deprecated feature.
- * @param {Object} [options]             Personalisation options
- * @param {string} [options.since]       Version in which the feature was deprecated.
- * @param {string} [options.version]     Version in which the feature will be removed.
- * @param {string} [options.alternative] Feature to use instead
- * @param {string} [options.plugin]      Plugin name if it's a plugin feature
- * @param {string} [options.link]        Link to documentation
- * @param {string} [options.hint]        Additional message to help transition away from the deprecated feature.
- *
- * @example
- * ```js
- * import deprecated from '@wordpress/deprecated';
- *
- * deprecated( 'Eating meat', {
- * 	since: '2019.01.01'
- * 	version: '2020.01.01',
- * 	alternative: 'vegetables',
- * 	plugin: 'the earth',
- * 	hint: 'You may find it beneficial to transition gradually.',
- * } );
- *
- * // Logs: 'Eating meat is deprecated since version 2019.01.01 and will be removed from the earth in version 2020.01.01. Please use vegetables instead. Note: You may find it beneficial to transition gradually.'
- * ```
- */
-
-function deprecated(feature) {
-  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const {
-    since,
-    version,
-    alternative,
-    plugin,
-    link,
-    hint
-  } = options;
-  const pluginMessage = plugin ? ` from ${plugin}` : '';
-  const sinceMessage = since ? ` since version ${since}` : '';
-  const versionMessage = version ? ` and will be removed${pluginMessage} in version ${version}` : '';
-  const useInsteadMessage = alternative ? ` Please use ${alternative} instead.` : '';
-  const linkMessage = link ? ` See: ${link}` : '';
-  const hintMessage = hint ? ` Note: ${hint}` : '';
-  const message = `${feature} is deprecated${sinceMessage}${versionMessage}.${useInsteadMessage}${linkMessage}${hintMessage}`; // Skip if already logged.
-
-  if (message in logged) {
-    return;
-  }
-  /**
-   * Fires whenever a deprecated feature is encountered
-   *
-   * @param {string}  feature             Name of the deprecated feature.
-   * @param {?Object} options             Personalisation options
-   * @param {string}  options.since       Version in which the feature was deprecated.
-   * @param {?string} options.version     Version in which the feature will be removed.
-   * @param {?string} options.alternative Feature to use instead
-   * @param {?string} options.plugin      Plugin name if it's a plugin feature
-   * @param {?string} options.link        Link to documentation
-   * @param {?string} options.hint        Additional message to help transition away from the deprecated feature.
-   * @param {?string} message             Message sent to console.warn
-   */
-
-
-  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.doAction)('deprecated', feature, options, message); // eslint-disable-next-line no-console
-
-  console.warn(message);
-  logged[message] = true;
-}
-/** @typedef {import('utility-types').NonUndefined<Parameters<typeof deprecated>[1]>} DeprecatedOptions */
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createAddHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createAddHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback AddHook
- *
- * Adds the hook to the appropriate hooks container.
- *
- * @param {string}               hookName      Name of hook to add
- * @param {string}               namespace     The unique namespace identifying the callback in the form `vendor/plugin/function`.
- * @param {import('.').Callback} callback      Function to call when the hook is run
- * @param {number}               [priority=10] Priority of this hook
- */
-
-/**
- * Returns a function which, when invoked, will add a hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {AddHook} Function that adds a new hook.
- */
-
-function createAddHook(hooks, storeKey) {
-  return function addHook(hookName, namespace, callback) {
-    let priority = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    }
-
-    if ('function' !== typeof callback) {
-      // eslint-disable-next-line no-console
-      console.error('The hook callback must be a function.');
-      return;
-    } // Validate numeric priority
-
-
-    if ('number' !== typeof priority) {
-      // eslint-disable-next-line no-console
-      console.error('If specified, the hook priority must be a number.');
-      return;
-    }
-
-    const handler = {
-      callback,
-      priority,
-      namespace
-    };
-
-    if (hooksStore[hookName]) {
-      // Find the correct insert index of the new hook.
-      const handlers = hooksStore[hookName].handlers;
-      /** @type {number} */
-
-      let i;
-
-      for (i = handlers.length; i > 0; i--) {
-        if (priority >= handlers[i - 1].priority) {
-          break;
-        }
-      }
-
-      if (i === handlers.length) {
-        // If append, operate via direct assignment.
-        handlers[i] = handler;
-      } else {
-        // Otherwise, insert before index via splice.
-        handlers.splice(i, 0, handler);
-      } // We may also be currently executing this hook.  If the callback
-      // we're adding would come after the current callback, there's no
-      // problem; otherwise we need to increase the execution index of
-      // any other runs by 1 to account for the added element.
-
-
-      hooksStore.__current.forEach(hookInfo => {
-        if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-          hookInfo.currentIndex++;
-        }
-      });
-    } else {
-      // This is the first hook of its type.
-      hooksStore[hookName] = {
-        handlers: [handler],
-        runs: 0
-      };
-    }
-
-    if (hookName !== 'hookAdded') {
-      hooks.doAction('hookAdded', hookName, namespace, callback, priority);
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createAddHook);
-//# sourceMappingURL=createAddHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createCurrentHook.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createCurrentHook.js ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will return the name of the
- * currently running hook, or `null` if no hook of the given type is currently
- * running.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {() => string | null} Function that returns the current hook name or null.
- */
-function createCurrentHook(hooks, storeKey) {
-  return function currentHook() {
-    var _hooksStore$__current, _hooksStore$__current2;
-
-    const hooksStore = hooks[storeKey];
-    return (_hooksStore$__current = (_hooksStore$__current2 = hooksStore.__current[hooksStore.__current.length - 1]) === null || _hooksStore$__current2 === void 0 ? void 0 : _hooksStore$__current2.name) !== null && _hooksStore$__current !== void 0 ? _hooksStore$__current : null;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCurrentHook);
-//# sourceMappingURL=createCurrentHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDidHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDidHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-/**
- * @callback DidHook
- *
- * Returns the number of times an action has been fired.
- *
- * @param {string} hookName The hook name to check.
- *
- * @return {number | undefined} The number of times the hook has run.
- */
-
-/**
- * Returns a function which, when invoked, will return the number of times a
- * hook has been called.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DidHook} Function that returns a hook's call count.
- */
-
-function createDidHook(hooks, storeKey) {
-  return function didHook(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(hookName)) {
-      return;
-    }
-
-    return hooksStore[hookName] && hooksStore[hookName].runs ? hooksStore[hookName].runs : 0;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDidHook);
-//# sourceMappingURL=createDidHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDoingHook.js":
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDoingHook.js ***!
-  \**********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback DoingHook
- * Returns whether a hook is currently being executed.
- *
- * @param {string} [hookName] The name of the hook to check for.  If
- *                            omitted, will check for any hook being executed.
- *
- * @return {boolean} Whether the hook is being executed.
- */
-
-/**
- * Returns a function which, when invoked, will return whether a hook is
- * currently being executed.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DoingHook} Function that returns whether a hook is currently
- *                     being executed.
- */
-function createDoingHook(hooks, storeKey) {
-  return function doingHook(hookName) {
-    const hooksStore = hooks[storeKey]; // If the hookName was not passed, check for any current hook.
-
-    if ('undefined' === typeof hookName) {
-      return 'undefined' !== typeof hooksStore.__current[0];
-    } // Return the __current hook.
-
-
-    return hooksStore.__current[0] ? hookName === hooksStore.__current[0].name : false;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDoingHook);
-//# sourceMappingURL=createDoingHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHasHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHasHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback HasHook
- *
- * Returns whether any handlers are attached for the given hookName and optional namespace.
- *
- * @param {string} hookName    The name of the hook to check for.
- * @param {string} [namespace] Optional. The unique namespace identifying the callback
- *                             in the form `vendor/plugin/function`.
- *
- * @return {boolean} Whether there are handlers that are attached to the given hook.
- */
-
-/**
- * Returns a function which, when invoked, will return whether any handlers are
- * attached to a particular hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {HasHook} Function that returns whether any handlers are
- *                   attached to a particular hook and optional namespace.
- */
-function createHasHook(hooks, storeKey) {
-  return function hasHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey]; // Use the namespace if provided.
-
-    if ('undefined' !== typeof namespace) {
-      return hookName in hooksStore && hooksStore[hookName].handlers.some(hook => hook.namespace === namespace);
-    }
-
-    return hookName in hooksStore;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHasHook);
-//# sourceMappingURL=createHasHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHooks.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHooks.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_Hooks": () => (/* binding */ _Hooks),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _createAddHook__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createAddHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createAddHook.js");
-/* harmony import */ var _createRemoveHook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createRemoveHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRemoveHook.js");
-/* harmony import */ var _createHasHook__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createHasHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHasHook.js");
-/* harmony import */ var _createRunHook__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createRunHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRunHook.js");
-/* harmony import */ var _createCurrentHook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createCurrentHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createCurrentHook.js");
-/* harmony import */ var _createDoingHook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createDoingHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDoingHook.js");
-/* harmony import */ var _createDidHook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createDidHook */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createDidHook.js");
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-/**
- * Internal class for constructing hooks. Use `createHooks()` function
- *
- * Note, it is necessary to expose this class to make its type public.
- *
- * @private
- */
-
-class _Hooks {
-  constructor() {
-    /** @type {import('.').Store} actions */
-    this.actions = Object.create(null);
-    this.actions.__current = [];
-    /** @type {import('.').Store} filters */
-
-    this.filters = Object.create(null);
-    this.filters.__current = [];
-    this.addAction = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'actions');
-    this.addFilter = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'filters');
-    this.removeAction = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions');
-    this.removeFilter = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters');
-    this.hasAction = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'actions');
-    this.hasFilter = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'filters');
-    this.removeAllActions = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions', true);
-    this.removeAllFilters = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters', true);
-    this.doAction = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'actions');
-    this.applyFilters = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'filters', true);
-    this.currentAction = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'actions');
-    this.currentFilter = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'filters');
-    this.doingAction = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'actions');
-    this.doingFilter = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'filters');
-    this.didAction = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'actions');
-    this.didFilter = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'filters');
-  }
-
-}
-/** @typedef {_Hooks} Hooks */
-
-/**
- * Returns an instance of the hooks object.
- *
- * @return {Hooks} A Hooks instance.
- */
-
-function createHooks() {
-  return new _Hooks();
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHooks);
-//# sourceMappingURL=createHooks.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRemoveHook.js":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRemoveHook.js ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback RemoveHook
- * Removes the specified callback (or all callbacks) from the hook with a given hookName
- * and namespace.
- *
- * @param {string} hookName  The name of the hook to modify.
- * @param {string} namespace The unique namespace identifying the callback in the
- *                           form `vendor/plugin/function`.
- *
- * @return {number | undefined} The number of callbacks removed.
- */
-
-/**
- * Returns a function which, when invoked, will remove a specified hook or all
- * hooks by the given name.
- *
- * @param {import('.').Hooks}    hooks             Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [removeAll=false] Whether to remove all callbacks for a hookName,
- *                                                 without regard to namespace. Used to create
- *                                                 `removeAll*` functions.
- *
- * @return {RemoveHook} Function that removes hooks.
- */
-
-function createRemoveHook(hooks, storeKey) {
-  let removeAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function removeHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!removeAll && !(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    } // Bail if no hooks exist by this name.
-
-
-    if (!hooksStore[hookName]) {
-      return 0;
-    }
-
-    let handlersRemoved = 0;
-
-    if (removeAll) {
-      handlersRemoved = hooksStore[hookName].handlers.length;
-      hooksStore[hookName] = {
-        runs: hooksStore[hookName].runs,
-        handlers: []
-      };
-    } else {
-      // Try to find the specified callback to remove.
-      const handlers = hooksStore[hookName].handlers;
-
-      for (let i = handlers.length - 1; i >= 0; i--) {
-        if (handlers[i].namespace === namespace) {
-          handlers.splice(i, 1);
-          handlersRemoved++; // This callback may also be part of a hook that is
-          // currently executing.  If the callback we're removing
-          // comes after the current callback, there's no problem;
-          // otherwise we need to decrease the execution index of any
-          // other runs by 1 to account for the removed element.
-
-          hooksStore.__current.forEach(hookInfo => {
-            if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-              hookInfo.currentIndex--;
-            }
-          });
-        }
-      }
-    }
-
-    if (hookName !== 'hookRemoved') {
-      hooks.doAction('hookRemoved', hookName, namespace);
-    }
-
-    return handlersRemoved;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRemoveHook);
-//# sourceMappingURL=createRemoveHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRunHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createRunHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will execute all callbacks
- * registered to a hook of the specified type, optionally returning the final
- * value of the call chain.
- *
- * @param {import('.').Hooks}    hooks                  Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [returnFirstArg=false] Whether each hook callback is expected to
- *                                                      return its first argument.
- *
- * @return {(hookName:string, ...args: unknown[]) => unknown} Function that runs hook callbacks.
- */
-function createRunHook(hooks, storeKey) {
-  let returnFirstArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function runHooks(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!hooksStore[hookName]) {
-      hooksStore[hookName] = {
-        handlers: [],
-        runs: 0
-      };
-    }
-
-    hooksStore[hookName].runs++;
-    const handlers = hooksStore[hookName].handlers; // The following code is stripped from production builds.
-
-    if (true) {
-      // Handle any 'all' hooks registered.
-      if ('hookAdded' !== hookName && hooksStore.all) {
-        handlers.push(...hooksStore.all.handlers);
-      }
-    }
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    if (!handlers || !handlers.length) {
-      return returnFirstArg ? args[0] : undefined;
-    }
-
-    const hookInfo = {
-      name: hookName,
-      currentIndex: 0
-    };
-
-    hooksStore.__current.push(hookInfo);
-
-    while (hookInfo.currentIndex < handlers.length) {
-      const handler = handlers[hookInfo.currentIndex];
-      const result = handler.callback.apply(null, args);
-
-      if (returnFirstArg) {
-        args[0] = result;
-      }
-
-      hookInfo.currentIndex++;
-    }
-
-    hooksStore.__current.pop();
-
-    if (returnFirstArg) {
-      return args[0];
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRunHook);
-//# sourceMappingURL=createRunHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/index.js":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/index.js ***!
-  \************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "actions": () => (/* binding */ actions),
-/* harmony export */   "addAction": () => (/* binding */ addAction),
-/* harmony export */   "addFilter": () => (/* binding */ addFilter),
-/* harmony export */   "applyFilters": () => (/* binding */ applyFilters),
-/* harmony export */   "createHooks": () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "currentAction": () => (/* binding */ currentAction),
-/* harmony export */   "currentFilter": () => (/* binding */ currentFilter),
-/* harmony export */   "defaultHooks": () => (/* binding */ defaultHooks),
-/* harmony export */   "didAction": () => (/* binding */ didAction),
-/* harmony export */   "didFilter": () => (/* binding */ didFilter),
-/* harmony export */   "doAction": () => (/* binding */ doAction),
-/* harmony export */   "doingAction": () => (/* binding */ doingAction),
-/* harmony export */   "doingFilter": () => (/* binding */ doingFilter),
-/* harmony export */   "filters": () => (/* binding */ filters),
-/* harmony export */   "hasAction": () => (/* binding */ hasAction),
-/* harmony export */   "hasFilter": () => (/* binding */ hasFilter),
-/* harmony export */   "removeAction": () => (/* binding */ removeAction),
-/* harmony export */   "removeAllActions": () => (/* binding */ removeAllActions),
-/* harmony export */   "removeAllFilters": () => (/* binding */ removeAllFilters),
-/* harmony export */   "removeFilter": () => (/* binding */ removeFilter)
-/* harmony export */ });
-/* harmony import */ var _createHooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createHooks */ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/createHooks.js");
-/**
- * Internal dependencies
- */
-
-/** @typedef {(...args: any[])=>any} Callback */
-
-/**
- * @typedef Handler
- * @property {Callback} callback  The callback
- * @property {string}   namespace The namespace
- * @property {number}   priority  The namespace
- */
-
-/**
- * @typedef Hook
- * @property {Handler[]} handlers Array of handlers
- * @property {number}    runs     Run counter
- */
-
-/**
- * @typedef Current
- * @property {string} name         Hook name
- * @property {number} currentIndex The index
- */
-
-/**
- * @typedef {Record<string, Hook> & {__current: Current[]}} Store
- */
-
-/**
- * @typedef {'actions' | 'filters'} StoreKey
- */
-
-/**
- * @typedef {import('./createHooks').Hooks} Hooks
- */
-
-const defaultHooks = (0,_createHooks__WEBPACK_IMPORTED_MODULE_0__["default"])();
-const {
-  addAction,
-  addFilter,
-  removeAction,
-  removeFilter,
-  hasAction,
-  hasFilter,
-  removeAllActions,
-  removeAllFilters,
-  doAction,
-  applyFilters,
-  currentAction,
-  currentFilter,
-  doingAction,
-  doingFilter,
-  didAction,
-  didFilter,
-  actions,
-  filters
-} = defaultHooks;
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateHookName.js":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateHookName.js ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a hookName string.
- *
- * @param {string} hookName The hook name to validate. Should be a non empty string containing
- *                          only numbers, letters, dashes, periods and underscores. Also,
- *                          the hook name cannot begin with `__`.
- *
- * @return {boolean} Whether the hook name is valid.
- */
-function validateHookName(hookName) {
-  if ('string' !== typeof hookName || '' === hookName) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name must be a non-empty string.');
-    return false;
-  }
-
-  if (/^__/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name cannot begin with `__`.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name can only contain numbers, letters, dashes, periods and underscores.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateHookName);
-//# sourceMappingURL=validateHookName.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateNamespace.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/deprecated/node_modules/@wordpress/hooks/build-module/validateNamespace.js ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a namespace string.
- *
- * @param {string} namespace The namespace to validate - should take the form
- *                           `vendor/plugin/function`.
- *
- * @return {boolean} Whether the namespace is valid.
- */
-function validateNamespace(namespace) {
-  if ('string' !== typeof namespace || '' === namespace) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace must be a non-empty string.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace can only contain numbers, letters, dashes, periods, underscores and slashes.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateNamespace);
-//# sourceMappingURL=validateNamespace.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/data-transfer.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/data-transfer.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getFilesFromDataTransfer": () => (/* binding */ getFilesFromDataTransfer)
-/* harmony export */ });
-/**
- * Gets all files from a DataTransfer object.
- *
- * @param {DataTransfer} dataTransfer DataTransfer object to inspect.
- *
- * @return {File[]} An array containing all files.
- */
-function getFilesFromDataTransfer(dataTransfer) {
-  const files = Array.from(dataTransfer.files);
-  Array.from(dataTransfer.items).forEach(item => {
-    const file = item.getAsFile();
-
-    if (file && !files.find(_ref => {
-      let {
-        name,
-        type,
-        size
-      } = _ref;
-      return name === file.name && type === file.type && size === file.size;
-    })) {
-      files.push(file);
-    }
-  });
-  return files;
-}
-//# sourceMappingURL=data-transfer.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ caretRangeFromPoint)
-/* harmony export */ });
-/**
- * Polyfill.
- * Get a collapsed range for a given point.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
- *
- * @param {DocumentMaybeWithCaretPositionFromPoint} doc The document of the range.
- * @param {number}                                  x   Horizontal position within the current viewport.
- * @param {number}                                  y   Vertical position within the current viewport.
- *
- * @return {Range | null} The best range for the given point.
- */
-function caretRangeFromPoint(doc, x, y) {
-  if (doc.caretRangeFromPoint) {
-    return doc.caretRangeFromPoint(x, y);
-  }
-
-  if (!doc.caretPositionFromPoint) {
-    return null;
-  }
-
-  const point = doc.caretPositionFromPoint(x, y); // If x or y are negative, outside viewport, or there is no text entry node.
-  // https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
-
-  if (!point) {
-    return null;
-  }
-
-  const range = doc.createRange();
-  range.setStart(point.offsetNode, point.offset);
-  range.collapse(true);
-  return range;
-}
-/**
- * @typedef {{caretPositionFromPoint?: (x: number, y: number)=> CaretPosition | null} & Document } DocumentMaybeWithCaretPositionFromPoint
- * @typedef {{ readonly offset: number; readonly offsetNode: Node; getClientRect(): DOMRect | null; }} CaretPosition
- */
-//# sourceMappingURL=caret-range-from-point.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ cleanNodeList)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _is_empty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-empty */ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js");
-/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
-/* harmony import */ var _unwrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./unwrap */ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js");
-/* harmony import */ var _phrasing_content__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../phrasing-content */ "./node_modules/@wordpress/dom/build-module/phrasing-content.js");
-/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
-/* harmony import */ var _is_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-element */ "./node_modules/@wordpress/dom/build-module/dom/is-element.js");
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @typedef SchemaItem
- * @property {string[]}                            [attributes] Attributes.
- * @property {(string | RegExp)[]}                 [classes]    Classnames or RegExp to test against.
- * @property {'*' | { [tag: string]: SchemaItem }} [children]   Child schemas.
- * @property {string[]}                            [require]    Selectors to test required children against. Leave empty or undefined if there are no requirements.
- * @property {boolean}                             allowEmpty   Whether to allow nodes without children.
- * @property {(node: Node) => boolean}             [isMatch]    Function to test whether a node is a match. If left undefined any node will be assumed to match.
- */
-
-/** @typedef {{ [tag: string]: SchemaItem }} Schema */
-
-/* eslint-enable jsdoc/valid-types */
-
-/**
- * Given a schema, unwraps or removes nodes, attributes and classes on a node
- * list.
- *
- * @param {NodeList} nodeList The nodeList to filter.
- * @param {Document} doc      The document of the nodeList.
- * @param {Schema}   schema   An array of functions that can mutate with the provided node.
- * @param {boolean}  inline   Whether to clean for inline mode.
- */
-
-function cleanNodeList(nodeList, doc, schema, inline) {
-  Array.from(nodeList).forEach((
-  /** @type {Node & { nextElementSibling?: unknown }} */
-  node) => {
-    var _schema$tag$isMatch, _schema$tag;
-
-    const tag = node.nodeName.toLowerCase(); // It's a valid child, if the tag exists in the schema without an isMatch
-    // function, or with an isMatch function that matches the node.
-
-    if (schema.hasOwnProperty(tag) && (!schema[tag].isMatch || (_schema$tag$isMatch = (_schema$tag = schema[tag]).isMatch) !== null && _schema$tag$isMatch !== void 0 && _schema$tag$isMatch.call(_schema$tag, node))) {
-      if ((0,_is_element__WEBPACK_IMPORTED_MODULE_1__["default"])(node)) {
-        const {
-          attributes = [],
-          classes = [],
-          children,
-          require = [],
-          allowEmpty
-        } = schema[tag]; // If the node is empty and it's supposed to have children,
-        // remove the node.
-
-        if (children && !allowEmpty && (0,_is_empty__WEBPACK_IMPORTED_MODULE_2__["default"])(node)) {
-          (0,_remove__WEBPACK_IMPORTED_MODULE_3__["default"])(node);
-          return;
-        }
-
-        if (node.hasAttributes()) {
-          // Strip invalid attributes.
-          Array.from(node.attributes).forEach(_ref => {
-            let {
-              name
-            } = _ref;
-
-            if (name !== 'class' && !(0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(attributes, name)) {
-              node.removeAttribute(name);
-            }
-          }); // Strip invalid classes.
-          // In jsdom-jscore, 'node.classList' can be undefined.
-          // TODO: Explore patching this in jsdom-jscore.
-
-          if (node.classList && node.classList.length) {
-            const mattchers = classes.map(item => {
-              if (typeof item === 'string') {
-                return (
-                /** @type {string} */
-                className) => className === item;
-              } else if (item instanceof RegExp) {
-                return (
-                /** @type {string} */
-                className) => item.test(className);
-              }
-
-              return lodash__WEBPACK_IMPORTED_MODULE_0__.noop;
-            });
-            Array.from(node.classList).forEach(name => {
-              if (!mattchers.some(isMatch => isMatch(name))) {
-                node.classList.remove(name);
-              }
-            });
-
-            if (!node.classList.length) {
-              node.removeAttribute('class');
-            }
-          }
-        }
-
-        if (node.hasChildNodes()) {
-          // Do not filter any content.
-          if (children === '*') {
-            return;
-          } // Continue if the node is supposed to have children.
-
-
-          if (children) {
-            // If a parent requires certain children, but it does
-            // not have them, drop the parent and continue.
-            if (require.length && !node.querySelector(require.join(','))) {
-              cleanNodeList(node.childNodes, doc, schema, inline);
-              (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node); // If the node is at the top, phrasing content, and
-              // contains children that are block content, unwrap
-              // the node because it is invalid.
-            } else if (node.parentNode && node.parentNode.nodeName === 'BODY' && (0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(node)) {
-              cleanNodeList(node.childNodes, doc, schema, inline);
-
-              if (Array.from(node.childNodes).some(child => !(0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(child))) {
-                (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node);
-              }
-            } else {
-              cleanNodeList(node.childNodes, doc, children, inline);
-            } // Remove children if the node is not supposed to have any.
-
-          } else {
-            while (node.firstChild) {
-              (0,_remove__WEBPACK_IMPORTED_MODULE_3__["default"])(node.firstChild);
-            }
-          }
-        }
-      } // Invalid child. Continue with schema at the same place and unwrap.
-
-    } else {
-      cleanNodeList(node.childNodes, doc, schema, inline); // For inline mode, insert a line break when unwrapping nodes that
-      // are not phrasing content.
-
-      if (inline && !(0,_phrasing_content__WEBPACK_IMPORTED_MODULE_5__.isPhrasingContent)(node) && node.nextElementSibling) {
-        (0,_insert_after__WEBPACK_IMPORTED_MODULE_6__["default"])(doc.createElement('br'), node);
-      }
-
-      (0,_unwrap__WEBPACK_IMPORTED_MODULE_4__["default"])(node);
-    }
-  });
-}
-//# sourceMappingURL=clean-node-list.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ computeCaretRect)
-/* harmony export */ });
-/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Get the rectangle for the selection in a container.
- *
- * @param {Window} win The window of the selection.
- *
- * @return {DOMRect | null} The rectangle.
- */
-
-function computeCaretRect(win) {
-  const selection = win.getSelection();
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(selection, 'selection');
-  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
-
-  if (!range) {
-    return null;
-  }
-
-  return (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_1__["default"])(range);
-}
-//# sourceMappingURL=compute-caret-rect.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ documentHasSelection)
-/* harmony export */ });
-/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
-/* harmony import */ var _is_number_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-number-input */ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js");
-/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
-/**
- * Internal dependencies
- */
-
-
-
-/**
- * Check whether the current document has a selection. This checks for both
- * focus in an input field and general text selection.
- *
- * @param {Document} doc The document to check.
- *
- * @return {boolean} True if there is selection, false if not.
- */
-
-function documentHasSelection(doc) {
-  return !!doc.activeElement && ((0,_is_text_field__WEBPACK_IMPORTED_MODULE_0__["default"])(doc.activeElement) || (0,_is_number_input__WEBPACK_IMPORTED_MODULE_1__["default"])(doc.activeElement) || (0,_document_has_text_selection__WEBPACK_IMPORTED_MODULE_2__["default"])(doc));
-}
-//# sourceMappingURL=document-has-selection.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js":
-/*!*************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ documentHasTextSelection)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Check whether the current document has selected text. This applies to ranges
- * of text in the document, and not selection inside `<input>` and `<textarea>`
- * elements.
- *
- * See: https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection#Related_objects.
- *
- * @param {Document} doc The document to check.
- *
- * @return {boolean} True if there is selection, false if not.
- */
-
-function documentHasTextSelection(doc) {
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(doc.defaultView, 'doc.defaultView');
-  const selection = doc.defaultView.getSelection();
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(selection, 'selection');
-  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
-  return !!range && !range.collapsed;
-}
-//# sourceMappingURL=document-has-text-selection.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js ***!
-  \********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ documentHasUncollapsedSelection)
-/* harmony export */ });
-/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
-/* harmony import */ var _input_field_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./input-field-has-uncollapsed-selection */ "./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Check whether the current document has any sort of selection. This includes
- * ranges of text across elements and any selection inside `<input>` and
- * `<textarea>` elements.
- *
- * @param {Document} doc The document to check.
- *
- * @return {boolean} Whether there is any sort of "selection" in the document.
- */
-
-function documentHasUncollapsedSelection(doc) {
-  return (0,_document_has_text_selection__WEBPACK_IMPORTED_MODULE_0__["default"])(doc) || !!doc.activeElement && (0,_input_field_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_1__["default"])(doc.activeElement);
-}
-//# sourceMappingURL=document-has-uncollapsed-selection.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getComputedStyle)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @param {Element} element
- * @return {ReturnType<Window['getComputedStyle']>} The computed style for the element.
- */
-
-function getComputedStyle(element) {
-  /* eslint-enable jsdoc/valid-types */
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(element.ownerDocument.defaultView, 'element.ownerDocument.defaultView');
-  return element.ownerDocument.defaultView.getComputedStyle(element);
-}
-//# sourceMappingURL=get-computed-style.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getOffsetParent)
-/* harmony export */ });
-/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Returns the closest positioned element, or null under any of the conditions
- * of the offsetParent specification. Unlike offsetParent, this function is not
- * limited to HTMLElement and accepts any Node (e.g. Node.TEXT_NODE).
- *
- * @see https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsetparent
- *
- * @param {Node} node Node from which to find offset parent.
- *
- * @return {Node | null} Offset parent.
- */
-
-function getOffsetParent(node) {
-  // Cannot retrieve computed style or offset parent only anything other than
-  // an element node, so find the closest element node.
-  let closestElement;
-
-  while (closestElement =
-  /** @type {Node} */
-  node.parentNode) {
-    if (closestElement.nodeType === closestElement.ELEMENT_NODE) {
-      break;
-    }
-  }
-
-  if (!closestElement) {
-    return null;
-  } // If the closest element is already positioned, return it, as offsetParent
-  // does not otherwise consider the node itself.
-
-
-  if ((0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  /** @type {Element} */
-  closestElement).position !== 'static') {
-    return closestElement;
-  } // offsetParent is undocumented/draft.
-
-
-  return (
-    /** @type {Node & { offsetParent: Node }} */
-    closestElement.offsetParent
-  );
-}
-//# sourceMappingURL=get-offset-parent.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/get-range-height.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/get-range-height.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getRangeHeight)
-/* harmony export */ });
-/**
- * Gets the height of the range without ignoring zero width rectangles, which
- * some browsers ignore when creating a union.
- *
- * @param {Range} range The range to check.
- * @return {number | undefined} Height of the range or undefined if the range has no client rectangles.
- */
-function getRangeHeight(range) {
-  const rects = Array.from(range.getClientRects());
-
-  if (!rects.length) {
-    return;
-  }
-
-  const highestTop = Math.min(...rects.map(_ref => {
-    let {
-      top
-    } = _ref;
-    return top;
-  }));
-  const lowestBottom = Math.max(...rects.map(_ref2 => {
-    let {
-      bottom
-    } = _ref2;
-    return bottom;
-  }));
-  return lowestBottom - highestTop;
-}
-//# sourceMappingURL=get-range-height.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getRectangleFromRange)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Get the rectangle of a given Range.
- *
- * @param {Range} range The range.
- *
- * @return {DOMRect} The rectangle.
- */
-
-function getRectangleFromRange(range) {
-  // For uncollapsed ranges, get the rectangle that bounds the contents of the
-  // range; this a rectangle enclosing the union of the bounding rectangles
-  // for all the elements in the range.
-  if (!range.collapsed) {
-    const rects = Array.from(range.getClientRects()); // If there's just a single rect, return it.
-
-    if (rects.length === 1) {
-      return rects[0];
-    } // Ignore tiny selection at the edge of a range.
-
-
-    const filteredRects = rects.filter(_ref => {
-      let {
-        width
-      } = _ref;
-      return width > 1;
-    }); // If it's full of tiny selections, return browser default.
-
-    if (filteredRects.length === 0) {
-      return range.getBoundingClientRect();
-    }
-
-    if (filteredRects.length === 1) {
-      return filteredRects[0];
-    }
-
-    let {
-      top: furthestTop,
-      bottom: furthestBottom,
-      left: furthestLeft,
-      right: furthestRight
-    } = filteredRects[0];
-
-    for (const {
-      top,
-      bottom,
-      left,
-      right
-    } of filteredRects) {
-      if (top < furthestTop) furthestTop = top;
-      if (bottom > furthestBottom) furthestBottom = bottom;
-      if (left < furthestLeft) furthestLeft = left;
-      if (right > furthestRight) furthestRight = right;
-    }
-
-    return new window.DOMRect(furthestLeft, furthestTop, furthestRight - furthestLeft, furthestBottom - furthestTop);
-  }
-
-  const {
-    startContainer
-  } = range;
-  const {
-    ownerDocument
-  } = startContainer; // Correct invalid "BR" ranges. The cannot contain any children.
-
-  if (startContainer.nodeName === 'BR') {
-    const {
-      parentNode
-    } = startContainer;
-    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(parentNode, 'parentNode');
-    const index =
-    /** @type {Node[]} */
-    Array.from(parentNode.childNodes).indexOf(startContainer);
-    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(ownerDocument, 'ownerDocument');
-    range = ownerDocument.createRange();
-    range.setStart(parentNode, index);
-    range.setEnd(parentNode, index);
-  }
-
-  let rect = range.getClientRects()[0]; // If the collapsed range starts (and therefore ends) at an element node,
-  // `getClientRects` can be empty in some browsers. This can be resolved
-  // by adding a temporary text node with zero-width space to the range.
-  //
-  // See: https://stackoverflow.com/a/6847328/995445
-
-  if (!rect) {
-    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(ownerDocument, 'ownerDocument');
-    const padNode = ownerDocument.createTextNode('\u200b'); // Do not modify the live range.
-
-    range = range.cloneRange();
-    range.insertNode(padNode);
-    rect = range.getClientRects()[0];
-    (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(padNode.parentNode, 'padNode.parentNode');
-    padNode.parentNode.removeChild(padNode);
-  }
-
-  return rect;
-}
-//# sourceMappingURL=get-rectangle-from-range.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getScrollContainer)
-/* harmony export */ });
-/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Given a DOM node, finds the closest scrollable container node.
- *
- * @param {Element | null} node Node from which to start.
- *
- * @return {Element | undefined} Scrollable container node, if found.
- */
-
-function getScrollContainer(node) {
-  if (!node) {
-    return undefined;
-  } // Scrollable if scrollable height exceeds displayed...
-
-
-  if (node.scrollHeight > node.clientHeight) {
-    // ...except when overflow is defined to be hidden or visible
-    const {
-      overflowY
-    } = (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(node);
-
-    if (/(auto|scroll)/.test(overflowY)) {
-      return node;
-    }
-  } // Continue traversing.
-
-
-  return getScrollContainer(
-  /** @type {Element} */
-  node.parentNode);
-}
-//# sourceMappingURL=get-scroll-container.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js":
-/*!***************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js ***!
-  \***************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ hiddenCaretRangeFromPoint)
-/* harmony export */ });
-/* harmony import */ var _caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/caret-range-from-point.js");
-/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Get a collapsed range for a given point.
- * Gives the container a temporary high z-index (above any UI).
- * This is preferred over getting the UI nodes and set styles there.
- *
- * @param {Document}    doc       The document of the range.
- * @param {number}      x         Horizontal position within the current viewport.
- * @param {number}      y         Vertical position within the current viewport.
- * @param {HTMLElement} container Container in which the range is expected to be found.
- *
- * @return {?Range} The best range for the given point.
- */
-
-function hiddenCaretRangeFromPoint(doc, x, y, container) {
-  const originalZIndex = container.style.zIndex;
-  const originalPosition = container.style.position;
-  const {
-    position = 'static'
-  } = (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(container); // A z-index only works if the element position is not static.
-
-  if (position === 'static') {
-    container.style.position = 'relative';
-  }
-
-  container.style.zIndex = '10000';
-  const range = (0,_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__["default"])(doc, x, y);
-  container.style.zIndex = originalZIndex;
-  container.style.position = originalPosition;
-  return range;
-}
-//# sourceMappingURL=hidden-caret-range-from-point.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/index.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/index.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__unstableStripHTML": () => (/* reexport safe */ _strip_html__WEBPACK_IMPORTED_MODULE_21__["default"]),
-/* harmony export */   "computeCaretRect": () => (/* reexport safe */ _compute_caret_rect__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "documentHasSelection": () => (/* reexport safe */ _document_has_selection__WEBPACK_IMPORTED_MODULE_3__["default"]),
-/* harmony export */   "documentHasTextSelection": () => (/* reexport safe */ _document_has_text_selection__WEBPACK_IMPORTED_MODULE_1__["default"]),
-/* harmony export */   "documentHasUncollapsedSelection": () => (/* reexport safe */ _document_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   "getOffsetParent": () => (/* reexport safe */ _get_offset_parent__WEBPACK_IMPORTED_MODULE_6__["default"]),
-/* harmony export */   "getRectangleFromRange": () => (/* reexport safe */ _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_4__["default"]),
-/* harmony export */   "getScrollContainer": () => (/* reexport safe */ _get_scroll_container__WEBPACK_IMPORTED_MODULE_5__["default"]),
-/* harmony export */   "insertAfter": () => (/* reexport safe */ _insert_after__WEBPACK_IMPORTED_MODULE_17__["default"]),
-/* harmony export */   "isEmpty": () => (/* reexport safe */ _is_empty__WEBPACK_IMPORTED_MODULE_22__["default"]),
-/* harmony export */   "isEntirelySelected": () => (/* reexport safe */ _is_entirely_selected__WEBPACK_IMPORTED_MODULE_7__["default"]),
-/* harmony export */   "isFormElement": () => (/* reexport safe */ _is_form_element__WEBPACK_IMPORTED_MODULE_8__["default"]),
-/* harmony export */   "isHorizontalEdge": () => (/* reexport safe */ _is_horizontal_edge__WEBPACK_IMPORTED_MODULE_9__["default"]),
-/* harmony export */   "isNumberInput": () => (/* reexport safe */ _is_number_input__WEBPACK_IMPORTED_MODULE_10__["default"]),
-/* harmony export */   "isRTL": () => (/* reexport safe */ _is_rtl__WEBPACK_IMPORTED_MODULE_24__["default"]),
-/* harmony export */   "isTextField": () => (/* reexport safe */ _is_text_field__WEBPACK_IMPORTED_MODULE_11__["default"]),
-/* harmony export */   "isVerticalEdge": () => (/* reexport safe */ _is_vertical_edge__WEBPACK_IMPORTED_MODULE_12__["default"]),
-/* harmony export */   "placeCaretAtHorizontalEdge": () => (/* reexport safe */ _place_caret_at_horizontal_edge__WEBPACK_IMPORTED_MODULE_13__["default"]),
-/* harmony export */   "placeCaretAtVerticalEdge": () => (/* reexport safe */ _place_caret_at_vertical_edge__WEBPACK_IMPORTED_MODULE_14__["default"]),
-/* harmony export */   "remove": () => (/* reexport safe */ _remove__WEBPACK_IMPORTED_MODULE_16__["default"]),
-/* harmony export */   "removeInvalidHTML": () => (/* reexport safe */ _remove_invalid_html__WEBPACK_IMPORTED_MODULE_23__["default"]),
-/* harmony export */   "replace": () => (/* reexport safe */ _replace__WEBPACK_IMPORTED_MODULE_15__["default"]),
-/* harmony export */   "replaceTag": () => (/* reexport safe */ _replace_tag__WEBPACK_IMPORTED_MODULE_19__["default"]),
-/* harmony export */   "safeHTML": () => (/* reexport safe */ _safe_html__WEBPACK_IMPORTED_MODULE_25__["default"]),
-/* harmony export */   "unwrap": () => (/* reexport safe */ _unwrap__WEBPACK_IMPORTED_MODULE_18__["default"]),
-/* harmony export */   "wrap": () => (/* reexport safe */ _wrap__WEBPACK_IMPORTED_MODULE_20__["default"])
-/* harmony export */ });
-/* harmony import */ var _compute_caret_rect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compute-caret-rect */ "./node_modules/@wordpress/dom/build-module/dom/compute-caret-rect.js");
-/* harmony import */ var _document_has_text_selection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./document-has-text-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-text-selection.js");
-/* harmony import */ var _document_has_uncollapsed_selection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./document-has-uncollapsed-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-uncollapsed-selection.js");
-/* harmony import */ var _document_has_selection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./document-has-selection */ "./node_modules/@wordpress/dom/build-module/dom/document-has-selection.js");
-/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
-/* harmony import */ var _get_scroll_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./get-scroll-container */ "./node_modules/@wordpress/dom/build-module/dom/get-scroll-container.js");
-/* harmony import */ var _get_offset_parent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./get-offset-parent */ "./node_modules/@wordpress/dom/build-module/dom/get-offset-parent.js");
-/* harmony import */ var _is_entirely_selected__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./is-entirely-selected */ "./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js");
-/* harmony import */ var _is_form_element__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./is-form-element */ "./node_modules/@wordpress/dom/build-module/dom/is-form-element.js");
-/* harmony import */ var _is_horizontal_edge__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./is-horizontal-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js");
-/* harmony import */ var _is_number_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./is-number-input */ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js");
-/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
-/* harmony import */ var _is_vertical_edge__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./is-vertical-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js");
-/* harmony import */ var _place_caret_at_horizontal_edge__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./place-caret-at-horizontal-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js");
-/* harmony import */ var _place_caret_at_vertical_edge__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./place-caret-at-vertical-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js");
-/* harmony import */ var _replace__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./replace */ "./node_modules/@wordpress/dom/build-module/dom/replace.js");
-/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
-/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
-/* harmony import */ var _unwrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./unwrap */ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js");
-/* harmony import */ var _replace_tag__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./replace-tag */ "./node_modules/@wordpress/dom/build-module/dom/replace-tag.js");
-/* harmony import */ var _wrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./wrap */ "./node_modules/@wordpress/dom/build-module/dom/wrap.js");
-/* harmony import */ var _strip_html__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./strip-html */ "./node_modules/@wordpress/dom/build-module/dom/strip-html.js");
-/* harmony import */ var _is_empty__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./is-empty */ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js");
-/* harmony import */ var _remove_invalid_html__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./remove-invalid-html */ "./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js");
-/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
-/* harmony import */ var _safe_html__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./safe-html */ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/input-field-has-uncollapsed-selection.js ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ inputFieldHasUncollapsedSelection)
-/* harmony export */ });
-/* harmony import */ var _is_text_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-text-field */ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js");
-/* harmony import */ var _is_number_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./is-number-input */ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Check whether the given element, assumed an input field or textarea,
- * contains a (uncollapsed) selection of text.
- *
- * Note: this is perhaps an abuse of the term "selection", since these elements
- * manage selection differently and aren't covered by Selection#collapsed.
- *
- * See: https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection#Related_objects.
- *
- * @param {Element} element The HTML element.
- *
- * @return {boolean} Whether the input/textareaa element has some "selection".
- */
-
-function inputFieldHasUncollapsedSelection(element) {
-  if (!(0,_is_text_field__WEBPACK_IMPORTED_MODULE_0__["default"])(element) && !(0,_is_number_input__WEBPACK_IMPORTED_MODULE_1__["default"])(element)) {
-    return false;
-  }
-
-  try {
-    const {
-      selectionStart,
-      selectionEnd
-    } =
-    /** @type {HTMLInputElement | HTMLTextAreaElement} */
-    element;
-    return selectionStart !== null && selectionStart !== selectionEnd;
-  } catch (error) {
-    // Safari throws an exception when trying to get `selectionStart`
-    // on non-text <input> elements (which, understandably, don't
-    // have the text selection API). We catch this via a try/catch
-    // block, as opposed to a more explicit check of the element's
-    // input types, because of Safari's non-standard behavior. This
-    // also means we don't have to worry about the list of input
-    // types that support `selectionStart` changing as the HTML spec
-    // evolves over time.
-    return false;
-  }
-}
-//# sourceMappingURL=input-field-has-uncollapsed-selection.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/insert-after.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ insertAfter)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Given two DOM nodes, inserts the former in the DOM as the next sibling of
- * the latter.
- *
- * @param {Node} newNode       Node to be inserted.
- * @param {Node} referenceNode Node after which to perform the insertion.
- * @return {void}
- */
-
-function insertAfter(newNode, referenceNode) {
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(referenceNode.parentNode, 'referenceNode.parentNode');
-  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-}
-//# sourceMappingURL=insert-after.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-edge.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isEdge)
-/* harmony export */ });
-/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
-/* harmony import */ var _get_range_height__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./get-range-height */ "./node_modules/@wordpress/dom/build-module/dom/get-range-height.js");
-/* harmony import */ var _get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./get-rectangle-from-range */ "./node_modules/@wordpress/dom/build-module/dom/get-rectangle-from-range.js");
-/* harmony import */ var _is_selection_forward__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-selection-forward */ "./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js");
-/* harmony import */ var _hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./hidden-caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js");
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-/**
- * Check whether the selection is at the edge of the container. Checks for
- * horizontal position by default. Set `onlyVertical` to true to check only
- * vertically.
- *
- * @param {Element} container            Focusable element.
- * @param {boolean} isReverse            Set to true to check left, false to check right.
- * @param {boolean} [onlyVertical=false] Set to true to check only vertical position.
- *
- * @return {boolean} True if at the edge, false if not.
- */
-
-function isEdge(container, isReverse) {
-  let onlyVertical = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(container) && typeof container.selectionStart === 'number') {
-    if (container.selectionStart !== container.selectionEnd) {
-      return false;
-    }
-
-    if (isReverse) {
-      return container.selectionStart === 0;
-    }
-
-    return container.value.length === container.selectionStart;
-  }
-
-  if (!
-  /** @type {HTMLElement} */
-  container.isContentEditable) {
-    return true;
-  }
-
-  const {
-    ownerDocument
-  } = container;
-  const {
-    defaultView
-  } = ownerDocument;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(defaultView, 'defaultView');
-  const selection = defaultView.getSelection();
-
-  if (!selection || !selection.rangeCount) {
-    return false;
-  }
-
-  const range = selection.getRangeAt(0);
-  const collapsedRange = range.cloneRange();
-  const isForward = (0,_is_selection_forward__WEBPACK_IMPORTED_MODULE_2__["default"])(selection);
-  const isCollapsed = selection.isCollapsed; // Collapse in direction of selection.
-
-  if (!isCollapsed) {
-    collapsedRange.collapse(!isForward);
-  }
-
-  const collapsedRangeRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(collapsedRange);
-  const rangeRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(range);
-
-  if (!collapsedRangeRect || !rangeRect) {
-    return false;
-  } // Only consider the multiline selection at the edge if the direction is
-  // towards the edge. The selection is multiline if it is taller than the
-  // collapsed  selection.
-
-
-  const rangeHeight = (0,_get_range_height__WEBPACK_IMPORTED_MODULE_4__["default"])(range);
-
-  if (!isCollapsed && rangeHeight && rangeHeight > collapsedRangeRect.height && isForward === isReverse) {
-    return false;
-  } // In the case of RTL scripts, the horizontal edge is at the opposite side.
-
-
-  const isReverseDir = (0,_is_rtl__WEBPACK_IMPORTED_MODULE_5__["default"])(container) ? !isReverse : isReverse;
-  const containerRect = container.getBoundingClientRect(); // To check if a selection is at the edge, we insert a test selection at the
-  // edge of the container and check if the selections have the same vertical
-  // or horizontal position. If they do, the selection is at the edge.
-  // This method proves to be better than a DOM-based calculation for the
-  // horizontal edge, since it ignores empty textnodes and a trailing line
-  // break element. In other words, we need to check visual positioning, not
-  // DOM positioning.
-  // It also proves better than using the computed style for the vertical
-  // edge, because we cannot know the padding and line height reliably in
-  // pixels. `getComputedStyle` may return a value with different units.
-
-  const x = isReverseDir ? containerRect.left + 1 : containerRect.right - 1;
-  const y = isReverse ? containerRect.top + 1 : containerRect.bottom - 1;
-  const testRange = (0,_hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerDocument, x, y,
-  /** @type {HTMLElement} */
-  container);
-
-  if (!testRange) {
-    return false;
-  }
-
-  const testRect = (0,_get_rectangle_from_range__WEBPACK_IMPORTED_MODULE_3__["default"])(testRange);
-
-  if (!testRect) {
-    return false;
-  }
-
-  const verticalSide = isReverse ? 'top' : 'bottom';
-  const horizontalSide = isReverseDir ? 'left' : 'right';
-  const verticalDiff = testRect[verticalSide] - rangeRect[verticalSide];
-  const horizontalDiff = testRect[horizontalSide] - collapsedRangeRect[horizontalSide]; // Allow the position to be 1px off.
-
-  const hasVerticalDiff = Math.abs(verticalDiff) <= 1;
-  const hasHorizontalDiff = Math.abs(horizontalDiff) <= 1;
-  return onlyVertical ? hasVerticalDiff : hasVerticalDiff && hasHorizontalDiff;
-}
-//# sourceMappingURL=is-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-element.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-element.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isElement)
-/* harmony export */ });
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @param {Node | null | undefined} node
- * @return {node is Element} True if node is an Element node
- */
-function isElement(node) {
-  /* eslint-enable jsdoc/valid-types */
-  return !!node && node.nodeType === node.ELEMENT_NODE;
-}
-//# sourceMappingURL=is-element.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-empty.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-empty.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isEmpty)
-/* harmony export */ });
-/**
- * Recursively checks if an element is empty. An element is not empty if it
- * contains text or contains elements with attributes such as images.
- *
- * @param {Element} element The element to check.
- *
- * @return {boolean} Whether or not the element is empty.
- */
-function isEmpty(element) {
-  switch (element.nodeType) {
-    case element.TEXT_NODE:
-      // We cannot use \s since it includes special spaces which we want
-      // to preserve.
-      return /^[ \f\n\r\t\v\u00a0]*$/.test(element.nodeValue || '');
-
-    case element.ELEMENT_NODE:
-      if (element.hasAttributes()) {
-        return false;
-      } else if (!element.hasChildNodes()) {
-        return true;
-      }
-
-      return (
-        /** @type {Element[]} */
-        Array.from(element.childNodes).every(isEmpty)
-      );
-
-    default:
-      return true;
-  }
-}
-//# sourceMappingURL=is-empty.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-entirely-selected.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isEntirelySelected)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Check whether the contents of the element have been entirely selected.
- * Returns true if there is no possibility of selection.
- *
- * @param {HTMLElement} element The element to check.
- *
- * @return {boolean} True if entirely selected, false if not.
- */
-
-function isEntirelySelected(element) {
-  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(element)) {
-    return element.selectionStart === 0 && element.value.length === element.selectionEnd;
-  }
-
-  if (!element.isContentEditable) {
-    return true;
-  }
-
-  const {
-    ownerDocument
-  } = element;
-  const {
-    defaultView
-  } = ownerDocument;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(defaultView, 'defaultView');
-  const selection = defaultView.getSelection();
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(selection, 'selection');
-  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
-
-  if (!range) {
-    return true;
-  }
-
-  const {
-    startContainer,
-    endContainer,
-    startOffset,
-    endOffset
-  } = range;
-
-  if (startContainer === element && endContainer === element && startOffset === 0 && endOffset === element.childNodes.length) {
-    return true;
-  }
-
-  const lastChild = element.lastChild;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_1__.assertIsDefined)(lastChild, 'lastChild');
-  const endContainerContentLength = endContainer.nodeType === endContainer.TEXT_NODE ?
-  /** @type {Text} */
-  endContainer.data.length : endContainer.childNodes.length;
-  return isDeepChild(startContainer, element, 'firstChild') && isDeepChild(endContainer, element, 'lastChild') && startOffset === 0 && endOffset === endContainerContentLength;
-}
-/**
- * Check whether the contents of the element have been entirely selected.
- * Returns true if there is no possibility of selection.
- *
- * @param {HTMLElement|Node}         query     The element to check.
- * @param {HTMLElement}              container The container that we suspect "query" may be a first or last child of.
- * @param {"firstChild"|"lastChild"} propName  "firstChild" or "lastChild"
- *
- * @return {boolean} True if query is a deep first/last child of container, false otherwise.
- */
-
-function isDeepChild(query, container, propName) {
-  /** @type {HTMLElement | ChildNode | null} */
-  let candidate = container;
-
-  do {
-    if (query === candidate) {
-      return true;
-    }
-
-    candidate = candidate[propName];
-  } while (candidate);
-
-  return false;
-}
-//# sourceMappingURL=is-entirely-selected.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-form-element.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-form-element.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isFormElement)
-/* harmony export */ });
-/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
-/**
- * Internal dependencies
- */
-
-/**
- *
- * Detects if element is a form element.
- *
- * @param {Element} element The element to check.
- *
- * @return {boolean} True if form element and false otherwise.
- */
-
-function isFormElement(element) {
-  const {
-    tagName
-  } = element;
-  const checkForInputTextarea = (0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
-  return checkForInputTextarea || tagName === 'BUTTON' || tagName === 'SELECT';
-}
-//# sourceMappingURL=is-form-element.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-horizontal-edge.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isHorizontalEdge)
-/* harmony export */ });
-/* harmony import */ var _is_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Check whether the selection is horizontally at the edge of the container.
- *
- * @param {Element} container Focusable element.
- * @param {boolean} isReverse Set to true to check left, false for right.
- *
- * @return {boolean} True if at the horizontal edge, false if not.
- */
-
-function isHorizontalEdge(container, isReverse) {
-  return (0,_is_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse);
-}
-//# sourceMappingURL=is-horizontal-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isHTMLInputElement)
-/* harmony export */ });
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @param {Node} node
- * @return {node is HTMLInputElement} Whether the node is an HTMLInputElement.
- */
-function isHTMLInputElement(node) {
-  /* eslint-enable jsdoc/valid-types */
-  return !!node && node.nodeName === 'INPUT';
-}
-//# sourceMappingURL=is-html-input-element.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isInputOrTextArea)
-/* harmony export */ });
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * @param {Element} element
- * @return {element is HTMLInputElement | HTMLTextAreaElement} Whether the element is an input or textarea
- */
-function isInputOrTextArea(element) {
-  /* eslint-enable jsdoc/valid-types */
-  return element.tagName === 'INPUT' || element.tagName === 'TEXTAREA';
-}
-//# sourceMappingURL=is-input-or-text-area.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-number-input.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-number-input.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isNumberInput)
-/* harmony export */ });
-/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
-/**
- * Internal dependencies
- */
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * Check whether the given element is an input field of type number
- * and has a valueAsNumber
- *
- * @param {Node} node The HTML node.
- *
- * @return {node is HTMLInputElement} True if the node is input and holds a number.
- */
-
-function isNumberInput(node) {
-  /* eslint-enable jsdoc/valid-types */
-  return (0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_0__["default"])(node) && node.type === 'number' && !!node.valueAsNumber;
-}
-//# sourceMappingURL=is-number-input.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-rtl.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isRTL)
-/* harmony export */ });
-/* harmony import */ var _get_computed_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-computed-style */ "./node_modules/@wordpress/dom/build-module/dom/get-computed-style.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Whether the element's text direction is right-to-left.
- *
- * @param {Element} element The element to check.
- *
- * @return {boolean} True if rtl, false if ltr.
- */
-
-function isRTL(element) {
-  return (0,_get_computed_style__WEBPACK_IMPORTED_MODULE_0__["default"])(element).direction === 'rtl';
-}
-//# sourceMappingURL=is-rtl.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-selection-forward.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isSelectionForward)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Returns true if the given selection object is in the forward direction, or
- * false otherwise.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition
- *
- * @param {Selection} selection Selection object to check.
- *
- * @return {boolean} Whether the selection is forward.
- */
-
-function isSelectionForward(selection) {
-  const {
-    anchorNode,
-    focusNode,
-    anchorOffset,
-    focusOffset
-  } = selection;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(anchorNode, 'anchorNode');
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(focusNode, 'focusNode');
-  const position = anchorNode.compareDocumentPosition(focusNode); // Disable reason: `Node#compareDocumentPosition` returns a bitmask value,
-  // so bitwise operators are intended.
-
-  /* eslint-disable no-bitwise */
-  // Compare whether anchor node precedes focus node. If focus node (where
-  // end of selection occurs) is after the anchor node, it is forward.
-
-  if (position & anchorNode.DOCUMENT_POSITION_PRECEDING) {
-    return false;
-  }
-
-  if (position & anchorNode.DOCUMENT_POSITION_FOLLOWING) {
-    return true;
-  }
-  /* eslint-enable no-bitwise */
-  // `compareDocumentPosition` returns 0 when passed the same node, in which
-  // case compare offsets.
-
-
-  if (position === 0) {
-    return anchorOffset <= focusOffset;
-  } // This should never be reached, but return true as default case.
-
-
-  return true;
-}
-//# sourceMappingURL=is-selection-forward.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-text-field.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-text-field.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isTextField)
-/* harmony export */ });
-/* harmony import */ var _is_html_input_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-html-input-element */ "./node_modules/@wordpress/dom/build-module/dom/is-html-input-element.js");
-/**
- * Internal dependencies
- */
-
-/* eslint-disable jsdoc/valid-types */
-
-/**
- * Check whether the given element is a text field, where text field is defined
- * by the ability to select within the input, or that it is contenteditable.
- *
- * See: https://html.spec.whatwg.org/#textFieldSelection
- *
- * @param {Node} node The HTML element.
- * @return {node is HTMLElement} True if the element is an text field, false if not.
- */
-
-function isTextField(node) {
-  /* eslint-enable jsdoc/valid-types */
-  const nonTextInputs = ['button', 'checkbox', 'hidden', 'file', 'radio', 'image', 'range', 'reset', 'submit', 'number'];
-  return (0,_is_html_input_element__WEBPACK_IMPORTED_MODULE_0__["default"])(node) && node.type && !nonTextInputs.includes(node.type) || node.nodeName === 'TEXTAREA' ||
-  /** @type {HTMLElement} */
-  node.contentEditable === 'true';
-}
-//# sourceMappingURL=is-text-field.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/is-vertical-edge.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ isVerticalEdge)
-/* harmony export */ });
-/* harmony import */ var _is_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-edge */ "./node_modules/@wordpress/dom/build-module/dom/is-edge.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Check whether the selection is vertically at the edge of the container.
- *
- * @param {Element} container Focusable element.
- * @param {boolean} isReverse Set to true to check top, false for bottom.
- *
- * @return {boolean} True if at the vertical edge, false if not.
- */
-
-function isVerticalEdge(container, isReverse) {
-  return (0,_is_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, true);
-}
-//# sourceMappingURL=is-vertical-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ placeCaretAtEdge)
-/* harmony export */ });
-/* harmony import */ var _hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hidden-caret-range-from-point */ "./node_modules/@wordpress/dom/build-module/dom/hidden-caret-range-from-point.js");
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/* harmony import */ var _is_input_or_text_area__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./is-input-or-text-area */ "./node_modules/@wordpress/dom/build-module/dom/is-input-or-text-area.js");
-/* harmony import */ var _is_rtl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./is-rtl */ "./node_modules/@wordpress/dom/build-module/dom/is-rtl.js");
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Gets the range to place.
- *
- * @param {HTMLElement}      container Focusable element.
- * @param {boolean}          isReverse True for end, false for start.
- * @param {number|undefined} x         X coordinate to vertically position.
- *
- * @return {Range|null} The range to place.
- */
-
-function getRange(container, isReverse, x) {
-  const {
-    ownerDocument
-  } = container; // In the case of RTL scripts, the horizontal edge is at the opposite side.
-
-  const isReverseDir = (0,_is_rtl__WEBPACK_IMPORTED_MODULE_0__["default"])(container) ? !isReverse : isReverse;
-  const containerRect = container.getBoundingClientRect(); // When placing at the end (isReverse), find the closest range to the bottom
-  // right corner. When placing at the start, to the top left corner.
-
-  if (x === undefined) {
-    x = isReverse ? containerRect.right - 1 : containerRect.left + 1;
-  }
-
-  const y = isReverseDir ? containerRect.bottom - 1 : containerRect.top + 1;
-  return (0,_hidden_caret_range_from_point__WEBPACK_IMPORTED_MODULE_1__["default"])(ownerDocument, x, y, container);
-}
-/**
- * Places the caret at start or end of a given element.
- *
- * @param {HTMLElement}      container Focusable element.
- * @param {boolean}          isReverse True for end, false for start.
- * @param {number|undefined} x         X coordinate to vertically position.
- */
-
-
-function placeCaretAtEdge(container, isReverse, x) {
-  if (!container) {
-    return;
-  }
-
-  container.focus();
-
-  if ((0,_is_input_or_text_area__WEBPACK_IMPORTED_MODULE_2__["default"])(container)) {
-    // The element may not support selection setting.
-    if (typeof container.selectionStart !== 'number') {
-      return;
-    }
-
-    if (isReverse) {
-      container.selectionStart = container.value.length;
-      container.selectionEnd = container.value.length;
-    } else {
-      container.selectionStart = 0;
-      container.selectionEnd = 0;
-    }
-
-    return;
-  }
-
-  if (!container.isContentEditable) {
-    return;
-  }
-
-  let range = getRange(container, isReverse, x); // If no range range can be created or it is outside the container, the
-  // element may be out of view.
-
-  if (!range || !range.startContainer || !container.contains(range.startContainer)) {
-    container.scrollIntoView(isReverse);
-    range = range = getRange(container, isReverse, x);
-
-    if (!range || !range.startContainer || !container.contains(range.startContainer)) {
-      return;
-    }
-  }
-
-  const {
-    ownerDocument
-  } = container;
-  const {
-    defaultView
-  } = ownerDocument;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__.assertIsDefined)(defaultView, 'defaultView');
-  const selection = defaultView.getSelection();
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_3__.assertIsDefined)(selection, 'selection');
-  selection.removeAllRanges();
-  selection.addRange(range);
-}
-//# sourceMappingURL=place-caret-at-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-horizontal-edge.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ placeCaretAtHorizontalEdge)
-/* harmony export */ });
-/* harmony import */ var _place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./place-caret-at-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Places the caret at start or end of a given element.
- *
- * @param {HTMLElement} container Focusable element.
- * @param {boolean}     isReverse True for end, false for start.
- */
-
-function placeCaretAtHorizontalEdge(container, isReverse) {
-  return (0,_place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, undefined);
-}
-//# sourceMappingURL=place-caret-at-horizontal-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/place-caret-at-vertical-edge.js ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ placeCaretAtVerticalEdge)
-/* harmony export */ });
-/* harmony import */ var _place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./place-caret-at-edge */ "./node_modules/@wordpress/dom/build-module/dom/place-caret-at-edge.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Places the caret at the top or bottom of a given element.
- *
- * @param {HTMLElement} container Focusable element.
- * @param {boolean}     isReverse True for bottom, false for top.
- * @param {DOMRect}     [rect]    The rectangle to position the caret with.
- */
-
-function placeCaretAtVerticalEdge(container, isReverse, rect) {
-  return (0,_place_caret_at_edge__WEBPACK_IMPORTED_MODULE_0__["default"])(container, isReverse, rect === null || rect === void 0 ? void 0 : rect.left);
-}
-//# sourceMappingURL=place-caret-at-vertical-edge.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/remove-invalid-html.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ removeInvalidHTML)
-/* harmony export */ });
-/* harmony import */ var _clean_node_list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clean-node-list */ "./node_modules/@wordpress/dom/build-module/dom/clean-node-list.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Given a schema, unwraps or removes nodes, attributes and classes on HTML.
- *
- * @param {string}                             HTML   The HTML to clean up.
- * @param {import('./clean-node-list').Schema} schema Schema for the HTML.
- * @param {boolean}                            inline Whether to clean for inline mode.
- *
- * @return {string} The cleaned up HTML.
- */
-
-function removeInvalidHTML(HTML, schema, inline) {
-  const doc = document.implementation.createHTMLDocument('');
-  doc.body.innerHTML = HTML;
-  (0,_clean_node_list__WEBPACK_IMPORTED_MODULE_0__["default"])(doc.body.childNodes, doc, schema, inline);
-  return doc.body.innerHTML;
-}
-//# sourceMappingURL=remove-invalid-html.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/remove.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/remove.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ remove)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Given a DOM node, removes it from the DOM.
- *
- * @param {Node} node Node to be removed.
- * @return {void}
- */
-
-function remove(node) {
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(node.parentNode, 'node.parentNode');
-  node.parentNode.removeChild(node);
-}
-//# sourceMappingURL=remove.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/replace-tag.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/replace-tag.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ replaceTag)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Replaces the given node with a new node with the given tag name.
- *
- * @param {Element} node    The node to replace
- * @param {string}  tagName The new tag name.
- *
- * @return {Element} The new node.
- */
-
-function replaceTag(node, tagName) {
-  const newNode = node.ownerDocument.createElement(tagName);
-
-  while (node.firstChild) {
-    newNode.appendChild(node.firstChild);
-  }
-
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(node.parentNode, 'node.parentNode');
-  node.parentNode.replaceChild(newNode, node);
-  return newNode;
-}
-//# sourceMappingURL=replace-tag.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/replace.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/replace.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ replace)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/* harmony import */ var _insert_after__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./insert-after */ "./node_modules/@wordpress/dom/build-module/dom/insert-after.js");
-/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
-/**
- * Internal dependencies
- */
-
-
-
-/**
- * Given two DOM nodes, replaces the former with the latter in the DOM.
- *
- * @param {Element} processedNode Node to be removed.
- * @param {Element} newNode       Node to be inserted in its place.
- * @return {void}
- */
-
-function replace(processedNode, newNode) {
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(processedNode.parentNode, 'processedNode.parentNode');
-  (0,_insert_after__WEBPACK_IMPORTED_MODULE_1__["default"])(newNode, processedNode.parentNode);
-  (0,_remove__WEBPACK_IMPORTED_MODULE_2__["default"])(processedNode);
-}
-//# sourceMappingURL=replace.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/safe-html.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ safeHTML)
-/* harmony export */ });
-/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./remove */ "./node_modules/@wordpress/dom/build-module/dom/remove.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Strips scripts and on* attributes from HTML.
- *
- * @param {string} html HTML to sanitize.
- *
- * @return {string} The sanitized HTML.
- */
-
-function safeHTML(html) {
-  const {
-    body
-  } = document.implementation.createHTMLDocument('');
-  body.innerHTML = html;
-  const elements = body.getElementsByTagName('*');
-  let elementIndex = elements.length;
-
-  while (elementIndex--) {
-    const element = elements[elementIndex];
-
-    if (element.tagName === 'SCRIPT') {
-      (0,_remove__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
-    } else {
-      let attributeIndex = element.attributes.length;
-
-      while (attributeIndex--) {
-        const {
-          name: key
-        } = element.attributes[attributeIndex];
-
-        if (key.startsWith('on')) {
-          element.removeAttribute(key);
-        }
-      }
-    }
-  }
-
-  return body.innerHTML;
-}
-//# sourceMappingURL=safe-html.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/strip-html.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/strip-html.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ stripHTML)
-/* harmony export */ });
-/* harmony import */ var _safe_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./safe-html */ "./node_modules/@wordpress/dom/build-module/dom/safe-html.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Removes any HTML tags from the provided string.
- *
- * @param {string} html The string containing html.
- *
- * @return {string} The text content with any html removed.
- */
-
-function stripHTML(html) {
-  // Remove any script tags or on* attributes otherwise their *contents* will be left
-  // in place following removal of HTML tags.
-  html = (0,_safe_html__WEBPACK_IMPORTED_MODULE_0__["default"])(html);
-  const doc = document.implementation.createHTMLDocument('');
-  doc.body.innerHTML = html;
-  return doc.body.textContent || '';
-}
-//# sourceMappingURL=strip-html.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/unwrap.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/unwrap.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ unwrap)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Unwrap the given node. This means any child nodes are moved to the parent.
- *
- * @param {Node} node The node to unwrap.
- *
- * @return {void}
- */
-
-function unwrap(node) {
-  const parent = node.parentNode;
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(parent, 'node.parentNode');
-
-  while (node.firstChild) {
-    parent.insertBefore(node.firstChild, node);
-  }
-
-  parent.removeChild(node);
-}
-//# sourceMappingURL=unwrap.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/dom/wrap.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/dom/wrap.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ wrap)
-/* harmony export */ });
-/* harmony import */ var _utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/assert-is-defined */ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js");
-/**
- * Internal dependencies
- */
-
-/**
- * Wraps the given node with a new node with the given tag name.
- *
- * @param {Element} newNode       The node to insert.
- * @param {Element} referenceNode The node to wrap.
- */
-
-function wrap(newNode, referenceNode) {
-  (0,_utils_assert_is_defined__WEBPACK_IMPORTED_MODULE_0__.assertIsDefined)(referenceNode.parentNode, 'referenceNode.parentNode');
-  referenceNode.parentNode.insertBefore(newNode, referenceNode);
-  newNode.appendChild(referenceNode);
-}
-//# sourceMappingURL=wrap.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/focusable.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/focusable.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* binding */ find)
-/* harmony export */ });
-/**
- * References:
- *
- * Focusable:
- *  - https://www.w3.org/TR/html5/editing.html#focus-management
- *
- * Sequential focus navigation:
- *  - https://www.w3.org/TR/html5/editing.html#sequential-focus-navigation-and-the-tabindex-attribute
- *
- * Disabled elements:
- *  - https://www.w3.org/TR/html5/disabled-elements.html#disabled-elements
- *
- * getClientRects algorithm (requiring layout box):
- *  - https://www.w3.org/TR/cssom-view-1/#extension-to-the-element-interface
- *
- * AREA elements associated with an IMG:
- *  - https://w3c.github.io/html/editing.html#data-model
- */
-
-/**
- * Returns a CSS selector used to query for focusable elements.
- *
- * @param {boolean} sequential If set, only query elements that are sequentially
- *                             focusable. Non-interactive elements with a
- *                             negative `tabindex` are focusable but not
- *                             sequentially focusable.
- *                             https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute
- *
- * @return {string} CSS selector.
- */
-function buildSelector(sequential) {
-  return [sequential ? '[tabindex]:not([tabindex^="-"])' : '[tabindex]', 'a[href]', 'button:not([disabled])', 'input:not([type="hidden"]):not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'iframe:not([tabindex^="-"])', 'object', 'embed', 'area[href]', '[contenteditable]:not([contenteditable=false])'].join(',');
-}
-/**
- * Returns true if the specified element is visible (i.e. neither display: none
- * nor visibility: hidden).
- *
- * @param {HTMLElement} element DOM element to test.
- *
- * @return {boolean} Whether element is visible.
- */
-
-
-function isVisible(element) {
-  return element.offsetWidth > 0 || element.offsetHeight > 0 || element.getClientRects().length > 0;
-}
-/**
- * Returns true if the specified area element is a valid focusable element, or
- * false otherwise. Area is only focusable if within a map where a named map
- * referenced by an image somewhere in the document.
- *
- * @param {HTMLAreaElement} element DOM area element to test.
- *
- * @return {boolean} Whether area element is valid for focus.
- */
-
-
-function isValidFocusableArea(element) {
-  /** @type {HTMLMapElement | null} */
-  const map = element.closest('map[name]');
-
-  if (!map) {
-    return false;
-  }
-  /** @type {HTMLImageElement | null} */
-
-
-  const img = element.ownerDocument.querySelector('img[usemap="#' + map.name + '"]');
-  return !!img && isVisible(img);
-}
-/**
- * Returns all focusable elements within a given context.
- *
- * @param {Element} context              Element in which to search.
- * @param {Object}  [options]
- * @param {boolean} [options.sequential] If set, only return elements that are
- *                                       sequentially focusable.
- *                                       Non-interactive elements with a
- *                                       negative `tabindex` are focusable but
- *                                       not sequentially focusable.
- *                                       https://html.spec.whatwg.org/multipage/interaction.html#the-tabindex-attribute
- *
- * @return {Element[]} Focusable elements.
- */
-
-
-function find(context) {
-  let {
-    sequential = false
-  } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  /* eslint-disable jsdoc/no-undefined-types */
-
-  /** @type {NodeListOf<HTMLElement>} */
-
-  /* eslint-enable jsdoc/no-undefined-types */
-  const elements = context.querySelectorAll(buildSelector(sequential));
-  return Array.from(elements).filter(element => {
-    if (!isVisible(element)) {
-      return false;
-    }
-
-    const {
-      nodeName
-    } = element;
-
-    if ('AREA' === nodeName) {
-      return isValidFocusableArea(
-      /** @type {HTMLAreaElement} */
-      element);
-    }
-
-    return true;
-  });
-}
-//# sourceMappingURL=focusable.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/index.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/index.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__unstableStripHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.__unstableStripHTML),
-/* harmony export */   "computeCaretRect": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.computeCaretRect),
-/* harmony export */   "documentHasSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasSelection),
-/* harmony export */   "documentHasTextSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasTextSelection),
-/* harmony export */   "documentHasUncollapsedSelection": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.documentHasUncollapsedSelection),
-/* harmony export */   "focus": () => (/* binding */ focus),
-/* harmony export */   "getFilesFromDataTransfer": () => (/* reexport safe */ _data_transfer__WEBPACK_IMPORTED_MODULE_4__.getFilesFromDataTransfer),
-/* harmony export */   "getOffsetParent": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getOffsetParent),
-/* harmony export */   "getPhrasingContentSchema": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.getPhrasingContentSchema),
-/* harmony export */   "getRectangleFromRange": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getRectangleFromRange),
-/* harmony export */   "getScrollContainer": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.getScrollContainer),
-/* harmony export */   "insertAfter": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.insertAfter),
-/* harmony export */   "isEmpty": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isEmpty),
-/* harmony export */   "isEntirelySelected": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isEntirelySelected),
-/* harmony export */   "isFormElement": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isFormElement),
-/* harmony export */   "isHorizontalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isHorizontalEdge),
-/* harmony export */   "isNumberInput": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isNumberInput),
-/* harmony export */   "isPhrasingContent": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.isPhrasingContent),
-/* harmony export */   "isRTL": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isRTL),
-/* harmony export */   "isTextContent": () => (/* reexport safe */ _phrasing_content__WEBPACK_IMPORTED_MODULE_3__.isTextContent),
-/* harmony export */   "isTextField": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isTextField),
-/* harmony export */   "isVerticalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.isVerticalEdge),
-/* harmony export */   "placeCaretAtHorizontalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.placeCaretAtHorizontalEdge),
-/* harmony export */   "placeCaretAtVerticalEdge": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.placeCaretAtVerticalEdge),
-/* harmony export */   "remove": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.remove),
-/* harmony export */   "removeInvalidHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.removeInvalidHTML),
-/* harmony export */   "replace": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.replace),
-/* harmony export */   "replaceTag": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.replaceTag),
-/* harmony export */   "safeHTML": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.safeHTML),
-/* harmony export */   "unwrap": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.unwrap),
-/* harmony export */   "wrap": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.wrap)
-/* harmony export */ });
-/* harmony import */ var _focusable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./focusable */ "./node_modules/@wordpress/dom/build-module/focusable.js");
-/* harmony import */ var _tabbable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabbable */ "./node_modules/@wordpress/dom/build-module/tabbable.js");
-/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom */ "./node_modules/@wordpress/dom/build-module/dom/index.js");
-/* harmony import */ var _phrasing_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phrasing-content */ "./node_modules/@wordpress/dom/build-module/phrasing-content.js");
-/* harmony import */ var _data_transfer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data-transfer */ "./node_modules/@wordpress/dom/build-module/data-transfer.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * Object grouping `focusable` and `tabbable` utils
- * under the keys with the same name.
- */
-
-const focus = {
-  focusable: _focusable__WEBPACK_IMPORTED_MODULE_0__,
-  tabbable: _tabbable__WEBPACK_IMPORTED_MODULE_1__
-};
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/phrasing-content.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/phrasing-content.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getPhrasingContentSchema": () => (/* binding */ getPhrasingContentSchema),
-/* harmony export */   "isPhrasingContent": () => (/* binding */ isPhrasingContent),
-/* harmony export */   "isTextContent": () => (/* binding */ isTextContent)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * External dependencies
- */
-
-/**
- * All phrasing content elements.
- *
- * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#phrasing-content-0
- */
-
-/**
- * @typedef {Record<string,SemanticElementDefinition>} ContentSchema
- */
-
-/**
- * @typedef SemanticElementDefinition
- * @property {string[]}      [attributes] Content attributes
- * @property {ContentSchema} [children]   Content attributes
- */
-
-/**
- * All text-level semantic elements.
- *
- * @see https://html.spec.whatwg.org/multipage/text-level-semantics.html
- *
- * @type {ContentSchema}
- */
-
-const textContentSchema = {
-  strong: {},
-  em: {},
-  s: {},
-  del: {},
-  ins: {},
-  a: {
-    attributes: ['href', 'target', 'rel', 'id']
-  },
-  code: {},
-  abbr: {
-    attributes: ['title']
-  },
-  sub: {},
-  sup: {},
-  br: {},
-  small: {},
-  // To do: fix blockquote.
-  // cite: {},
-  q: {
-    attributes: ['cite']
-  },
-  dfn: {
-    attributes: ['title']
-  },
-  data: {
-    attributes: ['value']
-  },
-  time: {
-    attributes: ['datetime']
-  },
-  var: {},
-  samp: {},
-  kbd: {},
-  i: {},
-  b: {},
-  u: {},
-  mark: {},
-  ruby: {},
-  rt: {},
-  rp: {},
-  bdi: {
-    attributes: ['dir']
-  },
-  bdo: {
-    attributes: ['dir']
-  },
-  wbr: {},
-  '#text': {}
-}; // Recursion is needed.
-// Possible: strong > em > strong.
-// Impossible: strong > strong.
-
-(0,lodash__WEBPACK_IMPORTED_MODULE_0__.without)(Object.keys(textContentSchema), '#text', 'br').forEach(tag => {
-  textContentSchema[tag].children = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.omit)(textContentSchema, tag);
-});
-/**
- * Embedded content elements.
- *
- * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#embedded-content-0
- *
- * @type {ContentSchema}
- */
-
-const embeddedContentSchema = {
-  audio: {
-    attributes: ['src', 'preload', 'autoplay', 'mediagroup', 'loop', 'muted']
-  },
-  canvas: {
-    attributes: ['width', 'height']
-  },
-  embed: {
-    attributes: ['src', 'type', 'width', 'height']
-  },
-  img: {
-    attributes: ['alt', 'src', 'srcset', 'usemap', 'ismap', 'width', 'height']
-  },
-  object: {
-    attributes: ['data', 'type', 'name', 'usemap', 'form', 'width', 'height']
-  },
-  video: {
-    attributes: ['src', 'poster', 'preload', 'autoplay', 'mediagroup', 'loop', 'muted', 'controls', 'width', 'height']
-  }
-};
-/**
- * Phrasing content elements.
- *
- * @see https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html#phrasing-content-0
- */
-
-const phrasingContentSchema = { ...textContentSchema,
-  ...embeddedContentSchema
-};
-/**
- * Get schema of possible paths for phrasing content.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
- *
- * @param {string} [context] Set to "paste" to exclude invisible elements and
- *                           sensitive data.
- *
- * @return {Partial<ContentSchema>} Schema.
- */
-
-function getPhrasingContentSchema(context) {
-  if (context !== 'paste') {
-    return phrasingContentSchema;
-  }
-
-  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.omit)({ ...phrasingContentSchema,
-    // We shouldn't paste potentially sensitive information which is not
-    // visible to the user when pasted, so strip the attributes.
-    ins: {
-      children: phrasingContentSchema.ins.children
-    },
-    del: {
-      children: phrasingContentSchema.del.children
-    }
-  }, ['u', // Used to mark misspelling. Shouldn't be pasted.
-  'abbr', // Invisible.
-  'data', // Invisible.
-  'time', // Invisible.
-  'wbr', // Invisible.
-  'bdi', // Invisible.
-  'bdo' // Invisible.
-  ]);
-}
-/**
- * Find out whether or not the given node is phrasing content.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
- *
- * @param {Node} node The node to test.
- *
- * @return {boolean} True if phrasing content, false if not.
- */
-
-function isPhrasingContent(node) {
-  const tag = node.nodeName.toLowerCase();
-  return getPhrasingContentSchema().hasOwnProperty(tag) || tag === 'span';
-}
-/**
- * @param {Node} node
- * @return {boolean} Node is text content
- */
-
-function isTextContent(node) {
-  const tag = node.nodeName.toLowerCase();
-  return textContentSchema.hasOwnProperty(tag) || tag === 'span';
-}
-//# sourceMappingURL=phrasing-content.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/tabbable.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/tabbable.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* binding */ find),
-/* harmony export */   "findNext": () => (/* binding */ findNext),
-/* harmony export */   "findPrevious": () => (/* binding */ findPrevious),
-/* harmony export */   "isTabbableIndex": () => (/* binding */ isTabbableIndex)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _focusable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./focusable */ "./node_modules/@wordpress/dom/build-module/focusable.js");
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * Returns the tab index of the given element. In contrast with the tabIndex
- * property, this normalizes the default (0) to avoid browser inconsistencies,
- * operating under the assumption that this function is only ever called with a
- * focusable node.
- *
- * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1190261
- *
- * @param {Element} element Element from which to retrieve.
- *
- * @return {number} Tab index of element (default 0).
- */
-
-function getTabIndex(element) {
-  const tabIndex = element.getAttribute('tabindex');
-  return tabIndex === null ? 0 : parseInt(tabIndex, 10);
-}
-/**
- * Returns true if the specified element is tabbable, or false otherwise.
- *
- * @param {Element} element Element to test.
- *
- * @return {boolean} Whether element is tabbable.
- */
-
-
-function isTabbableIndex(element) {
-  return getTabIndex(element) !== -1;
-}
-/** @typedef {Element & { type?: string, checked?: boolean, name?: string }} MaybeHTMLInputElement */
-
-/**
- * Returns a stateful reducer function which constructs a filtered array of
- * tabbable elements, where at most one radio input is selected for a given
- * name, giving priority to checked input, falling back to the first
- * encountered.
- *
- * @return {(acc: MaybeHTMLInputElement[], el: MaybeHTMLInputElement) => MaybeHTMLInputElement[]} Radio group collapse reducer.
- */
-
-function createStatefulCollapseRadioGroup() {
-  /** @type {Record<string, MaybeHTMLInputElement>} */
-  const CHOSEN_RADIO_BY_NAME = {};
-  return function collapseRadioGroup(
-  /** @type {MaybeHTMLInputElement[]} */
-  result,
-  /** @type {MaybeHTMLInputElement} */
-  element) {
-    const {
-      nodeName,
-      type,
-      checked,
-      name
-    } = element; // For all non-radio tabbables, construct to array by concatenating.
-
-    if (nodeName !== 'INPUT' || type !== 'radio' || !name) {
-      return result.concat(element);
-    }
-
-    const hasChosen = CHOSEN_RADIO_BY_NAME.hasOwnProperty(name); // Omit by skipping concatenation if the radio element is not chosen.
-
-    const isChosen = checked || !hasChosen;
-
-    if (!isChosen) {
-      return result;
-    } // At this point, if there had been a chosen element, the current
-    // element is checked and should take priority. Retroactively remove
-    // the element which had previously been considered the chosen one.
-
-
-    if (hasChosen) {
-      const hadChosenElement = CHOSEN_RADIO_BY_NAME[name];
-      result = (0,lodash__WEBPACK_IMPORTED_MODULE_0__.without)(result, hadChosenElement);
-    }
-
-    CHOSEN_RADIO_BY_NAME[name] = element;
-    return result.concat(element);
-  };
-}
-/**
- * An array map callback, returning an object with the element value and its
- * array index location as properties. This is used to emulate a proper stable
- * sort where equal tabIndex should be left in order of their occurrence in the
- * document.
- *
- * @param {Element} element Element.
- * @param {number}  index   Array index of element.
- *
- * @return {{ element: Element, index: number }} Mapped object with element, index.
- */
-
-
-function mapElementToObjectTabbable(element, index) {
-  return {
-    element,
-    index
-  };
-}
-/**
- * An array map callback, returning an element of the given mapped object's
- * element value.
- *
- * @param {{ element: Element }} object Mapped object with element.
- *
- * @return {Element} Mapped object element.
- */
-
-
-function mapObjectTabbableToElement(object) {
-  return object.element;
-}
-/**
- * A sort comparator function used in comparing two objects of mapped elements.
- *
- * @see mapElementToObjectTabbable
- *
- * @param {{ element: Element, index: number }} a First object to compare.
- * @param {{ element: Element, index: number }} b Second object to compare.
- *
- * @return {number} Comparator result.
- */
-
-
-function compareObjectTabbables(a, b) {
-  const aTabIndex = getTabIndex(a.element);
-  const bTabIndex = getTabIndex(b.element);
-
-  if (aTabIndex === bTabIndex) {
-    return a.index - b.index;
-  }
-
-  return aTabIndex - bTabIndex;
-}
-/**
- * Givin focusable elements, filters out tabbable element.
- *
- * @param {Element[]} focusables Focusable elements to filter.
- *
- * @return {Element[]} Tabbable elements.
- */
-
-
-function filterTabbable(focusables) {
-  return focusables.filter(isTabbableIndex).map(mapElementToObjectTabbable).sort(compareObjectTabbables).map(mapObjectTabbableToElement).reduce(createStatefulCollapseRadioGroup(), []);
-}
-/**
- * @param {Element} context
- * @return {Element[]} Tabbable elements within the context.
- */
-
-
-function find(context) {
-  return filterTabbable((0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(context));
-}
-/**
- * Given a focusable element, find the preceding tabbable element.
- *
- * @param {Element} element The focusable element before which to look. Defaults
- *                          to the active element.
- *
- * @return {Element|undefined} Preceding tabbable element.
- */
-
-function findPrevious(element) {
-  const focusables = (0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(element.ownerDocument.body);
-  const index = focusables.indexOf(element);
-
-  if (index === -1) {
-    return undefined;
-  } // Remove all focusables after and including `element`.
-
-
-  focusables.length = index;
-  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.last)(filterTabbable(focusables));
-}
-/**
- * Given a focusable element, find the next tabbable element.
- *
- * @param {Element} element The focusable element after which to look. Defaults
- *                          to the active element.
- */
-
-function findNext(element) {
-  const focusables = (0,_focusable__WEBPACK_IMPORTED_MODULE_1__.find)(element.ownerDocument.body);
-  const index = focusables.indexOf(element); // Remove all focusables before and including `element`.
-
-  const remaining = focusables.slice(index + 1);
-  return (0,lodash__WEBPACK_IMPORTED_MODULE_0__.first)(filterTabbable(remaining));
-}
-//# sourceMappingURL=tabbable.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@wordpress/dom/build-module/utils/assert-is-defined.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "assertIsDefined": () => (/* binding */ assertIsDefined)
-/* harmony export */ });
-function assertIsDefined(val, name) {
-  if ( true && (val === undefined || val === null)) {
-    throw new Error(`Expected '${name}' to be defined, but received ${val}`);
-  }
-}
-//# sourceMappingURL=assert-is-defined.js.map
 
 /***/ }),
 
@@ -40313,7 +37583,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var _platform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./platform */ "./node_modules/@wordpress/keycodes/build-module/platform.js");
 /**
  * Note: The order of the modifier keys in many of the [foo]Shortcut()
@@ -40729,1540 +37999,6 @@ function isAppleOS() {
   return platform.indexOf('Mac') !== -1 || (0,lodash__WEBPACK_IMPORTED_MODULE_0__.includes)(['iPad', 'iPhone'], platform);
 }
 //# sourceMappingURL=platform.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createAddHook.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createAddHook.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback AddHook
- *
- * Adds the hook to the appropriate hooks container.
- *
- * @param {string}               hookName      Name of hook to add
- * @param {string}               namespace     The unique namespace identifying the callback in the form `vendor/plugin/function`.
- * @param {import('.').Callback} callback      Function to call when the hook is run
- * @param {number}               [priority=10] Priority of this hook
- */
-
-/**
- * Returns a function which, when invoked, will add a hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {AddHook} Function that adds a new hook.
- */
-
-function createAddHook(hooks, storeKey) {
-  return function addHook(hookName, namespace, callback) {
-    let priority = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    }
-
-    if ('function' !== typeof callback) {
-      // eslint-disable-next-line no-console
-      console.error('The hook callback must be a function.');
-      return;
-    } // Validate numeric priority
-
-
-    if ('number' !== typeof priority) {
-      // eslint-disable-next-line no-console
-      console.error('If specified, the hook priority must be a number.');
-      return;
-    }
-
-    const handler = {
-      callback,
-      priority,
-      namespace
-    };
-
-    if (hooksStore[hookName]) {
-      // Find the correct insert index of the new hook.
-      const handlers = hooksStore[hookName].handlers;
-      /** @type {number} */
-
-      let i;
-
-      for (i = handlers.length; i > 0; i--) {
-        if (priority >= handlers[i - 1].priority) {
-          break;
-        }
-      }
-
-      if (i === handlers.length) {
-        // If append, operate via direct assignment.
-        handlers[i] = handler;
-      } else {
-        // Otherwise, insert before index via splice.
-        handlers.splice(i, 0, handler);
-      } // We may also be currently executing this hook.  If the callback
-      // we're adding would come after the current callback, there's no
-      // problem; otherwise we need to increase the execution index of
-      // any other runs by 1 to account for the added element.
-
-
-      hooksStore.__current.forEach(hookInfo => {
-        if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-          hookInfo.currentIndex++;
-        }
-      });
-    } else {
-      // This is the first hook of its type.
-      hooksStore[hookName] = {
-        handlers: [handler],
-        runs: 0
-      };
-    }
-
-    if (hookName !== 'hookAdded') {
-      hooks.doAction('hookAdded', hookName, namespace, callback, priority);
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createAddHook);
-//# sourceMappingURL=createAddHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createCurrentHook.js":
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createCurrentHook.js ***!
-  \**********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will return the name of the
- * currently running hook, or `null` if no hook of the given type is currently
- * running.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {() => string | null} Function that returns the current hook name or null.
- */
-function createCurrentHook(hooks, storeKey) {
-  return function currentHook() {
-    var _hooksStore$__current, _hooksStore$__current2;
-
-    const hooksStore = hooks[storeKey];
-    return (_hooksStore$__current = (_hooksStore$__current2 = hooksStore.__current[hooksStore.__current.length - 1]) === null || _hooksStore$__current2 === void 0 ? void 0 : _hooksStore$__current2.name) !== null && _hooksStore$__current !== void 0 ? _hooksStore$__current : null;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCurrentHook);
-//# sourceMappingURL=createCurrentHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDidHook.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDidHook.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-/**
- * @callback DidHook
- *
- * Returns the number of times an action has been fired.
- *
- * @param {string} hookName The hook name to check.
- *
- * @return {number | undefined} The number of times the hook has run.
- */
-
-/**
- * Returns a function which, when invoked, will return the number of times a
- * hook has been called.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DidHook} Function that returns a hook's call count.
- */
-
-function createDidHook(hooks, storeKey) {
-  return function didHook(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(hookName)) {
-      return;
-    }
-
-    return hooksStore[hookName] && hooksStore[hookName].runs ? hooksStore[hookName].runs : 0;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDidHook);
-//# sourceMappingURL=createDidHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDoingHook.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDoingHook.js ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback DoingHook
- * Returns whether a hook is currently being executed.
- *
- * @param {string} [hookName] The name of the hook to check for.  If
- *                            omitted, will check for any hook being executed.
- *
- * @return {boolean} Whether the hook is being executed.
- */
-
-/**
- * Returns a function which, when invoked, will return whether a hook is
- * currently being executed.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {DoingHook} Function that returns whether a hook is currently
- *                     being executed.
- */
-function createDoingHook(hooks, storeKey) {
-  return function doingHook(hookName) {
-    const hooksStore = hooks[storeKey]; // If the hookName was not passed, check for any current hook.
-
-    if ('undefined' === typeof hookName) {
-      return 'undefined' !== typeof hooksStore.__current[0];
-    } // Return the __current hook.
-
-
-    return hooksStore.__current[0] ? hookName === hooksStore.__current[0].name : false;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDoingHook);
-//# sourceMappingURL=createDoingHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHasHook.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHasHook.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * @callback HasHook
- *
- * Returns whether any handlers are attached for the given hookName and optional namespace.
- *
- * @param {string} hookName    The name of the hook to check for.
- * @param {string} [namespace] Optional. The unique namespace identifying the callback
- *                             in the form `vendor/plugin/function`.
- *
- * @return {boolean} Whether there are handlers that are attached to the given hook.
- */
-
-/**
- * Returns a function which, when invoked, will return whether any handlers are
- * attached to a particular hook.
- *
- * @param {import('.').Hooks}    hooks    Hooks instance.
- * @param {import('.').StoreKey} storeKey
- *
- * @return {HasHook} Function that returns whether any handlers are
- *                   attached to a particular hook and optional namespace.
- */
-function createHasHook(hooks, storeKey) {
-  return function hasHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey]; // Use the namespace if provided.
-
-    if ('undefined' !== typeof namespace) {
-      return hookName in hooksStore && hooksStore[hookName].handlers.some(hook => hook.namespace === namespace);
-    }
-
-    return hookName in hooksStore;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHasHook);
-//# sourceMappingURL=createHasHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHooks.js":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHooks.js ***!
-  \****************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_Hooks": () => (/* binding */ _Hooks),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _createAddHook__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createAddHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createAddHook.js");
-/* harmony import */ var _createRemoveHook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createRemoveHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRemoveHook.js");
-/* harmony import */ var _createHasHook__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createHasHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHasHook.js");
-/* harmony import */ var _createRunHook__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createRunHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRunHook.js");
-/* harmony import */ var _createCurrentHook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createCurrentHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createCurrentHook.js");
-/* harmony import */ var _createDoingHook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createDoingHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDoingHook.js");
-/* harmony import */ var _createDidHook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createDidHook */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createDidHook.js");
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-/**
- * Internal class for constructing hooks. Use `createHooks()` function
- *
- * Note, it is necessary to expose this class to make its type public.
- *
- * @private
- */
-
-class _Hooks {
-  constructor() {
-    /** @type {import('.').Store} actions */
-    this.actions = Object.create(null);
-    this.actions.__current = [];
-    /** @type {import('.').Store} filters */
-
-    this.filters = Object.create(null);
-    this.filters.__current = [];
-    this.addAction = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'actions');
-    this.addFilter = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'filters');
-    this.removeAction = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions');
-    this.removeFilter = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters');
-    this.hasAction = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'actions');
-    this.hasFilter = (0,_createHasHook__WEBPACK_IMPORTED_MODULE_2__["default"])(this, 'filters');
-    this.removeAllActions = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'actions', true);
-    this.removeAllFilters = (0,_createRemoveHook__WEBPACK_IMPORTED_MODULE_1__["default"])(this, 'filters', true);
-    this.doAction = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'actions');
-    this.applyFilters = (0,_createRunHook__WEBPACK_IMPORTED_MODULE_3__["default"])(this, 'filters', true);
-    this.currentAction = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'actions');
-    this.currentFilter = (0,_createCurrentHook__WEBPACK_IMPORTED_MODULE_4__["default"])(this, 'filters');
-    this.doingAction = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'actions');
-    this.doingFilter = (0,_createDoingHook__WEBPACK_IMPORTED_MODULE_5__["default"])(this, 'filters');
-    this.didAction = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'actions');
-    this.didFilter = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'filters');
-  }
-
-}
-/** @typedef {_Hooks} Hooks */
-
-/**
- * Returns an instance of the hooks object.
- *
- * @return {Hooks} A Hooks instance.
- */
-
-function createHooks() {
-  return new _Hooks();
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHooks);
-//# sourceMappingURL=createHooks.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRemoveHook.js":
-/*!*********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRemoveHook.js ***!
-  \*********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateNamespace.js */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateNamespace.js");
-/* harmony import */ var _validateHookName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateHookName.js */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateHookName.js");
-/**
- * Internal dependencies
- */
-
-
-/**
- * @callback RemoveHook
- * Removes the specified callback (or all callbacks) from the hook with a given hookName
- * and namespace.
- *
- * @param {string} hookName  The name of the hook to modify.
- * @param {string} namespace The unique namespace identifying the callback in the
- *                           form `vendor/plugin/function`.
- *
- * @return {number | undefined} The number of callbacks removed.
- */
-
-/**
- * Returns a function which, when invoked, will remove a specified hook or all
- * hooks by the given name.
- *
- * @param {import('.').Hooks}    hooks             Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [removeAll=false] Whether to remove all callbacks for a hookName,
- *                                                 without regard to namespace. Used to create
- *                                                 `removeAll*` functions.
- *
- * @return {RemoveHook} Function that removes hooks.
- */
-
-function createRemoveHook(hooks, storeKey) {
-  let removeAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function removeHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey];
-
-    if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
-      return;
-    }
-
-    if (!removeAll && !(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
-      return;
-    } // Bail if no hooks exist by this name.
-
-
-    if (!hooksStore[hookName]) {
-      return 0;
-    }
-
-    let handlersRemoved = 0;
-
-    if (removeAll) {
-      handlersRemoved = hooksStore[hookName].handlers.length;
-      hooksStore[hookName] = {
-        runs: hooksStore[hookName].runs,
-        handlers: []
-      };
-    } else {
-      // Try to find the specified callback to remove.
-      const handlers = hooksStore[hookName].handlers;
-
-      for (let i = handlers.length - 1; i >= 0; i--) {
-        if (handlers[i].namespace === namespace) {
-          handlers.splice(i, 1);
-          handlersRemoved++; // This callback may also be part of a hook that is
-          // currently executing.  If the callback we're removing
-          // comes after the current callback, there's no problem;
-          // otherwise we need to decrease the execution index of any
-          // other runs by 1 to account for the removed element.
-
-          hooksStore.__current.forEach(hookInfo => {
-            if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-              hookInfo.currentIndex--;
-            }
-          });
-        }
-      }
-    }
-
-    if (hookName !== 'hookRemoved') {
-      hooks.doAction('hookRemoved', hookName, namespace);
-    }
-
-    return handlersRemoved;
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRemoveHook);
-//# sourceMappingURL=createRemoveHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRunHook.js":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createRunHook.js ***!
-  \******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Returns a function which, when invoked, will execute all callbacks
- * registered to a hook of the specified type, optionally returning the final
- * value of the call chain.
- *
- * @param {import('.').Hooks}    hooks                  Hooks instance.
- * @param {import('.').StoreKey} storeKey
- * @param {boolean}              [returnFirstArg=false] Whether each hook callback is expected to
- *                                                      return its first argument.
- *
- * @return {(hookName:string, ...args: unknown[]) => unknown} Function that runs hook callbacks.
- */
-function createRunHook(hooks, storeKey) {
-  let returnFirstArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function runHooks(hookName) {
-    const hooksStore = hooks[storeKey];
-
-    if (!hooksStore[hookName]) {
-      hooksStore[hookName] = {
-        handlers: [],
-        runs: 0
-      };
-    }
-
-    hooksStore[hookName].runs++;
-    const handlers = hooksStore[hookName].handlers; // The following code is stripped from production builds.
-
-    if (true) {
-      // Handle any 'all' hooks registered.
-      if ('hookAdded' !== hookName && hooksStore.all) {
-        handlers.push(...hooksStore.all.handlers);
-      }
-    }
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    if (!handlers || !handlers.length) {
-      return returnFirstArg ? args[0] : undefined;
-    }
-
-    const hookInfo = {
-      name: hookName,
-      currentIndex: 0
-    };
-
-    hooksStore.__current.push(hookInfo);
-
-    while (hookInfo.currentIndex < handlers.length) {
-      const handler = handlers[hookInfo.currentIndex];
-      const result = handler.callback.apply(null, args);
-
-      if (returnFirstArg) {
-        args[0] = result;
-      }
-
-      hookInfo.currentIndex++;
-    }
-
-    hooksStore.__current.pop();
-
-    if (returnFirstArg) {
-      return args[0];
-    }
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRunHook);
-//# sourceMappingURL=createRunHook.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/index.js":
-/*!**********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/index.js ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "actions": () => (/* binding */ actions),
-/* harmony export */   "addAction": () => (/* binding */ addAction),
-/* harmony export */   "addFilter": () => (/* binding */ addFilter),
-/* harmony export */   "applyFilters": () => (/* binding */ applyFilters),
-/* harmony export */   "createHooks": () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "currentAction": () => (/* binding */ currentAction),
-/* harmony export */   "currentFilter": () => (/* binding */ currentFilter),
-/* harmony export */   "defaultHooks": () => (/* binding */ defaultHooks),
-/* harmony export */   "didAction": () => (/* binding */ didAction),
-/* harmony export */   "didFilter": () => (/* binding */ didFilter),
-/* harmony export */   "doAction": () => (/* binding */ doAction),
-/* harmony export */   "doingAction": () => (/* binding */ doingAction),
-/* harmony export */   "doingFilter": () => (/* binding */ doingFilter),
-/* harmony export */   "filters": () => (/* binding */ filters),
-/* harmony export */   "hasAction": () => (/* binding */ hasAction),
-/* harmony export */   "hasFilter": () => (/* binding */ hasFilter),
-/* harmony export */   "removeAction": () => (/* binding */ removeAction),
-/* harmony export */   "removeAllActions": () => (/* binding */ removeAllActions),
-/* harmony export */   "removeAllFilters": () => (/* binding */ removeAllFilters),
-/* harmony export */   "removeFilter": () => (/* binding */ removeFilter)
-/* harmony export */ });
-/* harmony import */ var _createHooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createHooks */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/createHooks.js");
-/**
- * Internal dependencies
- */
-
-/** @typedef {(...args: any[])=>any} Callback */
-
-/**
- * @typedef Handler
- * @property {Callback} callback  The callback
- * @property {string}   namespace The namespace
- * @property {number}   priority  The namespace
- */
-
-/**
- * @typedef Hook
- * @property {Handler[]} handlers Array of handlers
- * @property {number}    runs     Run counter
- */
-
-/**
- * @typedef Current
- * @property {string} name         Hook name
- * @property {number} currentIndex The index
- */
-
-/**
- * @typedef {Record<string, Hook> & {__current: Current[]}} Store
- */
-
-/**
- * @typedef {'actions' | 'filters'} StoreKey
- */
-
-/**
- * @typedef {import('./createHooks').Hooks} Hooks
- */
-
-const defaultHooks = (0,_createHooks__WEBPACK_IMPORTED_MODULE_0__["default"])();
-const {
-  addAction,
-  addFilter,
-  removeAction,
-  removeFilter,
-  hasAction,
-  hasFilter,
-  removeAllActions,
-  removeAllFilters,
-  doAction,
-  applyFilters,
-  currentAction,
-  currentFilter,
-  doingAction,
-  doingFilter,
-  didAction,
-  didFilter,
-  actions,
-  filters
-} = defaultHooks;
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateHookName.js":
-/*!*********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateHookName.js ***!
-  \*********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a hookName string.
- *
- * @param {string} hookName The hook name to validate. Should be a non empty string containing
- *                          only numbers, letters, dashes, periods and underscores. Also,
- *                          the hook name cannot begin with `__`.
- *
- * @return {boolean} Whether the hook name is valid.
- */
-function validateHookName(hookName) {
-  if ('string' !== typeof hookName || '' === hookName) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name must be a non-empty string.');
-    return false;
-  }
-
-  if (/^__/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name cannot begin with `__`.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
-    // eslint-disable-next-line no-console
-    console.error('The hook name can only contain numbers, letters, dashes, periods and underscores.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateHookName);
-//# sourceMappingURL=validateHookName.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateNamespace.js":
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/validateNamespace.js ***!
-  \**********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/**
- * Validate a namespace string.
- *
- * @param {string} namespace The namespace to validate - should take the form
- *                           `vendor/plugin/function`.
- *
- * @return {boolean} Whether the namespace is valid.
- */
-function validateNamespace(namespace) {
-  if ('string' !== typeof namespace || '' === namespace) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace must be a non-empty string.');
-    return false;
-  }
-
-  if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
-    // eslint-disable-next-line no-console
-    console.error('The namespace can only contain numbers, letters, dashes, periods, underscores and slashes.');
-    return false;
-  }
-
-  return true;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateNamespace);
-//# sourceMappingURL=validateNamespace.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/create-i18n.js":
-/*!***************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/create-i18n.js ***!
-  \***************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createI18n": () => (/* binding */ createI18n)
-/* harmony export */ });
-/* harmony import */ var tannin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tannin */ "./node_modules/tannin/index.js");
-/**
- * External dependencies
- */
-
-/**
- * @typedef {Record<string,any>} LocaleData
- */
-
-/**
- * Default locale data to use for Tannin domain when not otherwise provided.
- * Assumes an English plural forms expression.
- *
- * @type {LocaleData}
- */
-
-const DEFAULT_LOCALE_DATA = {
-  '': {
-    /** @param {number} n */
-    plural_forms(n) {
-      return n === 1 ? 0 : 1;
-    }
-
-  }
-};
-/*
- * Regular expression that matches i18n hooks like `i18n.gettext`, `i18n.ngettext`,
- * `i18n.gettext_domain` or `i18n.ngettext_with_context` or `i18n.has_translation`.
- */
-
-const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
-/**
- * @typedef {(domain?: string) => LocaleData} GetLocaleData
- *
- * Returns locale data by domain in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} SetLocaleData
- *
- * Merges locale data into the Tannin instance by domain. Note that this
- * function will overwrite the domain configuration. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} AddLocaleData
- *
- * Merges locale data into the Tannin instance by domain. Note that this
- * function will also merge the domain configuration. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/**
- * @typedef {(data?: LocaleData, domain?: string) => void} ResetLocaleData
- *
- * Resets all current Tannin instance locale data and sets the specified
- * locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- */
-
-/** @typedef {() => void} SubscribeCallback */
-
-/** @typedef {() => void} UnsubscribeCallback */
-
-/**
- * @typedef {(callback: SubscribeCallback) => UnsubscribeCallback} Subscribe
- *
- * Subscribes to changes of locale data
- */
-
-/**
- * @typedef {(domain?: string) => string} GetFilterDomain
- * Retrieve the domain to use when calling domain-specific filters.
- */
-
-/**
- * @typedef {(text: string, domain?: string) => string} __
- *
- * Retrieve the translation of text.
- *
- * @see https://developer.wordpress.org/reference/functions/__/
- */
-
-/**
- * @typedef {(text: string, context: string, domain?: string) => string} _x
- *
- * Retrieve translated string with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_x/
- */
-
-/**
- * @typedef {(single: string, plural: string, number: number, domain?: string) => string} _n
- *
- * Translates and retrieves the singular or plural form based on the supplied
- * number.
- *
- * @see https://developer.wordpress.org/reference/functions/_n/
- */
-
-/**
- * @typedef {(single: string, plural: string, number: number, context: string, domain?: string) => string} _nx
- *
- * Translates and retrieves the singular or plural form based on the supplied
- * number, with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_nx/
- */
-
-/**
- * @typedef {() => boolean} IsRtl
- *
- * Check if current locale is RTL.
- *
- * **RTL (Right To Left)** is a locale property indicating that text is written from right to left.
- * For example, the `he` locale (for Hebrew) specifies right-to-left. Arabic (ar) is another common
- * language written RTL. The opposite of RTL, LTR (Left To Right) is used in other languages,
- * including English (`en`, `en-US`, `en-GB`, etc.), Spanish (`es`), and French (`fr`).
- */
-
-/**
- * @typedef {(single: string, context?: string, domain?: string) => boolean} HasTranslation
- *
- * Check if there is a translation for a given string in singular form.
- */
-
-/** @typedef {import('@wordpress/hooks').Hooks} Hooks */
-
-/**
- * An i18n instance
- *
- * @typedef I18n
- * @property {GetLocaleData}   getLocaleData   Returns locale data by domain in a Jed-formatted JSON object shape.
- * @property {SetLocaleData}   setLocaleData   Merges locale data into the Tannin instance by domain. Note that this
- *                                             function will overwrite the domain configuration. Accepts data in a
- *                                             Jed-formatted JSON object shape.
- * @property {AddLocaleData}   addLocaleData   Merges locale data into the Tannin instance by domain. Note that this
- *                                             function will also merge the domain configuration. Accepts data in a
- *                                             Jed-formatted JSON object shape.
- * @property {ResetLocaleData} resetLocaleData Resets all current Tannin instance locale data and sets the specified
- *                                             locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- * @property {Subscribe}       subscribe       Subscribes to changes of Tannin locale data.
- * @property {__}              __              Retrieve the translation of text.
- * @property {_x}              _x              Retrieve translated string with gettext context.
- * @property {_n}              _n              Translates and retrieves the singular or plural form based on the supplied
- *                                             number.
- * @property {_nx}             _nx             Translates and retrieves the singular or plural form based on the supplied
- *                                             number, with gettext context.
- * @property {IsRtl}           isRTL           Check if current locale is RTL.
- * @property {HasTranslation}  hasTranslation  Check if there is a translation for a given string.
- */
-
-/**
- * Create an i18n instance
- *
- * @param {LocaleData} [initialData]   Locale data configuration.
- * @param {string}     [initialDomain] Domain for which configuration applies.
- * @param {Hooks}      [hooks]         Hooks implementation.
- *
- * @return {I18n} I18n instance.
- */
-
-const createI18n = (initialData, initialDomain, hooks) => {
-  /**
-   * The underlying instance of Tannin to which exported functions interface.
-   *
-   * @type {Tannin}
-   */
-  const tannin = new tannin__WEBPACK_IMPORTED_MODULE_0__["default"]({});
-  const listeners = new Set();
-
-  const notifyListeners = () => {
-    listeners.forEach(listener => listener());
-  };
-  /**
-   * Subscribe to changes of locale data.
-   *
-   * @param {SubscribeCallback} callback Subscription callback.
-   * @return {UnsubscribeCallback} Unsubscribe callback.
-   */
-
-
-  const subscribe = callback => {
-    listeners.add(callback);
-    return () => listeners.delete(callback);
-  };
-  /** @type {GetLocaleData} */
-
-
-  const getLocaleData = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return tannin.data[domain];
-  };
-  /**
-   * @param {LocaleData} [data]
-   * @param {string}     [domain]
-   */
-
-
-  const doSetLocaleData = function (data) {
-    var _tannin$data$domain;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
-      ...data
-    }; // Populate default domain configuration (supported locale date which omits
-    // a plural forms expression).
-
-    tannin.data[domain][''] = { ...DEFAULT_LOCALE_DATA[''],
-      ...((_tannin$data$domain = tannin.data[domain]) === null || _tannin$data$domain === void 0 ? void 0 : _tannin$data$domain[''])
-    }; // Clean up cached plural forms functions cache as it might be updated.
-
-    delete tannin.pluralForms[domain];
-  };
-  /** @type {SetLocaleData} */
-
-
-  const setLocaleData = (data, domain) => {
-    doSetLocaleData(data, domain);
-    notifyListeners();
-  };
-  /** @type {AddLocaleData} */
-
-
-  const addLocaleData = function (data) {
-    var _tannin$data$domain2;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
-      ...data,
-      // Populate default domain configuration (supported locale date which omits
-      // a plural forms expression).
-      '': { ...DEFAULT_LOCALE_DATA[''],
-        ...((_tannin$data$domain2 = tannin.data[domain]) === null || _tannin$data$domain2 === void 0 ? void 0 : _tannin$data$domain2['']),
-        ...(data === null || data === void 0 ? void 0 : data[''])
-      }
-    }; // Clean up cached plural forms functions cache as it might be updated.
-
-    delete tannin.pluralForms[domain];
-    notifyListeners();
-  };
-  /** @type {ResetLocaleData} */
-
-
-  const resetLocaleData = (data, domain) => {
-    // Reset all current Tannin locale data.
-    tannin.data = {}; // Reset cached plural forms functions cache.
-
-    tannin.pluralForms = {};
-    setLocaleData(data, domain);
-  };
-  /**
-   * Wrapper for Tannin's `dcnpgettext`. Populates default locale data if not
-   * otherwise previously assigned.
-   *
-   * @param {string|undefined} domain   Domain to retrieve the translated text.
-   * @param {string|undefined} context  Context information for the translators.
-   * @param {string}           single   Text to translate if non-plural. Used as
-   *                                    fallback return value on a caught error.
-   * @param {string}           [plural] The text to be used if the number is
-   *                                    plural.
-   * @param {number}           [number] The number to compare against to use
-   *                                    either the singular or plural form.
-   *
-   * @return {string} The translated string.
-   */
-
-
-  const dcnpgettext = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    let context = arguments.length > 1 ? arguments[1] : undefined;
-    let single = arguments.length > 2 ? arguments[2] : undefined;
-    let plural = arguments.length > 3 ? arguments[3] : undefined;
-    let number = arguments.length > 4 ? arguments[4] : undefined;
-
-    if (!tannin.data[domain]) {
-      // Use `doSetLocaleData` to set silently, without notifying listeners.
-      doSetLocaleData(undefined, domain);
-    }
-
-    return tannin.dcnpgettext(domain, context, single, plural, number);
-  };
-  /** @type {GetFilterDomain} */
-
-
-  const getFilterDomain = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return domain;
-  };
-  /** @type {__} */
-
-
-  const __ = (text, domain) => {
-    let translation = dcnpgettext(domain, undefined, text);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters text with its translation.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} text        Text to translate.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext', translation, text, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_' + getFilterDomain(domain), translation, text, domain)
-    );
-  };
-  /** @type {_x} */
-
-
-  const _x = (text, context, domain) => {
-    let translation = dcnpgettext(domain, context, text);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters text with its translation based on context information.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} text        Text to translate.
-     * @param {string} context     Context information for the translators.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext_with_context', translation, text, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_with_context_' + getFilterDomain(domain), translation, text, context, domain)
-    );
-  };
-  /** @type {_n} */
-
-
-  const _n = (single, plural, number, domain) => {
-    let translation = dcnpgettext(domain, undefined, single, plural, number);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters the singular or plural form of a string.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} single      The text to be used if the number is singular.
-     * @param {string} plural      The text to be used if the number is plural.
-     * @param {string} number      The number to compare against to use either the singular or plural form.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext', translation, single, plural, number, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_' + getFilterDomain(domain), translation, single, plural, number, domain)
-    );
-  };
-  /** @type {_nx} */
-
-
-  const _nx = (single, plural, number, context, domain) => {
-    let translation = dcnpgettext(domain, context, single, plural, number);
-
-    if (!hooks) {
-      return translation;
-    }
-    /**
-     * Filters the singular or plural form of a string with gettext context.
-     *
-     * @param {string} translation Translated text.
-     * @param {string} single      The text to be used if the number is singular.
-     * @param {string} plural      The text to be used if the number is plural.
-     * @param {string} number      The number to compare against to use either the singular or plural form.
-     * @param {string} context     Context information for the translators.
-     * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
-     */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext_with_context', translation, single, plural, number, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_with_context_' + getFilterDomain(domain), translation, single, plural, number, context, domain)
-    );
-  };
-  /** @type {IsRtl} */
-
-
-  const isRTL = () => {
-    return 'rtl' === _x('ltr', 'text direction');
-  };
-  /** @type {HasTranslation} */
-
-
-  const hasTranslation = (single, context, domain) => {
-    var _tannin$data, _tannin$data2;
-
-    const key = context ? context + '\u0004' + single : single;
-    let result = !!((_tannin$data = tannin.data) !== null && _tannin$data !== void 0 && (_tannin$data2 = _tannin$data[domain !== null && domain !== void 0 ? domain : 'default']) !== null && _tannin$data2 !== void 0 && _tannin$data2[key]);
-
-    if (hooks) {
-      /**
-       * Filters the presence of a translation in the locale data.
-       *
-       * @param {boolean} hasTranslation Whether the translation is present or not..
-       * @param {string}  single         The singular form of the translated text (used as key in locale data)
-       * @param {string}  context        Context information for the translators.
-       * @param {string}  domain         Text domain. Unique identifier for retrieving translated strings.
-       */
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation', result, single, context, domain);
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation_' + getFilterDomain(domain), result, single, context, domain);
-    }
-
-    return result;
-  };
-
-  if (initialData) {
-    setLocaleData(initialData, initialDomain);
-  }
-
-  if (hooks) {
-    /**
-     * @param {string} hookName
-     */
-    const onHookAddedOrRemoved = hookName => {
-      if (I18N_HOOK_REGEXP.test(hookName)) {
-        notifyListeners();
-      }
-    };
-
-    hooks.addAction('hookAdded', 'core/i18n', onHookAddedOrRemoved);
-    hooks.addAction('hookRemoved', 'core/i18n', onHookAddedOrRemoved);
-  }
-
-  return {
-    getLocaleData,
-    setLocaleData,
-    addLocaleData,
-    resetLocaleData,
-    subscribe,
-    __,
-    _x,
-    _n,
-    _nx,
-    isRTL,
-    hasTranslation
-  };
-};
-//# sourceMappingURL=create-i18n.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/default-i18n.js":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/default-i18n.js ***!
-  \****************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* binding */ __),
-/* harmony export */   "_n": () => (/* binding */ _n),
-/* harmony export */   "_nx": () => (/* binding */ _nx),
-/* harmony export */   "_x": () => (/* binding */ _x),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getLocaleData": () => (/* binding */ getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* binding */ hasTranslation),
-/* harmony export */   "isRTL": () => (/* binding */ isRTL),
-/* harmony export */   "resetLocaleData": () => (/* binding */ resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* binding */ setLocaleData),
-/* harmony export */   "subscribe": () => (/* binding */ subscribe)
-/* harmony export */ });
-/* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/create-i18n.js");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/hooks/build-module/index.js");
-/**
- * Internal dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-const i18n = (0,_create_i18n__WEBPACK_IMPORTED_MODULE_0__.createI18n)(undefined, undefined, _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.defaultHooks);
-/**
- * Default, singleton instance of `I18n`.
- */
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (i18n);
-/*
- * Comments in this file are duplicated from ./i18n due to
- * https://github.com/WordPress/gutenberg/pull/20318#issuecomment-590837722
- */
-
-/**
- * @typedef {import('./create-i18n').LocaleData} LocaleData
- * @typedef {import('./create-i18n').SubscribeCallback} SubscribeCallback
- * @typedef {import('./create-i18n').UnsubscribeCallback} UnsubscribeCallback
- */
-
-/**
- * Returns locale data by domain in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {string} [domain] Domain for which to get the data.
- * @return {LocaleData} Locale data.
- */
-
-const getLocaleData = i18n.getLocaleData.bind(i18n);
-/**
- * Merges locale data into the Tannin instance by domain. Accepts data in a
- * Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {LocaleData} [data]   Locale data configuration.
- * @param {string}     [domain] Domain for which configuration applies.
- */
-
-const setLocaleData = i18n.setLocaleData.bind(i18n);
-/**
- * Resets all current Tannin instance locale data and sets the specified
- * locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
- *
- * @see http://messageformat.github.io/Jed/
- *
- * @param {LocaleData} [data]   Locale data configuration.
- * @param {string}     [domain] Domain for which configuration applies.
- */
-
-const resetLocaleData = i18n.resetLocaleData.bind(i18n);
-/**
- * Subscribes to changes of locale data
- *
- * @param {SubscribeCallback} callback Subscription callback
- * @return {UnsubscribeCallback} Unsubscribe callback
- */
-
-const subscribe = i18n.subscribe.bind(i18n);
-/**
- * Retrieve the translation of text.
- *
- * @see https://developer.wordpress.org/reference/functions/__/
- *
- * @param {string} text     Text to translate.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} Translated text.
- */
-
-const __ = i18n.__.bind(i18n);
-/**
- * Retrieve translated string with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_x/
- *
- * @param {string} text     Text to translate.
- * @param {string} context  Context information for the translators.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} Translated context string without pipe.
- */
-
-const _x = i18n._x.bind(i18n);
-/**
- * Translates and retrieves the singular or plural form based on the supplied
- * number.
- *
- * @see https://developer.wordpress.org/reference/functions/_n/
- *
- * @param {string} single   The text to be used if the number is singular.
- * @param {string} plural   The text to be used if the number is plural.
- * @param {number} number   The number to compare against to use either the
- *                          singular or plural form.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} The translated singular or plural form.
- */
-
-const _n = i18n._n.bind(i18n);
-/**
- * Translates and retrieves the singular or plural form based on the supplied
- * number, with gettext context.
- *
- * @see https://developer.wordpress.org/reference/functions/_nx/
- *
- * @param {string} single   The text to be used if the number is singular.
- * @param {string} plural   The text to be used if the number is plural.
- * @param {number} number   The number to compare against to use either the
- *                          singular or plural form.
- * @param {string} context  Context information for the translators.
- * @param {string} [domain] Domain to retrieve the translated text.
- *
- * @return {string} The translated singular or plural form.
- */
-
-const _nx = i18n._nx.bind(i18n);
-/**
- * Check if current locale is RTL.
- *
- * **RTL (Right To Left)** is a locale property indicating that text is written from right to left.
- * For example, the `he` locale (for Hebrew) specifies right-to-left. Arabic (ar) is another common
- * language written RTL. The opposite of RTL, LTR (Left To Right) is used in other languages,
- * including English (`en`, `en-US`, `en-GB`, etc.), Spanish (`es`), and French (`fr`).
- *
- * @return {boolean} Whether locale is RTL.
- */
-
-const isRTL = i18n.isRTL.bind(i18n);
-/**
- * Check if there is a translation for a given string (in singular form).
- *
- * @param {string} single    Singular form of the string to look up.
- * @param {string} [context] Context information for the translators.
- * @param {string} [domain]  Domain to retrieve the translated text.
- * @return {boolean} Whether the translation exists or not.
- */
-
-const hasTranslation = i18n.hasTranslation.bind(i18n);
-//# sourceMappingURL=default-i18n.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/index.js":
-/*!*********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/index.js ***!
-  \*********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.__),
-/* harmony export */   "_n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._n),
-/* harmony export */   "_nx": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._nx),
-/* harmony export */   "_x": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._x),
-/* harmony export */   "createI18n": () => (/* reexport safe */ _create_i18n__WEBPACK_IMPORTED_MODULE_1__.createI18n),
-/* harmony export */   "defaultI18n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   "getLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.hasTranslation),
-/* harmony export */   "isRTL": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.isRTL),
-/* harmony export */   "resetLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.setLocaleData),
-/* harmony export */   "sprintf": () => (/* reexport safe */ _sprintf__WEBPACK_IMPORTED_MODULE_0__.sprintf),
-/* harmony export */   "subscribe": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.subscribe)
-/* harmony export */ });
-/* harmony import */ var _sprintf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprintf */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/sprintf.js");
-/* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/create-i18n.js");
-/* harmony import */ var _default_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./default-i18n */ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/default-i18n.js");
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/sprintf.js":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@wordpress/keycodes/node_modules/@wordpress/i18n/build-module/sprintf.js ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sprintf": () => (/* binding */ sprintf)
-/* harmony export */ });
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! memize */ "./node_modules/memize/index.js");
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(memize__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sprintf-js */ "./node_modules/sprintf-js/src/sprintf.js");
-/* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sprintf_js__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * External dependencies
- */
-
-
-/**
- * Log to console, once per message; or more precisely, per referentially equal
- * argument set. Because Jed throws errors, we log these to the console instead
- * to avoid crashing the application.
- *
- * @param {...*} args Arguments to pass to `console.error`
- */
-
-const logErrorOnce = memize__WEBPACK_IMPORTED_MODULE_0___default()(console.error); // eslint-disable-line no-console
-
-/**
- * Returns a formatted string. If an error occurs in applying the format, the
- * original format string is returned.
- *
- * @param {string} format The format of the string to generate.
- * @param {...*}   args   Arguments to apply to the format.
- *
- * @see https://www.npmjs.com/package/sprintf-js
- *
- * @return {string} The formatted string.
- */
-
-function sprintf(format) {
-  try {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    return sprintf_js__WEBPACK_IMPORTED_MODULE_1___default().sprintf(format, ...args);
-  } catch (error) {
-    if (error instanceof Error) {
-      logErrorOnce('sprintf error: \n\n' + error.toString());
-    }
-
-    return format;
-  }
-}
-//# sourceMappingURL=sprintf.js.map
 
 /***/ }),
 
@@ -43018,22 +38754,22 @@ __webpack_require__.r(__webpack_exports__);
  // Lazy load components.
 
 var AdminHome = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminHome */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css"), __webpack_require__.e("AdminHome")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminHome */ "./src/js/admin-panel/views/AdminHome.js"));
+  return Promise.all(/*! import() | AdminHome */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminHome")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminHome */ "./src/js/admin-panel/views/AdminHome.js"));
 });
 var AdminDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("AdminDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
+  return Promise.all(/*! import() | AdminDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("AdminDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
 });
 var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminMenuDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminMenuDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js"));
+  return Promise.all(/*! import() | AdminMenuDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminMenuDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js"));
 });
 var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemesDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css"), __webpack_require__.e("AdminThemesDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
+  return Promise.all(/*! import() | AdminThemesDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css"), __webpack_require__.e("AdminThemesDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminSupport */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminSupport")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js"));
 });
 var AdminLicense = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminLicense */[__webpack_require__.e("vendors-node_modules_wordpress_a11y_build-module_index_js-node_modules_wordpress_components_b-046f6d"), __webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminLicense")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminLicense */ "./src/js/admin-panel/views/AdminLicense.js"));
+  return Promise.all(/*! import() | AdminLicense */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminLicense")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminLicense */ "./src/js/admin-panel/views/AdminLicense.js"));
 });
 
 var AdminTabs = function AdminTabs(props) {
@@ -93630,18 +89366,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-resize-aware/dist/index.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-resize-aware/dist/index.js ***!
-  \*******************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var e=__webpack_require__(/*! react */ "./node_modules/react/index.js"),n={display:"block",opacity:0,position:"absolute",top:0,left:0,height:"100%",width:"100%",overflow:"hidden",pointerEvents:"none",zIndex:-1},t=function(t){var r=t.onResize,u=e.useRef();return function(n,t){var r=function(){return n.current&&n.current.contentDocument&&n.current.contentDocument.defaultView};function u(){t();var e=r();e&&e.addEventListener("resize",t)}e.useEffect((function(){return r()?u():n.current&&n.current.addEventListener&&n.current.addEventListener("load",u),function(){var e=r();e&&"function"==typeof e.removeEventListener&&e.removeEventListener("resize",t)}}),[])}(u,(function(){return r(u)})),e.createElement("iframe",{style:n,src:"about:blank",ref:u,"aria-hidden":!0,tabIndex:-1,frameBorder:0})},r=function(e){return{width:null!=e?e.offsetWidth:null,height:null!=e?e.offsetHeight:null}};module.exports=function(n){void 0===n&&(n=r);var u=e.useState(n(null)),o=u[0],i=u[1],c=e.useCallback((function(e){return i(n(e.current))}),[n]);return[e.useMemo((function(){return e.createElement(t,{onResize:c})}),[c]),o]};
-//# sourceMappingURL=index.js.map
-
-
-/***/ }),
-
 /***/ "./node_modules/react-router-dom/index.js":
 /*!************************************************!*\
   !*** ./node_modules/react-router-dom/index.js ***!
@@ -99590,6 +95314,1985 @@ function _extends() {
 
 /***/ }),
 
+/***/ "./node_modules/@floating-ui/core/dist/floating-ui.core.esm.development.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@floating-ui/core/dist/floating-ui.core.esm.development.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "arrow": () => (/* binding */ arrow),
+/* harmony export */   "autoPlacement": () => (/* binding */ autoPlacement),
+/* harmony export */   "computePosition": () => (/* binding */ computePosition),
+/* harmony export */   "detectOverflow": () => (/* binding */ detectOverflow),
+/* harmony export */   "flip": () => (/* binding */ flip),
+/* harmony export */   "hide": () => (/* binding */ hide),
+/* harmony export */   "inline": () => (/* binding */ inline),
+/* harmony export */   "limitShift": () => (/* binding */ limitShift),
+/* harmony export */   "offset": () => (/* binding */ offset),
+/* harmony export */   "rectToClientRect": () => (/* binding */ rectToClientRect),
+/* harmony export */   "shift": () => (/* binding */ shift),
+/* harmony export */   "size": () => (/* binding */ size)
+/* harmony export */ });
+function getSide(placement) {
+  return placement.split('-')[0];
+}
+
+function getAlignment(placement) {
+  return placement.split('-')[1];
+}
+
+function getMainAxisFromPlacement(placement) {
+  return ['top', 'bottom'].includes(getSide(placement)) ? 'x' : 'y';
+}
+
+function getLengthFromAxis(axis) {
+  return axis === 'y' ? 'height' : 'width';
+}
+
+function computeCoordsFromPlacement(_ref, placement, rtl) {
+  let {
+    reference,
+    floating
+  } = _ref;
+  const commonX = reference.x + reference.width / 2 - floating.width / 2;
+  const commonY = reference.y + reference.height / 2 - floating.height / 2;
+  const mainAxis = getMainAxisFromPlacement(placement);
+  const length = getLengthFromAxis(mainAxis);
+  const commonAlign = reference[length] / 2 - floating[length] / 2;
+  const side = getSide(placement);
+  const isVertical = mainAxis === 'x';
+  let coords;
+
+  switch (side) {
+    case 'top':
+      coords = {
+        x: commonX,
+        y: reference.y - floating.height
+      };
+      break;
+
+    case 'bottom':
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+
+    case 'right':
+      coords = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+
+    case 'left':
+      coords = {
+        x: reference.x - floating.width,
+        y: commonY
+      };
+      break;
+
+    default:
+      coords = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+
+  switch (getAlignment(placement)) {
+    case 'start':
+      coords[mainAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+
+    case 'end':
+      coords[mainAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+  }
+
+  return coords;
+}
+
+/**
+ * Computes the `x` and `y` coordinates that will place the floating element
+ * next to a reference element when it is given a certain positioning strategy.
+ *
+ * This export does not have any `platform` interface logic. You will need to
+ * write one for the platform you are using Floating UI with.
+ */
+
+const computePosition = async (reference, floating, config) => {
+  const {
+    placement = 'bottom',
+    strategy = 'absolute',
+    middleware = [],
+    platform
+  } = config;
+  const rtl = await (platform.isRTL == null ? void 0 : platform.isRTL(floating));
+
+  {
+    if (platform == null) {
+      console.error(['Floating UI: `platform` property was not passed to config. If you', 'want to use Floating UI on the web, install @floating-ui/dom', 'instead of the /core package. Otherwise, you can create your own', '`platform`: https://floating-ui.com/docs/platform'].join(' '));
+    }
+
+    if (middleware.filter(_ref => {
+      let {
+        name
+      } = _ref;
+      return name === 'autoPlacement' || name === 'flip';
+    }).length > 1) {
+      throw new Error(['Floating UI: duplicate `flip` and/or `autoPlacement`', 'middleware detected. This will lead to an infinite loop. Ensure only', 'one of either has been passed to the `middleware` array.'].join(' '));
+    }
+  }
+
+  let rects = await platform.getElementRects({
+    reference,
+    floating,
+    strategy
+  });
+  let {
+    x,
+    y
+  } = computeCoordsFromPlacement(rects, placement, rtl);
+  let statefulPlacement = placement;
+  let middlewareData = {};
+  let _debug_loop_count_ = 0;
+
+  for (let i = 0; i < middleware.length; i++) {
+    {
+      _debug_loop_count_++;
+
+      if (_debug_loop_count_ > 100) {
+        throw new Error(['Floating UI: The middleware lifecycle appears to be', 'running in an infinite loop. This is usually caused by a `reset`', 'continually being returned without a break condition.'].join(' '));
+      }
+    }
+
+    const {
+      name,
+      fn
+    } = middleware[i];
+    const {
+      x: nextX,
+      y: nextY,
+      data,
+      reset
+    } = await fn({
+      x,
+      y,
+      initialPlacement: placement,
+      placement: statefulPlacement,
+      strategy,
+      middlewareData,
+      rects,
+      platform,
+      elements: {
+        reference,
+        floating
+      }
+    });
+    x = nextX != null ? nextX : x;
+    y = nextY != null ? nextY : y;
+    middlewareData = { ...middlewareData,
+      [name]: { ...middlewareData[name],
+        ...data
+      }
+    };
+
+    if (reset) {
+      if (typeof reset === 'object') {
+        if (reset.placement) {
+          statefulPlacement = reset.placement;
+        }
+
+        if (reset.rects) {
+          rects = reset.rects === true ? await platform.getElementRects({
+            reference,
+            floating,
+            strategy
+          }) : reset.rects;
+        }
+
+        ({
+          x,
+          y
+        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
+      }
+
+      i = -1;
+      continue;
+    }
+  }
+
+  return {
+    x,
+    y,
+    placement: statefulPlacement,
+    strategy,
+    middlewareData
+  };
+};
+
+function expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+
+function getSideObjectFromPadding(padding) {
+  return typeof padding !== 'number' ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+
+function rectToClientRect(rect) {
+  return { ...rect,
+    top: rect.y,
+    left: rect.x,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  };
+}
+
+/**
+ * Resolves with an object of overflow side offsets that determine how much the
+ * element is overflowing a given clipping boundary.
+ * - positive = overflowing the boundary by that number of pixels
+ * - negative = how many pixels left before it will overflow
+ * - 0 = lies flush with the boundary
+ * @see https://floating-ui.com/docs/detectOverflow
+ */
+async function detectOverflow(middlewareArguments, options) {
+  var _await$platform$isEle;
+
+  if (options === void 0) {
+    options = {};
+  }
+
+  const {
+    x,
+    y,
+    platform,
+    rects,
+    elements,
+    strategy
+  } = middlewareArguments;
+  const {
+    boundary = 'clippingAncestors',
+    rootBoundary = 'viewport',
+    elementContext = 'floating',
+    altBoundary = false,
+    padding = 0
+  } = options;
+  const paddingObject = getSideObjectFromPadding(padding);
+  const altContext = elementContext === 'floating' ? 'reference' : 'floating';
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = rectToClientRect(await platform.getClippingRect({
+    element: ((_await$platform$isEle = await (platform.isElement == null ? void 0 : platform.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || (await (platform.getDocumentElement == null ? void 0 : platform.getDocumentElement(elements.floating))),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const elementClientRect = rectToClientRect(platform.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform.convertOffsetParentRelativeRectToViewportRelativeRect({
+    rect: elementContext === 'floating' ? { ...rects.floating,
+      x,
+      y
+    } : rects.reference,
+    offsetParent: await (platform.getOffsetParent == null ? void 0 : platform.getOffsetParent(elements.floating)),
+    strategy
+  }) : rects[elementContext]); // positive = overflowing the clipping rect
+  // 0 or negative = within the clipping rect
+
+  return {
+    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
+    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
+    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
+    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
+  };
+}
+
+const min = Math.min;
+const max = Math.max;
+
+function within(min$1, value, max$1) {
+  return max(min$1, min(value, max$1));
+}
+
+/**
+ * Positions an inner element of the floating element such that it is centered
+ * to the reference element.
+ * @see https://floating-ui.com/docs/arrow
+ */
+const arrow = options => ({
+  name: 'arrow',
+  options,
+
+  async fn(middlewareArguments) {
+    // Since `element` is required, we don't Partial<> the type
+    const {
+      element,
+      padding = 0
+    } = options != null ? options : {};
+    const {
+      x,
+      y,
+      placement,
+      rects,
+      platform
+    } = middlewareArguments;
+
+    if (element == null) {
+      {
+        console.warn('Floating UI: No `element` was passed to the `arrow` middleware.');
+      }
+
+      return {};
+    }
+
+    const paddingObject = getSideObjectFromPadding(padding);
+    const coords = {
+      x,
+      y
+    };
+    const axis = getMainAxisFromPlacement(placement);
+    const length = getLengthFromAxis(axis);
+    const arrowDimensions = await platform.getDimensions(element);
+    const minProp = axis === 'y' ? 'top' : 'left';
+    const maxProp = axis === 'y' ? 'bottom' : 'right';
+    const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
+    const startDiff = coords[axis] - rects.reference[axis];
+    const arrowOffsetParent = await (platform.getOffsetParent == null ? void 0 : platform.getOffsetParent(element));
+    const clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
+    const centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the floating element if the center
+    // point is outside of the floating element's bounds
+
+    const min = paddingObject[minProp];
+    const max = clientSize - arrowDimensions[length] - paddingObject[maxProp];
+    const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
+    const offset = within(min, center, max);
+    return {
+      data: {
+        [axis]: offset,
+        centerOffset: center - offset
+      }
+    };
+  }
+
+});
+
+const hash$1 = {
+  left: 'right',
+  right: 'left',
+  bottom: 'top',
+  top: 'bottom'
+};
+function getOppositePlacement(placement) {
+  return placement.replace(/left|right|bottom|top/g, matched => hash$1[matched]);
+}
+
+function getAlignmentSides(placement, rects, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+
+  const alignment = getAlignment(placement);
+  const mainAxis = getMainAxisFromPlacement(placement);
+  const length = getLengthFromAxis(mainAxis);
+  let mainAlignmentSide = mainAxis === 'x' ? alignment === (rtl ? 'end' : 'start') ? 'right' : 'left' : alignment === 'start' ? 'bottom' : 'top';
+
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
+  }
+
+  return {
+    main: mainAlignmentSide,
+    cross: getOppositePlacement(mainAlignmentSide)
+  };
+}
+
+const hash = {
+  start: 'end',
+  end: 'start'
+};
+function getOppositeAlignmentPlacement(placement) {
+  return placement.replace(/start|end/g, matched => hash[matched]);
+}
+
+const sides = ['top', 'right', 'bottom', 'left'];
+const allPlacements = /*#__PURE__*/sides.reduce((acc, side) => acc.concat(side, side + "-start", side + "-end"), []);
+
+function getPlacementList(alignment, autoAlignment, allowedPlacements) {
+  const allowedPlacementsSortedByAlignment = alignment ? [...allowedPlacements.filter(placement => getAlignment(placement) === alignment), ...allowedPlacements.filter(placement => getAlignment(placement) !== alignment)] : allowedPlacements.filter(placement => getSide(placement) === placement);
+  return allowedPlacementsSortedByAlignment.filter(placement => {
+    if (alignment) {
+      return getAlignment(placement) === alignment || (autoAlignment ? getOppositeAlignmentPlacement(placement) !== placement : false);
+    }
+
+    return true;
+  });
+}
+
+/**
+ * Automatically chooses the `placement` which has the most space available.
+ * @see https://floating-ui.com/docs/autoPlacement
+ */
+const autoPlacement = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    name: 'autoPlacement',
+    options,
+
+    async fn(middlewareArguments) {
+      var _middlewareData$autoP, _middlewareData$autoP2, _middlewareData$autoP3, _middlewareData$autoP4, _placementsSortedByLe;
+
+      const {
+        x,
+        y,
+        rects,
+        middlewareData,
+        placement,
+        platform,
+        elements
+      } = middlewareArguments;
+      const {
+        alignment = null,
+        allowedPlacements = allPlacements,
+        autoAlignment = true,
+        ...detectOverflowOptions
+      } = options;
+      const placements = getPlacementList(alignment, autoAlignment, allowedPlacements);
+      const overflow = await detectOverflow(middlewareArguments, detectOverflowOptions);
+      const currentIndex = (_middlewareData$autoP = (_middlewareData$autoP2 = middlewareData.autoPlacement) == null ? void 0 : _middlewareData$autoP2.index) != null ? _middlewareData$autoP : 0;
+      const currentPlacement = placements[currentIndex];
+
+      if (currentPlacement == null) {
+        return {};
+      }
+
+      const {
+        main,
+        cross
+      } = getAlignmentSides(currentPlacement, rects, await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating))); // Make `computeCoords` start from the right place
+
+      if (placement !== currentPlacement) {
+        return {
+          x,
+          y,
+          reset: {
+            placement: placements[0]
+          }
+        };
+      }
+
+      const currentOverflows = [overflow[getSide(currentPlacement)], overflow[main], overflow[cross]];
+      const allOverflows = [...((_middlewareData$autoP3 = (_middlewareData$autoP4 = middlewareData.autoPlacement) == null ? void 0 : _middlewareData$autoP4.overflows) != null ? _middlewareData$autoP3 : []), {
+        placement: currentPlacement,
+        overflows: currentOverflows
+      }];
+      const nextPlacement = placements[currentIndex + 1]; // There are more placements to check
+
+      if (nextPlacement) {
+        return {
+          data: {
+            index: currentIndex + 1,
+            overflows: allOverflows
+          },
+          reset: {
+            placement: nextPlacement
+          }
+        };
+      }
+
+      const placementsSortedByLeastOverflow = allOverflows.slice().sort((a, b) => a.overflows[0] - b.overflows[0]);
+      const placementThatFitsOnAllSides = (_placementsSortedByLe = placementsSortedByLeastOverflow.find(_ref => {
+        let {
+          overflows
+        } = _ref;
+        return overflows.every(overflow => overflow <= 0);
+      })) == null ? void 0 : _placementsSortedByLe.placement;
+      const resetPlacement = placementThatFitsOnAllSides != null ? placementThatFitsOnAllSides : placementsSortedByLeastOverflow[0].placement;
+
+      if (resetPlacement !== placement) {
+        return {
+          data: {
+            index: currentIndex + 1,
+            overflows: allOverflows
+          },
+          reset: {
+            placement: resetPlacement
+          }
+        };
+      }
+
+      return {};
+    }
+
+  };
+};
+
+function getExpandedPlacements(placement) {
+  const oppositePlacement = getOppositePlacement(placement);
+  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
+}
+
+/**
+ * Changes the placement of the floating element to one that will fit if the
+ * initially specified `placement` does not.
+ * @see https://floating-ui.com/docs/flip
+ */
+const flip = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    name: 'flip',
+    options,
+
+    async fn(middlewareArguments) {
+      var _middlewareData$flip;
+
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform,
+        elements
+      } = middlewareArguments;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = 'bestFit',
+        flipAlignment = true,
+        ...detectOverflowOptions
+      } = options;
+      const side = getSide(placement);
+      const isBasePlacement = side === initialPlacement;
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      const placements = [initialPlacement, ...fallbackPlacements];
+      const overflow = await detectOverflow(middlewareArguments, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
+
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+
+      if (checkCrossAxis) {
+        const {
+          main,
+          cross
+        } = getAlignmentSides(placement, rects, await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating)));
+        overflows.push(overflow[main], overflow[cross]);
+      }
+
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }]; // One or more sides is overflowing
+
+      if (!overflows.every(side => side <= 0)) {
+        var _middlewareData$flip$, _middlewareData$flip2;
+
+        const nextIndex = ((_middlewareData$flip$ = (_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) != null ? _middlewareData$flip$ : 0) + 1;
+        const nextPlacement = placements[nextIndex];
+
+        if (nextPlacement) {
+          // Try next placement and re-run the lifecycle
+          return {
+            data: {
+              index: nextIndex,
+              overflows: overflowsData
+            },
+            reset: {
+              placement: nextPlacement
+            }
+          };
+        }
+
+        let resetPlacement = 'bottom';
+
+        switch (fallbackStrategy) {
+          case 'bestFit':
+            {
+              var _overflowsData$map$so;
+
+              const placement = (_overflowsData$map$so = overflowsData.map(d => [d, d.overflows.filter(overflow => overflow > 0).reduce((acc, overflow) => acc + overflow, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$map$so[0].placement;
+
+              if (placement) {
+                resetPlacement = placement;
+              }
+
+              break;
+            }
+
+          case 'initialPlacement':
+            resetPlacement = initialPlacement;
+            break;
+        }
+
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+
+      return {};
+    }
+
+  };
+};
+
+function getSideOffsets(overflow, rect) {
+  return {
+    top: overflow.top - rect.height,
+    right: overflow.right - rect.width,
+    bottom: overflow.bottom - rect.height,
+    left: overflow.left - rect.width
+  };
+}
+
+function isAnySideFullyClipped(overflow) {
+  return sides.some(side => overflow[side] >= 0);
+}
+
+/**
+ * Provides data to hide the floating element in applicable situations, such as
+ * when it is not in the same clipping context as the reference element.
+ * @see https://floating-ui.com/docs/hide
+ */
+const hide = function (_temp) {
+  let {
+    strategy = 'referenceHidden',
+    ...detectOverflowOptions
+  } = _temp === void 0 ? {} : _temp;
+  return {
+    name: 'hide',
+
+    async fn(middlewareArguments) {
+      const {
+        rects
+      } = middlewareArguments;
+
+      switch (strategy) {
+        case 'referenceHidden':
+          {
+            const overflow = await detectOverflow(middlewareArguments, { ...detectOverflowOptions,
+              elementContext: 'reference'
+            });
+            const offsets = getSideOffsets(overflow, rects.reference);
+            return {
+              data: {
+                referenceHiddenOffsets: offsets,
+                referenceHidden: isAnySideFullyClipped(offsets)
+              }
+            };
+          }
+
+        case 'escaped':
+          {
+            const overflow = await detectOverflow(middlewareArguments, { ...detectOverflowOptions,
+              altBoundary: true
+            });
+            const offsets = getSideOffsets(overflow, rects.floating);
+            return {
+              data: {
+                escapedOffsets: offsets,
+                escaped: isAnySideFullyClipped(offsets)
+              }
+            };
+          }
+
+        default:
+          {
+            return {};
+          }
+      }
+    }
+
+  };
+};
+
+function convertValueToCoords(placement, rects, value, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+
+  const side = getSide(placement);
+  const alignment = getAlignment(placement);
+  const isVertical = getMainAxisFromPlacement(placement) === 'x';
+  const mainAxisMulti = ['left', 'top'].includes(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = typeof value === 'function' ? value({ ...rects,
+    placement
+  }) : value; // eslint-disable-next-line prefer-const
+
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === 'number' ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: 0,
+    crossAxis: 0,
+    alignmentAxis: null,
+    ...rawValue
+  };
+
+  if (alignment && typeof alignmentAxis === 'number') {
+    crossAxis = alignment === 'end' ? alignmentAxis * -1 : alignmentAxis;
+  }
+
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
+}
+/**
+ * Displaces the floating element from its reference element.
+ * @see https://floating-ui.com/docs/offset
+ */
+
+const offset = function (value) {
+  if (value === void 0) {
+    value = 0;
+  }
+
+  return {
+    name: 'offset',
+    options: value,
+
+    async fn(middlewareArguments) {
+      const {
+        x,
+        y,
+        placement,
+        rects,
+        platform,
+        elements
+      } = middlewareArguments;
+      const diffCoords = convertValueToCoords(placement, rects, value, await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating)));
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: diffCoords
+      };
+    }
+
+  };
+};
+
+function getCrossAxis(axis) {
+  return axis === 'x' ? 'y' : 'x';
+}
+
+/**
+ * Shifts the floating element in order to keep it in view when it will overflow
+ * a clipping boundary.
+ * @see https://floating-ui.com/docs/shift
+ */
+const shift = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    name: 'shift',
+    options,
+
+    async fn(middlewareArguments) {
+      const {
+        x,
+        y,
+        placement
+      } = middlewareArguments;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = false,
+        limiter = {
+          fn: _ref => {
+            let {
+              x,
+              y
+            } = _ref;
+            return {
+              x,
+              y
+            };
+          }
+        },
+        ...detectOverflowOptions
+      } = options;
+      const coords = {
+        x,
+        y
+      };
+      const overflow = await detectOverflow(middlewareArguments, detectOverflowOptions);
+      const mainAxis = getMainAxisFromPlacement(getSide(placement));
+      const crossAxis = getCrossAxis(mainAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+
+      if (checkMainAxis) {
+        const minSide = mainAxis === 'y' ? 'top' : 'left';
+        const maxSide = mainAxis === 'y' ? 'bottom' : 'right';
+        const min = mainAxisCoord + overflow[minSide];
+        const max = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = within(min, mainAxisCoord, max);
+      }
+
+      if (checkCrossAxis) {
+        const minSide = crossAxis === 'y' ? 'top' : 'left';
+        const maxSide = crossAxis === 'y' ? 'bottom' : 'right';
+        const min = crossAxisCoord + overflow[minSide];
+        const max = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = within(min, crossAxisCoord, max);
+      }
+
+      const limitedCoords = limiter.fn({ ...middlewareArguments,
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      });
+      return { ...limitedCoords,
+        data: {
+          x: limitedCoords.x - x,
+          y: limitedCoords.y - y
+        }
+      };
+    }
+
+  };
+};
+
+/**
+ * Built-in `limiter` that will stop `shift()` at a certain point.
+ */
+const limitShift = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    options,
+
+    fn(middlewareArguments) {
+      const {
+        x,
+        y,
+        placement,
+        rects,
+        middlewareData
+      } = middlewareArguments;
+      const {
+        offset = 0,
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true
+      } = options;
+      const coords = {
+        x,
+        y
+      };
+      const mainAxis = getMainAxisFromPlacement(placement);
+      const crossAxis = getCrossAxis(mainAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      const rawOffset = typeof offset === 'function' ? offset({ ...rects,
+        placement
+      }) : offset;
+      const computedOffset = typeof rawOffset === 'number' ? {
+        mainAxis: rawOffset,
+        crossAxis: 0
+      } : {
+        mainAxis: 0,
+        crossAxis: 0,
+        ...rawOffset
+      };
+
+      if (checkMainAxis) {
+        const len = mainAxis === 'y' ? 'height' : 'width';
+        const limitMin = rects.reference[mainAxis] - rects.floating[len] + computedOffset.mainAxis;
+        const limitMax = rects.reference[mainAxis] + rects.reference[len] - computedOffset.mainAxis;
+
+        if (mainAxisCoord < limitMin) {
+          mainAxisCoord = limitMin;
+        } else if (mainAxisCoord > limitMax) {
+          mainAxisCoord = limitMax;
+        }
+      }
+
+      if (checkCrossAxis) {
+        var _middlewareData$offse, _middlewareData$offse2, _middlewareData$offse3, _middlewareData$offse4;
+
+        const len = mainAxis === 'y' ? 'width' : 'height';
+        const isOriginSide = ['top', 'left'].includes(getSide(placement));
+        const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? (_middlewareData$offse = (_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) != null ? _middlewareData$offse : 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
+        const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : (_middlewareData$offse3 = (_middlewareData$offse4 = middlewareData.offset) == null ? void 0 : _middlewareData$offse4[crossAxis]) != null ? _middlewareData$offse3 : 0) - (isOriginSide ? computedOffset.crossAxis : 0);
+
+        if (crossAxisCoord < limitMin) {
+          crossAxisCoord = limitMin;
+        } else if (crossAxisCoord > limitMax) {
+          crossAxisCoord = limitMax;
+        }
+      }
+
+      return {
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      };
+    }
+
+  };
+};
+
+/**
+ * Provides data to change the size of the floating element. For instance,
+ * prevent it from overflowing its clipping boundary or match the width of the
+ * reference element.
+ * @see https://floating-ui.com/docs/size
+ */
+const size = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    name: 'size',
+    options,
+
+    async fn(middlewareArguments) {
+      const {
+        placement,
+        rects,
+        platform,
+        elements
+      } = middlewareArguments;
+      const {
+        apply,
+        ...detectOverflowOptions
+      } = options;
+      const overflow = await detectOverflow(middlewareArguments, detectOverflowOptions);
+      const side = getSide(placement);
+      const alignment = getAlignment(placement);
+      let heightSide;
+      let widthSide;
+
+      if (side === 'top' || side === 'bottom') {
+        heightSide = side;
+        widthSide = alignment === ((await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating))) ? 'start' : 'end') ? 'left' : 'right';
+      } else {
+        widthSide = side;
+        heightSide = alignment === 'end' ? 'top' : 'bottom';
+      }
+
+      const xMin = max(overflow.left, 0);
+      const xMax = max(overflow.right, 0);
+      const yMin = max(overflow.top, 0);
+      const yMax = max(overflow.bottom, 0);
+      const dimensions = {
+        height: rects.floating.height - (['left', 'right'].includes(placement) ? 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom)) : overflow[heightSide]),
+        width: rects.floating.width - (['top', 'bottom'].includes(placement) ? 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right)) : overflow[widthSide])
+      };
+      const prevDimensions = await platform.getDimensions(elements.floating);
+      apply == null ? void 0 : apply({ ...dimensions,
+        ...rects
+      });
+      const nextDimensions = await platform.getDimensions(elements.floating);
+
+      if (prevDimensions.width !== nextDimensions.width || prevDimensions.height !== nextDimensions.height) {
+        return {
+          reset: {
+            rects: true
+          }
+        };
+      }
+
+      return {};
+    }
+
+  };
+};
+
+/**
+ * Provides improved positioning for inline reference elements that can span
+ * over multiple lines, such as hyperlinks or range selections.
+ * @see https://floating-ui.com/docs/inline
+ */
+const inline = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  return {
+    name: 'inline',
+    options,
+
+    async fn(middlewareArguments) {
+      var _await$platform$getCl;
+
+      const {
+        placement,
+        elements,
+        rects,
+        platform,
+        strategy
+      } = middlewareArguments; // A MouseEvent's client{X,Y} coords can be up to 2 pixels off a
+      // ClientRect's bounds, despite the event listener being triggered. A
+      // padding of 2 seems to handle this issue.
+
+      const {
+        padding = 2,
+        x,
+        y
+      } = options;
+      const fallback = rectToClientRect(platform.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform.convertOffsetParentRelativeRectToViewportRelativeRect({
+        rect: rects.reference,
+        offsetParent: await (platform.getOffsetParent == null ? void 0 : platform.getOffsetParent(elements.floating)),
+        strategy
+      }) : rects.reference);
+      const clientRects = (_await$platform$getCl = await (platform.getClientRects == null ? void 0 : platform.getClientRects(elements.reference))) != null ? _await$platform$getCl : [];
+      const paddingObject = getSideObjectFromPadding(padding);
+
+      function getBoundingClientRect() {
+        // There are two rects and they are disjoined
+        if (clientRects.length === 2 && clientRects[0].left > clientRects[1].right && x != null && y != null) {
+          var _clientRects$find;
+
+          // Find the first rect in which the point is fully inside
+          return (_clientRects$find = clientRects.find(rect => x > rect.left - paddingObject.left && x < rect.right + paddingObject.right && y > rect.top - paddingObject.top && y < rect.bottom + paddingObject.bottom)) != null ? _clientRects$find : fallback;
+        } // There are 2 or more connected rects
+
+
+        if (clientRects.length >= 2) {
+          if (getMainAxisFromPlacement(placement) === 'x') {
+            const firstRect = clientRects[0];
+            const lastRect = clientRects[clientRects.length - 1];
+            const isTop = getSide(placement) === 'top';
+            const top = firstRect.top;
+            const bottom = lastRect.bottom;
+            const left = isTop ? firstRect.left : lastRect.left;
+            const right = isTop ? firstRect.right : lastRect.right;
+            const width = right - left;
+            const height = bottom - top;
+            return {
+              top,
+              bottom,
+              left,
+              right,
+              width,
+              height,
+              x: left,
+              y: top
+            };
+          }
+
+          const isLeftSide = getSide(placement) === 'left';
+          const maxRight = max(...clientRects.map(rect => rect.right));
+          const minLeft = min(...clientRects.map(rect => rect.left));
+          const measureRects = clientRects.filter(rect => isLeftSide ? rect.left === minLeft : rect.right === maxRight);
+          const top = measureRects[0].top;
+          const bottom = measureRects[measureRects.length - 1].bottom;
+          const left = minLeft;
+          const right = maxRight;
+          const width = right - left;
+          const height = bottom - top;
+          return {
+            top,
+            bottom,
+            left,
+            right,
+            width,
+            height,
+            x: left,
+            y: top
+          };
+        }
+
+        return fallback;
+      }
+
+      const resetRects = await platform.getElementRects({
+        reference: {
+          getBoundingClientRect
+        },
+        floating: elements.floating,
+        strategy
+      });
+
+      if (rects.reference.x !== resetRects.reference.x || rects.reference.y !== resetRects.reference.y || rects.reference.width !== resetRects.reference.width || rects.reference.height !== resetRects.reference.height) {
+        return {
+          reset: {
+            rects: resetRects
+          }
+        };
+      }
+
+      return {};
+    }
+
+  };
+};
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@floating-ui/dom/dist/floating-ui.dom.esm.development.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@floating-ui/dom/dist/floating-ui.dom.esm.development.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "arrow": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.arrow),
+/* harmony export */   "autoPlacement": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.autoPlacement),
+/* harmony export */   "autoUpdate": () => (/* binding */ autoUpdate),
+/* harmony export */   "computePosition": () => (/* binding */ computePosition),
+/* harmony export */   "detectOverflow": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.detectOverflow),
+/* harmony export */   "flip": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.flip),
+/* harmony export */   "getOverflowAncestors": () => (/* binding */ getOverflowAncestors),
+/* harmony export */   "hide": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.hide),
+/* harmony export */   "inline": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.inline),
+/* harmony export */   "limitShift": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.limitShift),
+/* harmony export */   "offset": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.offset),
+/* harmony export */   "shift": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.shift),
+/* harmony export */   "size": () => (/* reexport safe */ _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.size)
+/* harmony export */ });
+/* harmony import */ var _floating_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @floating-ui/core */ "./node_modules/@floating-ui/core/dist/floating-ui.core.esm.development.js");
+
+
+
+function isWindow(value) {
+  return value && value.document && value.location && value.alert && value.setInterval;
+}
+function getWindow(node) {
+  if (node == null) {
+    return window;
+  }
+
+  if (!isWindow(node)) {
+    const ownerDocument = node.ownerDocument;
+    return ownerDocument ? ownerDocument.defaultView || window : window;
+  }
+
+  return node;
+}
+
+function getComputedStyle$1(element) {
+  return getWindow(element).getComputedStyle(element);
+}
+
+function getNodeName(node) {
+  return isWindow(node) ? '' : node ? (node.nodeName || '').toLowerCase() : '';
+}
+
+function isHTMLElement(value) {
+  return value instanceof getWindow(value).HTMLElement;
+}
+function isElement(value) {
+  return value instanceof getWindow(value).Element;
+}
+function isNode(value) {
+  return value instanceof getWindow(value).Node;
+}
+function isShadowRoot(node) {
+  // Browsers without `ShadowRoot` support
+  if (typeof ShadowRoot === 'undefined') {
+    return false;
+  }
+
+  const OwnElement = getWindow(node).ShadowRoot;
+  return node instanceof OwnElement || node instanceof ShadowRoot;
+}
+function isOverflowElement(element) {
+  // Firefox wants us to check `-x` and `-y` variations as well
+  const {
+    overflow,
+    overflowX,
+    overflowY
+  } = getComputedStyle$1(element);
+  return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
+}
+function isTableElement(element) {
+  return ['table', 'td', 'th'].includes(getNodeName(element));
+}
+function isContainingBlock(element) {
+  // TODO: Try and use feature detection here instead
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+  const css = getComputedStyle$1(element); // This is non-exhaustive but covers the most common CSS properties that
+  // create a containing block.
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+
+  return css.transform !== 'none' || css.perspective !== 'none' || // @ts-ignore (TS 4.1 compat)
+  css.contain === 'paint' || ['transform', 'perspective'].includes(css.willChange) || isFirefox && css.willChange === 'filter' || isFirefox && (css.filter ? css.filter !== 'none' : false);
+}
+function isLayoutViewport() {
+  // Not Safari
+  return !/^((?!chrome|android).)*safari/i.test(navigator.userAgent); // Feature detection for this fails in various ways
+  // • Always-visible scrollbar or not
+  // • Width of <html>, etc.
+  // const vV = win.visualViewport;
+  // return vV ? Math.abs(win.innerWidth / vV.scale - vV.width) < 0.5 : true;
+}
+
+const min = Math.min;
+const max = Math.max;
+const round = Math.round;
+
+function getBoundingClientRect(element, includeScale, isFixedStrategy) {
+  var _win$visualViewport$o, _win$visualViewport, _win$visualViewport$o2, _win$visualViewport2;
+
+  if (includeScale === void 0) {
+    includeScale = false;
+  }
+
+  if (isFixedStrategy === void 0) {
+    isFixedStrategy = false;
+  }
+
+  const clientRect = element.getBoundingClientRect();
+  let scaleX = 1;
+  let scaleY = 1;
+
+  if (includeScale && isHTMLElement(element)) {
+    scaleX = element.offsetWidth > 0 ? round(clientRect.width) / element.offsetWidth || 1 : 1;
+    scaleY = element.offsetHeight > 0 ? round(clientRect.height) / element.offsetHeight || 1 : 1;
+  }
+
+  const win = isElement(element) ? getWindow(element) : window;
+  const addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
+  const x = (clientRect.left + (addVisualOffsets ? (_win$visualViewport$o = (_win$visualViewport = win.visualViewport) == null ? void 0 : _win$visualViewport.offsetLeft) != null ? _win$visualViewport$o : 0 : 0)) / scaleX;
+  const y = (clientRect.top + (addVisualOffsets ? (_win$visualViewport$o2 = (_win$visualViewport2 = win.visualViewport) == null ? void 0 : _win$visualViewport2.offsetTop) != null ? _win$visualViewport$o2 : 0 : 0)) / scaleY;
+  const width = clientRect.width / scaleX;
+  const height = clientRect.height / scaleY;
+  return {
+    width,
+    height,
+    top: y,
+    right: x + width,
+    bottom: y + height,
+    left: x,
+    x,
+    y
+  };
+}
+
+function getDocumentElement(node) {
+  return ((isNode(node) ? node.ownerDocument : node.document) || window.document).documentElement;
+}
+
+function getNodeScroll(element) {
+  if (isElement(element)) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+
+  return {
+    scrollLeft: element.pageXOffset,
+    scrollTop: element.pageYOffset
+  };
+}
+
+function getWindowScrollBarX(element) {
+  // If <html> has a CSS width greater than the viewport, then this will be
+  // incorrect for RTL.
+  return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
+}
+
+function isScaled(element) {
+  const rect = getBoundingClientRect(element);
+  return round(rect.width) !== element.offsetWidth || round(rect.height) !== element.offsetHeight;
+}
+
+function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const rect = getBoundingClientRect(element, // @ts-ignore - checked above (TS 4.1 compat)
+  isOffsetParentAnElement && isScaled(offsetParent), strategy === 'fixed');
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = {
+    x: 0,
+    y: 0
+  };
+
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== 'fixed') {
+    if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+
+    if (isHTMLElement(offsetParent)) {
+      const offsetRect = getBoundingClientRect(offsetParent, true);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } else if (documentElement) {
+      offsets.x = getWindowScrollBarX(documentElement);
+    }
+  }
+
+  return {
+    x: rect.left + scroll.scrollLeft - offsets.x,
+    y: rect.top + scroll.scrollTop - offsets.y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+function getParentNode(node) {
+  if (getNodeName(node) === 'html') {
+    return node;
+  }
+
+  return (// this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    // @ts-ignore
+    node.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+    node.parentNode || ( // DOM Element detected
+    isShadowRoot(node) ? node.host : null) || // ShadowRoot detected
+    getDocumentElement(node) // fallback
+
+  );
+}
+
+function getTrueOffsetParent(element) {
+  if (!isHTMLElement(element) || getComputedStyle(element).position === 'fixed') {
+    return null;
+  }
+
+  return element.offsetParent;
+}
+
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+
+  if (isShadowRoot(currentNode)) {
+    currentNode = currentNode.host;
+  }
+
+  while (isHTMLElement(currentNode) && !['html', 'body'].includes(getNodeName(currentNode))) {
+    if (isContainingBlock(currentNode)) {
+      return currentNode;
+    } else {
+      currentNode = currentNode.parentNode;
+    }
+  }
+
+  return null;
+} // Gets the closest ancestor positioned element. Handles some edge cases,
+// such as table ancestors and cross browser bugs.
+
+
+function getOffsetParent(element) {
+  const window = getWindow(element);
+  let offsetParent = getTrueOffsetParent(element);
+
+  while (offsetParent && isTableElement(offsetParent) && getComputedStyle(offsetParent).position === 'static') {
+    offsetParent = getTrueOffsetParent(offsetParent);
+  }
+
+  if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static' && !isContainingBlock(offsetParent))) {
+    return window;
+  }
+
+  return offsetParent || getContainingBlock(element) || window;
+}
+
+function getDimensions(element) {
+  if (isHTMLElement(element)) {
+    return {
+      width: element.offsetWidth,
+      height: element.offsetHeight
+    };
+  }
+
+  const rect = getBoundingClientRect(element);
+  return {
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
+  let {
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+
+  if (offsetParent === documentElement) {
+    return rect;
+  }
+
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = {
+    x: 0,
+    y: 0
+  };
+
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== 'fixed') {
+    if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+
+    if (isHTMLElement(offsetParent)) {
+      const offsetRect = getBoundingClientRect(offsetParent, true);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } // This doesn't appear to be need to be negated.
+    // else if (documentElement) {
+    //   offsets.x = getWindowScrollBarX(documentElement);
+    // }
+
+  }
+
+  return { ...rect,
+    x: rect.x - scroll.scrollLeft + offsets.x,
+    y: rect.y - scroll.scrollTop + offsets.y
+  };
+}
+
+function getViewportRect(element, strategy) {
+  const win = getWindow(element);
+  const html = getDocumentElement(element);
+  const visualViewport = win.visualViewport;
+  let width = html.clientWidth;
+  let height = html.clientHeight;
+  let x = 0;
+  let y = 0;
+
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    const layoutViewport = isLayoutViewport();
+
+    if (layoutViewport || !layoutViewport && strategy === 'fixed') {
+      x = visualViewport.offsetLeft;
+      y = visualViewport.offsetTop;
+    }
+  }
+
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+
+// of the `<html>` and `<body>` rect bounds if horizontally scrollable
+
+function getDocumentRect(element) {
+  var _element$ownerDocumen;
+
+  const html = getDocumentElement(element);
+  const scroll = getNodeScroll(element);
+  const body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+  const width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
+  const height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  const y = -scroll.scrollTop;
+
+  if (getComputedStyle$1(body || html).direction === 'rtl') {
+    x += max(html.clientWidth, body ? body.clientWidth : 0) - width;
+  }
+
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+
+function getNearestOverflowAncestor(node) {
+  const parentNode = getParentNode(node);
+
+  if (['html', 'body', '#document'].includes(getNodeName(parentNode))) {
+    // @ts-ignore assume body is always available
+    return node.ownerDocument.body;
+  }
+
+  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
+    return parentNode;
+  }
+
+  return getNearestOverflowAncestor(parentNode);
+}
+
+function getOverflowAncestors(node, list) {
+  var _node$ownerDocument;
+
+  if (list === void 0) {
+    list = [];
+  }
+
+  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const isBody = scrollableAncestor === ((_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.body);
+  const win = getWindow(scrollableAncestor);
+  const target = isBody ? [win].concat(win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : []) : scrollableAncestor;
+  const updatedList = list.concat(target);
+  return isBody ? updatedList : // @ts-ignore: isBody tells us target will be an HTMLElement here
+  updatedList.concat(getOverflowAncestors(target));
+}
+
+function contains(parent, child) {
+  const rootNode = child == null ? void 0 : child.getRootNode == null ? void 0 : child.getRootNode(); // First, attempt with faster native method
+
+  if (parent != null && parent.contains(child)) {
+    return true;
+  } // then fallback to custom implementation with Shadow DOM support
+  else if (rootNode && isShadowRoot(rootNode)) {
+    let next = child;
+
+    do {
+      // use `===` replace node.isSameNode()
+      if (next && parent === next) {
+        return true;
+      } // @ts-ignore: need a better way to handle this...
+
+
+      next = next.parentNode || next.host;
+    } while (next);
+  }
+
+  return false;
+}
+
+function getInnerBoundingClientRect(element, strategy) {
+  const clientRect = getBoundingClientRect(element, false, strategy === 'fixed');
+  const top = clientRect.top + element.clientTop;
+  const left = clientRect.left + element.clientLeft;
+  return {
+    top,
+    left,
+    x: left,
+    y: top,
+    right: left + element.clientWidth,
+    bottom: top + element.clientHeight,
+    width: element.clientWidth,
+    height: element.clientHeight
+  };
+}
+
+function getClientRectFromClippingAncestor(element, clippingParent, strategy) {
+  if (clippingParent === 'viewport') {
+    return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)(getViewportRect(element, strategy));
+  }
+
+  if (isElement(clippingParent)) {
+    return getInnerBoundingClientRect(clippingParent, strategy);
+  }
+
+  return (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.rectToClientRect)(getDocumentRect(getDocumentElement(element)));
+} // A "clipping ancestor" is an overflowable container with the characteristic of
+// clipping (or hiding) overflowing elements with a position different from
+// `initial`
+
+
+function getClippingAncestors(element) {
+  const clippingAncestors = getOverflowAncestors(element);
+  const canEscapeClipping = ['absolute', 'fixed'].includes(getComputedStyle$1(element).position);
+  const clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
+
+  if (!isElement(clipperElement)) {
+    return [];
+  } // @ts-ignore isElement check ensures we return Array<Element>
+
+
+  return clippingAncestors.filter(clippingAncestors => isElement(clippingAncestors) && contains(clippingAncestors, clipperElement) && getNodeName(clippingAncestors) !== 'body');
+} // Gets the maximum area that the element is visible in due to any number of
+// clipping ancestors
+
+
+function getClippingRect(_ref) {
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const mainClippingAncestors = boundary === 'clippingAncestors' ? getClippingAncestors(element) : [].concat(boundary);
+  const clippingAncestors = [...mainClippingAncestors, rootBoundary];
+  const firstClippingAncestor = clippingAncestors[0];
+  const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
+    const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
+    accRect.top = max(rect.top, accRect.top);
+    accRect.right = min(rect.right, accRect.right);
+    accRect.bottom = min(rect.bottom, accRect.bottom);
+    accRect.left = max(rect.left, accRect.left);
+    return accRect;
+  }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
+  return {
+    width: clippingRect.right - clippingRect.left,
+    height: clippingRect.bottom - clippingRect.top,
+    x: clippingRect.left,
+    y: clippingRect.top
+  };
+}
+
+const platform = {
+  getClippingRect,
+  convertOffsetParentRelativeRectToViewportRelativeRect,
+  isElement,
+  getDimensions,
+  getOffsetParent,
+  getDocumentElement,
+  getElementRects: _ref => {
+    let {
+      reference,
+      floating,
+      strategy
+    } = _ref;
+    return {
+      reference: getRectRelativeToOffsetParent(reference, getOffsetParent(floating), strategy),
+      floating: { ...getDimensions(floating),
+        x: 0,
+        y: 0
+      }
+    };
+  },
+  getClientRects: element => Array.from(element.getClientRects()),
+  isRTL: element => getComputedStyle$1(element).direction === 'rtl'
+};
+
+/**
+ * Automatically updates the position of the floating element when necessary.
+ * @see https://floating-ui.com/docs/autoUpdate
+ */
+function autoUpdate(reference, floating, update, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  const {
+    ancestorScroll: _ancestorScroll = true,
+    ancestorResize: _ancestorResize = true,
+    elementResize: _elementResize = true,
+    animationFrame = false
+  } = options;
+  let cleanedUp = false;
+  const ancestorScroll = _ancestorScroll && !animationFrame;
+  const ancestorResize = _ancestorResize && !animationFrame;
+  const elementResize = _elementResize && !animationFrame;
+  const ancestors = ancestorScroll || ancestorResize ? [...(isElement(reference) ? getOverflowAncestors(reference) : []), ...getOverflowAncestors(floating)] : [];
+  ancestors.forEach(ancestor => {
+    ancestorScroll && ancestor.addEventListener('scroll', update, {
+      passive: true
+    });
+    ancestorResize && ancestor.addEventListener('resize', update);
+  });
+  let observer = null;
+
+  if (elementResize) {
+    observer = new ResizeObserver(update);
+    isElement(reference) && observer.observe(reference);
+    observer.observe(floating);
+  }
+
+  let frameId;
+  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
+
+  if (animationFrame) {
+    frameLoop();
+  }
+
+  function frameLoop() {
+    if (cleanedUp) {
+      return;
+    }
+
+    const nextRefRect = getBoundingClientRect(reference);
+
+    if (prevRefRect && (nextRefRect.x !== prevRefRect.x || nextRefRect.y !== prevRefRect.y || nextRefRect.width !== prevRefRect.width || nextRefRect.height !== prevRefRect.height)) {
+      update();
+    }
+
+    prevRefRect = nextRefRect;
+    frameId = requestAnimationFrame(frameLoop);
+  }
+
+  return () => {
+    var _observer;
+
+    cleanedUp = true;
+    ancestors.forEach(ancestor => {
+      ancestorScroll && ancestor.removeEventListener('scroll', update);
+      ancestorResize && ancestor.removeEventListener('resize', update);
+    });
+    (_observer = observer) == null ? void 0 : _observer.disconnect();
+    observer = null;
+
+    if (animationFrame) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+
+/**
+ * Computes the `x` and `y` coordinates that will place the floating element
+ * next to a reference element when it is given a certain CSS positioning
+ * strategy.
+ */
+
+const computePosition = (reference, floating, options) => (0,_floating_ui_core__WEBPACK_IMPORTED_MODULE_0__.computePosition)(reference, floating, {
+  platform,
+  ...options
+});
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "arrow": () => (/* binding */ arrow),
+/* harmony export */   "autoPlacement": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.autoPlacement),
+/* harmony export */   "autoUpdate": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.autoUpdate),
+/* harmony export */   "computePosition": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.computePosition),
+/* harmony export */   "detectOverflow": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.detectOverflow),
+/* harmony export */   "flip": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.flip),
+/* harmony export */   "getOverflowAncestors": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.getOverflowAncestors),
+/* harmony export */   "hide": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.hide),
+/* harmony export */   "inline": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.inline),
+/* harmony export */   "limitShift": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.limitShift),
+/* harmony export */   "offset": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.offset),
+/* harmony export */   "shift": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.shift),
+/* harmony export */   "size": () => (/* reexport safe */ _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.size),
+/* harmony export */   "useFloating": () => (/* binding */ useFloating)
+/* harmony export */ });
+/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @floating-ui/dom */ "./node_modules/@floating-ui/dom/dist/floating-ui.dom.esm.development.js");
+/* harmony import */ var _floating_ui_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @floating-ui/dom */ "./node_modules/@floating-ui/core/dist/floating-ui.core.esm.development.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+
+
+
+
+var index = typeof document !== 'undefined' ? react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_1__.useEffect;
+
+// Fork of `fast-deep-equal` that only does the comparisons we need and compares
+// functions
+// @ts-nocheck
+function deepEqual(a, b) {
+  if (a === b) {
+    return true;
+  }
+
+  if (typeof a !== typeof b) {
+    return false;
+  }
+
+  if (typeof a === 'function' && a.toString() === b.toString()) {
+    return true;
+  }
+
+  let length, i, keys;
+
+  if (a && b && typeof a == 'object') {
+    if (Array.isArray(a)) {
+      length = a.length;
+      if (length != b.length) return false;
+
+      for (i = length; i-- !== 0;) {
+        if (!deepEqual(a[i], b[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    keys = Object.keys(a);
+    length = keys.length;
+
+    if (length !== Object.keys(b).length) {
+      return false;
+    }
+
+    for (i = length; i-- !== 0;) {
+      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) {
+        return false;
+      }
+    }
+
+    for (i = length; i-- !== 0;) {
+      const key = keys[i];
+
+      if (key === '_owner' && a.$$typeof) {
+        continue;
+      }
+
+      if (!deepEqual(a[key], b[key])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return a !== a && b !== b;
+}
+
+function useFloating(_temp) {
+  let {
+    middleware,
+    placement = 'bottom',
+    strategy = 'absolute'
+  } = _temp === void 0 ? {} : _temp;
+  const reference = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  const floating = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    // Setting these to `null` will allow the consumer to determine if
+    // `computePosition()` has run yet
+    x: null,
+    y: null,
+    strategy,
+    placement,
+    middlewareData: {}
+  });
+  const [latestMiddleware, setLatestMiddleware] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(middleware);
+
+  if (!deepEqual(latestMiddleware == null ? void 0 : latestMiddleware.map(_ref => {
+    let {
+      options
+    } = _ref;
+    return options;
+  }), middleware == null ? void 0 : middleware.map(_ref2 => {
+    let {
+      options
+    } = _ref2;
+    return options;
+  }))) {
+    setLatestMiddleware(middleware);
+  }
+
+  const isMountedRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(true);
+  index(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+  const update = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
+    if (!reference.current || !floating.current) {
+      return;
+    }
+
+    (0,_floating_ui_dom__WEBPACK_IMPORTED_MODULE_0__.computePosition)(reference.current, floating.current, {
+      middleware: latestMiddleware,
+      placement,
+      strategy
+    }).then(data => {
+      if (isMountedRef.current) {
+        (0,react_dom__WEBPACK_IMPORTED_MODULE_2__.flushSync)(() => {
+          setData(data);
+        });
+      }
+    });
+  }, [latestMiddleware, placement, strategy]);
+  index(update, [update]);
+  const setReference = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(node => {
+    reference.current = node;
+    update();
+  }, [update]);
+  const setFloating = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(node => {
+    floating.current = node;
+    update();
+  }, [update]);
+  const refs = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => ({
+    reference,
+    floating
+  }), []);
+  return (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => ({ ...data,
+    update,
+    refs,
+    reference: setReference,
+    floating: setFloating
+  }), [data, update, refs, setReference, setFloating]);
+}
+const arrow = options => {
+  const {
+    element,
+    padding
+  } = options;
+
+  function isRef(value) {
+    return Object.prototype.hasOwnProperty.call(value, 'current');
+  }
+
+  return {
+    name: 'arrow',
+    options,
+
+    fn(args) {
+      if (isRef(element)) {
+        if (element.current != null) {
+          return (0,_floating_ui_dom__WEBPACK_IMPORTED_MODULE_3__.arrow)({
+            element: element.current,
+            padding
+          }).fn(args);
+        }
+
+        return {};
+      } else if (element) {
+        return (0,_floating_ui_dom__WEBPACK_IMPORTED_MODULE_3__.arrow)({
+          element,
+          padding
+        }).fn(args);
+      }
+
+      return {};
+    }
+
+  };
+};
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/react-loading-skeleton/dist/index.mjs":
 /*!************************************************************!*\
   !*** ./node_modules/react-loading-skeleton/dist/index.mjs ***!
@@ -99636,7 +97339,7 @@ function styleOptionsToCssProperties({ baseColor, highlightColor, width, height,
     return style;
 }
 function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle = false, style: styleProp, ...originalPropsStyleOptions }) {
-    var _a, _b;
+    var _a, _b, _c;
     const contextStyleOptions = react__WEBPACK_IMPORTED_MODULE_0__.useContext(SkeletonThemeContext);
     const propsStyleOptions = { ...originalPropsStyleOptions };
     // DO NOT overwrite style options from the context if `propsStyleOptions`
@@ -99662,20 +97365,36 @@ function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, con
         className += ` ${customClassName}`;
     const inline = (_a = styleOptions.inline) !== null && _a !== void 0 ? _a : false;
     const elements = [];
-    // Without the <br />, the skeleton lines will all run together if
-    // `width` is specified
-    for (let i = 0; i < count; i++) {
-        const skeletonSpan = (react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: className, style: style, key: i }, "\u200C"));
+    const countCeil = Math.ceil(count);
+    for (let i = 0; i < countCeil; i++) {
+        let thisStyle = style;
+        if (countCeil > count && i === countCeil - 1) {
+            // count is not an integer and we've reached the last iteration of
+            // the loop, so add a "fractional" skeleton.
+            //
+            // For example, if count is 3.5, we've already added 3 full
+            // skeletons, so now we add one more skeleton that is 0.5 times the
+            // original width.
+            const width = (_b = thisStyle.width) !== null && _b !== void 0 ? _b : '100%'; // 100% is the default since that's what's in the CSS
+            const fractionalPart = count % 1;
+            const fractionalWidth = typeof width === 'number'
+                ? width * fractionalPart
+                : `calc(${width} * ${fractionalPart})`;
+            thisStyle = { ...thisStyle, width: fractionalWidth };
+        }
+        const skeletonSpan = (react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: className, style: thisStyle, key: i }, "\u200C"));
         if (inline) {
             elements.push(skeletonSpan);
         }
         else {
+            // Without the <br />, the skeleton lines will all run together if
+            // `width` is specified
             elements.push(react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: i },
                 skeletonSpan,
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
         }
     }
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: containerClassName, "data-testid": containerTestId, "aria-live": "polite", "aria-busy": (_b = styleOptions.enableAnimation) !== null && _b !== void 0 ? _b : defaultEnableAnimation }, Wrapper
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: containerClassName, "data-testid": containerTestId, "aria-live": "polite", "aria-busy": (_c = styleOptions.enableAnimation) !== null && _c !== void 0 ? _c : defaultEnableAnimation }, Wrapper
         ? elements.map((el, i) => react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrapper, { key: i }, el))
         : elements));
 }

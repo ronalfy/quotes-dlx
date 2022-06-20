@@ -1,40 +1,6 @@
 "use strict";
 (self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminHome"],{
 
-/***/ "./src/js/admin-panel/admin-components/Fancybox/index.js":
-/*!***************************************************************!*\
-  !*** ./src/js/admin-panel/admin-components/Fancybox/index.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fancyapps_ui_dist_fancybox_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.esm.js */ "./node_modules/@fancyapps/ui/dist/fancybox.esm.js");
-/* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
-
-
-
-
-var Fancybox = function Fancybox(props) {
-  var delegate = props.delegate || '[data-fancybox]';
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var opts = props.options || {};
-    _fancyapps_ui_dist_fancybox_esm_js__WEBPACK_IMPORTED_MODULE_1__.Fancybox.bind(delegate, opts);
-    return function () {
-      _fancyapps_ui_dist_fancybox_esm_js__WEBPACK_IMPORTED_MODULE_1__.Fancybox.destroy();
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, props.children);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Fancybox);
-
-/***/ }),
-
 /***/ "./src/js/admin-panel/views/AdminHome.js":
 /*!***********************************************!*\
   !*** ./src/js/admin-panel/views/AdminHome.js ***!
@@ -49,11 +15,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
-/* harmony import */ var _admin_components_Fancybox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../admin-components/Fancybox */ "./src/js/admin-panel/admin-components/Fancybox/index.js");
-/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -64,7 +28,7 @@ var _quotes_dlx_admin = quotes_dlx_admin,
     themes = _quotes_dlx_admin.themes;
 
 var AdminHome = function AdminHome() {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_4__["default"]),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"]),
       defaultTheme = _useContext.defaultTheme,
       setCurrentTheme = _useContext.setCurrentTheme;
 
@@ -88,12 +52,12 @@ var AdminHome = function AdminHome() {
       className: "qdlx-admin__tabs--content-heading"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       size: '1x',
-      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faPalette
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faPalette
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       className: "qdlx-admin__heading--text"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Default Theme', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-inner"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Fancybox__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "button-reset show-cursor",
       "data-fancybox": true,
       "data-src": currentTheme.preview_image_url,
@@ -110,7 +74,7 @@ var AdminHome = function AdminHome() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
       href: "#/themes"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Change the Default Theme', 'quotes-dlx')))))));
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Change the Default Theme', 'quotes-dlx'))))));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -125,7 +89,7 @@ var AdminHome = function AdminHome() {
     className: "qdlx-admin__tabs--content-heading"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faHandWave
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faHandWave
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Welcome to Quotes Deluxe!', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -150,7 +114,7 @@ var AdminHome = function AdminHome() {
     className: "qdlx-admin__tabs--content-heading"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faGears
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faGears
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Block Defaults', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -170,7 +134,7 @@ var AdminHome = function AdminHome() {
     className: "qdlx-admin__tabs--content-heading"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faPuzzle
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faPuzzle
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Planning for…', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {

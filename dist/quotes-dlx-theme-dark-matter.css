@@ -55,8 +55,7 @@
   line-height: 1.65;
   background: #2B2B2B;
   color: #FFFFFF;
-  margin: 0 !important;
-  /* override core style */
+  margin: 0 !important; /* override core style */
   border: 0;
   quotes: none;
   vertical-align: baseline;

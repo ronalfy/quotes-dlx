@@ -1,12 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 
 import { __, sprintf } from '@wordpress/i18n';
-import {
-	Button,
-} from '@wordpress/components';
 import { faHandWave, faLightbulbExclamationOn, faPalette, faGears, faPuzzle } from '@fortawesome/pro-solid-svg-icons';
 import Fancybox from '../admin-components/Fancybox';
 import TabsContext from '../contexts/TabsContext';
@@ -118,7 +114,6 @@ const AdminHome = () => {
 								<p className="description">{ __( 'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.', 'quotes-dlx' ) }.</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								
 								<ul>
 									<li><strong>Presets</strong>: Similar to block patterns and reusable blocks, these will allow you to save and re-use presets depending on what type of quote you are creating.</li>
 									<li><strong>Overrides</strong>: Globally override the block settings regardless of what was set when the block was.</li>

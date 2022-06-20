@@ -23,7 +23,7 @@ const AdminDefaults = lazy( () =>
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminDefaults" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults" */ '../../views/AdminContextualMenu'
 	)
 );
 
@@ -142,6 +142,7 @@ const AdminTabs = ( props ) => {
 							onTabClick( tab );
 						} }
 						isActive={ isActive }
+						dirtyCount={ 0 }
 					/>
 					<TabItem
 						icon={ GearIcon }

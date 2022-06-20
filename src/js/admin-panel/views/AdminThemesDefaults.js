@@ -3,6 +3,8 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
 import {
 	TextControl,
 	Button,
@@ -21,8 +23,7 @@ import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefa
 import CircularInfo from '../../components/icons/CircularInfo';
 import Spinner from '../../components/icons/Spinner';
 import PaintbrushIcon from '../../components/icons/paintbrush';
-import Fancybox from '../admin-components/Fancybox';
-import TabsContext from '../contexts/TabsContext';
+import 'photoswipe/dist/photoswipe.css';import TabsContext from '../contexts/TabsContext';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -136,8 +137,33 @@ const Interface = ( props ) => {
 			category.themes.map( ( theme, themeIndex ) => (
 				<div className="qdlx-admin__themes--content-panel" key={ themeIndex }>
 					<div className="qdlx-admin__themes--content-panel-body">
-						<button className="button-reset show-cursor" data-fancybox data-src={ theme.preview_image_url } data-caption={ theme.name }>
-							<img src={ theme.preview_image_url } alt={ theme.name } style={ { maxWidth: '100%', height: 'auto' } } />
+					<figure>
+								<Gallery
+									withCaption
+								>
+									<Item
+									
+									original={ currentTheme.preview_image_url }
+									thumbnail={ currentTheme.preview_image_url }
+									width={ currentTheme.image_width }
+									height={ currentTheme.image_height }
+									caption={ currentTheme.name }
+									>{ ( { ref, open } ) => (
+										<>
+										<button className="button-reset show-cursor" data-src={ theme.preview_image_url } data-caption={ theme.name }>
+											<img ref={ ref }
+											onClick={ open }
+											src={ currentTheme.preview_image_url }
+											caption={ currentTheme.name }
+											alt={ currentTheme.name }
+											style={ { maxWidth: '100%', height: 'auto' } }
+											width={ currentTheme.image_width }
+											height={ currentTheme.image_height } />
+										</button>
+										</>
+									) }
+								</Item><button className="button-reset show-cursor" data-src={ theme.preview_image_url } data-caption={ theme.name }></button>
+							
 						</button>
 						<div className="qdlx-admin__themes--content-panel-heading">
 							<h3>{ theme.name }</h3>
@@ -213,9 +239,7 @@ const Interface = ( props ) => {
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						<div className="qdlx-admin__themes--wrapper">
-							<Fancybox>
-								{ getCategories() }
-							</Fancybox>
+							{ getCategories() }
 						</div>
 					</div>
 				</div>

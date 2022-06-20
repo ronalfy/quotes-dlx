@@ -5,7 +5,6 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin';
 import 'photoswipe/dist/photoswipe.css';
 import { __, sprintf } from '@wordpress/i18n';
 

@@ -3,7 +3,7 @@
  * Plugin Name:       QuotesDLX
  * Plugin URI:        https://mediaron.com/plugins/quotes-dlx/
  * Description:       WordPress Twitter block that makes it dead simple for users to share your quotes.
- * Version:           1.0.24
+ * Version:           1.0.25
  * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            MediaRon LLC

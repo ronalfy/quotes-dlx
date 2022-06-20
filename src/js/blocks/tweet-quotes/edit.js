@@ -163,14 +163,15 @@ const TweetQuotes = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
+		console.log( isSelected );
 		if ( selectedTab === 'appearance' && shareTextInput.current !== null && isSelected ) {
 			shareTextInput.current.focus();
 			// Note to self: not possible with component to focus on last character.
 		}
-	}, [ isSelected, shareTextInput.current, selectedTab ] );
+	}, [ isSelected, shareTextInput, selectedTab ] );
 
 	useEffect( () => {
-		if ( manualUrlInput.current !== null && 'manual' === urlShortener ) {
+		if ( manualUrlInput.current !== null && 'manual' === urlShortener && 'appearance' !== selectedTab ) {
 			manualUrlInput.current.focus();
 			manualUrlInput.current.select();
 		}

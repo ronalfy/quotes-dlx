@@ -92,6 +92,20 @@ class Themes_Blue extends Themes_Addon {
 	protected static string $stylesheet_url = '';
 
 	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static int $full_width = 866;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static int $full_height = 487;
+
+	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
 	 *
 	 * @since  1.0.0
@@ -184,6 +198,24 @@ class Themes_Blue extends Themes_Addon {
 	 */
 	protected static function get_version() {
 		return self::$version;
+	}
+
+	/**
+	 * Get the theme image preview width.
+	 *
+	 * @return int Theme image width.
+	 */
+	protected static function get_image_width() {
+		return self::$full_width;
+	}
+
+	/**
+	 * Get the theme image preview height.
+	 *
+	 * @return int Theme image height.
+	 */
+	protected static function get_image_height() {
+		return self::$full_height;
 	}
 
 }

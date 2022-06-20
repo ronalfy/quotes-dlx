@@ -38754,7 +38754,7 @@ __webpack_require__.r(__webpack_exports__);
  // Lazy load components.
 
 var AdminHome = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminHome */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminHome")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminHome */ "./src/js/admin-panel/views/AdminHome.js"));
+  return Promise.all(/*! import() | AdminHome */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_photoswipe-dynamic-caption-plugin_photoswipe-dynamic-caption-plugin_css--ae8a16"), __webpack_require__.e("AdminHome")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminHome */ "./src/js/admin-panel/views/AdminHome.js"));
 });
 var AdminDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminDefaults */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("AdminDefaults")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
@@ -98690,7 +98690,7 @@ function combine (array, callback) {
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.miniCss = (chunkId, promises) => {
-/******/ 			var cssChunks = {"vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css":1};
+/******/ 			var cssChunks = {"AdminHome":1,"vendors-node_modules_fancyapps_ui_dist_fancybox_esm_js-node_modules_fancyapps_ui_dist_fancybox_css":1};
 /******/ 			if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 			else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 				promises.push(installedCssChunks[chunkId] = loadStylesheet(chunkId).then(() => {

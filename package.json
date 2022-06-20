@@ -91,6 +91,9 @@
     "@wordpress/components": "^19.13.0",
     "@wordpress/icons": "^8.4.0",
     "html-to-react": "^1.4.8",
-    "react-loading-skeleton": "^3.1.0"
+    "photoswipe": "^5.2.7",
+    "photoswipe-dynamic-caption-plugin": "^1.1.1",
+    "react-loading-skeleton": "^3.1.0",
+    "react-photoswipe-gallery": "^2.2.1"
   }
 }

@@ -88,6 +88,14 @@ module.exports = ( env ) => {
 								__dirname,
 								'node_modules/@fancyapps/ui/dist/fancybox.css'
 							),
+							path.resolve(
+								__dirname,
+								'node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/photoswipe/dist/photoswipe.css'
+							),
 						],
 						use: [
 							{

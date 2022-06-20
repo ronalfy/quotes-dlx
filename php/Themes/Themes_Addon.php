@@ -86,6 +86,20 @@ abstract class Themes_Addon {
 	protected static string $author_url;
 
 	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static int $full_width;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static int $full_height;
+
+	/**
 	 * Variable to hold all the registered themes.
 	 *
 	 * @var array Holds all the theme instances.
@@ -161,6 +175,8 @@ abstract class Themes_Addon {
 				'author_url'        => $instance->get_author_url(),
 				'preview_image_url' => $instance->get_preview_image_url(),
 				'version'           => $instance->get_version(),
+				'image_width'       => $instance->get_image_width(),
+				'image_height'      => $instance->get_image_height(),
 			);
 		}
 		return $return;
@@ -235,4 +251,18 @@ abstract class Themes_Addon {
 	 * @return string Theme description.
 	 */
 	abstract protected static function get_description();
+
+	/**
+	 * Get the theme image preview width.
+	 *
+	 * @return int Theme image width.
+	 */
+	abstract protected static function get_image_width();
+
+	/**
+	 * Get the theme image preview height.
+	 *
+	 * @return int Theme image height.
+	 */
+	abstract protected static function get_image_height();
 }

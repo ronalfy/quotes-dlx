@@ -48,6 +48,7 @@
 				tweet( e );
 			} );
 		}
+
 		const tweetButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-tweet-this > button' );
 		if ( null !== tweetButtonWrapper ) {
 			tweetButtonWrapper.addEventListener( 'click', ( e ) => {
@@ -200,6 +201,9 @@
 		// Check element type.
 		if ( 'span' === element ) {
 			tweetButton = tweetButton.parentElement;
+		}
+		if ( 'use' === element ) {
+			tweetButton = tweetButton.parentElement.parentElement.parentElement;
 		}
 		const hashtags = tweetButton.getAttribute( 'data-hashtags' );
 		const tweetText = tweetButton.getAttribute( 'data-tweet' );

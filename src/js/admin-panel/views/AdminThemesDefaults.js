@@ -134,11 +134,11 @@ const Interface = ( props ) => {
 					<figure>
 						<Gallery withCaption>
 							<Item
-								original={ currentTheme.preview_image_url }
-								thumbnail={ currentTheme.preview_image_url }
-								width={ currentTheme.image_width }
-								height={ currentTheme.image_height }
-								caption={ currentTheme.name }
+								original={ theme.preview_image_url }
+								thumbnail={ theme.preview_image_url }
+								width={ theme.image_width }
+								height={ theme.image_height }
+								caption={ theme.name }
 							>
 								{ ( { ref, open } ) => (
 									<>
@@ -150,12 +150,12 @@ const Interface = ( props ) => {
 											<img
 												ref={ ref }
 												onClick={ open }
-												src={ currentTheme.preview_image_url }
-												caption={ currentTheme.name }
-												alt={ currentTheme.name }
+												src={ theme.preview_image_url }
+												caption={ theme.name }
+												alt={ theme.name }
 												style={ { maxWidth: '100%', height: 'auto' } }
-												width={ currentTheme.image_width }
-												height={ currentTheme.image_height }
+												width={ theme.image_width }
+												height={ theme.image_height }
 											/>
 										</button>
 									</>

@@ -29,7 +29,7 @@ const AdminContextualMenuDefaults = lazy( () =>
 
 const AdminThemesDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemesDefaults" */ '../../views/AdminThemesDefaults'
+		/* webpackChunkName: "AdminThemesDefaults0.0.1" */ '../../views/AdminThemesDefaults'
 	)
 );
 

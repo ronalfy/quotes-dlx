@@ -463,7 +463,7 @@ const TweetQuotes = ( props ) => {
 									} );
 								} }
 								help={ __(
-									'Not recommended for most cases. Format is rich text, which may confuse some users.',
+									'This allows the copying of your full quote.',
 									'quotes-dlx'
 								) }
 							/>

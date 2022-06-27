@@ -266,7 +266,7 @@ const Interface = ( props ) => {
 													onChange( boolValue );
 												} }
 												help={ __(
-													'Enable the copying of the quote. Off by default. It copies text in RichText format, so this may be useful in some situations.',
+													'Enable the copying of the full quote.',
 													'quotes-dlx'
 												) }
 												disabled={ saving || resetting }
@@ -323,7 +323,7 @@ const Interface = ( props ) => {
 													onChange( boolValue );
 												} }
 												help={ __(
-													'Enable the copying of the Tweet This button.',
+													'A Tweet This option will show at the bottom of the menu with this selected.',
 													'quotes-dlx'
 												) }
 												disabled={ saving || resetting }

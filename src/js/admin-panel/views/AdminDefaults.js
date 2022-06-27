@@ -274,7 +274,7 @@ const Interface = ( props ) => {
 														if ( value.length === 0 ) {
 															return true;
 														}
-														return twttr.txt.isValidUsername( value );
+														return twttr.txt.isValidUsername( '@' + value );
 													},
 												} }
 												render={ ( { field: { onChange, value } } ) => (

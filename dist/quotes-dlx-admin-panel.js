@@ -38768,7 +38768,7 @@ var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.laz
   return Promise.all(/*! import() | AdminThemesDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_photoswipe-dynamic-caption-plugin_photoswipe-dynamic-caption-plugin_css--1b12c6"), __webpack_require__.e("AdminThemesDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
 });
 var AdminThemeColors = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemeColors.0.1 */[__webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_select-control_index_js-node_modules_p-cb287a"), __webpack_require__.e("AdminThemeColors.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeColors */ "./src/js/admin-panel/views/AdminThemeColors.js"));
+  return Promise.all(/*! import() | AdminThemeColors.0.1 */[__webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_color-palette_index_js-node_modules_he-ea401b"), __webpack_require__.e("AdminThemeColors.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeColors */ "./src/js/admin-panel/views/AdminThemeColors.js"));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminSupport */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminSupport")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js"));
@@ -98849,6 +98849,11 @@ function combine (array, callback) {
 /******/ 		var chunkLoadingGlobal = self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

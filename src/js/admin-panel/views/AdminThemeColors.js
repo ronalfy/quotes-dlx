@@ -12,6 +12,7 @@ import ColorPaletteIcon from '../../components/icons/ColorPalette';
 import TabsContext from '../contexts/TabsContext';
 import TwitterIcon from '../../components/icons/twitter';
 import MeatballMenu from '../../components/MeatballMenu';
+import ThemeColorPicker from '../admin-components/ThemeColorPicker';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -36,6 +37,7 @@ const Interface = ( props ) => {
 	const { data, success } = response.data;
 
 	const [ activeTheme, setActiveTheme ] = useState( data.template );
+	const [ colorPrimary, setColorPrimary ] = useState( '#1DA1F2' );
 
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
@@ -77,6 +79,11 @@ const Interface = ( props ) => {
 
 	const GetThemePreview = (
 		<>
+			<style>
+				{ `:root {
+					--qdlx-light-branded-primary: ${ colorPrimary };
+				}` }
+			</style>
 			<link rel="stylesheet" href={ getActiveThemeStylesheet() } />
 			<div
 				className={ classNames( 'quotes-dlx', {
@@ -181,6 +188,12 @@ const Interface = ( props ) => {
 		return <AdminThemeDefaultsLoader />;
 	}
 
+	const colors = [
+        { name: 'red', color: '#f00' },
+        { name: 'white', color: '#fff' },
+        { name: 'blue', color: '#00f' },
+    ];
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
@@ -204,6 +217,17 @@ const Interface = ( props ) => {
 					</div>
 					<div className="qdlx-admin__theme-preview">
 						{ GetThemePreview }
+					</div>
+					<div className="qdlx-admin__color-pickers">
+						<div className="qdlx-admin__color-primary">
+							<ThemeColorPicker
+								value={ colorPrimary }
+								onChange={ ( value ) => {
+									setColorPrimary( value );
+								}}
+								label={ __( 'Primary Color', 'quotes-dlx' ) }
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

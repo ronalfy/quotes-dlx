@@ -9,6 +9,7 @@ import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
+import ColorPaletteIcon from '../../../components/icons/ColorPalette';
 import KeyIcon from '../../../components/icons/KeyIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
@@ -18,18 +19,24 @@ const AdminHome = lazy( () =>
 	import( /* webpackChunkName: "AdminHome" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.1" */ '../../views/AdminDefaults' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminMenuDefaults" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.1" */ '../../views/AdminContextualMenu'
 	)
 );
 
 const AdminThemesDefaults = lazy( () =>
 	import(
 		/* webpackChunkName: "AdminThemesDefaults0.0.1" */ '../../views/AdminThemesDefaults'
+	)
+);
+
+const AdminThemeColors = lazy( () =>
+	import(
+		/* webpackChunkName: "AdminThemeColors.0.1" */ '../../views/AdminThemeColors'
 	)
 );
 
@@ -114,6 +121,14 @@ const AdminTabs = ( props ) => {
 		</>
 	);
 
+	const getAdminThemeColors = (
+		<>
+			<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+				<AdminThemeColors />
+			</Suspense>
+		</>
+	);
+
 	const getAdminSupport = (
 		<>
 			<Suspense fallback={ <AdminDefaultsLoader /> }>
@@ -178,6 +193,17 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ themesDefaultsDirtyCount }
 					/>
 					<TabItem
+						icon={ ColorPaletteIcon }
+						slug="colors"
+						description={ __( 'Set colors for the themes.', 'quotes-dlx' ) }
+						label={ __( 'Theme Colors', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ 0 }
+					/>
+					<TabItem
 						icon={ KeyIcon }
 						slug="licenses"
 						description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
@@ -216,6 +242,11 @@ const AdminTabs = ( props ) => {
 								path="/themes"
 								exact
 								element={ getAdminThemesDefaults }
+							/>
+							<Route
+								path="/colors"
+								exact
+								element={ getAdminThemeColors }
 							/>
 							<Route
 								path="/support"

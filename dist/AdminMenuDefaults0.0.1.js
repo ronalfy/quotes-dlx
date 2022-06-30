@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminMenuDefaults"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminMenuDefaults0.0.1"],{
 
 /***/ "./node_modules/@wordpress/components/build-module/form-toggle/index.js":
 /*!******************************************************************************!*\
@@ -876,4 +876,4 @@ function sendCommand(action, data) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminMenuDefaults.js.map
+//# sourceMappingURL=AdminMenuDefaults0.0.1.js.map

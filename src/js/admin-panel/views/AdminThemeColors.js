@@ -1,24 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
-import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
-import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import {
-	Button,
-	SelectControl,
-} from '@wordpress/components';
+import { Button, SelectControl } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
 import sendCommand from '../../utils/SendCommand';
-import Notice from '../admin-components/Notice';
 import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefaultsLoader';
-import CircularInfo from '../../components/icons/CircularInfo';
-import Spinner from '../../components/icons/Spinner';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
-import 'photoswipe/dist/photoswipe.css';
 import TabsContext from '../contexts/TabsContext';
+import TwitterIcon from '../../components/icons/twitter';
+import MeatballMenu from '../../components/MeatballMenu';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -56,6 +49,18 @@ const Interface = ( props ) => {
 		setLoading( false );
 	}, [] );
 
+	const getActiveThemeStylesheet = () => {
+		let stylesheet = '';
+		categories.forEach( ( cat ) => {
+			cat.themes.forEach( ( theme ) => {
+				if ( theme.slug === activeTheme ) {
+					stylesheet = theme.stylesheet;
+				}
+			} );
+		} );
+		return stylesheet;
+	};
+
 	const getCategories = () => {
 		return categories.map( ( cat, catIndex ) => (
 			<SelectControl
@@ -69,6 +74,64 @@ const Interface = ( props ) => {
 			</SelectControl>
 		) );
 	};
+
+	const GetThemePreview = (
+		<>
+			<link rel="stylesheet" href={ getActiveThemeStylesheet() } />
+			<div
+				className={ classNames( 'quotes-dlx', {
+					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
+					'quotes-dlx-context-menu-disabled': false,
+					'quotes-dlx-has-no-tweet-button': true,
+				} ) }
+				style={ { maxWidth: '650px' } }
+			>
+				<div className="quotes-dlx-wrapper">
+					<figure>
+						<blockquote className="quotes-dlx-text-wrapper">
+							<div className="quotes-dlx-text">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Mauris imperdiet leo sed tellus ultrices, eget lobortis eros
+									molestie.
+								</p>
+								<p>
+									Phasellus vehicula metus non nulla porttitor, non bibendum
+									risus iaculis.
+								</p>
+								<p>
+									<strong>By</strong>: <a>Maximus</a>
+								</p>
+							</div>
+						</blockquote>
+					</figure>
+					<div className={ `quotes-dlx-button-wrapper right` }>
+						<button
+							className={ `quotes-dlx-button full quotes-dlx-button-icon-right` }
+							onClick={ ( e ) => {
+								e.preventDefault();
+							} }
+						>
+							<>
+								<span className="quotes-dlx-button-text">
+									{ __( 'Click to Tweet', 'quotes-dlx' ) }
+								</span>
+								<span className="quotes-dlx-button-icon">
+									<TwitterIcon />
+								</span>
+							</>
+						</button>
+					</div>
+					<MeatballMenu
+						enable_copy_text={ true }
+						enable_copy_tweet={ true }
+						enable_copy_link={ true }
+						enable_tweet_this={ true }
+					/>
+				</div>
+			</div>
+		</>
+	);
 
 	// const getAuthor = ( selectedTheme ) => {
 	// 	return <a href={ selectedTheme.author_url }>{ selectedTheme.author_name }</a>;
@@ -138,6 +201,9 @@ const Interface = ( props ) => {
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						{ getCategories() }
+					</div>
+					<div className="qdlx-admin__theme-preview">
+						{ GetThemePreview }
 					</div>
 				</div>
 			</div>

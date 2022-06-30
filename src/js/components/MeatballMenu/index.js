@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import MeatballMenuItem from '../MeatballMenuItem';
 import QuoteIcon from '../icons/QuoteIcon';

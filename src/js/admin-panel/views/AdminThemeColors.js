@@ -82,7 +82,7 @@ const Interface = ( props ) => {
 				className={ classNames( 'quotes-dlx', {
 					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
 					'quotes-dlx-context-menu-disabled': false,
-					'quotes-dlx-has-no-tweet-button': true,
+					'quotes-dlx-has-no-tweet-button': false,
 				} ) }
 				style={ { maxWidth: '650px' } }
 			>
@@ -90,18 +90,18 @@ const Interface = ( props ) => {
 					<figure>
 						<blockquote className="quotes-dlx-text-wrapper">
 							<div className="quotes-dlx-text">
-								<p>
+								<div>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Mauris imperdiet leo sed tellus ultrices, eget lobortis eros
 									molestie.
-								</p>
-								<p>
+								</div><br />
+								<div>
 									Phasellus vehicula metus non nulla porttitor, non bibendum
 									risus iaculis.
-								</p>
-								<p>
+								</div><br />
+								<div>
 									<strong>By</strong>: <a>Maximus</a>
-								</p>
+								</div>
 							</div>
 						</blockquote>
 					</figure>

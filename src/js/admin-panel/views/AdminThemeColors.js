@@ -189,7 +189,7 @@ const Interface = ( props ) => {
 		return <AdminThemeDefaultsLoader />;
 	}
 
-	const defaultColors = getColors( true );
+	const defaultColors = getColors();
 
 	return (
 		<>
@@ -218,28 +218,31 @@ const Interface = ( props ) => {
 					<div className="qdlx-admin__color-pickers">
 						<div className="qdlx-admin__color-primary">
 							<ThemeColorPicker
-								value={ '#000000' }
+								value={ themeColors.colorPrimary }
 								onChange={ ( value ) => {
 									setColorPrimary( value );
 								}}
 								label={ __( 'Primary Color', 'quotes-dlx' ) }
 								defaultColors={ defaultThemeColors }
+								defaultColor={ defaultColors.colorPrimary }
 							/>
 							<ThemeColorPicker
-								value={ '#000000' }
+								value={themeColors.colorSecondary }
 								onChange={ ( value ) => {
 									setColorSecondary( value );
 								}}
 								label={ __( 'Secondary Color', 'quotes-dlx' ) }
 								defaultColors={ defaultThemeColors }
+								defaultColor={ defaultColors.colorSecondary }
 							/>
 							<ThemeColorPicker
-								value={ '#000000' }
+								value={ themeColors.colorAccent }
 								onChange={ ( value ) => {
 									setColorAccent( value );
 								}}
 								label={ __( 'Accent Color', 'quotes-dlx' ) }
 								defaultColors={ defaultThemeColors }
+								defaultColor={ defaultColors.colorAccent }
 							/>
 						</div>
 					</div>

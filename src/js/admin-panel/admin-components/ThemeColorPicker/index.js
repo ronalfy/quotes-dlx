@@ -23,6 +23,7 @@ const ThemeColorPicker = ( props ) => {
 	const [ color, setColor ] = useState( props.value );
 
 	const {
+		defaultColor,
 		defaultColors,
 		value,
 		onChange,
@@ -163,6 +164,7 @@ const ThemeColorPicker = ( props ) => {
 									onChange( color.hex );
 								} }
 								disableAlpha
+								defaultValue={ defaultColor }
 							/>
 						</BaseControl>
 
@@ -188,10 +190,8 @@ const ThemeColorPicker = ( props ) => {
 							isSecondary
 							className="components-color-clear-color"
 							onClick={ () => {
-								onChange( '' );
-								onOpacityChange( 1 );
-
-								setColorKey( false );
+								onChange( defaultColor );
+								setColorKey( defaultColor );
 							} }
 						>
 							{ __( 'Clear Color', 'post-type-archive-mapping' ) }

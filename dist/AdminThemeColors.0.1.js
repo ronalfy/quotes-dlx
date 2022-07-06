@@ -64,7 +64,8 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
       color = _useState6[0],
       setColor = _useState6[1];
 
-  var defaultColors = props.defaultColors,
+  var defaultColor = props.defaultColor,
+      defaultColors = props.defaultColors,
       value = props.value,
       _onChange = props.onChange,
       onOpacityChange = props.onOpacityChange,
@@ -170,7 +171,8 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
 
       _onChange(color.hex);
     },
-    disableAlpha: true
+    disableAlpha: true,
+    defaultValue: defaultColor
   })), alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "ptam-component-color-opacity"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -189,10 +191,9 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
     isSecondary: true,
     className: "components-color-clear-color",
     onClick: function onClick() {
-      _onChange('');
+      _onChange(defaultColor);
 
-      onOpacityChange(1);
-      setColorKey(false);
+      setColorKey(defaultColor);
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Clear Color', 'post-type-archive-mapping')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "ptam-component-color-picker-palette"
@@ -577,7 +578,7 @@ var Interface = function Interface(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], null);
   }
 
-  var defaultColors = getColors(true);
+  var defaultColors = getColors();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -601,26 +602,29 @@ var Interface = function Interface(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__color-primary"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    value: '#000000',
+    value: themeColors.colorPrimary,
     onChange: function onChange(value) {
       setColorPrimary(value);
     },
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Primary Color', 'quotes-dlx'),
-    defaultColors: defaultThemeColors
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorPrimary
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    value: '#000000',
+    value: themeColors.colorSecondary,
     onChange: function onChange(value) {
       setColorSecondary(value);
     },
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Secondary Color', 'quotes-dlx'),
-    defaultColors: defaultThemeColors
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorSecondary
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    value: '#000000',
+    value: themeColors.colorAccent,
     onChange: function onChange(value) {
       setColorAccent(value);
     },
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color', 'quotes-dlx'),
-    defaultColors: defaultThemeColors
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorAccent
   }))))));
 };
 

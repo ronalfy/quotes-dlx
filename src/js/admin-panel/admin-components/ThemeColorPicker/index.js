@@ -140,10 +140,6 @@ const ThemeColorPicker = ( props ) => {
 								) }
 								style={ {
 									background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
-									padding: '15px',
-									borderRadius: '50%',
-									width: '10px',
-									height: '10px',
 								} }
 							>
 								<span className="components-color-palette__custom-color-gradient" />
@@ -188,19 +184,6 @@ const ThemeColorPicker = ( props ) => {
 								/>
 							</div>
 						) }
-
-						<Button
-							isSmall
-							isSecondary
-							className="components-color-clear-color"
-							onClick={ () => {
-								onChange( defaultColor );
-								setColorKey( defaultColor );
-							} }
-						>
-							{ __( 'Clear Color', 'post-type-archive-mapping' ) }
-						</Button>
-
 						<BaseControl className="ptam-component-color-picker-palette">
 							<ColorPalette
 								colors={ defaultColors }
@@ -215,6 +198,19 @@ const ThemeColorPicker = ( props ) => {
 								className="button-reset"
 							/>
 						</BaseControl>
+						<div className="components-color-clear-color">
+							<Button
+								className=" button-reset"
+								onClick={ () => {
+									onChange( defaultColor );
+									setColorKey( defaultColor );
+									setColor( defaultColor );
+								} }
+							>
+								{ __( 'Clear Color', 'post-type-archive-mapping' ) }
+							</Button>
+						</div>
+
 					</Popover>
 				) }
 			</div>

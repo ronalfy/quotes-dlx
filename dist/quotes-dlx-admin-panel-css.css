@@ -114,6 +114,18 @@ button.button-reset.show-cursor {
   cursor: pointer;
 }
 
+.button-reset button,
+.button-reset:focus button,
+.button-reset:hover button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+
 /* Responsive styles - In hindsight, should've used mobile-first */
 /* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
 /* It's only used here, so no external file for mixin? */
@@ -1389,6 +1401,11 @@ button.button-reset.show-cursor {
   margin: 0;
 }
 
+.ptam-component-color-picker {
+  margin-left: -5px;
+  margin-top: -20px;
+  z-index: 100;
+}
 .ptam-component-color-picker > .components-base-control:first-child {
   margin-bottom: 0;
 }
@@ -1403,8 +1420,11 @@ button.button-reset.show-cursor {
   display: flex;
   flex-wrap: wrap;
 }
-.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker .components-circular-option-picker__option-wrapper {
-  margin: 0 8px 8px 0;
+.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker button {
+  padding: 10px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
 }
 .ptam-component-color-picker .components-base-control__field,
 .ptam-component-color-picker .components-color-palette {
@@ -1452,6 +1472,7 @@ button.button-reset.show-cursor {
 .components-popover__content {
   background: var(--quotes-dlx-admin--color-white);
   border: 1px solid var(--quotes-dlx-admin--color-dark);
+  width: auto !important;
 }
 
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

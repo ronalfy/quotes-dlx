@@ -1423,6 +1423,9 @@
 }
 
 .ptam-component-color-picker {
+	margin-left: -5px;
+	margin-top: -20px;
+	z-index: 100;
 	& > .components-base-control:first-child {
 		margin-bottom: 0;
 	}
@@ -1439,8 +1442,11 @@
 			display: flex;
 			flex-wrap: wrap;
 
-			.components-circular-option-picker__option-wrapper {
-				margin: 0 8px 8px 0;
+			button {
+				padding: 10px;
+				border-radius: 50%;
+				width: 10px;
+				height: 10px;
 			}
 		}
 	}
@@ -1500,4 +1506,6 @@
 .components-popover__content {
 	background: var( --quotes-dlx-admin--color-white);
 	border: 1px solid var(--quotes-dlx-admin--color-dark );
+	width: auto !important;
 }
+

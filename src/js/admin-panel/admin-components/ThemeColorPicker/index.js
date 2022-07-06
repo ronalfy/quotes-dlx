@@ -88,34 +88,37 @@ const ThemeColorPicker = ( props ) => {
 
 			<div className="ptam-color-picker-area">
 				{ ! isVisible && (
-					<div
-						className={ classnames(
-							'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper',
-							value ? '' : 'components-color-palette__custom-color'
-						) }
-					>
-						<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
-							<button
-								type="button"
-								aria-expanded={ isVisible }
-								className="button-reset"
-								onClick={ toggleVisible }
-								aria-label={ __(
-									'Custom color picker',
-									'post-type-archive-mapping'
-								) }
-								style={ {
-									background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
-									padding: '15px',
-									borderRadius: '50%',
-									width: '10px',
-									height: '10px',
-								} }
-							>
-								<span className="components-color-palette__custom-color-gradient" />
-							</button>
-						</Tooltip>
-					</div>
+					<>
+						<Popover.Slot />
+						<div
+							className={ classnames(
+								'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper',
+								value ? '' : 'components-color-palette__custom-color'
+							) }
+						>
+							<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
+								<button
+									type="button"
+									aria-expanded={ isVisible }
+									className="button-reset"
+									onClick={ toggleVisible }
+									aria-label={ __(
+										'Custom color picker',
+										'post-type-archive-mapping'
+									) }
+									style={ {
+										background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
+										padding: '15px',
+										borderRadius: '50%',
+										width: '10px',
+										height: '10px',
+									} }
+								>
+									<span className="components-color-palette__custom-color-gradient" />
+								</button>
+							</Tooltip>
+						</div>
+					</>
 				) }
 
 				{ isVisible && (
@@ -151,17 +154,18 @@ const ThemeColorPicker = ( props ) => {
 
 				{ isVisible && (
 					<Popover
-						position="top left"
 						className="ptam-component-color-picker"
 						onClose={ toggleClose }
+						noArrow={ false }
+
 					>
 						<BaseControl key={ colorKey }>
 							<ColorPicker
 								key={ colorKey }
 								color={ color }
-								onChangeComplete={ ( color ) => {
-									setColor( color.hex );
-									onChange( color.hex );
+								onChangeComplete={ ( newColor ) => {
+									setColor( newColor.hex );
+									onChange( newColor.hex );
 								} }
 								disableAlpha
 								defaultValue={ defaultColor }
@@ -208,6 +212,7 @@ const ThemeColorPicker = ( props ) => {
 								} }
 								disableCustomColors={ true }
 								clearable={ false }
+								className="button-reset"
 							/>
 						</BaseControl>
 					</Popover>

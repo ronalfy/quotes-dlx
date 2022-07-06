@@ -16,7 +16,7 @@
   transition: all 0.35s ease-in-out;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-text-wrapper a:hover {
-  color: #1DA1F2;
+  color: var(--qdlx-light-branded-primary, #1DA1F2);
   transition: all 0.35s ease-in-out;
   border-bottom: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
 }
@@ -29,7 +29,7 @@
   position: relative;
   background: #FFF;
   border-radius: 5px;
-  border: 2px solid #c8defb;
+  border: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure {
   margin: 0;
@@ -358,7 +358,7 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-light-branded-accent, #1DA1F2);
+  background: var(--qdlx-light-branded-primary, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   background: var(--qdlx-light-branded-primary, #1DA1F2);

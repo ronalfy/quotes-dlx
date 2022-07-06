@@ -13,6 +13,7 @@ import TabsContext from '../contexts/TabsContext';
 import TwitterIcon from '../../components/icons/twitter';
 import MeatballMenu from '../../components/MeatballMenu';
 import ThemeColorPicker from '../admin-components/ThemeColorPicker';
+import ThemePreview from '../admin-components/ThemePreview';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -35,9 +36,37 @@ const Interface = ( props ) => {
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
+	const { template, categories } = data;
 
+	const getColors = ( defaults ) => {
+		const colors = {};
+		categories.forEach( ( cat ) => {
+			cat.themes.forEach( ( theme ) => {
+				if ( theme.slug === activeTheme) {
+					colors.colorPrimary = theme.color_primary;
+					colors.colorSecondary = theme.color_secondary;
+					colors.colorAccent = theme.color_accent;
+				}
+			} );
+		} );
+		return colors;
+	};
+
+	// Get active theme and colors.
 	const [ activeTheme, setActiveTheme ] = useState( data.template );
-	const [ colorPrimary, setColorPrimary ] = useState( '#1DA1F2' );
+	const [ themeColors, setThemeColors ] = useState( getColors() );
+	const [ defaultThemeColors, setDefaultThemeColors ] = useState( [
+		{
+			name: '',
+			slug: '',
+			value: '',
+		},
+	] );
+
+	// Get saved colors (TODO - Read from data ).
+	const [ colorPrimary, setColorPrimary ] = useState( '' );
+	const [ colorSecondary, setColorSecondary ] = useState( '' );
+	const [ colorAccent, setColorAccent ] = useState( '' );
 
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
@@ -45,11 +74,35 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
-	const { template, categories } = data;
+	useEffect( () => {
+		setLoading( true );
+		sendCommand( 'quotes_dlx_get_theme_colors', {
+			nonce: quotes_dlx_admin.options_retrieve_nonce,
+			active_template: activeTheme,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					setThemeColors( ajaxData.colors );
+					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setLoading( false );
+			} );
+	}, [ activeTheme ] );
 
 	useEffect( () => {
-		setLoading( false );
-	}, [] );
+		setThemeColors( {
+			colorPrimary,
+			colorSecondary,
+			colorAccent,
+		} );
+	}, [ colorPrimary, colorSecondary, colorAccent ] );
 
 	const getActiveThemeStylesheet = () => {
 		let stylesheet = '';
@@ -77,68 +130,14 @@ const Interface = ( props ) => {
 		) );
 	};
 
-	const GetThemePreview = (
-		<>
-			<style>
-				{ `:root {
-					--qdlx-light-branded-primary: ${ colorPrimary };
-				}` }
-			</style>
-			<link rel="stylesheet" href={ getActiveThemeStylesheet() } />
-			<div
-				className={ classNames( 'quotes-dlx', {
-					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
-					'quotes-dlx-context-menu-disabled': false,
-					'quotes-dlx-has-no-tweet-button': false,
-				} ) }
-				style={ { maxWidth: '650px' } }
-			>
-				<div className="quotes-dlx-wrapper">
-					<figure>
-						<blockquote className="quotes-dlx-text-wrapper">
-							<div className="quotes-dlx-text">
-								<div>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Mauris imperdiet leo sed tellus ultrices, eget lobortis eros
-									molestie.
-								</div><br />
-								<div>
-									Phasellus vehicula metus non nulla porttitor, non bibendum
-									risus iaculis.
-								</div><br />
-								<div>
-									<strong>By</strong>: <a>Maximus</a>
-								</div>
-							</div>
-						</blockquote>
-					</figure>
-					<div className={ `quotes-dlx-button-wrapper right` }>
-						<button
-							className={ `quotes-dlx-button full quotes-dlx-button-icon-right` }
-							onClick={ ( e ) => {
-								e.preventDefault();
-							} }
-						>
-							<>
-								<span className="quotes-dlx-button-text">
-									{ __( 'Click to Tweet', 'quotes-dlx' ) }
-								</span>
-								<span className="quotes-dlx-button-icon">
-									<TwitterIcon />
-								</span>
-							</>
-						</button>
-					</div>
-					<MeatballMenu
-						enable_copy_text={ true }
-						enable_copy_tweet={ true }
-						enable_copy_link={ true }
-						enable_tweet_this={ true }
-					/>
-				</div>
-			</div>
-		</>
-	);
+	const GetThemePreview = () => {
+		const defaultColors = getColors( true );
+		return (
+			<>
+				<ThemePreview activeTheme={ activeTheme } stylesheet={ getActiveThemeStylesheet() } { ...themeColors } />
+			</>
+		);
+	};
 
 	// const getAuthor = ( selectedTheme ) => {
 	// 	return <a href={ selectedTheme.author_url }>{ selectedTheme.author_name }</a>;
@@ -176,6 +175,8 @@ const Interface = ( props ) => {
 	// 		} );
 	// };
 
+	
+
 	const getThemes = ( category ) => {
 		return category.themes.map( ( theme, themeIndex ) => (
 			<option key={ themeIndex } value={ theme.slug }>
@@ -188,11 +189,7 @@ const Interface = ( props ) => {
 		return <AdminThemeDefaultsLoader />;
 	}
 
-	const colors = [
-        { name: 'red', color: '#f00' },
-        { name: 'white', color: '#fff' },
-        { name: 'blue', color: '#00f' },
-    ];
+	const defaultColors = getColors( true );
 
 	return (
 		<>
@@ -216,16 +213,33 @@ const Interface = ( props ) => {
 						{ getCategories() }
 					</div>
 					<div className="qdlx-admin__theme-preview">
-						{ GetThemePreview }
+						{ GetThemePreview() }
 					</div>
 					<div className="qdlx-admin__color-pickers">
 						<div className="qdlx-admin__color-primary">
 							<ThemeColorPicker
-								value={ colorPrimary }
+								value={ '#000000' }
 								onChange={ ( value ) => {
 									setColorPrimary( value );
 								}}
 								label={ __( 'Primary Color', 'quotes-dlx' ) }
+								defaultColors={ defaultThemeColors }
+							/>
+							<ThemeColorPicker
+								value={ '#000000' }
+								onChange={ ( value ) => {
+									setColorSecondary( value );
+								}}
+								label={ __( 'Secondary Color', 'quotes-dlx' ) }
+								defaultColors={ defaultThemeColors }
+							/>
+							<ThemeColorPicker
+								value={ '#000000' }
+								onChange={ ( value ) => {
+									setColorAccent( value );
+								}}
+								label={ __( 'Accent Color', 'quotes-dlx' ) }
+								defaultColors={ defaultThemeColors }
 							/>
 						</div>
 					</div>

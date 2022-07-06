@@ -13,16 +13,16 @@ $dark-bg: #2B2B2B;
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: var( --qdlx-light-branded-primary, $twitter-blue );;
+			color: var( --qdlx-light-branded-primary, $twitter-blue );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
 			transition: all .35s ease-in-out;
 
 			&:hover {
-				color: $twitter-blue;
+				color: var( --qdlx-light-branded-primary, $twitter-blue );
 				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );;
+				border-bottom: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );
 			}
 		}
 	}
@@ -37,7 +37,7 @@ $dark-bg: #2B2B2B;
 		position: relative;
 		background: #FFF;
 		border-radius: 5px;
-		border: 2px solid #c8defb;
+		border: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );
 
 		figure {
 			margin: 0;
@@ -437,7 +437,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-light-branded-accent, $twitter-blue );
+						background: var( --qdlx-light-branded-primary, $twitter-blue );
 					}
 				}
 	

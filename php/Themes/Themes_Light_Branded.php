@@ -75,14 +75,14 @@ class Themes_Light_Branded extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static int $full_width = 750;
+	protected static $full_width = 750;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static int $full_height = 421;
+	protected static $full_height = 421;
 
 	/**
 	 * Theme color or gradient.
@@ -104,6 +104,27 @@ class Themes_Light_Branded extends Themes_Addon {
 	 * @var string $stylesheet_url The stylesheet URL. Set 'core' for now stylesheet.
 	 */
 	protected static $stylesheet_url = 'core';
+
+	/**
+	 * Primary Color (hex code) for the theme.
+	 *
+	 * @var string $primary_color Primary color of theme.
+	 */
+	protected static $primary_color = '#1DA1F2';
+
+	/**
+	 * Secondary Color (hex code) for the theme.
+	 *
+	 * @var string $secondary_color Secondary color of theme.
+	 */
+	protected static $secondary_color = '#2B2B2B';
+
+	/**
+	 * Accent Color (hex code) for the theme.
+	 *
+	 * @var string $accent_color Accent color of theme.
+	 */
+	protected static $accent_color = '#657786';
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
@@ -216,5 +237,32 @@ class Themes_Light_Branded extends Themes_Addon {
 	 */
 	protected static function get_image_height() {
 		return self::$full_height;
+	}
+
+	/**
+	 * Get the primary color of the theme.
+	 *
+	 * @return string Primary color of the theme (hex).
+	 */
+	protected static function get_color_primary() {
+		return self::$primary_color;
+	}
+
+	/**
+	 * Get the secondary color of the theme.
+	 *
+	 * @return string Secondary color of the theme (hex).
+	 */
+	protected static function get_color_secondary() {
+		return self::$secondary_color;
+	}
+
+	/**
+	 * Get the accent color of the theme.
+	 *
+	 * @return string accent color of the theme (hex).
+	 */
+	protected static function get_color_accent() {
+		return self::$accent_color;
 	}
 }

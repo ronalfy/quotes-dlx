@@ -20,8 +20,10 @@ import { Tooltip,
 const ThemeColorPicker = ( props ) => {
 	const [ colorKey, setColorKey ] = useState( false );
 	const [ isVisible, setIsVisible ] = useState( false );
+	const [ color, setColor ] = useState( props.value );
 
 	const {
+		defaultColors,
 		value,
 		onChange,
 		onOpacityChange,
@@ -29,6 +31,8 @@ const ThemeColorPicker = ( props ) => {
 		alpha = false,
 		valueOpacity,
 	} = props;
+
+	console.log( props );
 
 	const opacityIcon = (
 		<svg
@@ -93,14 +97,18 @@ const ThemeColorPicker = ( props ) => {
 							<button
 								type="button"
 								aria-expanded={ isVisible }
-								className="components-color-palette__item components-circular-option-picker__option"
+								className="button-reset"
 								onClick={ toggleVisible }
 								aria-label={ __(
 									'Custom color picker',
 									'post-type-archive-mapping'
 								) }
 								style={ {
-									color: value ? hexToRgba( value, valueOpacity ) : 'transparent',
+									background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
+									padding: '15px',
+									borderRadius: '50%',
+									width: '10px',
+									height: '10px',
 								} }
 							>
 								<span className="components-color-palette__custom-color-gradient" />
@@ -120,14 +128,18 @@ const ThemeColorPicker = ( props ) => {
 							<button
 								type="button"
 								aria-expanded={ isVisible }
-								className="components-color-palette__item components-circular-option-picker__option"
+								className="button-reset"
 								onClick={ toggleClose }
 								aria-label={ __(
 									'Custom color picker',
 									'post-type-archive-mapping'
 								) }
 								style={ {
-									color: value ? hexToRgba( value, valueOpacity ) : 'transparent',
+									background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
+									padding: '15px',
+									borderRadius: '50%',
+									width: '10px',
+									height: '10px',
 								} }
 							>
 								<span className="components-color-palette__custom-color-gradient" />
@@ -145,8 +157,9 @@ const ThemeColorPicker = ( props ) => {
 						<BaseControl key={ colorKey }>
 							<ColorPicker
 								key={ colorKey }
-								color={ value ? value : '' }
+								color={ color }
 								onChangeComplete={ ( color ) => {
+									setColor( color.hex );
 									onChange( color.hex );
 								} }
 								disableAlpha
@@ -186,11 +199,12 @@ const ThemeColorPicker = ( props ) => {
 
 						<BaseControl className="ptam-component-color-picker-palette">
 							<ColorPalette
-								value={ value }
-								onChange={ ( color ) => {
-									onChange( color );
-
-									setColorKey( color );
+								colors={ defaultColors }
+								value={ color }
+								onChange={ ( newColor ) => {
+									onChange( newColor );
+									setColor( newColor );
+									setColorKey( newColor );
 								} }
 								disableCustomColors={ true }
 								clearable={ false }

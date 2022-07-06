@@ -90,14 +90,14 @@ abstract class Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static int $full_width;
+	protected static $full_width;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static int $full_height;
+	protected static $full_height;
 
 	/**
 	 * Variable to hold all the registered themes.
@@ -105,6 +105,27 @@ abstract class Themes_Addon {
 	 * @var array Holds all the theme instances.
 	 */
 	private static $theme_addons = array();
+
+	/**
+	 * Primary Color (hex code) for the theme.
+	 *
+	 * @var string $primary_color Primary color of theme.
+	 */
+	protected static $primary_color;
+
+	/**
+	 * Secondary Color (hex code) for the theme.
+	 *
+	 * @var string $secondary_color Secondary color of theme.
+	 */
+	protected static $secondary_color;
+
+	/**
+	 * Accent Color (hex code) for the theme.
+	 *
+	 * @var string $accent_color Accent color of theme.
+	 */
+	protected static $accent_color;
 
 	/**
 	 * Register a new category - Pass it your init class.
@@ -177,6 +198,9 @@ abstract class Themes_Addon {
 				'version'           => $instance->get_version(),
 				'image_width'       => $instance->get_image_width(),
 				'image_height'      => $instance->get_image_height(),
+				'color_primary'     => $instance->get_color_primary(),
+				'color_secondary'   => $instance->get_color_secondary(),
+				'color_accent'      => $instance->get_color_accent(),
 			);
 		}
 		return $return;
@@ -265,4 +289,25 @@ abstract class Themes_Addon {
 	 * @return int Theme image height.
 	 */
 	abstract protected static function get_image_height();
+
+	/**
+	 * Get the primary color of the theme.
+	 *
+	 * @return string Primary color of the theme (hex).
+	 */
+	abstract protected static function get_color_primary();
+
+	/**
+	 * Get the secondary color of the theme.
+	 *
+	 * @return string Secondary color of the theme (hex).
+	 */
+	abstract protected static function get_color_secondary();
+
+	/**
+	 * Get the accent color of the theme.
+	 *
+	 * @return string accent color of the theme (hex).
+	 */
+	abstract protected static function get_color_accent();
 }

@@ -40,6 +40,9 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
 		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
+		// For retrieving a theme's color palette.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
+
 		return $self;
 	}
 
@@ -151,6 +154,60 @@ class Ajax {
 		wp_send_json_success(
 			$options_to_return
 		);
+	}
+
+	/**
+	 * Reset form options for contextual menu options.
+	 */
+	public static function ajax_get_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
+
+		$themes               =  Themes\Themes_Addon::get_theme_data();
+		$theme_default_colors = array();
+		foreach ( $themes as $theme ) {
+			if ( $template_slug === $theme['slug'] ) {
+				$theme_default_colors = array(
+					array(
+						'name' => __( 'Default Color Primary', 'quotes-dlx' ),
+						'color' => $theme['color_primary'],
+						'slug' => 'default-color-primary',
+					),
+					array(
+						'name' => __( 'Default Color Secondary', 'quotes-dlx' ),
+						'color' => $theme['color_secondary'],
+						'slug' => 'default-color-secondary',
+					),
+					array(
+						'name' => __( 'Default Color Accent', 'quotes-dlx' ),
+						'color' => $theme['color_accent'],
+						'slug' => 'default-color-accent',
+					)
+				);
+				break;
+			}
+		}
+
+		// $theme_colors = get_option( 'quotes_dlx_theme_colors' );
+		// $theme_color = $theme_colors[ $template ];
+
+		$theme_color = array(
+			'colorPrimary'   => '#000000',
+			'colorSecondary' => '#FF0000',
+			'colorAccent'    => '#00FF00',
+		);
+
+		wp_send_json_success(
+			array(
+				'colors' => $theme_color,
+				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
 	}
 
 	/**

@@ -1,19 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
 import { Button, SelectControl } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
+import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefaultsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
 import TabsContext from '../contexts/TabsContext';
-import TwitterIcon from '../../components/icons/twitter';
-import MeatballMenu from '../../components/MeatballMenu';
 import ThemeColorPicker from '../admin-components/ThemeColorPicker';
 import ThemePreview from '../admin-components/ThemePreview';
+import Notice from '../admin-components/Notice';
+import Spinner from '../../components/icons/Spinner';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -42,7 +43,7 @@ const Interface = ( props ) => {
 		const colors = {};
 		categories.forEach( ( cat ) => {
 			cat.themes.forEach( ( theme ) => {
-				if ( theme.slug === activeTheme) {
+				if ( theme.slug === activeTheme ) {
 					colors.colorPrimary = theme.color_primary;
 					colors.colorSecondary = theme.color_secondary;
 					colors.colorAccent = theme.color_accent;
@@ -50,6 +51,10 @@ const Interface = ( props ) => {
 			} );
 		} );
 		return colors;
+	};
+
+	const hasErrors = () => {
+		return Object.keys( errors ).length > 0;
 	};
 
 	// Get active theme and colors.
@@ -74,6 +79,21 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
+			defaultValues: {
+				colorPrimary: '',
+				colorSecondary: '',
+				colorAccent: '',
+			},
+		} );
+
+	const formValues = useWatch( { control } );
+
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
+
 	useEffect( () => {
 		setLoading( true );
 		sendCommand( 'quotes_dlx_get_theme_colors', {
@@ -84,6 +104,7 @@ const Interface = ( props ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
+					setValue( 'colorAccent', ajaxData.colors.colorAccent, { shouldDirty: false, shouldValidate: false } );
 					setThemeColors( ajaxData.colors );
 					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
 				} else {
@@ -134,7 +155,11 @@ const Interface = ( props ) => {
 		const defaultColors = getColors( true );
 		return (
 			<>
-				<ThemePreview activeTheme={ activeTheme } stylesheet={ getActiveThemeStylesheet() } { ...themeColors } />
+				<ThemePreview
+					activeTheme={ activeTheme }
+					stylesheet={ getActiveThemeStylesheet() }
+					{ ...themeColors }
+				/>
 			</>
 		);
 	};
@@ -175,8 +200,6 @@ const Interface = ( props ) => {
 	// 		} );
 	// };
 
-	
-
 	const getThemes = ( category ) => {
 		return category.themes.map( ( theme, themeIndex ) => (
 			<option key={ themeIndex } value={ theme.slug }>
@@ -211,40 +234,109 @@ const Interface = ( props ) => {
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						{ getCategories() }
-					</div>
-					<div className="qdlx-admin__theme-preview">
-						{ GetThemePreview() }
-					</div>
-					<div className="qdlx-admin__color-pickers">
-						<div className="qdlx-admin__color-primary">
-							<ThemeColorPicker
-								value={ themeColors.colorPrimary }
-								onChange={ ( value ) => {
-									setColorPrimary( value );
-								}}
-								label={ __( 'Primary Color', 'quotes-dlx' ) }
-								defaultColors={ defaultThemeColors }
-								defaultColor={ defaultColors.colorPrimary }
+						<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+						<div className="qdlx-admin__color-pickers">
+							<div className="qdlx-admin__color-primary">
+								<ThemeColorPicker
+									value={ themeColors.colorPrimary }
+									onChange={ ( value ) => {
+										setColorPrimary( value );
+									} }
+									label={ __( 'Primary Color:', 'quotes-dlx' ) }
+									defaultColors={ defaultThemeColors }
+									defaultColor={ defaultColors.colorPrimary }
+								/>
+								<ThemeColorPicker
+									value={ themeColors.colorSecondary }
+									onChange={ ( value ) => {
+										setColorSecondary( value );
+									} }
+									label={ __( 'Secondary Color:', 'quotes-dlx' ) }
+									defaultColors={ defaultThemeColors }
+									defaultColor={ defaultColors.colorSecondary }
+								/>
+								<Controller
+									name="colorAccent"
+									control={ control }
+									render={ ( { field: { onChange, value } } ) => (
+										<ThemeColorPicker
+											value={ value }
+											onChange={ ( newValue ) => {
+												setColorAccent( newValue );
+												onChange( newValue );
+											} }
+											label={ __( 'Accent Color:', 'quotes-dlx' ) }
+											defaultColors={ defaultThemeColors }
+											defaultColor={ defaultColors.colorAccent }
+										/>
+									) }
+								/>
+							</div>
+						</div>
+						<div className="qdlx-admin__tabs--content-actions">
+							<Button
+								className={ classNames(
+									'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+									{ 'has-error': hasErrors() },
+									{ 'has-icon': saving },
+									{ 'is-saving': { saving } }
+								) }
+								type="submit"
+								text={
+									saving
+										? __( 'Saving…', 'quotes-dlx' )
+										: __( 'Save Defaults', 'quotes-dlx' )
+								}
+								icon={ saving ? Spinner : false }
+								iconSize="18"
+								iconPosition="right"
+								disabled={ saving || resetting }
 							/>
-							<ThemeColorPicker
-								value={themeColors.colorSecondary }
-								onChange={ ( value ) => {
-									setColorSecondary( value );
-								}}
-								label={ __( 'Secondary Color', 'quotes-dlx' ) }
-								defaultColors={ defaultThemeColors }
-								defaultColor={ defaultColors.colorSecondary }
-							/>
-							<ThemeColorPicker
-								value={ themeColors.colorAccent }
-								onChange={ ( value ) => {
-									setColorAccent( value );
-								}}
-								label={ __( 'Accent Color', 'quotes-dlx' ) }
-								defaultColors={ defaultThemeColors }
-								defaultColor={ defaultColors.colorAccent }
+							<Button
+								className={ classNames(
+									'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+									{ 'has-icon': resetting },
+									{ 'is-resetting': { resetting } }
+								) }
+								type="button"
+								text={
+									resetting
+										? __( 'Resetting…', 'quotes-dlx' )
+										: __( 'Reset Defaults', 'quotes-dlx' )
+								}
+								icon={ resetting ? Spinner : false }
+								iconSize="18"
+								iconPosition="right"
+								disabled={ saving || resetting }
+								onClick={ ( e ) => {
+									setResetting( true );
+									handleReset( e );
+								} }
 							/>
 						</div>
+						{ hasErrors() && (
+							<Notice
+								message={ __(
+									'There are form validation errors. Please correct them above.'
+								) }
+								status="error"
+								politeness="polite"
+							/>
+						) }
+						{ isSaved && (
+							<Notice
+								message={ __( 'Your settings have been saved.' ) }
+								status="success"
+								politeness="assertive"
+							/>
+						) }
+						{ isReset && (
+							<Notice
+								message={ __( 'Your settings have been reset to defaults.' ) }
+								status="success"
+								politeness="assertive"
+							/>
+						) }
 					</div>
 				</div>
 			</div>

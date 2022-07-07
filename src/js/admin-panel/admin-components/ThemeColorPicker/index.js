@@ -9,13 +9,15 @@ import classnames from 'classnames';
 import hexToRgba from 'hex-to-rgba';
 import { __ } from '@wordpress/i18n';
 
-import { Tooltip,
+import {
+	Tooltip,
 	BaseControl,
 	ColorPicker,
 	RangeControl,
 	Popover,
 	ColorPalette,
-	Button } from '@wordpress/components';
+	Button,
+} from '@wordpress/components';
 
 const ThemeColorPicker = ( props ) => {
 	const [ colorKey, setColorKey ] = useState( false );
@@ -85,14 +87,46 @@ const ThemeColorPicker = ( props ) => {
 					<span>{ label }</span>
 				</div>
 			) }
+			<div className="ptam-component-color-picker">
+				<div className="ptam-color-picker-area ptam-component-color-picker-palette">
+					{ ! isVisible && (
+						<>
+							<Popover.Slot />
+							<div
+								className={ classnames(
+									'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper ptam-color-picker-area ptam-component-color-picker-palette',
 
-			<div className="ptam-color-picker-area">
-				{ ! isVisible && (
-					<>
-						<Popover.Slot />
+									value ? '' : 'components-color-palette__custom-color'
+								) }
+							>
+								<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
+									<button
+										type="button"
+										aria-expanded={ isVisible }
+										className="button-reset components-button components-circular-option-picker__option is-pressed"
+										onClick={ toggleVisible }
+										aria-label={ __(
+											'Custom color picker',
+											'post-type-archive-mapping'
+										) }
+										style={ {
+											background: color
+												? hexToRgba( color, valueOpacity )
+												: 'transparent',
+										} }
+									>
+										<span className="components-color-palette__custom-color-gradient" />
+									</button>
+								</Tooltip>
+							</div>
+						</>
+					) }
+
+					{ isVisible && (
 						<div
 							className={ classnames(
-								'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper',
+								'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper ptam-color-picker-area ptam-component-color-picker-palette',
+
 								value ? '' : 'components-color-palette__custom-color'
 							) }
 						>
@@ -100,119 +134,88 @@ const ThemeColorPicker = ( props ) => {
 								<button
 									type="button"
 									aria-expanded={ isVisible }
-									className="button-reset"
-									onClick={ toggleVisible }
+									className="components-button components-circular-option-picker__option is-pressed"
+									onClick={ toggleClose }
 									aria-label={ __(
 										'Custom color picker',
 										'post-type-archive-mapping'
 									) }
 									style={ {
-										background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
-										padding: '15px',
-										borderRadius: '50%',
-										width: '10px',
-										height: '10px',
+										background: color
+											? hexToRgba( color, valueOpacity )
+											: 'transparent',
 									} }
 								>
 									<span className="components-color-palette__custom-color-gradient" />
 								</button>
 							</Tooltip>
 						</div>
-					</>
-				) }
+					) }
 
-				{ isVisible && (
-					<div
-						className={ classnames(
-							'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper',
-							value ? '' : 'components-color-palette__custom-color'
-						) }
-					>
-						<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
-							<button
-								type="button"
-								aria-expanded={ isVisible }
-								className="button-reset"
-								onClick={ toggleClose }
-								aria-label={ __(
-									'Custom color picker',
-									'post-type-archive-mapping'
-								) }
-								style={ {
-									background: color ? hexToRgba( color, valueOpacity ) : 'transparent',
-								} }
-							>
-								<span className="components-color-palette__custom-color-gradient" />
-							</button>
-						</Tooltip>
-					</div>
-				) }
-
-				{ isVisible && (
-					<Popover
-						className="ptam-component-color-picker"
-						onClose={ toggleClose }
-						noArrow={ false }
-
-					>
-						<BaseControl key={ colorKey }>
-							<ColorPicker
-								key={ colorKey }
-								color={ color }
-								onChangeComplete={ ( newColor ) => {
-									setColor( newColor.hex );
-									onChange( newColor.hex );
-								} }
-								disableAlpha
-								defaultValue={ defaultColor }
-							/>
-						</BaseControl>
-
-						{ alpha && (
-							<div className="ptam-component-color-opacity">
-								<Tooltip text={ __( 'Opacity', 'post-type-archive-mapping' ) }>
-									{ opacityIcon }
-								</Tooltip>
-
-								<RangeControl
-									value={ valueOpacity ? valueOpacity : 0 }
-									onChange={ ( opacityValue ) => onOpacityChange( opacityValue ) }
-									min={ 0 }
-									max={ 1 }
-									step={ 0.01 }
-									initialPosition={ 1 }
+					{ isVisible && (
+						<Popover
+							className="ptam-component-color-picker"
+							onClose={ toggleClose }
+							noArrow={ false }
+						>
+							<BaseControl key={ colorKey }>
+								<ColorPicker
+									key={ colorKey }
+									color={ color }
+									onChangeComplete={ ( newColor ) => {
+										setColor( newColor.hex );
+										onChange( newColor.hex );
+									} }
+									disableAlpha
+									defaultValue={ defaultColor }
 								/>
-							</div>
-						) }
-						<BaseControl className="ptam-component-color-picker-palette">
-							<ColorPalette
-								colors={ defaultColors }
-								value={ color }
-								onChange={ ( newColor ) => {
-									onChange( newColor );
-									setColor( newColor );
-									setColorKey( newColor );
-								} }
-								disableCustomColors={ true }
-								clearable={ false }
-								className="button-reset"
-							/>
-						</BaseControl>
-						<div className="components-color-clear-color">
-							<Button
-								className=" button-reset"
-								onClick={ () => {
-									onChange( defaultColor );
-									setColorKey( defaultColor );
-									setColor( defaultColor );
-								} }
-							>
-								{ __( 'Clear Color', 'post-type-archive-mapping' ) }
-							</Button>
-						</div>
+							</BaseControl>
 
-					</Popover>
-				) }
+							{ alpha && (
+								<div className="ptam-component-color-opacity">
+									<Tooltip text={ __( 'Opacity', 'post-type-archive-mapping' ) }>
+										{ opacityIcon }
+									</Tooltip>
+
+									<RangeControl
+										value={ valueOpacity ? valueOpacity : 0 }
+										onChange={ ( opacityValue ) => onOpacityChange( opacityValue ) }
+										min={ 0 }
+										max={ 1 }
+										step={ 0.01 }
+										initialPosition={ 1 }
+									/>
+								</div>
+							) }
+							<BaseControl className="ptam-component-color-picker-palette">
+								<ColorPalette
+									colors={ defaultColors }
+									value={ color }
+									onChange={ ( newColor ) => {
+										onChange( newColor );
+										setColor( newColor );
+										setColorKey( newColor );
+									} }
+									disableCustomColors={ true }
+									clearable={ false }
+									className="button-reset"
+								/>
+							</BaseControl>
+							<div className="components-color-clear-color">
+								<Button
+									className=" button-reset"
+									onClick={ () => {
+										onChange( defaultColor );
+										setColorKey( defaultColor );
+										setColor( defaultColor );
+									} }
+								>
+									{ __( 'Clear Color', 'post-type-archive-mapping' ) }
+								</Button>
+							</div>
+						</Popover>
+					) }
+				</div>
 			</div>
 		</BaseControl>
 	);

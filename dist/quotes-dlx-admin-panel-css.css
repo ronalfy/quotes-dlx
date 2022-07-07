@@ -1391,19 +1391,32 @@ button.button-reset.show-cursor {
 }
 
 /* Color Component (forked from @GenerateBlocks) */
-.ptam-component-color-picker-wrapper > .components-base-control__field {
+.ptam-component-color-picker-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper {
+  text-align: center;
+  margin-bottom: 0;
+}
+.ptam-component-color-picker-wrapper > .components-base-control__field,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper > .components-base-control__field {
   position: relative;
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: 150px 30px;
+  row-gap: 2;
+  margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
-.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
   margin: 0;
 }
 
 .ptam-component-color-picker {
   margin-left: -5px;
-  margin-top: -20px;
+  margin-top: 0;
   z-index: 100;
 }
 .ptam-component-color-picker > .components-base-control:first-child {
@@ -1417,7 +1430,7 @@ button.button-reset.show-cursor {
   margin-top: 3px;
   margin-bottom: 8px;
 }
-.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker button {
+.ptam-component-color-picker .ptam-component-color-picker-palette button.components-circular-option-picker__option {
   border-radius: 50%;
   width: 100%;
   height: 100%;
@@ -1427,7 +1440,7 @@ button.button-reset.show-cursor {
   flex-wrap: wrap;
   gap: 12px;
 }
-.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker__swatches .components-circular-option-picker__option-wrapper {
+.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker__option-wrapper {
   display: inline-block;
   height: 28px;
   width: 28px;

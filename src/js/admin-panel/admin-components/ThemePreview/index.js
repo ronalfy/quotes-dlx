@@ -24,7 +24,7 @@ const ThemePreview = ( props ) => {
 					'quotes-dlx-context-menu-disabled': false,
 					'quotes-dlx-has-no-tweet-button': false,
 				} ) }
-				style={ { maxWidth: '650px' } }
+				style={ { maxWidth: '650px', margin: '0 auto' } }
 			>
 				<div className="quotes-dlx-wrapper">
 					<figure>
@@ -34,11 +34,6 @@ const ThemePreview = ( props ) => {
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Mauris imperdiet leo sed tellus ultrices, eget lobortis eros
 									molestie.
-								</div>
-								<br />
-								<div>
-									Phasellus vehicula metus non nulla porttitor, non bibendum
-									risus iaculis.
 								</div>
 								<br />
 								<div>

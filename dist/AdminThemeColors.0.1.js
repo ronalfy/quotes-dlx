@@ -166,6 +166,9 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
       _props$alpha = props.alpha,
       alpha = _props$alpha === void 0 ? false : _props$alpha,
       valueOpacity = props.valueOpacity;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setColor(value);
+  }, [value]);
   var opacityIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -205,6 +208,7 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
     }
   };
 
+  console.log(color);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "ptam-component-color-picker-wrapper"
   }, !!label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -407,13 +411,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var photoswipe_dynamic_caption_plugin_photoswipe_dynamic_caption_plugin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css */ "./node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
 /* harmony import */ var _admin_components_Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-components/Loaders/AdminThemeDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeDefaultsLoader.js");
 /* harmony import */ var _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/ColorPalette */ "./src/js/components/icons/ColorPalette.js");
@@ -439,7 +442,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -504,7 +506,7 @@ var Interface = function Interface(props) {
   };
 
   var hasErrors = function hasErrors() {
-    return Object.keys(errors).length > 0;
+    return false; //Object.keys( errors ).length > 0;
   }; // Get active theme and colors.
 
 
@@ -568,32 +570,6 @@ var Interface = function Interface(props) {
       isReset = _useState22[0],
       setIsReset = _useState22[1];
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useForm)({
-    defaultValues: {
-      colorPrimary: '',
-      colorSecondary: '',
-      colorAccent: ''
-    }
-  }),
-      register = _useForm.register,
-      control = _useForm.control,
-      handleSubmit = _useForm.handleSubmit,
-      setValue = _useForm.setValue,
-      getValues = _useForm.getValues,
-      reset = _useForm.reset;
-
-  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useWatch)({
-    control: control
-  });
-
-  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useFormState)({
-    control: control
-  }),
-      errors = _useFormState.errors,
-      isDirty = _useFormState.isDirty,
-      dirtyFields = _useFormState.dirtyFields,
-      touchedFields = _useFormState.touchedFields;
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setLoading(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_get_theme_colors', {
@@ -604,19 +580,9 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        setValue('colorPrimary', ajaxData.colors.colorPrimary, {
-          shouldDirty: false,
-          shouldValidate: false
-        });
-        setValue('colorSecondary', ajaxData.colors.colorSecondary, {
-          shouldDirty: false,
-          shouldValidate: false
-        });
-        setValue('colorAccent', ajaxData.colors.colorAccent, {
-          shouldDirty: false,
-          shouldValidate: false
-        });
-        setThemeColors(ajaxData.colors);
+        setColorPrimary(ajaxData.colors.colorPrimary);
+        setColorSecondary(ajaxData.colors.colorSecondary);
+        setColorAccent(ajaxData.colors.colorAccent);
         setDefaultThemeColors(Object.values(ajaxData.defaults));
       } else {// Error stuff.
       }
@@ -646,7 +612,7 @@ var Interface = function Interface(props) {
 
   var getCategories = function getCategories() {
     return categories.map(function (cat, catIndex) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_13__["default"], {
         key: cat.slug,
         className: "qdlx-admin__themes--content-inner",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Theme', 'quotes-dlx'),
@@ -659,19 +625,20 @@ var Interface = function Interface(props) {
   };
 
   var GetThemePreview = function GetThemePreview() {
-    var defaultColors = getColors(true);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemePreview__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
       activeTheme: activeTheme,
       stylesheet: getActiveThemeStylesheet()
     }, themeColors)));
   };
 
-  var onSubmit = function onSubmit(formData) {
-    console.log(formData);
+  var _onSubmit = function onSubmit() {
     setSaving(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_theme_colors', {
       nonce: quotes_dlx_admin.options_save_nonce,
-      form_data: formData
+      colorPrimary: colorPrimary,
+      colorSecondary: colorSecondary,
+      colorAccent: colorAccent,
+      template: activeTheme
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
@@ -685,6 +652,35 @@ var Interface = function Interface(props) {
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setSaving(false);
+    });
+  };
+
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_theme_colors', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      template: activeTheme
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        // setValue( 'colorPrimary', ajaxData.colors.primary, { shouldDirty: false, shouldValidate: false } );
+        // setValue( 'colorSecondary', ajaxData.colors.secondary, { shouldDirty: false, shouldValidate: false } );
+        // setValue( 'colorAccent', ajaxData.colors.accent, { shouldDirty: false, shouldValidate: false } );
+        // setColorPrimary( ajaxData.colors.primary );
+        // setColorSecondary( ajaxData.colors.secondary );
+        // setColorAccent( ajaxData.colors.accent );
+        console.log(ajaxData);
+        setThemeColors(ajaxData.colors);
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
     });
   }; // const getAuthor = ( selectedTheme ) => {
   // 	return <a href={ selectedTheme.author_url }>{ selectedTheme.author_name }</a>;
@@ -738,7 +734,11 @@ var Interface = function Interface(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    onSubmit: handleSubmit(onSubmit)
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+
+      _onSubmit();
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -759,66 +759,33 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__color-pickers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__color-primary"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
-    name: "colorSecondary",
-    control: control,
-    render: function render(_ref) {
-      var _ref$field = _ref.field,
-          _onChange = _ref$field.onChange,
-          value = _ref$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        value: themeColors.colorPrimary,
-        onChange: function onChange(newValue) {
-          setColorPrimary(newValue);
-
-          _onChange(newValue);
-        },
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Primary Color:', 'quotes-dlx'),
-        defaultColors: defaultThemeColors,
-        defaultColor: defaultColors.colorPrimary
-      });
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
-    name: "colorSecondary",
-    control: control,
-    render: function render(_ref2) {
-      var _ref2$field = _ref2.field,
-          _onChange2 = _ref2$field.onChange,
-          value = _ref2$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        value: themeColors.colorSecondary,
-        onChange: function onChange(newValue) {
-          setColorSecondary(newValue);
-
-          _onChange2(newValue);
-        },
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Secondary Color:', 'quotes-dlx'),
-        defaultColors: defaultThemeColors,
-        defaultColor: defaultColors.colorSecondary
-      });
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
-    name: "colorAccent",
-    control: control,
-    render: function render(_ref3) {
-      var _ref3$field = _ref3.field,
-          _onChange3 = _ref3$field.onChange,
-          value = _ref3$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        value: value,
-        onChange: function onChange(newValue) {
-          setColorAccent(newValue);
-
-          _onChange3(newValue);
-        },
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color:', 'quotes-dlx'),
-        defaultColors: defaultThemeColors,
-        defaultColor: defaultColors.colorAccent
-      });
-    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    value: themeColors.colorPrimary,
+    onChange: function onChange(newValue) {
+      setColorPrimary(newValue);
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Primary Color:', 'quotes-dlx'),
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorPrimary
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    value: themeColors.colorSecondary,
+    onChange: function onChange(newValue) {
+      setColorSecondary(newValue);
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Secondary Color:', 'quotes-dlx'),
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorSecondary
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    value: themeColors.colorAccent,
+    onChange: function onChange(newValue) {
+      setColorAccent(newValue);
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color:', 'quotes-dlx'),
+    defaultColors: defaultThemeColors,
+    defaultColor: defaultColors.colorAccent
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
       'has-error': hasErrors()
     }, {
@@ -834,7 +801,7 @@ var Interface = function Interface(props) {
     iconSize: "18",
     iconPosition: "right",
     disabled: saving || resetting
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': resetting
     }, {

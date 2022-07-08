@@ -6,7 +6,6 @@ import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
 import { Button, SelectControl } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
-import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefaultsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
@@ -54,7 +53,7 @@ const Interface = ( props ) => {
 	};
 
 	const hasErrors = () => {
-		return Object.keys( errors ).length > 0;
+		return false; //Object.keys( errors ).length > 0;
 	};
 
 	// Get active theme and colors.
@@ -79,21 +78,6 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
-	const { register, control, handleSubmit, setValue, getValues, reset } =
-		useForm( {
-			defaultValues: {
-				colorPrimary: '',
-				colorSecondary: '',
-				colorAccent: '',
-			},
-		} );
-
-	const formValues = useWatch( { control } );
-
-	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
-		control,
-	} );
-
 	useEffect( () => {
 		setLoading( true );
 		sendCommand( 'quotes_dlx_get_theme_colors', {
@@ -104,10 +88,9 @@ const Interface = ( props ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					setValue( 'colorPrimary', ajaxData.colors.colorPrimary, { shouldDirty: false, shouldValidate: false } );
-					setValue( 'colorSecondary', ajaxData.colors.colorSecondary, { shouldDirty: false, shouldValidate: false } );
-					setValue( 'colorAccent', ajaxData.colors.colorAccent, { shouldDirty: false, shouldValidate: false } );
-					setThemeColors( ajaxData.colors );
+					setColorPrimary( ajaxData.colors.colorPrimary );
+					setColorSecondary( ajaxData.colors.colorSecondary );
+					setColorAccent( ajaxData.colors.colorAccent );
 					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
 				} else {
 					// Error stuff.
@@ -154,7 +137,6 @@ const Interface = ( props ) => {
 	};
 
 	const GetThemePreview = () => {
-		const defaultColors = getColors( true );
 		return (
 			<>
 				<ThemePreview
@@ -166,12 +148,14 @@ const Interface = ( props ) => {
 		);
 	};
 
-	const onSubmit = ( formData ) => {
-		console.log( formData );
+	const onSubmit = () => {
 		setSaving( true );
 		sendCommand( 'quotes_dlx_save_theme_colors', {
 			nonce: quotes_dlx_admin.options_save_nonce,
-			form_data: formData,
+			colorPrimary,
+			colorSecondary,
+			colorAccent,
+			template: activeTheme,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
@@ -189,6 +173,38 @@ const Interface = ( props ) => {
 			.catch( ( ajaxResponse ) => {} )
 			.then( ( ajaxResponse ) => {
 				setSaving( false );
+			} );
+	};
+
+	const handleReset = ( e ) => {
+		setResetting( true );
+		sendCommand( 'quotes_dlx_reset_theme_colors', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+			template: activeTheme,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					// setValue( 'colorPrimary', ajaxData.colors.primary, { shouldDirty: false, shouldValidate: false } );
+					// setValue( 'colorSecondary', ajaxData.colors.secondary, { shouldDirty: false, shouldValidate: false } );
+					// setValue( 'colorAccent', ajaxData.colors.accent, { shouldDirty: false, shouldValidate: false } );
+					// setColorPrimary( ajaxData.colors.primary );
+					// setColorSecondary( ajaxData.colors.secondary );
+					// setColorAccent( ajaxData.colors.accent );
+					console.log( ajaxData );
+					setThemeColors( ajaxData.colors );
+					setIsReset( true );
+					setTimeout( () => {
+						setIsReset( false );
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setResetting( false );
 			} );
 	};
 
@@ -245,7 +261,7 @@ const Interface = ( props ) => {
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
-				<form onSubmit={ handleSubmit( onSubmit ) }>
+				<form onSubmit={ ( e ) => { e.preventDefault(); onSubmit(); } } >
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
@@ -266,54 +282,37 @@ const Interface = ( props ) => {
 							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
 							<div className="qdlx-admin__color-pickers">
 								<div className="qdlx-admin__color-primary">
-									<Controller
-										name="colorSecondary"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
+									
 											<ThemeColorPicker
 												value={ themeColors.colorPrimary }
 												onChange={ ( newValue ) => {
 													setColorPrimary( newValue );
-													onChange( newValue );
 												} }
 												label={ __( 'Primary Color:', 'quotes-dlx' ) }
 												defaultColors={ defaultThemeColors }
 												defaultColor={ defaultColors.colorPrimary }
 											/>
-										) }
-									/>
-									<Controller
-										name="colorSecondary"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
+									
 											<ThemeColorPicker
 												value={ themeColors.colorSecondary }
 												onChange={ ( newValue ) => {
 													setColorSecondary( newValue );
-													onChange( newValue );
 												} }
 												label={ __( 'Secondary Color:', 'quotes-dlx' ) }
 												defaultColors={ defaultThemeColors }
 												defaultColor={ defaultColors.colorSecondary }
 											/>
-										) }
-									/>
-									<Controller
-										name="colorAccent"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
+									
 											<ThemeColorPicker
-												value={ value }
+												value={ themeColors.colorAccent }
 												onChange={ ( newValue ) => {
 													setColorAccent( newValue );
-													onChange( newValue );
 												} }
 												label={ __( 'Accent Color:', 'quotes-dlx' ) }
 												defaultColors={ defaultThemeColors }
 												defaultColor={ defaultColors.colorAccent }
 											/>
-										) }
-									/>
+										
 								</div>
 							</div>
 							<div className="qdlx-admin__tabs--content-actions">

@@ -43,6 +43,7 @@ class Ajax {
 		// For retrieving a theme's color palette.
 		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_theme_colors', array( static::class, 'ajax_save_theme_colors' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_colors', array( static::class, 'ajax_reset_theme_colors' ) );
 
 		return $self;
 	}
@@ -158,7 +159,7 @@ class Ajax {
 	}
 
 	/**
-	 * Reset form options for contextual menu options.
+	 * Retrieve theme colors.
 	 */
 	public static function ajax_get_theme_colors() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
@@ -168,43 +169,107 @@ class Ajax {
 		// Get the active template.
 		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
 
-		$themes               =  Themes\Themes_Addon::get_theme_data();
-		$theme_default_colors = array();
+		$themes                     = Themes\Themes_Addon::get_theme_data();
+		$theme_default_colors       = array();
+		$theme_default_saved_colors = array();
 		foreach ( $themes as $theme ) {
 			if ( $template_slug === $theme['slug'] ) {
-				$theme_default_colors = array(
+				$theme_default_saved_colors = array(
+					'primary'   => $theme['color_primary'],
+					'secondary' => $theme['color_secondary'],
+					'accent'    => $theme['color_accent'],
+				);
+				$theme_default_colors       = array(
 					array(
-						'name' => __( 'Default Color Primary', 'quotes-dlx' ),
+						'name'  => __( 'Default Color Primary', 'quotes-dlx' ),
 						'color' => $theme['color_primary'],
-						'slug' => 'default-color-primary',
+						'slug'  => 'default-color-primary',
 					),
 					array(
-						'name' => __( 'Default Color Secondary', 'quotes-dlx' ),
+						'name'  => __( 'Default Color Secondary', 'quotes-dlx' ),
 						'color' => $theme['color_secondary'],
-						'slug' => 'default-color-secondary',
+						'slug'  => 'default-color-secondary',
 					),
 					array(
-						'name' => __( 'Default Color Accent', 'quotes-dlx' ),
+						'name'  => __( 'Default Color Accent', 'quotes-dlx' ),
 						'color' => $theme['color_accent'],
-						'slug' => 'default-color-accent',
-					)
+						'slug'  => 'default-color-accent',
+					),
 				);
 				break;
 			}
 		}
 
-		// $theme_colors = get_option( 'quotes_dlx_theme_colors' );
-		// $theme_color = $theme_colors[ $template ];
+		// Get saved colors.
+		$theme_colors = Options_Theme_Colors::get_options( $template_slug, true );
+
+		$theme_color_primary   = $theme_colors['primary'] ?? $theme_default_saved_colors['primary'];
+		$theme_color_secondary = $theme_colors['secondary'] ?? $theme_default_saved_colors['secondary'];
+		$theme_color_accent    = $theme_colors['accent'] ?? $theme_default_saved_colors['accent'];
 
 		$theme_color = array(
-			'colorPrimary'   => '#000000',
-			'colorSecondary' => '#FF0000',
-			'colorAccent'    => '#00FF00',
+			'colorPrimary'   => $theme_color_primary,
+			'colorSecondary' => $theme_color_secondary,
+			'colorAccent'    => $theme_color_accent,
 		);
 
 		wp_send_json_success(
 			array(
-				'colors' => $theme_color,
+				'colors'   => $theme_color,
+				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset theme color options.
+	 */
+	public static function ajax_reset_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+
+		$themes                     = Themes\Themes_Addon::get_theme_data();
+		$theme_default_saved_colors = array();
+		$theme_default_colors       = array();
+		foreach ( $themes as $theme ) {
+			if ( $template_slug === $theme['slug'] ) {
+				$theme_default_saved_colors = array(
+					'colorPrimary'   => $theme['color_primary'],
+					'colorSecondary' => $theme['color_secondary'],
+					'colorAccent'    => $theme['color_accent'],
+				);
+				$theme_default_colors       = array(
+					array(
+						'name'  => __( 'Default Color Primary', 'quotes-dlx' ),
+						'color' => $theme['color_primary'],
+						'slug'  => 'default-color-primary',
+					),
+					array(
+						'name'  => __( 'Default Color Secondary', 'quotes-dlx' ),
+						'color' => $theme['color_secondary'],
+						'slug'  => 'default-color-secondary',
+					),
+					array(
+						'name'  => __( 'Default Color Accent', 'quotes-dlx' ),
+						'color' => $theme['color_accent'],
+						'slug'  => 'default-color-accent',
+					),
+				);
+				break;
+			}
+		}
+
+		// Get saved colors.
+		Options_Theme_Colors::update_options( $template_slug, array(), true );
+
+		wp_send_json_success(
+			array(
+				'colors'   => $theme_default_saved_colors,
 				'defaults' => $theme_default_colors,
 			)
 		);
@@ -219,9 +284,21 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		wp_send_json_error(
+		$template_slug   = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$color_primary   = sanitize_text_field( filter_input( INPUT_POST, 'colorPrimary', FILTER_DEFAULT ) );
+		$color_secondary = sanitize_text_field( filter_input( INPUT_POST, 'colorSecondary', FILTER_DEFAULT ) );
+		$color_accent    = sanitize_text_field( filter_input( INPUT_POST, 'colorAccent', FILTER_DEFAULT ) );
+
+		$theme_options                   = Options_Theme_Colors::get_options( '', true );
+		$theme_options[ $template_slug ] = array(
+			'primary'   => $color_primary,
+			'secondary' => $color_secondary,
+			'accent'    => $color_accent,
+		);
+		Options_Theme_Colors::update_options( '', $theme_options, true );
+		wp_send_json_success(
 			array(
-				'message' => __( 'Could not save theme colors', 'quotes-dlx' ),
+				'message' => __( 'Your theme colors have been saved.', 'quotes-dlx' ),
 			)
 		);
 		exit;

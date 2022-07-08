@@ -4,7 +4,7 @@
  * Credit: Forked from @quotes-dlx
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import hexToRgba from 'hex-to-rgba';
 import { __ } from '@wordpress/i18n';
@@ -34,6 +34,10 @@ const ThemeColorPicker = ( props ) => {
 		alpha = false,
 		valueOpacity,
 	} = props;
+
+	useEffect( () => {
+		setColor( value );
+	}, [ value ] );
 
 	const opacityIcon = (
 		<svg
@@ -77,6 +81,8 @@ const ThemeColorPicker = ( props ) => {
 			setIsVisible( false );
 		}
 	};
+
+	console.log( color );
 
 	return (
 		<BaseControl className="ptam-component-color-picker-wrapper">

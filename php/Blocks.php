@@ -78,7 +78,50 @@ class Blocks {
 					if ( $template ) {
 						$handle = 'quotes-dlx-' . $template;
 						if ( ! wp_script_is( $handle, 'done' ) ) {
-							wp_print_styles( array( $handle ) );
+							$theme_colors    = Options_Theme_Colors::get_options( $template, true );
+							$color_primary   = $theme_colors['primary'] ?? '';
+							$color_secondary = $theme_colors['secondary'] ?? '';
+							$color_accent    = $theme_colors['accent'] ?? '';
+							?>
+							<style>
+								:root {
+									<?php
+									if ( ! empty( $color_primary ) ) {
+										echo esc_html(
+											sprintf(
+												'--qdlx-%s-primary: %s;',
+												$template,
+												$color_primary
+											)
+										);
+									}
+									?>
+									<?php
+									if ( ! empty( $color_secondary ) ) {
+										echo esc_html(
+											sprintf(
+												'--qdlx-%s-secondary: %s;',
+												$template,
+												$color_secondary
+											)
+										);
+									}
+									?>
+									<?php
+									if ( ! empty( $color_accent ) ) {
+										echo esc_html(
+											sprintf(
+												'--qdlx-%s-accent: %s;',
+												$template,
+												$color_accent
+											)
+										);
+									}
+									?>
+								}
+								</style>
+								<?php
+								wp_print_styles( array( $handle ) );
 						}
 					}
 				}

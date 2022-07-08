@@ -22,7 +22,6 @@ class Blocks {
 	public static function run() {
 		$self = new self();
 		add_action( 'init', array( $self, 'init' ) );
-
 		return $self;
 	}
 
@@ -49,6 +48,42 @@ class Blocks {
 
 		// Pre-load font files.
 		add_action( 'wp_head', array( $this, 'add_header_fonts_preload' ) );
+
+		// Output styles based on block attributes.
+		if ( is_admin() ) {
+			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
+		} else {
+			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
+		}
+	}
+
+	/**
+	 * Parse a block and output scripts/styles.
+	 *
+	 * @see register_frontend_scripts for registering.
+	 */
+	public function maybe_output_scripts_styles() {
+		global $post;
+
+		// Check for post content.
+		$post_content = $post->post_content ?? '';
+		if ( empty( $post_content ) ) {
+			return;
+		}
+		$blocks = parse_blocks( $post_content );
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block ) {
+				if ( $block['blockName'] === 'mediaron/quotes-dlx' ) {
+					$template = $block['attrs']['template'] ?? false;
+					if ( $template ) {
+						$handle = 'quotes-dlx-' . $template;
+						if ( ! wp_script_is( $handle, 'done' ) ) {
+							wp_print_styles( array( $handle ) );
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -516,12 +551,12 @@ class Blocks {
 	 * Register front-end scripts/styles.
 	 */
 	public function register_frontend_scripts() {
-		$theme_deps = $this->register_theme_styles();
+		$this->register_theme_styles();
 
 		wp_register_style(
 			'quotes-dlx-frontend',
 			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
-			$theme_deps,
+			array(),
 			Functions::get_plugin_version(),
 			'all'
 		);

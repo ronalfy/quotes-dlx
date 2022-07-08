@@ -7,7 +7,7 @@ import { Button, SelectControl } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
 import sendCommand from '../../utils/SendCommand';
-import AdminThemeDefaultsLoader from '../admin-components/Loaders/AdminThemeDefaultsLoader';
+import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
 import TabsContext from '../contexts/TabsContext';
 import ThemeColorPicker from '../admin-components/ThemeColorPicker';
@@ -24,7 +24,7 @@ const retrieveDefaults = () => {
 const AdminDefaults = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
 			<Interface defaults={ defaults } { ...props } />
 		</Suspense>
 	);
@@ -252,16 +252,127 @@ const Interface = ( props ) => {
 		) );
 	};
 
-	if ( loading ) {
-		return <AdminThemeDefaultsLoader />;
-	}
-
 	const defaultColors = getColors();
+
+	const getThemePreviewAndSwatches = () => {
+		if ( loading ) {
+			return (
+				<AdminThemeColorsLoader showHeader={ false } />
+			);
+		}
+		return (
+			<div className="qdlx-admin__tabs--content-inner">
+				{ getCategories() }
+				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+				<div className="qdlx-admin__color-pickers">
+					<div className="qdlx-admin__color-primary">
+
+						<ThemeColorPicker
+							value={ themeColors.colorPrimary }
+							onChange={ ( newValue ) => {
+								setColorPrimary( newValue );
+							} }
+							label={ __( 'Primary Color:', 'quotes-dlx' ) }
+							defaultColors={ defaultThemeColors }
+							defaultColor={ defaultColors.colorPrimary }
+						/>
+
+						<ThemeColorPicker
+							value={ themeColors.colorSecondary }
+							onChange={ ( newValue ) => {
+								setColorSecondary( newValue );
+							} }
+							label={ __( 'Secondary Color:', 'quotes-dlx' ) }
+							defaultColors={ defaultThemeColors }
+							defaultColor={ defaultColors.colorSecondary }
+						/>
+
+						<ThemeColorPicker
+							value={ themeColors.colorAccent }
+							onChange={ ( newValue ) => {
+								setColorAccent( newValue );
+							} }
+							label={ __( 'Accent Color:', 'quotes-dlx' ) }
+							defaultColors={ defaultThemeColors }
+							defaultColor={ defaultColors.colorAccent }
+						/>
+
+					</div>
+				</div>
+				<div className="qdlx-admin__tabs--content-actions">
+					<Button
+						className={ classNames(
+							'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+							{ 'has-error': hasErrors() },
+							{ 'has-icon': saving },
+							{ 'is-saving': { saving } }
+						) }
+						type="submit"
+						text={
+							saving
+								? __( 'Saving…', 'quotes-dlx' )
+								: __( 'Save Theme Colors', 'quotes-dlx' )
+						}
+						icon={ saving ? Spinner : false }
+						iconSize="18"
+						iconPosition="right"
+						disabled={ saving || resetting }
+					/>
+					<Button
+						className={ classNames(
+							'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+							{ 'has-icon': resetting },
+							{ 'is-resetting': { resetting } }
+						) }
+						type="button"
+						text={
+							resetting
+								? __( 'Resetting…', 'quotes-dlx' )
+								: __( 'Reset Theme Colors', 'quotes-dlx' )
+						}
+						icon={ resetting ? Spinner : false }
+						iconSize="18"
+						iconPosition="right"
+						disabled={ saving || resetting }
+						onClick={ ( e ) => {
+							setResetting( true );
+							handleReset( e );
+						} }
+					/>
+				</div>
+				{ hasErrors() && (
+					<Notice
+						message={ __(
+							'There are form validation errors. Please correct them above.'
+						) }
+						status="error"
+						politeness="polite"
+					/>
+				) }
+				{ isSaved && (
+					<Notice
+						message={ __( 'Your settings have been saved.' ) }
+						status="success"
+						politeness="assertive"
+					/>
+				) }
+				{ isReset && (
+					<Notice
+						message={ __( 'Your settings have been reset to defaults.' ) }
+						status="success"
+						politeness="assertive"
+					/>
+				) }
+			</div>
+		);
+	};
 
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
-				<form onSubmit={ ( e ) => { e.preventDefault(); onSubmit(); } } >
+				<form onSubmit={ ( e ) => {
+					e.preventDefault(); onSubmit();
+				} } >
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
@@ -277,109 +388,7 @@ const Interface = ( props ) => {
 								) }
 							</p>
 						</div>
-						<div className="qdlx-admin__tabs--content-inner">
-							{ getCategories() }
-							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
-							<div className="qdlx-admin__color-pickers">
-								<div className="qdlx-admin__color-primary">
-									
-											<ThemeColorPicker
-												value={ themeColors.colorPrimary }
-												onChange={ ( newValue ) => {
-													setColorPrimary( newValue );
-												} }
-												label={ __( 'Primary Color:', 'quotes-dlx' ) }
-												defaultColors={ defaultThemeColors }
-												defaultColor={ defaultColors.colorPrimary }
-											/>
-									
-											<ThemeColorPicker
-												value={ themeColors.colorSecondary }
-												onChange={ ( newValue ) => {
-													setColorSecondary( newValue );
-												} }
-												label={ __( 'Secondary Color:', 'quotes-dlx' ) }
-												defaultColors={ defaultThemeColors }
-												defaultColor={ defaultColors.colorSecondary }
-											/>
-									
-											<ThemeColorPicker
-												value={ themeColors.colorAccent }
-												onChange={ ( newValue ) => {
-													setColorAccent( newValue );
-												} }
-												label={ __( 'Accent Color:', 'quotes-dlx' ) }
-												defaultColors={ defaultThemeColors }
-												defaultColor={ defaultColors.colorAccent }
-											/>
-										
-								</div>
-							</div>
-							<div className="qdlx-admin__tabs--content-actions">
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-										{ 'has-error': hasErrors() },
-										{ 'has-icon': saving },
-										{ 'is-saving': { saving } }
-									) }
-									type="submit"
-									text={
-										saving
-											? __( 'Saving…', 'quotes-dlx' )
-											: __( 'Save Theme Colors', 'quotes-dlx' )
-									}
-									icon={ saving ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-								/>
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
-										{ 'has-icon': resetting },
-										{ 'is-resetting': { resetting } }
-									) }
-									type="button"
-									text={
-										resetting
-											? __( 'Resetting…', 'quotes-dlx' )
-											: __( 'Reset Theme Colors', 'quotes-dlx' )
-									}
-									icon={ resetting ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-									onClick={ ( e ) => {
-										setResetting( true );
-										handleReset( e );
-									} }
-								/>
-							</div>
-							{ hasErrors() && (
-								<Notice
-									message={ __(
-										'There are form validation errors. Please correct them above.'
-									) }
-									status="error"
-									politeness="polite"
-								/>
-							) }
-							{ isSaved && (
-								<Notice
-									message={ __( 'Your settings have been saved.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
-							{ isReset && (
-								<Notice
-									message={ __( 'Your settings have been reset to defaults.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
-						</div>
+						{ getThemePreviewAndSwatches() }
 					</div>
 				</form>
 			</div>

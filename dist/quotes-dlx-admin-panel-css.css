@@ -83,6 +83,10 @@
   z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
+.react-loading-skeleton.no-flex {
+  display: block;
+}
+
 .react-loading-skeleton::after {
   content: " ";
   display: var(--pseudo-element-display);
@@ -1412,6 +1416,10 @@ button.button-reset.show-cursor {
 .ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper,
 .qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
   margin: 0;
+}
+
+.qdlx-admin__color-primary {
+  margin: 12px 0;
 }
 
 .ptam-component-color-picker {

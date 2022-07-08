@@ -23,6 +23,10 @@
     z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
+.react-loading-skeleton.no-flex {
+    display: block;
+}
+
 .react-loading-skeleton::after {
     content: ' ';
     display: var(--pseudo-element-display);

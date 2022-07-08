@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import AdminDefaultsLoader from '../Loaders/AdminDefaultsLoader';
 import AdminThemeDefaultsLoader from '../Loaders/AdminThemeDefaultsLoader';
+import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import 'react-loading-skeleton/dist/skeleton.css';
 import CircularQuestionIcon from '../../../components/icons/CircularQuestion';
 import HomeIcon from '../../../components/icons/Home';
@@ -123,7 +124,7 @@ const AdminTabs = ( props ) => {
 
 	const getAdminThemeColors = (
 		<>
-			<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
 				<AdminThemeColors />
 			</Suspense>
 		</>

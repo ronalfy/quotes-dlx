@@ -133,7 +133,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /**
  * Color Picker.
  *
- * Credit: Forked from @quotes-dlx
+ * Credit: Forked from @generateblocks
  */
 
 
@@ -208,7 +208,6 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
     }
   };
 
-  console.log(color);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "ptam-component-color-picker-wrapper"
   }, !!label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -667,13 +666,6 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        // setValue( 'colorPrimary', ajaxData.colors.primary, { shouldDirty: false, shouldValidate: false } );
-        // setValue( 'colorSecondary', ajaxData.colors.secondary, { shouldDirty: false, shouldValidate: false } );
-        // setValue( 'colorAccent', ajaxData.colors.accent, { shouldDirty: false, shouldValidate: false } );
-        // setColorPrimary( ajaxData.colors.primary );
-        // setColorSecondary( ajaxData.colors.secondary );
-        // setColorAccent( ajaxData.colors.accent );
-        console.log(ajaxData);
         setThemeColors(ajaxData.colors);
         setIsReset(true);
         setTimeout(function () {
@@ -684,46 +676,14 @@ var Interface = function Interface(props) {
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setResetting(false);
     });
-  }; // const getAuthor = ( selectedTheme ) => {
-  // 	return <a href={ selectedTheme.author_url }>{ selectedTheme.author_name }</a>;
-  // };
-  // const onThemeSelect = ( themeSlug ) => {
-  // 	setSaving( true );
-  // 	sendCommand( 'quotes_dlx_save_admin_options_defaults', {
-  // 		nonce: quotes_dlx_admin.options_save_nonce,
-  // 		form_data: {
-  // 			template: themeSlug,
-  // 		},
-  // 	} )
-  // 		.then( ( ajaxResponse ) => {
-  // 			const ajaxData = ajaxResponse.data.data;
-  // 			const ajaxSuccess = ajaxResponse.data.success;
-  // 			if ( ajaxSuccess ) {
-  // 				// Add local storage.
-  // 				localStorage.setItem(
-  // 					localStorageKey,
-  // 					JSON.stringify( { theme: ajaxData.theme } )
-  // 				);
-  // 				setIsSaved( true );
-  // 				setTimeout( () => {
-  // 					setIsSaved( false );
-  // 				}, 3000 );
-  // 			} else {
-  // 				// Error stuff.
-  // 			}
-  // 		} )
-  // 		.catch( ( ajaxResponse ) => {} )
-  // 		.then( ( ajaxResponse ) => {
-  // 			setSaving( false );
-  // 		} );
-  // };
-
+  };
 
   var getThemes = function getThemes(category) {
     return category.themes.map(function (theme, themeIndex) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         key: themeIndex,
-        value: theme.slug
+        value: theme.slug,
+        selected: theme.slug === activeTheme ? 'selected' : false
       }, theme.name);
     });
   };

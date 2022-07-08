@@ -1,7 +1,7 @@
 /**
  * Color Picker.
  *
- * Credit: Forked from @quotes-dlx
+ * Credit: Forked from @generateblocks
  */
 
 import React, { useState, useEffect } from 'react';
@@ -81,8 +81,6 @@ const ThemeColorPicker = ( props ) => {
 			setIsVisible( false );
 		}
 	};
-
-	console.log( color );
 
 	return (
 		<BaseControl className="ptam-component-color-picker-wrapper">

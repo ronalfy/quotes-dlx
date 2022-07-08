@@ -1,7 +1,7 @@
 /**
  * Color Picker.
  *
- * Credit: Forked from @post-type-archive-mapping
+ * Credit: Forked from @quotes-dlx
  */
 
 import React, { useState } from 'react';
@@ -34,8 +34,6 @@ const ThemeColorPicker = ( props ) => {
 		alpha = false,
 		valueOpacity,
 	} = props;
-
-	console.log( props );
 
 	const opacityIcon = (
 		<svg
@@ -99,7 +97,7 @@ const ThemeColorPicker = ( props ) => {
 									value ? '' : 'components-color-palette__custom-color'
 								) }
 							>
-								<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
+								<Tooltip text={ __( 'Choose Color', 'quotes-dlx' ) }>
 									<button
 										type="button"
 										aria-expanded={ isVisible }
@@ -107,7 +105,7 @@ const ThemeColorPicker = ( props ) => {
 										onClick={ toggleVisible }
 										aria-label={ __(
 											'Custom color picker',
-											'post-type-archive-mapping'
+											'quotes-dlx'
 										) }
 										style={ {
 											background: color
@@ -130,7 +128,7 @@ const ThemeColorPicker = ( props ) => {
 								value ? '' : 'components-color-palette__custom-color'
 							) }
 						>
-							<Tooltip text={ __( 'Choose Color', 'post-type-archive-mapping' ) }>
+							<Tooltip text={ __( 'Choose Color', 'quotes-dlx' ) }>
 								<button
 									type="button"
 									aria-expanded={ isVisible }
@@ -138,7 +136,7 @@ const ThemeColorPicker = ( props ) => {
 									onClick={ toggleClose }
 									aria-label={ __(
 										'Custom color picker',
-										'post-type-archive-mapping'
+										'quotes-dlx'
 									) }
 									style={ {
 										background: color
@@ -173,7 +171,7 @@ const ThemeColorPicker = ( props ) => {
 
 							{ alpha && (
 								<div className="ptam-component-color-opacity">
-									<Tooltip text={ __( 'Opacity', 'post-type-archive-mapping' ) }>
+									<Tooltip text={ __( 'Opacity', 'quotes-dlx' ) }>
 										{ opacityIcon }
 									</Tooltip>
 
@@ -210,7 +208,7 @@ const ThemeColorPicker = ( props ) => {
 										setColor( defaultColor );
 									} }
 								>
-									{ __( 'Clear Color', 'post-type-archive-mapping' ) }
+									{ __( 'Clear Color', 'quotes-dlx' ) }
 								</Button>
 							</div>
 						</Popover>

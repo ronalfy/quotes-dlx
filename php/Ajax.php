@@ -42,6 +42,7 @@ class Ajax {
 
 		// For retrieving a theme's color palette.
 		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_colors', array( static::class, 'ajax_save_theme_colors' ) );
 
 		return $self;
 	}
@@ -205,6 +206,22 @@ class Ajax {
 			array(
 				'colors' => $theme_color,
 				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset form options for contextual menu options.
+	 */
+	public static function ajax_save_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		wp_send_json_error(
+			array(
+				'message' => __( 'Could not save theme colors', 'quotes-dlx' ),
 			)
 		);
 		exit;

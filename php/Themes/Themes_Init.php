@@ -53,6 +53,9 @@ class Themes_Init {
 		Themes_Addon::register(
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Dark'
 		);
+		Themes_Addon::register(
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Pink_Dream'
+		);
 		// Themes_Addon::register(
 		// 	'MediaRonLLC\QuotesDLX\Themes\Themes_Purple'
 		// );

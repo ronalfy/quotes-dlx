@@ -110,21 +110,21 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var string $primary_color Primary color of theme.
 	 */
-	protected static $primary_color = '#1DA1F2';
+	protected static $primary_color = '#E75480';
 
 	/**
 	 * Secondary Color (hex code) for the theme.
 	 *
 	 * @var string $secondary_color Secondary color of theme.
 	 */
-	protected static $secondary_color = '#2B2B2B';
+	protected static $secondary_color = '#fdeef2';
 
 	/**
 	 * Accent Color (hex code) for the theme.
 	 *
 	 * @var string $accent_color Accent color of theme.
 	 */
-	protected static $accent_color = '#657786';
+	protected static $accent_color = '#FFFFFF';
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.

@@ -479,11 +479,6 @@ var AdminDefaults = function AdminDefaults(props) {
 
 var Interface = function Interface(props) {
   var localStorageKey = 'quotes_dlx_themes_defaults';
-
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__["default"]),
-      defaultTheme = _useContext.defaultTheme,
-      setDefaultTheme = _useContext.setDefaultTheme;
-
   var defaults = props.defaults;
   var response = defaults();
   var _response$data = response.data,

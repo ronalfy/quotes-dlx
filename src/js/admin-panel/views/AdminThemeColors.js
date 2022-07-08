@@ -32,7 +32,6 @@ const AdminDefaults = ( props ) => {
 
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_themes_defaults';
-	const { defaultTheme, setDefaultTheme } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;

@@ -11,13 +11,13 @@ use MediaRonLLC\QuotesDLX\Functions as Functions;
 /**
  * Holds variables for the pink branded theme.
  */
-class Themes_Pink_Dream extends Themes_Addon {
+class Themes_Bubble_Gum extends Themes_Addon {
 
 	/**
 	 * Contains an instance of this class, if available.
 	 *
 	 * @since  1.0.0
-	 * @var    Themes_Pink_Dream $instance If available, contains an instance of this class
+	 * @var    Themes_Bubble_Gum $instance If available, contains an instance of this class
 	 */
 	private static $instance = null;
 
@@ -26,14 +26,14 @@ class Themes_Pink_Dream extends Themes_Addon {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static $name = 'Pink Dream';
+	protected static $name = 'Bubble Gum';
 
 	/**
 	 * Slug for the theme.
 	 *
 	 * @var string $slug The theme slug.
 	 */
-	protected static $slug = 'pink-dream';
+	protected static $slug = 'bubble-gum';
 
 	/**
 	 * Category for the theme.
@@ -131,12 +131,12 @@ class Themes_Pink_Dream extends Themes_Addon {
 	 *
 	 * @since  1.0.0
 	 *
-	 * @return Themes_Pink_Dream $instance An instance of the Themes_Light_Branded class
+	 * @return Themes_Bubble_Gum $instance An instance of the Themes_Light_Branded class
 	 */
 	public static function get_instance() {
 
 		if ( null === self::$instance ) {
-			self::$instance = new Themes_Pink_Dream();
+			self::$instance = new Themes_Bubble_Gum();
 		}
 
 		return self::$instance;
@@ -146,7 +146,7 @@ class Themes_Pink_Dream extends Themes_Addon {
 	 * Get the name of the theme.
 	 */
 	protected static function get_name() {
-		return _x( 'Pink Dream', 'A pink theme with with an emphasis on the quote.', 'quotes-dlx' );
+		return _x( 'Bubble Gum', 'A pink theme with with an emphasis on the quote.', 'quotes-dlx' );
 	}
 
 	/**
@@ -167,7 +167,7 @@ class Themes_Pink_Dream extends Themes_Addon {
 	 * Get the stylesheet URL.
 	 */
 	protected static function get_stylesheet_url() {
-		return Functions::get_plugin_url( 'dist/quotes-dlx-theme-pink-dream.css' );
+		return Functions::get_plugin_url( 'dist/quotes-dlx-theme-bubble-gum.css' );
 	}
 
 	/**

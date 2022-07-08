@@ -40,7 +40,7 @@ const AdminThemeColorsLoader = ( props ) => {
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { 'text-align': 'center' } }
+					style={ { textAlign: 'center' } }
 				>
 					<Skeleton
 						width="150px"
@@ -53,12 +53,12 @@ const AdminThemeColorsLoader = ( props ) => {
 						width="30px"
 						height="30px"
 						inline={ true }
-						style={ { 'margin-left': '15px' } }
+						style={ { marginLeft: '15px' } }
 					/>
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { 'text-align': 'center' } }
+					style={ { textAlign: 'center' } }
 				>
 					<Skeleton
 						width="150px"
@@ -71,12 +71,12 @@ const AdminThemeColorsLoader = ( props ) => {
 						width="30px"
 						height="30px"
 						inline={ true }
-						style={ { 'margin-left': '15px' } }
+						style={ { marginLeft: '15px' } }
 					/>
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { 'text-align': 'center' } }
+					style={ { textAlign: 'center' } }
 				>
 					<Skeleton
 						width="150px"
@@ -89,7 +89,7 @@ const AdminThemeColorsLoader = ( props ) => {
 						width="30px"
 						height="30px"
 						inline={ true }
-						style={ { 'margin-left': '15px' } }
+						style={ { marginLeft: '15px' } }
 					/>
 				</div>
 				<div className="qdlx-admin__tabs--content-inner">

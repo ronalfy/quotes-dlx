@@ -280,8 +280,9 @@ var Interface = function Interface(props) {
       if (ajaxSuccess) {
         // Add local storage.
         localStorage.setItem(localStorageKey, JSON.stringify({
-          theme: ajaxData.theme
+          theme: ajaxData.template
         }));
+        setActiveTheme(ajaxData.template);
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);

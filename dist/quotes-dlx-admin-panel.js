@@ -38402,7 +38402,7 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      'text-align': 'center'
+      textAlign: 'center'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",
@@ -38417,12 +38417,12 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
     height: "30px",
     inline: true,
     style: {
-      'margin-left': '15px'
+      marginLeft: '15px'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      'text-align': 'center'
+      textAlign: 'center'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",
@@ -38437,12 +38437,12 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
     height: "30px",
     inline: true,
     style: {
-      'margin-left': '15px'
+      marginLeft: '15px'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      'text-align': 'center'
+      textAlign: 'center'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",
@@ -38457,7 +38457,7 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
     height: "30px",
     inline: true,
     style: {
-      'margin-left': '15px'
+      marginLeft: '15px'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"

@@ -620,8 +620,9 @@ var Interface = function Interface(props) {
         value: activeTheme,
         onChange: function onChange(newTheme) {
           return setActiveTheme(newTheme);
-        }
-      }, getThemes(cat));
+        },
+        options: getThemes(cat)
+      });
     });
   };
 
@@ -679,13 +680,14 @@ var Interface = function Interface(props) {
   };
 
   var getThemes = function getThemes(category) {
-    return category.themes.map(function (theme, themeIndex) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
-        key: themeIndex,
-        value: theme.slug,
-        selected: theme.slug === activeTheme ? 'selected' : false
-      }, theme.name);
+    var themeCollection = [];
+    category.themes.forEach(function (theme, themeIndex) {
+      themeCollection.push({
+        label: theme.name,
+        value: theme.slug
+      });
     });
+    return themeCollection;
   };
 
   var defaultColors = getColors();

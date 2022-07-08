@@ -130,9 +130,8 @@ const Interface = ( props ) => {
 				label={ __( 'Select a Theme', 'quotes-dlx' ) }
 				value={ activeTheme }
 				onChange={ ( newTheme ) => setActiveTheme( newTheme ) }
-			>
-				{ getThemes( cat ) }
-			</SelectControl>
+				options={ getThemes( cat ) }
+			/>
 		) );
 	};
 
@@ -202,11 +201,16 @@ const Interface = ( props ) => {
 	};
 
 	const getThemes = ( category ) => {
-		return category.themes.map( ( theme, themeIndex ) => (
-			<option key={ themeIndex } value={ theme.slug } selected={ theme.slug === activeTheme ? 'selected' : false }>
-				{ theme.name }
-			</option>
-		) );
+		const themeCollection = [];
+		category.themes.forEach( ( theme, themeIndex ) => {
+			themeCollection.push(
+				{
+					label: theme.name,
+					value: theme.slug,
+				}
+			);
+		} );
+		return themeCollection;
 	};
 
 	const defaultColors = getColors();

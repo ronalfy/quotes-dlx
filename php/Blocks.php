@@ -577,13 +577,12 @@ class Blocks {
 	 * Register the block editor script with localized vars.
 	 */
 	public function register_block_editor_scripts() {
-		$theme_deps = $this->register_theme_styles();
 
 		// Register styles here because array in block.json fails when using array of styles (enqueues wrong script).
 		wp_register_style(
 			'quotes-dlx-block-editor',
 			Functions::get_plugin_url( 'dist/quotes-dlx-block-editor.css' ),
-			$theme_deps,
+			array(),
 			Functions::get_plugin_version(),
 			'all'
 		);

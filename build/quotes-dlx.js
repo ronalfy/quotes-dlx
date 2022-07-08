@@ -1615,11 +1615,23 @@ var TweetQuotes = function TweetQuotes(props) {
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.useBlockProps)({
     className: "quotes-dlx template-".concat(template)
   });
+  var stylesheet = false;
+  themes.forEach(function (themeObject) {
+    if (themeObject.slug === template) {
+      stylesheet = themeObject.stylesheet;
+    }
+  });
 
   if (preview) {
-    return /*#__PURE__*/React.createElement("div", blockProps, previewBlock); // eslint-disable-next-line no-else-return
+    return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
+      rel: "stylesheet",
+      href: stylesheet
+    }), /*#__PURE__*/React.createElement("div", blockProps, previewBlock), ";"); // eslint-disable-next-line no-else-return
   } else {
-    return /*#__PURE__*/React.createElement("div", blockProps, block);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
+      rel: "stylesheet",
+      href: stylesheet
+    }), /*#__PURE__*/React.createElement("div", blockProps, block), ";");
   }
 };
 

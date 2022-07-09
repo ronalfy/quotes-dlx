@@ -110,21 +110,7 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var string $primary_color Primary color of theme.
 	 */
-	protected static $primary_color = '#E75480';
-
-	/**
-	 * Secondary Color (hex code) for the theme.
-	 *
-	 * @var string $secondary_color Secondary color of theme.
-	 */
-	protected static $secondary_color = '#fdeef2';
-
-	/**
-	 * Accent Color (hex code) for the theme.
-	 *
-	 * @var string $accent_color Accent color of theme.
-	 */
-	protected static $accent_color = '#FFFFFF';
+	protected static $colors = array();
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
@@ -240,11 +226,38 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	}
 
 	/**
-	 * Get the primary color of the theme.
+	 * Get the colors of the theme.
 	 *
-	 * @return string Primary color of the theme (hex).
+	 * @return string Get the colors of the theme.
 	 */
-	protected static function get_color_primary() {
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#E75480',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#fdeef2',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 		return self::$primary_color;
 	}
 

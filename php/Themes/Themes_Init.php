@@ -47,12 +47,12 @@ class Themes_Init {
 		Themes_Addon_Categories::register( 'Core', array( 'description' => __( 'Default themes that come with the plugin', 'quotes-dlx' ) ) );
 
 		// Register any themes.
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded'
-		);
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Dark'
-		);
+		// Themes_Addon::register(
+		// 	'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded'
+		// );
+		// Themes_Addon::register(
+		// 	'MediaRonLLC\QuotesDLX\Themes\Themes_Dark'
+		// );
 		Themes_Addon::register(
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Bubble_Gum'
 		);

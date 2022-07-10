@@ -169,53 +169,32 @@ class Ajax {
 		// Get the active template.
 		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
 
-		$themes                     = Themes\Themes_Addon::get_theme_data();
-		$theme_default_colors       = array();
-		$theme_default_saved_colors = array();
-		foreach ( $themes as $theme ) {
-			if ( $template_slug === $theme['slug'] ) {
-				$theme_default_saved_colors = array(
-					'primary'   => $theme['color_primary'],
-					'secondary' => $theme['color_secondary'],
-					'accent'    => $theme['color_accent'],
-				);
-				$theme_default_colors       = array(
-					array(
-						'name'  => __( 'Default Color Primary', 'quotes-dlx' ),
-						'color' => $theme['color_primary'],
-						'slug'  => 'default-color-primary',
-					),
-					array(
-						'name'  => __( 'Default Color Secondary', 'quotes-dlx' ),
-						'color' => $theme['color_secondary'],
-						'slug'  => 'default-color-secondary',
-					),
-					array(
-						'name'  => __( 'Default Color Accent', 'quotes-dlx' ),
-						'color' => $theme['color_accent'],
-						'slug'  => 'default-color-accent',
-					),
-				);
-				break;
-			}
+		$themes = Themes\Themes_Addon::get_theme_data( $template_slug );
+
+		// Check that there's theme data.
+		if ( ! $themes ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'No theme data could be found.', 'quotes-dlx' ),
+				)
+			);
 		}
 
+		// We have a theme.
+		$theme_default_colors = $themes['colors'];
+
 		// Get saved colors.
-		$theme_colors = Options_Theme_Colors::get_options( $template_slug, true );
+		$maybe_saved_colors = Options_Theme_Colors::get_options();
+		$saved_colors       = $maybe_saved_colors[ $template_slug ] ?? false;
 
-		$theme_color_primary   = $theme_colors['primary'] ?? $theme_default_saved_colors['primary'];
-		$theme_color_secondary = $theme_colors['secondary'] ?? $theme_default_saved_colors['secondary'];
-		$theme_color_accent    = $theme_colors['accent'] ?? $theme_default_saved_colors['accent'];
-
-		$theme_color = array(
-			'colorPrimary'   => $theme_color_primary,
-			'colorSecondary' => $theme_color_secondary,
-			'colorAccent'    => $theme_color_accent,
-		);
+		// Check saved colors and set to defaults if not set.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
 
 		wp_send_json_success(
 			array(
-				'colors'   => $theme_color,
+				'colors'   => $saved_colors,
 				'defaults' => $theme_default_colors,
 			)
 		);

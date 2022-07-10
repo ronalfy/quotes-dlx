@@ -66,4 +66,28 @@ class Options_Theme_Colors extends Options_Abstract {
 		self::update_options( '', self::get_defaults(), true );
 		return self::get_defaults();
 	}
+
+	/**
+	 * Get the theme colors based on template.
+	 *
+	 * @param string $template The template slug to get color options for.
+	 *
+	 * @return array Array of color options.
+	 */
+	public static function get_theme_colors( $template ) {
+		$options      = self::get_options();
+		$saved_colors = $options[ $template ] ?? false;
+		$themes       = Themes\Themes_Addon::get_theme_data( $template );
+
+		// Check that there's theme data.
+		if ( ! $themes ) {
+			return array();
+		}
+
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $themes['colors'];
+		}
+
+		return $saved_colors;
+	}
 }

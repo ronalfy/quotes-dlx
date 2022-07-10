@@ -107,27 +107,6 @@ abstract class Themes_Addon {
 	private static $theme_addons = array();
 
 	/**
-	 * Primary Color (hex code) for the theme.
-	 *
-	 * @var string $primary_color Primary color of theme.
-	 */
-	protected static $primary_color;
-
-	/**
-	 * Secondary Color (hex code) for the theme.
-	 *
-	 * @var string $secondary_color Secondary color of theme.
-	 */
-	protected static $secondary_color;
-
-	/**
-	 * Accent Color (hex code) for the theme.
-	 *
-	 * @var string $accent_color Accent color of theme.
-	 */
-	protected static $accent_color;
-
-	/**
 	 * Register a new category - Pass it your init class.
 	 *
 	 * @param mixed $category_name The name of the category.
@@ -178,13 +157,15 @@ abstract class Themes_Addon {
 
 	/**
 	 * Return theme data in theme format.
+	 *
+	 * @param string $template The template to get theme data for. If empty, returns all.
 	 */
-	public static function get_theme_data() {
+	public static function get_theme_data( $template = '' ) {
 		$instances = self::init_themes();
 
 		$return = array();
 		foreach ( $instances as $instance ) {
-			$return[] = array(
+			$theme_data = array(
 				'name'              => $instance->get_name(),
 				'slug'              => $instance->get_slug(),
 				'gradient'          => $instance->get_preview_gradient(),
@@ -198,11 +179,24 @@ abstract class Themes_Addon {
 				'version'           => $instance->get_version(),
 				'image_width'       => $instance->get_image_width(),
 				'image_height'      => $instance->get_image_height(),
-				'color_primary'     => $instance->get_color_primary(),
-				'color_secondary'   => $instance->get_color_secondary(),
-				'color_accent'      => $instance->get_color_accent(),
+				'colors'            => $instance->get_colors(),
+				'fonts'             => $instance->get_fonts(),
 			);
+			// Short circuit if template-specific data is requested.
+			if ( $template === $instance->get_slug() ) {
+				return $theme_data;
+			}
+
+			// No short circuit. Get all theme data.
+			$return[] = $theme_data;
 		}
+
+		// Return false if no template is found.
+		if ( ! empty( $template ) ) {
+			return false;
+		}
+
+		// All is good. Return all theme data.
 		return $return;
 	}
 
@@ -291,23 +285,26 @@ abstract class Themes_Addon {
 	abstract protected static function get_image_height();
 
 	/**
-	 * Get the primary color of the theme.
+	 * Get the colors of the theme.
 	 *
-	 * @return string Primary color of the theme (hex).
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
 	 */
-	abstract protected static function get_color_primary();
+	abstract protected static function get_colors();
 
 	/**
-	 * Get the secondary color of the theme.
+	 * Get the fonts for the theme.
 	 *
-	 * @return string Secondary color of the theme (hex).
+	 * @return array $args {
+	 *    @type string $name     Name of the font (primary, secondary, accent).
+	 *    @type string $slug     Slug of the font.
+	 *    @type string $family   CSS Usage string (e.g., font-family: 'Lato').
+	 *    @type string $fallback Fallback fonts in case font isn't present.
+	 * }
 	 */
-	abstract protected static function get_color_secondary();
+	abstract protected static function get_fonts();
 
-	/**
-	 * Get the accent color of the theme.
-	 *
-	 * @return string accent color of the theme (hex).
-	 */
-	abstract protected static function get_color_accent();
 }

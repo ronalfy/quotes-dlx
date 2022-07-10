@@ -228,7 +228,11 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	/**
 	 * Get the colors of the theme.
 	 *
-	 * @return string Get the colors of the theme.
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
 	 */
 	protected static function get_colors() {
 		return array(
@@ -256,6 +260,33 @@ class Themes_Bubble_Gum extends Themes_Addon {
 				'name'  => __( 'Dark', 'quotes-dlx' ),
 				'slug'  => 'dark',
 				'color' => '#2B2B2B',
+			),
+		);
+	}
+
+	/**
+	 * Get the fonts for the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name     Name of the font (primary, secondary, accent).
+	 *    @type string $slug     Slug of the font.
+	 *    @type string $family   CSS Usage string (e.g., font-family: 'Lato').
+	 *    @type string $fallback Fallback fonts in case font isn't present.
+	 * }
+	 */
+	protected static function get_fonts() {
+		return array(
+			array(
+				'name'     => __( 'Primary', 'quotes-dlx' ),
+				'slug'     => 'lato',
+				'family'   => 'Lato',
+				'fallback' => 'serif',
+			),
+			array(
+				'name'     => __( 'Secondary', 'quotes-dlx' ),
+				'slug'     => 'open-sans',
+				'family'   => 'Open Sans',
+				'fallback' => 'sans-serif',
 			),
 		);
 		return self::$primary_color;

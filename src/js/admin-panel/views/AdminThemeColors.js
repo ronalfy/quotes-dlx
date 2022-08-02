@@ -37,14 +37,12 @@ const Interface = ( props ) => {
 	const { data, success } = response.data;
 	const { template, categories } = data;
 
-	const getColors = ( defaults ) => {
-		const colors = {};
+	const getColors = () => {
+		let colors = {};
 		categories.forEach( ( cat ) => {
 			cat.themes.forEach( ( theme ) => {
 				if ( theme.slug === activeTheme ) {
-					colors.colorPrimary = theme.color_primary;
-					colors.colorSecondary = theme.color_secondary;
-					colors.colorAccent = theme.color_accent;
+					colors = theme.colors;
 				}
 			} );
 		} );
@@ -59,6 +57,13 @@ const Interface = ( props ) => {
 	const [ activeTheme, setActiveTheme ] = useState( data.template );
 	const [ themeColors, setThemeColors ] = useState( getColors() );
 	const [ defaultThemeColors, setDefaultThemeColors ] = useState( [
+		{
+			name: '',
+			slug: '',
+			value: '',
+		},
+	] );
+	const [ savedThemeColors, setSavedThemeColors ] = useState( [
 		{
 			name: '',
 			slug: '',
@@ -87,9 +92,7 @@ const Interface = ( props ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					setColorPrimary( ajaxData.colors.colorPrimary );
-					setColorSecondary( ajaxData.colors.colorSecondary );
-					setColorAccent( ajaxData.colors.colorAccent );
+					setSavedThemeColors( Object.values( ajaxData.colors ) );
 					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
 				} else {
 					// Error stuff.
@@ -214,6 +217,32 @@ const Interface = ( props ) => {
 
 	const defaultColors = getColors();
 
+	const getColorValue = ( colorSlug ) => {
+		let colorValue = '';
+		savedThemeColors.forEach( ( colorObj ) => {
+			if ( colorObj.slug === colorSlug ) {
+				colorValue = colorObj.color;
+			}
+		} );
+		return colorValue;
+	};
+
+	const getThemePickers = () => {
+
+		return defaultThemeColors.map( ( colorOption, index ) => (
+			<ThemeColorPicker
+				value={ getColorValue( colorOption.slug ) }
+				key={ colorOption.slug }
+				onChange={ ( newValue ) => {
+					setColorPrimary( newValue );
+				} }
+				label={ colorOption.name }
+				defaultColors={ defaultThemeColors }
+				defaultColor={ colorOption.color }
+			/>
+		 ) );
+	};
+
 	const getThemePreviewAndSwatches = () => {
 		if ( loading ) {
 			return (
@@ -226,37 +255,7 @@ const Interface = ( props ) => {
 				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
 				<div className="qdlx-admin__color-pickers">
 					<div className="qdlx-admin__color-primary">
-
-						<ThemeColorPicker
-							value={ themeColors.colorPrimary }
-							onChange={ ( newValue ) => {
-								setColorPrimary( newValue );
-							} }
-							label={ __( 'Primary Color:', 'quotes-dlx' ) }
-							defaultColors={ defaultThemeColors }
-							defaultColor={ defaultColors.colorPrimary }
-						/>
-
-						<ThemeColorPicker
-							value={ themeColors.colorSecondary }
-							onChange={ ( newValue ) => {
-								setColorSecondary( newValue );
-							} }
-							label={ __( 'Secondary Color:', 'quotes-dlx' ) }
-							defaultColors={ defaultThemeColors }
-							defaultColor={ defaultColors.colorSecondary }
-						/>
-
-						<ThemeColorPicker
-							value={ themeColors.colorAccent }
-							onChange={ ( newValue ) => {
-								setColorAccent( newValue );
-							} }
-							label={ __( 'Accent Color:', 'quotes-dlx' ) }
-							defaultColors={ defaultThemeColors }
-							defaultColor={ defaultColors.colorAccent }
-						/>
-
+						{ getThemePickers() }
 					</div>
 				</div>
 				<div className="qdlx-admin__tabs--content-actions">

@@ -142,7 +142,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ThemeColorPicker = function ThemeColorPicker(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.slug),
       _useState2 = _slicedToArray(_useState, 2),
       colorKey = _useState2[0],
       setColorKey = _useState2[1];
@@ -165,10 +165,24 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
       label = props.label,
       _props$alpha = props.alpha,
       alpha = _props$alpha === void 0 ? false : _props$alpha,
-      valueOpacity = props.valueOpacity;
+      valueOpacity = props.valueOpacity,
+      slug = props.slug;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setColor(value);
-  }, [value]);
+  }, [value]); // Retrieve colors while avoiding duplicates.
+
+  var getDefaultColors = function getDefaultColors() {
+    var existingColors = [];
+    var newColors = [];
+    defaultColors.forEach(function (maybeNewColor, index) {
+      if (!existingColors.includes(maybeNewColor.color)) {
+        existingColors.push(maybeNewColor.color);
+        newColors.push(maybeNewColor);
+      }
+    });
+    return newColors;
+  };
+
   var opacityIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -278,7 +292,7 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "ptam-component-color-picker-palette"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    colors: defaultColors,
+    colors: getDefaultColors(),
     value: color,
     onChange: function onChange(newColor) {
       _onChange(newColor);
@@ -487,14 +501,12 @@ var Interface = function Interface(props) {
   var template = data.template,
       categories = data.categories;
 
-  var getColors = function getColors(defaults) {
+  var getColors = function getColors() {
     var colors = {};
     categories.forEach(function (cat) {
       cat.themes.forEach(function (theme) {
         if (theme.slug === activeTheme) {
-          colors.colorPrimary = theme.color_primary;
-          colors.colorSecondary = theme.color_secondary;
-          colors.colorAccent = theme.color_accent;
+          colors = theme.colors;
         }
       });
     });
@@ -523,48 +535,57 @@ var Interface = function Interface(props) {
   }]),
       _useState6 = _slicedToArray(_useState5, 2),
       defaultThemeColors = _useState6[0],
-      setDefaultThemeColors = _useState6[1]; // Get saved colors (TODO - Read from data ).
+      setDefaultThemeColors = _useState6[1];
 
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    name: '',
+    slug: '',
+    value: ''
+  }]),
       _useState8 = _slicedToArray(_useState7, 2),
-      colorPrimary = _useState8[0],
-      setColorPrimary = _useState8[1];
+      savedThemeColors = _useState8[0],
+      setSavedThemeColors = _useState8[1]; // Get saved colors (TODO - Read from data ).
+
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      colorSecondary = _useState10[0],
-      setColorSecondary = _useState10[1];
+      colorPrimary = _useState10[0],
+      setColorPrimary = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
-      colorAccent = _useState12[0],
-      setColorAccent = _useState12[1];
+      colorSecondary = _useState12[0],
+      setColorSecondary = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      loading = _useState14[0],
-      setLoading = _useState14[1];
+      colorAccent = _useState14[0],
+      setColorAccent = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState16 = _slicedToArray(_useState15, 2),
-      saving = _useState16[0],
-      setSaving = _useState16[1];
+      loading = _useState16[0],
+      setLoading = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      isSaved = _useState18[0],
-      setIsSaved = _useState18[1];
+      saving = _useState18[0],
+      setSaving = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      resetting = _useState20[0],
-      setResetting = _useState20[1];
+      isSaved = _useState20[0],
+      setIsSaved = _useState20[1];
 
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState22 = _slicedToArray(_useState21, 2),
-      isReset = _useState22[0],
-      setIsReset = _useState22[1];
+      resetting = _useState22[0],
+      setResetting = _useState22[1];
+
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      isReset = _useState24[0],
+      setIsReset = _useState24[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setLoading(true);
@@ -576,9 +597,7 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        setColorPrimary(ajaxData.colors.colorPrimary);
-        setColorSecondary(ajaxData.colors.colorSecondary);
-        setColorAccent(ajaxData.colors.colorAccent);
+        setSavedThemeColors(Object.values(ajaxData.colors));
         setDefaultThemeColors(Object.values(ajaxData.defaults));
       } else {// Error stuff.
       }
@@ -687,6 +706,31 @@ var Interface = function Interface(props) {
 
   var defaultColors = getColors();
 
+  var getColorValue = function getColorValue(colorSlug) {
+    var colorValue = '';
+    savedThemeColors.forEach(function (colorObj) {
+      if (colorObj.slug === colorSlug) {
+        colorValue = colorObj.color;
+      }
+    });
+    return colorValue;
+  };
+
+  var getThemePickers = function getThemePickers() {
+    return defaultThemeColors.map(function (colorOption, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        value: getColorValue(colorOption.slug),
+        key: colorOption.slug,
+        onChange: function onChange(newValue) {
+          setColorPrimary(newValue);
+        },
+        label: colorOption.name,
+        defaultColors: defaultThemeColors,
+        defaultColor: colorOption.color
+      });
+    });
+  };
+
   var getThemePreviewAndSwatches = function getThemePreviewAndSwatches() {
     if (loading) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -702,31 +746,7 @@ var Interface = function Interface(props) {
       className: "qdlx-admin__color-pickers"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__color-primary"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      value: themeColors.colorPrimary,
-      onChange: function onChange(newValue) {
-        setColorPrimary(newValue);
-      },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Primary Color:', 'quotes-dlx'),
-      defaultColors: defaultThemeColors,
-      defaultColor: defaultColors.colorPrimary
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      value: themeColors.colorSecondary,
-      onChange: function onChange(newValue) {
-        setColorSecondary(newValue);
-      },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Secondary Color:', 'quotes-dlx'),
-      defaultColors: defaultThemeColors,
-      defaultColor: defaultColors.colorSecondary
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      value: themeColors.colorAccent,
-      onChange: function onChange(newValue) {
-        setColorAccent(newValue);
-      },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color:', 'quotes-dlx'),
-      defaultColors: defaultThemeColors,
-      defaultColor: defaultColors.colorAccent
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, getThemePickers())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-actions"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {

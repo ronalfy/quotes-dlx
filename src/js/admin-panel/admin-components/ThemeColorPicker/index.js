@@ -20,7 +20,7 @@ import {
 } from '@wordpress/components';
 
 const ThemeColorPicker = ( props ) => {
-	const [ colorKey, setColorKey ] = useState( false );
+	const [ colorKey, setColorKey ] = useState( props.slug );
 	const [ isVisible, setIsVisible ] = useState( false );
 	const [ color, setColor ] = useState( props.value );
 
@@ -33,11 +33,25 @@ const ThemeColorPicker = ( props ) => {
 		label,
 		alpha = false,
 		valueOpacity,
+		slug,
 	} = props;
 
 	useEffect( () => {
 		setColor( value );
 	}, [ value ] );
+
+	// Retrieve colors while avoiding duplicates.
+	const getDefaultColors = () => {
+		const existingColors = [];
+		const newColors = [];
+		defaultColors.forEach( ( maybeNewColor, index ) => {
+			if ( ! existingColors.includes( maybeNewColor.color ) ) {
+				existingColors.push( maybeNewColor.color );
+				newColors.push( maybeNewColor );
+			}
+		} );
+		return newColors;
+	};
 
 	const opacityIcon = (
 		<svg
@@ -191,7 +205,7 @@ const ThemeColorPicker = ( props ) => {
 							) }
 							<BaseControl className="ptam-component-color-picker-palette">
 								<ColorPalette
-									colors={ defaultColors }
+									colors={ getDefaultColors() }
 									value={ color }
 									onChange={ ( newColor ) => {
 										onChange( newColor );

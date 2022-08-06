@@ -3,8 +3,8 @@
 $primary: #E75480;
 $secondary: #fdeef2;
 $accent: #FFF;
-$twitter-gray: #657786;
-$dark-bg: #2B2B2B;
+$light: #FFF;
+$dark: #000;
 
 .quotes-dlx-block-theme-bubble-gum{
 	font-size: 16px;
@@ -15,16 +15,16 @@ $dark-bg: #2B2B2B;
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: var( --qdlx-bubble-gum-primary, $primary );
+			color: var( --qdlx-bubble-gum-accent, $accent );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
 			transition: all .35s ease-in-out;
 
 			&:hover {
-				color: var( --qdlx-bubble-gum-primary, $primary );
+				color: var( --qdlx-bubble-gum-accent, $accent );
 				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-bubble-gum-primary, $primary );
+				border-bottom: 2px solid var( --qdlx-bubble-gum-accent, $accent );
 			}
 		}
 	}
@@ -152,7 +152,7 @@ $dark-bg: #2B2B2B;
 
 			&:hover {
 				transition: all 0.3s ease-in-out;
-				color: $white;
+				color: var( --qdlx-bubble-gum-light, $light );
 				background: var( --qdlx-bubble-gum-primary, $primary );
 				border: 4px solid var( --qdlx-bubble-gum-secondary, $secondary );
 
@@ -234,7 +234,7 @@ $dark-bg: #2B2B2B;
 				}
 
 				&:not(:checked) ~ ul {
-					background: white;
+					background: var( --qdlx-bubble-gum-light, $light );
 					position: relative;
 					transition: opacity 0.75s ease-in-out;
 					margin-right: 2px;
@@ -291,7 +291,7 @@ $dark-bg: #2B2B2B;
 						border-radius: 100%;
 						transform: rotate(0deg);
 						transition: all 0.3s ease-in-out;
-						background: #FFF;
+						background: var( --qdlx-bubble-gum-light, $light );
 						margin-right: 5px;
 					}
 					&:after {
@@ -309,7 +309,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: #FFF;
+						background: var( --qdlx-bubble-gum-light, $light );
 					}
 		
 					&:after {
@@ -347,31 +347,24 @@ $dark-bg: #2B2B2B;
 			}
 	
 			li.quotes-dlx-meatball-menu-item {
-				border-bottom: 1px solid #e4effd;
-
+				border-bottom: 1px solid var( --qdlx-bubble-gum-secondary, $secondary );
 				&:last-child {
+					border-bottom: none;
+				}	
+				button.button-reset {
 					svg path,
 					svg use {
 						fill: var( --qdlx-bubble-gum-primary, $primary );
 					}
-
-					&:hover {
-						svg path,
-						svg use {
-							fill: $white;
-						}
-					}
-				}
-	
-				button.button-reset {
-					color: var( --qdlx-bubble-gum-accent, $twitter-gray );
-	
+					color: var( --qdlx-bubble-gum-primary, $primary );
+					background: var( --qdlx-bubble-gum-light, $light );
 					&:hover {
 						background: var( --qdlx-bubble-gum-primary, $primary );
-						color: $white;
+						color: var( --qdlx-bubble-gum-light, $light );
 	
+						svg path,
 						svg use {
-							fill: $white;
+							fill: var( --qdlx-bubble-gum-light, $light );;
 						}
 					}
 				}
@@ -382,7 +375,7 @@ $dark-bg: #2B2B2B;
 	
 				&:hover {
 					.quotes-dlx-meatball-icon-wrapper {
-						background: #FFF;
+						background: var( --qdlx-bubble-gum-light, $light );
 	
 	
 					}
@@ -398,7 +391,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $white;
+						background: var( --qdlx-bubble-gum-light, $light );
 					}
 				}
 			}
@@ -447,7 +440,7 @@ $dark-bg: #2B2B2B;
 	
 							&:before,
 							&:after {
-								background: $white;
+								background: var( --qdlx-bubble-gum-light, $light );
 							}
 						}
 					}
@@ -474,7 +467,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $white;
+						background: var( --qdlx-bubble-gum-light, $light );
 					}
 	
 					span {
@@ -482,7 +475,7 @@ $dark-bg: #2B2B2B;
 						&:before,
 						&:after {
 							display: inline-block;
-							background: $white;
+							background: var( --qdlx-bubble-gum-light, $light );
 						}
 					}
 				}
@@ -490,4 +483,15 @@ $dark-bg: #2B2B2B;
 		}
 	}
 
+	/* Meatball Menu */
+	.quotes-dlx-meatball-content {
+		li.quotes-dlx-meatball-menu-item {
+			svg path,
+			svg use {
+				fill: var( --qdlx-bubble-gum-accent, $accent );
+			}
+		}
+	}
+
 }
+

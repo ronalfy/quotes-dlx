@@ -4,21 +4,22 @@
 @charset "UTF-8";
 .quotes-dlx-block-theme-bubble-gum {
   font-size: 16px;
+  /* Meatball Menu */
 }
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 50px;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-bubble-gum-primary, #E75480);
+  color: var(--qdlx-bubble-gum-accent, #FFF);
   text-transform: none;
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
   transition: all 0.35s ease-in-out;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-text-wrapper a:hover {
-  color: var(--qdlx-bubble-gum-primary, #E75480);
+  color: var(--qdlx-bubble-gum-accent, #FFF);
   transition: all 0.35s ease-in-out;
-  border-bottom: 2px solid var(--qdlx-bubble-gum-primary, #E75480);
+  border-bottom: 2px solid var(--qdlx-bubble-gum-accent, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
@@ -131,7 +132,7 @@
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;
-  color: #FFFFFF;
+  color: var(--qdlx-bubble-gum-light, #FFF);
   background: var(--qdlx-bubble-gum-primary, #E75480);
   border: 4px solid var(--qdlx-bubble-gum-secondary, #fdeef2);
 }
@@ -198,7 +199,7 @@
   width: 0;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked) ~ ul {
-  background: white;
+  background: var(--qdlx-bubble-gum-light, #FFF);
   position: relative;
   transition: opacity 0.75s ease-in-out;
   margin-right: 2px;
@@ -252,7 +253,7 @@
   border-radius: 100%;
   transform: rotate(0deg);
   transition: all 0.3s ease-in-out;
-  background: #FFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
   margin-right: 5px;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after {
@@ -265,7 +266,7 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after {
   position: absolute;
@@ -296,31 +297,32 @@
   opacity: 0;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
-  border-bottom: 1px solid #e4effd;
+  border-bottom: 1px solid var(--qdlx-bubble-gum-secondary, #fdeef2);
 }
-.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child svg path,
-.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child svg use {
-  fill: var(--qdlx-bubble-gum-primary, #E75480);
-}
-.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child:hover svg path,
-.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child:hover svg use {
-  fill: #FFFFFF;
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
+  border-bottom: none;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
-  color: var(--qdlx-bubble-gum-accent, #657786);
+  color: var(--qdlx-bubble-gum-primary, #E75480);
+  background: var(--qdlx-bubble-gum-light, #FFF);
+}
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
+  fill: var(--qdlx-bubble-gum-primary, #E75480);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
   background: var(--qdlx-bubble-gum-primary, #E75480);
-  color: #FFFFFF;
+  color: var(--qdlx-bubble-gum-light, #FFF);
 }
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
-  fill: #FFFFFF;
+  fill: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input {
   cursor: pointer;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover .quotes-dlx-meatball-icon-wrapper {
-  background: #FFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper {
   background: var(--qdlx-bubble-gum-primary, #E75480);
@@ -328,7 +330,7 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFFFFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   max-width: 30px;
@@ -371,7 +373,7 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:after, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:after,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:before,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:after {
-  background: #FFFFFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
@@ -384,11 +386,15 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFFFFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
   display: inline-block;
-  background: #FFFFFF;
+  background: var(--qdlx-bubble-gum-light, #FFF);
+}
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg path,
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg use {
+  fill: var(--qdlx-bubble-gum-accent, #FFF);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-bubble-gum.css.map*/

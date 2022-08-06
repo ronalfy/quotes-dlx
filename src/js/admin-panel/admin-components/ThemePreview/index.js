@@ -6,17 +6,25 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colorPrimary, colorSecondary, colorAccent, stylesheet } =
+	const { activeTheme, colors, stylesheet } =
 		props;
+
+	const getColorStyleVars = () => {
+		let styles = '';
+		console.log( colors );
+		colors.map( ( color, index ) => {
+			styles += `--qdlx-${ activeTheme }-${ color.slug }: ${ color.color };`;
+		} );
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
 	return (
 		<>
-			<style>
-				{ `:root {
-					--qdlx-${ activeTheme }-primary: ${ colorPrimary };
-					--qdlx-${ activeTheme }-secondary: ${ colorSecondary };
-					--qdlx-${ activeTheme }-accent: ${ colorAccent };
-				}` }
-			</style>
+			{ getColorStyleVars() }
 			<link rel="stylesheet" href={ stylesheet } />
 			<div
 				className={ classNames( 'quotes-dlx', {
@@ -73,17 +81,13 @@ const ThemePreview = ( props ) => {
 
 ThemePreview.defaultProps = {
 	activeTheme: '',
-	colorPrimary: '',
-	colorSecondary: '',
-	colorAccent: '',
+	colors: {},
 	stylesheet: '',
 };
 
 ThemePreview.propTypes = {
 	activeTheme: PropTypes.string.isRequired,
-	colorPrimary: PropTypes.string.isRequired,
-	colorSecondary: PropTypes.string.isRequired,
-	colorAccent: PropTypes.string.isRequired,
+	colors: PropTypes.object.isRequired,
 	stylesheet: PropTypes.string.isRequired,
 };
 

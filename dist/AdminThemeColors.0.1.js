@@ -353,11 +353,20 @@ var ThemePreview = function ThemePreview(props) {
   var _classNames;
 
   var activeTheme = props.activeTheme,
-      colorPrimary = props.colorPrimary,
-      colorSecondary = props.colorSecondary,
-      colorAccent = props.colorAccent,
+      colors = props.colors,
       stylesheet = props.stylesheet;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, ":root {\n\t\t\t\t\t--qdlx-".concat(activeTheme, "-primary: ").concat(colorPrimary, ";\n\t\t\t\t\t--qdlx-").concat(activeTheme, "-secondary: ").concat(colorSecondary, ";\n\t\t\t\t\t--qdlx-").concat(activeTheme, "-accent: ").concat(colorAccent, ";\n\t\t\t\t}")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+
+  var getColorStyleVars = function getColorStyleVars() {
+    var styles = '';
+    console.log(colors);
+    colors.map(function (color, index) {
+      styles += "--qdlx-".concat(activeTheme, "-").concat(color.slug, ": ").concat(color.color, ";");
+    });
+    styles = ":root { ".concat(styles, " }");
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
     rel: "stylesheet",
     href: stylesheet
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -394,16 +403,12 @@ var ThemePreview = function ThemePreview(props) {
 
 ThemePreview.defaultProps = {
   activeTheme: '',
-  colorPrimary: '',
-  colorSecondary: '',
-  colorAccent: '',
+  colors: {},
   stylesheet: ''
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  colorPrimary: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  colorSecondary: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  colorAccent: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object.isRequired),
   stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
@@ -606,13 +611,6 @@ var Interface = function Interface(props) {
       setLoading(false);
     });
   }, [activeTheme]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setThemeColors({
-      colorPrimary: colorPrimary,
-      colorSecondary: colorSecondary,
-      colorAccent: colorAccent
-    });
-  }, [colorPrimary, colorSecondary, colorAccent]);
 
   var getActiveThemeStylesheet = function getActiveThemeStylesheet() {
     var stylesheet = '';
@@ -642,10 +640,11 @@ var Interface = function Interface(props) {
   };
 
   var GetThemePreview = function GetThemePreview() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemePreview__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemePreview__WEBPACK_IMPORTED_MODULE_10__["default"], {
       activeTheme: activeTheme,
-      stylesheet: getActiveThemeStylesheet()
-    }, themeColors)));
+      stylesheet: getActiveThemeStylesheet(),
+      colors: themeColors
+    }));
   };
 
   var _onSubmit = function onSubmit() {

@@ -104,14 +104,6 @@ const Interface = ( props ) => {
 			} );
 	}, [ activeTheme ] );
 
-	useEffect( () => {
-		setThemeColors( {
-			colorPrimary,
-			colorSecondary,
-			colorAccent,
-		} );
-	}, [ colorPrimary, colorSecondary, colorAccent ] );
-
 	const getActiveThemeStylesheet = () => {
 		let stylesheet = '';
 		categories.forEach( ( cat ) => {
@@ -143,7 +135,7 @@ const Interface = ( props ) => {
 				<ThemePreview
 					activeTheme={ activeTheme }
 					stylesheet={ getActiveThemeStylesheet() }
-					{ ...themeColors }
+					colors={ themeColors }
 				/>
 			</>
 		);

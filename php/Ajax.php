@@ -217,28 +217,8 @@ class Ajax {
 		$theme_default_colors       = array();
 		foreach ( $themes as $theme ) {
 			if ( $template_slug === $theme['slug'] ) {
-				$theme_default_saved_colors = array(
-					'colorPrimary'   => $theme['color_primary'],
-					'colorSecondary' => $theme['color_secondary'],
-					'colorAccent'    => $theme['color_accent'],
-				);
-				$theme_default_colors       = array(
-					array(
-						'name'  => __( 'Default Color Primary', 'quotes-dlx' ),
-						'color' => $theme['color_primary'],
-						'slug'  => 'default-color-primary',
-					),
-					array(
-						'name'  => __( 'Default Color Secondary', 'quotes-dlx' ),
-						'color' => $theme['color_secondary'],
-						'slug'  => 'default-color-secondary',
-					),
-					array(
-						'name'  => __( 'Default Color Accent', 'quotes-dlx' ),
-						'color' => $theme['color_accent'],
-						'slug'  => 'default-color-accent',
-					),
-				);
+				$theme_default_saved_colors = $theme['colors'];
+				$theme_default_colors	   = $theme['colors'];
 				break;
 			}
 		}
@@ -264,16 +244,20 @@ class Ajax {
 		}
 
 		$template_slug   = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
-		$color_primary   = sanitize_text_field( filter_input( INPUT_POST, 'colorPrimary', FILTER_DEFAULT ) );
-		$color_secondary = sanitize_text_field( filter_input( INPUT_POST, 'colorSecondary', FILTER_DEFAULT ) );
-		$color_accent    = sanitize_text_field( filter_input( INPUT_POST, 'colorAccent', FILTER_DEFAULT ) );
+		$colors   = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+
+		// Sanitize colors.
+		$sanitized_colors = array();
+		foreach ( $colors as $color ) {
+			$sanitized_colors[] = array(
+				'name'  => sanitize_text_field( $color['name'] ),
+				'color' => sanitize_text_field( $color['color'] ),
+				'slug'  => sanitize_text_field( $color['slug'] ),
+			);
+		}
 
 		$theme_options                   = Options_Theme_Colors::get_options( '', true );
-		$theme_options[ $template_slug ] = array(
-			'primary'   => $color_primary,
-			'secondary' => $color_secondary,
-			'accent'    => $color_accent,
-		);
+		$theme_options[ $template_slug ] = $sanitized_colors;
 		Options_Theme_Colors::update_options( '', $theme_options, true );
 		wp_send_json_success(
 			array(

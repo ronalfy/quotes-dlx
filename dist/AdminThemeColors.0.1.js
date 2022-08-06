@@ -602,6 +602,7 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
+        setThemeColors(Object.values(ajaxData.colors));
         setSavedThemeColors(Object.values(ajaxData.colors));
         setDefaultThemeColors(Object.values(ajaxData.defaults));
       } else {// Error stuff.
@@ -650,9 +651,7 @@ var Interface = function Interface(props) {
     setSaving(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_theme_colors', {
       nonce: quotes_dlx_admin.options_save_nonce,
-      colorPrimary: colorPrimary,
-      colorSecondary: colorSecondary,
-      colorAccent: colorAccent,
+      colors: themeColors,
       template: activeTheme
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
@@ -728,7 +727,7 @@ var Interface = function Interface(props) {
               newThemeColors.push({
                 slug: colorObj.slug,
                 color: newValue,
-                label: colorObj.label
+                name: colorObj.name
               });
             } else {
               newThemeColors.push(colorObj);

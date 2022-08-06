@@ -272,7 +272,7 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
     onChangeComplete: function onChangeComplete(newColor) {
       setColor(newColor.hex);
 
-      _onChange(newColor.hex);
+      _onChange(slug, newColor.hex);
     },
     disableAlpha: true,
     defaultValue: defaultColor
@@ -295,7 +295,7 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
     colors: getDefaultColors(),
     value: color,
     onChange: function onChange(newColor) {
-      _onChange(newColor);
+      _onChange(slug, newColor);
 
       setColor(newColor);
       setColorKey(newColor);
@@ -308,7 +308,7 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: " button-reset",
     onClick: function onClick() {
-      _onChange(defaultColor);
+      _onChange(slug, defaultColor);
 
       setColorKey(defaultColor);
       setColor(defaultColor);
@@ -358,7 +358,6 @@ var ThemePreview = function ThemePreview(props) {
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
-    console.log(colors);
     colors.map(function (color, index) {
       styles += "--qdlx-".concat(activeTheme, "-").concat(color.slug, ": ").concat(color.color, ";");
     });
@@ -403,12 +402,12 @@ var ThemePreview = function ThemePreview(props) {
 
 ThemePreview.defaultProps = {
   activeTheme: '',
-  colors: {},
+  colors: [],
   stylesheet: ''
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object.isRequired),
+  colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array.isRequired),
   stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
@@ -721,12 +720,26 @@ var Interface = function Interface(props) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
         value: getColorValue(colorOption.slug),
         key: colorOption.slug,
-        onChange: function onChange(newValue) {
-          setColorPrimary(newValue);
+        onChange: function onChange(slug, newValue) {
+          // Iterate over colors and replace the one that matches the slug.
+          var newThemeColors = [];
+          themeColors.forEach(function (colorObj) {
+            if (colorObj.slug === slug) {
+              newThemeColors.push({
+                slug: colorObj.slug,
+                color: newValue,
+                label: colorObj.label
+              });
+            } else {
+              newThemeColors.push(colorObj);
+            }
+          });
+          setThemeColors(newThemeColors);
         },
         label: colorOption.name,
         defaultColors: defaultThemeColors,
-        defaultColor: colorOption.color
+        defaultColor: colorOption.color,
+        slug: colorOption.slug
       });
     });
   };

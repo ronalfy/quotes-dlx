@@ -224,12 +224,26 @@ const Interface = ( props ) => {
 			<ThemeColorPicker
 				value={ getColorValue( colorOption.slug ) }
 				key={ colorOption.slug }
-				onChange={ ( newValue ) => {
-					setColorPrimary( newValue );
+				onChange={ ( slug, newValue ) => {
+					// Iterate over colors and replace the one that matches the slug.
+					const newThemeColors = [];
+					themeColors.forEach( ( colorObj ) => {
+						if ( colorObj.slug === slug ) {
+							newThemeColors.push( {
+								slug: colorObj.slug,
+								color: newValue,
+								label: colorObj.label,
+							} );
+						} else {
+							newThemeColors.push( colorObj );
+						}
+					} );
+					setThemeColors( newThemeColors );
 				} }
 				label={ colorOption.name }
 				defaultColors={ defaultThemeColors }
 				defaultColor={ colorOption.color }
+				slug={ colorOption.slug }
 			/>
 		 ) );
 	};

@@ -180,7 +180,7 @@ const ThemeColorPicker = ( props ) => {
 									color={ color }
 									onChangeComplete={ ( newColor ) => {
 										setColor( newColor.hex );
-										onChange( newColor.hex );
+										onChange( slug, newColor.hex );
 									} }
 									disableAlpha
 									defaultValue={ defaultColor }
@@ -208,7 +208,7 @@ const ThemeColorPicker = ( props ) => {
 									colors={ getDefaultColors() }
 									value={ color }
 									onChange={ ( newColor ) => {
-										onChange( newColor );
+										onChange( slug, newColor );
 										setColor( newColor );
 										setColorKey( newColor );
 									} }
@@ -221,7 +221,7 @@ const ThemeColorPicker = ( props ) => {
 								<Button
 									className=" button-reset"
 									onClick={ () => {
-										onChange( defaultColor );
+										onChange( slug, defaultColor );
 										setColorKey( defaultColor );
 										setColor( defaultColor );
 									} }

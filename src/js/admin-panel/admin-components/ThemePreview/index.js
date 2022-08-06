@@ -11,7 +11,6 @@ const ThemePreview = ( props ) => {
 
 	const getColorStyleVars = () => {
 		let styles = '';
-		console.log( colors );
 		colors.map( ( color, index ) => {
 			styles += `--qdlx-${ activeTheme }-${ color.slug }: ${ color.color };`;
 		} );
@@ -81,13 +80,13 @@ const ThemePreview = ( props ) => {
 
 ThemePreview.defaultProps = {
 	activeTheme: '',
-	colors: {},
+	colors: [],
 	stylesheet: '',
 };
 
 ThemePreview.propTypes = {
 	activeTheme: PropTypes.string.isRequired,
-	colors: PropTypes.object.isRequired,
+	colors: PropTypes.array.isRequired,
 	stylesheet: PropTypes.string.isRequired,
 };
 

@@ -178,7 +178,8 @@ const Interface = ( props ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					setThemeColors( ajaxData.colors );
+					setThemeColors( Object.values( ajaxData.colors ) );
+					setSavedThemeColors( Object.values( ajaxData.defaults ) );
 					setIsReset( true );
 					setTimeout( () => {
 						setIsReset( false );
@@ -218,8 +219,8 @@ const Interface = ( props ) => {
 		return colorValue;
 	};
 
-	const getThemePickers = () => {
-		return defaultThemeColors.map( ( colorOption, index ) => (
+	const getThemePickers = ( themePickerColors ) => {
+		return themePickerColors.map( ( colorOption, index ) => (
 			<ThemeColorPicker
 				value={ getColorValue( colorOption.slug ) }
 				key={ colorOption.slug }
@@ -237,6 +238,7 @@ const Interface = ( props ) => {
 							newThemeColors.push( colorObj );
 						}
 					} );
+					setSavedThemeColors( newThemeColors );
 					setThemeColors( newThemeColors );
 				} }
 				label={ colorOption.name }
@@ -334,7 +336,7 @@ const Interface = ( props ) => {
 							<tbody>
 								<tr>
 									<th scope="row">{ __( 'Theme Colors', 'quotes-dlx' ) }</th>
-									<td>{ getThemePickers() }</td>
+									<td>{ getThemePickers( themeColors ) }</td>
 								</tr>
 							</tbody>
 						</table>

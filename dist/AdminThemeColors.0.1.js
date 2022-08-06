@@ -679,7 +679,8 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        setThemeColors(ajaxData.colors);
+        setThemeColors(Object.values(ajaxData.colors));
+        setSavedThemeColors(Object.values(ajaxData.defaults));
         setIsReset(true);
         setTimeout(function () {
           setIsReset(false);
@@ -714,8 +715,8 @@ var Interface = function Interface(props) {
     return colorValue;
   };
 
-  var getThemePickers = function getThemePickers() {
-    return defaultThemeColors.map(function (colorOption, index) {
+  var getThemePickers = function getThemePickers(themePickerColors) {
+    return themePickerColors.map(function (colorOption, index) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeColorPicker__WEBPACK_IMPORTED_MODULE_9__["default"], {
         value: getColorValue(colorOption.slug),
         key: colorOption.slug,
@@ -733,6 +734,7 @@ var Interface = function Interface(props) {
               newThemeColors.push(colorObj);
             }
           });
+          setSavedThemeColors(newThemeColors);
           setThemeColors(newThemeColors);
         },
         label: colorOption.name,
@@ -815,7 +817,7 @@ var Interface = function Interface(props) {
       role: "presentation"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
       scope: "row"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Colors', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, getThemePickers())))))));
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Colors', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, getThemePickers(themeColors))))))));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

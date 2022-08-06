@@ -24,7 +24,7 @@ const ThemePreview = ( props ) => {
 					'quotes-dlx-context-menu-disabled': false,
 					'quotes-dlx-has-no-tweet-button': false,
 				} ) }
-				style={ { maxWidth: '650px', margin: '0 auto' } }
+				style={ { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' } }
 			>
 				<div className="quotes-dlx-wrapper">
 					<figure>

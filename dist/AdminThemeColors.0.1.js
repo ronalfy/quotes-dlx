@@ -364,7 +364,8 @@ var ThemePreview = function ThemePreview(props) {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('quotes-dlx', (_classNames = {}, _defineProperty(_classNames, "quotes-dlx-block-theme-".concat(activeTheme), true), _defineProperty(_classNames, 'quotes-dlx-context-menu-disabled', false), _defineProperty(_classNames, 'quotes-dlx-has-no-tweet-button', false), _classNames)),
     style: {
       maxWidth: '650px',
-      margin: '0 auto'
+      margin: '0 auto',
+      marginBottom: '40px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "quotes-dlx-wrapper"
@@ -731,22 +732,8 @@ var Interface = function Interface(props) {
     });
   };
 
-  var getThemePreviewAndSwatches = function getThemePreviewAndSwatches() {
-    if (loading) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        showHeader: false
-      });
-    }
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "qdlx-admin__tabs--content-inner"
-    }, getCategories(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "qdlx-admin__theme-preview"
-    }, GetThemePreview()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "qdlx-admin__color-pickers"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "qdlx-admin__color-primary"
-    }, getThemePickers())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  var getSaveResetButtons = function getSaveResetButtons() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-actions"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
@@ -797,6 +784,29 @@ var Interface = function Interface(props) {
     }));
   };
 
+  var getThemePreviewAndSwatches = function getThemePreviewAndSwatches() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        showHeader: false
+      });
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-inner"
+    }, getCategories(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__theme-preview"
+    }, GetThemePreview()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__color-pickers"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__color-primary"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+      className: "form-table",
+      role: "presentation"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      scope: "row"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Colors', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, getThemePickers())))))));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -817,7 +827,7 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__heading--text"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Theme Colors', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "description"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the primary, secondary, and accent colors of each theme.', 'quotes-dlx'))), getThemePreviewAndSwatches()))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the primary, secondary, and accent colors of each theme.', 'quotes-dlx'))), getThemePreviewAndSwatches(), getSaveResetButtons()))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);

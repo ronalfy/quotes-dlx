@@ -716,16 +716,21 @@
 	margin: 0;
 	padding: 0;
 	padding-bottom: 35px;
+	min-width: 160px;
 
 	label {
 		font-size: 1.3em;
 	}
+}
+.form-table td {
+	width: 100%;
 }
 .form-table th {
 	display: block;
 	width: 100%;
 	max-width: 250px;
 	font-size: 1.3em;
+	line-height: 1.2;
 }
 .form-table td label {
 	font-size: 1.2em;
@@ -1411,8 +1416,9 @@
 /* Color Component (forked from @GenerateBlocks) */
 .ptam-component-color-picker-wrapper,
 .qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper {
-	text-align: center;
-	margin-bottom: 0;
+	text-align: left;
+	margin-bottom: 16px;
+	margin-top: 2px;
 
 	> .components-base-control__field {
 		position: relative;
@@ -1420,7 +1426,6 @@
 		grid-template-columns: 150px 30px;
 		row-gap: 2;
 		margin: 0 auto;
-		align-items: center;
 		justify-content: space-between;
 		text-align: left;
 		font-weight: 600;
@@ -1429,6 +1434,9 @@
 		.components-color-palette__item-wrapper {
 			margin: 0;
 		}
+	}
+	.ptam-color-component-label {
+		line-height: 1.2;
 	}
 }
 
@@ -1449,8 +1457,6 @@
 
 	.ptam-component-color-picker-palette {
 		padding: 0 16px;
-		margin-top: 3px;
-		margin-bottom: 8px;
 
 		button.components-circular-option-picker__option {
 			border-radius: 50%;

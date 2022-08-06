@@ -228,7 +228,6 @@ const Interface = ( props ) => {
 	};
 
 	const getThemePickers = () => {
-
 		return defaultThemeColors.map( ( colorOption, index ) => (
 			<ThemeColorPicker
 				value={ getColorValue( colorOption.slug ) }
@@ -243,21 +242,9 @@ const Interface = ( props ) => {
 		 ) );
 	};
 
-	const getThemePreviewAndSwatches = () => {
-		if ( loading ) {
-			return (
-				<AdminThemeColorsLoader showHeader={ false } />
-			);
-		}
+	const getSaveResetButtons = () => {
 		return (
-			<div className="qdlx-admin__tabs--content-inner">
-				{ getCategories() }
-				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
-				<div className="qdlx-admin__color-pickers">
-					<div className="qdlx-admin__color-primary">
-						{ getThemePickers() }
-					</div>
-				</div>
+			<>
 				<div className="qdlx-admin__tabs--content-actions">
 					<Button
 						className={ classNames(
@@ -322,6 +309,32 @@ const Interface = ( props ) => {
 						politeness="assertive"
 					/>
 				) }
+			</>
+		);
+	};
+
+	const getThemePreviewAndSwatches = () => {
+		if ( loading ) {
+			return (
+				<AdminThemeColorsLoader showHeader={ false } />
+			);
+		}
+		return (
+			<div className="qdlx-admin__tabs--content-inner">
+				{ getCategories() }
+				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+				<div className="qdlx-admin__color-pickers">
+					<div className="qdlx-admin__color-primary">
+						<table className="form-table" role="presentation">
+							<tbody>
+								<tr>
+									<th scope="row">{ __( 'Theme Colors', 'quotes-dlx' ) }</th>
+									<td>{ getThemePickers() }</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		);
 	};
@@ -348,6 +361,7 @@ const Interface = ( props ) => {
 							</p>
 						</div>
 						{ getThemePreviewAndSwatches() }
+						{ getSaveResetButtons() }
 					</div>
 				</form>
 			</div>

@@ -40,10 +40,13 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
 		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
-		// For retrieving a theme's color palette.
+		// For retrieving a theme's options.
 		add_action( 'wp_ajax_quotes_dlx_get_theme_options', array( static::class, 'ajax_get_theme_options' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_theme_options', array( static::class, 'ajax_save_theme_options' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_options', array( static::class, 'ajax_reset_theme_options' ) );
+
+		// Theme preview for font-size and line-height for desktop|tablet|mobile.
+		add_action( 'wp_ajax_quotes_dlx_theme_preview', array( static::class, 'ajax_theme_preview' ) );
 
 		return $self;
 	}
@@ -156,6 +159,114 @@ class Ajax {
 		wp_send_json_success(
 			$options_to_return
 		);
+	}
+
+	/**
+	 * Content for the theme preview modal popup. Loaded in an iframe.
+	 */
+	public static function ajax_theme_preview() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Invalid request.' );
+		}
+
+		$template    = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$size        = absint( filter_input( INPUT_GET, 'size', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT );
+
+		wp_register_script(
+			'qdlx_twitter_actions',
+			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
+			array( 'wp-i18n' ),
+			Functions::get_plugin_version(),
+			false
+		);
+		wp_register_script(
+			'qdlx_twitter_preview_js',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			false
+		);
+		wp_register_style(
+			'qdlx_theme_css',
+			Functions::get_plugin_url(
+				sprintf(
+					'dist/quotes-dlx-theme-%s.css',
+					sanitize_text_field( $template )
+				)
+			),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_register_style(
+			'qdlx_preview_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_register_style(
+			'qdlx_font_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Get localized vars.
+		$themes = Themes\Themes_Addon::get_theme_data( $template );
+		if ( ! $themes ) {
+			wp_die( 'Could not find a theme' );
+		}
+		$theme_default_colors = $themes['colors'];
+		$theme_options        = Options_Theme::get_options();
+		$saved_colors         = $theme_options[ $template_slug ]['colors'] ?? false;
+
+		// Check colors and set to defaults if it doesn't exist.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
+
+		// Output local vars.
+		wp_localize_script(
+			'qdlx_twitter_preview_js',
+			'qdlx_theme_preview',
+			array(
+				'stylesheet' => esc_url( $theme['stylesheet'] ),
+				'theme'             => $template,
+				'colors'            => $saved_colors,
+				'font_size'        => $size,
+				'line_height'            => (float) $line_height,
+			)
+		);
+		?>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<?php
+				wp_print_styles(
+					array(
+						'qdlx_theme_css',
+						'qdlx_twitter_preview_css',
+					)
+				);
+				?>
+			</head>
+			<body>
+				<div id="qdlx-theme-preview"></div>
+				<?php
+					wp_print_scripts(
+						array(
+							'qdlx_twitter_actions',
+							'qdlx_twitter_preview_js',
+						)
+					);
+				?>
+			</body>
+		</html>
+		<?php
+		exit;
 	}
 
 	/**
@@ -419,10 +530,27 @@ class Ajax {
 			}
 		}
 
+		// Get saved options.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size_desktop   = $theme_options[ $theme_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $theme_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $theme_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $theme_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $theme_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $theme_slug ]['line_height_mobile'] ?? 1.1;
+
 		wp_send_json_success(
 			array(
-				'template'   => $theme_slug,
-				'categories' => $categories,
+				'template'            => $theme_slug,
+				'categories'          => $categories,
+				'font_size_desktop'   => $theme_font_size_desktop,
+				'line_height_desktop' => $theme_line_height_desktop,
+				'font_size_tablet'    => $theme_font_size_tablet,
+				'line_height_tablet'  => $theme_line_height_tablet,
+				'font_size_mobile'    => $theme_font_size_mobile,
+				'line_height_mobile'  => $theme_line_height_mobile,
 			)
 		);
 	}

@@ -686,7 +686,7 @@ var Interface = function Interface(props) {
       activeTheme: activeTheme,
       stylesheet: getActiveThemeStylesheet(),
       colors: themeColors,
-      fontSize: getValues('fontSizeDesktop'),
+      fontSize: getValues('fontSizeDesktop') + '',
       lineHeight: getValues('lineHeightDesktop')
     }));
   };
@@ -1041,9 +1041,12 @@ var Interface = function Interface(props) {
           railColor: "#dad4eb"
         }));
       }
-    })))));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&size=").concat(encodeURIComponent(getValues('fontSizeMobile')), "&lineheight=").concat(encodeURIComponent(getValues('lineHeightMobile')), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(template))
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview', 'quotes-dlx'))))));
   };
 
+  console.log(getValues());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {

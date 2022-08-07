@@ -153,7 +153,7 @@ const Interface = ( props ) => {
 					activeTheme={ activeTheme }
 					stylesheet={ getActiveThemeStylesheet() }
 					colors={ themeColors }
-					fontSize={ getValues( 'fontSizeDesktop' ) }
+					fontSize={ getValues( 'fontSizeDesktop' ) + '' }
 					lineHeight={ getValues( 'lineHeightDesktop' ) }
 				/>
 			</>
@@ -570,6 +570,9 @@ const Interface = ( props ) => {
 									</>
 								) }
 							/>
+							<a href={ `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }` }>
+								{ __( 'Preview', 'quotes-dlx' ) }
+							</a>
 
 						</td>
 					</tr>
@@ -577,6 +580,8 @@ const Interface = ( props ) => {
 			</table>
 		);
 	};
+
+	console.log( getValues() );
 
 	return (
 		<>

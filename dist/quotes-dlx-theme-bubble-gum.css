@@ -305,6 +305,7 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
   color: var(--qdlx-bubble-gum-primary, #E75480);
   background: var(--qdlx-bubble-gum-light, #FFF);
+  font-family: "Lato", sans-serif;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {

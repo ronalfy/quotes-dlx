@@ -231,6 +231,7 @@ $dark: #000;
 					z-index: -1;
 					list-style-type: none;
 					width: 0;
+					
 				}
 
 				&:not(:checked) ~ ul {
@@ -358,6 +359,7 @@ $dark: #000;
 					}
 					color: var( --qdlx-bubble-gum-primary, $primary );
 					background: var( --qdlx-bubble-gum-light, $light );
+					font-family: 'Lato', sans-serif;
 					&:hover {
 						background: var( --qdlx-bubble-gum-primary, $primary );
 						color: var( --qdlx-bubble-gum-light, $light );

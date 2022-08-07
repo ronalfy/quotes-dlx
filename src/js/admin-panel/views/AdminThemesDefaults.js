@@ -110,8 +110,9 @@ const Interface = ( props ) => {
 					// Add local storage.
 					localStorage.setItem(
 						localStorageKey,
-						JSON.stringify( { theme: ajaxData.theme } )
+						JSON.stringify( { theme: ajaxData.template } )
 					);
+					setActiveTheme( ajaxData.template );
 
 					setIsSaved( true );
 					setTimeout( () => {

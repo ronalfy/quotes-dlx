@@ -68,6 +68,13 @@ class Register_Menu {
 			Functions::get_plugin_version(),
 			'all'
 		);
+		wp_enqueue_style(
+			'quotes-dlx-front-end-css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
 
 		/**
 		 * Filter the output of the block defaults.

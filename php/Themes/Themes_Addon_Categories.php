@@ -18,21 +18,21 @@ abstract class Themes_Addon_Categories {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static string $name;
+	protected static $name;
 
 	/**
 	 * Slug for the category.
 	 *
 	 * @var string $slug The category slug.
 	 */
-	protected static string $slug;
+	protected static $slug;
 
 	/**
 	 * Description for the category.
 	 *
 	 * @var string $description The theme category description.
 	 */
-	protected static string $description;
+	protected static $description;
 
 	/**
 	 * Variable to hold all the registered categories.

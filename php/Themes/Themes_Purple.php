@@ -26,70 +26,70 @@ class Themes_Purple extends Themes_Addon {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static string $name = 'Purple Bliss';
+	protected static $name = 'Purple Bliss';
 
 	/**
 	 * Slug for the theme.
 	 *
 	 * @var string $slug The theme slug.
 	 */
-	protected static string $slug = 'purple-bliss';
+	protected static $slug = 'purple-bliss';
 
 	/**
 	 * Category for the theme.
 	 *
 	 * @var string $category The theme category.
 	 */
-	protected static string $category = 'core';
+	protected static $category = 'core';
 
 	/**
 	 * Theme version.
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static string $version = '1.0.4';
+	protected static $version = '1.0.4';
 
 	/**
 	 * Description for the theme.
 	 *
 	 * @var string $theme_description The theme description.
 	 */
-	protected static string $theme_description;
+	protected static $theme_description;
 
 	/**
 	 * Author name.
 	 *
 	 * @var string $author_name The author of the theme.
 	 */
-	protected static string $author_name = 'Ronald Huereca';
+	protected static $author_name = 'Ronald Huereca';
 
 	/**
 	 * Author URL.
 	 *
 	 * @var string $author_url URL for the author.
 	 */
-	protected static string $author_url = 'https://mediaron.com';
+	protected static $author_url = 'https://mediaron.com';
 
 	/**
 	 * Theme color or gradient.
 	 *
 	 * @var string $preview_color The theme preview color hexcode or gradient color.
 	 */
-	protected static string $preview_gradient = 'linear-gradient(90deg, rgba(80,0,141,1) 14%, rgba(246,245,251,1) 85%);';
+	protected static $preview_gradient = 'linear-gradient(90deg, rgba(80,0,141,1) 14%, rgba(246,245,251,1) 85%);';
 
 	/**
 	 * Preview URL image for theme.
 	 *
 	 * @var string $preview_image_url The theme preview image URL.
 	 */
-	protected static string $preview_image_url = '';
+	protected static $preview_image_url = '';
 
 	/**
 	 * Stylesheet URL for enqueuing.
 	 *
 	 * @var string $stylesheet_url The stylesheet URL. Set 'core' for now stylesheet.
 	 */
-	protected static string $stylesheet_url = 'core';
+	protected static $stylesheet_url = 'core';
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.

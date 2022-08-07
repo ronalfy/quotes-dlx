@@ -40,6 +40,11 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
 		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
+		// For retrieving a theme's color palette.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_colors', array( static::class, 'ajax_save_theme_colors' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_colors', array( static::class, 'ajax_reset_theme_colors' ) );
+
 		return $self;
 	}
 
@@ -151,6 +156,115 @@ class Ajax {
 		wp_send_json_success(
 			$options_to_return
 		);
+	}
+
+	/**
+	 * Retrieve theme colors.
+	 */
+	public static function ajax_get_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
+
+		$themes = Themes\Themes_Addon::get_theme_data( $template_slug );
+
+		// Check that there's theme data.
+		if ( ! $themes ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'No theme data could be found.', 'quotes-dlx' ),
+				)
+			);
+		}
+
+		// We have a theme.
+		$theme_default_colors = $themes['colors'];
+
+		// Get saved colors.
+		$maybe_saved_colors = Options_Theme_Colors::get_options();
+		$saved_colors       = $maybe_saved_colors[ $template_slug ] ?? false;
+
+		// Check saved colors and set to defaults if not set.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
+
+		wp_send_json_success(
+			array(
+				'colors'   => $saved_colors,
+				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset theme color options.
+	 */
+	public static function ajax_reset_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+
+		$themes                     = Themes\Themes_Addon::get_theme_data();
+		$theme_default_saved_colors = array();
+		$theme_default_colors       = array();
+		foreach ( $themes as $theme ) {
+			if ( $template_slug === $theme['slug'] ) {
+				$theme_default_saved_colors = $theme['colors'];
+				$theme_default_colors	   = $theme['colors'];
+				break;
+			}
+		}
+
+		// Get saved colors.
+		Options_Theme_Colors::update_options( $template_slug, array(), true );
+
+		wp_send_json_success(
+			array(
+				'colors'   => $theme_default_saved_colors,
+				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset form options for contextual menu options.
+	 */
+	public static function ajax_save_theme_colors() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$template_slug   = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$colors   = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+
+		// Sanitize colors.
+		$sanitized_colors = array();
+		foreach ( $colors as $color ) {
+			$sanitized_colors[] = array(
+				'name'  => sanitize_text_field( $color['name'] ),
+				'color' => sanitize_text_field( $color['color'] ),
+				'slug'  => sanitize_text_field( $color['slug'] ),
+			);
+		}
+
+		$theme_options                   = Options_Theme_Colors::get_options( '', true );
+		$theme_options[ $template_slug ] = $sanitized_colors;
+		Options_Theme_Colors::update_options( '', $theme_options, true );
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your theme colors have been saved.', 'quotes-dlx' ),
+			)
+		);
+		exit;
 	}
 
 	/**

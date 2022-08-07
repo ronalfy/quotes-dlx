@@ -26,6 +26,7 @@ module.exports = ( env ) => {
 				'quotes-dlx-theme-purple-bliss': { import: './src/scss/themes/purple-bliss.scss' },
 				'quotes-dlx-theme-dark-matter': { import: './src/scss/themes/dark-matter.scss' },
 				'quotes-dlx-theme-light-branded': { import: './src/scss/themes/light-branded.scss' },
+				'quotes-dlx-theme-bubble-gum': { import: './src/scss/themes/bubble-gum.scss' },
 			},
 			resolve: {
 				alias: {

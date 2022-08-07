@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminDefaults"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminDefaults0.0.1"],{
 
 /***/ "./src/js/admin-panel/admin-components/Notice/index.js":
 /*!*************************************************************!*\
@@ -2536,4 +2536,4 @@ var twttr = function () {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminDefaults.js.map
+//# sourceMappingURL=AdminDefaults0.0.1.js.map

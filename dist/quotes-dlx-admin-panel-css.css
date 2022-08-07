@@ -83,6 +83,10 @@
   z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
+.react-loading-skeleton.no-flex {
+  display: block;
+}
+
 .react-loading-skeleton::after {
   content: " ";
   display: var(--pseudo-element-display);
@@ -112,6 +116,18 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
 }
 button.button-reset.show-cursor {
   cursor: pointer;
+}
+
+.button-reset button,
+.button-reset:focus button,
+.button-reset:hover button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
 }
 
 /* Responsive styles - In hindsight, should've used mobile-first */
@@ -736,10 +752,15 @@ button.button-reset.show-cursor {
   margin: 0;
   padding: 0;
   padding-bottom: 35px;
+  min-width: 160px;
 }
 .form-table th label,
 .form-table td label {
   font-size: 1.3em;
+}
+
+.form-table td {
+  width: 100%;
 }
 
 .form-table th {
@@ -747,6 +768,7 @@ button.button-reset.show-cursor {
   width: 100%;
   max-width: 250px;
   font-size: 1.3em;
+  line-height: 1.2;
 }
 
 .form-table td label {
@@ -1376,6 +1398,159 @@ button.button-reset.show-cursor {
 .quotes-dlx-table td {
   padding: 1.25rem 1.125rem;
   text-align: left;
+}
+
+/* Color Component (forked from @GenerateBlocks) */
+.ptam-component-color-picker-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper {
+  text-align: left;
+  margin-bottom: 16px;
+  margin-top: 2px;
+}
+.ptam-component-color-picker-wrapper > .components-base-control__field,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 150px 30px;
+  row-gap: 2;
+  margin: 0 auto;
+  justify-content: space-between;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.ptam-component-color-picker-wrapper .ptam-color-component-label,
+.qdlx-admin__tabs--content-inner .components-base-control.ptam-component-color-picker-wrapper .ptam-color-component-label {
+  line-height: 1.2;
+}
+
+.qdlx-admin__color-primary {
+  margin: 12px 0;
+}
+
+.ptam-component-color-picker {
+  margin-left: -5px;
+  margin-top: 0;
+  z-index: 100;
+}
+.ptam-component-color-picker > .components-base-control:first-child {
+  margin-bottom: 0;
+}
+.ptam-component-color-picker .components-color-picker__inputs-wrapper {
+  min-width: auto;
+}
+.ptam-component-color-picker .ptam-component-color-picker-palette {
+  padding: 0 16px;
+}
+.ptam-component-color-picker .ptam-component-color-picker-palette button.components-circular-option-picker__option {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ptam-component-color-picker .ptam-component-color-picker-palette .components-circular-option-picker__option-wrapper {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  vertical-align: top;
+  transition: 100ms transform ease;
+}
+.ptam-component-color-picker .components-base-control__field,
+.ptam-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.ptam-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.ptam-component-color-picker .components-color-picker__inputs-toggle {
+  display: none;
+}
+.ptam-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.ptam-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 300px;
+}
+.ptam-component-color-picker .components-color-picker__inputs-fields {
+  margin-right: 0;
+}
+.ptam-component-color-picker .components-color-clear-color {
+  text-align: right;
+  padding: 0 16px;
+  color: var(--quotes-dlx-admin--color-dark);
+}
+
+.ptam-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.ptam-component-color-opacity svg {
+  width: 28px;
+  height: 28px;
+}
+.ptam-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+
+.components-popover__content {
+  background: var(--quotes-dlx-admin--color-white);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  width: auto !important;
+}
+
+.components-circular-option-picker__option:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+}
+
+.components-circular-option-picker__option-wrapper {
+  position: relative;
+}
+.components-circular-option-picker__option-wrapper:hover {
+  transform: scale(1.2);
+}
+
+.components-circular-option-picker__option {
+  position: relative;
+  outline: 2px solid transparent !important;
+}
+.components-circular-option-picker__option.is-pressed:after {
+  content: "";
+  border: 2px solid #757575;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+.components-circular-option-picker__option ~ svg {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  z-index: 2;
 }
 
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

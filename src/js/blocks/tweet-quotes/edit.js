@@ -1108,11 +1108,32 @@ const TweetQuotes = ( props ) => {
 		className: `quotes-dlx template-${ template }`,
 	} );
 
+	let stylesheet = false;
+	themes.forEach( ( themeObject ) => {
+		if ( themeObject.slug === template ) {
+			stylesheet = themeObject.stylesheet;
+		}
+	} );
+		
 	if ( preview ) {
-		return <div { ...blockProps }>{ previewBlock }</div>;
+		return (
+			<>
+				{ stylesheet &&
+					<link rel="stylesheet" href={ stylesheet } />
+				}
+				<div { ...blockProps }>{ previewBlock }</div>;
+			</>
+		);
 		// eslint-disable-next-line no-else-return
 	} else {
-		return <div { ...blockProps }>{ block }</div>;
+		return (
+			<>
+				{ stylesheet &&
+					<link rel="stylesheet" href={ stylesheet } />
+				}
+				<div { ...blockProps }>{ block }</div>;
+			</>
+		);
 	}
 };
 

@@ -6,7 +6,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -21,9 +21,32 @@ const ThemePreview = ( props ) => {
 			</style>
 		);
 	};
+
+	const getFontSize = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-font-size: ${ fontSize }px;`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+	const getLineHeight = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-line-height: ${ lineHeight };`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
 	return (
 		<>
 			{ getColorStyleVars() }
+			{ getFontSize() }
+			{ getLineHeight() }
 			<link rel="stylesheet" href={ stylesheet } />
 			<div
 				className={ classNames( 'quotes-dlx', {
@@ -82,12 +105,16 @@ ThemePreview.defaultProps = {
 	activeTheme: '',
 	colors: [],
 	stylesheet: '',
+	fontSize: '16px',
+	lineHeight: 1.65,
 };
 
 ThemePreview.propTypes = {
 	activeTheme: PropTypes.string.isRequired,
 	colors: PropTypes.array.isRequired,
 	stylesheet: PropTypes.string.isRequired,
+	fontSize: PropTypes.string.isRequired,
+	lineHeight: PropTypes.number.isRequired,
 };
 
 export default ThemePreview;

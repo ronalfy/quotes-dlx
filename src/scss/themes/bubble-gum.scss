@@ -1,4 +1,5 @@
 @import "../colors.scss";
+@import "../breakpoints-mixin.scss";
 
 $primary: #E75480;
 $secondary: #fdeef2;
@@ -7,7 +8,7 @@ $light: #FFF;
 $dark: #000;
 
 .quotes-dlx-block-theme-bubble-gum{
-	font-size: 16px;
+	font-size: var( --qdlx-bubble-gum-font-size, 16px );
 
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 50px;
@@ -87,15 +88,24 @@ $dark: #000;
 		figure blockquote.quotes-dlx-text-wrapper {
 			font-family: "Lato", serif;
 			font-weight: 400;
-			font-size: 1.5em;
-			line-height: 1.65;
+			font-size: 1.1em;
 			color: var( --qdlx-bubble-gum-secondary, $secondary );
+			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.1 );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;
 			vertical-align:baseline;
 			font-style: inherit;
 			padding: 68px 68px 24px 68px;
+
+			@include respond-to('medium') {
+				font-size: 1.35em;
+				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.1 );
+			}
+			@include respond-to('large') {
+				font-size: 1.5em;
+				line-height: var( --qdlx-bubble-gum-line-height-desktop, 1.65 );
+			}
 		}
 		.quotes-dlx-button-wrapper {
 			display: flex;

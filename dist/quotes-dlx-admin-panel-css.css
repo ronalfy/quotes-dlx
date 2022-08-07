@@ -775,6 +775,10 @@ button.button-reset.show-cursor {
   font-size: 1.2em;
 }
 
+.qdlx-admin__color-primary .form-table td {
+  padding-bottom: 0;
+}
+
 /* General form styles */
 .qdlx-admin__tabs--content-inner {
   /* Modified Gutenberg styles */
@@ -1551,6 +1555,26 @@ button.button-reset.show-cursor {
   top: 2px;
   border-radius: 50%;
   z-index: 2;
+}
+
+/* Component Table Styling */
+table.form-table.qdlx-font-sizes td > div {
+  margin-bottom: 20px;
+}
+
+/* Range Control Component */
+.qdlx-admin__range-control {
+  max-width: 450px;
+}
+.qdlx-admin__range-control .components-base-control__label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.qdlx-admin__range-control .components-range-control__track {
+  color: #8019c4;
+}
+.qdlx-admin__range-control .components-range-control__track ~ span {
+  background-color: #8019c4;
 }
 
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

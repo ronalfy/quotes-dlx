@@ -185,10 +185,15 @@ class Ajax {
 
 		// Get saved colors.
 		$theme_options = Options_Theme::get_options();
-		$saved_colors       = $theme_options[ $template_slug ]['colors'] ?? false;
+		$saved_colors  = $theme_options[ $template_slug ]['colors'] ?? false;
 
 		// Get saved font size.
-		$theme_font_size = $theme_options[ $template_slug ]['font_size'] ?? '16px';
+		$theme_font_size_desktop   = $theme_options[ $template_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $template_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $template_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1;
 
 		// Check saved colors and set to defaults if not set.
 		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
@@ -197,9 +202,14 @@ class Ajax {
 
 		wp_send_json_success(
 			array(
-				'colors'   => $saved_colors,
-				'defaults' => $theme_default_colors,
-				'font_size' => $theme_font_size,
+				'colors'              => $saved_colors,
+				'defaults'            => $theme_default_colors,
+				'font_size_desktop'   => $theme_font_size_desktop,
+				'line_height_desktop' => $theme_line_height_desktop,
+				'font_size_tablet'    => $theme_font_size_tablet,
+				'line_height_tablet'  => $theme_line_height_tablet,
+				'font_size_mobile'    => $theme_font_size_mobile,
+				'line_height_mobile'  => $theme_line_height_mobile,
 			)
 		);
 		exit;
@@ -222,7 +232,7 @@ class Ajax {
 		foreach ( $themes as $theme ) {
 			if ( $template_slug === $theme['slug'] ) {
 				$theme_default_saved_colors = $theme['colors'];
-				$theme_default_colors	   = $theme['colors'];
+				$theme_default_colors       = $theme['colors'];
 				break;
 			}
 		}
@@ -247,8 +257,8 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$template_slug   = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
-		$colors   = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$colors        = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
 		// Sanitize colors.
 		$sanitized_colors = array();
@@ -260,7 +270,7 @@ class Ajax {
 			);
 		}
 
-		$theme_options                   = Options_Theme::get_options( '', true );
+		$theme_options                             = Options_Theme::get_options( '', true );
 		$theme_options[ $template_slug ]['colors'] = $sanitized_colors;
 		Options_Theme::update_options( '', $theme_options, true );
 		wp_send_json_success(

@@ -82,7 +82,12 @@ const Interface = ( props ) => {
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
-				fontSize: data.font_size,
+				fontSizeDesktop: data.font_size_desktop,
+				fontSizeTablet: data.font_size_tablet,
+				fontSizeMobile: data.font_size_mobile,
+				lineHeightDesktop: data.line_height_desktop,
+				lineHeightTablet: data.line_height_tablet,
+				lineHeightMobile: data.line_height_mobile,
 			},
 		} );
 
@@ -148,6 +153,8 @@ const Interface = ( props ) => {
 					activeTheme={ activeTheme }
 					stylesheet={ getActiveThemeStylesheet() }
 					colors={ themeColors }
+					fontSize={ getValues( 'fontSizeDesktop' ) }
+					lineHeight={ getValues( 'lineHeightDesktop' ) }
 				/>
 			</>
 		);
@@ -359,7 +366,7 @@ const Interface = ( props ) => {
 	};
 
 	const getUnsavedChangesWarning = () => {
-		if ( ! hasUnsavedChanges ) {
+		if ( ! hasUnsavedChanges && ! isDirty ) {
 			return null;
 		}
 		return (
@@ -371,18 +378,203 @@ const Interface = ( props ) => {
 		);
 	};
 
-	const getFontSizeRangeInput = () => {
+	const getFontSizeOptions = () => {
 		return (
-			<RangeControl
-				label={ __( 'Font Size', 'quotes-dlx' ) }
-				value={ fontSize }
-				onChange={ ( value ) => {
-					setFontSize( value );
-				} }
-				min={ 12 }
-				max={ 36 }
-				step={ 1 }
-			/>
+			<table className="form-table qdlx-font-sizes" role="presentation">
+				<tbody>
+					<tr>
+						<th scope="row">{ __( 'Desktop Options', 'quotes-dlx' ) }</th>
+						<td>
+							<Controller
+								name="fontSizeDesktop"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<>
+										<RangeControl
+											label={ __(
+												'Set the Base Desktop Font Size',
+												'comment-edit-pro'
+											) }
+											step={ 1 }
+											value={ value }
+											max={ 48 }
+											min={ 8 }
+											currentInput={ 16 }
+											initialPosition={ 16 }
+											allowReset={ true }
+											className="qdlx-admin__range-control"
+											onChange={ ( fontSizeValue ) => {
+												onChange( fontSizeValue );
+											} }
+											help={ __(
+												'Set the font size of the desktop size for the theme.',
+												'comment-edit-pro'
+											) }
+											trackColor="#8019c4"
+											railColor="#dad4eb"
+										/>
+									</>
+								) }
+							/>
+							<Controller
+								name="lineHeightDesktop"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<>
+										<RangeControl
+											label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
+											step={ 0.1 }
+											value={ value }
+											max={ 3 }
+											min={ 0.25 }
+											currentInput={ 1.2 }
+											initialPosition={ 1.2 }
+											allowReset={ true }
+											className="qdlx-admin__range-control"
+											onChange={ ( lineHeightValue ) => {
+												onChange( lineHeightValue );
+											} }
+											help={ __(
+												'Set the line-height of the theme for desktop.',
+												'comment-edit-pro'
+											) }
+											trackColor="#8019c4"
+											railColor="#dad4eb"
+										/>
+									</>
+								) }
+							/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">{ __( 'Tablet Options', 'quotes-dlx' ) }</th>
+						<td>
+							<Controller
+								name="fontSizeTablet"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<>
+										<RangeControl
+											label={ __( 'Set the Base Tablet Font Size', 'comment-edit-pro' ) }
+											step={ 1 }
+											value={ value }
+											max={ 48 }
+											min={ 8 }
+											currentInput={ 16 }
+											initialPosition={ 16 }
+											allowReset={ true }
+											className="qdlx-admin__range-control"
+											onChange={ ( fontSizeValue ) => {
+												onChange( fontSizeValue );
+											} }
+											help={ __(
+												'Set the font size of the tablet size for the theme.',
+												'comment-edit-pro'
+											) }
+											trackColor="#8019c4"
+											railColor="#dad4eb"
+										/>
+										<Controller
+											name="lineHeightTablet"
+											control={ control }
+											render={ ( { field: { onChange, value } } ) => (
+												<>
+													<RangeControl
+														label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
+														step={ 0.1 }
+														value={ value }
+														max={ 3 }
+														min={ 0.25 }
+														currentInput={ 1.1 }
+														initialPosition={ 1.1 }
+														allowReset={ true }
+														className="qdlx-admin__range-control"
+														onChange={ ( lineHeightValue ) => {
+															onChange( lineHeightValue );
+														} }
+														help={ __(
+															'Set the line-height of the theme for tablet size.',
+															'comment-edit-pro'
+														) }
+														trackColor="#8019c4"
+														railColor="#dad4eb"
+													/>
+												</>
+											) }
+										/>
+
+									</>
+								) }
+							/>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">{ __( 'Mobile Options', 'quotes-dlx' ) }</th>
+						<td>
+							<Controller
+								name="fontSizeMobile"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<>
+										<RangeControl
+											label={ __(
+												'Set the Base Mobile Font Size',
+												'comment-edit-pro'
+											) }
+											step={ 1 }
+											value={ value }
+											max={ 48 }
+											min={ 8 }
+											currentInput={ 16 }
+											initialPosition={ 16 }
+											allowReset={ true }
+											className="qdlx-admin__range-control"
+											onChange={ ( fontSizeValue ) => {
+												onChange( fontSizeValue );
+											} }
+											help={ __(
+												'Set the font size of the mobile size for the theme.',
+												'comment-edit-pro'
+											) }
+											trackColor="#8019c4"
+											railColor="#dad4eb"
+										/>
+									</>
+								) }
+							/>
+							<Controller
+								name="lineHeightMobile"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<>
+										<RangeControl
+											label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
+											step={ 0.1 }
+											value={ value }
+											max={ 3 }
+											min={ 0.25 }
+											currentInput={ 1.1 }
+											initialPosition={ 1.1 }
+											allowReset={ true }
+											className="qdlx-admin__range-control"
+											onChange={ ( lineHeightValue ) => {
+												onChange( lineHeightValue );
+											} }
+											help={ __(
+												'Set the line-height of the theme for mobile size.',
+												'comment-edit-pro'
+											) }
+											trackColor="#8019c4"
+											railColor="#dad4eb"
+										/>
+									</>
+								) }
+							/>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		);
 	};
 
@@ -412,6 +604,8 @@ const Interface = ( props ) => {
 						</div>
 						{ getUnsavedChangesWarning() }
 						{ getThemePreviewAndSwatches() }
+						{ getFontSizeOptions() }
+						{ getUnsavedChangesWarning() }
 						{ getSaveResetButtons() }
 					</div>
 				</form>

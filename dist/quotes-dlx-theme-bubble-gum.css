@@ -2,8 +2,11 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/themes/bubble-gum.scss ***!
   \*****************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-bubble-gum {
-  font-size: 16px;
+  font-size: var(--qdlx-bubble-gum-font-size, 16px);
   /* Meatball Menu */
 }
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
@@ -74,15 +77,27 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
   font-family: "Lato", serif;
   font-weight: 400;
-  font-size: 1.5em;
-  line-height: 1.65;
+  font-size: 1.1em;
   color: var(--qdlx-bubble-gum-secondary, #fdeef2);
+  line-height: var(--qdlx-bubble-gum-line-height-mobile, 1.1);
   margin: 0 !important; /* override core style */
   border: 0;
   quotes: none;
   vertical-align: baseline;
   font-style: inherit;
   padding: 68px 68px 24px 68px;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.35em;
+    line-height: var(--qdlx-bubble-gum-line-height-tablet, 1.1);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.5em;
+    line-height: var(--qdlx-bubble-gum-line-height-desktop, 1.65);
+  }
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button-wrapper {
   display: flex;

@@ -8,9 +8,9 @@
 namespace MediaRonLLC\QuotesDLX;
 
 /**
- * Class Options_Theme_Colors
+ * Class Options_Theme
  */
-class Options_Theme_Colors extends Options_Abstract {
+class Options_Theme extends Options_Abstract {
 
 	use Options_Trait;
 
@@ -46,7 +46,9 @@ class Options_Theme_Colors extends Options_Abstract {
 	 * Retrieve default options for the plugin.
 	 */
 	public static function get_defaults() {
-		$defaults = array();
+		$defaults = array(
+			'font_size' => '16px',
+		);
 
 		/**
 		 * Filter for option defaults.

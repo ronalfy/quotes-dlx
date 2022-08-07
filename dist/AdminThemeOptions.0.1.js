@@ -429,8 +429,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var photoswipe_dynamic_caption_plugin_photoswipe_dynamic_caption_plugin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css */ "./node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/range-control/index.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
@@ -460,6 +462,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 /* eslint-disable no-unused-vars */
+
 
 
 
@@ -581,9 +584,33 @@ var Interface = function Interface(props) {
       hasUnsavedChanges = _useState20[0],
       setHasUnsavedChanges = _useState20[1];
 
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useForm)({
+    defaultValues: {
+      fontSize: data.font_size
+    }
+  }),
+      register = _useForm.register,
+      control = _useForm.control,
+      handleSubmit = _useForm.handleSubmit,
+      setValue = _useForm.setValue,
+      getValues = _useForm.getValues,
+      reset = _useForm.reset;
+
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useWatch)({
+    control: control
+  });
+
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useFormState)({
+    control: control
+  }),
+      errors = _useFormState.errors,
+      isDirty = _useFormState.isDirty,
+      dirtyFields = _useFormState.dirtyFields,
+      touchedFields = _useFormState.touchedFields;
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setLoading(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_get_theme_colors', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_get_theme_options', {
       nonce: quotes_dlx_admin.options_retrieve_nonce,
       active_template: activeTheme
     }).then(function (ajaxResponse) {
@@ -616,7 +643,7 @@ var Interface = function Interface(props) {
 
   var getCategories = function getCategories() {
     return categories.map(function (cat, catIndex) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
         key: cat.slug,
         className: "qdlx-admin__themes--content-inner",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Theme', 'quotes-dlx'),
@@ -639,7 +666,7 @@ var Interface = function Interface(props) {
 
   var _onSubmit = function onSubmit() {
     setSaving(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_theme_colors', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_theme_options', {
       nonce: quotes_dlx_admin.options_save_nonce,
       colors: themeColors,
       template: activeTheme
@@ -662,7 +689,7 @@ var Interface = function Interface(props) {
 
   var handleReset = function handleReset(e) {
     setResetting(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_theme_colors', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_theme_options', {
       nonce: quotes_dlx_admin.options_save_nonce,
       template: activeTheme
     }).then(function (ajaxResponse) {
@@ -743,7 +770,7 @@ var Interface = function Interface(props) {
       className: "qdlx-admin__tabs--content-inner"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-actions"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
         'has-error': hasErrors()
       }, {
@@ -759,7 +786,7 @@ var Interface = function Interface(props) {
       iconSize: "18",
       iconPosition: "right",
       disabled: saving || resetting
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
         'has-icon': resetting
       }, {
@@ -824,6 +851,19 @@ var Interface = function Interface(props) {
       status: "warning",
       className: "qdlx-admin__unsaved-changes-warning",
       message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx')
+    });
+  };
+
+  var getFontSizeRangeInput = function getFontSizeRangeInput() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Size', 'quotes-dlx'),
+      value: fontSize,
+      onChange: function onChange(value) {
+        setFontSize(value);
+      },
+      min: 12,
+      max: 36,
+      step: 1
     });
   };
 

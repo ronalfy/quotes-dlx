@@ -99,7 +99,7 @@ class Blocks {
 		$themes = Themes::get_theme_data();
 
 		foreach ( $themes as $theme ) {
-			$theme_colors = Options_Theme_Colors::get_theme_colors( $theme['slug'] );
+			$theme_colors = Options_Theme::get_theme_colors( $theme['slug'] );
 			if ( ! empty( $theme_colors ) ) {
 				?>
 				<style>

@@ -3,7 +3,8 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { __ } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import { Button, SelectControl } from '@wordpress/components';
+import { Button, SelectControl, RangeControl } from '@wordpress/components';
+import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
 import sendCommand from '../../utils/SendCommand';
@@ -78,9 +79,22 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 	const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState( false );
 
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
+			defaultValues: {
+				fontSize: data.font_size,
+			},
+		} );
+
+	const formValues = useWatch( { control } );
+
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
+
 	useEffect( () => {
 		setLoading( true );
-		sendCommand( 'quotes_dlx_get_theme_colors', {
+		sendCommand( 'quotes_dlx_get_theme_options', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
 			active_template: activeTheme,
 		} )
@@ -141,7 +155,7 @@ const Interface = ( props ) => {
 
 	const onSubmit = () => {
 		setSaving( true );
-		sendCommand( 'quotes_dlx_save_theme_colors', {
+		sendCommand( 'quotes_dlx_save_theme_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			colors: themeColors,
 			template: activeTheme,
@@ -168,7 +182,7 @@ const Interface = ( props ) => {
 
 	const handleReset = ( e ) => {
 		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_theme_colors', {
+		sendCommand( 'quotes_dlx_reset_theme_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			template: activeTheme,
 		} )
@@ -353,6 +367,21 @@ const Interface = ( props ) => {
 				status="warning"
 				className="qdlx-admin__unsaved-changes-warning"
 				message={ __( 'You have unsaved changes.', 'quotes-dlx' ) }
+			/>
+		);
+	};
+
+	const getFontSizeRangeInput = () => {
+		return (
+			<RangeControl
+				label={ __( 'Font Size', 'quotes-dlx' ) }
+				value={ fontSize }
+				onChange={ ( value ) => {
+					setFontSize( value );
+				} }
+				min={ 12 }
+				max={ 36 }
+				step={ 1 }
 			/>
 		);
 	};

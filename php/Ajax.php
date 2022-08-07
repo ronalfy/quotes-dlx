@@ -41,9 +41,9 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
 		// For retrieving a theme's color palette.
-		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
-		add_action( 'wp_ajax_quotes_dlx_save_theme_colors', array( static::class, 'ajax_save_theme_colors' ) );
-		add_action( 'wp_ajax_quotes_dlx_reset_theme_colors', array( static::class, 'ajax_reset_theme_colors' ) );
+		add_action( 'wp_ajax_quotes_dlx_get_theme_options', array( static::class, 'ajax_get_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_options', array( static::class, 'ajax_save_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_options', array( static::class, 'ajax_reset_theme_options' ) );
 
 		return $self;
 	}
@@ -161,7 +161,7 @@ class Ajax {
 	/**
 	 * Retrieve theme colors.
 	 */
-	public static function ajax_get_theme_colors() {
+	public static function ajax_get_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -184,8 +184,11 @@ class Ajax {
 		$theme_default_colors = $themes['colors'];
 
 		// Get saved colors.
-		$maybe_saved_colors = Options_Theme_Colors::get_options();
-		$saved_colors       = $maybe_saved_colors[ $template_slug ] ?? false;
+		$theme_options = Options_Theme::get_options();
+		$saved_colors       = $theme_options[ $template_slug ]['colors'] ?? false;
+
+		// Get saved font size.
+		$theme_font_size = $theme_options[ $template_slug ]['font_size'] ?? '16px';
 
 		// Check saved colors and set to defaults if not set.
 		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
@@ -196,6 +199,7 @@ class Ajax {
 			array(
 				'colors'   => $saved_colors,
 				'defaults' => $theme_default_colors,
+				'font_size' => $theme_font_size,
 			)
 		);
 		exit;
@@ -204,7 +208,7 @@ class Ajax {
 	/**
 	 * Reset theme color options.
 	 */
-	public static function ajax_reset_theme_colors() {
+	public static function ajax_reset_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -224,7 +228,7 @@ class Ajax {
 		}
 
 		// Get saved colors.
-		Options_Theme_Colors::update_options( $template_slug, array(), true );
+		Options_Theme::update_options( $template_slug, array(), true );
 
 		wp_send_json_success(
 			array(
@@ -238,7 +242,7 @@ class Ajax {
 	/**
 	 * Reset form options for contextual menu options.
 	 */
-	public static function ajax_save_theme_colors() {
+	public static function ajax_save_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -256,9 +260,9 @@ class Ajax {
 			);
 		}
 
-		$theme_options                   = Options_Theme_Colors::get_options( '', true );
-		$theme_options[ $template_slug ] = $sanitized_colors;
-		Options_Theme_Colors::update_options( '', $theme_options, true );
+		$theme_options                   = Options_Theme::get_options( '', true );
+		$theme_options[ $template_slug ]['colors'] = $sanitized_colors;
+		Options_Theme::update_options( '', $theme_options, true );
 		wp_send_json_success(
 			array(
 				'message' => __( 'Your theme colors have been saved.', 'quotes-dlx' ),

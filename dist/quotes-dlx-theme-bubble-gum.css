@@ -36,7 +36,7 @@
   left: 32px;
   top: 32px;
   border-radius: 5px;
-  border: 4px solid #FFF;
+  border: 4px solid var(--qdlx-bubble-gum-accent, #FFF);
 }
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx .quotes-dlx-wrapper figure,
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx .quotes-dlx-wrapper div.quotes-dlx-button-wrapper {

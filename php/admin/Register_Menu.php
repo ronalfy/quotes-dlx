@@ -75,6 +75,13 @@ class Register_Menu {
 			Functions::get_plugin_version(),
 			'all'
 		);
+		wp_enqueue_style(
+			'quotes-dlx-fonts',
+			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
 
 		/**
 		 * Filter the output of the block defaults.

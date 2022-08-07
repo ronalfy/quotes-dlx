@@ -44,7 +44,7 @@ $dark: #000;
 			left: 32px;
 			top: 32px;
 			border-radius: 5px;
-			border: 4px solid $accent;
+			border: 4px solid var( --qdlx-bubble-gum-accent, $accent );
 		}
 
 		figure,

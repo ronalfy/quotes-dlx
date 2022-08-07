@@ -67,7 +67,11 @@ class Blocks {
 
 		// Check for post content.
 		$post_content = $post->post_content ?? '';
-		if ( empty( $post_content ) ) {
+		if ( ! is_a( $post, 'WP_Post' ) ) {
+			return;
+		}
+		if ( is_admin() ) {
+			$this->output_theme_style_root();
 			return;
 		}
 		$blocks = parse_blocks( $post_content );
@@ -78,32 +82,43 @@ class Blocks {
 					if ( $template ) {
 						$handle = 'quotes-dlx-' . $template;
 						if ( ! wp_script_is( $handle, 'done' ) ) {
-							$theme_colors = Options_Theme_Colors::get_theme_colors( $template );
-
-							if ( ! empty( $theme_colors ) ) {
-								?>
-								<style>
-									:root {
-								<?php
-								foreach ( $theme_colors as $color ) {
-									echo esc_html(
-										sprintf(
-											'--qdlx-%s-%s: %s;',
-											esc_attr( $template ),
-											esc_attr( $color['slug'] ),
-											esc_attr( $color['color'] )
-										)
-									);
-								}
-								?>
-									}
-								</style>
-								<?php
-							}
+							$this->output_theme_style_root();
 							wp_print_styles( array( $handle ) );
 						}
 					}
 				}
+			}
+		}
+	}
+
+	/**
+	 * Print out root css vars for the block.
+	 */
+	private function output_theme_style_root() {
+		// Get themes.
+		$themes = Themes::get_theme_data();
+
+		foreach ( $themes as $theme ) {
+			$theme_colors = Options_Theme_Colors::get_theme_colors( $theme['slug'] );
+			if ( ! empty( $theme_colors ) ) {
+				?>
+				<style>
+					:root {
+				<?php
+				foreach ( $theme_colors as $color ) {
+					echo esc_html(
+						sprintf(
+							'--qdlx-%s-%s: %s;',
+							esc_attr( $theme['slug'] ),
+							esc_attr( $color['slug'] ),
+							esc_attr( $color['color'] )
+						)
+					);
+				}
+				?>
+					}
+				</style>
+				<?php
 			}
 		}
 	}
@@ -559,7 +574,7 @@ class Blocks {
 			wp_register_style(
 				$dep,
 				esc_url( $theme['stylesheet'] ),
-				array(),
+				$theme_deps,
 				$theme['version'],
 				'all'
 			);

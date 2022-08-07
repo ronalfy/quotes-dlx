@@ -196,12 +196,10 @@ const Interface = ( props ) => {
 	const getThemes = ( category ) => {
 		const themeCollection = [];
 		category.themes.forEach( ( theme, themeIndex ) => {
-			themeCollection.push(
-				{
-					label: theme.name,
-					value: theme.slug,
-				}
-			);
+			themeCollection.push( {
+				label: theme.name,
+				value: theme.slug,
+			} );
 		} );
 		return themeCollection;
 	};
@@ -246,7 +244,7 @@ const Interface = ( props ) => {
 				defaultColor={ colorOption.color }
 				slug={ colorOption.slug }
 			/>
-		 ) );
+		) );
 	};
 
 	const getSaveResetButtons = () => {
@@ -316,16 +314,15 @@ const Interface = ( props ) => {
 							status="success"
 							politeness="assertive"
 						/>
-					) }</div>
+					) }
+				</div>
 			</>
 		);
 	};
 
 	const getThemePreviewAndSwatches = () => {
 		if ( loading ) {
-			return (
-				<AdminThemeColorsLoader showHeader={ false } />
-			);
+			return <AdminThemeColorsLoader showHeader={ false } />;
 		}
 		return (
 			<div className="qdlx-admin__tabs--content-inner">
@@ -363,9 +360,12 @@ const Interface = ( props ) => {
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
-				<form onSubmit={ ( e ) => {
-					e.preventDefault(); onSubmit();
-				} } >
+				<form
+					onSubmit={ ( e ) => {
+						e.preventDefault();
+						onSubmit();
+					} }
+				>
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>

@@ -21,7 +21,7 @@ const retrieveDefaults = () => {
 	} );
 };
 
-const AdminDefaults = ( props ) => {
+const AdminThemeOptions = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
 		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
@@ -71,16 +71,12 @@ const Interface = ( props ) => {
 		},
 	] );
 
-	// Get saved colors (TODO - Read from data ).
-	const [ colorPrimary, setColorPrimary ] = useState( '' );
-	const [ colorSecondary, setColorSecondary ] = useState( '' );
-	const [ colorAccent, setColorAccent ] = useState( '' );
-
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
+	const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState( false );
 
 	useEffect( () => {
 		setLoading( true );
@@ -95,6 +91,7 @@ const Interface = ( props ) => {
 					setThemeColors( Object.values( ajaxData.colors ) );
 					setSavedThemeColors( Object.values( ajaxData.colors ) );
 					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
+					setHasUnsavedChanges( false );
 				} else {
 					// Error stuff.
 				}
@@ -154,6 +151,7 @@ const Interface = ( props ) => {
 				const ajaxSuccess = ajaxResponse.data.success;
 
 				if ( ajaxSuccess ) {
+					setHasUnsavedChanges( false );
 					setIsSaved( true );
 					setTimeout( () => {
 						setIsSaved( false );
@@ -181,6 +179,7 @@ const Interface = ( props ) => {
 					setThemeColors( Object.values( ajaxData.colors ) );
 					setSavedThemeColors( Object.values( ajaxData.defaults ) );
 					setIsReset( true );
+					setHasUnsavedChanges( false );
 					setTimeout( () => {
 						setIsReset( false );
 					}, 3000 );
@@ -238,6 +237,7 @@ const Interface = ( props ) => {
 							newThemeColors.push( colorObj );
 						}
 					} );
+					setHasUnsavedChanges( true );
 					setSavedThemeColors( newThemeColors );
 					setThemeColors( newThemeColors );
 				} }
@@ -252,70 +252,71 @@ const Interface = ( props ) => {
 	const getSaveResetButtons = () => {
 		return (
 			<>
-				<div className="qdlx-admin__tabs--content-actions">
-					<Button
-						className={ classNames(
-							'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-							{ 'has-error': hasErrors() },
-							{ 'has-icon': saving },
-							{ 'is-saving': { saving } }
-						) }
-						type="submit"
-						text={
-							saving
-								? __( 'Saving…', 'quotes-dlx' )
-								: __( 'Save Theme Colors', 'quotes-dlx' )
-						}
-						icon={ saving ? Spinner : false }
-						iconSize="18"
-						iconPosition="right"
-						disabled={ saving || resetting }
-					/>
-					<Button
-						className={ classNames(
-							'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
-							{ 'has-icon': resetting },
-							{ 'is-resetting': { resetting } }
-						) }
-						type="button"
-						text={
-							resetting
-								? __( 'Resetting…', 'quotes-dlx' )
-								: __( 'Reset Theme Colors', 'quotes-dlx' )
-						}
-						icon={ resetting ? Spinner : false }
-						iconSize="18"
-						iconPosition="right"
-						disabled={ saving || resetting }
-						onClick={ ( e ) => {
-							setResetting( true );
-							handleReset( e );
-						} }
-					/>
-				</div>
-				{ hasErrors() && (
-					<Notice
-						message={ __(
-							'There are form validation errors. Please correct them above.'
-						) }
-						status="error"
-						politeness="polite"
-					/>
-				) }
-				{ isSaved && (
-					<Notice
-						message={ __( 'Your settings have been saved.' ) }
-						status="success"
-						politeness="assertive"
-					/>
-				) }
-				{ isReset && (
-					<Notice
-						message={ __( 'Your settings have been reset to defaults.' ) }
-						status="success"
-						politeness="assertive"
-					/>
-				) }
+				<div className="qdlx-admin__tabs--content-inner">
+					<div className="qdlx-admin__tabs--content-actions">
+						<Button
+							className={ classNames(
+								'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+								{ 'has-error': hasErrors() },
+								{ 'has-icon': saving },
+								{ 'is-saving': { saving } }
+							) }
+							type="submit"
+							text={
+								saving
+									? __( 'Saving…', 'quotes-dlx' )
+									: __( 'Save Theme Options', 'quotes-dlx' )
+							}
+							icon={ saving ? Spinner : false }
+							iconSize="18"
+							iconPosition="right"
+							disabled={ saving || resetting }
+						/>
+						<Button
+							className={ classNames(
+								'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+								{ 'has-icon': resetting },
+								{ 'is-resetting': { resetting } }
+							) }
+							type="button"
+							text={
+								resetting
+									? __( 'Resetting…', 'quotes-dlx' )
+									: __( 'Reset Theme Options', 'quotes-dlx' )
+							}
+							icon={ resetting ? Spinner : false }
+							iconSize="18"
+							iconPosition="right"
+							disabled={ saving || resetting }
+							onClick={ ( e ) => {
+								setResetting( true );
+								handleReset( e );
+							} }
+						/>
+					</div>
+					{ hasErrors() && (
+						<Notice
+							message={ __(
+								'There are form validation errors. Please correct them above.'
+							) }
+							status="error"
+							politeness="polite"
+						/>
+					) }
+					{ isSaved && (
+						<Notice
+							message={ __( 'Your settings have been saved.' ) }
+							status="success"
+							politeness="assertive"
+						/>
+					) }
+					{ isReset && (
+						<Notice
+							message={ __( 'Your settings have been reset to defaults.' ) }
+							status="success"
+							politeness="assertive"
+						/>
+					) }</div>
 			</>
 		);
 	};
@@ -346,6 +347,19 @@ const Interface = ( props ) => {
 		);
 	};
 
+	const getUnsavedChangesWarning = () => {
+		if ( ! hasUnsavedChanges ) {
+			return null;
+		}
+		return (
+			<Notice
+				status="warning"
+				className="qdlx-admin__unsaved-changes-warning"
+				message={ __( 'You have unsaved changes.', 'quotes-dlx' ) }
+			/>
+		);
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
@@ -357,16 +371,17 @@ const Interface = ( props ) => {
 							<h1>
 								<ColorPaletteIcon width={ 48 } height={ 48 } aria-hidden="true" />
 								<span className="qdlx-admin__heading--text">
-									{ __( 'Select Theme Colors', 'quotes-dlx' ) }
+									{ __( 'Select Theme Options', 'quotes-dlx' ) }
 								</span>
 							</h1>
 							<p className="description">
 								{ __(
-									'You can modify the primary, secondary, and accent colors of each theme.',
+									'You can modify the theme colors, font, and font-sizes for a theme.',
 									'quotes-dlx'
 								) }
 							</p>
 						</div>
+						{ getUnsavedChangesWarning() }
 						{ getThemePreviewAndSwatches() }
 						{ getSaveResetButtons() }
 					</div>
@@ -376,4 +391,4 @@ const Interface = ( props ) => {
 	);
 };
 
-export default AdminDefaults;
+export default AdminThemeOptions;

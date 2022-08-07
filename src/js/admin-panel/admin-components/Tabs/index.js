@@ -35,9 +35,9 @@ const AdminThemesDefaults = lazy( () =>
 	)
 );
 
-const AdminThemeColors = lazy( () =>
+const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeColors.0.1" */ '../../views/AdminThemeColors'
+		/* webpackChunkName: "AdminThemeOptions.0.1" */ '../../views/AdminThemeOptions'
 	)
 );
 
@@ -122,10 +122,10 @@ const AdminTabs = ( props ) => {
 		</>
 	);
 
-	const getAdminThemeColors = (
+	const getAdminThemeOptions = (
 		<>
 			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
-				<AdminThemeColors />
+				<AdminThemeOptions />
 			</Suspense>
 		</>
 	);
@@ -195,9 +195,9 @@ const AdminTabs = ( props ) => {
 					/>
 					<TabItem
 						icon={ ColorPaletteIcon }
-						slug="colors"
-						description={ __( 'Set colors for the themes.', 'quotes-dlx' ) }
-						label={ __( 'Theme Colors', 'quotes-dlx' ) }
+						slug="theme-options"
+						description={ __( 'Set color, font, and text options for the themes.', 'quotes-dlx' ) }
+						label={ __( 'Theme Options', 'quotes-dlx' ) }
 						tabClicked={ ( tab ) => {
 							onTabClick( tab );
 						} }
@@ -245,9 +245,9 @@ const AdminTabs = ( props ) => {
 								element={ getAdminThemesDefaults }
 							/>
 							<Route
-								path="/colors"
+								path="/theme-options"
 								exact
-								element={ getAdminThemeColors }
+								element={ getAdminThemeOptions }
 							/>
 							<Route
 								path="/support"

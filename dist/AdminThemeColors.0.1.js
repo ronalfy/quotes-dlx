@@ -549,48 +549,37 @@ var Interface = function Interface(props) {
   }]),
       _useState8 = _slicedToArray(_useState7, 2),
       savedThemeColors = _useState8[0],
-      setSavedThemeColors = _useState8[1]; // Get saved colors (TODO - Read from data ).
+      setSavedThemeColors = _useState8[1];
 
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState10 = _slicedToArray(_useState9, 2),
-      colorPrimary = _useState10[0],
-      setColorPrimary = _useState10[1];
+      loading = _useState10[0],
+      setLoading = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      colorSecondary = _useState12[0],
-      setColorSecondary = _useState12[1];
+      saving = _useState12[0],
+      setSaving = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      colorAccent = _useState14[0],
-      setColorAccent = _useState14[1];
+      isSaved = _useState14[0],
+      setIsSaved = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      loading = _useState16[0],
-      setLoading = _useState16[1];
+      resetting = _useState16[0],
+      setResetting = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      saving = _useState18[0],
-      setSaving = _useState18[1];
+      isReset = _useState18[0],
+      setIsReset = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      isSaved = _useState20[0],
-      setIsSaved = _useState20[1];
-
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState22 = _slicedToArray(_useState21, 2),
-      resetting = _useState22[0],
-      setResetting = _useState22[1];
-
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState24 = _slicedToArray(_useState23, 2),
-      isReset = _useState24[0],
-      setIsReset = _useState24[1];
+      hasUnsavedChanges = _useState20[0],
+      setHasUnsavedChanges = _useState20[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setLoading(true);
@@ -605,6 +594,7 @@ var Interface = function Interface(props) {
         setThemeColors(Object.values(ajaxData.colors));
         setSavedThemeColors(Object.values(ajaxData.colors));
         setDefaultThemeColors(Object.values(ajaxData.defaults));
+        setHasUnsavedChanges(false);
       } else {// Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
@@ -658,6 +648,7 @@ var Interface = function Interface(props) {
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
+        setHasUnsavedChanges(false);
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
@@ -682,6 +673,7 @@ var Interface = function Interface(props) {
         setThemeColors(Object.values(ajaxData.colors));
         setSavedThemeColors(Object.values(ajaxData.defaults));
         setIsReset(true);
+        setHasUnsavedChanges(false);
         setTimeout(function () {
           setIsReset(false);
         }, 3000);
@@ -734,6 +726,7 @@ var Interface = function Interface(props) {
               newThemeColors.push(colorObj);
             }
           });
+          setHasUnsavedChanges(true);
           setSavedThemeColors(newThemeColors);
           setThemeColors(newThemeColors);
         },
@@ -820,6 +813,18 @@ var Interface = function Interface(props) {
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Colors', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, getThemePickers(themeColors))))))));
   };
 
+  var getUnsavedChangesWarning = function getUnsavedChangesWarning() {
+    if (!hasUnsavedChanges) {
+      return null;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      status: "warning",
+      className: "qdlx-admin__unsaved-changes-warning",
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx')
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -838,9 +843,9 @@ var Interface = function Interface(props) {
     "aria-hidden": "true"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Theme Colors', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Theme Options', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "description"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the primary, secondary, and accent colors of each theme.', 'quotes-dlx'))), getThemePreviewAndSwatches(), getSaveResetButtons()))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the theme colors, font, and font-sizes for a theme.', 'quotes-dlx'))), getUnsavedChangesWarning(), getThemePreviewAndSwatches(), getSaveResetButtons()))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);

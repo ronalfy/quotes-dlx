@@ -38904,8 +38904,8 @@ var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE
 var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminThemesDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_photoswipe-dynamic-caption-plugin_photoswipe-dynamic-caption-plugin_css--1b12c6"), __webpack_require__.e("AdminThemesDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
 });
-var AdminThemeColors = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemeColors.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_color-palette_index_js-node_modules_he-ea401b"), __webpack_require__.e("AdminThemeColors.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeColors */ "./src/js/admin-panel/views/AdminThemeColors.js"));
+var AdminThemeOptions = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
+  return Promise.all(/*! import() | AdminThemeOptions.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js-node_modules_axios_ind-d0da22"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_color-palette_index_js-node_modules_he-ea401b"), __webpack_require__.e("AdminThemeOptions.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeOptions */ "./src/js/admin-panel/views/AdminThemeOptions.js"));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminSupport */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminSupport")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js"));
@@ -38960,11 +38960,11 @@ var AdminTabs = function AdminTabs(props) {
   var getAdminThemesDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_3__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemesDefaults, null)));
-  var getAdminThemeColors = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+  var getAdminThemeOptions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], {
       showHeader: true
     })
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemeColors, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemeOptions, null)));
   var getAdminSupport = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null))); // Set browser unload event if dirtycounts are not zero.
@@ -39022,9 +39022,9 @@ var AdminTabs = function AdminTabs(props) {
     dirtyCount: themesDefaultsDirtyCount
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
     icon: _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_11__["default"],
-    slug: "colors",
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set colors for the themes.', 'quotes-dlx'),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Colors', 'quotes-dlx'),
+    slug: "theme-options",
+    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set color, font, and text options for the themes.', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Options', 'quotes-dlx'),
     tabClicked: function tabClicked(tab) {
       onTabClick(tab);
     },
@@ -39067,9 +39067,9 @@ var AdminTabs = function AdminTabs(props) {
     exact: true,
     element: getAdminThemesDefaults
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
-    path: "/colors",
+    path: "/theme-options",
     exact: true,
-    element: getAdminThemeColors
+    element: getAdminThemeOptions
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/support",
     exact: true,
@@ -98885,7 +98885,7 @@ function combine (array, callback) {
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.miniCss = (chunkId, promises) => {
-/******/ 			var cssChunks = {"AdminHome":1,"AdminThemesDefaults0.0.1":1,"AdminThemeColors.0.1":1};
+/******/ 			var cssChunks = {"AdminHome":1,"AdminThemesDefaults0.0.1":1,"AdminThemeOptions.0.1":1};
 /******/ 			if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 			else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 				promises.push(installedCssChunks[chunkId] = loadStylesheet(chunkId).then(() => {

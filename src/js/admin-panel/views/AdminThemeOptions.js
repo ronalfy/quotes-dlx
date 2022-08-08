@@ -7,6 +7,8 @@ import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
+import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
+import "@fancyapps/ui/dist/fancybox.css";
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
@@ -570,7 +572,18 @@ const Interface = ( props ) => {
 									</>
 								) }
 							/>
-							<a href={ `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }` }>
+							<a
+								data-fancybox
+								onClick={ ( e ) => {
+									e.preventDefault();
+									const fancybox = Fancybox.show([
+										{
+										  src: `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }`,
+										  type: "iframe",
+										},
+									  ]);
+								}}
+							href={ `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }` }>
 								{ __( 'Preview', 'quotes-dlx' ) }
 							</a>
 

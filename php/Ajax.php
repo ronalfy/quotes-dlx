@@ -213,6 +213,13 @@ class Ajax {
 			Functions::get_plugin_version(),
 			'all'
 		);
+		wp_register_style(
+			'qdlx_frontend_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
 
 		// Get localized vars.
 		$themes = Themes\Themes_Addon::get_theme_data( $template );
@@ -249,6 +256,8 @@ class Ajax {
 					array(
 						'qdlx_theme_css',
 						'qdlx_twitter_preview_css',
+						'qdlx_font_css',
+						'qdlx_frontend_css',
 					)
 				);
 				?>

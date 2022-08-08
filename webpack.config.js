@@ -98,6 +98,10 @@ module.exports = ( env ) => {
 								__dirname,
 								'node_modules/photoswipe/dist/photoswipe.css'
 							),
+							path.resolve(
+								__dirname,
+								'node_modules/@fancyapps/ui/dist/fancybox.css'
+							),
 						],
 						use: [
 							{

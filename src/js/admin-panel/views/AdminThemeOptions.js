@@ -7,8 +7,8 @@ import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
-import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
-import "@fancyapps/ui/dist/fancybox.css";
+import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
+import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
@@ -17,6 +17,7 @@ import ThemeColorPicker from '../admin-components/ThemeColorPicker';
 import ThemePreview from '../admin-components/ThemePreview';
 import Notice from '../admin-components/Notice';
 import Spinner from '../../components/icons/Spinner';
+import ThemeSizes from '../admin-components/ThemeSizes';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -157,6 +158,7 @@ const Interface = ( props ) => {
 					colors={ themeColors }
 					fontSize={ getValues( 'fontSizeDesktop' ) + '' }
 					lineHeight={ getValues( 'lineHeightDesktop' ) }
+					colorsOnly={ true }
 				/>
 			</>
 		);
@@ -286,7 +288,7 @@ const Interface = ( props ) => {
 							text={
 								saving
 									? __( 'Saving…', 'quotes-dlx' )
-									: __( 'Save Theme Options', 'quotes-dlx' )
+									: __( 'Save Theme Colors', 'quotes-dlx' )
 							}
 							icon={ saving ? Spinner : false }
 							iconSize="18"
@@ -303,7 +305,7 @@ const Interface = ( props ) => {
 							text={
 								resetting
 									? __( 'Resetting…', 'quotes-dlx' )
-									: __( 'Reset Theme Options', 'quotes-dlx' )
+									: __( 'Reset Theme Colors', 'quotes-dlx' )
 							}
 							icon={ resetting ? Spinner : false }
 							iconSize="18"
@@ -348,20 +350,35 @@ const Interface = ( props ) => {
 			return <AdminThemeColorsLoader showHeader={ false } />;
 		}
 		return (
-			<div className="qdlx-admin__tabs--content-inner">
-				{ getCategories() }
-				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
-				<div className="qdlx-admin__color-pickers">
-					<div className="qdlx-admin__color-primary">
-						<table className="form-table" role="presentation">
-							<tbody>
-								<tr>
-									<th scope="row">{ __( 'Theme Colors', 'quotes-dlx' ) }</th>
-									<td>{ getThemePickers( themeColors ) }</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+			<div className="qdlx-admin__tabs--content-wrap">
+				<div className="qdlx-admin__tabs--content-panel">
+					<form
+						onSubmit={ ( e ) => {
+							e.preventDefault();
+							onSubmit();
+						} }
+					>
+						<div className="qdlx-admin__tabs--content-heading">
+							<h2>
+								{ __( 'Select Theme Colors', 'quotes-dlx' ) }
+							</h2>
+							<p className="description">
+								{ __(
+									'Globally modify the colors of the theme.',
+									'quotes-dlx'
+								) }
+							</p>
+						</div>
+						<div className="qdlx-admin__tabs--content-inner">
+							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+							<div className="qdlx-admin__color-pickers">
+								<div className="qdlx-admin__color-primary">
+									{ getThemePickers( themeColors ) }
+								</div>
+							</div>
+						</div>
+						{ getSaveResetButtons() }
+					</form>
 				</div>
 			</div>
 		);
@@ -382,229 +399,17 @@ const Interface = ( props ) => {
 
 	const getFontSizeOptions = () => {
 		return (
-			<table className="form-table qdlx-font-sizes" role="presentation">
-				<tbody>
-					<tr>
-						<th scope="row">{ __( 'Desktop Options', 'quotes-dlx' ) }</th>
-						<td>
-							<Controller
-								name="fontSizeDesktop"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<>
-										<RangeControl
-											label={ __(
-												'Set the Base Desktop Font Size',
-												'comment-edit-pro'
-											) }
-											step={ 1 }
-											value={ value }
-											max={ 48 }
-											min={ 8 }
-											currentInput={ 16 }
-											initialPosition={ 16 }
-											allowReset={ true }
-											className="qdlx-admin__range-control"
-											onChange={ ( fontSizeValue ) => {
-												onChange( fontSizeValue );
-											} }
-											help={ __(
-												'Set the font size of the desktop size for the theme.',
-												'comment-edit-pro'
-											) }
-											trackColor="#8019c4"
-											railColor="#dad4eb"
-										/>
-									</>
-								) }
-							/>
-							<Controller
-								name="lineHeightDesktop"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<>
-										<RangeControl
-											label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
-											step={ 0.1 }
-											value={ value }
-											max={ 3 }
-											min={ 0.25 }
-											currentInput={ 1.2 }
-											initialPosition={ 1.2 }
-											allowReset={ true }
-											className="qdlx-admin__range-control"
-											onChange={ ( lineHeightValue ) => {
-												onChange( lineHeightValue );
-											} }
-											help={ __(
-												'Set the line-height of the theme for desktop.',
-												'comment-edit-pro'
-											) }
-											trackColor="#8019c4"
-											railColor="#dad4eb"
-										/>
-									</>
-								) }
-							/>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">{ __( 'Tablet Options', 'quotes-dlx' ) }</th>
-						<td>
-							<Controller
-								name="fontSizeTablet"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<>
-										<RangeControl
-											label={ __( 'Set the Base Tablet Font Size', 'comment-edit-pro' ) }
-											step={ 1 }
-											value={ value }
-											max={ 48 }
-											min={ 8 }
-											currentInput={ 16 }
-											initialPosition={ 16 }
-											allowReset={ true }
-											className="qdlx-admin__range-control"
-											onChange={ ( fontSizeValue ) => {
-												onChange( fontSizeValue );
-											} }
-											help={ __(
-												'Set the font size of the tablet size for the theme.',
-												'comment-edit-pro'
-											) }
-											trackColor="#8019c4"
-											railColor="#dad4eb"
-										/>
-										<Controller
-											name="lineHeightTablet"
-											control={ control }
-											render={ ( { field: { onChange, value } } ) => (
-												<>
-													<RangeControl
-														label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
-														step={ 0.1 }
-														value={ value }
-														max={ 3 }
-														min={ 0.25 }
-														currentInput={ 1.1 }
-														initialPosition={ 1.1 }
-														allowReset={ true }
-														className="qdlx-admin__range-control"
-														onChange={ ( lineHeightValue ) => {
-															onChange( lineHeightValue );
-														} }
-														help={ __(
-															'Set the line-height of the theme for tablet size.',
-															'comment-edit-pro'
-														) }
-														trackColor="#8019c4"
-														railColor="#dad4eb"
-													/>
-												</>
-											) }
-										/>
-
-									</>
-								) }
-							/>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">{ __( 'Mobile Options', 'quotes-dlx' ) }</th>
-						<td>
-							<Controller
-								name="fontSizeMobile"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<>
-										<RangeControl
-											label={ __(
-												'Set the Base Mobile Font Size',
-												'comment-edit-pro'
-											) }
-											step={ 1 }
-											value={ value }
-											max={ 48 }
-											min={ 8 }
-											currentInput={ 16 }
-											initialPosition={ 16 }
-											allowReset={ true }
-											className="qdlx-admin__range-control"
-											onChange={ ( fontSizeValue ) => {
-												onChange( fontSizeValue );
-											} }
-											help={ __(
-												'Set the font size of the mobile size for the theme.',
-												'comment-edit-pro'
-											) }
-											trackColor="#8019c4"
-											railColor="#dad4eb"
-										/>
-									</>
-								) }
-							/>
-							<Controller
-								name="lineHeightMobile"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<>
-										<RangeControl
-											label={ __( 'Set the Line Height', 'comment-edit-pro' ) }
-											step={ 0.1 }
-											value={ value }
-											max={ 3 }
-											min={ 0.25 }
-											currentInput={ 1.1 }
-											initialPosition={ 1.1 }
-											allowReset={ true }
-											className="qdlx-admin__range-control"
-											onChange={ ( lineHeightValue ) => {
-												onChange( lineHeightValue );
-											} }
-											help={ __(
-												'Set the line-height of the theme for mobile size.',
-												'comment-edit-pro'
-											) }
-											trackColor="#8019c4"
-											railColor="#dad4eb"
-										/>
-									</>
-								) }
-							/>
-							<a
-								data-fancybox
-								onClick={ ( e ) => {
-									e.preventDefault();
-									const fancybox = Fancybox.show([
-										{
-										  src: `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }`,
-										  type: "iframe",
-										},
-									  ]);
-								}}
-							href={ `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent( getValues( 'fontSizeMobile' ) ) }&lineheight=${ encodeURIComponent( getValues( 'lineHeightMobile' ) ) }&nonce=${ quotes_dlx_admin.options_retrieve_nonce }&template=${ encodeURIComponent( template ) }` }>
-								{ __( 'Preview', 'quotes-dlx' ) }
-							</a>
-
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<ThemeSizes
+				template={ activeTheme }
+			/>
 		);
 	};
 
-	console.log( getValues() );
-
 	return (
 		<>
-			<div className="qdlx-admin__tabs--content-wrap">
-				<form
-					onSubmit={ ( e ) => {
-						e.preventDefault();
-						onSubmit();
-					} }
-				>
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<div className="qdlx-admin__tabs--content-wrap">
+
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
@@ -620,14 +425,15 @@ const Interface = ( props ) => {
 								) }
 							</p>
 						</div>
-						{ getUnsavedChangesWarning() }
-						{ getThemePreviewAndSwatches() }
-						{ getFontSizeOptions() }
-						{ getUnsavedChangesWarning() }
-						{ getSaveResetButtons() }
+						<div className="qdlx-admin__tabs--content-inner">
+							{ getCategories() }
+						</div>
 					</div>
-				</form>
+				</div>
+				{ getThemePreviewAndSwatches() }
+				{ getFontSizeOptions() }
 			</div>
+
 		</>
 	);
 };

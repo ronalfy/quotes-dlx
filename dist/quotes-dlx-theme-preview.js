@@ -1915,7 +1915,8 @@ var ThemePreview = function ThemePreview(props) {
       colors = props.colors,
       stylesheet = props.stylesheet,
       fontSize = props.fontSize,
-      lineHeight = props.lineHeight;
+      lineHeight = props.lineHeight,
+      colorsOnly = props.colorsOnly;
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
@@ -1940,7 +1941,7 @@ var ThemePreview = function ThemePreview(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), getFontSize(), getLineHeight(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
     rel: "stylesheet",
     href: stylesheet
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1980,14 +1981,16 @@ ThemePreview.defaultProps = {
   colors: [],
   stylesheet: '',
   fontSize: '16px',
-  lineHeight: 1.65
+  lineHeight: 1.65,
+  colorsOnly: false
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array.isRequired),
   stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired)
+  lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
+  colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 

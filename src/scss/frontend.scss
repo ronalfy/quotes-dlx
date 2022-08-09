@@ -1,11 +1,32 @@
+@use "sass:map";
 @import './colors.scss';
 @import './themes.scss';
 @import './button-resets.scss';
 @import './meatball-menu.scss';
 @import '../js/components/MeatballMenu/editor.scss';
+@import './breakpoints-mixin.scss';
 
 .quotes-dlx-text {
 	p:last-child {
 		margin-bottom: 0;	
+	}
+}
+
+/* Modal iframe popup in the theme options screen */
+#qdlx-theme-preview {
+	&.mobile {
+		.quotes-dlx {
+			max-width: map.get($breakpoints, "small") !important;
+		}
+	}
+	&.tablet {
+		.quotes-dlx {
+			max-width: map.get($breakpoints, "medium") !important;
+		}
+	}
+	&.desktop {
+		.quotes-dlx {
+			max-width: 800px !important;
+		}
 	}
 }

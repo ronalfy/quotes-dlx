@@ -102,8 +102,22 @@ button.button-reset.show-cursor {
   top: 1.875em;
 }
 
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-text p:last-child {
   margin-bottom: 0;
+}
+
+/* Modal iframe popup in the theme options screen */
+#qdlx-theme-preview.mobile .quotes-dlx {
+  max-width: 30em !important;
+}
+#qdlx-theme-preview.tablet .quotes-dlx {
+  max-width: 48em !important;
+}
+#qdlx-theme-preview.desktop .quotes-dlx {
+  max-width: 800px !important;
 }
 
 /*# sourceMappingURL=quotes-dlx-frontend.css.map*/

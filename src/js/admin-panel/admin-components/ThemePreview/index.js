@@ -6,7 +6,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet, fontSize, lineHeight } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, colorsOnly } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -45,8 +45,15 @@ const ThemePreview = ( props ) => {
 	return (
 		<>
 			{ getColorStyleVars() }
-			{ getFontSize() }
-			{ getLineHeight() }
+
+			{ ! colorsOnly && (
+				<>
+					{ getFontSize() }
+					{ getLineHeight() }
+				</>
+
+			) }
+
 			<link rel="stylesheet" href={ stylesheet } />
 			<div
 				className={ classNames( 'quotes-dlx', {
@@ -107,6 +114,7 @@ ThemePreview.defaultProps = {
 	stylesheet: '',
 	fontSize: '16px',
 	lineHeight: 1.65,
+	colorsOnly: false,
 };
 
 ThemePreview.propTypes = {
@@ -115,6 +123,7 @@ ThemePreview.propTypes = {
 	stylesheet: PropTypes.string.isRequired,
 	fontSize: PropTypes.string.isRequired,
 	lineHeight: PropTypes.number.isRequired,
+	colorsOnly: PropTypes.bool.isRequired,
 };
 
 export default ThemePreview;

@@ -172,6 +172,7 @@ class Ajax {
 		$template    = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
 		$size        = absint( filter_input( INPUT_GET, 'size', FILTER_SANITIZE_NUMBER_INT ) );
 		$line_height = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT );
+		$view        = sanitize_text_field( filter_input( INPUT_GET, 'view', FILTER_DEFAULT ) );
 
 		wp_register_script(
 			'qdlx_twitter_actions',
@@ -263,7 +264,7 @@ class Ajax {
 				?>
 			</head>
 			<body>
-				<div id="qdlx-theme-preview"></div>
+				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $view ); ?>"></div>
 				<?php
 					wp_print_scripts(
 						array(

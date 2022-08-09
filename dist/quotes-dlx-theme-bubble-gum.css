@@ -150,7 +150,7 @@
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
   font-size: var(--qdlx-bubble-gum-button-font-size, 16px);
-  top: calc(50% - (2px + var(--qdlx-bubble-gum-button-font-size, 16px) / 2));
+  top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size, 16px) / 2));
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon svg {
   width: 1.2em;

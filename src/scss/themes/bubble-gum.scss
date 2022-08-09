@@ -165,7 +165,7 @@ $dark: #000;
 			}
 			.quotes-dlx-button-icon {
 				font-size: var( --qdlx-bubble-gum-button-font-size, 16px );
-				top: calc(50% - (2px + (var(--qdlx-bubble-gum-button-font-size, 16px) / 2)));
+				top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size, 16px) / 2)));
 
 				svg {
 					width: 1.2em;

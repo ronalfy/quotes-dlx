@@ -87,6 +87,7 @@ const Interface = ( props ) => {
 			defaultValues: {
 				fontSizeDesktop: data.font_size_desktop,
 				fontSizeTablet: data.font_size_tablet,
+				buttonFontSizeDesktop: data.button_font_size_desktop,
 				fontSizeMobile: data.font_size_mobile,
 				lineHeightDesktop: data.line_height_desktop,
 				lineHeightTablet: data.line_height_tablet,
@@ -156,8 +157,9 @@ const Interface = ( props ) => {
 					activeTheme={ activeTheme }
 					stylesheet={ getActiveThemeStylesheet() }
 					colors={ themeColors }
-					fontSize={ getValues( 'fontSizeDesktop' ) + '' }
-					lineHeight={ getValues( 'lineHeightDesktop' ) }
+					fontSize={ data.font_size_desktop + '' }
+					lineHeight={ data.line_height_desktop }
+					buttonFontSize={ data.button_font_size_desktop + '' }
 					colorsOnly={ true }
 				/>
 			</>
@@ -364,7 +366,7 @@ const Interface = ( props ) => {
 							</h2>
 							<p className="description">
 								{ __(
-									'Globally modify the colors of the theme.',
+									'Modify the colors of the theme.',
 									'quotes-dlx'
 								) }
 							</p>
@@ -401,6 +403,11 @@ const Interface = ( props ) => {
 		return (
 			<ThemeSizes
 				template={ activeTheme }
+				screenSize="desktop"
+				screenSizeLabel={ __( 'Desktop', 'quotes-dlx' ) }
+				fontSize={ data.font_size_desktop }
+				lineHeight={ data.line_height_desktop }
+				buttonFontSize={ data.button_font_size_desktop }
 			/>
 		);
 	};

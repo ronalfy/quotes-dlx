@@ -142,8 +142,19 @@
   transition: all 0.3s ease-in-out;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 1.25em;
+  font-size: var(--qdlx-bubble-gum-button-font-size, 16px);
   line-height: 1em;
+}
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-text {
+  font-size: 1.25em;
+}
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
+  font-size: var(--qdlx-bubble-gum-button-font-size, 16px);
+  top: calc(50% - (2px + var(--qdlx-bubble-gum-button-font-size, 16px) / 2));
+}
+.quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon svg {
+  width: 1.2em;
+  height: 1.2em;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;
@@ -179,7 +190,7 @@
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button.full .quotes-dlx-button-text {
   display: inline-block;
-  padding-right: 28px;
+  padding-right: 1.6em;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
   display: inline-block;

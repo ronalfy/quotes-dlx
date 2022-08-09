@@ -11,6 +11,7 @@ const Preview = () => {
 				colors={ qdlx_theme_preview.colors }
 				fontSize={ qdlx_theme_preview.font_size }
 				lineHeight={ parseFloat( qdlx_theme_preview.line_height ) }
+				buttonFontSize={ qdlx_theme_preview.button_font_size }
 			/>
 		</>
 	);

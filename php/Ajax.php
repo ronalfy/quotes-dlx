@@ -169,10 +169,11 @@ class Ajax {
 			wp_die( 'Invalid request.' );
 		}
 
-		$template    = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
-		$size        = absint( filter_input( INPUT_GET, 'size', FILTER_SANITIZE_NUMBER_INT ) );
-		$line_height = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT );
-		$view        = sanitize_text_field( filter_input( INPUT_GET, 'view', FILTER_DEFAULT ) );
+		$template         = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$size             = absint( filter_input( INPUT_GET, 'size', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT );
+		$view             = sanitize_text_field( filter_input( INPUT_GET, 'view', FILTER_DEFAULT ) );
+		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
 
 		wp_register_script(
 			'qdlx_twitter_actions',
@@ -241,11 +242,12 @@ class Ajax {
 			'qdlx_twitter_preview_js',
 			'qdlx_theme_preview',
 			array(
-				'stylesheet' => esc_url( $theme['stylesheet'] ),
-				'theme'             => $template,
-				'colors'            => $saved_colors,
+				'stylesheet'       => esc_url( $theme['stylesheet'] ),
+				'theme'            => $template,
+				'colors'           => $saved_colors,
 				'font_size'        => $size,
-				'line_height'            => (float) $line_height,
+				'line_height'      => (float) $line_height,
+				'button_font_size' => $button_font_size,
 			)
 		);
 		?>
@@ -323,14 +325,17 @@ class Ajax {
 
 		wp_send_json_success(
 			array(
-				'colors'              => $saved_colors,
-				'defaults'            => $theme_default_colors,
-				'font_size_desktop'   => $theme_font_size_desktop,
-				'line_height_desktop' => $theme_line_height_desktop,
-				'font_size_tablet'    => $theme_font_size_tablet,
-				'line_height_tablet'  => $theme_line_height_tablet,
-				'font_size_mobile'    => $theme_font_size_mobile,
-				'line_height_mobile'  => $theme_line_height_mobile,
+				'colors'                   => $saved_colors,
+				'defaults'                 => $theme_default_colors,
+				'font_size_desktop'        => $theme_options[ $template_slug ]['font_size_desktop'] ?? 16,
+				'line_height_desktop'      => $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65,
+				'button_font_size_desktop' => $theme_options[ $template_slug ]['button_font_size_desktop'] ?? 16,
+				'font_size_tablet'         => $theme_options[ $template_slug ]['font_size_tablet'] ?? 14,
+				'line_height_tablet'       => $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1,
+				'button_font_size_tablet'  => $theme_options[ $template_slug ]['button_font_size_tablet'] ?? 14,
+				'font_size_mobile'         => $theme_options[ $template_slug ]['font_size_mobile'] ?? 12,
+				'line_height_mobile'       => $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1,
+				'button_font_size_mobile'  => $theme_options[ $template_slug ]['button_font_size_mobile'] ?? 12,
 			)
 		);
 		exit;

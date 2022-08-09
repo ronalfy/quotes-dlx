@@ -1916,6 +1916,7 @@ var ThemePreview = function ThemePreview(props) {
       stylesheet = props.stylesheet,
       fontSize = props.fontSize,
       lineHeight = props.lineHeight,
+      buttonFontSize = props.buttonFontSize,
       colorsOnly = props.colorsOnly;
 
   var getColorStyleVars = function getColorStyleVars() {
@@ -1930,6 +1931,7 @@ var ThemePreview = function ThemePreview(props) {
   var getFontSize = function getFontSize() {
     var styles = '';
     styles += "--qdlx-".concat(activeTheme, "-font-size: ").concat(fontSize, "px;");
+    styles += "--qdlx-".concat(activeTheme, "-button-font-size: ").concat(buttonFontSize, "px;");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
@@ -1982,7 +1984,8 @@ ThemePreview.defaultProps = {
   stylesheet: '',
   fontSize: '16px',
   lineHeight: 1.65,
-  colorsOnly: false
+  colorsOnly: false,
+  buttonFontSize: '16px'
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
@@ -1990,7 +1993,8 @@ ThemePreview.propTypes = {
   stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
-  colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired)
+  colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired),
+  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 
@@ -37661,7 +37665,8 @@ var Preview = function Preview() {
     stylesheet: qdlx_theme_preview.stylesheet,
     colors: qdlx_theme_preview.colors,
     fontSize: qdlx_theme_preview.font_size,
-    lineHeight: parseFloat(qdlx_theme_preview.line_height)
+    lineHeight: parseFloat(qdlx_theme_preview.line_height),
+    buttonFontSize: qdlx_theme_preview.button_font_size
   }));
 };
 

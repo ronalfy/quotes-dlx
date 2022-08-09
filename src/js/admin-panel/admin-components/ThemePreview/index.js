@@ -6,7 +6,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet, fontSize, lineHeight, colorsOnly } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -25,6 +25,7 @@ const ThemePreview = ( props ) => {
 	const getFontSize = () => {
 		let styles = '';
 		styles += `--qdlx-${ activeTheme }-font-size: ${ fontSize }px;`;
+		styles += `--qdlx-${ activeTheme }-button-font-size: ${ buttonFontSize }px;`;
 		styles = `:root { ${ styles } }`;
 		return (
 			<style>
@@ -115,6 +116,7 @@ ThemePreview.defaultProps = {
 	fontSize: '16px',
 	lineHeight: 1.65,
 	colorsOnly: false,
+	buttonFontSize: '16px',
 };
 
 ThemePreview.propTypes = {
@@ -124,6 +126,7 @@ ThemePreview.propTypes = {
 	fontSize: PropTypes.string.isRequired,
 	lineHeight: PropTypes.number.isRequired,
 	colorsOnly: PropTypes.bool.isRequired,
+	buttonFontSize: PropTypes.string.isRequired,
 };
 
 export default ThemePreview;

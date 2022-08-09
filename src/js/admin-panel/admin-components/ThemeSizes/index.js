@@ -1,7 +1,8 @@
+/* eslint-disable @wordpress/i18n-translator-comments */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
 import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
@@ -21,15 +22,16 @@ const ThemeSizes = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
-	const { template } = props;
+	const { template, screenSize, screenSizeLabel, fontSize, lineHeight, buttonFontSize } = props;
+
+	const screenSizeLabelLowercase = screenSizeLabel.toLowerCase();
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
-				fontSize: 16,
-				lineHeight: 1.5,
-				buttonFontSize: 16,
-				buttonLineHeight: 1.2,
+				fontSize,
+				lineHeight,
+				buttonFontSize,
 			},
 		} );
 
@@ -113,7 +115,7 @@ const ThemeSizes = ( props ) => {
 							text={
 								saving
 									? __( 'Saving…', 'quotes-dlx' )
-									: __( 'Save Theme Options', 'quotes-dlx' )
+									: sprintf( __( 'Save %s Options', 'quotes-dlx' ), screenSizeLabel )
 							}
 							icon={ saving ? Spinner : false }
 							iconSize="18"
@@ -130,7 +132,7 @@ const ThemeSizes = ( props ) => {
 							text={
 								resetting
 									? __( 'Resetting…', 'quotes-dlx' )
-									: __( 'Reset Theme Options', 'quotes-dlx' )
+									: sprintf( __( 'Reset %s Options', 'quotes-dlx' ), screenSizeLabel )
 							}
 							icon={ resetting ? Spinner : false }
 							iconSize="18"
@@ -181,7 +183,7 @@ const ThemeSizes = ( props ) => {
 				>
 					<div className="qdlx-admin__tabs--content-heading">
 						<h2>
-							{ __( 'Select Desktop Sizes', 'quotes-dlx' ) }
+							{ sprintf( __( 'Select %s Sizes', 'quotes-dlx' ), screenSizeLabel ) }
 						</h2>
 						<p className="description">
 							{ __(
@@ -212,10 +214,10 @@ const ThemeSizes = ( props ) => {
 										onChange={ ( fontSizeValue ) => {
 											onChange( fontSizeValue );
 										} }
-										help={ __(
-											'Set the font size of the desktop size for the theme.',
-											'comment-edit-pro'
-										) }
+										help={ sprintf( __(
+											'Set the font size of the %s size for the theme.',
+											'quotes-dlx'
+										), screenSizeLabelLowercase ) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -240,10 +242,10 @@ const ThemeSizes = ( props ) => {
 										onChange={ ( lineHeightValue ) => {
 											onChange( lineHeightValue );
 										} }
-										help={ __(
-											'Set the line-height of the theme for desktop.',
-											'comment-edit-pro'
-										) }
+										help={ sprintf( __(
+											'Set the line-height of the theme for %s.',
+											'quotes-dlx'
+										), screenSizeLabelLowercase ) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -271,38 +273,10 @@ const ThemeSizes = ( props ) => {
 										onChange={ ( fontSizeValue ) => {
 											onChange( fontSizeValue );
 										} }
-										help={ __(
-											'Set the button font size of the desktop size for the theme.',
-											'comment-edit-pro'
-										) }
-										trackColor="#8019c4"
-										railColor="#dad4eb"
-									/>
-								</>
-							) }
-						/>
-						<Controller
-							name="buttonLineHeight"
-							control={ control }
-							render={ ( { field: { onChange, value } } ) => (
-								<>
-									<RangeControl
-										label={ __( 'Set the Button Line Height', 'comment-edit-pro' ) }
-										step={ 0.1 }
-										value={ value }
-										max={ 3 }
-										min={ 0.25 }
-										currentInput={ 1.2 }
-										initialPosition={ 1.2 }
-										allowReset={ true }
-										className="qdlx-admin__range-control"
-										onChange={ ( lineHeightValue ) => {
-											onChange( lineHeightValue );
-										} }
-										help={ __(
-											'Set the button line-height of the theme for desktop.',
-											'comment-edit-pro'
-										) }
+										help={ sprintf( __(
+											'Set the button font size of the %s size for the theme.',
+											'quotes-dlx'
+										), screenSizeLabelLowercase ) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -317,9 +291,11 @@ const ThemeSizes = ( props ) => {
 									getValues( 'fontSize' )
 								) }&lineheight=${ encodeURIComponent(
 									getValues( 'lineHeight' )
+								) }&buttonsize=${ encodeURIComponent(
+									getValues( 'buttonFontSize' )
 								) }&nonce=${
 									quotes_dlx_admin.options_retrieve_nonce
-								}&template=${ encodeURIComponent( template ) }&view=desktop`;
+								}&template=${ encodeURIComponent( template ) }&view=${ screenSize }`;
 								const fancybox = new Fancybox(
 									[
 										{
@@ -329,13 +305,13 @@ const ThemeSizes = ( props ) => {
 									],
 									{
 										mainClass: 'qdlx-theme-preview-mobile',
-										caption: __( 'Desktop Preview', 'quotes-dlx' ),
+										caption: sprintf( __( '%s Preview', 'quotes-dlx' ), screenSizeLabel ),
 									}
 								);
 							} }
 							href="#"
 						>
-							{ __( 'Preview Desktop Version', 'quotes-dlx' ) }
+							{ sprintf( __( 'Preview %s Version', 'quotes-dlx' ), screenSizeLabel ) }
 						</a>
 					</div>
 					{ getSaveResetButtons() }

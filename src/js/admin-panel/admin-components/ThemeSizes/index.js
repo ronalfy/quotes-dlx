@@ -33,8 +33,7 @@ const ThemeSizes = ( props ) => {
 };
 
 const Interface = ( props ) => {
-
-	const { defaults, screenSizeLabel, screenSize } = props;
+	const { defaults, screenSizeLabel, screenSize, template } = props;
 	const response = defaults();
 	const { data, success } = response.data;
 
@@ -67,21 +66,22 @@ const Interface = ( props ) => {
 		return false; //Object.keys( errors ).length > 0;
 	};
 
-	const onSubmit = () => {
+	const onSubmit = ( formData ) => {
 		setSaving( true );
-		sendCommand( 'quotes_dlx_save_theme_options', {
+		sendCommand( 'quotes_dlx_save_theme_size_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
-			colors: themeColors,
-			template: activeTheme,
+			template: props.template,
+			screen: props.screenSize,
+			...formData,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 
 				if ( ajaxSuccess ) {
-					setHasUnsavedChanges( false );
 					setIsSaved( true );
 					setTimeout( () => {
+						reset( formData, { keepDirty: false } ); // From: https://stackoverflow.com/questions/63953501/react-hook-form-resetting-isdirty-without-clearing-form
 						setIsSaved( false );
 					}, 3000 );
 				} else {
@@ -96,18 +96,17 @@ const Interface = ( props ) => {
 
 	const handleReset = ( e ) => {
 		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_theme_options', {
+		sendCommand( 'quotes_dlx_reset_theme_size_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
-			template: activeTheme,
+			template,
+			screen: screenSize,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
-					setThemeColors( Object.values( ajaxData.colors ) );
-					setSavedThemeColors( Object.values( ajaxData.defaults ) );
+					reset( ajaxData, { keepDirty: false } );
 					setIsReset( true );
-					setHasUnsavedChanges( false );
 					setTimeout( () => {
 						setIsReset( false );
 					}, 3000 );
@@ -137,7 +136,10 @@ const Interface = ( props ) => {
 							text={
 								saving
 									? __( 'Saving…', 'quotes-dlx' )
-									: sprintf( __( 'Save %s Options', 'quotes-dlx' ), screenSizeLabel )
+									: sprintf(
+										__( 'Save %s Options', 'quotes-dlx' ),
+										screenSizeLabel
+									)
 							}
 							icon={ saving ? Spinner : false }
 							iconSize="18"
@@ -154,7 +156,10 @@ const Interface = ( props ) => {
 							text={
 								resetting
 									? __( 'Resetting…', 'quotes-dlx' )
-									: sprintf( __( 'Reset %s Options', 'quotes-dlx' ), screenSizeLabel )
+									: sprintf(
+										__( 'Reset %s Options', 'quotes-dlx' ),
+										screenSizeLabel
+									)
 							}
 							icon={ resetting ? Spinner : false }
 							iconSize="18"
@@ -180,6 +185,8 @@ const Interface = ( props ) => {
 							message={ __( 'Your settings have been saved.' ) }
 							status="success"
 							politeness="assertive"
+							animate={ true }
+							animationType="fadein"
 						/>
 					) }
 					{ isReset && (
@@ -187,6 +194,8 @@ const Interface = ( props ) => {
 							message={ __( 'Your settings have been reset to defaults.' ) }
 							status="success"
 							politeness="assertive"
+							animate={ true }
+							animationType="fadein"
 						/>
 					) }
 				</div>
@@ -194,15 +203,39 @@ const Interface = ( props ) => {
 		);
 	};
 
+	const getUnsavedChangesWarning = () => {
+		if ( ! isDirty ) {
+			return null;
+		}
+		let animationType = 'fadein';
+		if ( isDirty && isSaved ) {
+			animationType = 'fadeout';
+		}
+		return (
+			<Notice
+				status="warning"
+				className="qdlx-admin__unsaved-changes-warning"
+				message={ __( 'You have unsaved changes.', 'quotes-dlx' ) }
+				animate={ true }
+				animationType={ animationType }
+			/>
+		);
+	};
+
+	const getPreviewLink = () => {
+		return `${ ajaxurl }?action=quotes_dlx_theme_preview&fontsize=${ encodeURIComponent(
+			getValues( 'fontSize' )
+		) }&lineheight=${ encodeURIComponent(
+			getValues( 'lineHeight' )
+		) }&buttonsize=${ encodeURIComponent( getValues( 'buttonFontSize' ) ) }&nonce=${
+			quotes_dlx_admin.options_retrieve_nonce
+		}&template=${ encodeURIComponent( props.template ) }&screen=${ screenSize }`;
+	};
+
 	return (
 		<div className="qdlx-admin__tabs--content-wrap">
 			<div className="qdlx-admin__tabs--content-panel">
-				<form
-					onSubmit={ ( e ) => {
-						e.preventDefault();
-						onSubmit();
-					} }
-				>
+				<form onSubmit={ handleSubmit( onSubmit ) }>
 					<div className="qdlx-admin__tabs--content-heading">
 						<h2>
 							{ sprintf( __( 'Select %s Sizes', 'quotes-dlx' ), screenSizeLabel ) }
@@ -215,6 +248,7 @@ const Interface = ( props ) => {
 						</p>
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
+						{ getUnsavedChangesWarning() }
 						<Controller
 							name="fontSize"
 							control={ control }
@@ -236,10 +270,13 @@ const Interface = ( props ) => {
 										onChange={ ( fontSizeValue ) => {
 											onChange( fontSizeValue );
 										} }
-										help={ sprintf( __(
-											'Set the font size of the %s size for the theme.',
-											'quotes-dlx'
-										), screenSizeLabelLowercase ) }
+										help={ sprintf(
+											__(
+												'Set the font size of the %s size for the theme.',
+												'quotes-dlx'
+											),
+											screenSizeLabelLowercase
+										) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -264,10 +301,13 @@ const Interface = ( props ) => {
 										onChange={ ( lineHeightValue ) => {
 											onChange( lineHeightValue );
 										} }
-										help={ sprintf( __(
-											'Set the line-height of the theme for %s.',
-											'quotes-dlx'
-										), screenSizeLabelLowercase ) }
+										help={ sprintf(
+											__(
+												'Set the line-height of the theme for %s.',
+												'quotes-dlx'
+											),
+											screenSizeLabelLowercase
+										) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -295,10 +335,13 @@ const Interface = ( props ) => {
 										onChange={ ( fontSizeValue ) => {
 											onChange( fontSizeValue );
 										} }
-										help={ sprintf( __(
-											'Set the button font size of the %s size for the theme.',
-											'quotes-dlx'
-										), screenSizeLabelLowercase ) }
+										help={ sprintf(
+											__(
+												'Set the button font size of the %s size for the theme.',
+												'quotes-dlx'
+											),
+											screenSizeLabelLowercase
+										) }
 										trackColor="#8019c4"
 										railColor="#dad4eb"
 									/>
@@ -309,32 +352,27 @@ const Interface = ( props ) => {
 							data-fancybox
 							onClick={ ( e ) => {
 								e.preventDefault();
-								const previewUrl = `${ ajaxurl }?action=quotes_dlx_theme_preview&size=${ encodeURIComponent(
-									getValues( 'fontSize' )
-								) }&lineheight=${ encodeURIComponent(
-									getValues( 'lineHeight' )
-								) }&buttonsize=${ encodeURIComponent(
-									getValues( 'buttonFontSize' )
-								) }&nonce=${
-									quotes_dlx_admin.options_retrieve_nonce
-								}&template=${ encodeURIComponent( template ) }&view=${ screenSize }`;
-								const fancybox = new Fancybox(
+								new Fancybox(
 									[
 										{
-											src: previewUrl,
+											src: getPreviewLink(),
 											type: 'iframe',
 										},
 									],
 									{
 										mainClass: 'qdlx-theme-preview-mobile',
-										caption: sprintf( __( '%s Preview', 'quotes-dlx' ), screenSizeLabel ),
+										caption: sprintf(
+											__( '%s Preview', 'quotes-dlx' ),
+											screenSizeLabel
+										),
 									}
 								);
 							} }
-							href="#"
+							href={ getPreviewLink() }
 						>
 							{ sprintf( __( 'Preview %s Version', 'quotes-dlx' ), screenSizeLabel ) }
 						</a>
+						{ getUnsavedChangesWarning() }
 					</div>
 					{ getSaveResetButtons() }
 				</form>

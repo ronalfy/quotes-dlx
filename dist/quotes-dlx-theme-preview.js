@@ -1901,6 +1901,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+/* eslint-disable no-unused-vars */
 
 
 
@@ -1917,7 +1918,8 @@ var ThemePreview = function ThemePreview(props) {
       fontSize = props.fontSize,
       lineHeight = props.lineHeight,
       buttonFontSize = props.buttonFontSize,
-      colorsOnly = props.colorsOnly;
+      colorsOnly = props.colorsOnly,
+      screen = props.screen;
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
@@ -1930,15 +1932,15 @@ var ThemePreview = function ThemePreview(props) {
 
   var getFontSize = function getFontSize() {
     var styles = '';
-    styles += "--qdlx-".concat(activeTheme, "-font-size: ").concat(fontSize, "px;");
-    styles += "--qdlx-".concat(activeTheme, "-button-font-size: ").concat(buttonFontSize, "px;");
+    styles += "--qdlx-".concat(activeTheme, "-font-size-").concat(screen, ": ").concat(fontSize, "px;");
+    styles += "--qdlx-".concat(activeTheme, "-button-font-size-").concat(screen, ": ").concat(buttonFontSize, "px;");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
 
   var getLineHeight = function getLineHeight() {
     var styles = '';
-    styles += "--qdlx-".concat(activeTheme, "-line-height: ").concat(lineHeight, ";");
+    styles += "--qdlx-".concat(activeTheme, "-line-height-").concat(screen, ": ").concat(lineHeight, ";");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
@@ -1985,7 +1987,8 @@ ThemePreview.defaultProps = {
   fontSize: '16px',
   lineHeight: 1.65,
   colorsOnly: false,
-  buttonFontSize: '16px'
+  buttonFontSize: '16px',
+  screen: 'desktop'
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
@@ -1994,7 +1997,8 @@ ThemePreview.propTypes = {
   fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
   colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired),
-  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
+  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 
@@ -37666,7 +37670,8 @@ var Preview = function Preview() {
     colors: qdlx_theme_preview.colors,
     fontSize: qdlx_theme_preview.font_size,
     lineHeight: parseFloat(qdlx_theme_preview.line_height),
-    buttonFontSize: qdlx_theme_preview.button_font_size
+    buttonFontSize: qdlx_theme_preview.button_font_size,
+    screen: qdlx_theme_preview.screen
   }));
 };
 

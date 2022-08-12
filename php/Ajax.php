@@ -50,6 +50,8 @@ class Ajax {
 
 		// For saving, resetting, getting theme size options.
 		add_action( 'wp_ajax_quotes_dlx_get_theme_size_options', array( static::class, 'ajax_get_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
 
 		return $self;
 	}
@@ -57,7 +59,7 @@ class Ajax {
 	/**
 	 * Retrieve the theme size options.
 	 */
-	public function ajax_get_theme_size_options() {
+	public static function ajax_get_theme_size_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -70,9 +72,9 @@ class Ajax {
 		$theme_options = Options_Theme::get_options();
 
 		// Get saved font size.
-		$theme_font_size        = $theme_options[ $template_slug ][ 'font_size_' . $screen_size ] ?? 16;
-		$theme_line_height      = $theme_options[ $template_slug ][ 'line_height_' . $screen_size ] ?? 1.65;
-		$theme_button_font_size = $theme_options[ $template_slug ][ 'button_font_size' . $screen_size ] ?? 16;
+		$theme_font_size        = $theme_options[ $template_slug ][ $screen_size ]['font_size'] ?? Options_Theme::get_default_size( $screen_size, 'font_size' );
+		$theme_line_height      = $theme_options[ $template_slug ][ $screen_size ]['line_height'] ?? Options_Theme::get_default_size( $screen_size, 'line_height' );
+		$theme_button_font_size = $theme_options[ $template_slug ][ $screen_size ]['button_font_size'] ?? Options_Theme::get_default_size( $screen_size, 'button_font_size' );
 
 		wp_send_json_success(
 			array(
@@ -82,6 +84,76 @@ class Ajax {
 			)
 		);
 
+	}
+
+	/**
+	 * Resize theme size options.
+	 */
+	public static function ajax_reset_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$theme_options = Options_Theme::get_options();
+
+		if ( ! isset( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		$theme_options[ $template_slug ][ $screen_size ] = Options_Theme::get_default_sizes( $screen_size );
+		Options_Theme::update_options( $template_slug, $theme_options );
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => Options_Theme::get_default_size( $screen_size, 'font_size' ),
+				'lineHeight'     => Options_Theme::get_default_size( $screen_size, 'line_height' ),
+				'buttonFontSize' => Options_Theme::get_default_size( $screen_size, 'button_font_size' ),
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Save theme size options.
+	 */
+	public static function ajax_save_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug    = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size      = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$font_size        = absint( filter_input( INPUT_POST, 'fontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$button_font_size = absint( filter_input( INPUT_POST, 'buttonFontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_POST, 'lineHeight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$theme_options    = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		// Check to see if screen size is part of the array.
+		if ( ! isset( $theme_options[ $template_slug ][ $screen_size ] ) || ! is_array( $theme_options[ $template_slug ][ $screen_size ] ) ) {
+			$theme_options[ $template_slug ][ $screen_size ] = array();
+		}
+
+		// Now store options.
+		$theme_options[ $template_slug ][ $screen_size ]['font_size']        = $font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['button_font_size'] = $button_font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['line_height']      = $line_height;
+		Options_Theme::update_options( '', $theme_options );
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your theme sizes have been saved.', 'quotes-dlx' ),
+			)
+		);
+		exit;
 	}
 
 	/**
@@ -203,9 +275,9 @@ class Ajax {
 		}
 
 		$template         = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
-		$size             = absint( filter_input( INPUT_GET, 'size', FILTER_SANITIZE_NUMBER_INT ) );
-		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT );
-		$view             = sanitize_text_field( filter_input( INPUT_GET, 'view', FILTER_DEFAULT ) );
+		$font_size        = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$screen           = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
 		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
 
 		wp_register_script(
@@ -263,7 +335,7 @@ class Ajax {
 		}
 		$theme_default_colors = $themes['colors'];
 		$theme_options        = Options_Theme::get_options();
-		$saved_colors         = $theme_options[ $template_slug ]['colors'] ?? false;
+		$saved_colors         = $theme_options[ $template ]['colors'] ?? false;
 
 		// Check colors and set to defaults if it doesn't exist.
 		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
@@ -278,9 +350,10 @@ class Ajax {
 				'stylesheet'       => esc_url( $theme['stylesheet'] ),
 				'theme'            => $template,
 				'colors'           => $saved_colors,
-				'font_size'        => $size,
+				'font_size'        => $font_size,
 				'line_height'      => (float) $line_height,
 				'button_font_size' => $button_font_size,
+				'screen'           => $screen,
 			)
 		);
 		?>
@@ -299,7 +372,7 @@ class Ajax {
 				?>
 			</head>
 			<body>
-				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $view ); ?>"></div>
+				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $screen ); ?>"></div>
 				<?php
 					wp_print_scripts(
 						array(
@@ -385,6 +458,7 @@ class Ajax {
 		// Get the active template.
 		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
 
+		// Get default and saved colors for return.
 		$themes                     = Themes\Themes_Addon::get_theme_data();
 		$theme_default_saved_colors = array();
 		$theme_default_colors       = array();
@@ -396,8 +470,12 @@ class Ajax {
 			}
 		}
 
-		// Get saved colors.
-		Options_Theme::update_options( $template_slug, array(), true );
+		// Reset options.
+		$theme_options = Options_Theme::get_options();
+		if ( isset( $theme_options[ $template_slug ]['colors'] ) ) {
+			unset( $theme_options[ $template_slug ]['colors'] );
+		}
+		Options_Theme::update_options( '', $theme_options, true );
 
 		wp_send_json_success(
 			array(

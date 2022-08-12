@@ -40,7 +40,9 @@ var Notice = function Notice(props) {
       icon = props.icon,
       className = props.className,
       inline = props.inline,
-      children = props.children;
+      children = props.children,
+      animate = props.animate,
+      animationType = props.animationType;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__.speak)(message, politeness);
   }, [message, status, politeness]);
@@ -59,7 +61,7 @@ var Notice = function Notice(props) {
 
   var containerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'qdlx-admin__notice', (_classNames = {
     'qdlx-admin__notice--has-icon': hasIcon()
-  }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _classNames));
+  }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _defineProperty(_classNames, "qdlx-admin__notice-animate", animate), _defineProperty(_classNames, "qdlx-admin__notice-animate--".concat(animationType), animate), _classNames));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: containerClasses
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
@@ -79,7 +81,9 @@ Notice.defaultProps = {
   politeness: 'polite',
   icon: null,
   className: '',
-  inline: false
+  inline: false,
+  animate: false,
+  animationType: 'fadein'
 };
 Notice.propTypes = {
   message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string.isRequired),
@@ -87,7 +91,9 @@ Notice.propTypes = {
   politeness: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['assertive', 'polite']),
   icon: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
   className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  inline: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool)
+  inline: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animate: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animatitionType: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['fadein', 'fadeout'])
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notice);
 
@@ -342,6 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+/* eslint-disable no-unused-vars */
 
 
 
@@ -358,7 +365,8 @@ var ThemePreview = function ThemePreview(props) {
       fontSize = props.fontSize,
       lineHeight = props.lineHeight,
       buttonFontSize = props.buttonFontSize,
-      colorsOnly = props.colorsOnly;
+      colorsOnly = props.colorsOnly,
+      screen = props.screen;
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
@@ -371,15 +379,15 @@ var ThemePreview = function ThemePreview(props) {
 
   var getFontSize = function getFontSize() {
     var styles = '';
-    styles += "--qdlx-".concat(activeTheme, "-font-size: ").concat(fontSize, "px;");
-    styles += "--qdlx-".concat(activeTheme, "-button-font-size: ").concat(buttonFontSize, "px;");
+    styles += "--qdlx-".concat(activeTheme, "-font-size-").concat(screen, ": ").concat(fontSize, "px;");
+    styles += "--qdlx-".concat(activeTheme, "-button-font-size-").concat(screen, ": ").concat(buttonFontSize, "px;");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
 
   var getLineHeight = function getLineHeight() {
     var styles = '';
-    styles += "--qdlx-".concat(activeTheme, "-line-height: ").concat(lineHeight, ";");
+    styles += "--qdlx-".concat(activeTheme, "-line-height-").concat(screen, ": ").concat(lineHeight, ";");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
@@ -426,7 +434,8 @@ ThemePreview.defaultProps = {
   fontSize: '16px',
   lineHeight: 1.65,
   colorsOnly: false,
-  buttonFontSize: '16px'
+  buttonFontSize: '16px',
+  screen: 'desktop'
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
@@ -435,7 +444,8 @@ ThemePreview.propTypes = {
   fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
   colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired),
-  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
+  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 
@@ -469,6 +479,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../admin-components/Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -528,7 +544,8 @@ var ThemeSizes = function ThemeSizes(props) {
 var Interface = function Interface(props) {
   var defaults = props.defaults,
       screenSizeLabel = props.screenSizeLabel,
-      screenSize = props.screenSize;
+      screenSize = props.screenSize,
+      template = props.template;
   var response = defaults();
   var _response$data = response.data,
       data = _response$data.data,
@@ -594,20 +611,23 @@ var Interface = function Interface(props) {
     return false; //Object.keys( errors ).length > 0;
   };
 
-  var _onSubmit = function onSubmit() {
+  var onSubmit = function onSubmit(formData) {
     setSaving(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_save_theme_options', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_save_theme_size_options', _objectSpread({
       nonce: quotes_dlx_admin.options_save_nonce,
-      colors: themeColors,
-      template: activeTheme
-    }).then(function (ajaxResponse) {
+      template: props.template,
+      screen: props.screenSize
+    }, formData)).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        setHasUnsavedChanges(false);
         setIsSaved(true);
         setTimeout(function () {
+          reset(formData, {
+            keepDirty: false
+          }); // From: https://stackoverflow.com/questions/63953501/react-hook-form-resetting-isdirty-without-clearing-form
+
           setIsSaved(false);
         }, 3000);
       } else {// Error stuff.
@@ -619,18 +639,19 @@ var Interface = function Interface(props) {
 
   var handleReset = function handleReset(e) {
     setResetting(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_theme_options', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_theme_size_options', {
       nonce: quotes_dlx_admin.options_save_nonce,
-      template: activeTheme
+      template: template,
+      screen: screenSize
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
 
       if (ajaxSuccess) {
-        setThemeColors(Object.values(ajaxData.colors));
-        setSavedThemeColors(Object.values(ajaxData.defaults));
+        reset(ajaxData, {
+          keepDirty: false
+        });
         setIsReset(true);
-        setHasUnsavedChanges(false);
         setTimeout(function () {
           setIsReset(false);
         }, 3000);
@@ -687,12 +708,40 @@ var Interface = function Interface(props) {
     }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
       message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
       status: "success",
-      politeness: "assertive"
+      politeness: "assertive",
+      animate: true,
+      animationType: "fadein"
     }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
       message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
       status: "success",
-      politeness: "assertive"
+      politeness: "assertive",
+      animate: true,
+      animationType: "fadein"
     })));
+  };
+
+  var getUnsavedChangesWarning = function getUnsavedChangesWarning() {
+    if (!isDirty) {
+      return null;
+    }
+
+    var animationType = 'fadein';
+
+    if (isDirty && isSaved) {
+      animationType = 'fadeout';
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      status: "warning",
+      className: "qdlx-admin__unsaved-changes-warning",
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx'),
+      animate: true,
+      animationType: animationType
+    });
+  };
+
+  var getPreviewLink = function getPreviewLink() {
+    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=").concat(encodeURIComponent(getValues('fontSize')), "&lineheight=").concat(encodeURIComponent(getValues('lineHeight')), "&buttonsize=").concat(encodeURIComponent(getValues('buttonFontSize')), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(props.template), "&screen=").concat(screenSize);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -700,18 +749,14 @@ var Interface = function Interface(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    onSubmit: function onSubmit(e) {
-      e.preventDefault();
-
-      _onSubmit();
-    }
+    onSubmit: handleSubmit(onSubmit)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-heading"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select %s Sizes', 'quotes-dlx'), screenSizeLabel)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "description"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Modify the quote and button sizes for the theme.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_11__.Controller, {
+  }, getUnsavedChangesWarning(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_11__.Controller, {
     name: "fontSize",
     control: control,
     render: function render(_ref) {
@@ -790,17 +835,16 @@ var Interface = function Interface(props) {
     "data-fancybox": true,
     onClick: function onClick(e) {
       e.preventDefault();
-      var previewUrl = "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&size=").concat(encodeURIComponent(getValues('fontSize')), "&lineheight=").concat(encodeURIComponent(getValues('lineHeight')), "&buttonsize=").concat(encodeURIComponent(getValues('buttonFontSize')), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(template), "&view=").concat(screenSize);
-      var fancybox = new _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_5__.Fancybox([{
-        src: previewUrl,
+      new _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_5__.Fancybox([{
+        src: getPreviewLink(),
         type: 'iframe'
       }], {
         mainClass: 'qdlx-theme-preview-mobile',
         caption: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('%s Preview', 'quotes-dlx'), screenSizeLabel)
       });
     },
-    href: "#"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview %s Version', 'quotes-dlx'), screenSizeLabel))), getSaveResetButtons())));
+    href: getPreviewLink()
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview %s Version', 'quotes-dlx'), screenSizeLabel)), getUnsavedChangesWarning()), getSaveResetButtons())));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeSizes);

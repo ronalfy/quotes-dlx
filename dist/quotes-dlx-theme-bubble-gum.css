@@ -6,8 +6,18 @@
 /* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
 /* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-bubble-gum {
-  font-size: var(--qdlx-bubble-gum-font-size, 16px);
+  font-size: var(--qdlx-bubble-gum-font-size-mobile, 14px);
   /* Meatball Menu */
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-bubble-gum {
+    font-size: var(--qdlx-bubble-gum-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-bubble-gum {
+    font-size: var(--qdlx-bubble-gum-font-size-desktop, 16px);
+  }
 }
 .quotes-dlx-block-theme-bubble-gum.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 50px;
@@ -79,7 +89,7 @@
   font-weight: 400;
   font-size: 1.1em;
   color: var(--qdlx-bubble-gum-secondary, #fdeef2);
-  line-height: var(--qdlx-bubble-gum-line-height-mobile, 1.1);
+  line-height: var(--qdlx-bubble-gum-line-height-mobile, 1.2);
   margin: 0 !important; /* override core style */
   border: 0;
   quotes: none;
@@ -90,7 +100,7 @@
 @media (min-width: 48em) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
     font-size: 1.35em;
-    line-height: var(--qdlx-bubble-gum-line-height-tablet, 1.1);
+    line-height: var(--qdlx-bubble-gum-line-height-tablet, 1.35);
   }
 }
 @media (min-width: 64em) {
@@ -141,20 +151,42 @@
   display: inline-block;
   transition: all 0.3s ease-in-out;
   font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: var(--qdlx-bubble-gum-button-font-size, 16px);
+  font-weight: 500;
+  font-size: var(--qdlx-bubble-gum-button-font-size-mobile, 14px);
   line-height: 1em;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-bubble-gum-button-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-bubble-gum-button-font-size-desktop, 16px);
+  }
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-text {
   font-size: 1.25em;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
-  font-size: var(--qdlx-bubble-gum-button-font-size, 16px);
-  top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size, 16px) / 2));
+  font-size: var(--qdlx-bubble-gum-button-font-size-mobile, 14px);
+  top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size-mobile, 14px) / 2));
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon svg {
   width: 1.2em;
   height: 1.2em;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
+    font-size: var(--qdlx-bubble-gum-button-font-size-tablet, 15px);
+    top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2));
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
+    font-size: var(--qdlx-bubble-gum-button-font-size-desktop, 16px);
+    top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2));
+  }
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;

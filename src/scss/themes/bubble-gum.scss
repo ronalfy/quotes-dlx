@@ -8,8 +8,13 @@ $light: #FFF;
 $dark: #000;
 
 .quotes-dlx-block-theme-bubble-gum{
-	font-size: var( --qdlx-bubble-gum-font-size, 16px );
-
+	font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px );
+	@include respond-to('medium') {
+		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px );
+	}
+	@include respond-to('large') {
+		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px );
+	}
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 50px;
 	}
@@ -90,7 +95,7 @@ $dark: #000;
 			font-weight: 400;
 			font-size: 1.1em;
 			color: var( --qdlx-bubble-gum-secondary, $secondary );
-			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.1 );
+			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.2 );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;
@@ -100,7 +105,7 @@ $dark: #000;
 
 			@include respond-to('medium') {
 				font-size: 1.35em;
-				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.1 );
+				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.35 );
 			}
 			@include respond-to('large') {
 				font-size: 1.5em;
@@ -156,20 +161,36 @@ $dark: #000;
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
 			font-family: 'Open Sans', sans-serif;
-			font-weight: 400;
-			font-size: var( --qdlx-bubble-gum-button-font-size, 16px );
+			font-weight: 500;
+			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
 			line-height: 1.0em;
+
+			@include respond-to('medium') {
+				font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
+			}
+			@include respond-to('large') {
+				font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
+			}
 
 			.quotes-dlx-button-text {
 				font-size: 1.25em;
 			}
 			.quotes-dlx-button-icon {
-				font-size: var( --qdlx-bubble-gum-button-font-size, 16px );
-				top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size, 16px) / 2)));
+				font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
+				top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-mobile, 14px) / 2)));
 
 				svg {
 					width: 1.2em;
 					height: 1.2em;
+				}
+
+				@include respond-to('medium') {
+					font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
+					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2)));
+				}
+				@include respond-to('large') {
+					font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
+					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2)));
 				}
 			}
 

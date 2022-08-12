@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,7 +7,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -24,8 +25,8 @@ const ThemePreview = ( props ) => {
 
 	const getFontSize = () => {
 		let styles = '';
-		styles += `--qdlx-${ activeTheme }-font-size: ${ fontSize }px;`;
-		styles += `--qdlx-${ activeTheme }-button-font-size: ${ buttonFontSize }px;`;
+		styles += `--qdlx-${ activeTheme }-font-size-${ screen }: ${ fontSize }px;`;
+		styles += `--qdlx-${ activeTheme }-button-font-size-${ screen }: ${ buttonFontSize }px;`;
 		styles = `:root { ${ styles } }`;
 		return (
 			<style>
@@ -35,7 +36,7 @@ const ThemePreview = ( props ) => {
 	};
 	const getLineHeight = () => {
 		let styles = '';
-		styles += `--qdlx-${ activeTheme }-line-height: ${ lineHeight };`;
+		styles += `--qdlx-${ activeTheme }-line-height-${ screen }: ${ lineHeight };`;
 		styles = `:root { ${ styles } }`;
 		return (
 			<style>
@@ -117,6 +118,7 @@ ThemePreview.defaultProps = {
 	lineHeight: 1.65,
 	colorsOnly: false,
 	buttonFontSize: '16px',
+	screen: 'desktop',
 };
 
 ThemePreview.propTypes = {
@@ -127,6 +129,7 @@ ThemePreview.propTypes = {
 	lineHeight: PropTypes.number.isRequired,
 	colorsOnly: PropTypes.bool.isRequired,
 	buttonFontSize: PropTypes.string.isRequired,
+	screen: PropTypes.string.isRequired,
 };
 
 export default ThemePreview;

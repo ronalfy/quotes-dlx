@@ -57,6 +57,39 @@
   --quotes-dlx-admin--color-notice--error-alt: #bc2b2c;
 }
 
+@keyframes qdlx-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes qdlx-fade-in-out {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  50% {
+    opacity: 1;
+    height: auto;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+@keyframes qdlx-fade-out {
+  from {
+    opacity: 1;
+    height: auto;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+  }
+}
 @keyframes qdlx-rotate {
   100% {
     transform: rotate(360deg);
@@ -744,6 +777,25 @@ button.button-reset.show-cursor {
 }
 .qdlx-admin__notice.qdlx-admin__notice-type--warning svg path {
   fill: var(--quotes-dlx-admin--color-notice--warning-alt);
+}
+.qdlx-admin__notice.qdlx-admin__notice-animate--fadein {
+  height: 0;
+  opacity: 0;
+  animation: qdlx-fade-in 0.6s ease-in-out;
+  opacity: 1;
+  height: auto;
+}
+.qdlx-admin__notice.qdlx-admin__notice-animate--fadeout {
+  height: auto;
+  opacity: 1;
+  animation: qdlx-fade-out 0.6s ease-in-out;
+  opacity: 0;
+  height: 0;
+}
+.qdlx-admin__notice.qdlx-admin__notice-animate--fadeinout {
+  animation-name: qdlx-fade-in, qdlx-fade-out;
+  animation-duration: 0.6s;
+  animation-delay: 0s, 2s;
 }
 
 /* Table styles */

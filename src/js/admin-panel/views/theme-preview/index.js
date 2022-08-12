@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import ThemePreview from '../../admin-components/ThemePreview/index';
 
 const Preview = () => {
+	console.log( qdlx_theme_preview );
 	return (
 		<>
 			<ThemePreview

@@ -15,6 +15,42 @@ $dark: #000;
 	@include respond-to('large') {
 		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px );
 	}
+
+	/* If these are set, we're in a preview */
+	&.quotes-dlx-screen-mobile {
+		font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px ) !important;
+
+		.quotes-dlx-button {
+			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-mobile, 14px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-tablet {
+		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-desktop {
+		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px ) !important;
+		}
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2))) !important;
+		}
+	}
+
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 50px;
 	}

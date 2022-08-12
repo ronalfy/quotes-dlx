@@ -22,11 +22,12 @@
 	&.tablet {
 		.quotes-dlx {
 			max-width: map.get($breakpoints, "medium") !important;
+			
 		}
 	}
 	&.desktop {
 		.quotes-dlx {
-			max-width: 800px !important;
+			max-width: map.get($breakpoints, "large") !important;
 		}
 	}
 }

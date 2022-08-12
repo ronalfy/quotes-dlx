@@ -62,6 +62,7 @@ const ThemePreview = ( props ) => {
 					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
 					'quotes-dlx-context-menu-disabled': false,
 					'quotes-dlx-has-no-tweet-button': false,
+					[ `quotes-dlx-screen-${ screen }` ]: true,
 				} ) }
 				style={ { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' } }
 			>

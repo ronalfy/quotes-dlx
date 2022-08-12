@@ -401,11 +401,23 @@ const Interface = ( props ) => {
 
 	const getFontSizeOptions = () => {
 		return (
-			<ThemeSizes
-				template={ activeTheme }
-				screenSize="desktop"
-				screenSizeLabel={ __( 'Desktop', 'quotes-dlx' ) }
-			/>
+			<>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="desktop"
+					screenSizeLabel={ __( 'Desktop', 'quotes-dlx' ) }
+				/>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="tablet"
+					screenSizeLabel={ __( 'Tablet', 'quotes-dlx' ) }
+				/>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="mobile"
+					screenSizeLabel={ __( 'mobile', 'quotes-dlx' ) }
+				/>
+			</>
 		);
 	};
 

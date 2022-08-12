@@ -371,6 +371,9 @@ const Interface = ( props ) => {
 								) }
 							</p>
 						</div>
+						{ hasUnsavedChanges && (
+							getUnsavedChangesWarning()
+						) }
 						<div className="qdlx-admin__tabs--content-inner">
 							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
 							<div className="qdlx-admin__color-pickers">
@@ -379,6 +382,9 @@ const Interface = ( props ) => {
 								</div>
 							</div>
 						</div>
+						{ hasUnsavedChanges && (
+							getUnsavedChangesWarning()
+						) }
 						{ getSaveResetButtons() }
 					</form>
 				</div>
@@ -395,6 +401,8 @@ const Interface = ( props ) => {
 				status="warning"
 				className="qdlx-admin__unsaved-changes-warning"
 				message={ __( 'You have unsaved changes.', 'quotes-dlx' ) }
+				animate={ true }
+				animationType="fadein"
 			/>
 		);
 	};

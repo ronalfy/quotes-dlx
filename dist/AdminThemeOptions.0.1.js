@@ -1292,7 +1292,7 @@ var Interface = function Interface(props) {
       className: "qdlx-admin__tabs--content-heading"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Theme Colors', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "description"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Modify the colors of the theme.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Modify the colors of the theme.', 'quotes-dlx'))), hasUnsavedChanges && getUnsavedChangesWarning(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-inner"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__theme-preview"
@@ -1300,7 +1300,7 @@ var Interface = function Interface(props) {
       className: "qdlx-admin__color-pickers"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__color-primary"
-    }, getThemePickers(themeColors)))), getSaveResetButtons())));
+    }, getThemePickers(themeColors)))), hasUnsavedChanges && getUnsavedChangesWarning(), getSaveResetButtons())));
   };
 
   var getUnsavedChangesWarning = function getUnsavedChangesWarning() {
@@ -1311,7 +1311,9 @@ var Interface = function Interface(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_13__["default"], {
       status: "warning",
       className: "qdlx-admin__unsaved-changes-warning",
-      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx')
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx'),
+      animate: true,
+      animationType: "fadein"
     });
   };
 

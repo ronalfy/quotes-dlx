@@ -38402,7 +38402,7 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      textAlign: 'center'
+      textAlign: 'left'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",
@@ -38422,7 +38422,7 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      textAlign: 'center'
+      textAlign: 'left'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",
@@ -38442,7 +38442,7 @@ var AdminThemeColorsLoader = function AdminThemeColorsLoader(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner",
     style: {
-      textAlign: 'center'
+      textAlign: 'left'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_loading_skeleton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     width: "150px",

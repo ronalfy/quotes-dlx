@@ -7,6 +7,7 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
 import 'photoswipe/dist/photoswipe.css';
 import { __, sprintf } from '@wordpress/i18n';
+import Notice from '../admin-components/Notice';
 
 import {
 	faHandWave,
@@ -26,6 +27,23 @@ const AdminHome = () => {
 			selectedTemplate = defaultTheme;
 		}
 		const currentTheme = themes.find( ( { slug } ) => slug === selectedTemplate );
+		if ( null === currentTheme || undefined === currentTheme ) {
+			return (
+				<>
+					<div className="qdlx-admin__tabs--content-wrap">
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-inner">
+								<Notice
+									message={ __( 'No default theme could be found.', 'quotes-dlx' ) }
+									status="error"
+									politeness="polite"
+								/>
+							</div>
+						</div>
+					</div>
+				</>
+			);
+		}
 		return (
 			<div className="qdlx-admin__tabs--content-wrap">
 				<div className="qdlx-admin__tabs--content-panel">
@@ -45,9 +63,7 @@ const AdminHome = () => {
 							data-caption={ currentTheme.name }
 						>
 							<figure>
-								<Gallery
-									withCaption
-								>
+								<Gallery withCaption>
 									<Item
 										original={ currentTheme.preview_image_url }
 										thumbnail={ currentTheme.preview_image_url }

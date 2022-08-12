@@ -50,6 +50,19 @@ const Interface = ( props ) => {
 				}
 			} );
 		} );
+		// Check to see if colors is set, otherwise select the first available theme.
+		if ( 0 === Object.keys( colors ).length ) {
+			// Pick the first theme.
+			let selected = false;
+			categories.forEach( ( cat ) => {
+				cat.themes.forEach( ( theme ) => {
+					if ( ! selected ) {
+						colors = theme.colors;
+						selected = true;
+					}
+				} );
+			} );
+		}
 		return colors;
 	};
 

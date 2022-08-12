@@ -19,7 +19,7 @@
 			max-width: map.get($breakpoints, "small") !important;
 		}
 	}
-	&.tablet {
+	&.medium {
 		.quotes-dlx {
 			max-width: map.get($breakpoints, "medium") !important;
 			

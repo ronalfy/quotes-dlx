@@ -423,7 +423,7 @@ const Interface = ( props ) => {
 				<ThemeSizes
 					template={ activeTheme }
 					screenSize="mobile"
-					screenSizeLabel={ __( 'mobile', 'quotes-dlx' ) }
+					screenSizeLabel={ __( 'Mobile', 'quotes-dlx' ) }
 				/>
 			</>
 		);

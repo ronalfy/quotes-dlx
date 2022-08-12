@@ -39023,7 +39023,7 @@ var AdminTabs = function AdminTabs(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
     icon: _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_11__["default"],
     slug: "theme-options",
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set color, font, and text options for the themes.', 'quotes-dlx'),
+    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the theme color, line-height, and font sizes', 'quotes-dlx'),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Theme Options', 'quotes-dlx'),
     tabClicked: function tabClicked(tab) {
       onTabClick(tab);

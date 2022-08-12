@@ -469,6 +469,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../admin-components/Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -500,7 +502,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var retrieveDefaults = function retrieveDefaults(props) {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_size_options', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce,
+    template: props.template,
+    screen: props.screenSize
+  });
+};
+
 var ThemeSizes = function ThemeSizes(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_3__.useAsyncResource)(retrieveDefaults, props),
+      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+      defaults = _useAsyncResource2[0],
+      getDefaults = _useAsyncResource2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      showHeader: true
+    })
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props)));
+};
+
+var Interface = function Interface(props) {
+  var defaults = props.defaults,
+      screenSizeLabel = props.screenSizeLabel,
+      screenSize = props.screenSize;
+  var response = defaults();
+  var _response$data = response.data,
+      data = _response$data.data,
+      success = _response$data.success;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       loading = _useState2[0],
@@ -526,12 +559,9 @@ var ThemeSizes = function ThemeSizes(props) {
       isReset = _useState10[0],
       setIsReset = _useState10[1];
 
-  var template = props.template,
-      screenSize = props.screenSize,
-      screenSizeLabel = props.screenSizeLabel,
-      fontSize = props.fontSize,
-      lineHeight = props.lineHeight,
-      buttonFontSize = props.buttonFontSize;
+  var fontSize = data.fontSize,
+      lineHeight = data.lineHeight,
+      buttonFontSize = data.buttonFontSize;
   var screenSizeLabelLowercase = screenSizeLabel.toLowerCase();
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_11__.useForm)({
@@ -1245,10 +1275,7 @@ var Interface = function Interface(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeSizes__WEBPACK_IMPORTED_MODULE_15__["default"], {
       template: activeTheme,
       screenSize: "desktop",
-      screenSizeLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop', 'quotes-dlx'),
-      fontSize: data.font_size_desktop,
-      lineHeight: data.line_height_desktop,
-      buttonFontSize: data.button_font_size_desktop
+      screenSizeLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop', 'quotes-dlx')
     });
   };
 

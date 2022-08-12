@@ -405,9 +405,6 @@ const Interface = ( props ) => {
 				template={ activeTheme }
 				screenSize="desktop"
 				screenSizeLabel={ __( 'Desktop', 'quotes-dlx' ) }
-				fontSize={ data.font_size_desktop }
-				lineHeight={ data.line_height_desktop }
-				buttonFontSize={ data.button_font_size_desktop }
 			/>
 		);
 	};

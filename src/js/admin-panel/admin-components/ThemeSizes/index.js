@@ -15,14 +15,36 @@ import AdminThemeColorsLoader from '../../admin-components/Loaders/AdminThemeCol
 import Notice from '../../admin-components/Notice';
 import Spinner from '../../../components/icons/Spinner';
 
+const retrieveDefaults = ( props ) => {
+	return sendCommand( 'quotes_dlx_get_theme_size_options', {
+		nonce: quotes_dlx_admin.options_retrieve_nonce,
+		template: props.template,
+		screen: props.screenSize,
+	} );
+};
+
 const ThemeSizes = ( props ) => {
+	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, props );
+	return (
+		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+			<Interface defaults={ defaults } { ...props } />
+		</Suspense>
+	);
+};
+
+const Interface = ( props ) => {
+
+	const { defaults, screenSizeLabel, screenSize } = props;
+	const response = defaults();
+	const { data, success } = response.data;
+
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
-	const { template, screenSize, screenSizeLabel, fontSize, lineHeight, buttonFontSize } = props;
+	const { fontSize, lineHeight, buttonFontSize } = data;
 
 	const screenSizeLabelLowercase = screenSizeLabel.toLowerCase();
 

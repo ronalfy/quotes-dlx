@@ -48,7 +48,40 @@ class Ajax {
 		// Theme preview for font-size and line-height for desktop|tablet|mobile.
 		add_action( 'wp_ajax_quotes_dlx_theme_preview', array( static::class, 'ajax_theme_preview' ) );
 
+		// For saving, resetting, getting theme size options.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_size_options', array( static::class, 'ajax_get_theme_size_options' ) );
+
 		return $self;
+	}
+
+	/**
+	 * Retrieve the theme size options.
+	 */
+	public function ajax_get_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+
+		// Get saved colors.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size        = $theme_options[ $template_slug ][ 'font_size_' . $screen_size ] ?? 16;
+		$theme_line_height      = $theme_options[ $template_slug ][ 'line_height_' . $screen_size ] ?? 1.65;
+		$theme_button_font_size = $theme_options[ $template_slug ][ 'button_font_size' . $screen_size ] ?? 16;
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => $theme_font_size,
+				'lineHeight'     => $theme_line_height,
+				'buttonFontSize' => $theme_button_font_size,
+			)
+		);
+
 	}
 
 	/**

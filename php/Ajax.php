@@ -429,6 +429,9 @@ class Ajax {
 			$saved_colors = $theme_default_colors;
 		}
 
+		// Get theme colors and merge with default colors.
+		// $theme_color_palette  = Functions::get_site_theme_colors(); // phpcs:ignore.
+
 		wp_send_json_success(
 			array(
 				'colors'                   => $saved_colors,

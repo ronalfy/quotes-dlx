@@ -987,19 +987,15 @@ var Interface = function Interface(props) {
       activeTheme = _useState2[0],
       setActiveTheme = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(getColors()),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.template),
       _useState4 = _slicedToArray(_useState3, 2),
-      themeColors = _useState4[0],
-      setThemeColors = _useState4[1];
+      selectedTheme = _useState4[0],
+      setSelectedTheme = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    name: '',
-    slug: '',
-    value: ''
-  }]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(getColors()),
       _useState6 = _slicedToArray(_useState5, 2),
-      defaultThemeColors = _useState6[0],
-      setDefaultThemeColors = _useState6[1];
+      themeColors = _useState6[0],
+      setThemeColors = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     name: '',
@@ -1007,38 +1003,52 @@ var Interface = function Interface(props) {
     value: ''
   }]),
       _useState8 = _slicedToArray(_useState7, 2),
-      savedThemeColors = _useState8[0],
-      setSavedThemeColors = _useState8[1];
+      defaultThemeColors = _useState8[0],
+      setDefaultThemeColors = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    name: '',
+    slug: '',
+    value: ''
+  }]),
       _useState10 = _slicedToArray(_useState9, 2),
-      loading = _useState10[0],
-      setLoading = _useState10[1];
+      savedThemeColors = _useState10[0],
+      setSavedThemeColors = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      saving = _useState12[0],
-      setSaving = _useState12[1];
+      loading = _useState12[0],
+      setLoading = _useState12[1];
 
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      isSaved = _useState14[0],
-      setIsSaved = _useState14[1];
+      saving = _useState14[0],
+      setSaving = _useState14[1];
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      resetting = _useState16[0],
-      setResetting = _useState16[1];
+      isSaved = _useState16[0],
+      setIsSaved = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      isReset = _useState18[0],
-      setIsReset = _useState18[1];
+      resetting = _useState18[0],
+      setResetting = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      hasUnsavedChanges = _useState20[0],
-      setHasUnsavedChanges = _useState20[1];
+      isReset = _useState20[0],
+      setIsReset = _useState20[1];
+
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState22 = _slicedToArray(_useState21, 2),
+      changingTheme = _useState22[0],
+      setChangingTheme = _useState22[1];
+
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      hasUnsavedChanges = _useState24[0],
+      setHasUnsavedChanges = _useState24[1];
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_16__.useForm)({
     defaultValues: {
@@ -1070,7 +1080,11 @@ var Interface = function Interface(props) {
       dirtyFields = _useFormState.dirtyFields,
       touchedFields = _useFormState.touchedFields;
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  var getThemeOptions = function getThemeOptions() {
+    if (loading) {
+      return;
+    }
+
     setLoading(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_options', {
       nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -1089,7 +1103,11 @@ var Interface = function Interface(props) {
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setLoading(false);
     });
-  }, [activeTheme]);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getThemeOptions();
+  }, []);
 
   var getActiveThemeStylesheet = function getActiveThemeStylesheet() {
     var stylesheet = '';
@@ -1114,7 +1132,7 @@ var Interface = function Interface(props) {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Theme', 'quotes-dlx'),
         value: activeTheme,
         onChange: function onChange(newTheme) {
-          return setActiveTheme(newTheme);
+          return setSelectedTheme(newTheme);
         },
         options: getThemes(cat)
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
@@ -1132,7 +1150,13 @@ var Interface = function Interface(props) {
         icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_14__["default"] : false,
         iconSize: "18",
         iconPosition: "right",
-        disabled: saving || resetting
+        disabled: saving || resetting || selectedTheme === activeTheme,
+        onClick: function onClick(e) {
+          if (selectedTheme !== activeTheme) {
+            setActiveTheme(selectedTheme);
+            getThemeOptions();
+          }
+        }
       }));
     });
   };

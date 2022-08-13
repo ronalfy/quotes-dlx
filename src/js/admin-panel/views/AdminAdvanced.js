@@ -20,6 +20,7 @@ import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import twttr from '../../validation/twitter';
 import CircularInfo from '../../components/icons/CircularInfo';
+import FlaskIcon from '../../components/icons/FlaskIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 
@@ -40,7 +41,7 @@ const AdminDefaults = ( props ) => {
 };
 
 const Interface = ( props ) => {
-	const localStorageKey = 'quotes_dlx_form_defaults';
+	const localStorageKey = 'quotes_dlx_form_advanced';
 
 	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } =
 		useContext( TabsContext );
@@ -64,6 +65,12 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 
 	const {
+		desktop_breakpoint,
+		desktop_breakpoint_unit,
+		tablet_breakpoint,
+		tablet_breakpoint_unit,
+		mobile_breakpoint,
+		mobile_breakpoint_unit,
 		maximum_width,
 		maximum_width_unit,
 		twitter_username,
@@ -84,6 +91,12 @@ const Interface = ( props ) => {
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
+				desktopBreakpoint: desktop_breakpoint,
+				desktopBreakpointUnit: desktop_breakpoint_unit,
+				tabletBreakpoint: tablet_breakpoint,
+				tabletBreakpointUnit: tablet_breakpoint_unit,
+				mobileBreakpoint: mobile_breakpoint,
+				mobileBreakpointUnit: mobile_breakpoint_unit,
 				maximumWidth: maximum_width,
 				maximumWidthUnit: maximum_width_unit,
 				twitterUsername: twitter_username,
@@ -248,14 +261,14 @@ const Interface = ( props ) => {
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
-								<GearIcon width={ 48 } height={ 48 } aria-hidden="true" />
+								<FlaskIcon width={ 48 } height={ 48 } aria-hidden="true" />
 								<span className="qdlx-admin__heading--text">
-									{ __( 'Block Defaults', 'quotes-dlx' ) }
+									{ __( 'Advanced Options', 'quotes-dlx' ) }
 								</span>
 							</h1>
 							<p className="description">
 								{ __(
-									'These default options will automatically be set when you insert the Quotes block.',
+									'Advanced options allow you to set breakpoints and reset options.',
 									'quotes-dlx'
 								) }
 							</p>
@@ -264,93 +277,195 @@ const Interface = ( props ) => {
 							<table className="form-table" role="presentation">
 								<tbody>
 									<tr>
-										<th scope="row">{ __( 'Tweet Defaults', 'quotes-dlx' ) }</th>
+										<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
 										<td>
-											<Controller
-												name="twitterUsername"
-												control={ control }
-												rules={ {
-													validate: ( value ) => {
-														if ( value.length === 0 ) {
-															return true;
-														}
-														return twttr.txt.isValidUsername( '@' + value );
-													},
-												} }
-												render={ ( { field: { onChange, value } } ) => (
-													<TextControl
-														label={ __( 'Tweet Credit', 'quotes-dlx' ) }
-														className="qdlx-admin__text-control"
-														register="tweet_credit"
-														placeholder="TwitterUsername"
-														value={ value }
-														onChange={ ( currentValue ) => {
-															let twitterUsername = '';
-															if ( currentValue.length > 0 ) {
-																const replacement = currentValue.replace(
-																	'@',
-																	''
-																); // Strip @ symbol.
-																if ( currentValue.length > 0 ) {
-																	const usernames = twttr.txt.extractMentions(
-																		'@' + replacement
-																	);
-																	if ( typeof usernames[ 0 ] !== 'undefined' ) {
-																		twitterUsername = usernames[ 0 ];
-																	} else {
-																		twitterUsername = replacement;
-																	}
-																}
-															}
-															// onChange's arg will send value into hook form
-															onChange( twitterUsername );
-														} }
-														help={ __(
-															'Leave this blank to have no default Twitter credit',
-															'quotes-dlx'
-														) }
-													/>
-												) }
-											/>
-											{ 'validate' === errors.twitterUsername?.type && (
-												<Notice
-													message={ __( 'The Twitter Username is Invalid.' ) }
-													status="error"
-													politeness="assertive"
-													inline={ true }
-													icon={ CircularExclamationIcon }
+											<div className="qdlx-admin__control-item">
+												<Controller
+													name="desktopBreakpoint"
+													control={ control }
+													rules={ { required: true, pattern: /^[0-9]+$/i } }
+													render={ ( { field } ) => (
+														<TextControl
+															{ ...field }
+															label={ __( 'Desktop Breakpoint', 'quotes-dlx' ) }
+															className={ classNames( 'qdlx-admin__text-control', {
+																'has-error':
+																'pattern' === errors.desktopBreakpoint?.type ||
+																'required' === errors.desktopBreakpoint?.type,
+																'is-required': true,
+															} ) }
+															help={ __(
+																'Set the desktop breakpoint for all themes.',
+																'quotes-dlx'
+															) }
+															aria-required="true"
+														/>
+													) }
 												/>
-											) }
-											<Controller
-												name="hashtags"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<FormTokenField
-														value={ value }
-														placeholder={ __(
-															'Enter hashtags separated by commas.',
-															'quotes-dlx'
-														) }
-														className="quotes-dlx-hashtag-fields"
-														tokenizeOnSpace={ true }
-														label={ __( 'Hashtags', 'quotes-dlx' ) }
-														onChange={ ( tokens ) => {
-															const filteredTokens = [];
-															tokens.forEach( function( item, index ) {
-																const replacement = item.replace( '#', '' ); // Strip hashtag symbol.
-																const hashtag = twttr.txt.extractHashtags(
-																	'#' + replacement
-																); // Add it back in for extraction.
-																// Check if array contains anything.
-																if ( typeof hashtag[ 0 ] !== 'undefined' ) {
-																	filteredTokens.push( hashtag[ 0 ] );
-																}
-															} );
-															onChange( filteredTokens );
-														} }
+												{ 'required' === errors.desktopBreakpoint?.type && (
+													<Notice
+														message={ __( 'This field is a required field.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
 													/>
 												) }
-											/>
+												{ 'pattern' === errors.desktopBreakpoint?.type && (
+													<Notice
+														message={ __( 'The desktop breakpoint can only be numbers.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												<Controller
+													control={ control }
+													name="desktopBreakpointUnit"
+													render={ ( { field: { onChange, value } } ) => (
+														<RadioControl
+															label={ __( 'Desktop Breakpoint Unit', 'quotes-dlx' ) }
+															help={ __(
+																'Select a unit for the desktop breakpoint.',
+																'quotes-dlx'
+															) }
+															selected={ value }
+															onChange={ onChange }
+															options={ [
+																{ label: 'px', value: 'px' },
+																{ label: 'em', value: 'em' },
+															] }
+														/>
+													) }
+												/></div>
+											<div className="qdlx-admin__control-item">
+												<Controller
+													name="tabletBreakpoint"
+													control={ control }
+													rules={ { required: true, pattern: /^[0-9]+$/i } }
+													render={ ( { field } ) => (
+														<TextControl
+															{ ...field }
+															label={ __( 'Tablet Breakpoint', 'quotes-dlx' ) }
+															className={ classNames( 'qdlx-admin__text-control', {
+																'has-error':
+																'pattern' === errors.tabletBreakpoint?.type ||
+																'required' === errors.tabletBreakpoint?.type,
+																'is-required': true,
+															} ) }
+															help={ __(
+																'Set the tablet breakpoint for all themes.',
+																'quotes-dlx'
+															) }
+															aria-required="true"
+														/>
+													) }
+												/>
+												{ 'required' === errors.tabletBreakpoint?.type && (
+													<Notice
+														message={ __( 'This field is a required field.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												{ 'pattern' === errors.tabletBreakpoint?.type && (
+													<Notice
+														message={ __( 'The tablet breakpoint can only be numbers.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												<Controller
+													control={ control }
+													name="tabletBreakpointUnit"
+													render={ ( { field: { onChange, value } } ) => (
+														<RadioControl
+															label={ __( 'Tablet Breakpoint Unit', 'quotes-dlx' ) }
+															help={ __(
+																'Select a unit for the tablet breakpoint.',
+																'quotes-dlx'
+															) }
+															selected={ value }
+															onChange={ onChange }
+															options={ [
+																{ label: 'px', value: 'px' },
+																{ label: 'em', value: 'em' },
+															] }
+														/>
+													) }
+												/>
+											</div>
+											<div className="qdlx-admin__control-item">
+												<Controller
+													name="mobileBreakpoint"
+													control={ control }
+													rules={ { required: true, pattern: /^[0-9]+$/i } }
+													render={ ( { field } ) => (
+														<TextControl
+															{ ...field }
+															label={ __( 'Mobile Breakpoint', 'quotes-dlx' ) }
+															className={ classNames( 'qdlx-admin__text-control', {
+																'has-error':
+																'pattern' === errors.mobileBreakpoint?.type ||
+																'required' === errors.mobileBreakpoint?.type,
+																'is-required': true,
+															} ) }
+															help={ __(
+																'Set the mobile breakpoint for all themes.',
+																'quotes-dlx'
+															) }
+															aria-required="true"
+														/>
+													) }
+												/>
+												{ 'required' === errors.mobileBreakpoint?.type && (
+													<Notice
+														message={ __( 'This field is a required field.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												{ 'pattern' === errors.mobileBreakpoint?.type && (
+													<Notice
+														message={ __( 'The mobile breakpoint can only be numbers.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												<Controller
+													control={ control }
+													name="mobileBreakpointUnit"
+													render={ ( { field: { onChange, value } } ) => (
+														<RadioControl
+															label={ __( 'Mobile Breakpoint Unit', 'quotes-dlx' ) }
+															help={ __(
+																'Select a unit for the mobile breakpoint.',
+																'quotes-dlx'
+															) }
+															selected={ value }
+															onChange={ onChange }
+															options={ [
+																{ label: 'px', value: 'px' },
+																{ label: 'em', value: 'em' },
+															] }
+														/>
+													) }
+												/></div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">{ __( 'Tablet Breakpoint', 'quotes-dlx' ) }</th>
+										<td>
+
 										</td>
 									</tr>
 									<tr>
@@ -772,66 +887,6 @@ const Interface = ( props ) => {
 											{ __( 'Container Settings', 'quotes-dlx' ) }
 										</th>
 										<td>
-											<Controller
-												name="maximumWidth"
-												control={ control }
-												rules={ { required: true, pattern: /^[0-9]+$/i } }
-												render={ ( { field } ) => (
-													<TextControl
-														{ ...field }
-														label={ __( 'Block Maximum Width', 'quotes-dlx' ) }
-														className={ classNames( 'qdlx-admin__text-control', {
-															'has-error':
-																'pattern' === errors.maximumWidth?.type ||
-																'required' === errors.maximumWidth?.type,
-															'is-required': true,
-														} ) }
-														help={ __(
-															'If you have a large layout for your theme, this will be the maximum width of the block.',
-															'quotes-dlx'
-														) }
-														aria-required="true"
-													/>
-												) }
-											/>
-											{ 'required' === errors.maximumWidth?.type && (
-												<Notice
-													message={ __( 'This field is a required field.' ) }
-													status="error"
-													politeness="assertive"
-													inline={ true }
-													icon={ CircularExclamationIcon }
-												/>
-											) }
-											{ 'pattern' === errors.maximumWidth?.type && (
-												<Notice
-													message={ __( 'Maximum width can only be numbers.' ) }
-													status="error"
-													politeness="assertive"
-													inline={ true }
-													icon={ CircularExclamationIcon }
-												/>
-											) }
-											<Controller
-												control={ control }
-												name="maximumWidthUnit"
-												render={ ( { field: { onChange, value } } ) => (
-													<RadioControl
-														label={ __( 'Maximum Width Unit', 'quotes-dlx' ) }
-														help={ __(
-															'Select a unit for the max-width.',
-															'quotes-dlx'
-														) }
-														selected={ value }
-														onChange={ onChange }
-														options={ [
-															{ label: 'px', value: 'px' },
-															{ label: 'em', value: 'em' },
-															{ label: 'vw', value: 'vw' },
-														] }
-													/>
-												) }
-											/>
 											<Controller
 												name="align"
 												control={ control }

@@ -12,6 +12,7 @@ import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
 import ColorPaletteIcon from '../../../components/icons/ColorPalette';
 import KeyIcon from '../../../components/icons/KeyIcon';
+import FlaskIcon from '../../../components/icons/FlaskIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
 
@@ -228,7 +229,7 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ licensesDirtyCount }
 					/>
 					<TabItem
-						icon={ KeyIcon }
+						icon={ FlaskIcon }
 						slug="advanced"
 						description={ __( 'Reset options and disable fonts.', 'quotes-dlx' ) }
 						label={ __( 'Advanced', 'quotes-dlx' ) }

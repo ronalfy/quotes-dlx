@@ -1703,4 +1703,16 @@ table.form-table.qdlx-font-sizes td > div {
   color: #2271b1;
 }
 
+/* Form control wrapper */
+.qdlx-admin__control-item {
+  border-bottom: 1px solid var(--quotes-dlx-admin--color-gray);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.qdlx-admin__control-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

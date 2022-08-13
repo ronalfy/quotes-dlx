@@ -11,6 +11,7 @@ import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
+import AdminThemeSizesLoader from '../admin-components/Loaders/AdminThemeSizesLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
 import TabsContext from '../contexts/TabsContext';
 import ThemeColorPicker from '../admin-components/ThemeColorPicker';
@@ -28,7 +29,14 @@ const retrieveDefaults = () => {
 const AdminThemeOptions = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+		<Suspense fallback={ (
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<AdminThemeColorsLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+			</div>
+		) }>
 			<Interface defaults={ defaults } { ...props } />
 		</Suspense>
 	);

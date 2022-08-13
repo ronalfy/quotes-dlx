@@ -1118,7 +1118,7 @@ var Interface = function Interface(props) {
         },
         options: getThemes(cat)
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right button-reset', {
           'has-error': hasErrors()
         }, {
           'has-icon': saving
@@ -1128,7 +1128,7 @@ var Interface = function Interface(props) {
           }
         }),
         type: "button",
-        text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Changing Theme…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select', 'quotes-dlx'),
+        text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Changing Theme…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Change Themes', 'quotes-dlx'),
         icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_14__["default"] : false,
         iconSize: "18",
         iconPosition: "right",

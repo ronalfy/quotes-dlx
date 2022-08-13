@@ -163,7 +163,7 @@ const Interface = ( props ) => {
 				/>
 				<Button
 					className={ classNames(
-						'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+						'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right button-reset',
 						{ 'has-error': hasErrors() },
 						{ 'has-icon': saving },
 						{ 'is-saving': { saving } }
@@ -172,7 +172,7 @@ const Interface = ( props ) => {
 					text={
 						saving
 							? __( 'Changing Theme…', 'quotes-dlx' )
-							: __( 'Select', 'quotes-dlx' )
+							: __( 'Change Themes', 'quotes-dlx' )
 					}
 					icon={ saving ? Spinner : false }
 					iconSize="18"

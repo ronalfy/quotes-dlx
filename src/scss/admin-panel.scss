@@ -1662,11 +1662,13 @@ table.form-table.qdlx-font-sizes {
 }
 
 /* Theme Options Select Dropdown and Go Button */
+/* Lots of importants here to override core styles */
 .quotes-dlx-admin-theme-options__select {
 	display: grid;
-	grid-template-columns: 8fr 2fr;
+	grid-template-columns: 7fr 3fr;
 	column-gap: 25px;
 	position: relative;
+	align-items: flex-end;
 
 	select {
 		appearance: none;
@@ -1686,6 +1688,9 @@ table.form-table.qdlx-font-sizes {
 		cursor: pointer;
 		max-width: 100% !important;
 	}
+	& > div.components-base-control {
+		margin-bottom: 0;
+	}
 	& > div.components-base-control .components-input-control__container {
 		position: relative;
 		display: flex !important;
@@ -1702,7 +1707,7 @@ table.form-table.qdlx-font-sizes {
 			min-height: 45px !important;
 			max-height: 45px !important;
 			width: 3em !important;
-			background-color: var( --quotes-dlx-admin--color-accent);
+			background-color: #2271b1;
 			transition: .25s all ease;
 			pointer-events: none;
 			color: var( --quotes-dlx-admin--color-white );
@@ -1713,5 +1718,24 @@ table.form-table.qdlx-font-sizes {
 		  &:hover:after {
 			color: var( --quotes-dlx-admin--color-white );
 		  }
+	}
+
+	.components-base-control__field {
+		margin-bottom: 0 !important;
+	}
+
+	button.qdlx__btn {
+		padding: 12px 10px;
+		border: 2px solid #2271b1;
+		color: #2271b1;
+		max-height: 45px;
+
+		&:hover,
+		&:focus {
+			padding: 12px 10px;
+			background: #E6EAEC;
+			border: 2px solid #2271b1;
+			color: #2271b1;
+		}
 	}
 }

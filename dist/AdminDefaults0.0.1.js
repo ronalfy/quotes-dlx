@@ -1,2 +1,941 @@
-(self.webpackChunkquotes_dlx=self.webpackChunkquotes_dlx||[]).push([[955],{8228:(e,t,a)=>{"use strict";a.d(t,{Z:()=>g});var n=a(7294),u=a(5697),r=a.n(u),i=a(6042),l=a(5518),s=a(4184),o=a.n(s);function c(){return c=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var n in a)Object.prototype.hasOwnProperty.call(a,n)&&(e[n]=a[n])}return e},c.apply(this,arguments)}function d(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}var h=function(e){var t,a=e.message,u=e.status,r=e.politeness,s=e.icon,h=e.className,g=e.inline,m=e.children,x=e.animate,p=e.animationType;(0,n.useEffect)((function(){(0,i.D)(a,r)}),[a,u,r]);var v,A=function(){return null!==s},f=o()(h,"qdlx-admin__notice",(d(t={"qdlx-admin__notice--has-icon":A()},"qdlx-admin__notice-type--".concat(u),!0),d(t,"qdlx-admin__notice-appearance--inline",g),d(t,"qdlx-admin__notice-appearance--block",!g),d(t,"qdlx-admin__notice-animate",x),d(t,"qdlx-admin__notice-animate--".concat(p),x),t));return n.createElement("div",{className:f},n.createElement(l.Z,c({isDismissible:!1,spokenMessage:a,actions:[]},e),A()&&n.createElement("div",{className:"qdlx-admin__notice-icon"},(v=s,n.createElement(v,{width:16,height:16,fill:"#6c757d"}))),n.createElement("div",{className:"qldx-admin__notice-message"},n.createElement(n.Fragment,null,a," ",m," "))))};h.defaultProps={message:"",status:"info",politeness:"polite",icon:null,className:"",inline:!1,animate:!1,animationType:"fadein"},h.propTypes={message:r().string.isRequired,status:r().oneOf(["info","warning","success","error"]),politeness:r().oneOf(["assertive","polite"]),icon:r().func,className:r().string,inline:r().bool,animate:r().bool,animatitionType:r().oneOf(["fadein","fadeout"])};const g=h},6385:(e,t,a)=>{"use strict";a.r(t),a.d(t,{default:()=>k});var n=a(7294),u=a(2304),r=a(9545),i=a(9906),l=a(6117),s=a(6730),o=a(4906),c=a(2248),d=a(5302),h=a(7536),g=a(4184),m=a.n(g),x=a(4404),p=a(8474),v=a(8228),A=a(6183),f=a(7214),C=a(6653),E=a(1136),_=a(984),b=a(3832);function B(){return B=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var n in a)Object.prototype.hasOwnProperty.call(a,n)&&(e[n]=a[n])}return e},B.apply(this,arguments)}function F(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var a=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=a){var n,u,r=[],i=!0,l=!1;try{for(a=a.call(e);!(i=(n=a.next()).done)&&(r.push(n.value),!t||r.length!==t);i=!0);}catch(e){l=!0,u=e}finally{try{i||null==a.return||a.return()}finally{if(l)throw u}}return r}}(e,t)||function(e,t){if(e){if("string"==typeof e)return D(e,t);var a=Object.prototype.toString.call(e).slice(8,-1);return"Object"===a&&e.constructor&&(a=e.constructor.name),"Map"===a||"Set"===a?Array.from(e):"Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a)?D(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function D(e,t){(null==t||t>e.length)&&(t=e.length);for(var a=0,n=new Array(t);a<t;a++)n[a]=e[a];return n}var y=function(){return(0,p.Z)("quotes_dlx_retrieve_admin_options_defaults",{nonce:quotes_dlx_admin.options_retrieve_nonce})},w=function(e){var t,a,d,g,D,y,w="quotes_dlx_form_defaults",k=(0,n.useContext)(_.Z),U=k.blockDefaultsDirtyCount,q=k.setBlockDefaultsDirtyCount,T=(0,e.defaults)().data,S=T.data,z=(T.success,F((0,n.useState)(S.tweet_button_enabled),2)),Z=z[0],P=z[1],N=F((0,n.useState)(S.tweet_button_display),2),I=N[0],L=N[1],W=F((0,n.useState)(S.has_anchor),2),O=W[0],j=W[1],R=F((0,n.useState)(S.enable_links_in_tweet),2),M=R[0],$=R[1],H=F((0,n.useState)(S.url_shortener),2),Q=H[0],V=H[1],G=F((0,n.useState)(!0),2),J=G[0],Y=G[1],K=F((0,n.useState)(!1),2),X=K[0],ee=K[1],te=F((0,n.useState)(!1),2),ae=te[0],ne=te[1],ue=F((0,n.useState)(!1),2),re=ue[0],ie=ue[1],le=F((0,n.useState)(!1),2),se=le[0],oe=le[1],ce=S.maximum_width,de=S.maximum_width_unit,he=S.twitter_username,ge=S.hashtags,me=S.align,xe=S.tweet_button_enabled,pe=S.share_button_text,ve=S.tweet_button_alignment,Ae=S.tweet_icon_alignment,fe=S.tweet_button_display,Ce=S.has_anchor,Ee=S.anchor_prefix,_e=S.enable_links_in_tweet,be=S.url_shortening_service,Be=S.url_shortener,Fe=(0,h.cI)({defaultValues:{maximumWidth:ce,maximumWidthUnit:de,twitterUsername:he,hashtags:ge,align:me,tweetButtonEnabled:xe,shareButtonText:pe,tweetButtonAlignment:ve,tweetIconAlignment:Ae,tweetButtonDisplay:fe,anchorPrefix:Ee,hasAnchor:Ce,enableLinksInTweet:_e,urlShorteningService:be,urlShortener:Be}}),De=(Fe.register,Fe.control),ye=Fe.handleSubmit,we=Fe.setValue,ke=Fe.getValues,Ue=Fe.reset,qe=(0,h.qo)({control:De}),Te=(0,h.cl)({control:De}),Se=Te.errors,ze=Te.isDirty,Ze=Te.dirtyFields,Pe=(Te.touchedFields,function(){return Object.keys(Se).length>0});(0,n.useEffect)((function(){var e=localStorage.getItem(w);if(null!==e)for(var t=JSON.parse(e),a=0,n=Object.entries(t);a<n.length;a++){var u=F(n[a],2),r=u[0],i=u[1];we(r,i,{shouldDirty:!0,shouldValidate:!0})}if(ze){var l=Object.keys(Ze).length;q(l)}Y(!1)}),[]),(0,n.useEffect)((function(){if(!(X||re||J)){if(ze||U>0){var e=JSON.stringify(ke()),t=Object.keys(Ze).length;q(t),localStorage.setItem(w,e)}else q(0);Y(!1)}}),[qe]);var Ne=[];return quotes_dlx_admin.bitly_plugin_active&&Ne.push({label:(0,u.__)("Bitly","quotes-dlx"),value:"bitly"}),quotes_dlx_admin.jetpack_plugin_active&&Ne.push({label:(0,u.__)("Jetpack","quotes-dlx"),value:"jetpack"}),J?n.createElement(A.Z,null):n.createElement(n.Fragment,null,n.createElement("div",{className:"qdlx-admin__tabs--content-wrap"},n.createElement("form",{onSubmit:ye((function(e){ee(!0),0===e.hashtags.length&&(e.hashtags=null),(0,p.Z)("quotes_dlx_save_admin_options_defaults",{nonce:quotes_dlx_admin.options_save_nonce,form_data:e}).then((function(e){var t=e.data.data;e.data.success&&(q(0),Ue(t),localStorage.removeItem(w),ne(!0),setTimeout((function(){ne(!1)}),3e3))})).catch((function(e){})).then((function(e){ee(!1)}))}))},n.createElement("div",{className:"qdlx-admin__tabs--content-panel"},n.createElement("div",{className:"qdlx-admin__tabs--content-heading"},n.createElement("h1",null,n.createElement(x.Z,{width:48,height:48,"aria-hidden":"true"}),n.createElement("span",{className:"qdlx-admin__heading--text"},(0,u.__)("Block Defaults","quotes-dlx"))),n.createElement("p",{className:"description"},(0,u.__)("These default options will automatically be set when you insert the Quotes block.","quotes-dlx"))),n.createElement("div",{className:"qdlx-admin__tabs--content-inner"},n.createElement("table",{className:"form-table",role:"presentation"},n.createElement("tbody",null,n.createElement("tr",null,n.createElement("th",{scope:"row"},(0,u.__)("Tweet Defaults","quotes-dlx")),n.createElement("td",null,n.createElement(h.Qr,{name:"twitterUsername",control:De,rules:{validate:function(e){return 0===e.length||C.Z.txt.isValidUsername("@"+e)}},render:function(e){var t=e.field,a=t.onChange,i=t.value;return n.createElement(r.Z,{label:(0,u.__)("Tweet Credit","quotes-dlx"),className:"qdlx-admin__text-control",register:"tweet_credit",placeholder:"TwitterUsername",value:i,onChange:function(e){var t="";if(e.length>0){var n=e.replace("@","");if(e.length>0){var u=C.Z.txt.extractMentions("@"+n);t=void 0!==u[0]?u[0]:n}}a(t)},help:(0,u.__)("Leave this blank to have no default Twitter credit","quotes-dlx")})}}),"validate"===(null===(t=Se.twitterUsername)||void 0===t?void 0:t.type)&&n.createElement(v.Z,{message:(0,u.__)("The Twitter Username is Invalid."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),n.createElement(h.Qr,{name:"hashtags",control:De,render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(i.Z,{value:r,placeholder:(0,u.__)("Enter hashtags separated by commas.","quotes-dlx"),className:"quotes-dlx-hashtag-fields",tokenizeOnSpace:!0,label:(0,u.__)("Hashtags","quotes-dlx"),onChange:function(e){var t=[];e.forEach((function(e,a){var n=e.replace("#",""),u=C.Z.txt.extractHashtags("#"+n);void 0!==u[0]&&t.push(u[0])})),a(t)}})}}))),n.createElement("tr",null,n.createElement("th",{scope:"row"},(0,u.__)("Tweet Button Defaults","quotes-dlx")),n.createElement("td",null,n.createElement(h.Qr,{name:"tweetButtonEnabled",control:De,render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(l.Z,{label:(0,u.__)("Enable Click to Tweet Button","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:r,onChange:function(e){P(e),a(e)},help:(0,u.__)("Enable or Disable the Click to Tweet button. This is useful if you want to hide the button and use the block for just quotes.","quotes-dlx")})}}),Z&&n.createElement(n.Fragment,null,n.createElement(h.Qr,{control:De,name:"tweetButtonDisplay",render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(s.Z,{label:(0,u.__)("Tweet Button Display","quotes-dlx"),help:(0,u.__)("Choose to show just text, just an icon, or both.","quotes-dlx"),selected:r,onChange:function(e){L(e),a(e)},options:[{label:(0,u.__)("Show text and icon","quotes-dlx"),value:"full"},{label:(0,u.__)("Show text only","quotes-dlx"),value:"text"},{label:(0,u.__)("Show icon only","quotes-dlx"),value:"icon"}]})}}),("text"===I||"full"===I)&&n.createElement(n.Fragment,null,n.createElement(h.Qr,{name:"shareButtonText",control:De,rules:{required:!0},render:function(e){var t,a=e.field;return n.createElement(r.Z,B({},a,{label:(0,u.__)("Click Button Text","quotes-dlx"),className:m()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=Se.shareButtonText)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true",help:(0,u.__)("This text will be the text displayed for the Click to Tweet button","quotes-dlx")}))}}),"required"===(null===(a=Se.shareButtonText)||void 0===a?void 0:a.type)&&n.createElement(v.Z,{message:(0,u.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:f.Z})),n.createElement(h.Qr,{name:"tweetButtonAlignment",control:De,render:function(e){var t=e.field,a=(t.onClick,t.value);return n.createElement(o.Z,{className:"qdlx-admin__button-group--align"},n.createElement("label",null,(0,u.__)("Default Button Alignment","quotes-dlx")),n.createElement(c.Z,{variant:"primary",icon:"align-pull-left",label:(0,u.__)("Align Left","quotes-dlx"),title:(0,u.__)("Align Left","quotes-dlx"),value:"left",className:m()({"is-active":"left"===a}),onClick:function(e){we("tweetButtonAlignment","left",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-center",label:(0,u.__)("Align Center","quotes-dlx"),title:(0,u.__)("Align Center","quotes-dlx"),value:"center",className:m()({"is-active":"center"===a}),onClick:function(e){we("tweetButtonAlignment","center",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-pull-right",label:(0,u.__)("Align Right","quotes-dlx"),title:(0,u.__)("Align Right","quotes-dlx"),value:"right",className:m()({"is-active":"right"===a}),onClick:function(e){we("tweetButtonAlignment","right",{shouldDirty:!0})}}),n.createElement("p",{className:"components-base-control__help"},(0,u.__)("Right alignment is recommended.","quotes-dlx")))}}),("icon"===I||"full"===I)&&n.createElement(h.Qr,{name:"tweetIconAlignment",control:De,render:function(e){var t=e.field,a=(t.onClick,t.value);return n.createElement(o.Z,{className:"qdlx-admin__button-group--align"},n.createElement("label",null,(0,u.__)("Tweet Icon Alignment","quotes-dlx")),n.createElement(c.Z,{variant:"primary",icon:"align-pull-left",label:(0,u.__)("Align Left","quotes-dlx"),title:(0,u.__)("Align Left","quotes-dlx"),value:"left",className:m()({"is-active":"left"===a}),onClick:function(e){we("tweetIconAlignment","left",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-pull-right",label:(0,u.__)("Align Right","quotes-dlx"),title:(0,u.__)("Align Right","quotes-dlx"),value:"right",className:m()({"is-active":"right"===a}),onClick:function(e){we("tweetIconAlignment","right",{shouldDirty:!0})}}),n.createElement("p",{className:"components-base-control__help"},(0,u.__)("Adjust the icon to the left or right of the button.","quotes-dlx")))}})))),n.createElement("tr",null,n.createElement("th",{scope:"row"},(0,u.__)("Link Settings","quotes-dlx")),n.createElement("td",null,n.createElement(v.Z,{message:(0,u.__)("A link to your post is on by default. You can customize the link appearance here."),status:"info",politeness:"polite",inline:!1,icon:E.Z}),n.createElement(h.Qr,{name:"enableLinksInTweet",control:De,render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(l.Z,{label:(0,u.__)("Enable Links in the Tweet","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:r,onChange:function(e){$(e),a(e)},help:(0,u.__)("You can disable all links from showing in the Tweets","quotes-dlx")})}}),M&&n.createElement(n.Fragment,null,n.createElement(h.Qr,{name:"hasAnchor",control:De,render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(l.Z,{label:(0,u.__)("Enable Anchors","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:r,onChange:function(e){j(e),a(e)},help:(0,u.__)("Anchors are appended to the end of a URL.","quotes-dlx")})}}),O&&n.createElement(n.Fragment,null,n.createElement(h.Qr,{name:"anchorPrefix",control:De,rules:{required:!0,pattern:/^[a-z]+$/i},render:function(e){var t,a,i=e.field;return n.createElement(r.Z,B({},i,{label:(0,u.__)("Anchor Prefix","quotes-dlx"),className:m()("qdlx-admin__text-control",{"has-error":"pattern"===(null===(t=Se.anchorPrefix)||void 0===t?void 0:t.type)||"required"===(null===(a=Se.anchorPrefix)||void 0===a?void 0:a.type),"is-required":!0}),"aria-required":"true",help:(0,u.__)("The anchor prefix will display at the end of your post URL.","quotes-dlx")}))}}),"required"===(null===(d=Se.anchorPrefix)||void 0===d?void 0:d.type)&&n.createElement(v.Z,{message:(0,u.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),"pattern"===(null===(g=Se.anchorPrefix)||void 0===g?void 0:g.type)&&n.createElement(v.Z,{message:(0,u.__)("Please use only lowercase letters."),status:"error",politeness:"assertive",inline:!0,icon:f.Z})),n.createElement(h.Qr,{name:"urlShortener",control:De,render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(l.Z,{label:(0,u.__)("Enable URL Shortener","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:r,onChange:function(e){V(e),a(e)},help:(0,u.__)("A URL shortener shortens your link so you can have more characters in your Tweet.","quotes-dlx")})}}),Q&&n.createElement(n.Fragment,null,n.createElement(v.Z,{message:(0,u.__)("Both Bitly and Jetpack are supported. You will need the plugins activated and configured to set a default.","quotes-dlx"),status:"info",politeness:"polite",inline:!1,icon:E.Z},n.createElement("p",{className:"description"},n.createElement("a",{href:"https://wordpress.org/plugins/wp-bitly/",target:"_blank",rel:"noreferrer"},(0,u.__)("Visit the Bitly plugin","quotes-dlx"))," | ",n.createElement("a",{href:"https://wordpress.org/plugins/jetpack/",target:"_blank",rel:"noreferrer"},(0,u.__)("Visit the Jetpack plugin","quotes-dlx")))),Ne.length>0&&n.createElement(h.Qr,{control:De,name:"urlShorteningService",render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(s.Z,{label:(0,u.__)("URL Shortening Service","quotes-dlx"),help:(0,u.__)("Choose a URL shortening service. Select none for no link shortener.","quotes-dlx"),selected:r,onChange:function(e){a(e)},options:Ne})}}))))),n.createElement("tr",null,n.createElement("th",{scope:"row"},(0,u.__)("Container Settings","quotes-dlx")),n.createElement("td",null,n.createElement(h.Qr,{name:"maximumWidth",control:De,rules:{required:!0,pattern:/^[0-9]+$/i},render:function(e){var t,a,i=e.field;return n.createElement(r.Z,B({},i,{label:(0,u.__)("Block Maximum Width","quotes-dlx"),className:m()("qdlx-admin__text-control",{"has-error":"pattern"===(null===(t=Se.maximumWidth)||void 0===t?void 0:t.type)||"required"===(null===(a=Se.maximumWidth)||void 0===a?void 0:a.type),"is-required":!0}),help:(0,u.__)("If you have a large layout for your theme, this will be the maximum width of the block.","quotes-dlx"),"aria-required":"true"}))}}),"required"===(null===(D=Se.maximumWidth)||void 0===D?void 0:D.type)&&n.createElement(v.Z,{message:(0,u.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),"pattern"===(null===(y=Se.maximumWidth)||void 0===y?void 0:y.type)&&n.createElement(v.Z,{message:(0,u.__)("Maximum width can only be numbers."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),n.createElement(h.Qr,{control:De,name:"maximumWidthUnit",render:function(e){var t=e.field,a=t.onChange,r=t.value;return n.createElement(s.Z,{label:(0,u.__)("Maximum Width Unit","quotes-dlx"),help:(0,u.__)("Select a unit for the max-width.","quotes-dlx"),selected:r,onChange:a,options:[{label:"px",value:"px"},{label:"em",value:"em"},{label:"vw",value:"vw"}]})}}),n.createElement(h.Qr,{name:"align",control:De,render:function(e){var t=e.field,a=(t.onClick,t.value);return n.createElement(o.Z,{className:"qdlx-admin__button-group--align"},n.createElement("label",null,(0,u.__)("Default block alignment","quotes-dlx")),n.createElement(c.Z,{variant:"primary",icon:"align-pull-left",label:(0,u.__)("Align Left","quotes-dlx"),title:(0,u.__)("Align Left","quotes-dlx"),value:"left",className:m()({"is-active":"left"===a}),onClick:function(e){we("align","left",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-center",label:(0,u.__)("Align Center","quotes-dlx"),title:(0,u.__)("Align Center","quotes-dlx"),value:"center",className:m()({"is-active":"center"===a}),onClick:function(e){we("align","center",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-pull-right",label:(0,u.__)("Align Right","quotes-dlx"),title:(0,u.__)("Align Right","quotes-dlx"),value:"right",className:m()({"is-active":"right"===a}),onClick:function(e){we("align","right",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-wide",label:(0,u.__)("Wide Width","quotes-dlx"),title:(0,u.__)("Wide Width","quotes-dlx"),value:"wide",className:m()({"is-active":"wide"===a}),onClick:function(e){we("align","wide",{shouldDirty:!0})}}),n.createElement(c.Z,{variant:"primary",icon:"align-full-width",label:(0,u.__)("Full Width","quotes-dlx"),title:(0,u.__)("Full Width","quotes-dlx"),value:"full",className:m()({"is-active":"full"===a}),onClick:function(e){we("align","full",{shouldDirty:!0})}}),n.createElement("p",{className:"components-base-control__help"},(0,u.__)("Center alignment is recommended.","quotes-dlx")))}}))))),n.createElement("div",{className:"qdlx-admin__tabs--content-actions"},n.createElement(c.Z,{className:m()("qdlx__btn qdlx__btn-primary qdlx__btn--icon-right",{"has-error":Pe()},{"has-icon":X},{"is-saving":{saving:X}}),type:"submit",text:X?(0,u.__)("Saving…","quotes-dlx"):(0,u.__)("Save Defaults","quotes-dlx"),icon:!!X&&b.Z,iconSize:"18",iconPosition:"right",disabled:X||re}),n.createElement(c.Z,{className:m()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":re},{"is-resetting":{resetting:re}}),type:"button",text:re?(0,u.__)("Resetting…","quotes-dlx"):(0,u.__)("Reset Defaults","quotes-dlx"),icon:!!re&&b.Z,iconSize:"18",iconPosition:"right",disabled:X||re,onClick:function(e){ie(!0),ie(!0),(0,p.Z)("quotes_dlx_reset_admin_options_defaults",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){var t=e.data.data;e.data.success&&(q(0),Ue(t),localStorage.removeItem(w),P(t.tweetButtonEnabled),$(t.enableLinksInTweet),V(t.urlShortener),j(t.hasAnchor),L(t.tweetButtonDisplay),oe(!0),setTimeout((function(){oe(!1)}),3e3))})).catch((function(e){})).then((function(e){ie(!1)}))}})),Pe()&&n.createElement(v.Z,{message:(0,u.__)("There are form validation errors. Please correct them above."),status:"error",politeness:"polite"}),ae&&n.createElement(v.Z,{message:(0,u.__)("Your settings have been saved."),status:"success",politeness:"assertive"}),se&&n.createElement(v.Z,{message:(0,u.__)("Your settings have been reset to defaults."),status:"success",politeness:"assertive"}))))))};const k=function(e){var t=F((0,d.useAsyncResource)(y,[]),2),a=t[0];return t[1],n.createElement(n.Suspense,{fallback:n.createElement(A.Z,null)},n.createElement(w,B({defaults:a},e)))}},7214:(e,t,a)=>{"use strict";a.d(t,{Z:()=>l});var n=a(7294),u=a(5697),r=a.n(u),i=function(e){return n.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},n.createElement("path",{fill:"var( ".concat(e.var,")"),d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"}))};i.defaultProps={width:16,height:16,fill:"#333333"},i.propTypes={width:r().number,height:r().number,fill:r().string};const l=i},1136:(e,t,a)=>{"use strict";a.d(t,{Z:()=>l});var n=a(7294),u=a(5697),r=a.n(u),i=function(e){return n.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},n.createElement("path",{fill:e.fill,d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"}))};i.defaultProps={width:16,height:16,fill:"#333333"},i.propTypes={width:r().number,height:r().number,fill:r().string};const l=i},3832:(e,t,a)=>{"use strict";a.d(t,{Z:()=>s});var n=a(7294),u=a(5697),r=a.n(u);function i(){return i=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var n in a)Object.prototype.hasOwnProperty.call(a,n)&&(e[n]=a[n])}return e},i.apply(this,arguments)}var l=function(e){return n.createElement("svg",i({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 576 512"},e,{width:e.width,height:e.height}),n.createElement("path",{className:"fa-primary",fill:e.primaryColor,d:"M256 32c0-17.67 14.3-32 32-32 141.4 0 256 114.6 256 256 0 46.6-12.5 90.4-34.3 128-8.8 15.3-28.4 20.6-44.6 11.7-14.4-8.8-19.6-28.4-10.8-44.6 16.3-27.3 25.7-60.1 25.7-96 0-106-86-192-192-192-17.7 0-32-13.43-32-32v.9z"}),n.createElement("path",{d:"M287.1 64c-106 0-192 85.1-192 192 0 106 86 192 192 192 71 0 132.2-37.5 165.8-93.6l.1.1c-6.9 14.9-1.5 32.8 12.1 41.2 16.2 8.9 35.8 3.6 44.6-11.7.2-.3.4-.6.5-.9C466.1 460.1 383.1 512 288 512 146.6 512 32 397.4 32 256S146.6 0 288 0c-17.7 0-32 14.33-32 32s14.3 32 32 32h-.9z",fill:e.secondaryColor,style:{opacity:.4}}))};l.defaultProps={width:24,height:24,primaryColor:"currentColor",secondaryColor:"currentColor"},l.propTypes={width:r().number,height:r().number,primaryColor:r().string,secondaryColor:r().string};const s=l},8474:(e,t,a)=>{"use strict";a.d(t,{Z:()=>l});var n=a(9669),u=a.n(n),r=a(129),i=a.n(r);function l(e,t){var a={action:e},n={nonce:!1,action:e};for(var r in void 0===t&&(t={}),n)t.hasOwnProperty(r)||(t[r]=n[r]);var l={method:"post",url:ajaxurl,params:a,paramsSerializer:function(e){return i().stringify(e,{arrayFormat:"brackets"})},data:i().stringify(t)};return u()(l)}},6653:(e,t,a)=>{"use strict";a.d(t,{Z:()=>n}),e=a.hmd(e);const n=function(){if(null==t)var t={};t.txt={},t.txt.regexen={};var n={"&":"&amp;",">":"&gt;","<":"&lt;",'"':"&quot;","'":"&#39;"};function u(e,a){return a=a||"","string"!=typeof e&&(e.global&&a.indexOf("g")<0&&(a+="g"),e.ignoreCase&&a.indexOf("i")<0&&(a+="i"),e.multiline&&a.indexOf("m")<0&&(a+="m"),e=e.source),new RegExp(e.replace(/#\{(\w+)\}/g,(function(e,a){var n=t.txt.regexen[a]||"";return"string"!=typeof n&&(n=n.source),n})),a)}function r(e,t){return e.replace(/#\{(\w+)\}/g,(function(e,a){return t[a]||""}))}function i(e,t,a){var n=String.fromCharCode(t);return a!==t&&(n+="-"+String.fromCharCode(a)),e.push(n),e}t.txt.htmlEscape=function(e){return e&&e.replace(/[&"'><]/g,(function(e){return n[e]}))},t.txt.regexSupplant=u,t.txt.stringSupplant=r,t.txt.addCharsToCharClass=i;var l=String.fromCharCode,s=[l(32),l(133),l(160),l(5760),l(6158),l(8232),l(8233),l(8239),l(8287),l(12288)];i(s,9,13),i(s,8192,8202);var o=[l(65534),l(65279),l(65535)];i(o,8234,8238),t.txt.regexen.spaces_group=u(s.join("")),t.txt.regexen.spaces=u("["+s.join("")+"]"),t.txt.regexen.invalid_chars_group=u(o.join("")),t.txt.regexen.punct=/\!'#%&'\(\)*\+,\\\-\.\/:;<=>\?@\[\]\^_{|}~\$/,t.txt.regexen.rtl_chars=/[\u0600-\u06FF]|[\u0750-\u077F]|[\u0590-\u05FF]|[\uFE70-\uFEFF]/gm,t.txt.regexen.non_bmp_code_pairs=/[\uD800-\uDBFF][\uDC00-\uDFFF]/gm;var c=[];i(c,192,214),i(c,216,246),i(c,248,255),i(c,256,591),i(c,595,596),i(c,598,599),i(c,601,601),i(c,603,603),i(c,611,611),i(c,616,616),i(c,623,623),i(c,626,626),i(c,649,649),i(c,651,651),i(c,699,699),i(c,768,879),i(c,7680,7935),t.txt.regexen.latinAccentChars=u(c.join(""));var d=/A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0-\u08B2\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA7AD\uA7B0\uA7B1\uA7F7-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB5F\uAB64\uAB65\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D/.source,h=/0-9\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0BE6-\u0BEF\u0C66-\u0C6F\u0CE6-\u0CEF\u0D66-\u0D6F\u0DE6-\u0DEF\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F29\u1040-\u1049\u1090-\u1099\u17E0-\u17E9\u1810-\u1819\u1946-\u194F\u19D0-\u19D9\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\uA620-\uA629\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uA9F0-\uA9F9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19/.source,g=/_\u200c\u200d\ua67e\u05be\u05f3\u05f4\uff5e\u301c\u309b\u309c\u30a0\u30fb\u3003\u0f0b\u0f0c\u00b7/.source;t.txt.regexen.hashSigns=/[#＃]/,t.txt.regexen.hashtagAlpha=new RegExp("["+d+"]"),t.txt.regexen.hashtagAlphaNumeric=new RegExp("["+d+h+g+"]"),t.txt.regexen.endHashtagMatch=u(/^(?:#{hashSigns}|:\/\/)/),t.txt.regexen.hashtagBoundary=new RegExp("(?:^|$|[^&"+d+h+g+"])"),t.txt.regexen.validHashtag=u(/(#{hashtagBoundary})(#{hashSigns})(?!\ufe0f|\u20e3)(#{hashtagAlphaNumeric}*#{hashtagAlpha}#{hashtagAlphaNumeric}*)/gi),t.txt.regexen.validMentionPrecedingChars=/(?:^|[^a-zA-Z0-9_!#$%&*@＠]|(?:^|[^a-zA-Z0-9_+~.-])(?:rt|RT|rT|Rt):?)/,t.txt.regexen.atSigns=/[@＠]/,t.txt.regexen.validMentionOrList=u("(#{validMentionPrecedingChars})(#{atSigns})([a-zA-Z0-9_]{1,20})(/[a-zA-Z][a-zA-Z0-9_-]{0,24})?","g"),t.txt.regexen.validReply=u(/^(?:#{spaces})*#{atSigns}([a-zA-Z0-9_]{1,20})/),t.txt.regexen.endMentionMatch=u(/^(?:#{atSigns}|[#{latinAccentChars}]|:\/\/)/),t.txt.regexen.validUrlPrecedingChars=u(/(?:[^A-Za-z0-9@＠$#＃#{invalid_chars_group}]|^)/),t.txt.regexen.invalidUrlWithoutProtocolPrecedingChars=/[-_.\/]$/,t.txt.regexen.invalidDomainChars=r("#{punct}#{spaces_group}#{invalid_chars_group}",t.txt.regexen),t.txt.regexen.validDomainChars=u(/[^#{invalidDomainChars}]/),t.txt.regexen.validSubdomain=u(/(?:(?:#{validDomainChars}(?:[_-]|#{validDomainChars})*)?#{validDomainChars}\.)/),t.txt.regexen.validDomainName=u(/(?:(?:#{validDomainChars}(?:-|#{validDomainChars})*)?#{validDomainChars}\.)/),t.txt.regexen.validGTLD=u(RegExp("(?:(?:abb|abbott|abogado|academy|accenture|accountant|accountants|aco|active|actor|ads|adult|aeg|aero|afl|agency|aig|airforce|airtel|allfinanz|alsace|amsterdam|android|apartments|app|aquarelle|archi|army|arpa|asia|associates|attorney|auction|audio|auto|autos|axa|azure|band|bank|bar|barcelona|barclaycard|barclays|bargains|bauhaus|bayern|bbc|bbva|bcn|beer|bentley|berlin|best|bet|bharti|bible|bid|bike|bing|bingo|bio|biz|black|blackfriday|bloomberg|blue|bmw|bnl|bnpparibas|boats|bond|boo|boots|boutique|bradesco|bridgestone|broker|brother|brussels|budapest|build|builders|business|buzz|bzh|cab|cafe|cal|camera|camp|cancerresearch|canon|capetown|capital|caravan|cards|care|career|careers|cars|cartier|casa|cash|casino|cat|catering|cba|cbn|ceb|center|ceo|cern|cfa|cfd|chanel|channel|chat|cheap|chloe|christmas|chrome|church|cisco|citic|city|claims|cleaning|click|clinic|clothing|cloud|club|coach|codes|coffee|college|cologne|com|commbank|community|company|computer|condos|construction|consulting|contractors|cooking|cool|coop|corsica|country|coupons|courses|credit|creditcard|cricket|crown|crs|cruises|cuisinella|cymru|cyou|dabur|dad|dance|date|dating|datsun|day|dclk|deals|degree|delivery|delta|democrat|dental|dentist|desi|design|dev|diamonds|diet|digital|direct|directory|discount|dnp|docs|dog|doha|domains|doosan|download|drive|durban|dvag|earth|eat|edu|education|email|emerck|energy|engineer|engineering|enterprises|epson|equipment|erni|esq|estate|eurovision|eus|events|everbank|exchange|expert|exposed|express|fage|fail|faith|family|fan|fans|farm|fashion|feedback|film|finance|financial|firmdale|fish|fishing|fit|fitness|flights|florist|flowers|flsmidth|fly|foo|football|forex|forsale|forum|foundation|frl|frogans|fund|furniture|futbol|fyi|gal|gallery|game|garden|gbiz|gdn|gent|genting|ggee|gift|gifts|gives|giving|glass|gle|global|globo|gmail|gmo|gmx|gold|goldpoint|golf|goo|goog|google|gop|gov|graphics|gratis|green|gripe|group|guge|guide|guitars|guru|hamburg|hangout|haus|healthcare|help|here|hermes|hiphop|hitachi|hiv|hockey|holdings|holiday|homedepot|homes|honda|horse|host|hosting|hoteles|hotmail|house|how|hsbc|ibm|icbc|ice|icu|ifm|iinet|immo|immobilien|industries|infiniti|info|ing|ink|institute|insure|int|international|investments|ipiranga|irish|ist|istanbul|itau|iwc|java|jcb|jetzt|jewelry|jlc|jll|jobs|joburg|jprs|juegos|kaufen|kddi|kim|kitchen|kiwi|koeln|komatsu|krd|kred|kyoto|lacaixa|lancaster|land|lasalle|lat|latrobe|law|lawyer|lds|lease|leclerc|legal|lexus|lgbt|liaison|lidl|life|lighting|limited|limo|link|live|lixil|loan|loans|lol|london|lotte|lotto|love|ltda|lupin|luxe|luxury|madrid|maif|maison|man|management|mango|market|marketing|markets|marriott|mba|media|meet|melbourne|meme|memorial|men|menu|miami|microsoft|mil|mini|mma|mobi|moda|moe|mom|monash|money|montblanc|mormon|mortgage|moscow|motorcycles|mov|movie|movistar|mtn|mtpc|museum|nadex|nagoya|name|navy|nec|net|netbank|network|neustar|new|news|nexus|ngo|nhk|nico|ninja|nissan|nokia|nra|nrw|ntt|nyc|office|okinawa|omega|one|ong|onl|online|ooo|oracle|orange|org|organic|osaka|otsuka|ovh|page|panerai|paris|partners|parts|party|pet|pharmacy|philips|photo|photography|photos|physio|piaget|pics|pictet|pictures|pink|pizza|place|play|plumbing|plus|pohl|poker|porn|post|praxi|press|pro|prod|productions|prof|properties|property|pub|qpon|quebec|racing|realtor|realty|recipes|red|redstone|rehab|reise|reisen|reit|ren|rent|rentals|repair|report|republican|rest|restaurant|review|reviews|rich|ricoh|rio|rip|rocks|rodeo|rsvp|ruhr|run|ryukyu|saarland|sakura|sale|samsung|sandvik|sandvikcoromant|sanofi|sap|sarl|saxo|sca|scb|schmidt|scholarships|school|schule|schwarz|science|scor|scot|seat|seek|sener|services|sew|sex|sexy|shiksha|shoes|show|shriram|singles|site|ski|sky|skype|sncf|soccer|social|software|sohu|solar|solutions|sony|soy|space|spiegel|spreadbetting|srl|starhub|statoil|studio|study|style|sucks|supplies|supply|support|surf|surgery|suzuki|swatch|swiss|sydney|systems|taipei|tatamotors|tatar|tattoo|tax|taxi|team|tech|technology|tel|telefonica|temasek|tennis|thd|theater|tickets|tienda|tips|tires|tirol|today|tokyo|tools|top|toray|toshiba|tours|town|toyota|toys|trade|trading|training|travel|trust|tui|ubs|university|uno|uol|vacations|vegas|ventures|vermögensberater|vermögensberatung|versicherung|vet|viajes|video|villas|vin|vision|vista|vistaprint|vlaanderen|vodka|vote|voting|voto|voyage|wales|walter|wang|watch|webcam|website|wed|wedding|weir|whoswho|wien|wiki|williamhill|win|windows|wine|wme|work|works|world|wtc|wtf|xbox|xerox|xin|xperia|xxx|xyz|yachts|yandex|yodobashi|yoga|yokohama|youtube|zip|zone|zuerich|дети|ком|москва|онлайн|орг|рус|сайт|קום|بازار|شبكة|كوم|موقع|कॉम|नेट|संगठन|คอม|みんな|グーグル|コム|世界|中信|中文网|企业|佛山|信息|健康|八卦|公司|公益|商城|商店|商标|在线|大拿|娱乐|工行|广东|慈善|我爱你|手机|政务|政府|新闻|时尚|机构|淡马锡|游戏|点看|移动|组织机构|网址|网店|网络|谷歌|集团|飞利浦|餐厅|닷넷|닷컴|삼성|onion)(?=[^0-9a-zA-Z@]|$))")),t.txt.regexen.validCCTLD=u(RegExp("(?:(?:ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bl|bm|bn|bo|bq|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mf|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw|ελ|бел|мкд|мон|рф|срб|укр|қаз|հայ|الاردن|الجزائر|السعودية|المغرب|امارات|ایران|بھارت|تونس|سودان|سورية|عراق|عمان|فلسطين|قطر|مصر|مليسيا|پاکستان|भारत|বাংলা|ভারত|ਭਾਰਤ|ભારત|இந்தியா|இலங்கை|சிங்கப்பூர்|భారత్|ලංකා|ไทย|გე|中国|中國|台湾|台灣|新加坡|澳門|香港|한국)(?=[^0-9a-zA-Z@]|$))")),t.txt.regexen.validPunycode=u(/(?:xn--[0-9a-z]+)/),t.txt.regexen.validSpecialCCTLD=u(RegExp("(?:(?:co|tv)(?=[^0-9a-zA-Z@]|$))")),t.txt.regexen.validDomain=u(/(?:#{validSubdomain}*#{validDomainName}(?:#{validGTLD}|#{validCCTLD}|#{validPunycode}))/),t.txt.regexen.validAsciiDomain=u(/(?:(?:[\-a-z0-9#{latinAccentChars}]+)\.)+(?:#{validGTLD}|#{validCCTLD}|#{validPunycode})/gi),t.txt.regexen.invalidShortDomain=u(/^#{validDomainName}#{validCCTLD}$/i),t.txt.regexen.validSpecialShortDomain=u(/^#{validDomainName}#{validSpecialCCTLD}$/i),t.txt.regexen.validPortNumber=u(/[0-9]+/),t.txt.regexen.cyrillicLettersAndMarks=u(/\u0400-\u04FF/),t.txt.regexen.validGeneralUrlPathChars=u(/[a-z#{cyrillicLettersAndMarks}0-9!\*';:=\+,\.\$\/%#\[\]\-_~@\|&#{latinAccentChars}]/i),t.txt.regexen.validUrlBalancedParens=u("\\((?:#{validGeneralUrlPathChars}+|(?:#{validGeneralUrlPathChars}*\\(#{validGeneralUrlPathChars}+\\)#{validGeneralUrlPathChars}*))\\)","i"),t.txt.regexen.validUrlPathEndingChars=u(/[\+\-a-z#{cyrillicLettersAndMarks}0-9=_#\/#{latinAccentChars}]|(?:#{validUrlBalancedParens})/i),t.txt.regexen.validUrlPath=u("(?:(?:#{validGeneralUrlPathChars}*(?:#{validUrlBalancedParens}#{validGeneralUrlPathChars}*)*#{validUrlPathEndingChars})|(?:@#{validGeneralUrlPathChars}+/))","i"),t.txt.regexen.validUrlQueryChars=/[a-z0-9!?\*'@\(\);:&=\+\$\/%#\[\]\-_\.,~|]/i,t.txt.regexen.validUrlQueryEndingChars=/[a-z0-9_&=#\/]/i,t.txt.regexen.extractUrl=u("((#{validUrlPrecedingChars})((https?:\\/\\/)?(#{validDomain})(?::(#{validPortNumber}))?(\\/#{validUrlPath}*)?(\\?#{validUrlQueryChars}*#{validUrlQueryEndingChars})?))","gi"),t.txt.regexen.validTcoUrl=/^https?:\/\/t\.co\/[a-z0-9]+/i,t.txt.regexen.urlHasProtocol=/^https?:\/\//i,t.txt.regexen.urlHasHttps=/^https:\/\//i,t.txt.regexen.cashtag=/[a-z]{1,6}(?:[._][a-z]{1,2})?/i,t.txt.regexen.validCashtag=u("(^|#{spaces})(\\$)(#{cashtag})(?=$|\\s|[#{punct}])","gi"),t.txt.regexen.validateUrlUnreserved=/[a-z\u0400-\u04FF0-9\-._~]/i,t.txt.regexen.validateUrlPctEncoded=/(?:%[0-9a-f]{2})/i,t.txt.regexen.validateUrlSubDelims=/[!$&'()*+,;=]/i,t.txt.regexen.validateUrlPchar=u("(?:#{validateUrlUnreserved}|#{validateUrlPctEncoded}|#{validateUrlSubDelims}|[:|@])","i"),t.txt.regexen.validateUrlScheme=/(?:[a-z][a-z0-9+\-.]*)/i,t.txt.regexen.validateUrlUserinfo=u("(?:#{validateUrlUnreserved}|#{validateUrlPctEncoded}|#{validateUrlSubDelims}|:)*","i"),t.txt.regexen.validateUrlDecOctet=/(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9]{2})|(?:2[0-4][0-9])|(?:25[0-5]))/i,t.txt.regexen.validateUrlIpv4=u(/(?:#{validateUrlDecOctet}(?:\.#{validateUrlDecOctet}){3})/i),t.txt.regexen.validateUrlIpv6=/(?:\[[a-f0-9:\.]+\])/i,t.txt.regexen.validateUrlIp=u("(?:#{validateUrlIpv4}|#{validateUrlIpv6})","i"),t.txt.regexen.validateUrlSubDomainSegment=/(?:[a-z0-9](?:[a-z0-9_\-]*[a-z0-9])?)/i,t.txt.regexen.validateUrlDomainSegment=/(?:[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?)/i,t.txt.regexen.validateUrlDomainTld=/(?:[a-z](?:[a-z0-9\-]*[a-z0-9])?)/i,t.txt.regexen.validateUrlDomain=u(/(?:(?:#{validateUrlSubDomainSegment]}\.)*(?:#{validateUrlDomainSegment]}\.)#{validateUrlDomainTld})/i),t.txt.regexen.validateUrlHost=u("(?:#{validateUrlIp}|#{validateUrlDomain})","i"),t.txt.regexen.validateUrlUnicodeSubDomainSegment=/(?:(?:[a-z0-9]|[^\u0000-\u007f])(?:(?:[a-z0-9_\-]|[^\u0000-\u007f])*(?:[a-z0-9]|[^\u0000-\u007f]))?)/i,t.txt.regexen.validateUrlUnicodeDomainSegment=/(?:(?:[a-z0-9]|[^\u0000-\u007f])(?:(?:[a-z0-9\-]|[^\u0000-\u007f])*(?:[a-z0-9]|[^\u0000-\u007f]))?)/i,t.txt.regexen.validateUrlUnicodeDomainTld=/(?:(?:[a-z]|[^\u0000-\u007f])(?:(?:[a-z0-9\-]|[^\u0000-\u007f])*(?:[a-z0-9]|[^\u0000-\u007f]))?)/i,t.txt.regexen.validateUrlUnicodeDomain=u(/(?:(?:#{validateUrlUnicodeSubDomainSegment}\.)*(?:#{validateUrlUnicodeDomainSegment}\.)#{validateUrlUnicodeDomainTld})/i),t.txt.regexen.validateUrlUnicodeHost=u("(?:#{validateUrlIp}|#{validateUrlUnicodeDomain})","i"),t.txt.regexen.validateUrlPort=/[0-9]{1,5}/,t.txt.regexen.validateUrlUnicodeAuthority=u("(?:(#{validateUrlUserinfo})@)?(#{validateUrlUnicodeHost})(?::(#{validateUrlPort}))?","i"),t.txt.regexen.validateUrlAuthority=u("(?:(#{validateUrlUserinfo})@)?(#{validateUrlHost})(?::(#{validateUrlPort}))?","i"),t.txt.regexen.validateUrlPath=u(/(\/#{validateUrlPchar}*)*/i),t.txt.regexen.validateUrlQuery=u(/(#{validateUrlPchar}|\/|\?)*/i),t.txt.regexen.validateUrlFragment=u(/(#{validateUrlPchar}|\/|\?)*/i),t.txt.regexen.validateUrlUnencoded=u("^(?:([^:/?#]+):\\/\\/)?([^/?#]*)([^?#]*)(?:\\?([^#]*))?(?:#(.*))?$","i");var m={urlClass:!0,listClass:!0,usernameClass:!0,hashtagClass:!0,cashtagClass:!0,usernameUrlBase:!0,listUrlBase:!0,hashtagUrlBase:!0,cashtagUrlBase:!0,usernameUrlBlock:!0,listUrlBlock:!0,hashtagUrlBlock:!0,linkUrlBlock:!0,usernameIncludeSymbol:!0,suppressLists:!0,suppressNoFollow:!0,targetBlank:!0,suppressDataScreenName:!0,urlEntities:!0,symbolTag:!0,textWithSymbolTag:!0,urlTarget:!0,invisibleTagAttrs:!0,linkAttributeBlock:!0,linkTextBlock:!0,htmlEscapeNonEntities:!0},x={disabled:!0,readonly:!0,multiple:!0,checked:!0};function p(e){var t={};for(var a in e)e.hasOwnProperty(a)&&(t[a]=e[a]);return t}t.txt.tagAttrs=function(e){var a="";for(var n in e){var u=e[n];x[n]&&(u=u?n:null),null!=u&&(a+=" "+t.txt.htmlEscape(n)+'="'+t.txt.htmlEscape(u.toString())+'"')}return a},t.txt.linkToText=function(e,a,n,u){return u.suppressNoFollow||(n.rel="nofollow"),u.linkAttributeBlock&&u.linkAttributeBlock(e,n),u.linkTextBlock&&(a=u.linkTextBlock(e,a)),r("<a#{attr}>#{text}</a>",{text:a,attr:t.txt.tagAttrs(n)})},t.txt.linkToTextWithSymbol=function(e,a,n,u,r){var i=r.symbolTag?"<"+r.symbolTag+">"+a+"</"+r.symbolTag+">":a;n=t.txt.htmlEscape(n);var l=r.textWithSymbolTag?"<"+r.textWithSymbolTag+">"+n+"</"+r.textWithSymbolTag+">":n;return r.usernameIncludeSymbol||!a.match(t.txt.regexen.atSigns)?t.txt.linkToText(e,i+l,u,r):i+t.txt.linkToText(e,l,u,r)},t.txt.linkToHashtag=function(e,a,n){var u=a.substring(e.indices[0],e.indices[0]+1),r=t.txt.htmlEscape(e.hashtag),i=p(n.htmlAttrs||{});return i.href=n.hashtagUrlBase+r,i.title="#"+r,i.class=n.hashtagClass,r.charAt(0).match(t.txt.regexen.rtl_chars)&&(i.class+=" rtl"),n.targetBlank&&(i.target="_blank"),t.txt.linkToTextWithSymbol(e,u,r,i,n)},t.txt.linkToCashtag=function(e,a,n){var u=t.txt.htmlEscape(e.cashtag),r=p(n.htmlAttrs||{});return r.href=n.cashtagUrlBase+u,r.title="$"+u,r.class=n.cashtagClass,n.targetBlank&&(r.target="_blank"),t.txt.linkToTextWithSymbol(e,"$",u,r,n)},t.txt.linkToMentionAndList=function(e,a,n){var u=a.substring(e.indices[0],e.indices[0]+1),r=t.txt.htmlEscape(e.screenName),i=t.txt.htmlEscape(e.listSlug),l=e.listSlug&&!n.suppressLists,s=p(n.htmlAttrs||{});return s.class=l?n.listClass:n.usernameClass,s.href=l?n.listUrlBase+r+i:n.usernameUrlBase+r,l||n.suppressDataScreenName||(s["data-screen-name"]=r),n.targetBlank&&(s.target="_blank"),t.txt.linkToTextWithSymbol(e,u,l?r+i:r,s,n)},t.txt.linkToUrl=function(e,a,n){var u=e.url,r=u,i=t.txt.htmlEscape(r),l=n.urlEntities&&n.urlEntities[u]||e;l.display_url&&(i=t.txt.linkTextWithEntity(l,n));var s=p(n.htmlAttrs||{});return u.match(t.txt.regexen.urlHasProtocol)||(u="http://"+u),s.href=u,n.targetBlank&&(s.target="_blank"),n.urlClass&&(s.class=n.urlClass),n.urlTarget&&(s.target=n.urlTarget),!n.title&&l.display_url&&(s.title=l.expanded_url),t.txt.linkToText(e,i,s,n)},t.txt.linkTextWithEntity=function(e,a){var n=e.display_url,u=e.expanded_url,i=n.replace(/…/g,"");if(-1!=u.indexOf(i)){var l=u.indexOf(i),s={displayUrlSansEllipses:i,beforeDisplayUrl:u.substr(0,l),afterDisplayUrl:u.substr(l+i.length),precedingEllipsis:n.match(/^…/)?"…":"",followingEllipsis:n.match(/…$/)?"…":""};for(var o in s)s.hasOwnProperty(o)&&(s[o]=t.txt.htmlEscape(s[o]));return s.invisible=a.invisibleTagAttrs,r("<span class='tco-ellipsis'>#{precedingEllipsis}<span #{invisible}>&nbsp;</span></span><span #{invisible}>#{beforeDisplayUrl}</span><span class='js-display-url'>#{displayUrlSansEllipses}</span><span #{invisible}>#{afterDisplayUrl}</span><span class='tco-ellipsis'><span #{invisible}>&nbsp;</span>#{followingEllipsis}</span>",s)}return n},t.txt.autoLinkEntities=function(e,a,n){var u,r;if((n=p(n||{})).hashtagClass=n.hashtagClass||"tweet-url hashtag",n.hashtagUrlBase=n.hashtagUrlBase||"https://twitter.com/#!/search?q=%23",n.cashtagClass=n.cashtagClass||"tweet-url cashtag",n.cashtagUrlBase=n.cashtagUrlBase||"https://twitter.com/#!/search?q=%24",n.listClass=n.listClass||"tweet-url list-slug",n.usernameClass=n.usernameClass||"tweet-url username",n.usernameUrlBase=n.usernameUrlBase||"https://twitter.com/",n.listUrlBase=n.listUrlBase||"https://twitter.com/",n.htmlAttrs=t.txt.extractHtmlAttrsFromOptions(n),n.invisibleTagAttrs=n.invisibleTagAttrs||"style='position:absolute;left:-9999px;'",n.urlEntities){for(u={},o=0,r=n.urlEntities.length;o<r;o++)u[n.urlEntities[o].url]=n.urlEntities[o];n.urlEntities=u}var i="",l=0;a.sort((function(e,t){return e.indices[0]-t.indices[0]}));for(var s=n.htmlEscapeNonEntities?t.txt.htmlEscape:function(e){return e},o=0;o<a.length;o++){var c=a[o];i+=s(e.substring(l,c.indices[0])),c.url?i+=t.txt.linkToUrl(c,e,n):c.hashtag?i+=t.txt.linkToHashtag(c,e,n):c.screenName?i+=t.txt.linkToMentionAndList(c,e,n):c.cashtag&&(i+=t.txt.linkToCashtag(c,e,n)),l=c.indices[1]}return i+s(e.substring(l,e.length))},t.txt.autoLinkWithJSON=function(e,a,n){if(a.user_mentions)for(var u=0;u<a.user_mentions.length;u++)a.user_mentions[u].screenName=a.user_mentions[u].screen_name;if(a.hashtags)for(u=0;u<a.hashtags.length;u++)a.hashtags[u].hashtag=a.hashtags[u].text;if(a.symbols)for(u=0;u<a.symbols.length;u++)a.symbols[u].cashtag=a.symbols[u].text;var r=[];for(var i in a)r=r.concat(a[i]);return t.txt.modifyIndicesFromUnicodeToUTF16(e,r),t.txt.autoLinkEntities(e,r,n)},t.txt.extractHtmlAttrsFromOptions=function(e){var t={};for(var a in e){var n=e[a];m[a]||(x[a]&&(n=n?a:null),null!=n&&(t[a]=n))}return t},t.txt.autoLink=function(e,a){var n=t.txt.extractEntitiesWithIndices(e,{extractUrlsWithoutProtocol:!1});return t.txt.autoLinkEntities(e,n,a)},t.txt.autoLinkUsernamesOrLists=function(e,a){var n=t.txt.extractMentionsOrListsWithIndices(e);return t.txt.autoLinkEntities(e,n,a)},t.txt.autoLinkHashtags=function(e,a){var n=t.txt.extractHashtagsWithIndices(e);return t.txt.autoLinkEntities(e,n,a)},t.txt.autoLinkCashtags=function(e,a){var n=t.txt.extractCashtagsWithIndices(e);return t.txt.autoLinkEntities(e,n,a)},t.txt.autoLinkUrlsCustom=function(e,a){var n=t.txt.extractUrlsWithIndices(e,{extractUrlsWithoutProtocol:!1});return t.txt.autoLinkEntities(e,n,a)},t.txt.removeOverlappingEntities=function(e){e.sort((function(e,t){return e.indices[0]-t.indices[0]}));for(var t=e[0],a=1;a<e.length;a++)t.indices[1]>e[a].indices[0]?(e.splice(a,1),a--):t=e[a]},t.txt.extractEntitiesWithIndices=function(e,a){var n=t.txt.extractUrlsWithIndices(e,a).concat(t.txt.extractMentionsOrListsWithIndices(e)).concat(t.txt.extractHashtagsWithIndices(e,{checkUrlOverlap:!1})).concat(t.txt.extractCashtagsWithIndices(e));return 0==n.length?[]:(t.txt.removeOverlappingEntities(n),n)},t.txt.extractMentions=function(e){for(var a=[],n=t.txt.extractMentionsWithIndices(e),u=0;u<n.length;u++){var r=n[u].screenName;a.push(r)}return a},t.txt.extractMentionsWithIndices=function(e){for(var a,n=[],u=t.txt.extractMentionsOrListsWithIndices(e),r=0;r<u.length;r++)""==(a=u[r]).listSlug&&n.push({screenName:a.screenName,indices:a.indices});return n},t.txt.extractMentionsOrListsWithIndices=function(e){if(!e||!e.match(t.txt.regexen.atSigns))return[];var a=[];return e.replace(t.txt.regexen.validMentionOrList,(function(e,n,u,r,i,l,s){if(!s.slice(l+e.length).match(t.txt.regexen.endMentionMatch)){i=i||"";var o=l+n.length,c=o+r.length+i.length+1;a.push({screenName:r,listSlug:i,indices:[o,c]})}})),a},t.txt.extractReplies=function(e){if(!e)return null;var a=e.match(t.txt.regexen.validReply);return!a||RegExp.rightContext.match(t.txt.regexen.endMentionMatch)?null:a[1]},t.txt.extractUrls=function(e,a){for(var n=[],u=t.txt.extractUrlsWithIndices(e,a),r=0;r<u.length;r++)n.push(u[r].url);return n},t.txt.extractUrlsWithIndices=function(e,a){if(a||(a={extractUrlsWithoutProtocol:!0}),!e||(a.extractUrlsWithoutProtocol?!e.match(/\./):!e.match(/:/)))return[];for(var n=[];t.txt.regexen.extractUrl.exec(e);){var u=RegExp.$2,r=RegExp.$3,i=RegExp.$4,l=RegExp.$5,s=RegExp.$7,o=t.txt.regexen.extractUrl.lastIndex,c=o-r.length;if(i)r.match(t.txt.regexen.validTcoUrl)&&(r=RegExp.lastMatch,o=c+r.length),n.push({url:r,indices:[c,o]});else{if(!a.extractUrlsWithoutProtocol||u.match(t.txt.regexen.invalidUrlWithoutProtocolPrecedingChars))continue;var d=null,h=0;if(l.replace(t.txt.regexen.validAsciiDomain,(function(e){var a=l.indexOf(e,h);h=a+e.length,d={url:e,indices:[c+a,c+h]},(s||e.match(t.txt.regexen.validSpecialShortDomain)||!e.match(t.txt.regexen.invalidShortDomain))&&n.push(d)})),null==d)continue;s&&(d.url=r.replace(l,d.url),d.indices[1]=o)}}return n},t.txt.extractHashtags=function(e){for(var a=[],n=t.txt.extractHashtagsWithIndices(e),u=0;u<n.length;u++)a.push(n[u].hashtag);return a},t.txt.extractHashtagsWithIndices=function(e,a){if(a||(a={checkUrlOverlap:!0}),!e||!e.match(t.txt.regexen.hashSigns))return[];var n=[];if(e.replace(t.txt.regexen.validHashtag,(function(e,a,u,r,i,l){if(!l.slice(i+e.length).match(t.txt.regexen.endHashtagMatch)){var s=i+a.length,o=s+r.length+1;n.push({hashtag:r,indices:[s,o]})}})),a.checkUrlOverlap){var u=t.txt.extractUrlsWithIndices(e);if(u.length>0){var r=n.concat(u);t.txt.removeOverlappingEntities(r),n=[];for(var i=0;i<r.length;i++)r[i].hashtag&&n.push(r[i])}}return n},t.txt.extractCashtags=function(e){for(var a=[],n=t.txt.extractCashtagsWithIndices(e),u=0;u<n.length;u++)a.push(n[u].cashtag);return a},t.txt.extractCashtagsWithIndices=function(e){if(!e||-1==e.indexOf("$"))return[];var a=[];return e.replace(t.txt.regexen.validCashtag,(function(e,t,n,u,r,i){var l=r+t.length,s=l+u.length+1;a.push({cashtag:u,indices:[l,s]})})),a},t.txt.modifyIndicesFromUnicodeToUTF16=function(e,a){t.txt.convertUnicodeIndices(e,a,!1)},t.txt.modifyIndicesFromUTF16ToUnicode=function(e,a){t.txt.convertUnicodeIndices(e,a,!0)},t.txt.getUnicodeTextLength=function(e){return e.replace(t.txt.regexen.non_bmp_code_pairs," ").length},t.txt.convertUnicodeIndices=function(e,t,a){if(0!=t.length){var n=0,u=0;t.sort((function(e,t){return e.indices[0]-t.indices[0]}));for(var r=0,i=t[0];n<e.length;){if(i.indices[0]==(a?n:u)){var l=i.indices[1]-i.indices[0];if(i.indices[0]=a?u:n,i.indices[1]=i.indices[0]+l,++r==t.length)break;i=t[r]}var s=e.charCodeAt(n);55296<=s&&s<=56319&&n<e.length-1&&56320<=(s=e.charCodeAt(n+1))&&s<=57343&&n++,u++,n++}}},t.txt.splitTags=function(e){for(var t,a,n=e.split("<"),u=[],r=0;r<n.length;r+=1)if(a=n[r]){t=a.split(">");for(var i=0;i<t.length;i+=1)u.push(t[i])}else u.push("");return u},t.txt.hitHighlight=function(e,a,n){if(n=n||{},0===(a=a||[]).length)return e;var u,r,i,l,s,o,c,d=n.tag||"em",h=["<"+d+">","</"+d+">"],g=t.txt.splitTags(e),m="",x=0,p=g[0],v=0,A=0,f=!1,C=p,E=[];for(u=0;u<a.length;u+=1)for(r=0;r<a[u].length;r+=1)E.push(a[u][r]);for(i=0;i<E.length;i+=1){for(l=E[i],s=h[i%2],o=!1;null!=p&&l>=v+p.length;)m+=C.slice(A),f&&l===v+C.length&&(m+=s,o=!0),g[x+1]&&(m+="<"+g[x+1]+">"),v+=C.length,A=0,C=p=g[x+=2],f=!1;o||null==p?o||(o=!0,m+=s):(c=l-v,m+=C.slice(A,c)+s,A=c,f=i%2==0)}if(null!=p)for(A<C.length&&(m+=C.slice(A)),i=x+1;i<g.length;i+=1)m+=i%2==0?g[i]:"<"+g[i]+">";return m};var v=[l(65534),l(65279),l(65535),l(8234),l(8235),l(8236),l(8237),l(8238)];t.txt.getTweetLength=function(e,a){a||(a={short_url_length:23,short_url_length_https:23});var n=t.txt.getUnicodeTextLength(e),u=t.txt.extractUrlsWithIndices(e);t.txt.modifyIndicesFromUTF16ToUnicode(e,u);for(var r=0;r<u.length;r++)n+=u[r].indices[0]-u[r].indices[1],u[r].url.toLowerCase().match(t.txt.regexen.urlHasHttps)?n+=a.short_url_length_https:n+=a.short_url_length;return n},t.txt.isInvalidTweet=function(e){return e?t.txt.getTweetLength(e)>140?"too_long":!!t.txt.hasInvalidCharacters(e)&&"invalid_characters":"empty"},t.txt.hasInvalidCharacters=function(e){for(var t=0;t<v.length;t++)if(e.indexOf(v[t])>=0)return!0;return!1},t.txt.isValidTweetText=function(e){return!t.txt.isInvalidTweet(e)},t.txt.isValidUsername=function(e){if(!e)return!1;var a=t.txt.extractMentions(e);return 1===a.length&&a[0]===e.slice(1)};var A=u(/^#{validMentionOrList}$/);function f(e,t,a){return a?!e||e.match(t)&&RegExp["$&"]===e:"string"==typeof e&&e.match(t)&&RegExp["$&"]===e}if(t.txt.isValidList=function(e){var t=e.match(A);return!(!t||""!=t[1]||!t[4])},t.txt.isValidHashtag=function(e){if(!e)return!1;var a=t.txt.extractHashtags(e);return 1===a.length&&a[0]===e.slice(1)},t.txt.isValidUrl=function(e,a,n){if(null==a&&(a=!0),null==n&&(n=!0),!e)return!1;var u=e.match(t.txt.regexen.validateUrlUnencoded);if(!u||u[0]!==e)return!1;var r=u[1],i=u[2],l=u[3],s=u[4],o=u[5];return!!((!n||f(r,t.txt.regexen.validateUrlScheme)&&r.match(/^https?$/i))&&f(l,t.txt.regexen.validateUrlPath)&&f(s,t.txt.regexen.validateUrlQuery,!0)&&f(o,t.txt.regexen.validateUrlFragment,!0))&&(a&&f(i,t.txt.regexen.validateUrlUnicodeAuthority)||!a&&f(i,t.txt.regexen.validateUrlAuthority))},e.exports&&(e.exports=t.txt),"function"==typeof define&&a.amdO&&define([],t.txt),"undefined"!=typeof window)if(window.twttr)for(var C in t)window.twttr[C]=t[C];else window.twttr=t;return t}()},4654:()=>{}}]);
+"use strict";
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminDefaults0.0.1"],{
+
+/***/ "./src/js/admin-panel/views/AdminDefaults.js":
+/*!***************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminDefaults.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/form-token-field/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/toggle-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/radio-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button-group/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_icons_Gear__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/Gear */ "./src/js/components/icons/Gear.js");
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var retrieveDefaults = function retrieveDefaults() {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_retrieve_admin_options_defaults', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce
+  });
+};
+
+var AdminDefaults = function AdminDefaults(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_2__.useAsyncResource)(retrieveDefaults, []),
+      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+      defaults = _useAsyncResource2[0],
+      getDefaults = _useAsyncResource2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props)));
+};
+
+var Interface = function Interface(props) {
+  var _errors$twitterUserna, _errors$shareButtonTe2, _errors$anchorPrefix3, _errors$anchorPrefix4, _errors$maximumWidth3, _errors$maximumWidth4;
+
+  var localStorageKey = 'quotes_dlx_form_defaults';
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_11__["default"]),
+      blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
+      setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount;
+
+  var defaults = props.defaults;
+  var response = defaults();
+  var _response$data = response.data,
+      data = _response$data.data,
+      success = _response$data.success;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_enabled),
+      _useState2 = _slicedToArray(_useState, 2),
+      showButtonOptions = _useState2[0],
+      setShowButtonOptions = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_display),
+      _useState4 = _slicedToArray(_useState3, 2),
+      buttonDisplay = _useState4[0],
+      setButtonDisplay = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.has_anchor),
+      _useState6 = _slicedToArray(_useState5, 2),
+      anchorDisplay = _useState6[0],
+      setAnchorDisplay = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.enable_links_in_tweet),
+      _useState8 = _slicedToArray(_useState7, 2),
+      enableLinks = _useState8[0],
+      setEnableLinks = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.url_shortener),
+      _useState10 = _slicedToArray(_useState9, 2),
+      enableUrlShortener = _useState10[0],
+      setEnableUrlShortener = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState12 = _slicedToArray(_useState11, 2),
+      loading = _useState12[0],
+      setLoading = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      saving = _useState14[0],
+      setSaving = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      isSaved = _useState16[0],
+      setIsSaved = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      resetting = _useState18[0],
+      setResetting = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      isReset = _useState20[0],
+      setIsReset = _useState20[1];
+
+  var maximum_width = data.maximum_width,
+      maximum_width_unit = data.maximum_width_unit,
+      twitter_username = data.twitter_username,
+      hashtags = data.hashtags,
+      align = data.align,
+      tweet_button_enabled = data.tweet_button_enabled,
+      share_button_text = data.share_button_text,
+      tweet_button_alignment = data.tweet_button_alignment,
+      tweet_icon_alignment = data.tweet_icon_alignment,
+      tweet_button_display = data.tweet_button_display,
+      has_anchor = data.has_anchor,
+      anchor_prefix = data.anchor_prefix,
+      enable_links_in_tweet = data.enable_links_in_tweet,
+      url_shortening_service = data.url_shortening_service,
+      url_shortener = data.url_shortener;
+
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useForm)({
+    defaultValues: {
+      maximumWidth: maximum_width,
+      maximumWidthUnit: maximum_width_unit,
+      twitterUsername: twitter_username,
+      hashtags: hashtags,
+      align: align,
+      tweetButtonEnabled: tweet_button_enabled,
+      shareButtonText: share_button_text,
+      tweetButtonAlignment: tweet_button_alignment,
+      tweetIconAlignment: tweet_icon_alignment,
+      tweetButtonDisplay: tweet_button_display,
+      anchorPrefix: anchor_prefix,
+      hasAnchor: has_anchor,
+      enableLinksInTweet: enable_links_in_tweet,
+      urlShorteningService: url_shortening_service,
+      urlShortener: url_shortener
+    }
+  }),
+      register = _useForm.register,
+      control = _useForm.control,
+      handleSubmit = _useForm.handleSubmit,
+      setValue = _useForm.setValue,
+      getValues = _useForm.getValues,
+      reset = _useForm.reset;
+
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useWatch)({
+    control: control
+  });
+
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_13__.useFormState)({
+    control: control
+  }),
+      errors = _useFormState.errors,
+      isDirty = _useFormState.isDirty,
+      dirtyFields = _useFormState.dirtyFields,
+      touchedFields = _useFormState.touchedFields;
+
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true); // Populate possible empty hashtags.
+
+    if (formData.hashtags.length === 0) {
+      formData.hashtags = null;
+    }
+
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_admin_options_defaults', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      form_data: formData
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        // Reset count.
+        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+
+        reset(ajaxData);
+        localStorage.removeItem(localStorageKey);
+        setIsSaved(true);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_admin_options_defaults', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        // Reset local storage.
+        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+
+        reset(ajaxData);
+        localStorage.removeItem(localStorageKey); // Reset toggles.
+
+        setShowButtonOptions(ajaxData.tweetButtonEnabled);
+        setEnableLinks(ajaxData.enableLinksInTweet);
+        setEnableUrlShortener(ajaxData.urlShortener);
+        setAnchorDisplay(ajaxData.hasAnchor);
+        setButtonDisplay(ajaxData.tweetButtonDisplay);
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
+    });
+  };
+
+  var hasErrors = function hasErrors() {
+    return Object.keys(errors).length > 0;
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
+
+    if (null !== maybeSavedFormFields) {
+      var valuesToSave = JSON.parse(maybeSavedFormFields);
+
+      for (var _i2 = 0, _Object$entries = Object.entries(valuesToSave); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        setValue(key, value, {
+          shouldDirty: true,
+          shouldValidate: true
+        });
+      }
+    }
+
+    if (isDirty) {
+      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
+      setBlockDefaultsDirtyCount(touchedFieldsCountToSave);
+    }
+
+    setLoading(false);
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (saving || resetting || loading) {
+      return;
+    }
+
+    if (isDirty || blockDefaultsDirtyCount > 0) {
+      // Get current form values.
+      var formValuesToSave = JSON.stringify(getValues()); // Get the length of the fields that need to be saved.
+
+      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
+      setBlockDefaultsDirtyCount(touchedFieldsCountToSave); // Store touched fields.
+
+      localStorage.setItem(localStorageKey, formValuesToSave);
+    } else {
+      setBlockDefaultsDirtyCount(0);
+    }
+
+    setLoading(false);
+  }, [formValues]); // Get URL Shortening services (i.e., bitly, jetpack).
+
+  var linkShortenerServices = [];
+
+  if (quotes_dlx_admin.bitly_plugin_active) {
+    linkShortenerServices.push({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bitly', 'quotes-dlx'),
+      value: 'bitly'
+    });
+  }
+
+  if (quotes_dlx_admin.jetpack_plugin_active) {
+    linkShortenerServices.push({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Jetpack', 'quotes-dlx'),
+      value: 'jetpack'
+    });
+  }
+
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], null);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_Gear__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Defaults', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('These default options will automatically be set when you insert the Quotes block.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Defaults', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "twitterUsername",
+    control: control,
+    rules: {
+      validate: function validate(value) {
+        if (value.length === 0) {
+          return true;
+        }
+
+        return _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.isValidUsername('@' + value);
+      }
+    },
+    render: function render(_ref) {
+      var _ref$field = _ref.field,
+          _onChange = _ref$field.onChange,
+          value = _ref$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Credit', 'quotes-dlx'),
+        className: "qdlx-admin__text-control",
+        register: "tweet_credit",
+        placeholder: "TwitterUsername",
+        value: value,
+        onChange: function onChange(currentValue) {
+          var twitterUsername = '';
+
+          if (currentValue.length > 0) {
+            var replacement = currentValue.replace('@', ''); // Strip @ symbol.
+
+            if (currentValue.length > 0) {
+              var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.extractMentions('@' + replacement);
+
+              if (typeof usernames[0] !== 'undefined') {
+                twitterUsername = usernames[0];
+              } else {
+                twitterUsername = replacement;
+              }
+            }
+          } // onChange's arg will send value into hook form
+
+
+          _onChange(twitterUsername);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Leave this blank to have no default Twitter credit', 'quotes-dlx')
+      });
+    }
+  }), 'validate' === ((_errors$twitterUserna = errors.twitterUsername) === null || _errors$twitterUserna === void 0 ? void 0 : _errors$twitterUserna.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The Twitter Username is Invalid.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "hashtags",
+    control: control,
+    render: function render(_ref2) {
+      var _ref2$field = _ref2.field,
+          _onChange2 = _ref2$field.onChange,
+          value = _ref2$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        value: value,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
+        className: "quotes-dlx-hashtag-fields",
+        tokenizeOnSpace: true,
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hashtags', 'quotes-dlx'),
+        onChange: function onChange(tokens) {
+          var filteredTokens = [];
+          tokens.forEach(function (item, index) {
+            var replacement = item.replace('#', ''); // Strip hashtag symbol.
+
+            var hashtag = _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.extractHashtags('#' + replacement); // Add it back in for extraction.
+            // Check if array contains anything.
+
+            if (typeof hashtag[0] !== 'undefined') {
+              filteredTokens.push(hashtag[0]);
+            }
+          });
+
+          _onChange2(filteredTokens);
+        }
+      });
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Button Defaults', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "tweetButtonEnabled",
+    control: control,
+    render: function render(_ref3) {
+      var _ref3$field = _ref3.field,
+          _onChange3 = _ref3$field.onChange,
+          value = _ref3$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Click to Tweet Button', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setShowButtonOptions(boolValue);
+
+          _onChange3(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or Disable the Click to Tweet button. This is useful if you want to hide the button and use the block for just quotes.', 'quotes-dlx')
+      });
+    }
+  }), showButtonOptions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    control: control,
+    name: "tweetButtonDisplay",
+    render: function render(_ref4) {
+      var _ref4$field = _ref4.field,
+          _onChange4 = _ref4$field.onChange,
+          value = _ref4$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Button Display', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose to show just text, just an icon, or both.', 'quotes-dlx'),
+        selected: value,
+        onChange: function onChange(value) {
+          setButtonDisplay(value);
+
+          _onChange4(value);
+        },
+        options: [{
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show text and icon', 'quotes-dlx'),
+          value: 'full'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show text only', 'quotes-dlx'),
+          value: 'text'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show icon only', 'quotes-dlx'),
+          value: 'icon'
+        }]
+      });
+    }
+  }), ('text' === buttonDisplay || 'full' === buttonDisplay) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "shareButtonText",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref5) {
+      var _errors$shareButtonTe;
+
+      var field = _ref5.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click Button Text', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$shareButtonTe = errors.shareButtonText) === null || _errors$shareButtonTe === void 0 ? void 0 : _errors$shareButtonTe.type),
+          'is-required': true
+        }),
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Click to Tweet button', 'quotes-dlx')
+      }));
+    }
+  }), 'required' === ((_errors$shareButtonTe2 = errors.shareButtonText) === null || _errors$shareButtonTe2 === void 0 ? void 0 : _errors$shareButtonTe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "tweetButtonAlignment",
+    control: control,
+    render: function render(_ref6) {
+      var _ref6$field = _ref6.field,
+          onClick = _ref6$field.onClick,
+          value = _ref6$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        className: "qdlx-admin__button-group--align"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Button Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-left",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        value: "left",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'left' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('tweetButtonAlignment', 'left', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-center",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Center', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Center', 'quotes-dlx'),
+        value: "center",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'center' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('tweetButtonAlignment', 'center', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-right",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        value: "right",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'right' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('tweetButtonAlignment', 'right', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "components-base-control__help"
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right alignment is recommended.', 'quotes-dlx')));
+    }
+  }), ('icon' === buttonDisplay || 'full' === buttonDisplay) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "tweetIconAlignment",
+    control: control,
+    render: function render(_ref7) {
+      var _ref7$field = _ref7.field,
+          onClick = _ref7$field.onClick,
+          value = _ref7$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        className: "qdlx-admin__button-group--align"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Icon Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-left",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        value: "left",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'left' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('tweetIconAlignment', 'left', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-right",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        value: "right",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'right' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('tweetIconAlignment', 'right', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "components-base-control__help"
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adjust the icon to the left or right of the button.', 'quotes-dlx')));
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Link Settings', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A link to your post is on by default. You can customize the link appearance here.'),
+    status: "info",
+    politeness: "polite",
+    inline: false,
+    icon: _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "enableLinksInTweet",
+    control: control,
+    render: function render(_ref8) {
+      var _ref8$field = _ref8.field,
+          _onChange5 = _ref8$field.onChange,
+          value = _ref8$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Links in the Tweet', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setEnableLinks(boolValue);
+
+          _onChange5(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can disable all links from showing in the Tweets', 'quotes-dlx')
+      });
+    }
+  }), enableLinks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "hasAnchor",
+    control: control,
+    render: function render(_ref9) {
+      var _ref9$field = _ref9.field,
+          _onChange6 = _ref9$field.onChange,
+          value = _ref9$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Anchors', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setAnchorDisplay(boolValue);
+
+          _onChange6(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchors are appended to the end of a URL.', 'quotes-dlx')
+      });
+    }
+  }), anchorDisplay && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "anchorPrefix",
+    control: control,
+    rules: {
+      required: true,
+      pattern: /^[a-z]+$/i
+    },
+    render: function render(_ref10) {
+      var _errors$anchorPrefix, _errors$anchorPrefix2;
+
+      var field = _ref10.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchor Prefix', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'pattern' === ((_errors$anchorPrefix = errors.anchorPrefix) === null || _errors$anchorPrefix === void 0 ? void 0 : _errors$anchorPrefix.type) || 'required' === ((_errors$anchorPrefix2 = errors.anchorPrefix) === null || _errors$anchorPrefix2 === void 0 ? void 0 : _errors$anchorPrefix2.type),
+          'is-required': true
+        }),
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The anchor prefix will display at the end of your post URL.', 'quotes-dlx')
+      }));
+    }
+  }), 'required' === ((_errors$anchorPrefix3 = errors.anchorPrefix) === null || _errors$anchorPrefix3 === void 0 ? void 0 : _errors$anchorPrefix3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), 'pattern' === ((_errors$anchorPrefix4 = errors.anchorPrefix) === null || _errors$anchorPrefix4 === void 0 ? void 0 : _errors$anchorPrefix4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please use only lowercase letters.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "urlShortener",
+    control: control,
+    render: function render(_ref11) {
+      var _ref11$field = _ref11.field,
+          _onChange7 = _ref11$field.onChange,
+          value = _ref11$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable URL Shortener', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setEnableUrlShortener(boolValue);
+
+          _onChange7(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A URL shortener shortens your link so you can have more characters in your Tweet.', 'quotes-dlx')
+      });
+    }
+  }), enableUrlShortener && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Both Bitly and Jetpack are supported. You will need the plugins activated and configured to set a default.', 'quotes-dlx'),
+    status: "info",
+    politeness: "polite",
+    inline: false,
+    icon: _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://wordpress.org/plugins/wp-bitly/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit the Bitly plugin', 'quotes-dlx')), "\xA0|\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://wordpress.org/plugins/jetpack/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit the Jetpack plugin', 'quotes-dlx')))), linkShortenerServices.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    control: control,
+    name: "urlShorteningService",
+    render: function render(_ref12) {
+      var _ref12$field = _ref12.field,
+          _onChange8 = _ref12$field.onChange,
+          value = _ref12$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('URL Shortening Service', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a URL shortening service. Select none for no link shortener.', 'quotes-dlx'),
+        selected: value,
+        onChange: function onChange(shorteningValue) {
+          _onChange8(shorteningValue);
+        },
+        options: linkShortenerServices
+      });
+    }
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Container Settings', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "maximumWidth",
+    control: control,
+    rules: {
+      required: true,
+      pattern: /^[0-9]+$/i
+    },
+    render: function render(_ref13) {
+      var _errors$maximumWidth, _errors$maximumWidth2;
+
+      var field = _ref13.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Maximum Width', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'pattern' === ((_errors$maximumWidth = errors.maximumWidth) === null || _errors$maximumWidth === void 0 ? void 0 : _errors$maximumWidth.type) || 'required' === ((_errors$maximumWidth2 = errors.maximumWidth) === null || _errors$maximumWidth2 === void 0 ? void 0 : _errors$maximumWidth2.type),
+          'is-required': true
+        }),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you have a large layout for your theme, this will be the maximum width of the block.', 'quotes-dlx'),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$maximumWidth3 = errors.maximumWidth) === null || _errors$maximumWidth3 === void 0 ? void 0 : _errors$maximumWidth3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), 'pattern' === ((_errors$maximumWidth4 = errors.maximumWidth) === null || _errors$maximumWidth4 === void 0 ? void 0 : _errors$maximumWidth4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Maximum width can only be numbers.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    control: control,
+    name: "maximumWidthUnit",
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+          onChange = _ref14$field.onChange,
+          value = _ref14$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Maximum Width Unit', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the max-width.', 'quotes-dlx'),
+        selected: value,
+        onChange: onChange,
+        options: [{
+          label: 'px',
+          value: 'px'
+        }, {
+          label: 'em',
+          value: 'em'
+        }, {
+          label: 'vw',
+          value: 'vw'
+        }]
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_13__.Controller, {
+    name: "align",
+    control: control,
+    render: function render(_ref15) {
+      var _ref15$field = _ref15.field,
+          onClick = _ref15$field.onClick,
+          value = _ref15$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        className: "qdlx-admin__button-group--align"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default block alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-left",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
+        value: "left",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'left' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('align', 'left', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-center",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Center', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Center', 'quotes-dlx'),
+        value: "center",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'center' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('align', 'center', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-pull-right",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Right', 'quotes-dlx'),
+        value: "right",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'right' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('align', 'right', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-wide",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Wide Width', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Wide Width', 'quotes-dlx'),
+        value: "wide",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'wide' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('align', 'wide', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        variant: "primary",
+        icon: "align-full-width",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Full Width', 'quotes-dlx'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Full Width', 'quotes-dlx'),
+        value: "full",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+          'is-active': 'full' === value
+        }),
+        onClick: function onClick(e) {
+          setValue('align', 'full', {
+            shouldDirty: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "components-base-control__help"
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Center alignment is recommended.', 'quotes-dlx')));
+    }
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+      'has-error': hasErrors()
+    }, {
+      'has-icon': saving
+    }, {
+      'is-saving': {
+        saving: saving
+      }
+    }),
+    type: "submit",
+    text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Defaults', 'quotes-dlx'),
+    icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': resetting
+    }, {
+      'is-resetting': {
+        resetting: resetting
+      }
+    }),
+    type: "button",
+    text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Defaults', 'quotes-dlx'),
+    icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting,
+    onClick: function onClick(e) {
+      setResetting(true);
+      handleReset(e);
+    }
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+    status: "error",
+    politeness: "polite"
+  }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
+    status: "success",
+    politeness: "assertive"
+  }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+    status: "success",
+    politeness: "assertive"
+  }))))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);
+
+/***/ })
+
+}]);
 //# sourceMappingURL=AdminDefaults0.0.1.js.map

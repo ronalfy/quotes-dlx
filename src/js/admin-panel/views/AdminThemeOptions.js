@@ -152,14 +152,34 @@ const Interface = ( props ) => {
 
 	const getCategories = () => {
 		return categories.map( ( cat, catIndex ) => (
-			<SelectControl
-				key={ cat.slug }
-				className="qdlx-admin__themes--content-inner"
-				label={ __( 'Select a Theme', 'quotes-dlx' ) }
-				value={ activeTheme }
-				onChange={ ( newTheme ) => setActiveTheme( newTheme ) }
-				options={ getThemes( cat ) }
-			/>
+			<div key={ catIndex } className="quotes-dlx-admin-theme-options__select">
+				<SelectControl
+					key={ cat.slug }
+					className="qdlx-admin__themes--content-inner"
+					label={ __( 'Select a Theme', 'quotes-dlx' ) }
+					value={ activeTheme }
+					onChange={ ( newTheme ) => setActiveTheme( newTheme ) }
+					options={ getThemes( cat ) }
+				/>
+				<Button
+					className={ classNames(
+						'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+						{ 'has-error': hasErrors() },
+						{ 'has-icon': saving },
+						{ 'is-saving': { saving } }
+					) }
+					type="button"
+					text={
+						saving
+							? __( 'Changing Theme…', 'quotes-dlx' )
+							: __( 'Select', 'quotes-dlx' )
+					}
+					icon={ saving ? Spinner : false }
+					iconSize="18"
+					iconPosition="right"
+					disabled={ saving || resetting }
+				/>
+			</div>
 		) );
 	};
 

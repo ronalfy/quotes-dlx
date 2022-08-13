@@ -23,6 +23,10 @@ const AdminDefaults = lazy( () =>
 	import( /* webpackChunkName: "AdminDefaults0.0.1" */ '../../views/AdminDefaults' )
 );
 
+const AdminAdvanced = lazy( () =>
+	import( /* webpackChunkName: "AdminAdvanced0.0.1" */ '../../views/AdminAdvanced' )
+);
+
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
 		/* webpackChunkName: "AdminMenuDefaults0.0.1" */ '../../views/AdminContextualMenu'
@@ -94,6 +98,14 @@ const AdminTabs = ( props ) => {
 		<>
 			<Suspense fallback={ <AdminDefaultsLoader /> }>
 				<AdminDefaults />
+			</Suspense>
+		</>
+	);
+
+	const getAdminAdvanced = (
+		<>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<AdminAdvanced />
 			</Suspense>
 		</>
 	);
@@ -216,6 +228,17 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ licensesDirtyCount }
 					/>
 					<TabItem
+						icon={ KeyIcon }
+						slug="advanced"
+						description={ __( 'Reset options and disable fonts.', 'quotes-dlx' ) }
+						label={ __( 'Advanced', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ licensesDirtyCount }
+					/>
+					<TabItem
 						icon={ CircularQuestionIcon }
 						slug="support"
 						description={ __( 'Quick links for docs and support.', 'quotes-dlx' ) }
@@ -248,6 +271,11 @@ const AdminTabs = ( props ) => {
 								path="/theme-options"
 								exact
 								element={ getAdminThemeOptions }
+							/>
+							<Route
+								path="/advanced"
+								exact
+								element={ getAdminAdvanced }
 							/>
 							<Route
 								path="/support"

@@ -40,7 +40,7 @@ const AdminThemeColorsLoader = ( props ) => {
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { textAlign: 'center' } }
+					style={ { textAlign: 'left' } }
 				>
 					<Skeleton
 						width="150px"
@@ -58,7 +58,7 @@ const AdminThemeColorsLoader = ( props ) => {
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { textAlign: 'center' } }
+					style={ { textAlign: 'left' } }
 				>
 					<Skeleton
 						width="150px"
@@ -76,7 +76,7 @@ const AdminThemeColorsLoader = ( props ) => {
 				</div>
 				<div
 					className="qdlx-admin__tabs--content-inner"
-					style={ { textAlign: 'center' } }
+					style={ { textAlign: 'left' } }
 				>
 					<Skeleton
 						width="150px"

@@ -5,7 +5,9 @@
 		"wpApiSettings": true,
 		"window": true,
 		"document": true,
-		"quotes_dlx_admin": "readonly"
+		"quotes_dlx_admin": "readonly",
+		"ajaxurl": "readonly",
+		"qdlx_theme_preview": "readonly"
 	},
 	"env": {
 		"browser": true,

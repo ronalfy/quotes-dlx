@@ -3,9 +3,12 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { __ } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import { Button, SelectControl } from '@wordpress/components';
+import { Button, SelectControl, RangeControl } from '@wordpress/components';
+import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
+import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
+import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
@@ -14,6 +17,7 @@ import ThemeColorPicker from '../admin-components/ThemeColorPicker';
 import ThemePreview from '../admin-components/ThemePreview';
 import Notice from '../admin-components/Notice';
 import Spinner from '../../components/icons/Spinner';
+import ThemeSizes from '../admin-components/ThemeSizes';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -46,6 +50,19 @@ const Interface = ( props ) => {
 				}
 			} );
 		} );
+		// Check to see if colors is set, otherwise select the first available theme.
+		if ( 0 === Object.keys( colors ).length ) {
+			// Pick the first theme.
+			let selected = false;
+			categories.forEach( ( cat ) => {
+				cat.themes.forEach( ( theme ) => {
+					if ( ! selected ) {
+						colors = theme.colors;
+						selected = true;
+					}
+				} );
+			} );
+		}
 		return colors;
 	};
 
@@ -78,9 +95,28 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 	const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState( false );
 
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
+			defaultValues: {
+				fontSizeDesktop: data.font_size_desktop,
+				fontSizeTablet: data.font_size_tablet,
+				buttonFontSizeDesktop: data.button_font_size_desktop,
+				fontSizeMobile: data.font_size_mobile,
+				lineHeightDesktop: data.line_height_desktop,
+				lineHeightTablet: data.line_height_tablet,
+				lineHeightMobile: data.line_height_mobile,
+			},
+		} );
+
+	const formValues = useWatch( { control } );
+
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
+
 	useEffect( () => {
 		setLoading( true );
-		sendCommand( 'quotes_dlx_get_theme_colors', {
+		sendCommand( 'quotes_dlx_get_theme_options', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
 			active_template: activeTheme,
 		} )
@@ -134,6 +170,10 @@ const Interface = ( props ) => {
 					activeTheme={ activeTheme }
 					stylesheet={ getActiveThemeStylesheet() }
 					colors={ themeColors }
+					fontSize={ data.font_size_desktop + '' }
+					lineHeight={ data.line_height_desktop }
+					buttonFontSize={ data.button_font_size_desktop + '' }
+					colorsOnly={ true }
 				/>
 			</>
 		);
@@ -141,7 +181,7 @@ const Interface = ( props ) => {
 
 	const onSubmit = () => {
 		setSaving( true );
-		sendCommand( 'quotes_dlx_save_theme_colors', {
+		sendCommand( 'quotes_dlx_save_theme_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			colors: themeColors,
 			template: activeTheme,
@@ -168,7 +208,7 @@ const Interface = ( props ) => {
 
 	const handleReset = ( e ) => {
 		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_theme_colors', {
+		sendCommand( 'quotes_dlx_reset_theme_options', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			template: activeTheme,
 		} )
@@ -263,7 +303,7 @@ const Interface = ( props ) => {
 							text={
 								saving
 									? __( 'Saving…', 'quotes-dlx' )
-									: __( 'Save Theme Options', 'quotes-dlx' )
+									: __( 'Save Theme Colors', 'quotes-dlx' )
 							}
 							icon={ saving ? Spinner : false }
 							iconSize="18"
@@ -280,7 +320,7 @@ const Interface = ( props ) => {
 							text={
 								resetting
 									? __( 'Resetting…', 'quotes-dlx' )
-									: __( 'Reset Theme Options', 'quotes-dlx' )
+									: __( 'Reset Theme Colors', 'quotes-dlx' )
 							}
 							icon={ resetting ? Spinner : false }
 							iconSize="18"
@@ -325,27 +365,48 @@ const Interface = ( props ) => {
 			return <AdminThemeColorsLoader showHeader={ false } />;
 		}
 		return (
-			<div className="qdlx-admin__tabs--content-inner">
-				{ getCategories() }
-				<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
-				<div className="qdlx-admin__color-pickers">
-					<div className="qdlx-admin__color-primary">
-						<table className="form-table" role="presentation">
-							<tbody>
-								<tr>
-									<th scope="row">{ __( 'Theme Colors', 'quotes-dlx' ) }</th>
-									<td>{ getThemePickers( themeColors ) }</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+			<div className="qdlx-admin__tabs--content-wrap">
+				<div className="qdlx-admin__tabs--content-panel">
+					<form
+						onSubmit={ ( e ) => {
+							e.preventDefault();
+							onSubmit();
+						} }
+					>
+						<div className="qdlx-admin__tabs--content-heading">
+							<h2>
+								{ __( 'Select Theme Colors', 'quotes-dlx' ) }
+							</h2>
+							<p className="description">
+								{ __(
+									'Modify the colors of the theme.',
+									'quotes-dlx'
+								) }
+							</p>
+						</div>
+						{ hasUnsavedChanges && (
+							getUnsavedChangesWarning()
+						) }
+						<div className="qdlx-admin__tabs--content-inner">
+							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+							<div className="qdlx-admin__color-pickers">
+								<div className="qdlx-admin__color-primary">
+									{ getThemePickers( themeColors ) }
+								</div>
+							</div>
+						</div>
+						{ hasUnsavedChanges && (
+							getUnsavedChangesWarning()
+						) }
+						{ getSaveResetButtons() }
+					</form>
 				</div>
 			</div>
 		);
 	};
 
 	const getUnsavedChangesWarning = () => {
-		if ( ! hasUnsavedChanges ) {
+		if ( ! hasUnsavedChanges && ! isDirty ) {
 			return null;
 		}
 		return (
@@ -353,19 +414,39 @@ const Interface = ( props ) => {
 				status="warning"
 				className="qdlx-admin__unsaved-changes-warning"
 				message={ __( 'You have unsaved changes.', 'quotes-dlx' ) }
+				animate={ true }
+				animationType="fadein"
 			/>
+		);
+	};
+
+	const getFontSizeOptions = () => {
+		return (
+			<>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="desktop"
+					screenSizeLabel={ __( 'Desktop', 'quotes-dlx' ) }
+				/>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="tablet"
+					screenSizeLabel={ __( 'Tablet', 'quotes-dlx' ) }
+				/>
+				<ThemeSizes
+					template={ activeTheme }
+					screenSize="mobile"
+					screenSizeLabel={ __( 'Mobile', 'quotes-dlx' ) }
+				/>
+			</>
 		);
 	};
 
 	return (
 		<>
-			<div className="qdlx-admin__tabs--content-wrap">
-				<form
-					onSubmit={ ( e ) => {
-						e.preventDefault();
-						onSubmit();
-					} }
-				>
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<div className="qdlx-admin__tabs--content-wrap">
+
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
@@ -381,12 +462,15 @@ const Interface = ( props ) => {
 								) }
 							</p>
 						</div>
-						{ getUnsavedChangesWarning() }
-						{ getThemePreviewAndSwatches() }
-						{ getSaveResetButtons() }
+						<div className="qdlx-admin__tabs--content-inner">
+							{ getCategories() }
+						</div>
 					</div>
-				</form>
+				</div>
+				{ getThemePreviewAndSwatches() }
+				{ getFontSizeOptions() }
 			</div>
+
 		</>
 	);
 };

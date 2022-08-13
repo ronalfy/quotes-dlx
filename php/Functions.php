@@ -288,6 +288,35 @@ class Functions {
 	}
 
 	/**
+	 * Retrieve the site theme's colors.
+	 *
+	 * Get default color pallette. From: https://www.wpdiaries.com/gutenberg-color-palette/.
+	 *
+	 * @return array colors.
+	 */
+	public static function get_site_theme_colors() {
+		$color_palette = [];
+
+		// Try to get theme setup colors (if available).
+		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
+
+		if ( false !== $theme_json_color_palette && is_array( $theme_setup_color_palette ) ) {
+			$color_palette = $theme_setup_color_palette;
+		}
+
+		// Now try to get theme.json colors.
+		if ( class_exists( 'WP_Theme_JSON_Resolver' ) ) {
+			$settings = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
+			$theme_json_color_palette = $settings['color']['palette']['theme'] ?? array();
+
+			if ( ! empty( $theme_json_color_palette ) && is_array( $theme_json_color_palette ) ) {
+				$color_palette = array_merge( $color_palette, $theme_json_color_palette );
+			}
+		}
+		return $color_palette;
+	}
+
+	/**
 	 * Retrieve the plugin title.
 	 */
 	public static function get_plugin_title() {

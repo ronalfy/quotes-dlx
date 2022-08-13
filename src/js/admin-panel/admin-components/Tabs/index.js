@@ -196,7 +196,7 @@ const AdminTabs = ( props ) => {
 					<TabItem
 						icon={ ColorPaletteIcon }
 						slug="theme-options"
-						description={ __( 'Set color, font, and text options for the themes.', 'quotes-dlx' ) }
+						description={ __( 'Set the theme color, line-height, and font sizes', 'quotes-dlx' ) }
 						label={ __( 'Theme Options', 'quotes-dlx' ) }
 						tabClicked={ ( tab ) => {
 							onTabClick( tab );

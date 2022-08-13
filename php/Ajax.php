@@ -40,12 +40,120 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
 		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
-		// For retrieving a theme's color palette.
-		add_action( 'wp_ajax_quotes_dlx_get_theme_colors', array( static::class, 'ajax_get_theme_colors' ) );
-		add_action( 'wp_ajax_quotes_dlx_save_theme_colors', array( static::class, 'ajax_save_theme_colors' ) );
-		add_action( 'wp_ajax_quotes_dlx_reset_theme_colors', array( static::class, 'ajax_reset_theme_colors' ) );
+		// For retrieving a theme's options.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_options', array( static::class, 'ajax_get_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_options', array( static::class, 'ajax_save_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_options', array( static::class, 'ajax_reset_theme_options' ) );
+
+		// Theme preview for font-size and line-height for desktop|tablet|mobile.
+		add_action( 'wp_ajax_quotes_dlx_theme_preview', array( static::class, 'ajax_theme_preview' ) );
+
+		// For saving, resetting, getting theme size options.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_size_options', array( static::class, 'ajax_get_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
 
 		return $self;
+	}
+
+	/**
+	 * Retrieve the theme size options.
+	 */
+	public static function ajax_get_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+
+		// Get saved colors.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size        = $theme_options[ $template_slug ][ $screen_size ]['font_size'] ?? Options_Theme::get_default_size( $screen_size, 'font_size' );
+		$theme_line_height      = $theme_options[ $template_slug ][ $screen_size ]['line_height'] ?? Options_Theme::get_default_size( $screen_size, 'line_height' );
+		$theme_button_font_size = $theme_options[ $template_slug ][ $screen_size ]['button_font_size'] ?? Options_Theme::get_default_size( $screen_size, 'button_font_size' );
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => $theme_font_size,
+				'lineHeight'     => $theme_line_height,
+				'buttonFontSize' => $theme_button_font_size,
+			)
+		);
+
+	}
+
+	/**
+	 * Resize theme size options.
+	 */
+	public static function ajax_reset_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$theme_options = Options_Theme::get_options();
+
+		if ( ! isset( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		$theme_options[ $template_slug ][ $screen_size ] = Options_Theme::get_default_sizes( $screen_size );
+		Options_Theme::update_options( $template_slug, $theme_options );
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => Options_Theme::get_default_size( $screen_size, 'font_size' ),
+				'lineHeight'     => Options_Theme::get_default_size( $screen_size, 'line_height' ),
+				'buttonFontSize' => Options_Theme::get_default_size( $screen_size, 'button_font_size' ),
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Save theme size options.
+	 */
+	public static function ajax_save_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug    = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size      = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$font_size        = absint( filter_input( INPUT_POST, 'fontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$button_font_size = absint( filter_input( INPUT_POST, 'buttonFontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_POST, 'lineHeight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$theme_options    = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		// Check to see if screen size is part of the array.
+		if ( ! isset( $theme_options[ $template_slug ][ $screen_size ] ) || ! is_array( $theme_options[ $template_slug ][ $screen_size ] ) ) {
+			$theme_options[ $template_slug ][ $screen_size ] = array();
+		}
+
+		// Now store options.
+		$theme_options[ $template_slug ][ $screen_size ]['font_size']        = $font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['button_font_size'] = $button_font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['line_height']      = $line_height;
+		Options_Theme::update_options( '', $theme_options );
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your theme sizes have been saved.', 'quotes-dlx' ),
+			)
+		);
+		exit;
 	}
 
 	/**
@@ -159,9 +267,130 @@ class Ajax {
 	}
 
 	/**
+	 * Content for the theme preview modal popup. Loaded in an iframe.
+	 */
+	public static function ajax_theme_preview() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Invalid request.' );
+		}
+
+		$template         = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$font_size        = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$screen           = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
+		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+
+		wp_register_script(
+			'qdlx_twitter_actions',
+			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
+			array( 'wp-i18n' ),
+			Functions::get_plugin_version(),
+			false
+		);
+		wp_register_script(
+			'qdlx_twitter_preview_js',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			false
+		);
+		wp_register_style(
+			'qdlx_theme_css',
+			Functions::get_plugin_url(
+				sprintf(
+					'dist/quotes-dlx-theme-%s.css',
+					sanitize_text_field( $template )
+				)
+			),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_register_style(
+			'qdlx_preview_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_register_style(
+			'qdlx_font_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_register_style(
+			'qdlx_frontend_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Get localized vars.
+		$themes = Themes\Themes_Addon::get_theme_data( $template );
+		if ( ! $themes ) {
+			wp_die( 'Could not find a theme' );
+		}
+		$theme_default_colors = $themes['colors'];
+		$theme_options        = Options_Theme::get_options();
+		$saved_colors         = $theme_options[ $template ]['colors'] ?? false;
+
+		// Check colors and set to defaults if it doesn't exist.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
+
+		// Output local vars.
+		wp_localize_script(
+			'qdlx_twitter_preview_js',
+			'qdlx_theme_preview',
+			array(
+				'stylesheet'       => esc_url( $theme['stylesheet'] ),
+				'theme'            => $template,
+				'colors'           => $saved_colors,
+				'font_size'        => $font_size,
+				'line_height'      => (float) $line_height,
+				'button_font_size' => $button_font_size,
+				'screen'           => $screen,
+			)
+		);
+		?>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<?php
+				wp_print_styles(
+					array(
+						'qdlx_theme_css',
+						'qdlx_twitter_preview_css',
+						'qdlx_font_css',
+						'qdlx_frontend_css',
+					)
+				);
+				?>
+			</head>
+			<body>
+				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $screen ); ?>"></div>
+				<?php
+					wp_print_scripts(
+						array(
+							'qdlx_twitter_actions',
+							'qdlx_twitter_preview_js',
+						)
+					);
+				?>
+			</body>
+		</html>
+		<?php
+		exit;
+	}
+
+	/**
 	 * Retrieve theme colors.
 	 */
-	public static function ajax_get_theme_colors() {
+	public static function ajax_get_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -184,18 +413,38 @@ class Ajax {
 		$theme_default_colors = $themes['colors'];
 
 		// Get saved colors.
-		$maybe_saved_colors = Options_Theme_Colors::get_options();
-		$saved_colors       = $maybe_saved_colors[ $template_slug ] ?? false;
+		$theme_options = Options_Theme::get_options();
+		$saved_colors  = $theme_options[ $template_slug ]['colors'] ?? false;
+
+		// Get saved font size.
+		$theme_font_size_desktop   = $theme_options[ $template_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $template_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $template_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1;
 
 		// Check saved colors and set to defaults if not set.
 		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
 			$saved_colors = $theme_default_colors;
 		}
 
+		// Get theme colors and merge with default colors.
+		// $theme_color_palette  = Functions::get_site_theme_colors(); // phpcs:ignore.
+
 		wp_send_json_success(
 			array(
-				'colors'   => $saved_colors,
-				'defaults' => $theme_default_colors,
+				'colors'                   => $saved_colors,
+				'defaults'                 => $theme_default_colors,
+				'font_size_desktop'        => $theme_options[ $template_slug ]['font_size_desktop'] ?? 16,
+				'line_height_desktop'      => $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65,
+				'button_font_size_desktop' => $theme_options[ $template_slug ]['button_font_size_desktop'] ?? 16,
+				'font_size_tablet'         => $theme_options[ $template_slug ]['font_size_tablet'] ?? 14,
+				'line_height_tablet'       => $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1,
+				'button_font_size_tablet'  => $theme_options[ $template_slug ]['button_font_size_tablet'] ?? 14,
+				'font_size_mobile'         => $theme_options[ $template_slug ]['font_size_mobile'] ?? 12,
+				'line_height_mobile'       => $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1,
+				'button_font_size_mobile'  => $theme_options[ $template_slug ]['button_font_size_mobile'] ?? 12,
 			)
 		);
 		exit;
@@ -204,7 +453,7 @@ class Ajax {
 	/**
 	 * Reset theme color options.
 	 */
-	public static function ajax_reset_theme_colors() {
+	public static function ajax_reset_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
@@ -212,19 +461,24 @@ class Ajax {
 		// Get the active template.
 		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
 
+		// Get default and saved colors for return.
 		$themes                     = Themes\Themes_Addon::get_theme_data();
 		$theme_default_saved_colors = array();
 		$theme_default_colors       = array();
 		foreach ( $themes as $theme ) {
 			if ( $template_slug === $theme['slug'] ) {
 				$theme_default_saved_colors = $theme['colors'];
-				$theme_default_colors	   = $theme['colors'];
+				$theme_default_colors       = $theme['colors'];
 				break;
 			}
 		}
 
-		// Get saved colors.
-		Options_Theme_Colors::update_options( $template_slug, array(), true );
+		// Reset options.
+		$theme_options = Options_Theme::get_options();
+		if ( isset( $theme_options[ $template_slug ]['colors'] ) ) {
+			unset( $theme_options[ $template_slug ]['colors'] );
+		}
+		Options_Theme::update_options( '', $theme_options, true );
 
 		wp_send_json_success(
 			array(
@@ -238,13 +492,13 @@ class Ajax {
 	/**
 	 * Reset form options for contextual menu options.
 	 */
-	public static function ajax_save_theme_colors() {
+	public static function ajax_save_theme_options() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
 
-		$template_slug   = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
-		$colors   = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$colors        = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
 		// Sanitize colors.
 		$sanitized_colors = array();
@@ -256,9 +510,9 @@ class Ajax {
 			);
 		}
 
-		$theme_options                   = Options_Theme_Colors::get_options( '', true );
-		$theme_options[ $template_slug ] = $sanitized_colors;
-		Options_Theme_Colors::update_options( '', $theme_options, true );
+		$theme_options                             = Options_Theme::get_options( '', true );
+		$theme_options[ $template_slug ]['colors'] = $sanitized_colors;
+		Options_Theme::update_options( '', $theme_options, true );
 		wp_send_json_success(
 			array(
 				'message' => __( 'Your theme colors have been saved.', 'quotes-dlx' ),
@@ -405,10 +659,27 @@ class Ajax {
 			}
 		}
 
+		// Get saved options.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size_desktop   = $theme_options[ $theme_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $theme_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $theme_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $theme_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $theme_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $theme_slug ]['line_height_mobile'] ?? 1.1;
+
 		wp_send_json_success(
 			array(
-				'template'   => $theme_slug,
-				'categories' => $categories,
+				'template'            => $theme_slug,
+				'categories'          => $categories,
+				'font_size_desktop'   => $theme_font_size_desktop,
+				'line_height_desktop' => $theme_line_height_desktop,
+				'font_size_tablet'    => $theme_font_size_tablet,
+				'line_height_tablet'  => $theme_line_height_tablet,
+				'font_size_mobile'    => $theme_font_size_mobile,
+				'line_height_mobile'  => $theme_line_height_mobile,
 			)
 		);
 	}

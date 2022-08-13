@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,7 +7,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -21,15 +22,47 @@ const ThemePreview = ( props ) => {
 			</style>
 		);
 	};
+
+	const getFontSize = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-font-size-${ screen }: ${ fontSize }px;`;
+		styles += `--qdlx-${ activeTheme }-button-font-size-${ screen }: ${ buttonFontSize }px;`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+	const getLineHeight = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-line-height-${ screen }: ${ lineHeight };`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
 	return (
 		<>
 			{ getColorStyleVars() }
+
+			{ ! colorsOnly && (
+				<>
+					{ getFontSize() }
+					{ getLineHeight() }
+				</>
+
+			) }
+
 			<link rel="stylesheet" href={ stylesheet } />
 			<div
 				className={ classNames( 'quotes-dlx', {
 					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
 					'quotes-dlx-context-menu-disabled': false,
 					'quotes-dlx-has-no-tweet-button': false,
+					[ `quotes-dlx-screen-${ screen }` ]: true,
 				} ) }
 				style={ { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' } }
 			>
@@ -82,12 +115,22 @@ ThemePreview.defaultProps = {
 	activeTheme: '',
 	colors: [],
 	stylesheet: '',
+	fontSize: '16px',
+	lineHeight: 1.65,
+	colorsOnly: false,
+	buttonFontSize: '16px',
+	screen: 'desktop',
 };
 
 ThemePreview.propTypes = {
 	activeTheme: PropTypes.string.isRequired,
 	colors: PropTypes.array.isRequired,
 	stylesheet: PropTypes.string.isRequired,
+	fontSize: PropTypes.string.isRequired,
+	lineHeight: PropTypes.number.isRequired,
+	colorsOnly: PropTypes.bool.isRequired,
+	buttonFontSize: PropTypes.string.isRequired,
+	screen: PropTypes.string.isRequired,
 };
 
 export default ThemePreview;

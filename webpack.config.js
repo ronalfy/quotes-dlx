@@ -27,6 +27,7 @@ module.exports = ( env ) => {
 				'quotes-dlx-theme-dark-matter': { import: './src/scss/themes/dark-matter.scss' },
 				'quotes-dlx-theme-light-branded': { import: './src/scss/themes/light-branded.scss' },
 				'quotes-dlx-theme-bubble-gum': { import: './src/scss/themes/bubble-gum.scss' },
+				'quotes-dlx-theme-preview': [ './src/js/admin-panel/views/theme-preview/index.js', './src/scss/themes/preview.scss' ],
 			},
 			resolve: {
 				alias: {
@@ -96,6 +97,10 @@ module.exports = ( env ) => {
 							path.resolve(
 								__dirname,
 								'node_modules/photoswipe/dist/photoswipe.css'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/@fancyapps/ui/dist/fancybox.css'
 							),
 						],
 						use: [

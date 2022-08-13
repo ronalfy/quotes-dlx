@@ -30,7 +30,7 @@ const retrieveDefaults = () => {
 	} );
 };
 
-const AdminDefaults = ( props ) => {
+const AdminAdvanced = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 
 	return (
@@ -43,8 +43,7 @@ const AdminDefaults = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_form_advanced';
 
-	const { blockDefaultsDirtyCount, setBlockDefaultsDirtyCount } =
-		useContext( TabsContext );
+	const { advancedTabDirtyCount, setAdvancedTabDirtyCount } = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
@@ -137,7 +136,7 @@ const Interface = ( props ) => {
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
 					// Reset count.
-					setBlockDefaultsDirtyCount( 0 );
+					setAdvancedTabDirtyCount( 0 );
 
 					// Clear form dirty.
 					reset( ajaxData );
@@ -167,7 +166,7 @@ const Interface = ( props ) => {
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
 					// Reset local storage.
-					setBlockDefaultsDirtyCount( 0 );
+					setAdvancedTabDirtyCount( 0 );
 
 					// Clear form dirty.
 					reset( ajaxData );
@@ -199,8 +198,8 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
+		console.log( advancedTabDirtyCount );
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
-
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
@@ -209,7 +208,7 @@ const Interface = ( props ) => {
 		}
 		if ( isDirty ) {
 			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
+			setAdvancedTabDirtyCount( touchedFieldsCountToSave );
 		}
 		setLoading( false );
 	}, [] );
@@ -218,19 +217,19 @@ const Interface = ( props ) => {
 		if ( saving || resetting || loading ) {
 			return;
 		}
-		if ( isDirty || blockDefaultsDirtyCount > 0 ) {
+		if ( isDirty || advancedTabDirtyCount > 0 ) {
 			// Get current form values.
 			const formValuesToSave = JSON.stringify( getValues() );
 
 			// Get the length of the fields that need to be saved.
 			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
 
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
+			setAdvancedTabDirtyCount( touchedFieldsCountToSave );
 
 			// Store touched fields.
 			localStorage.setItem( localStorageKey, formValuesToSave );
 		} else {
-			setBlockDefaultsDirtyCount( 0 );
+			setAdvancedTabDirtyCount( 0 );
 		}
 		setLoading( false );
 	}, [ formValues ] );
@@ -1055,4 +1054,4 @@ const Interface = ( props ) => {
 	);
 };
 
-export default AdminDefaults;
+export default AdminAdvanced;

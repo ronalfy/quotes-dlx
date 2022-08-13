@@ -483,7 +483,7 @@ var retrieveDefaults = function retrieveDefaults() {
   });
 };
 
-var AdminDefaults = function AdminDefaults(props) {
+var AdminAdvanced = function AdminAdvanced(props) {
   var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_2__.useAsyncResource)(retrieveDefaults, []),
       _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
       defaults = _useAsyncResource2[0],
@@ -502,8 +502,8 @@ var Interface = function Interface(props) {
   var localStorageKey = 'quotes_dlx_form_advanced';
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_12__["default"]),
-      blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
-      setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount;
+      advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
+      setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount;
 
   var defaults = props.defaults;
   var response = defaults();
@@ -643,7 +643,7 @@ var Interface = function Interface(props) {
 
       if (ajaxSuccess) {
         // Reset count.
-        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+        setAdvancedTabDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
         localStorage.removeItem(localStorageKey);
@@ -668,7 +668,7 @@ var Interface = function Interface(props) {
 
       if (ajaxSuccess) {
         // Reset local storage.
-        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+        setAdvancedTabDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
         localStorage.removeItem(localStorageKey); // Reset toggles.
@@ -694,6 +694,7 @@ var Interface = function Interface(props) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log(advancedTabDirtyCount);
     var maybeSavedFormFields = localStorage.getItem(localStorageKey);
 
     if (null !== maybeSavedFormFields) {
@@ -713,7 +714,7 @@ var Interface = function Interface(props) {
 
     if (isDirty) {
       var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setBlockDefaultsDirtyCount(touchedFieldsCountToSave);
+      setAdvancedTabDirtyCount(touchedFieldsCountToSave);
     }
 
     setLoading(false);
@@ -723,16 +724,16 @@ var Interface = function Interface(props) {
       return;
     }
 
-    if (isDirty || blockDefaultsDirtyCount > 0) {
+    if (isDirty || advancedTabDirtyCount > 0) {
       // Get current form values.
       var formValuesToSave = JSON.stringify(getValues()); // Get the length of the fields that need to be saved.
 
       var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setBlockDefaultsDirtyCount(touchedFieldsCountToSave); // Store touched fields.
+      setAdvancedTabDirtyCount(touchedFieldsCountToSave); // Store touched fields.
 
       localStorage.setItem(localStorageKey, formValuesToSave);
     } else {
-      setBlockDefaultsDirtyCount(0);
+      setAdvancedTabDirtyCount(0);
     }
 
     setLoading(false);
@@ -1389,7 +1390,7 @@ var Interface = function Interface(props) {
   }))))));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminAdvanced);
 
 /***/ })
 

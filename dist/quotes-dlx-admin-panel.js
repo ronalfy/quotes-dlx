@@ -38183,10 +38183,15 @@ var Wrapper = function Wrapper() {
       licensesDirtyCount = _useState8[0],
       setLicensesDirtyCount = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      defaultTheme = _useState10[0],
-      setDefaultTheme = _useState10[1];
+      advancedTabDirtyCount = _useState10[0],
+      setAdvancedTabDirtyCount = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      defaultTheme = _useState12[0],
+      setDefaultTheme = _useState12[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
@@ -38198,6 +38203,8 @@ var Wrapper = function Wrapper() {
       setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
       licensesDirtyCount: licensesDirtyCount,
       setLicensesDirtyCount: setLicensesDirtyCount,
+      advancedTabDirtyCount: advancedTabDirtyCount,
+      setAdvancedTabDirtyCount: setAdvancedTabDirtyCount,
       defaultTheme: defaultTheme,
       setDefaultTheme: setDefaultTheme
     }
@@ -38901,7 +38908,7 @@ var AdminDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(fun
   return Promise.all(/*! import() | AdminDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
 });
 var AdminAdvanced = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminAdvanced0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminAdvanced0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminAdvanced */ "./src/js/admin-panel/views/AdminAdvanced.js"));
+  return Promise.all(/*! import() | AdminAdvanced0.0.2 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminAdvanced0.0.2")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminAdvanced */ "./src/js/admin-panel/views/AdminAdvanced.js"));
 });
 var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminMenuDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminMenuDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js"));
@@ -38926,11 +38933,12 @@ var AdminTabs = function AdminTabs(props) {
       blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
       contextualMenuDefaultsDirtyCount = _useContext.contextualMenuDefaultsDirtyCount,
       themesDefaultsDirtyCount = _useContext.themesDefaultsDirtyCount,
-      licensesDirtyCount = _useContext.licensesDirtyCount;
+      licensesDirtyCount = _useContext.licensesDirtyCount,
+      advancedTabDirtyCount = _useContext.advancedTabDirtyCount;
 
   var onTabClick = function onTabClick(tab) {};
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount]);
   /**
    *
    * @param {string} pathname Browser location.
@@ -38978,7 +38986,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null))); // Set browser unload event if dirtycounts are not zero.
 
   window.onbeforeunload = function () {
-    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount) {
+    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount) {
       return true;
     }
   };
@@ -39057,7 +39065,7 @@ var AdminTabs = function AdminTabs(props) {
       onTabClick(tab);
     },
     isActive: isActive,
-    dirtyCount: licensesDirtyCount
+    dirtyCount: advancedTabDirtyCount
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_6__["default"],
     slug: "support",

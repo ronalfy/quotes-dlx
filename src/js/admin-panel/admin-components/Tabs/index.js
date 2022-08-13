@@ -25,7 +25,7 @@ const AdminDefaults = lazy( () =>
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.1" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.2" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
@@ -59,8 +59,7 @@ const AdminLicense = lazy( () =>
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount } =
-		useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -69,6 +68,7 @@ const AdminTabs = ( props ) => {
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
 		licensesDirtyCount,
+		advancedTabDirtyCount,
 	] );
 
 	/**
@@ -153,7 +153,7 @@ const AdminTabs = ( props ) => {
 
 	// Set browser unload event if dirtycounts are not zero.
 	window.onbeforeunload = function() {
-		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount ) {
+		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount ) {
 			return true;
 		}
 	};
@@ -237,7 +237,7 @@ const AdminTabs = ( props ) => {
 							onTabClick( tab );
 						} }
 						isActive={ isActive }
-						dirtyCount={ licensesDirtyCount }
+						dirtyCount={ advancedTabDirtyCount }
 					/>
 					<TabItem
 						icon={ CircularQuestionIcon }

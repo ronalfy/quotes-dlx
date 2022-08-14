@@ -1675,6 +1675,10 @@ table.form-table.qdlx-font-sizes {
 	position: relative;
 	align-items: flex-end;
 
+	.qdlx-admin__theme-fonts-select {
+		padding-bottom: 28px;
+	}
+
 	select {
 		appearance: none;
 		outline: 0;
@@ -1712,7 +1716,7 @@ table.form-table.qdlx-font-sizes {
 			min-height: 45px !important;
 			max-height: 45px !important;
 			width: 3em !important;
-			background-color: #2271b1;
+			background-color: var( --quotes-dlx-admin--color-accent);
 			transition: .25s all ease;
 			pointer-events: none;
 			color: var( --quotes-dlx-admin--color-white );
@@ -1731,16 +1735,16 @@ table.form-table.qdlx-font-sizes {
 
 	button.qdlx__btn {
 		padding: 12px 10px;
-		border: 2px solid #2271b1;
-		color: #2271b1;
+		border: 2px solid var( --quotes-dlx-admin--color-accent);
+		color: var( --quotes-dlx-admin--color-accent);
 		max-height: 45px;
 
 		&:hover,
 		&:focus {
 			padding: 12px 10px;
-			background: #E6EAEC;
-			border: 2px solid #2271b1;
-			color: #2271b1;
+			background: #dad4eb;
+			border: 2px solid var( --quotes-dlx-admin--color-accent);
+			color: var( --quotes-dlx-admin--color-accent);
 		}
 	}
 }

@@ -78,6 +78,8 @@ class Options_Defaults extends Options_Abstract {
 			'mobile_breakpoint_unit'  => 'em',
 			'enable_fonts'			=> true,
 			'enable_custom_fonts' => false,
+			'primary_font_family' => 'lato',
+			'secondary_font_family' => 'open-sans',
 		);
 
 		/**

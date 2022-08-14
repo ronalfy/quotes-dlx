@@ -7,7 +7,7 @@ import {
 	Button,
 	ButtonGroup,
 	RadioControl,
-	FormTokenField,
+	SelectControl,
 	ToggleControl,
 } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
@@ -23,6 +23,7 @@ import CircularInfo from '../../components/icons/CircularInfo';
 import FlaskIcon from '../../components/icons/FlaskIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
+import fontFamilies from '../../../fonts/fonts';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
@@ -70,10 +71,10 @@ const Interface = ( props ) => {
 		tablet_breakpoint_unit,
 		mobile_breakpoint,
 		mobile_breakpoint_unit,
-		maximum_width,
-		maximum_width_unit,
 		enable_fonts,
 		enable_custom_fonts,
+		primary_font_family,
+		secondary_font_family,
 		twitter_username,
 		hashtags,
 		align,
@@ -100,8 +101,8 @@ const Interface = ( props ) => {
 				mobileBreakpointUnit: mobile_breakpoint_unit,
 				enableFonts: enable_fonts,
 				enableCustomFonts: enable_custom_fonts,
-				maximumWidth: maximum_width,
-				maximumWidthUnit: maximum_width_unit,
+				primaryFontFamily: primary_font_family,
+				secondaryFontFamily: secondary_font_family,
 				twitterUsername: twitter_username,
 				hashtags,
 				align,
@@ -257,6 +258,18 @@ const Interface = ( props ) => {
 		return <AdminDefaultsLoader />;
 	}
 
+	const getFontFamilies = () => {
+		// Get font families in value label pair.
+		const families = [];
+		for ( const [ key, fontfamily ] of Object.entries( fontFamilies ) ) {
+			families.push( {
+				label: fontfamily.name,
+				value: fontfamily.slug,
+			} );
+		}
+		return families;
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
@@ -303,6 +316,38 @@ const Interface = ( props ) => {
 													/>
 												) }
 											/>
+											<div className="quotes-dlx-admin-theme-options__select">
+												<Controller
+													name="primaryFontFamily"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<SelectControl
+															className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+															label={ __( 'Select a Primary Font', 'quotes-dlx' ) }
+															value={ value }
+															onChange={ ( newFont ) => onChange( newFont ) }
+															options={ getFontFamilies() }
+														/>
+													) }
+												/>
+
+											</div>
+											<div className="quotes-dlx-admin-theme-options__select">
+												<Controller
+													name="secondaryFontFamily"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<SelectControl
+															className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+															label={ __( 'Select a Secondary Font', 'quotes-dlx' ) }
+															value={ value }
+															onChange={ ( newFont ) => onChange( newFont ) }
+															options={ getFontFamilies() }
+														/>
+													) }
+												/>
+
+											</div>
 											{ getValues( 'enableFonts' ) && (
 												<Controller
 													name="enableCustomFonts"
@@ -325,8 +370,8 @@ const Interface = ( props ) => {
 														/>
 													) }
 												/>
-											)}
-											
+											) }
+
 										</td>
 									</tr>
 									<tr>

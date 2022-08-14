@@ -295,7 +295,7 @@ class Functions {
 	 * @return array colors.
 	 */
 	public static function get_site_theme_colors() {
-		$color_palette = [];
+		$color_palette = array();
 
 		// Try to get theme setup colors (if available).
 		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
@@ -306,7 +306,7 @@ class Functions {
 
 		// Now try to get theme.json colors.
 		if ( class_exists( 'WP_Theme_JSON_Resolver' ) ) {
-			$settings = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
+			$settings                 = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
 			$theme_json_color_palette = $settings['color']['palette']['theme'] ?? array();
 
 			if ( ! empty( $theme_json_color_palette ) && is_array( $theme_json_color_palette ) ) {
@@ -314,6 +314,23 @@ class Functions {
 			}
 		}
 		return $color_palette;
+	}
+
+	/**
+	 * Retrieve the plugin settings.
+	 *
+	 * @param string $font_family_slug The font family slug.
+	 *
+	 * @return bool|string false on path failure, URL if success..
+	 */
+	public static function get_font_family_stylesheet_path( $font_family_slug ) {
+		$font_family_slug    = sanitize_title( $font_family_slug );
+		$font_css_path       = 'dist/quotes-dlx-gfont-' . $font_family_slug . '.css';
+		$stylesheet_dir_path = self::get_plugin_dir( $font_css_path );
+		if ( file_exists( $stylesheet_dir_path ) ) {
+			return self::get_plugin_url( $font_css_path );
+		}
+		return false;
 	}
 
 	/**

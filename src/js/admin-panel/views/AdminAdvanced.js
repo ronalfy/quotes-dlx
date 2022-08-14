@@ -16,6 +16,8 @@ import classNames from 'classnames';
 import GearIcon from '../../components/icons/Gear';
 import sendCommand from '../../utils/SendCommand';
 import Notice from '../admin-components/Notice';
+import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
+import '@fancyapps/ui/dist/fancybox.css';
 import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import twttr from '../../validation/twitter';
@@ -75,6 +77,7 @@ const Interface = ( props ) => {
 		enable_custom_fonts,
 		primary_font_family,
 		secondary_font_family,
+		template,
 		twitter_username,
 		hashtags,
 		align,
@@ -270,6 +273,31 @@ const Interface = ( props ) => {
 		return families;
 	};
 
+	const toTitleCase = ( string ) => {
+		const firstLetterRegex = /(^[a-z])/g;
+		let newString = string.replace( firstLetterRegex, ( match ) => {
+			return match.toUpperCase();
+		} );
+		return newString.replace( /-([a-z])/ig, function( all, letter ) {
+			return " " + letter.toUpperCase();
+		});
+	}
+
+	const getPreviewLink = () => {
+		return `${ ajaxurl }?action=quotes_dlx_theme_preview&fontsize=16
+		) }&lineheight=${ encodeURIComponent(
+			1.65
+		) }&buttonsize=${ encodeURIComponent( 16 ) }&nonce=${
+			quotes_dlx_admin.options_retrieve_nonce
+		}&template=${ encodeURIComponent( template ) }&screen=tablet&primary_font_family=${ encodeURIComponent(
+			toTitleCase( getValues( 'primaryFontFamily' ) )
+		) }&secondary_font_family=${ encodeURIComponent(
+			toTitleCase( getValues( 'secondaryFontFamily' ) )
+		) }`;
+	};
+
+
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
@@ -346,7 +374,29 @@ const Interface = ( props ) => {
 														/>
 													) }
 												/>
-
+											</div>
+											<div className="components-base-control">
+												<a
+													data-fancybox
+													onClick={ ( e ) => {
+														e.preventDefault();
+														new Fancybox(
+															[
+																{
+																	src: getPreviewLink(),
+																	type: 'iframe',
+																},
+															],
+															{
+																mainClass: 'qdlx-theme-preview-mobile',
+																caption: __( 'Font Preview', 'quotes-dlx' )
+															}
+														);
+													} }
+													href={ getPreviewLink() }
+												>
+													{ __( 'Preview Font', 'quotes-dlx' ) }
+												</a>
 											</div>
 											{ getValues( 'enableFonts' ) && (
 												<Controller

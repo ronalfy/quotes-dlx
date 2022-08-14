@@ -1919,7 +1919,9 @@ var ThemePreview = function ThemePreview(props) {
       lineHeight = props.lineHeight,
       buttonFontSize = props.buttonFontSize,
       colorsOnly = props.colorsOnly,
-      screen = props.screen;
+      screen = props.screen,
+      primaryFontFamily = props.primaryFontFamily,
+      secondaryFontFamily = props.secondaryFontFamily;
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
@@ -1945,7 +1947,15 @@ var ThemePreview = function ThemePreview(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+  var getFontFamilies = function getFontFamilies() {
+    var styles = '';
+    styles += "--qdlx-primary-font-family: \"".concat(primaryFontFamily, "\";");
+    styles += "--qdlx-secondary-font-family: \"".concat(secondaryFontFamily, "\";");
+    styles = ":root { ".concat(styles, " }");
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight(), getFontFamilies()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
     rel: "stylesheet",
     href: stylesheet
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1988,7 +1998,9 @@ ThemePreview.defaultProps = {
   lineHeight: 1.65,
   colorsOnly: false,
   buttonFontSize: '16px',
-  screen: 'desktop'
+  screen: 'desktop',
+  primaryFontFamily: 'Lato',
+  secondaryFontFamily: 'Open Sans'
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
@@ -1998,7 +2010,9 @@ ThemePreview.propTypes = {
   lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
   colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired),
   buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
+  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  primaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  secondaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 
@@ -37664,7 +37678,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Preview = function Preview() {
-  console.log(qdlx_theme_preview);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemePreview_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
     activeTheme: qdlx_theme_preview.theme,
     stylesheet: qdlx_theme_preview.stylesheet,
@@ -37672,7 +37685,9 @@ var Preview = function Preview() {
     fontSize: qdlx_theme_preview.font_size,
     lineHeight: parseFloat(qdlx_theme_preview.line_height),
     buttonFontSize: qdlx_theme_preview.button_font_size,
-    screen: qdlx_theme_preview.screen
+    screen: qdlx_theme_preview.screen,
+    primaryFontFamily: qdlx_theme_preview.primary_font_family,
+    secondaryFontFamily: qdlx_theme_preview.secondary_font_family
   }));
 };
 

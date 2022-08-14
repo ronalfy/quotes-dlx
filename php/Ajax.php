@@ -279,6 +279,8 @@ class Ajax {
 		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
 		$screen           = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
 		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$primary_font_family         = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+		$secondary_font_family       = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 
 		wp_register_script(
 			'qdlx_twitter_actions',
@@ -328,6 +330,30 @@ class Ajax {
 			'all'
 		);
 
+		// Try to load font stylesheets.
+		$primary_font_css_url = Functions::get_font_family_stylesheet_path( $primary_font_family );
+		$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
+
+		if ( $primary_font_css_url ) {
+			wp_register_style(
+				'qdlx_primary_font_css',
+				$primary_font_css_url,
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
+		if ( $secondary_font_css_url ) {
+			wp_register_style(
+				'qdlx_secondary_font_css',
+				$secondary_font_css_url,
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
 		// Get localized vars.
 		$themes = Themes\Themes_Addon::get_theme_data( $template );
 		if ( ! $themes ) {
@@ -354,6 +380,8 @@ class Ajax {
 				'line_height'      => (float) $line_height,
 				'button_font_size' => $button_font_size,
 				'screen'           => $screen,
+				'primary_font_family'         => $primary_font_family,
+				'secondary_font_family'       => $secondary_font_family,
 			)
 		);
 		?>
@@ -367,6 +395,8 @@ class Ajax {
 						'qdlx_twitter_preview_css',
 						'qdlx_font_css',
 						'qdlx_frontend_css',
+						'qdlx_primary_font_css',
+						'qdlx_secondary_font_css',
 					)
 				);
 				?>

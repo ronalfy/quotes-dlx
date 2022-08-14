@@ -580,10 +580,14 @@ button.button-reset.show-cursor {
   padding: 1em 1.0625rem;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper .qdlx-admin__support--content-panel .qdlx-admin__support--content-heading p.description {
-  font-size: 1.3em;
+  font-size: 1.1em;
+  line-height: 1.2em;
   margin: 0;
   padding: 0;
-  margin-top: 8px;
+  padding: 15px 0;
+}
+.quotes-dlx-plugin .qdlx-admin__support-wrapper .qdlx-admin__support--content-panel .qdlx-admin__support--content-heading .qdlx-button-primary a {
+  margin-top: 0;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 {
   display: flex;
@@ -595,8 +599,8 @@ button.button-reset.show-cursor {
   font-weight: 300;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 svg {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 svg path {
   fill: #9c68b0;

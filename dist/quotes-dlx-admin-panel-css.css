@@ -935,7 +935,7 @@ button.button-reset.show-cursor {
 .qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=text] {
   position: relative;
   display: block;
-  min-width: 200px;
+  min-width: 350px;
   line-height: 2;
   font-size: 13px;
 }
@@ -1643,6 +1643,9 @@ table.form-table.qdlx-font-sizes td > div {
   position: relative;
   align-items: flex-end;
 }
+.quotes-dlx-admin-theme-options__select.span-2 {
+  grid-template-columns: 1fr;
+}
 .quotes-dlx-admin-theme-options__select .qdlx-admin__theme-fonts-select {
   padding-bottom: 28px;
 }
@@ -1666,6 +1669,9 @@ table.form-table.qdlx-font-sizes td > div {
 }
 .quotes-dlx-admin-theme-options__select > div.components-base-control {
   margin-bottom: 0;
+}
+.quotes-dlx-admin-theme-options__select > div.quotes-dlx-admin-control-wrapper {
+  margin-bottom: 20px;
 }
 .quotes-dlx-admin-theme-options__select > div.components-base-control .components-input-control__container {
   position: relative;

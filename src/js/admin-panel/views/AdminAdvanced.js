@@ -72,6 +72,8 @@ const Interface = ( props ) => {
 		mobile_breakpoint_unit,
 		maximum_width,
 		maximum_width_unit,
+		enable_fonts,
+		enable_custom_fonts,
 		twitter_username,
 		hashtags,
 		align,
@@ -96,6 +98,8 @@ const Interface = ( props ) => {
 				tabletBreakpointUnit: tablet_breakpoint_unit,
 				mobileBreakpoint: mobile_breakpoint,
 				mobileBreakpointUnit: mobile_breakpoint_unit,
+				enableFonts: enable_fonts,
+				enableCustomFonts: enable_custom_fonts,
 				maximumWidth: maximum_width,
 				maximumWidthUnit: maximum_width_unit,
 				twitterUsername: twitter_username,
@@ -275,6 +279,56 @@ const Interface = ( props ) => {
 						<div className="qdlx-admin__tabs--content-inner">
 							<table className="form-table" role="presentation">
 								<tbody>
+									<tr>
+										<th scope="row">{ __( 'Fonts', 'quotes-dlx' ) }</th>
+										<td>
+											<Controller
+												name="enableFonts"
+												control={ control }
+												render={ ( { field: { onChange, value } } ) => (
+													<ToggleControl
+														label={ __(
+															'Enable Theme Fonts',
+															'quotes-dlx'
+														) }
+														className="qdlx-admin__toggle-control"
+														checked={ value }
+														onChange={ ( boolValue ) => {
+															onChange( boolValue );
+														} }
+														help={ __(
+															'By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.',
+															'quotes-dlx'
+														) }
+													/>
+												) }
+											/>
+											{ getValues( 'enableFonts' ) && (
+												<Controller
+													name="enableCustomFonts"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __(
+																'Enable Custom Fonts',
+																'quotes-dlx'
+															) }
+															className="qdlx-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'Enter your own font stack to use for the themes. If you would like to use the default fonts, you can disable this option.',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+											)}
+											
+										</td>
+									</tr>
 									<tr>
 										<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
 										<td>

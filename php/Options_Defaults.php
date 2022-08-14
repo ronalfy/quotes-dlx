@@ -76,6 +76,8 @@ class Options_Defaults extends Options_Abstract {
 			'tablet_breakpoint_unit'  => 'em',
 			'mobile_breakpoint'       => 30,
 			'mobile_breakpoint_unit'  => 'em',
+			'enable_fonts'			=> true,
+			'enable_custom_fonts' => false,
 		);
 
 		/**

@@ -39059,7 +39059,7 @@ var AdminTabs = function AdminTabs(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_13__["default"],
     slug: "advanced",
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset options and disable fonts.', 'quotes-dlx'),
+    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset options, set breakpoints, and disable fonts.', 'quotes-dlx'),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced', 'quotes-dlx'),
     tabClicked: function tabClicked(tab) {
       onTabClick(tab);

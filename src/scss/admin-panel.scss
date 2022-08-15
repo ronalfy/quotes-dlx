@@ -474,6 +474,15 @@
 			.qdlx-admin__tabs--content-heading {
 				padding: 1em 1.0625rem;
 
+				&.qdlx-danger {
+
+					h1, svg, path{
+						color: var( --quotes-dlx-admin--color-red-alt );
+						fill: var( --quotes-dlx-admin--color-red-alt );
+					}
+					
+				}
+
 				p.description {
 					font-size: 1.1em;
 					margin: 0;

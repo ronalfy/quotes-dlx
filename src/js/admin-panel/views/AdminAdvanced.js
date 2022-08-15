@@ -1052,7 +1052,7 @@ const Interface = ( props ) => {
 						} }
 					>
 						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
+							<div className="qdlx-admin__tabs--content-heading qdlx-danger">
 								<h1>
 									<CircularExclamationIcon
 										width={ 48 }
@@ -1079,7 +1079,7 @@ const Interface = ( props ) => {
 										/>
 										<label htmlFor="qdlx-admin__reset-confirm">
 											{ __(
-												'I understand that resetting can not be undone.',
+												'I understand that this will reset all options.',
 												'quotes-dlx'
 											) }
 										</label>

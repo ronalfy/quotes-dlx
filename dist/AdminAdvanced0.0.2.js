@@ -1384,7 +1384,7 @@ var Interface = function Interface(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__tabs--content-heading"
+    className: "qdlx-admin__tabs--content-heading qdlx-danger"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
     width: 48,
     height: 48,
@@ -1407,7 +1407,7 @@ var Interface = function Interface(props) {
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
     htmlFor: "qdlx-admin__reset-confirm"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that resetting can not be undone.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that this will reset all options.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': resetting
     }, {

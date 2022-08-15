@@ -65,6 +65,7 @@ const Interface = ( props ) => {
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
+	const [ adobeFonts, setAdobeFonts ] = useState( false );
 
 	const {
 		desktop_breakpoint,
@@ -85,7 +86,7 @@ const Interface = ( props ) => {
 		template,
 	} = data;
 
-	const { register, control, handleSubmit, setValue, getValues, reset } =
+	const { register, control, handleSubmit, setValue, getValues, reset, trigger } =
 		useForm( {
 			defaultValues: {
 				desktopBreakpoint: desktop_breakpoint,
@@ -184,12 +185,40 @@ const Interface = ( props ) => {
 			} );
 	};
 
+	const refreshAdobeFonts = () => {
+		setSaving( true );
+		sendCommand( 'quotes_dlx_retrieve_remote_adobe_fonts', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+			project_id: getValues( 'adobeProjectId' ),
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					setAdobeFonts( ajaxData );
+					setIsSaved( true );
+					setTimeout( () => {
+						setIsSaved( false );
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setSaving( false );
+			} );
+	};
+
+	useEffect( () => {
+
+	}, [] );
+
 	const hasErrors = () => {
 		return Object.keys( errors ).length > 0;
 	};
 
 	useEffect( () => {
-		console.log( advancedTabDirtyCount );
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
@@ -244,9 +273,40 @@ const Interface = ( props ) => {
 		return <AdminDefaultsLoader />;
 	}
 
+	const getAdobeFonts = () => {
+		return (
+			<>
+			<div className="components-base-control">
+			<label for="adobe-font-list" className="components-base-control__label">{ __( 'Current Adobe Fonts', 'quotes-dlx' ) }</label>
+			<ul className="quotes-dlx-adobe-font-list" id="adobe-font-list">
+				{adobeFonts.map( ( font ) => {
+					return (
+						<li key={ font.slug }>
+							{ font.name }
+						</li>
+					)
+				} ) }
+			</ul>
+			</div>
+			</>
+		);
+	};
+
 	const getFontFamilies = () => {
 		// Get font families in value label pair.
 		const families = [];
+
+		// Try to get adobe fonts. Push them to the top.
+		if ( false !== adobeFonts && getValues( 'enableAdobeFonts' ) ) {
+			adobeFonts.forEach( ( font ) => {
+				families.push( {
+					label: font.name,
+					value: font.slug,
+				} );
+			} );
+		}
+
+		// Get the rest of the fonts.
 		for ( const [ key, fontfamily ] of Object.entries( fontFamilies ) ) {
 			families.push( {
 				label: fontfamily.name,
@@ -403,6 +463,37 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
+													{ false !== adobeFonts && (
+														<>
+															{ getAdobeFonts() }
+														</>
+													) }
+													<div className="qdlx-admin__tabs--content-actions">
+														<Button
+															className={ classNames(
+																'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+																{ 'has-error': hasErrors() },
+																{ 'has-icon': saving },
+																{ 'is-saving': { saving } }
+															) }
+															type="button"
+															text={
+																saving
+																	? __( 'Saving…', 'quotes-dlx' )
+																	: __( 'Save and Refresh Fonts', 'quotes-dlx' )
+															}
+															icon={ saving ? Spinner : false }
+															iconSize="18"
+															iconPosition="right"
+															disabled={ saving || resetting }
+															onClick={ async () => {
+																const result = await trigger( 'adobeProjectId' );
+																if ( result ) {
+																	refreshAdobeFonts();
+																}
+															}}
+														/>
+													</div>
 												</>
 											) }
 										</td>
@@ -554,7 +645,7 @@ const Interface = ( props ) => {
 													} }
 													href={ getPreviewLink() }
 												>
-													{ __( 'Preview Font', 'quotes-dlx' ) }
+													{ __( 'Preview Fonts', 'quotes-dlx' ) }
 												</a>
 											</div>
 											{ getValues( 'enableFonts' ) && (

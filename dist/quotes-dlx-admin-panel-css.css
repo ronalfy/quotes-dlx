@@ -931,8 +931,11 @@ button.button-reset.show-cursor {
   font-weight: 700;
 }
 .qdlx-admin__tabs--content-inner .components-base-control input[type=text],
+.qdlx-admin__tabs--content-inner .components-base-control input[type=password],
 .qdlx-admin__tabs--content-inner .components-form-token-field input[type=text],
-.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=text] {
+.qdlx-admin__tabs--content-inner .components-form-token-field input[type=password],
+.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=text],
+.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=password] {
   position: relative;
   display: block;
   min-width: 350px;
@@ -1726,6 +1729,29 @@ table.form-table.qdlx-font-sizes td > div {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: 0;
+}
+
+/* Radio inputs */
+.quotes-dlx-admin-list-ul {
+  list-style-position: inside;
+  font-size: 1.1em;
+  position: relative;
+}
+.quotes-dlx-admin-list-ul li {
+  position: relative;
+  padding-left: 18px;
+}
+.quotes-dlx-admin-list-ul li:before {
+  position: absolute;
+  content: " ";
+  background: var(--quotes-dlx-admin--color-text-color);
+  color: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+  left: 0;
+  top: calc(0.55em - 4px);
 }
 
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

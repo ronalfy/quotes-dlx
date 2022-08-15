@@ -85,6 +85,8 @@ class Options_Defaults extends Options_Abstract {
 			'enable_adobe_fonts'			=> false,
 			'adobe_fonts' => array(),
 			'adobe_project_id' => '',
+			'activate_adobe_fonts_admin' => false,
+			'activate_adobe_fonts_frontend' => false,
 		);
 
 		/**

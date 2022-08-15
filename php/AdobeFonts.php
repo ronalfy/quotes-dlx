@@ -79,12 +79,19 @@ class AdobeFonts {
 				$fallback_css = $matches[1];
 			}
 			$fonts[] = array(
-				'name'     => $font_family['name'],
-				'slug'     => $font_family['slug'],
-				'family'   => current( $font_family['css_names'] ),
-				'fallback' => $fallback_css,
+				'name'     => sanitize_text_field( $font_family['name'] ),
+				'slug'     => sanitize_text_field( $font_family['slug'] ),
+				'family'   => sanitize_text_field( current( $font_family['css_names'] ) ),
+				'fallback' => sanitize_text_field( $fallback_css ),
 			);
 		}
+
+		// Retrieve options and add fonts.
+		$options                     = Options_Defaults::get_options( '', true );
+		$options['adobe_fonts']      = $fonts;
+		$options['adobe_project_id'] = $project_id;
+		Options_Defaults::update_options( '', $options, true );
+
 		wp_send_json_success( $fonts );
 	}
 }

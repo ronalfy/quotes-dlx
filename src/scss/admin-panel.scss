@@ -898,7 +898,8 @@
 		label {
 			font-weight: 700;
 		}
-		input[type='text'] {
+		input[type='text'],
+		input[type='password'] {
 			position: relative;
 			display: block;
 			min-width: 350px;
@@ -1766,5 +1767,29 @@ table.form-table.qdlx-font-sizes {
 		margin-bottom: 0;
 		padding-bottom: 0;
 		border-bottom: 0;
+	}
+}
+
+/* Radio inputs */
+.quotes-dlx-admin-list-ul {
+	list-style-position: inside;
+	font-size: 1.1em;
+	position: relative;
+
+	li {
+		position: relative;
+		padding-left: 18px;
+	}
+	li:before {
+		position: absolute;
+		content: ' ';
+		background: var( --quotes-dlx-admin--color-text-color );
+		color: white;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		display: block;
+		left: 0;
+		top: calc(1.1em/2 - 4px);
 	}
 }

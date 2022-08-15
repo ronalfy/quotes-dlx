@@ -574,7 +574,7 @@ var Interface = function Interface(props) {
       isReset = _useState20[0],
       setIsReset = _useState20[1];
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
       _useState22 = _slicedToArray(_useState21, 2),
       adobeFonts = _useState22[0],
       setAdobeFonts = _useState22[1];
@@ -593,7 +593,8 @@ var Interface = function Interface(props) {
       secondary_font_family = data.secondary_font_family,
       enable_adobe_fonts = data.enable_adobe_fonts,
       adobe_project_id = data.adobe_project_id,
-      adobe_fonts = data.adobe_fonts,
+      activate_adobe_fonts_admin = data.activate_adobe_fonts_admin,
+      activate_adobe_fonts_frontend = data.activate_adobe_fonts_frontend,
       template = data.template;
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_17__.useForm)({
@@ -611,7 +612,9 @@ var Interface = function Interface(props) {
       primaryFontFamily: primary_font_family,
       secondaryFontFamily: secondary_font_family,
       enableAdobeFonts: enable_adobe_fonts,
-      adobeProjectId: adobe_project_id
+      adobeProjectId: adobe_project_id,
+      activateAdobeFontsAdmin: activate_adobe_fonts_admin,
+      activateAdobeFontsFrontend: activate_adobe_fonts_frontend
     }
   }),
       register = _useForm.register,
@@ -793,10 +796,10 @@ var Interface = function Interface(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "components-base-control"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-      "for": "adobe-font-list",
+      htmlFor: "adobe-font-list",
       className: "components-base-control__label"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Current Adobe Fonts', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-      className: "quotes-dlx-adobe-font-list",
+      className: "quotes-dlx-adobe-font-list quotes-dlx-admin-list-ul",
       id: "adobe-font-list"
     }, adobeFonts.map(function (font) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
@@ -842,7 +845,7 @@ var Interface = function Interface(props) {
     var newString = string.replace(firstLetterRegex, function (match) {
       return match.toUpperCase();
     });
-    return newString.replace(/-([a-z])/ig, function (all, letter) {
+    return newString.replace(/-([a-z])/gi, function (all, letter) {
       return ' ' + letter.toUpperCase();
     });
   };
@@ -891,7 +894,9 @@ var Interface = function Interface(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.', 'quotes-dlx')
       });
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adobe Fonts', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     name: "enableAdobeFonts",
     control: control,
     render: function render(_ref2) {
@@ -908,6 +913,40 @@ var Interface = function Interface(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are using Adobe Fonts, you can use them in QuotesDLX.', 'quotes-dlx')
       });
     }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "activateAdobeFontsAdmin",
+    control: control,
+    render: function render(_ref3) {
+      var _ref3$field = _ref3.field,
+          _onChange3 = _ref3$field.onChange,
+          value = _ref3$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate Adobe Fonts in the Admin', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange3(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.', 'quotes-dlx')
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "activateAdobeFontsFrontend",
+    control: control,
+    render: function render(_ref4) {
+      var _ref4$field = _ref4.field,
+          _onChange4 = _ref4$field.onChange,
+          value = _ref4$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate Adobe Fonts on the Frontend', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange4(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.', 'quotes-dlx')
+      });
+    }
   }), getValues('enableAdobeFonts') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     name: "adobeProjectId",
     control: control,
@@ -915,12 +954,14 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[a-z0-9]+$/i
     },
-    render: function render(_ref3) {
+    render: function render(_ref5) {
       var _errors$anchorPrefix, _errors$anchorPrefix2;
 
-      var field = _ref3.field;
+      var field = _ref5.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
+        type: "password",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adobe Fonts Project ID', 'quotes-dlx'),
+        id: "search-qdlx-no-autofill",
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
           'has-error': 'pattern' === ((_errors$anchorPrefix = errors.anchorPrefix) === null || _errors$anchorPrefix === void 0 ? void 0 : _errors$anchorPrefix.type) || 'required' === ((_errors$anchorPrefix2 = errors.anchorPrefix) === null || _errors$anchorPrefix2 === void 0 ? void 0 : _errors$anchorPrefix2.type),
           'is-required': true
@@ -989,16 +1030,16 @@ var Interface = function Interface(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     name: "primaryFontFamily",
     control: control,
-    render: function render(_ref5) {
-      var _ref5$field = _ref5.field,
-          _onChange3 = _ref5$field.onChange,
-          value = _ref5$field.value;
+    render: function render(_ref7) {
+      var _ref7$field = _ref7.field,
+          _onChange5 = _ref7$field.onChange,
+          value = _ref7$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
         className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Primary Font', 'quotes-dlx'),
         value: value,
         onChange: function onChange(newFont) {
-          return _onChange3(newFont);
+          return _onChange5(newFont);
         },
         options: getFontFamilies()
       });
@@ -1012,10 +1053,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[-\" ,A-Za-z0-9]+$/i
     },
-    render: function render(_ref6) {
+    render: function render(_ref8) {
       var _errors$customFontPri, _errors$customFontPri2;
 
-      var field = _ref6.field;
+      var field = _ref8.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
@@ -1044,16 +1085,16 @@ var Interface = function Interface(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     name: "secondaryFontFamily",
     control: control,
-    render: function render(_ref7) {
-      var _ref7$field = _ref7.field,
-          _onChange4 = _ref7$field.onChange,
-          value = _ref7$field.value;
+    render: function render(_ref9) {
+      var _ref9$field = _ref9.field,
+          _onChange6 = _ref9$field.onChange,
+          value = _ref9$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
         className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Secondary Font', 'quotes-dlx'),
         value: value,
         onChange: function onChange(newFont) {
-          return _onChange4(newFont);
+          return _onChange6(newFont);
         },
         options: getFontFamilies()
       });
@@ -1067,10 +1108,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[-\" ,A-Za-z0-9]+$/i
     },
-    render: function render(_ref8) {
+    render: function render(_ref10) {
       var _errors$customFontSec, _errors$customFontSec2;
 
-      var field = _ref8.field;
+      var field = _ref10.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
@@ -1109,24 +1150,7 @@ var Interface = function Interface(props) {
       });
     },
     href: getPreviewLink()
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Fonts', 'quotes-dlx'))), getValues('enableFonts') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
-    name: "enableCustomFonts",
-    control: control,
-    render: function render(_ref9) {
-      var _ref9$field = _ref9.field,
-          _onChange5 = _ref9$field.onChange,
-          value = _ref9$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Custom Fonts', 'quotes-dlx'),
-        className: "qdlx-admin__toggle-control",
-        checked: value,
-        onChange: function onChange(boolValue) {
-          _onChange5(boolValue);
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your own font stack to use for the themes. If you would like to use the default fonts, you can disable this option.', 'quotes-dlx')
-      });
-    }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Fonts', 'quotes-dlx'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Breakpoints', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__control-item"
@@ -1137,10 +1161,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref10) {
+    render: function render(_ref11) {
       var _errors$desktopBreakp, _errors$desktopBreakp2;
 
-      var field = _ref10.field;
+      var field = _ref11.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -1166,10 +1190,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     control: control,
     name: "desktopBreakpointUnit",
-    render: function render(_ref11) {
-      var _ref11$field = _ref11.field,
-          onChange = _ref11$field.onChange,
-          value = _ref11$field.value;
+    render: function render(_ref12) {
+      var _ref12$field = _ref12.field,
+          onChange = _ref12$field.onChange,
+          value = _ref12$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint Unit', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the desktop breakpoint.', 'quotes-dlx'),
@@ -1193,10 +1217,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref12) {
+    render: function render(_ref13) {
       var _errors$tabletBreakpo, _errors$tabletBreakpo2;
 
-      var field = _ref12.field;
+      var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -1222,10 +1246,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     control: control,
     name: "tabletBreakpointUnit",
-    render: function render(_ref13) {
-      var _ref13$field = _ref13.field,
-          onChange = _ref13$field.onChange,
-          value = _ref13$field.value;
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+          onChange = _ref14$field.onChange,
+          value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint Unit', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the tablet breakpoint.', 'quotes-dlx'),
@@ -1249,10 +1273,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref14) {
+    render: function render(_ref15) {
       var _errors$mobileBreakpo, _errors$mobileBreakpo2;
 
-      var field = _ref14.field;
+      var field = _ref15.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -1278,10 +1302,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     control: control,
     name: "mobileBreakpointUnit",
-    render: function render(_ref15) {
-      var _ref15$field = _ref15.field,
-          onChange = _ref15$field.onChange,
-          value = _ref15$field.value;
+    render: function render(_ref16) {
+      var _ref16$field = _ref16.field,
+          onChange = _ref16$field.onChange,
+          value = _ref16$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint Unit', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the mobile breakpoint.', 'quotes-dlx'),

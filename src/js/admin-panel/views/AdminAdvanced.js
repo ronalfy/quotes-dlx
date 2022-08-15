@@ -46,8 +46,15 @@ const AdminAdvanced = ( props ) => {
 const Interface = ( props ) => {
 	const localStorageKey = 'quotes_dlx_form_advanced';
 
-	const { advancedTabDirtyCount, setAdvancedTabDirtyCount } =
-		useContext( TabsContext );
+	const {
+		advancedTabDirtyCount,
+		setAdvancedTabDirtyCount,
+		setThemesDefaultsDirtyCount,
+		setLicensesDirtyCount,
+		setDefaultTheme,
+		setBlockDefaultsDirtyCount,
+		setContextualMenuDefaultsDirtyCount,
+	} = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
@@ -65,9 +72,11 @@ const Interface = ( props ) => {
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
+	const [ hardReset, setHardReset ] = useState( false );
+	const [ isHardReset, setIsHardReset ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 	const [ adobeFonts, setAdobeFonts ] = useState( data.adobe_fonts );
-	const[ canResetOptions, setCanResetOptions ] = useState( false );
+	const [ canResetOptions, setCanResetOptions ] = useState( false );
 
 	const {
 		desktop_breakpoint,
@@ -264,21 +273,6 @@ const Interface = ( props ) => {
 		setLoading( false );
 	}, [ formValues ] );
 
-	// Get URL Shortening services (i.e., bitly, jetpack).
-	const linkShortenerServices = [];
-	if ( quotes_dlx_admin.bitly_plugin_active ) {
-		linkShortenerServices.push( {
-			label: __( 'Bitly', 'quotes-dlx' ),
-			value: 'bitly',
-		} );
-	}
-	if ( quotes_dlx_admin.jetpack_plugin_active ) {
-		linkShortenerServices.push( {
-			label: __( 'Jetpack', 'quotes-dlx' ),
-			value: 'jetpack',
-		} );
-	}
-
 	if ( loading ) {
 		return <AdminDefaultsLoader />;
 	}
@@ -357,6 +351,30 @@ const Interface = ( props ) => {
 ) }&secondary_font_family=${ encodeURIComponent(
 	toTitleCase( getValues( 'secondaryFontFamily' ) )
 ) }`;
+	};
+
+	const resetAllOptions = () => {
+		// Clear local storage keys.
+		localStorage.removeItem( 'quotes_dlx_menu_defaults' );
+		localStorage.removeItem( 'quotes_dlx_form_defaults' );
+		localStorage.removeItem( 'quotes_dlx_licenses' );
+		localStorage.removeItem( 'quotes_dlx_themes_defaults' );
+		localStorage.removeItem( 'quotes_dlx_form_advanced' );
+
+		setAdvancedTabDirtyCount( 0 );
+		setThemesDefaultsDirtyCount( 0 );
+		setLicensesDirtyCount( 0 );
+		setBlockDefaultsDirtyCount( 0 );
+		setContextualMenuDefaultsDirtyCount( 0 );
+		setDefaultTheme( '' );
+
+		// To tell when the form has been reset.
+		setIsHardReset( true );
+
+		// Reload.
+		setTimeout( () => {
+			window.location.reload();
+		}, 3000 );
 	};
 
 	return (
@@ -1073,9 +1091,12 @@ const Interface = ( props ) => {
 							<div className="qdlx-admin__tabs--content-inner">
 								<div className="qdlx-admin__tabs--content-actions no-flex">
 									<div className="qdlx-admin-reset-confirmation">
-										<input type="checkbox" id="qdlx-admin__reset-confirm" onClick={( e ) => {
-											setCanResetOptions( e.target.checked );
-										} }
+										<input
+											type="checkbox"
+											id="qdlx-admin__reset-confirm"
+											onClick={ ( e ) => {
+												setCanResetOptions( e.target.checked );
+											} }
 										/>
 										<label htmlFor="qdlx-admin__reset-confirm">
 											{ __(
@@ -1092,23 +1113,24 @@ const Interface = ( props ) => {
 										) }
 										type="button"
 										text={
-											resetting
+											hardReset
 												? __( 'Resetting…', 'quotes-dlx' )
 												: __( 'Reset Options', 'quotes-dlx' )
 										}
-										icon={ resetting ? Spinner : false }
+										icon={ hardReset ? Spinner : false }
 										iconSize="18"
 										iconPosition="right"
-										disabled={ saving || resetting || ! canResetOptions }
+										disabled={
+											saving || resetting || hardReset || ! canResetOptions
+										}
 										onClick={ ( e ) => {
-											setResetting( true );
-											handleReset( e );
+											resetAllOptions();
 										} }
 									/>
 								</div>
-								{ isReset && (
+								{ isHardReset && (
 									<Notice
-										message={ __( 'Your settings have been reset to defaults.' ) }
+										message={ __( 'Your settings have been reset. Reloading…' ) }
 										status="success"
 										politeness="assertive"
 									/>

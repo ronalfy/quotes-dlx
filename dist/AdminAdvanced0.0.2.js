@@ -516,7 +516,12 @@ var Interface = function Interface(props) {
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_14__["default"]),
       advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
-      setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount;
+      setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount,
+      setThemesDefaultsDirtyCount = _useContext.setThemesDefaultsDirtyCount,
+      setLicensesDirtyCount = _useContext.setLicensesDirtyCount,
+      setDefaultTheme = _useContext.setDefaultTheme,
+      setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount,
+      setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount;
 
   var defaults = props.defaults;
   var response = defaults();
@@ -571,18 +576,28 @@ var Interface = function Interface(props) {
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      isReset = _useState20[0],
-      setIsReset = _useState20[1];
+      hardReset = _useState20[0],
+      setHardReset = _useState20[1];
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState22 = _slicedToArray(_useState21, 2),
-      adobeFonts = _useState22[0],
-      setAdobeFonts = _useState22[1];
+      isHardReset = _useState22[0],
+      setIsHardReset = _useState22[1];
 
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState24 = _slicedToArray(_useState23, 2),
-      canResetOptions = _useState24[0],
-      setCanResetOptions = _useState24[1];
+      isReset = _useState24[0],
+      setIsReset = _useState24[1];
+
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+      _useState26 = _slicedToArray(_useState25, 2),
+      adobeFonts = _useState26[0],
+      setAdobeFonts = _useState26[1];
+
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState28 = _slicedToArray(_useState27, 2),
+      canResetOptions = _useState28[0],
+      setCanResetOptions = _useState28[1];
 
   var desktop_breakpoint = data.desktop_breakpoint,
       desktop_breakpoint_unit = data.desktop_breakpoint_unit,
@@ -775,23 +790,7 @@ var Interface = function Interface(props) {
     }
 
     setLoading(false);
-  }, [formValues]); // Get URL Shortening services (i.e., bitly, jetpack).
-
-  var linkShortenerServices = [];
-
-  if (quotes_dlx_admin.bitly_plugin_active) {
-    linkShortenerServices.push({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bitly', 'quotes-dlx'),
-      value: 'bitly'
-    });
-  }
-
-  if (quotes_dlx_admin.jetpack_plugin_active) {
-    linkShortenerServices.push({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Jetpack', 'quotes-dlx'),
-      value: 'jetpack'
-    });
-  }
+  }, [formValues]);
 
   if (loading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_9__["default"], null);
@@ -857,6 +856,27 @@ var Interface = function Interface(props) {
 
   var getPreviewLink = function getPreviewLink() {
     return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent(16), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(template), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
+  };
+
+  var resetAllOptions = function resetAllOptions() {
+    // Clear local storage keys.
+    localStorage.removeItem('quotes_dlx_menu_defaults');
+    localStorage.removeItem('quotes_dlx_form_defaults');
+    localStorage.removeItem('quotes_dlx_licenses');
+    localStorage.removeItem('quotes_dlx_themes_defaults');
+    localStorage.removeItem('quotes_dlx_form_advanced');
+    setAdvancedTabDirtyCount(0);
+    setThemesDefaultsDirtyCount(0);
+    setLicensesDirtyCount(0);
+    setBlockDefaultsDirtyCount(0);
+    setContextualMenuDefaultsDirtyCount(0);
+    setDefaultTheme(''); // To tell when the form has been reset.
+
+    setIsHardReset(true); // Reload.
+
+    setTimeout(function () {
+      window.location.reload();
+    }, 3000);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1416,17 +1436,16 @@ var Interface = function Interface(props) {
       }
     }),
     type: "button",
-    text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Options', 'quotes-dlx'),
-    icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
+    text: hardReset ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Options', 'quotes-dlx'),
+    icon: hardReset ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
-    disabled: saving || resetting || !canResetOptions,
+    disabled: saving || resetting || hardReset || !canResetOptions,
     onClick: function onClick(e) {
-      setResetting(true);
-      handleReset(e);
+      resetAllOptions();
     }
-  })), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+  })), isHardReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset. Reloading…'),
     status: "success",
     politeness: "assertive"
   })))))));

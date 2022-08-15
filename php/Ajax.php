@@ -274,13 +274,13 @@ class Ajax {
 			wp_die( 'Invalid request.' );
 		}
 
-		$template         = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
-		$font_size        = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
-		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		$screen           = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
-		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
-		$primary_font_family         = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
-		$secondary_font_family       = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
+		$template              = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$font_size             = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height           = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$screen                = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
+		$button_font_size      = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+		$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 
 		wp_register_script(
 			'qdlx_twitter_actions',
@@ -331,7 +331,7 @@ class Ajax {
 		);
 
 		// Try to load font stylesheets.
-		$primary_font_css_url = Functions::get_font_family_stylesheet_path( $primary_font_family );
+		$primary_font_css_url   = Functions::get_font_family_stylesheet_path( $primary_font_family );
 		$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
 
 		if ( $primary_font_css_url ) {
@@ -368,20 +368,29 @@ class Ajax {
 			$saved_colors = $theme_default_colors;
 		}
 
+		if ( Functions::is_adobe_font( sanitize_title( $primary_font_family ) ) ) {
+			// If adobe font, use slug instead of quotes.
+			$primary_font_family = sanitize_title( $primary_font_family );
+		}
+		if ( Functions::is_adobe_font( sanitize_title( $secondary_font_family ) ) ) {
+			// If adobe font, use slug instead of quotes.
+			$secondary_font_family = sanitize_title( $secondary_font_family );
+		}
+
 		// Output local vars.
 		wp_localize_script(
 			'qdlx_twitter_preview_js',
 			'qdlx_theme_preview',
 			array(
-				'stylesheet'       => esc_url( $theme['stylesheet'] ),
-				'theme'            => $template,
-				'colors'           => $saved_colors,
-				'font_size'        => $font_size,
-				'line_height'      => (float) $line_height,
-				'button_font_size' => $button_font_size,
-				'screen'           => $screen,
-				'primary_font_family'         => $primary_font_family,
-				'secondary_font_family'       => $secondary_font_family,
+				'stylesheet'            => esc_url( $theme['stylesheet'] ),
+				'theme'                 => $template,
+				'colors'                => $saved_colors,
+				'font_size'             => $font_size,
+				'line_height'           => (float) $line_height,
+				'button_font_size'      => $button_font_size,
+				'screen'                => $screen,
+				'primary_font_family'   => $primary_font_family,
+				'secondary_font_family' => $secondary_font_family,
 			)
 		);
 		?>
@@ -389,7 +398,26 @@ class Ajax {
 		<html lang="en">
 			<head>
 				<?php
-				wp_print_styles(
+				/**
+				 * Action to run before printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $template              The template name/slug.
+				 * @param string $primary_font_family   The primary font family slug.
+				 * @param string $secondary_font_family The secondary font family slug.
+				 */
+				do_action( 'quotes_dlx_before_modal_scripts', $template, $primary_font_family, $secondary_font_family );
+
+				/**
+				 * Filter the styles print arguments.
+				 *
+				 * Add more handles to print.
+				 *
+				 * @since 1.0.0
+				 */
+				$modal_styles = apply_filters(
+					'quotes_dlx_plugin_preview_modal_styles',
 					array(
 						'qdlx_theme_css',
 						'qdlx_twitter_preview_css',
@@ -399,17 +427,36 @@ class Ajax {
 						'qdlx_secondary_font_css',
 					)
 				);
+				wp_print_styles(
+					$modal_styles
+				);
 				?>
 			</head>
 			<body>
 				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $screen ); ?>"></div>
 				<?php
-					wp_print_scripts(
+					/**
+					 * Filter the scripts print arguments.
+					 *
+					 * Add more handles to print.
+					 *
+					 * @since 1.0.0
+					 */
+					$modal_scripts = apply_filters(
+						'quotes_dlx_plugin_preview_modal_scripts',
 						array(
 							'qdlx_twitter_actions',
 							'qdlx_twitter_preview_js',
 						)
 					);
+					wp_print_scripts( $modal_scripts );
+
+				/**
+				 * Action to run after printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 */
+				do_action( 'quotes_dlx_after_modal_scripts', 'quotes-dlx' );
 				?>
 			</body>
 		</html>

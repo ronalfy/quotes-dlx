@@ -334,6 +334,27 @@ class Functions {
 	}
 
 	/**
+	 * Determines if a font is adobe or not.
+	 *
+	 * @param string $font_slug Font slug to check.
+	 *
+	 * @return bool true of adobe font, false if not.
+	 */
+	public static function is_adobe_font( $font_slug ) {
+		$options = Options_Defaults::get_options();
+
+		if ( true ) {
+			$adobe_fonts = $options['adobe_fonts'];
+			foreach ( $adobe_fonts as $adobe_font ) {
+				if ( $adobe_font['slug'] === $font_slug ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Retrieve the plugin title.
 	 */
 	public static function get_plugin_title() {

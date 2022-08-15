@@ -13,6 +13,13 @@ namespace MediaRonLLC\QuotesDLX;
 class AdobeFonts {
 
 	/**
+	 * Typekit CSS URL.
+	 *
+	 * @var string The typekit CSS URL.
+	 */
+	public static $typekit_css_url = 'https://use.typekit.net/';
+
+	/**
 	 * Main class runner.
 	 *
 	 * @return Ajax.
@@ -23,7 +30,47 @@ class AdobeFonts {
 		// For saving/resetting the default options.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_remote_adobe_fonts', array( static::class, 'ajax_retrieve_remote_adobe_fonts' ) );
 
+		// For loading the font in the preview modal.
+		add_action( 'quotes_dlx_before_modal_scripts', array( static::class, 'add_preview_modal_scripts' ), 10, 2 );
+		// For adding the style in for the preview modal.
+		add_filter( 'quotes_dlx_plugin_preview_modal_styles', array( static::class, 'add_preview_modal_styles' ) );
+
 		return $self;
+	}
+
+	/**
+	 * Add Adobe fonts to the modal preview.
+	 *
+	 * @param array $styles Array of wp_register_style handles.
+	 *
+	 * @return array $styles Updated styles.
+	 */
+	public static function add_preview_modal_styles( $styles ) {
+		$styles[] = 'quotes-dlx-adobe-fonts-modal'; // If the style is registered, try to enqueue it.
+		return $styles;
+	}
+
+	/**
+	 * Check to see if font is adobe font, and then register styles.
+	 *
+	 * @param string $template     The active template.
+	 * @param string $font_primary The primary font slug.
+	 */
+	public static function add_preview_modal_scripts( $template, $font_primary ) {
+		if ( Functions::is_adobe_font( $font_primary ) ) {
+			$options    = Options_Defaults::get_options();
+			$project_id = $options['adobe_project_id'];
+
+			if ( ! empty( $project_id ) ) {
+				wp_register_style(
+					'quotes-dlx-adobe-fonts-modal',
+					esc_url( static::$typekit_css_url . $project_id . '.css' ),
+					array(),
+					Functions::get_plugin_version(),
+					'all'
+				);
+			}
+		}
 	}
 
 	/**

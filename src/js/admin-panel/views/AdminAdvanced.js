@@ -360,139 +360,416 @@ const Interface = ( props ) => {
 
 	return (
 		<>
-			<div className="qdlx-admin__tabs--content-wrap">
-				<form onSubmit={ handleSubmit( onSubmit ) }>
-					<div className="qdlx-admin__tabs--content-panel">
-						<div className="qdlx-admin__tabs--content-heading">
-							<h1>
-								<FlaskIcon width={ 48 } height={ 48 } aria-hidden="true" />
-								<span className="qdlx-admin__heading--text">
-									{ __( 'Advanced Options', 'quotes-dlx' ) }
-								</span>
-							</h1>
-							<p className="description">
-								{ __(
-									'Advanced options allow you to set breakpoints and reset options.',
-									'quotes-dlx'
-								) }
-							</p>
-						</div>
-						<div className="qdlx-admin__tabs--content-inner">
-							<table className="form-table" role="presentation">
-								<tbody>
-									<tr>
-										<th scope="row">{ __( 'Font Options', 'quotes-dlx' ) }</th>
-										<td>
-											<Controller
-												name="enableFonts"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<ToggleControl
-														label={ __( 'Enable Theme Fonts', 'quotes-dlx' ) }
-														className="qdlx-admin__toggle-control"
-														checked={ value }
-														onChange={ ( boolValue ) => {
-															onChange( boolValue );
-														} }
-														help={ __(
-															'By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.',
-															'quotes-dlx'
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<div className="qdlx-admin__tabs--content-wrap">
+					<form onSubmit={ handleSubmit( onSubmit ) }>
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<FlaskIcon width={ 48 } height={ 48 } aria-hidden="true" />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'Advanced Options', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'Advanced options allow you to set breakpoints and reset options.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<table className="form-table" role="presentation">
+									<tbody>
+										<tr>
+											<th scope="row">{ __( 'Font Options', 'quotes-dlx' ) }</th>
+											<td>
+												<Controller
+													name="enableFonts"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __( 'Enable Theme Fonts', 'quotes-dlx' ) }
+															className="qdlx-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">{ __( 'Adobe Fonts', 'quotes-dlx' ) }</th>
+											<td>
+												<Controller
+													name="enableAdobeFonts"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __( 'Enable Adobe Fonts', 'quotes-dlx' ) }
+															className="qdlx-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'If you are using Adobe Fonts, you can use them in QuotesDLX.',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+												<Controller
+													name="activateAdobeFontsAdmin"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __( 'Activate Adobe Fonts in the Admin', 'quotes-dlx' ) }
+															className="qdlx-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+												<Controller
+													name="activateAdobeFontsFrontend"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __( 'Activate Adobe Fonts on the Frontend', 'quotes-dlx' ) }
+															className="qdlx-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+												{ getValues( 'enableAdobeFonts' ) && (
+													<>
+														<Controller
+															name="adobeProjectId"
+															control={ control }
+															rules={ { required: true, pattern: /^[a-z0-9]+$/i } }
+															render={ ( { field } ) => (
+																<TextControl
+																	{ ...field }
+																	type="password"
+																	label={ __(
+																		'Adobe Fonts Project ID',
+																		'quotes-dlx'
+																	) }
+																	id="search-qdlx-no-autofill"
+																	className={ classNames(
+																		'qdlx-admin__text-control',
+																		{
+																			'has-error':
+																			'pattern' === errors.anchorPrefix?.type ||
+																			'required' === errors.anchorPrefix?.type,
+																			'is-required': true,
+																		}
+																	) }
+																	aria-required="true"
+																	help={ __(
+																		'Enter the Adobe Project ID of the web project in order to load Adobe Fonts.',
+																		'quotes-dlx'
+																	) }
+																/>
+															) }
+														/>
+														{ 'required' === errors.adobeProjectId?.type && (
+															<Notice
+																message={ __( 'This field is a required field.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ true }
+																icon={ CircularExclamationIcon }
+															/>
 														) }
-													/>
-												) }
-											/>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">{ __( 'Adobe Fonts', 'quotes-dlx' ) }</th>
-										<td>
-											<Controller
-												name="enableAdobeFonts"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<ToggleControl
-														label={ __( 'Enable Adobe Fonts', 'quotes-dlx' ) }
-														className="qdlx-admin__toggle-control"
-														checked={ value }
-														onChange={ ( boolValue ) => {
-															onChange( boolValue );
-														} }
-														help={ __(
-															'If you are using Adobe Fonts, you can use them in QuotesDLX.',
-															'quotes-dlx'
+														{ 'pattern' === errors.adobeProjectId?.type && (
+															<Notice
+																message={ __(
+																	'Please use only lowercase letters and numbers.'
+																) }
+																status="error"
+																politeness="assertive"
+																inline={ true }
+																icon={ CircularExclamationIcon }
+															/>
 														) }
-													/>
+														{ false !== adobeFonts && <>{ getAdobeFonts() }</> }
+														<div className="qdlx-admin__tabs--content-actions">
+															<Button
+																className={ classNames(
+																	'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+																	{ 'has-error': hasErrors() },
+																	{ 'has-icon': saving },
+																	{ 'is-saving': { saving } }
+																) }
+																type="button"
+																text={
+																	saving
+																		? __( 'Saving…', 'quotes-dlx' )
+																		: __( 'Save and Refresh Fonts', 'quotes-dlx' )
+																}
+																icon={ saving ? Spinner : false }
+																iconSize="18"
+																iconPosition="right"
+																disabled={ saving || resetting }
+																onClick={ async() => {
+																	const result = await trigger( 'adobeProjectId' );
+																	if ( result ) {
+																		refreshAdobeFonts();
+																	}
+																} }
+															/>
+														</div>
+													</>
 												) }
-											/>
-											<Controller
-												name="activateAdobeFontsAdmin"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<ToggleControl
-														label={ __( 'Activate Adobe Fonts in the Admin', 'quotes-dlx' ) }
-														className="qdlx-admin__toggle-control"
-														checked={ value }
-														onChange={ ( boolValue ) => {
-															onChange( boolValue );
-														} }
-														help={ __(
-															'If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.',
-															'quotes-dlx'
-														) }
-													/>
-												) }
-											/>
-											<Controller
-												name="activateAdobeFontsFrontend"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<ToggleControl
-														label={ __( 'Activate Adobe Fonts on the Frontend', 'quotes-dlx' ) }
-														className="qdlx-admin__toggle-control"
-														checked={ value }
-														onChange={ ( boolValue ) => {
-															onChange( boolValue );
-														} }
-														help={ __(
-															'If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.',
-															'quotes-dlx'
-														) }
-													/>
-												) }
-											/>
-											{ getValues( 'enableAdobeFonts' ) && (
-												<>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">{ __( 'Font Selection', 'quotes-dlx' ) }</th>
+											<td>
+												<div className="quotes-dlx-admin-theme-options__select span-2">
 													<Controller
-														name="adobeProjectId"
+														name="primaryFontFamily"
 														control={ control }
-														rules={ { required: true, pattern: /^[a-z0-9]+$/i } }
+														render={ ( { field: { onChange, value } } ) => (
+															<SelectControl
+																className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+																label={ __( 'Select a Primary Font', 'quotes-dlx' ) }
+																value={ value }
+																onChange={ ( newFont ) => onChange( newFont ) }
+																options={ getFontFamilies() }
+															/>
+														) }
+													/>
+													{ 'custom' === getValues( 'primaryFontFamily' ) && (
+														<>
+															<div className="quotes-dlx-admin-control-wrapper">
+																<Controller
+																	name="customFontPrimary"
+																	control={ control }
+																	rules={ {
+																		required: true,
+																		pattern: /^[-\" ,A-Za-z0-9]+$/i,
+																	} }
+																	render={ ( { field } ) => (
+																		<TextControl
+																			{ ...field }
+																			label={ __(
+																				'Enter your custom secondary font.',
+																				'quotes-dlx'
+																			) }
+																			placeholder={ __(
+																				'e.g. "Open Sans", sans-serif',
+																				'quotes-dlx'
+																			) }
+																			className={ classNames(
+																				'qdlx-admin__text-control',
+																				{
+																					'has-error':
+																					'pattern' ===
+																						errors.customFontPrimary?.type ||
+																					'required' ===
+																						errors.customFontPrimary?.type,
+																					'is-required': true,
+																				}
+																			) }
+																			help={ __(
+																				'Set the font and fallbacks.',
+																				'quotes-dlx'
+																			) }
+																			aria-required="true"
+																		/>
+																	) }
+																/>
+																{ 'required' ===
+																errors.customFontPrimary?.type && (
+																	<Notice
+																		message={ __(
+																			'This field is a required field.'
+																		) }
+																		status="error"
+																		politeness="assertive"
+																		inline={ true }
+																		icon={ CircularExclamationIcon }
+																	/>
+																) }
+																{ 'pattern' === errors.customFontPrimary?.type && (
+																	<Notice
+																		message={ __(
+																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+																		) }
+																		status="error"
+																		politeness="assertive"
+																		inline={ true }
+																		icon={ CircularExclamationIcon }
+																	/>
+																) }
+															</div>
+														</>
+													) }
+												</div>
+												<div className="quotes-dlx-admin-theme-options__select span-2">
+													<Controller
+														name="secondaryFontFamily"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<SelectControl
+																className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+																label={ __(
+																	'Select a Secondary Font',
+																	'quotes-dlx'
+																) }
+																value={ value }
+																onChange={ ( newFont ) => onChange( newFont ) }
+																options={ getFontFamilies() }
+															/>
+														) }
+													/>
+													{ 'custom' === getValues( 'secondaryFontFamily' ) && (
+														<>
+															<div className="quotes-dlx-admin-control-wrapper">
+																<Controller
+																	name="customFontSecondary"
+																	control={ control }
+																	rules={ {
+																		required: true,
+																		pattern: /^[-\" ,A-Za-z0-9]+$/i,
+																	} }
+																	render={ ( { field } ) => (
+																		<TextControl
+																			{ ...field }
+																			label={ __(
+																				'Enter your custom secondary font.',
+																				'quotes-dlx'
+																			) }
+																			placeholder={ __(
+																				'e.g. "Open Sans", sans-serif',
+																				'quotes-dlx'
+																			) }
+																			className={ classNames(
+																				'qdlx-admin__text-control',
+																				{
+																					'has-error':
+																					'pattern' ===
+																						errors.customFontSecondary?.type ||
+																					'required' ===
+																						errors.customFontSecondary?.type,
+																					'is-required': true,
+																				}
+																			) }
+																			help={ __(
+																				'Set the font and fallbacks.',
+																				'quotes-dlx'
+																			) }
+																			aria-required="true"
+																		/>
+																	) }
+																/>
+																{ 'required' ===
+																errors.customFontSecondary?.type && (
+																	<Notice
+																		message={ __(
+																			'This field is a required field.'
+																		) }
+																		status="error"
+																		politeness="assertive"
+																		inline={ true }
+																		icon={ CircularExclamationIcon }
+																	/>
+																) }
+																{ 'pattern' ===
+																errors.customFontSecondary?.type && (
+																	<Notice
+																		message={ __(
+																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+																		) }
+																		status="error"
+																		politeness="assertive"
+																		inline={ true }
+																		icon={ CircularExclamationIcon }
+																	/>
+																) }
+															</div>
+														</>
+													) }
+												</div>
+												<div className="components-base-control">
+													<a
+														data-fancybox
+														onClick={ ( e ) => {
+															e.preventDefault();
+															new Fancybox(
+																[
+																	{
+																		src: getPreviewLink(),
+																		type: 'iframe',
+																	},
+																],
+																{
+																	mainClass: 'qdlx-theme-preview-mobile',
+																	caption: __( 'Font Preview', 'quotes-dlx' ),
+																}
+															);
+														} }
+														href={ getPreviewLink() }
+													>
+														{ __( 'Preview Fonts', 'quotes-dlx' ) }
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
+											<td>
+												<div className="qdlx-admin__control-item">
+													<Controller
+														name="desktopBreakpoint"
+														control={ control }
+														rules={ { required: true, pattern: /^[0-9]+$/i } }
 														render={ ( { field } ) => (
 															<TextControl
 																{ ...field }
-																type="password"
-																label={ __(
-																	'Adobe Fonts Project ID',
-																	'quotes-dlx'
-																) }
-																id="search-qdlx-no-autofill"
+																label={ __( 'Desktop Breakpoint', 'quotes-dlx' ) }
 																className={ classNames(
 																	'qdlx-admin__text-control',
 																	{
 																		'has-error':
-																			'pattern' === errors.anchorPrefix?.type ||
-																			'required' === errors.anchorPrefix?.type,
+																		'pattern' ===
+																			errors.desktopBreakpoint?.type ||
+																		'required' ===
+																			errors.desktopBreakpoint?.type,
 																		'is-required': true,
 																	}
 																) }
-																aria-required="true"
 																help={ __(
-																	'Enter the Adobe Project ID of the web project in order to load Adobe Fonts.',
+																	'Set the desktop breakpoint for all themes.',
 																	'quotes-dlx'
 																) }
+																aria-required="true"
 															/>
 														) }
 													/>
-													{ 'required' === errors.adobeProjectId?.type && (
+													{ 'required' === errors.desktopBreakpoint?.type && (
 														<Notice
 															message={ __( 'This field is a required field.' ) }
 															status="error"
@@ -501,10 +778,10 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
-													{ 'pattern' === errors.adobeProjectId?.type && (
+													{ 'pattern' === errors.desktopBreakpoint?.type && (
 														<Notice
 															message={ __(
-																'Please use only lowercase letters and numbers.'
+																'The desktop breakpoint can only be numbers.'
 															) }
 															status="error"
 															politeness="assertive"
@@ -512,512 +789,291 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
-													{ false !== adobeFonts && <>{ getAdobeFonts() }</> }
-													<div className="qdlx-admin__tabs--content-actions">
-														<Button
-															className={ classNames(
-																'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-																{ 'has-error': hasErrors() },
-																{ 'has-icon': saving },
-																{ 'is-saving': { saving } }
-															) }
-															type="button"
-															text={
-																saving
-																	? __( 'Saving…', 'quotes-dlx' )
-																	: __( 'Save and Refresh Fonts', 'quotes-dlx' )
-															}
-															icon={ saving ? Spinner : false }
-															iconSize="18"
-															iconPosition="right"
-															disabled={ saving || resetting }
-															onClick={ async() => {
-																const result = await trigger( 'adobeProjectId' );
-																if ( result ) {
-																	refreshAdobeFonts();
-																}
-															} }
-														/>
-													</div>
-												</>
-											) }
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">{ __( 'Font Selection', 'quotes-dlx' ) }</th>
-										<td>
-											<div className="quotes-dlx-admin-theme-options__select span-2">
-												<Controller
-													name="primaryFontFamily"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<SelectControl
-															className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
-															label={ __( 'Select a Primary Font', 'quotes-dlx' ) }
-															value={ value }
-															onChange={ ( newFont ) => onChange( newFont ) }
-															options={ getFontFamilies() }
-														/>
-													) }
-												/>
-												{ 'custom' === getValues( 'primaryFontFamily' ) && (
-													<>
-														<div className="quotes-dlx-admin-control-wrapper">
-															<Controller
-																name="customFontPrimary"
-																control={ control }
-																rules={ {
-																	required: true,
-																	pattern: /^[-\" ,A-Za-z0-9]+$/i,
-																} }
-																render={ ( { field } ) => (
-																	<TextControl
-																		{ ...field }
-																		label={ __(
-																			'Enter your custom secondary font.',
-																			'quotes-dlx'
-																		) }
-																		placeholder={ __(
-																			'e.g. "Open Sans", sans-serif',
-																			'quotes-dlx'
-																		) }
-																		className={ classNames(
-																			'qdlx-admin__text-control',
-																			{
-																				'has-error':
-																					'pattern' ===
-																						errors.customFontPrimary?.type ||
-																					'required' ===
-																						errors.customFontPrimary?.type,
-																				'is-required': true,
-																			}
-																		) }
-																		help={ __(
-																			'Set the font and fallbacks.',
-																			'quotes-dlx'
-																		) }
-																		aria-required="true"
-																	/>
+													<Controller
+														control={ control }
+														name="desktopBreakpointUnit"
+														render={ ( { field: { onChange, value } } ) => (
+															<RadioControl
+																label={ __(
+																	'Desktop Breakpoint Unit',
+																	'quotes-dlx'
 																) }
-															/>
-															{ 'required' ===
-																errors.customFontPrimary?.type && (
-																<Notice
-																	message={ __(
-																		'This field is a required field.'
-																	) }
-																	status="error"
-																	politeness="assertive"
-																	inline={ true }
-																	icon={ CircularExclamationIcon }
-																/>
-															) }
-															{ 'pattern' === errors.customFontPrimary?.type && (
-																<Notice
-																	message={ __(
-																		'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
-																	) }
-																	status="error"
-																	politeness="assertive"
-																	inline={ true }
-																	icon={ CircularExclamationIcon }
-																/>
-															) }
-														</div>
-													</>
-												) }
-											</div>
-											<div className="quotes-dlx-admin-theme-options__select span-2">
-												<Controller
-													name="secondaryFontFamily"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<SelectControl
-															className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
-															label={ __(
-																'Select a Secondary Font',
-																'quotes-dlx'
-															) }
-															value={ value }
-															onChange={ ( newFont ) => onChange( newFont ) }
-															options={ getFontFamilies() }
-														/>
-													) }
-												/>
-												{ 'custom' === getValues( 'secondaryFontFamily' ) && (
-													<>
-														<div className="quotes-dlx-admin-control-wrapper">
-															<Controller
-																name="customFontSecondary"
-																control={ control }
-																rules={ {
-																	required: true,
-																	pattern: /^[-\" ,A-Za-z0-9]+$/i,
-																} }
-																render={ ( { field } ) => (
-																	<TextControl
-																		{ ...field }
-																		label={ __(
-																			'Enter your custom secondary font.',
-																			'quotes-dlx'
-																		) }
-																		placeholder={ __(
-																			'e.g. "Open Sans", sans-serif',
-																			'quotes-dlx'
-																		) }
-																		className={ classNames(
-																			'qdlx-admin__text-control',
-																			{
-																				'has-error':
-																					'pattern' ===
-																						errors.customFontSecondary?.type ||
-																					'required' ===
-																						errors.customFontSecondary?.type,
-																				'is-required': true,
-																			}
-																		) }
-																		help={ __(
-																			'Set the font and fallbacks.',
-																			'quotes-dlx'
-																		) }
-																		aria-required="true"
-																	/>
+																help={ __(
+																	'Select a unit for the desktop breakpoint.',
+																	'quotes-dlx'
 																) }
+																selected={ value }
+																onChange={ onChange }
+																options={ [
+																	{ label: 'px', value: 'px' },
+																	{ label: 'em', value: 'em' },
+																] }
 															/>
-															{ 'required' ===
-																errors.customFontSecondary?.type && (
-																<Notice
-																	message={ __(
-																		'This field is a required field.'
-																	) }
-																	status="error"
-																	politeness="assertive"
-																	inline={ true }
-																	icon={ CircularExclamationIcon }
-																/>
-															) }
-															{ 'pattern' ===
-																errors.customFontSecondary?.type && (
-																<Notice
-																	message={ __(
-																		'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
-																	) }
-																	status="error"
-																	politeness="assertive"
-																	inline={ true }
-																	icon={ CircularExclamationIcon }
-																/>
-															) }
-														</div>
-													</>
-												) }
-											</div>
-											<div className="components-base-control">
-												<a
-													data-fancybox
-													onClick={ ( e ) => {
-														e.preventDefault();
-														new Fancybox(
-															[
-																{
-																	src: getPreviewLink(),
-																	type: 'iframe',
-																},
-															],
-															{
-																mainClass: 'qdlx-theme-preview-mobile',
-																caption: __( 'Font Preview', 'quotes-dlx' ),
-															}
-														);
-													} }
-													href={ getPreviewLink() }
-												>
-													{ __( 'Preview Fonts', 'quotes-dlx' ) }
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
-										<td>
-											<div className="qdlx-admin__control-item">
-												<Controller
-													name="desktopBreakpoint"
-													control={ control }
-													rules={ { required: true, pattern: /^[0-9]+$/i } }
-													render={ ( { field } ) => (
-														<TextControl
-															{ ...field }
-															label={ __( 'Desktop Breakpoint', 'quotes-dlx' ) }
-															className={ classNames(
-																'qdlx-admin__text-control',
-																{
-																	'has-error':
-																		'pattern' ===
-																			errors.desktopBreakpoint?.type ||
-																		'required' ===
-																			errors.desktopBreakpoint?.type,
-																	'is-required': true,
-																}
-															) }
-															help={ __(
-																'Set the desktop breakpoint for all themes.',
-																'quotes-dlx'
-															) }
-															aria-required="true"
-														/>
-													) }
-												/>
-												{ 'required' === errors.desktopBreakpoint?.type && (
-													<Notice
-														message={ __( 'This field is a required field.' ) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
-													/>
-												) }
-												{ 'pattern' === errors.desktopBreakpoint?.type && (
-													<Notice
-														message={ __(
-															'The desktop breakpoint can only be numbers.'
 														) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
 													/>
-												) }
-												<Controller
-													control={ control }
-													name="desktopBreakpointUnit"
-													render={ ( { field: { onChange, value } } ) => (
-														<RadioControl
-															label={ __(
-																'Desktop Breakpoint Unit',
-																'quotes-dlx'
-															) }
-															help={ __(
-																'Select a unit for the desktop breakpoint.',
-																'quotes-dlx'
-															) }
-															selected={ value }
-															onChange={ onChange }
-															options={ [
-																{ label: 'px', value: 'px' },
-																{ label: 'em', value: 'em' },
-															] }
-														/>
-													) }
-												/>
-											</div>
-											<div className="qdlx-admin__control-item">
-												<Controller
-													name="tabletBreakpoint"
-													control={ control }
-													rules={ { required: true, pattern: /^[0-9]+$/i } }
-													render={ ( { field } ) => (
-														<TextControl
-															{ ...field }
-															label={ __( 'Tablet Breakpoint', 'quotes-dlx' ) }
-															className={ classNames(
-																'qdlx-admin__text-control',
-																{
-																	'has-error':
+												</div>
+												<div className="qdlx-admin__control-item">
+													<Controller
+														name="tabletBreakpoint"
+														control={ control }
+														rules={ { required: true, pattern: /^[0-9]+$/i } }
+														render={ ( { field } ) => (
+															<TextControl
+																{ ...field }
+																label={ __( 'Tablet Breakpoint', 'quotes-dlx' ) }
+																className={ classNames(
+																	'qdlx-admin__text-control',
+																	{
+																		'has-error':
 																		'pattern' ===
 																			errors.tabletBreakpoint?.type ||
 																		'required' ===
 																			errors.tabletBreakpoint?.type,
-																	'is-required': true,
-																}
-															) }
-															help={ __(
-																'Set the tablet breakpoint for all themes.',
-																'quotes-dlx'
-															) }
-															aria-required="true"
-														/>
-													) }
-												/>
-												{ 'required' === errors.tabletBreakpoint?.type && (
-													<Notice
-														message={ __( 'This field is a required field.' ) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
-													/>
-												) }
-												{ 'pattern' === errors.tabletBreakpoint?.type && (
-													<Notice
-														message={ __(
-															'The tablet breakpoint can only be numbers.'
+																		'is-required': true,
+																	}
+																) }
+																help={ __(
+																	'Set the tablet breakpoint for all themes.',
+																	'quotes-dlx'
+																) }
+																aria-required="true"
+															/>
 														) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
 													/>
-												) }
-												<Controller
-													control={ control }
-													name="tabletBreakpointUnit"
-													render={ ( { field: { onChange, value } } ) => (
-														<RadioControl
-															label={ __( 'Tablet Breakpoint Unit', 'quotes-dlx' ) }
-															help={ __(
-																'Select a unit for the tablet breakpoint.',
-																'quotes-dlx'
-															) }
-															selected={ value }
-															onChange={ onChange }
-															options={ [
-																{ label: 'px', value: 'px' },
-																{ label: 'em', value: 'em' },
-															] }
+													{ 'required' === errors.tabletBreakpoint?.type && (
+														<Notice
+															message={ __( 'This field is a required field.' ) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
 														/>
 													) }
-												/>
-											</div>
-											<div className="qdlx-admin__control-item">
-												<Controller
-													name="mobileBreakpoint"
-													control={ control }
-													rules={ { required: true, pattern: /^[0-9]+$/i } }
-													render={ ( { field } ) => (
-														<TextControl
-															{ ...field }
-															label={ __( 'Mobile Breakpoint', 'quotes-dlx' ) }
-															className={ classNames(
-																'qdlx-admin__text-control',
-																{
-																	'has-error':
+													{ 'pattern' === errors.tabletBreakpoint?.type && (
+														<Notice
+															message={ __(
+																'The tablet breakpoint can only be numbers.'
+															) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
+														/>
+													) }
+													<Controller
+														control={ control }
+														name="tabletBreakpointUnit"
+														render={ ( { field: { onChange, value } } ) => (
+															<RadioControl
+																label={ __( 'Tablet Breakpoint Unit', 'quotes-dlx' ) }
+																help={ __(
+																	'Select a unit for the tablet breakpoint.',
+																	'quotes-dlx'
+																) }
+																selected={ value }
+																onChange={ onChange }
+																options={ [
+																	{ label: 'px', value: 'px' },
+																	{ label: 'em', value: 'em' },
+																] }
+															/>
+														) }
+													/>
+												</div>
+												<div className="qdlx-admin__control-item">
+													<Controller
+														name="mobileBreakpoint"
+														control={ control }
+														rules={ { required: true, pattern: /^[0-9]+$/i } }
+														render={ ( { field } ) => (
+															<TextControl
+																{ ...field }
+																label={ __( 'Mobile Breakpoint', 'quotes-dlx' ) }
+																className={ classNames(
+																	'qdlx-admin__text-control',
+																	{
+																		'has-error':
 																		'pattern' ===
 																			errors.mobileBreakpoint?.type ||
 																		'required' ===
 																			errors.mobileBreakpoint?.type,
-																	'is-required': true,
-																}
-															) }
-															help={ __(
-																'Set the mobile breakpoint for all themes.',
-																'quotes-dlx'
-															) }
-															aria-required="true"
-														/>
-													) }
-												/>
-												{ 'required' === errors.mobileBreakpoint?.type && (
-													<Notice
-														message={ __( 'This field is a required field.' ) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
-													/>
-												) }
-												{ 'pattern' === errors.mobileBreakpoint?.type && (
-													<Notice
-														message={ __(
-															'The mobile breakpoint can only be numbers.'
+																		'is-required': true,
+																	}
+																) }
+																help={ __(
+																	'Set the mobile breakpoint for all themes.',
+																	'quotes-dlx'
+																) }
+																aria-required="true"
+															/>
 														) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
 													/>
-												) }
-												<Controller
-													control={ control }
-													name="mobileBreakpointUnit"
-													render={ ( { field: { onChange, value } } ) => (
-														<RadioControl
-															label={ __( 'Mobile Breakpoint Unit', 'quotes-dlx' ) }
-															help={ __(
-																'Select a unit for the mobile breakpoint.',
-																'quotes-dlx'
-															) }
-															selected={ value }
-															onChange={ onChange }
-															options={ [
-																{ label: 'px', value: 'px' },
-																{ label: 'em', value: 'em' },
-															] }
+													{ 'required' === errors.mobileBreakpoint?.type && (
+														<Notice
+															message={ __( 'This field is a required field.' ) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
 														/>
 													) }
-												/>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div className="qdlx-admin__tabs--content-actions">
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
-										{ 'has-error': hasErrors() },
-										{ 'has-icon': saving },
-										{ 'is-saving': { saving } }
-									) }
-									type="submit"
-									text={
-										saving
-											? __( 'Saving…', 'quotes-dlx' )
-											: __( 'Save Defaults', 'quotes-dlx' )
-									}
-									icon={ saving ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-								/>
-								<Button
-									className={ classNames(
-										'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
-										{ 'has-icon': resetting },
-										{ 'is-resetting': { resetting } }
-									) }
-									type="button"
-									text={
-										resetting
-											? __( 'Resetting…', 'quotes-dlx' )
-											: __( 'Reset Defaults', 'quotes-dlx' )
-									}
-									icon={ resetting ? Spinner : false }
-									iconSize="18"
-									iconPosition="right"
-									disabled={ saving || resetting }
-									onClick={ ( e ) => {
-										setResetting( true );
-										handleReset( e );
-									} }
-								/>
+													{ 'pattern' === errors.mobileBreakpoint?.type && (
+														<Notice
+															message={ __(
+																'The mobile breakpoint can only be numbers.'
+															) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
+														/>
+													) }
+													<Controller
+														control={ control }
+														name="mobileBreakpointUnit"
+														render={ ( { field: { onChange, value } } ) => (
+															<RadioControl
+																label={ __( 'Mobile Breakpoint Unit', 'quotes-dlx' ) }
+																help={ __(
+																	'Select a unit for the mobile breakpoint.',
+																	'quotes-dlx'
+																) }
+																selected={ value }
+																onChange={ onChange }
+																options={ [
+																	{ label: 'px', value: 'px' },
+																	{ label: 'em', value: 'em' },
+																] }
+															/>
+														) }
+													/>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div className="qdlx-admin__tabs--content-actions">
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+											{ 'has-error': hasErrors() },
+											{ 'has-icon': saving },
+											{ 'is-saving': { saving } }
+										) }
+										type="submit"
+										text={
+											saving
+												? __( 'Saving…', 'quotes-dlx' )
+												: __( 'Save Defaults', 'quotes-dlx' )
+										}
+										icon={ saving ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+									/>
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+											{ 'has-icon': resetting },
+											{ 'is-resetting': { resetting } }
+										) }
+										type="button"
+										text={
+											resetting
+												? __( 'Resetting…', 'quotes-dlx' )
+												: __( 'Reset Defaults', 'quotes-dlx' )
+										}
+										icon={ resetting ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+										onClick={ ( e ) => {
+											setResetting( true );
+											handleReset( e );
+										} }
+									/>
+								</div>
+								{ hasErrors() && (
+									<Notice
+										message={ __(
+											'There are form validation errors. Please correct them above.'
+										) }
+										status="error"
+										politeness="polite"
+									/>
+								) }
+								{ isSaved && (
+									<Notice
+										message={ __( 'Your settings have been saved.' ) }
+										status="success"
+										politeness="assertive"
+									/>
+								) }
+								{ isReset && (
+									<Notice
+										message={ __( 'Your settings have been reset to defaults.' ) }
+										status="success"
+										politeness="assertive"
+									/>
+								) }
 							</div>
-							{ hasErrors() && (
-								<Notice
-									message={ __(
-										'There are form validation errors. Please correct them above.'
-									) }
-									status="error"
-									politeness="polite"
-								/>
-							) }
-							{ isSaved && (
-								<Notice
-									message={ __( 'Your settings have been saved.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
-							{ isReset && (
-								<Notice
-									message={ __( 'Your settings have been reset to defaults.' ) }
-									status="success"
-									politeness="assertive"
-								/>
-							) }
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
+				<div className="qdlx-admin__tabs--content-wrap">
+					<form onSubmit={ ( e ) => {
+						e.preventDefault();
+					} }>
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<CircularExclamationIcon width={ 48 } height={ 48 } aria-hidden="true" />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'Reset Options', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'Reset all options. Resetting can not be undone.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<div className="qdlx-admin__tabs--content-actions">
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+											{ 'has-icon': resetting },
+											{ 'is-resetting': { resetting } }
+										) }
+										type="button"
+										text={
+											resetting
+												? __( 'Resetting…', 'quotes-dlx' )
+												: __( 'Reset Options', 'quotes-dlx' )
+										}
+										icon={ resetting ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+										onClick={ ( e ) => {
+											setResetting( true );
+											handleReset( e );
+										} }
+									/>
+								</div>
+								{ isReset && (
+									<Notice
+										message={ __( 'Your settings have been reset to defaults.' ) }
+										status="success"
+										politeness="assertive"
+									/>
+								) }
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</>
 	);

@@ -67,6 +67,7 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 	const [ adobeFonts, setAdobeFonts ] = useState( data.adobe_fonts );
+	const[ canResetOptions, setCanResetOptions ] = useState( false );
 
 	const {
 		desktop_breakpoint,
@@ -430,7 +431,10 @@ const Interface = ( props ) => {
 													control={ control }
 													render={ ( { field: { onChange, value } } ) => (
 														<ToggleControl
-															label={ __( 'Activate Adobe Fonts in the Admin', 'quotes-dlx' ) }
+															label={ __(
+																'Activate Adobe Fonts in the Admin',
+																'quotes-dlx'
+															) }
 															className="qdlx-admin__toggle-control"
 															checked={ value }
 															onChange={ ( boolValue ) => {
@@ -448,7 +452,10 @@ const Interface = ( props ) => {
 													control={ control }
 													render={ ( { field: { onChange, value } } ) => (
 														<ToggleControl
-															label={ __( 'Activate Adobe Fonts on the Frontend', 'quotes-dlx' ) }
+															label={ __(
+																'Activate Adobe Fonts on the Frontend',
+																'quotes-dlx'
+															) }
 															className="qdlx-admin__toggle-control"
 															checked={ value }
 															onChange={ ( boolValue ) => {
@@ -466,7 +473,10 @@ const Interface = ( props ) => {
 														<Controller
 															name="adobeProjectId"
 															control={ control }
-															rules={ { required: true, pattern: /^[a-z0-9]+$/i } }
+															rules={ {
+																required: true,
+																pattern: /^[a-z0-9]+$/i,
+															} }
 															render={ ( { field } ) => (
 																<TextControl
 																	{ ...field }
@@ -480,8 +490,10 @@ const Interface = ( props ) => {
 																		'qdlx-admin__text-control',
 																		{
 																			'has-error':
-																			'pattern' === errors.anchorPrefix?.type ||
-																			'required' === errors.anchorPrefix?.type,
+																				'pattern' ===
+																					errors.anchorPrefix?.type ||
+																				'required' ===
+																					errors.anchorPrefix?.type,
 																			'is-required': true,
 																		}
 																	) }
@@ -533,7 +545,9 @@ const Interface = ( props ) => {
 																iconPosition="right"
 																disabled={ saving || resetting }
 																onClick={ async() => {
-																	const result = await trigger( 'adobeProjectId' );
+																	const result = await trigger(
+																		'adobeProjectId'
+																	);
 																	if ( result ) {
 																		refreshAdobeFonts();
 																	}
@@ -554,7 +568,10 @@ const Interface = ( props ) => {
 														render={ ( { field: { onChange, value } } ) => (
 															<SelectControl
 																className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
-																label={ __( 'Select a Primary Font', 'quotes-dlx' ) }
+																label={ __(
+																	'Select a Primary Font',
+																	'quotes-dlx'
+																) }
 																value={ value }
 																onChange={ ( newFont ) => onChange( newFont ) }
 																options={ getFontFamilies() }
@@ -586,10 +603,10 @@ const Interface = ( props ) => {
 																				'qdlx-admin__text-control',
 																				{
 																					'has-error':
-																					'pattern' ===
-																						errors.customFontPrimary?.type ||
-																					'required' ===
-																						errors.customFontPrimary?.type,
+																						'pattern' ===
+																							errors.customFontPrimary?.type ||
+																						'required' ===
+																							errors.customFontPrimary?.type,
 																					'is-required': true,
 																				}
 																			) }
@@ -602,7 +619,7 @@ const Interface = ( props ) => {
 																	) }
 																/>
 																{ 'required' ===
-																errors.customFontPrimary?.type && (
+																	errors.customFontPrimary?.type && (
 																	<Notice
 																		message={ __(
 																			'This field is a required field.'
@@ -613,7 +630,8 @@ const Interface = ( props ) => {
 																		icon={ CircularExclamationIcon }
 																	/>
 																) }
-																{ 'pattern' === errors.customFontPrimary?.type && (
+																{ 'pattern' ===
+																	errors.customFontPrimary?.type && (
 																	<Notice
 																		message={ __(
 																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
@@ -670,10 +688,11 @@ const Interface = ( props ) => {
 																				'qdlx-admin__text-control',
 																				{
 																					'has-error':
-																					'pattern' ===
-																						errors.customFontSecondary?.type ||
-																					'required' ===
-																						errors.customFontSecondary?.type,
+																						'pattern' ===
+																							errors.customFontSecondary
+																								?.type ||
+																						'required' ===
+																							errors.customFontSecondary?.type,
 																					'is-required': true,
 																				}
 																			) }
@@ -686,7 +705,7 @@ const Interface = ( props ) => {
 																	) }
 																/>
 																{ 'required' ===
-																errors.customFontSecondary?.type && (
+																	errors.customFontSecondary?.type && (
 																	<Notice
 																		message={ __(
 																			'This field is a required field.'
@@ -698,7 +717,7 @@ const Interface = ( props ) => {
 																	/>
 																) }
 																{ 'pattern' ===
-																errors.customFontSecondary?.type && (
+																	errors.customFontSecondary?.type && (
 																	<Notice
 																		message={ __(
 																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
@@ -754,10 +773,10 @@ const Interface = ( props ) => {
 																	'qdlx-admin__text-control',
 																	{
 																		'has-error':
-																		'pattern' ===
-																			errors.desktopBreakpoint?.type ||
-																		'required' ===
-																			errors.desktopBreakpoint?.type,
+																			'pattern' ===
+																				errors.desktopBreakpoint?.type ||
+																			'required' ===
+																				errors.desktopBreakpoint?.type,
 																		'is-required': true,
 																	}
 																) }
@@ -825,10 +844,10 @@ const Interface = ( props ) => {
 																	'qdlx-admin__text-control',
 																	{
 																		'has-error':
-																		'pattern' ===
-																			errors.tabletBreakpoint?.type ||
-																		'required' ===
-																			errors.tabletBreakpoint?.type,
+																			'pattern' ===
+																				errors.tabletBreakpoint?.type ||
+																			'required' ===
+																				errors.tabletBreakpoint?.type,
 																		'is-required': true,
 																	}
 																) }
@@ -865,7 +884,10 @@ const Interface = ( props ) => {
 														name="tabletBreakpointUnit"
 														render={ ( { field: { onChange, value } } ) => (
 															<RadioControl
-																label={ __( 'Tablet Breakpoint Unit', 'quotes-dlx' ) }
+																label={ __(
+																	'Tablet Breakpoint Unit',
+																	'quotes-dlx'
+																) }
 																help={ __(
 																	'Select a unit for the tablet breakpoint.',
 																	'quotes-dlx'
@@ -893,10 +915,10 @@ const Interface = ( props ) => {
 																	'qdlx-admin__text-control',
 																	{
 																		'has-error':
-																		'pattern' ===
-																			errors.mobileBreakpoint?.type ||
-																		'required' ===
-																			errors.mobileBreakpoint?.type,
+																			'pattern' ===
+																				errors.mobileBreakpoint?.type ||
+																			'required' ===
+																				errors.mobileBreakpoint?.type,
 																		'is-required': true,
 																	}
 																) }
@@ -933,7 +955,10 @@ const Interface = ( props ) => {
 														name="mobileBreakpointUnit"
 														render={ ( { field: { onChange, value } } ) => (
 															<RadioControl
-																label={ __( 'Mobile Breakpoint Unit', 'quotes-dlx' ) }
+																label={ __(
+																	'Mobile Breakpoint Unit',
+																	'quotes-dlx'
+																) }
 																help={ __(
 																	'Select a unit for the mobile breakpoint.',
 																	'quotes-dlx'
@@ -1021,13 +1046,19 @@ const Interface = ( props ) => {
 					</form>
 				</div>
 				<div className="qdlx-admin__tabs--content-wrap">
-					<form onSubmit={ ( e ) => {
-						e.preventDefault();
-					} }>
+					<form
+						onSubmit={ ( e ) => {
+							e.preventDefault();
+						} }
+					>
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<CircularExclamationIcon width={ 48 } height={ 48 } aria-hidden="true" />
+									<CircularExclamationIcon
+										width={ 48 }
+										height={ 48 }
+										aria-hidden="true"
+									/>
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Reset Options', 'quotes-dlx' ) }
 									</span>
@@ -1040,7 +1071,19 @@ const Interface = ( props ) => {
 								</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<div className="qdlx-admin__tabs--content-actions">
+								<div className="qdlx-admin__tabs--content-actions no-flex">
+									<div className="qdlx-admin-reset-confirmation">
+										<input type="checkbox" id="qdlx-admin__reset-confirm" onClick={( e ) => {
+											setCanResetOptions( e.target.checked );
+										} }
+										/>
+										<label htmlFor="qdlx-admin__reset-confirm">
+											{ __(
+												'I understand that resetting can not be undone.',
+												'quotes-dlx'
+											) }
+										</label>
+									</div>
 									<Button
 										className={ classNames(
 											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
@@ -1056,7 +1099,7 @@ const Interface = ( props ) => {
 										icon={ resetting ? Spinner : false }
 										iconSize="18"
 										iconPosition="right"
-										disabled={ saving || resetting }
+										disabled={ saving || resetting || ! canResetOptions }
 										onClick={ ( e ) => {
 											setResetting( true );
 											handleReset( e );

@@ -579,6 +579,11 @@ var Interface = function Interface(props) {
       adobeFonts = _useState22[0],
       setAdobeFonts = _useState22[1];
 
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      canResetOptions = _useState24[0],
+      setCanResetOptions = _useState24[1];
+
   var desktop_breakpoint = data.desktop_breakpoint,
       desktop_breakpoint_unit = data.desktop_breakpoint_unit,
       tablet_breakpoint = data.tablet_breakpoint,
@@ -1391,8 +1396,18 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset all options. Resetting can not be undone.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__tabs--content-actions"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    className: "qdlx-admin__tabs--content-actions no-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-reset-confirmation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "checkbox",
+    id: "qdlx-admin__reset-confirm",
+    onClick: function onClick(e) {
+      setCanResetOptions(e.target.checked);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "qdlx-admin__reset-confirm"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that resetting can not be undone.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': resetting
     }, {
@@ -1405,7 +1420,7 @@ var Interface = function Interface(props) {
     icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
-    disabled: saving || resetting,
+    disabled: saving || resetting || !canResetOptions,
     onClick: function onClick(e) {
       setResetting(true);
       handleReset(e);

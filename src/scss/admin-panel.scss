@@ -805,6 +805,14 @@
 		justify-content: space-between;
 		align-items: center;
 
+		&.no-flex {
+			display: block;
+		}
+
+		.qdlx-admin-reset-confirmation {
+			padding-bottom: 20px;
+		}
+
 		button {
 			background: var(--quotes-dlx-admin--color-white);
 			color: var(--quotes-dlx-admin--color-green-alt);
@@ -812,6 +820,11 @@
 			border-color: var(--quotes-dlx-admin--color-green-alt);
 			padding: 10px 20px;
 			cursor: pointer;
+
+			&:disabled {
+				cursor: not-allowed;
+				opacity: 0.5;
+			}
 
 			&:hover {
 				border-radius: 5px;

@@ -625,7 +625,7 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$options_to_save = array();
+		$options_to_save = Options_Defaults::get_options();
 
 		$form_data = $_POST['form_data']; // expect array.
 
@@ -689,6 +689,51 @@ class Ajax {
 					break;
 				case 'template':
 					$options_to_save['template'] = sanitize_text_field( $field_value );
+					break;
+				case 'desktopBreakpoint':
+					$options_to_save['desktop_breakpoint'] = (float) $field_value;
+					break;
+				case 'desktopBreakpointUnit':
+					$options_to_save['desktop_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'tabletBreakpoint':
+					$options_to_save['tablet_breakpoint'] = (float) $field_value;
+					break;
+				case 'tabletBreakpointUnit':
+					$options_to_save['tablet_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'mobileBreakpoint':
+					$options_to_save['mobile_breakpoint'] = (float) $field_value;
+					break;
+				case 'mobileBreakpointUnit':
+					$options_to_save['mobile_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableFonts':
+					$options_to_save['enable_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'customFontPrimary':
+					$options_to_save['custom_font_primary'] = sanitize_text_field( $field_value );
+					break;
+				case 'customFontSecondary':
+					$options_to_save['custom_font_secondary'] = sanitize_text_field( $field_value );
+					break;
+				case 'primaryFontFamily':
+					$options_to_save['primary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'secondaryFontFamily':
+					$options_to_save['secondary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableAdobeFonts':
+					$options_to_save['enable_adobe_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'adobeProjectId':
+					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'activateAdobeFontsAdmin':
+					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'activateAdobeFontsFrontend':
+					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
 					break;
 			}
 		}

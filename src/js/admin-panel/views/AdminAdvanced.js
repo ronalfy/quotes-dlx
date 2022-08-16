@@ -88,7 +88,6 @@ const Interface = ( props ) => {
 		enable_fonts,
 		custom_font_primary,
 		custom_font_secondary,
-		enable_custom_fonts,
 		primary_font_family,
 		secondary_font_family,
 		enable_adobe_fonts,
@@ -115,7 +114,6 @@ const Interface = ( props ) => {
 			mobileBreakpoint: mobile_breakpoint,
 			mobileBreakpointUnit: mobile_breakpoint_unit,
 			enableFonts: enable_fonts,
-			enableCustomFonts: enable_custom_fonts,
 			customFontPrimary: custom_font_primary,
 			customFontSecondary: custom_font_secondary,
 			primaryFontFamily: primary_font_family,
@@ -136,10 +134,6 @@ const Interface = ( props ) => {
 	const onSubmit = ( formData ) => {
 		setSaving( true );
 
-		// Populate possible empty hashtags.
-		if ( formData.hashtags.length === 0 ) {
-			formData.hashtags = null;
-		}
 		sendCommand( 'quotes_dlx_save_admin_options_defaults', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			form_data: formData,
@@ -186,11 +180,11 @@ const Interface = ( props ) => {
 					localStorage.removeItem( localStorageKey );
 
 					// Reset toggles.
-					setShowButtonOptions( ajaxData.tweetButtonEnabled );
-					setEnableLinks( ajaxData.enableLinksInTweet );
-					setEnableUrlShortener( ajaxData.urlShortener );
-					setAnchorDisplay( ajaxData.hasAnchor );
-					setButtonDisplay( ajaxData.tweetButtonDisplay );
+					// setShowButtonOptions( ajaxData.tweetButtonEnabled );
+					// setEnableLinks( ajaxData.enableLinksInTweet );
+					// setEnableUrlShortener( ajaxData.urlShortener );
+					// setAnchorDisplay( ajaxData.hasAnchor );
+					// setButtonDisplay( ajaxData.tweetButtonDisplay );
 
 					setIsReset( true );
 					setTimeout( () => {

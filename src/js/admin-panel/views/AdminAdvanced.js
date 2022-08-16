@@ -368,13 +368,27 @@ const Interface = ( props ) => {
 		setContextualMenuDefaultsDirtyCount( 0 );
 		setDefaultTheme( '' );
 
-		// To tell when the form has been reset.
-		setIsHardReset( true );
+		setHardReset( true );
 
-		// Reload.
-		setTimeout( () => {
-			window.location.reload();
-		}, 3000 );
+		sendCommand( 'quotes_dlx_reset_all_options', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					setIsHardReset( true );
+					setTimeout( () => {
+						window.location.reload();
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setHardReset( false );
+			} );
 	};
 
 	return (

@@ -53,9 +53,28 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
 
+		// For resetting all options.
+		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
+
 		return $self;
 	}
 
+	/**
+	 * Reset all options.
+	 */
+	public static function ajax_reset_all_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Reset all the things.
+		Options_Defaults::reset( true );
+		Options_License::reset( true );
+		Options_Menu::reset( true );
+		Options_Theme::reset( true );
+
+		wp_send_json_success( array() );
+	}
 	/**
 	 * Retrieve the theme size options.
 	 */

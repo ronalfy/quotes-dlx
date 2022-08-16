@@ -870,13 +870,24 @@ var Interface = function Interface(props) {
     setLicensesDirtyCount(0);
     setBlockDefaultsDirtyCount(0);
     setContextualMenuDefaultsDirtyCount(0);
-    setDefaultTheme(''); // To tell when the form has been reset.
+    setDefaultTheme('');
+    setHardReset(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_all_options', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
 
-    setIsHardReset(true); // Reload.
-
-    setTimeout(function () {
-      window.location.reload();
-    }, 3000);
+      if (ajaxSuccess) {
+        setIsHardReset(true);
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setHardReset(false);
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

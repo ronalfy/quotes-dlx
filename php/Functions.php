@@ -316,6 +316,30 @@ class Functions {
 		return $color_palette;
 	}
 
+	public static function get_primary_font_family_css() {
+		$options = Options_Defaults::get_options();
+		$font    = $options['primary_font_family'];
+		$custom_font = $options['custom_font_primary'];
+
+		if ( 'custom' === $font ) {
+			return 'font-family: ' . esc_attr( $custom_font ) . ';';
+		} else {
+			return 'font-family: ' . esc_attr( $font ) . ';';
+		}
+	}
+
+	public static function get_secondary_font_family_css() {
+		$options = Options_Defaults::get_options();
+		$font    = $options['secondary_font_family'];
+		$custom_font = $options['custom_font_secondary'];
+
+		if ( 'custom' === $font ) {
+			return 'font-family: ' . esc_attr( $custom_font ) . ';';
+		} else {
+			return 'font-family: ' . esc_attr( $font ) . ';';
+		}
+	}
+
 	/**
 	 * Retrieve the plugin settings.
 	 *

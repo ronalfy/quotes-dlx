@@ -25,6 +25,7 @@ import Spinner from '../../components/icons/Spinner';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import 'photoswipe/dist/photoswipe.css';
 import TabsContext from '../contexts/TabsContext';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -35,9 +36,25 @@ const retrieveDefaults = () => {
 const AdminDefaults = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load admin theme defaults.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

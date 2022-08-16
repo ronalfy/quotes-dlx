@@ -14,6 +14,7 @@ import sendCommand from '../../../utils/SendCommand';
 import AdminThemeColorsLoader from '../../admin-components/Loaders/AdminThemeColorsLoader';
 import Notice from '../../admin-components/Notice';
 import Spinner from '../../../components/icons/Spinner';
+import ErrorBoundary from '../ErrorBoundary';
 
 const retrieveDefaults = ( props ) => {
 	return sendCommand( 'quotes_dlx_get_theme_size_options', {
@@ -26,9 +27,28 @@ const retrieveDefaults = ( props ) => {
 const ThemeSizes = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, props );
 	return (
-		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __(
+						'Could not load admin colors.',
+						'quotes-dlx'
+					) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

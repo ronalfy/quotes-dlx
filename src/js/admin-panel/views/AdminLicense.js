@@ -24,6 +24,7 @@ import CircularExclamationIcon from '../../components/icons/CircularExplanation'
 import CircularInfo from '../../components/icons/CircularInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/pro-solid-svg-icons';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_license_core', {
@@ -35,9 +36,25 @@ const AdminLicense = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 
 	return (
-		<Suspense fallback={ <AdminDefaultsLoader /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load license defaults.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

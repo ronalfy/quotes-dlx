@@ -26,6 +26,7 @@ import FlaskIcon from '../../components/icons/FlaskIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import fontFamilies from '../../../fonts/fonts';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
@@ -37,9 +38,25 @@ const AdminAdvanced = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 
 	return (
-		<Suspense fallback={ <AdminDefaultsLoader /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load advanced options.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

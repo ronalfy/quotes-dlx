@@ -22,6 +22,7 @@ import twttr from '../../validation/twitter';
 import CircularInfo from '../../components/icons/CircularInfo';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
@@ -33,9 +34,25 @@ const AdminDefaults = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 
 	return (
-		<Suspense fallback={ <AdminDefaultsLoader /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load admin defaults.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

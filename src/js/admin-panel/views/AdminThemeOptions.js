@@ -19,7 +19,7 @@ import ThemePreview from '../admin-components/ThemePreview';
 import Notice from '../admin-components/Notice';
 import Spinner from '../../components/icons/Spinner';
 import ThemeSizes from '../admin-components/ThemeSizes';
-
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -29,16 +29,34 @@ const retrieveDefaults = () => {
 const AdminThemeOptions = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ (
-			<div className="qdlx-admin__tabs--home-grid-wrap">
-				<AdminThemeColorsLoader showHeader={ true } />
-				<AdminThemeSizesLoader showHeader={ true } />
-				<AdminThemeSizesLoader showHeader={ true } />
-				<AdminThemeSizesLoader showHeader={ true } />
-			</div>
-		) }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load theme options.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense
+				fallback={
+					<div className="qdlx-admin__tabs--home-grid-wrap">
+						<AdminThemeColorsLoader showHeader={ true } />
+						<AdminThemeSizesLoader showHeader={ true } />
+						<AdminThemeSizesLoader showHeader={ true } />
+						<AdminThemeSizesLoader showHeader={ true } />
+					</div>
+				}
+			>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 
@@ -194,7 +212,7 @@ const Interface = ( props ) => {
 					icon={ saving ? Spinner : false }
 					iconSize="18"
 					iconPosition="right"
-					disabled={ saving || resetting || ( selectedTheme === activeTheme ) }
+					disabled={ saving || resetting || selectedTheme === activeTheme }
 					onClick={ ( e ) => {
 						if ( selectedTheme !== activeTheme ) {
 							setActiveTheme( selectedTheme );
@@ -417,30 +435,23 @@ const Interface = ( props ) => {
 						} }
 					>
 						<div className="qdlx-admin__tabs--content-heading">
-							<h2>
-								{ __( 'Select Theme Colors', 'quotes-dlx' ) }
-							</h2>
+							<h2>{ __( 'Select Theme Colors', 'quotes-dlx' ) }</h2>
 							<p className="description">
-								{ __(
-									'Modify the colors of the theme.',
-									'quotes-dlx'
-								) }
+								{ __( 'Modify the colors of the theme.', 'quotes-dlx' ) }
 							</p>
 						</div>
-						{ hasUnsavedChanges && (
-							getUnsavedChangesWarning()
-						) }
+						{ hasUnsavedChanges && getUnsavedChangesWarning() }
 						<div className="qdlx-admin__tabs--content-inner">
-							<div className="qdlx-admin__theme-preview">{ GetThemePreview() }</div>
+							<div className="qdlx-admin__theme-preview">
+								{ GetThemePreview() }
+							</div>
 							<div className="qdlx-admin__color-pickers">
 								<div className="qdlx-admin__color-primary">
 									{ getThemePickers( themeColors ) }
 								</div>
 							</div>
 						</div>
-						{ hasUnsavedChanges && (
-							getUnsavedChangesWarning()
-						) }
+						{ hasUnsavedChanges && getUnsavedChangesWarning() }
 						{ getSaveResetButtons() }
 					</form>
 				</div>
@@ -489,7 +500,6 @@ const Interface = ( props ) => {
 		<>
 			<div className="qdlx-admin__tabs--home-grid-wrap">
 				<div className="qdlx-admin__tabs--content-wrap">
-
 					<div className="qdlx-admin__tabs--content-panel">
 						<div className="qdlx-admin__tabs--content-heading">
 							<h1>
@@ -513,7 +523,6 @@ const Interface = ( props ) => {
 				{ getThemePreviewAndSwatches() }
 				{ getFontSizeOptions() }
 			</div>
-
 		</>
 	);
 };

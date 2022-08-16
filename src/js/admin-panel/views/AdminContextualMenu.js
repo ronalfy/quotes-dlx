@@ -21,6 +21,7 @@ import CircularInfo from '../../components/icons/CircularInfo';
 import MenuIcon from '../../components/icons/MenuIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_menu_options_defaults', {
@@ -31,9 +32,25 @@ const retrieveDefaults = () => {
 const AdminDefaults = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ <AdminDefaultsLoader /> }>
-			<Interface defaults={ defaults } { ...props } />
-		</Suspense>
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load contextual menu defaults.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 
@@ -64,8 +81,8 @@ const Interface = ( props ) => {
 		enable_tweet_this,
 	} = data;
 
-	const { register, control, handleSubmit, setValue, getValues, reset } = useForm(
-		{
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
 			defaultValues: {
 				enableContextualMenu: enable_contextual_menu,
 				enableCopyText: enable_copy_text,
@@ -73,12 +90,13 @@ const Interface = ( props ) => {
 				enableCopyLink: enable_copy_link,
 				enableTweetThis: enable_tweet_this,
 			},
-		}
-	);
+		} );
 
 	const formValues = useWatch( { control } );
 
-	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( { control } );
+	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+		control,
+	} );
 
 	const onSubmit = ( formData ) => {
 		setSaving( true );
@@ -95,9 +113,7 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem(
-						localStorageFieldValuesKey
-					);
+					localStorage.removeItem( localStorageFieldValuesKey );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -128,9 +144,7 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					// Set form fields.
 					reset( ajaxData );
-					localStorage.removeItem(
-						localStorageFieldValuesKey
-					);
+					localStorage.removeItem( localStorageFieldValuesKey );
 
 					setContextMenuActive( ajaxData.enableContextualMenu );
 

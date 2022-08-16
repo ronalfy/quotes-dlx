@@ -40,6 +40,9 @@ class Blocks {
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_font_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_font_scripts' ) );
+
 		// Enqueue block assets.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_editor_scripts' ) );
 
@@ -54,6 +57,78 @@ class Blocks {
 			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		} else {
 			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
+		}
+	}
+
+	/**
+	 * Register the fonts for the front-end and back-end.
+	 *
+	 * Grab the font CSS in the dist folder.
+	 * Check if we're in the admin and in the post editor
+	 * Check to see if we're on a singular page.
+	 * Get the primary and secondary fonts from the default options.
+	 * Check to see if the primary font is an Adobe font.
+	 * If it is, enqueue the Adobe Fonts stylesheet.
+	 * Check to see if the secondary font is an Adobe font.
+	 * If it is, enqueue the Adobe Fonts stylesheet.
+	 * If not adobe fonts, check if a font is custom.
+	 * If it is, exit gracefully.
+	 * Get the font family's css file in the dist folder.
+	 * If the file exists, enqueue the stylesheet.
+	 *
+	 * @param string $hook Hook for current admin screen.
+	 */
+	public function register_font_scripts( $hook ) {
+		global $post;
+
+		$can_enqueue = false;
+
+		// Check to see if we're in the admin and in the post editor.
+		if ( is_admin() && ( isset( $post ) && 'post' === $post->post_type ) ) {
+			$can_enqueue = true;
+		}
+
+		if ( ! is_singular() && 'settings_page_quotes_dlx' !== $hook && ! $can_enqueue ) {
+			return;
+		}
+		$primary_font   = Options_Defaults::get_options( 'primary_font_family' );
+		$secondary_font = Options_Defaults::get_options( 'secondary_font_family' );
+
+		// Check for custom value in the primary font and secondary font.
+		if ( 'custom' === $primary_font && 'custom' === $secondary_font ) {
+			return;
+		}
+
+		if ( Functions::is_adobe_font( $primary_font ) || Functions::is_adobe_font( $secondary_font ) ) {
+			$project_id = Options_Defaults::get_options( 'adobe_project_id' );
+			wp_enqueue_style(
+				'quotes-dlx-adobe-fonts',
+				esc_url( sprintf( 'https://use.typekit.net/%s.css', $project_id ) ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
+		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font ) {
+			$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font . '.css' );
+			wp_enqueue_style(
+				'quotes-dlx-gfont-' . $primary_font,
+				esc_url( $primary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font ) {
+			$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font . '.css' );
+			wp_enqueue_style(
+				'quotes-dlx-gfont-' . $secondary_font,
+				esc_url( $secondary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
 		}
 	}
 

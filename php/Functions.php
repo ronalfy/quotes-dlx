@@ -316,28 +316,45 @@ class Functions {
 		return $color_palette;
 	}
 
+	/**
+	 * Retrieve the primary font CSS argument for font-family.
+	 */
 	public static function get_primary_font_family_css() {
 		$options = Options_Defaults::get_options();
 		$font    = $options['primary_font_family'];
 		$custom_font = $options['custom_font_primary'];
 
 		if ( 'custom' === $font ) {
-			return 'font-family: ' . esc_attr( $custom_font ) . ';';
-		} else {
-			return 'font-family: ' . esc_attr( $font ) . ';';
+			return esc_attr( $custom_font ) . ';';
 		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
 	}
 
+	/**
+	 * Retrieve the secondary font CSS argument for font-family.
+	 */
 	public static function get_secondary_font_family_css() {
 		$options = Options_Defaults::get_options();
 		$font    = $options['secondary_font_family'];
 		$custom_font = $options['custom_font_secondary'];
 
 		if ( 'custom' === $font ) {
-			return 'font-family: ' . esc_attr( $custom_font ) . ';';
-		} else {
-			return 'font-family: ' . esc_attr( $font ) . ';';
+			return esc_attr( $custom_font ) . ';';
 		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
 	}
 
 	/**

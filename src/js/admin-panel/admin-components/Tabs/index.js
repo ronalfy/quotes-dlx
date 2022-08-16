@@ -12,6 +12,7 @@ import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
 import ColorPaletteIcon from '../../../components/icons/ColorPalette';
 import KeyIcon from '../../../components/icons/KeyIcon';
+import FlaskIcon from '../../../components/icons/FlaskIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
 
@@ -21,6 +22,10 @@ const AdminHome = lazy( () =>
 );
 const AdminDefaults = lazy( () =>
 	import( /* webpackChunkName: "AdminDefaults0.0.1" */ '../../views/AdminDefaults' )
+);
+
+const AdminAdvanced = lazy( () =>
+	import( /* webpackChunkName: "AdminAdvanced0.0.2" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
@@ -54,8 +59,7 @@ const AdminLicense = lazy( () =>
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount } =
-		useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -64,6 +68,7 @@ const AdminTabs = ( props ) => {
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
 		licensesDirtyCount,
+		advancedTabDirtyCount,
 	] );
 
 	/**
@@ -94,6 +99,14 @@ const AdminTabs = ( props ) => {
 		<>
 			<Suspense fallback={ <AdminDefaultsLoader /> }>
 				<AdminDefaults />
+			</Suspense>
+		</>
+	);
+
+	const getAdminAdvanced = (
+		<>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<AdminAdvanced />
 			</Suspense>
 		</>
 	);
@@ -140,7 +153,7 @@ const AdminTabs = ( props ) => {
 
 	// Set browser unload event if dirtycounts are not zero.
 	window.onbeforeunload = function() {
-		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount ) {
+		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount ) {
 			return true;
 		}
 	};
@@ -216,6 +229,17 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ licensesDirtyCount }
 					/>
 					<TabItem
+						icon={ FlaskIcon }
+						slug="advanced"
+						description={ __( 'Reset options, set breakpoints, and disable fonts.', 'quotes-dlx' ) }
+						label={ __( 'Advanced', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ advancedTabDirtyCount }
+					/>
+					<TabItem
 						icon={ CircularQuestionIcon }
 						slug="support"
 						description={ __( 'Quick links for docs and support.', 'quotes-dlx' ) }
@@ -248,6 +272,11 @@ const AdminTabs = ( props ) => {
 								path="/theme-options"
 								exact
 								element={ getAdminThemeOptions }
+							/>
+							<Route
+								path="/advanced"
+								exact
+								element={ getAdminAdvanced }
 							/>
 							<Route
 								path="/support"

@@ -1,5 +1,6 @@
 @import "../colors.scss";
 @import "../breakpoints-mixin.scss";
+@import "../breakpoints-mixin-variable.scss";
 
 $primary: #E75480;
 $secondary: #fdeef2;
@@ -9,10 +10,10 @@ $dark: #000;
 
 .quotes-dlx-block-theme-bubble-gum{
 	font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px );
-	@include respond-to('medium') {
+	@include respond-to-var('medium') {
 		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px );
 	}
-	@include respond-to('large') {
+	@include respond-to-var('large') {
 		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px );
 	}
 
@@ -127,7 +128,7 @@ $dark: #000;
 		}
 
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: "Lato", serif;
+			font-family: var( --qdlx-primary-font-family ), serif;
 			font-weight: 400;
 			font-size: 1.1em;
 			color: var( --qdlx-bubble-gum-secondary, $secondary );
@@ -139,11 +140,11 @@ $dark: #000;
 			font-style: inherit;
 			padding: 68px 68px 24px 68px;
 
-			@include respond-to('medium') {
+			@include respond-to-var('medium') {
 				font-size: 1.35em;
 				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.35 );
 			}
-			@include respond-to('large') {
+			@include respond-to-var('large') {
 				font-size: 1.5em;
 				line-height: var( --qdlx-bubble-gum-line-height-desktop, 1.65 );
 			}
@@ -196,15 +197,15 @@ $dark: #000;
 			border: 4px solid var( --qdlx-bubble-gum-primary, $primary );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: 'Open Sans', sans-serif;
+			font-family: var( --qdlx-secondary-font-family ), sans-serif;
 			font-weight: 500;
 			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 
-			@include respond-to('medium') {
+			@include respond-to-var('medium') {
 				font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
 			}
-			@include respond-to('large') {
+			@include respond-to-var('large') {
 				font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
 			}
 
@@ -220,11 +221,11 @@ $dark: #000;
 					height: 1.2em;
 				}
 
-				@include respond-to('medium') {
+				@include respond-to-var('medium') {
 					font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
 					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2)));
 				}
-				@include respond-to('large') {
+				@include respond-to-var('large') {
 					font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
 					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2)));
 				}
@@ -439,7 +440,7 @@ $dark: #000;
 					}
 					color: var( --qdlx-bubble-gum-primary, $primary );
 					background: var( --qdlx-bubble-gum-light, $light );
-					font-family: 'Lato', sans-serif;
+					font-family: var( --qdlx-primary-font-family ), sans-serif;
 					&:hover {
 						background: var( --qdlx-bubble-gum-primary, $primary );
 						color: var( --qdlx-bubble-gum-light, $light );

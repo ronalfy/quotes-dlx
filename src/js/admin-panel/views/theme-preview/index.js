@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import ThemePreview from '../../admin-components/ThemePreview/index';
 
 const Preview = () => {
-	console.log( qdlx_theme_preview );
 	return (
 		<>
 			<ThemePreview
@@ -14,6 +13,8 @@ const Preview = () => {
 				lineHeight={ parseFloat( qdlx_theme_preview.line_height ) }
 				buttonFontSize={ qdlx_theme_preview.button_font_size }
 				screen={ qdlx_theme_preview.screen }
+				primaryFontFamily={ qdlx_theme_preview.primary_font_family }
+				secondaryFontFamily={ qdlx_theme_preview.secondary_font_family }
 			/>
 		</>
 	);

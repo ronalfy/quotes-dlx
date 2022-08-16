@@ -295,7 +295,7 @@ class Functions {
 	 * @return array colors.
 	 */
 	public static function get_site_theme_colors() {
-		$color_palette = [];
+		$color_palette = array();
 
 		// Try to get theme setup colors (if available).
 		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
@@ -306,7 +306,7 @@ class Functions {
 
 		// Now try to get theme.json colors.
 		if ( class_exists( 'WP_Theme_JSON_Resolver' ) ) {
-			$settings = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
+			$settings                 = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
 			$theme_json_color_palette = $settings['color']['palette']['theme'] ?? array();
 
 			if ( ! empty( $theme_json_color_palette ) && is_array( $theme_json_color_palette ) ) {
@@ -314,6 +314,110 @@ class Functions {
 			}
 		}
 		return $color_palette;
+	}
+
+	/**
+	 * Retrieve the primary font CSS argument for font-family.
+	 */
+	public static function get_primary_font_family_css() {
+		$options = Options_Defaults::get_options();
+		$font    = $options['primary_font_family'];
+		$custom_font = $options['custom_font_primary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( $custom_font ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the secondary font CSS argument for font-family.
+	 */
+	public static function get_secondary_font_family_css() {
+		$options = Options_Defaults::get_options();
+		$font    = $options['secondary_font_family'];
+		$custom_font = $options['custom_font_secondary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( $custom_font ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the plugin settings.
+	 *
+	 * @param string $font_family_slug The font family slug.
+	 *
+	 * @return bool|string false on path failure, URL if success..
+	 */
+	public static function get_font_family_stylesheet_path( $font_family_slug ) {
+		$font_family_slug    = sanitize_title( $font_family_slug );
+		$font_css_path       = 'dist/quotes-dlx-gfont-' . $font_family_slug . '.css';
+		$stylesheet_dir_path = self::get_plugin_dir( $font_css_path );
+		if ( file_exists( $stylesheet_dir_path ) ) {
+			return self::get_plugin_url( $font_css_path );
+		}
+		return false;
+	}
+
+	/**
+	 * Determines if a font is adobe or not.
+	 *
+	 * @param string $font_slug Font slug to check.
+	 *
+	 * @return bool true of adobe font, false if not.
+	 */
+	public static function is_adobe_font( $font_slug ) {
+		$options = Options_Defaults::get_options();
+
+		if ( true ) {
+			$adobe_fonts = $options['adobe_fonts'];
+			foreach ( $adobe_fonts as $adobe_font ) {
+				if ( $adobe_font['slug'] === $font_slug ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Retrieve theme font-sizes for a value.
+	 *
+	 * @param string $template   The template to retrieve the font-sizes for.
+	 * @param string $key        Can be font_size, line_height, button_font_size.
+	 * @param string $breakpoint The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+	 */
+	public static function get_theme_font_sizes( $template, $key, $breakpoint ) {
+		$saved_theme_options             = Options_Theme::get_options();
+		$theme_default_font_size_options = Options_Theme::get_default_sizes( $breakpoint );
+
+		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options[ $breakpoint ]['line_height'];
+		/**
+		 * Filter the font size for a given key.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $return_value Value to return.
+		 * @param string $template     The template to retrieve the font-sizes for.
+		 * @param string $key          Can be font_size, line_height, button_font_size.
+		 * @param string $breakpoint   The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+		 */
+		return apply_filters( 'quotes_dlx_get_theme_font_sizes', $return_value, $template, $key, $breakpoint );
 	}
 
 	/**

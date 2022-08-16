@@ -69,9 +69,15 @@ class Options_Menu extends Options_Abstract {
 
 	/**
 	 * Clear/Reset the plugin auto-update options.
+	 *
+	 * @param bool $remove Whether to remove the options.
 	 */
-	public static function reset() {
-		self::update_options( '', self::get_defaults(), true );
+	public static function reset( $remove = false ) {
+		if ( $remove ) {
+			delete_site_option( self::$options_key );
+		} else {
+			self::update_options( '', self::get_defaults(), true );
+		}
 		return self::get_defaults();
 	}
 }

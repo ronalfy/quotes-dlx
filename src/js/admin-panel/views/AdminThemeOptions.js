@@ -11,6 +11,7 @@ import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
+import AdminThemeSizesLoader from '../admin-components/Loaders/AdminThemeSizesLoader';
 import ColorPaletteIcon from '../../components/icons/ColorPalette';
 import TabsContext from '../contexts/TabsContext';
 import ThemeColorPicker from '../admin-components/ThemeColorPicker';
@@ -28,7 +29,14 @@ const retrieveDefaults = () => {
 const AdminThemeOptions = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 	return (
-		<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+		<Suspense fallback={ (
+			<div className="qdlx-admin__tabs--home-grid-wrap">
+				<AdminThemeColorsLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+				<AdminThemeSizesLoader showHeader={ true } />
+			</div>
+		) }>
 			<Interface defaults={ defaults } { ...props } />
 		</Suspense>
 	);
@@ -72,6 +80,7 @@ const Interface = ( props ) => {
 
 	// Get active theme and colors.
 	const [ activeTheme, setActiveTheme ] = useState( data.template );
+	const [ selectedTheme, setSelectedTheme ] = useState( data.template );
 	const [ themeColors, setThemeColors ] = useState( getColors() );
 	const [ defaultThemeColors, setDefaultThemeColors ] = useState( [
 		{
@@ -88,11 +97,12 @@ const Interface = ( props ) => {
 		},
 	] );
 
-	const [ loading, setLoading ] = useState( true );
+	const [ loading, setLoading ] = useState( false );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
+	const [ changingTheme, setChangingTheme ] = useState( false );
 	const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState( false );
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
@@ -114,7 +124,10 @@ const Interface = ( props ) => {
 		control,
 	} );
 
-	useEffect( () => {
+	const getThemeOptions = () => {
+		if ( loading ) {
+			return;
+		}
 		setLoading( true );
 		sendCommand( 'quotes_dlx_get_theme_options', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -136,7 +149,11 @@ const Interface = ( props ) => {
 			.then( ( ajaxResponse ) => {
 				setLoading( false );
 			} );
-	}, [ activeTheme ] );
+	};
+
+	useEffect( () => {
+		getThemeOptions();
+	}, [] );
 
 	const getActiveThemeStylesheet = () => {
 		let stylesheet = '';
@@ -152,14 +169,40 @@ const Interface = ( props ) => {
 
 	const getCategories = () => {
 		return categories.map( ( cat, catIndex ) => (
-			<SelectControl
-				key={ cat.slug }
-				className="qdlx-admin__themes--content-inner"
-				label={ __( 'Select a Theme', 'quotes-dlx' ) }
-				value={ activeTheme }
-				onChange={ ( newTheme ) => setActiveTheme( newTheme ) }
-				options={ getThemes( cat ) }
-			/>
+			<div key={ catIndex } className="quotes-dlx-admin-theme-options__select">
+				<SelectControl
+					key={ cat.slug }
+					className="qdlx-admin__themes--content-inner"
+					label={ __( 'Select a Theme', 'quotes-dlx' ) }
+					value={ activeTheme }
+					onChange={ ( newTheme ) => setSelectedTheme( newTheme ) }
+					options={ getThemes( cat ) }
+				/>
+				<Button
+					className={ classNames(
+						'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right button-reset',
+						{ 'has-error': hasErrors() },
+						{ 'has-icon': saving },
+						{ 'is-saving': { saving } }
+					) }
+					type="button"
+					text={
+						saving
+							? __( 'Changing Theme…', 'quotes-dlx' )
+							: __( 'Change Themes', 'quotes-dlx' )
+					}
+					icon={ saving ? Spinner : false }
+					iconSize="18"
+					iconPosition="right"
+					disabled={ saving || resetting || ( selectedTheme === activeTheme ) }
+					onClick={ ( e ) => {
+						if ( selectedTheme !== activeTheme ) {
+							setActiveTheme( selectedTheme );
+							getThemeOptions();
+						}
+					} }
+				/>
+			</div>
 		) );
 	};
 

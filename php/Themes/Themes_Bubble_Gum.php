@@ -75,14 +75,14 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static $full_width = 750;
+	protected static $full_width = 1000;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static $full_height = 421;
+	protected static $full_height = 668;
 
 	/**
 	 * Theme color or gradient.
@@ -160,7 +160,7 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 * Get the image preview URL.
 	 */
 	protected static function get_preview_image_url() {
-		return Functions::get_plugin_url( 'images/core-theme-light-branded.jpg' );
+		return Functions::get_plugin_url( 'images/core-theme-bubble-gum.jpg' );
 	}
 
 	/**

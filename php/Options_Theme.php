@@ -140,9 +140,15 @@ class Options_Theme extends Options_Abstract {
 
 	/**
 	 * Clear/Reset the plugin auto-update options.
+	 *
+	 * @param bool $remove Whether to remove all options.
 	 */
-	public static function reset() {
-		self::update_options( '', self::get_defaults(), true );
+	public static function reset( $remove = false ) {
+		if ( $remove ) {
+			delete_site_option( self::$options_key );
+		} else {
+			self::update_options( '', self::get_defaults(), true );
+		}
 		return self::get_defaults();
 	}
 
@@ -155,7 +161,7 @@ class Options_Theme extends Options_Abstract {
 	 */
 	public static function get_theme_colors( $template ) {
 		$options      = self::get_options();
-		$saved_colors = $options[ $template ] ?? false;
+		$saved_colors = $options[ $template ]['colors'] ?? false;
 		$themes       = Themes\Themes_Addon::get_theme_data( $template );
 
 		// Check that there's theme data.

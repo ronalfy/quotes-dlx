@@ -7,7 +7,7 @@ import TwitterIcon from '../../../components/icons/twitter';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
-	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen } =
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen, primaryFontFamily, secondaryFontFamily } =
 		props;
 
 	const getColorStyleVars = () => {
@@ -44,6 +44,18 @@ const ThemePreview = ( props ) => {
 			</style>
 		);
 	};
+
+	const getFontFamilies = () => {
+		let styles = '';
+		styles += `--qdlx-primary-font-family: "${ primaryFontFamily }";`;
+		styles += `--qdlx-secondary-font-family: "${ secondaryFontFamily }";`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	}
 	return (
 		<>
 			{ getColorStyleVars() }
@@ -52,6 +64,7 @@ const ThemePreview = ( props ) => {
 				<>
 					{ getFontSize() }
 					{ getLineHeight() }
+					{ getFontFamilies() }
 				</>
 
 			) }
@@ -120,6 +133,8 @@ ThemePreview.defaultProps = {
 	colorsOnly: false,
 	buttonFontSize: '16px',
 	screen: 'desktop',
+	primaryFontFamily: 'Lato',
+	secondaryFontFamily: 'Open Sans',
 };
 
 ThemePreview.propTypes = {
@@ -131,6 +146,8 @@ ThemePreview.propTypes = {
 	colorsOnly: PropTypes.bool.isRequired,
 	buttonFontSize: PropTypes.string.isRequired,
 	screen: PropTypes.string.isRequired,
+	primaryFontFamily: PropTypes.string.isRequired,
+	secondaryFontFamily: PropTypes.string.isRequired,
 };
 
 export default ThemePreview;

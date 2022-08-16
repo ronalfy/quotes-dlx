@@ -38183,10 +38183,15 @@ var Wrapper = function Wrapper() {
       licensesDirtyCount = _useState8[0],
       setLicensesDirtyCount = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      defaultTheme = _useState10[0],
-      setDefaultTheme = _useState10[1];
+      advancedTabDirtyCount = _useState10[0],
+      setAdvancedTabDirtyCount = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      defaultTheme = _useState12[0],
+      setDefaultTheme = _useState12[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
@@ -38198,6 +38203,8 @@ var Wrapper = function Wrapper() {
       setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
       licensesDirtyCount: licensesDirtyCount,
       setLicensesDirtyCount: setLicensesDirtyCount,
+      advancedTabDirtyCount: advancedTabDirtyCount,
+      setAdvancedTabDirtyCount: setAdvancedTabDirtyCount,
       defaultTheme: defaultTheme,
       setDefaultTheme: setDefaultTheme
     }
@@ -38860,8 +38867,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/node_modules/react-router/index.js");
 /* harmony import */ var _Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
 /* harmony import */ var _Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Loaders/AdminThemeDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeDefaultsLoader.js");
 /* harmony import */ var _Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
@@ -38873,8 +38880,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
 /* harmony import */ var _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../components/icons/ColorPalette */ "./src/js/components/icons/ColorPalette.js");
 /* harmony import */ var _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../components/icons/KeyIcon */ "./src/js/components/icons/KeyIcon.js");
-/* harmony import */ var _TabItem__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../TabItem */ "./src/js/admin-panel/admin-components/TabItem/index.js");
-/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../components/icons/FlaskIcon'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _TabItem__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../TabItem */ "./src/js/admin-panel/admin-components/TabItem/index.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+
 
 
 
@@ -38896,7 +38905,10 @@ var AdminHome = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(functio
   return Promise.all(/*! import() | AdminHome */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("vendors-node_modules_photoswipe-dynamic-caption-plugin_photoswipe-dynamic-caption-plugin_css--1b12c6"), __webpack_require__.e("AdminHome")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminHome */ "./src/js/admin-panel/views/AdminHome.js"));
 });
 var AdminDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("AdminDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
+  return Promise.all(/*! import() | AdminDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_button-group_index_js-node_modules_wor-131cc2"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js"));
+});
+var AdminAdvanced = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
+  return Promise.all(/*! import() | AdminAdvanced0.0.2 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_src_Fancybox_Fancybox_js-node_modules_wordpress_components_-9ab39c"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminAdvanced0.0.2")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminAdvanced */ "./src/js/admin-panel/views/AdminAdvanced.js"));
 });
 var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminMenuDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("AdminMenuDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js"));
@@ -38905,7 +38917,7 @@ var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.laz
   return Promise.all(/*! import() | AdminThemesDefaults0.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_photoswipe-dynamic-caption-plugin_photoswipe-dynamic-caption-plugin_css--1b12c6"), __webpack_require__.e("AdminThemesDefaults0.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js"));
 });
 var AdminThemeOptions = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemeOptions.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_src_Fancybox_Fancybox_js-node_modules_wordpress_components_-163619"), __webpack_require__.e("AdminThemeOptions.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeOptions */ "./src/js/admin-panel/views/AdminThemeOptions.js"));
+  return Promise.all(/*! import() | AdminThemeOptions.0.1 */[__webpack_require__.e("vendors-node_modules_wordpress_components_build-module_notice_index_js"), __webpack_require__.e("vendors-node_modules_axios_index_js-node_modules_qs_lib_index_js-node_modules_use-async-resou-717fbb"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_base-control_index_js-node_modules_rea-e812cf"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_src_Fancybox_Fancybox_js-node_modules_wordpress_components_-9ab39c"), __webpack_require__.e("vendors-node_modules_wordpress_components_build-module_color-palette_index_js-node_modules_he-ea401b"), __webpack_require__.e("AdminThemeOptions.0.1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminThemeOptions */ "./src/js/admin-panel/views/AdminThemeOptions.js"));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminSupport */[__webpack_require__.e("vendors-node_modules_fortawesome_pro-solid-svg-icons_index_es_js-node_modules_fortawesome_rea-dbc91d"), __webpack_require__.e("AdminSupport")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js"));
@@ -38917,15 +38929,16 @@ var AdminLicense = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(func
 var AdminTabs = function AdminTabs(props) {
   var onSelect = function onSelect(tabName) {};
 
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_14__["default"]),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_15__["default"]),
       blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
       contextualMenuDefaultsDirtyCount = _useContext.contextualMenuDefaultsDirtyCount,
       themesDefaultsDirtyCount = _useContext.themesDefaultsDirtyCount,
-      licensesDirtyCount = _useContext.licensesDirtyCount;
+      licensesDirtyCount = _useContext.licensesDirtyCount,
+      advancedTabDirtyCount = _useContext.advancedTabDirtyCount;
 
   var onTabClick = function onTabClick(tab) {};
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount]);
   /**
    *
    * @param {string} pathname Browser location.
@@ -38951,6 +38964,9 @@ var AdminTabs = function AdminTabs(props) {
   var getAdminDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminDefaults, null)));
+  var getAdminAdvanced = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminAdvanced, null)));
   var getAdminLicense = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminLicense, null)));
@@ -38970,7 +38986,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null))); // Set browser unload event if dirtycounts are not zero.
 
   window.onbeforeunload = function () {
-    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount) {
+    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount) {
       return true;
     }
   };
@@ -38980,7 +38996,7 @@ var AdminTabs = function AdminTabs(props) {
     id: "qdlx-admin-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     className: "qdlx-admin__tabs--nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_Home__WEBPACK_IMPORTED_MODULE_7__["default"],
     slug: "home",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Main screen options', 'quotes-dlx'),
@@ -38990,7 +39006,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: 0
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_Gear__WEBPACK_IMPORTED_MODULE_8__["default"],
     slug: "defaults",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set block defaults', 'quotes-dlx'),
@@ -39000,7 +39016,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: blockDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_MenuIcon__WEBPACK_IMPORTED_MODULE_9__["default"],
     slug: "menu",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the Tweet menu defaults', 'quotes-dlx'),
@@ -39010,7 +39026,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: contextualMenuDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_10__["default"],
     slug: "themes",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the default theme for the plugin.', 'quotes-dlx'),
@@ -39020,7 +39036,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: themesDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_11__["default"],
     slug: "theme-options",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the theme color, line-height, and font sizes', 'quotes-dlx'),
@@ -39030,7 +39046,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: 0
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_12__["default"],
     slug: "licenses",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the license for support and updates.', 'quotes-dlx'),
@@ -39040,7 +39056,17 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: licensesDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    icon: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../components/icons/FlaskIcon'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+    slug: "advanced",
+    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset options, set breakpoints, and disable fonts.', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced', 'quotes-dlx'),
+    tabClicked: function tabClicked(tab) {
+      onTabClick(tab);
+    },
+    isActive: isActive,
+    dirtyCount: advancedTabDirtyCount
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_14__["default"], {
     icon: _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_6__["default"],
     slug: "support",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Quick links for docs and support.', 'quotes-dlx'),
@@ -39054,37 +39080,41 @@ var AdminTabs = function AdminTabs(props) {
     "aria-hidden": "true"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "qdlx-tab-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/defaults",
     exact: true,
     element: getAdminDefaults
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/menu",
     exact: true,
     element: getAdminContextualMenuDefaults
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/themes",
     exact: true,
     element: getAdminThemesDefaults
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/theme-options",
     exact: true,
     element: getAdminThemeOptions
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    path: "/advanced",
+    exact: true,
+    element: getAdminAdvanced
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/support",
     exact: true,
     element: getAdminSupport
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/licenses",
     exact: true,
     element: getAdminLicense
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "/",
     exact: true,
     element: getAdminHome
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
     path: "*",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Navigate, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Navigate, {
       to: "/"
     })
   }))))));
@@ -98885,7 +98915,7 @@ function combine (array, callback) {
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.miniCss = (chunkId, promises) => {
-/******/ 			var cssChunks = {"AdminHome":1,"AdminThemesDefaults0.0.1":1,"vendors-node_modules_fancyapps_ui_src_Fancybox_Fancybox_js-node_modules_wordpress_components_-163619":1,"AdminThemeOptions.0.1":1};
+/******/ 			var cssChunks = {"AdminHome":1,"vendors-node_modules_fancyapps_ui_src_Fancybox_Fancybox_js-node_modules_wordpress_components_-9ab39c":1,"AdminThemesDefaults0.0.1":1,"AdminThemeOptions.0.1":1};
 /******/ 			if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 			else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 				promises.push(installedCssChunks[chunkId] = loadStylesheet(chunkId).then(() => {

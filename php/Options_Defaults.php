@@ -49,27 +49,44 @@ class Options_Defaults extends Options_Abstract {
 		// Todo - Read values from block.json?
 		// Todo - Override block.json?
 		$defaults = array(
-			'maximum_width'          => 800,
-			'maximum_width_unit'     => 'px',
-			'twitter_username'       => '',
-			'hashtags'               => array(),
-			'align'                  => 'center',
-			'share_button_text'      => __( 'Click to Tweet', 'quotes-dlx' ),
-			'tweet_button_alignment' => 'right',
-			'tweet_icon_alignment'   => 'right',
-			'tweet_button_display'   => 'full',
-			'tweet_button_enabled'   => true,
-			'has_anchor'             => true,
-			'anchor_prefix'          => 'qdlx',
-			'enable_links_in_tweet'  => true,
-			'url_shortening_service' => 'manual',
-			'url_shortener'          => true,
-			'enable_contextual_menu' => true,
-			'enable_copy_text'       => true,
-			'enable_copy_tweet'      => true,
-			'enable_copy_link'       => true,
-			'enable_tweet_this'      => true,
-			'template'               => 'light-branded',
+			'maximum_width'           => 800,
+			'maximum_width_unit'      => 'px',
+			'twitter_username'        => '',
+			'hashtags'                => array(),
+			'align'                   => 'center',
+			'share_button_text'       => __( 'Click to Tweet', 'quotes-dlx' ),
+			'tweet_button_alignment'  => 'right',
+			'tweet_icon_alignment'    => 'right',
+			'tweet_button_display'    => 'full',
+			'tweet_button_enabled'    => true,
+			'has_anchor'              => true,
+			'anchor_prefix'           => 'qdlx',
+			'enable_links_in_tweet'   => true,
+			'url_shortening_service'  => 'manual',
+			'url_shortener'           => true,
+			'enable_contextual_menu'  => true,
+			'enable_copy_text'        => true,
+			'enable_copy_tweet'       => true,
+			'enable_copy_link'        => true,
+			'enable_tweet_this'       => true,
+			'template'                => 'light-branded',
+			'desktop_breakpoint'      => 64,
+			'desktop_breakpoint_unit' => 'em',
+			'tablet_breakpoint'       => 48,
+			'tablet_breakpoint_unit'  => 'em',
+			'mobile_breakpoint'       => 30,
+			'mobile_breakpoint_unit'  => 'em',
+			'enable_fonts'			=> true,
+			'enable_custom_fonts' => false,
+			'custom_font_primary' => '',
+			'custom_font_secondary' => '',
+			'primary_font_family' => 'lato',
+			'secondary_font_family' => 'open-sans',
+			'enable_adobe_fonts'			=> false,
+			'adobe_fonts' => array(),
+			'adobe_project_id' => '',
+			'activate_adobe_fonts_admin' => false,
+			'activate_adobe_fonts_frontend' => false,
 		);
 
 		/**
@@ -85,9 +102,15 @@ class Options_Defaults extends Options_Abstract {
 
 	/**
 	 * Clear/Reset the plugin auto-update options.
+	 *
+	 * @param bool $remove Remove the options.
 	 */
-	public static function reset() {
-		self::update_options( '', self::get_defaults(), true );
+	public static function reset( $remove = false ) {
+		if ( $remove ) {
+			delete_site_option( self::$options_key );
+		} else {
+			self::update_options( '', self::get_defaults(), true );
+		}
 		return self::get_defaults();
 	}
 }

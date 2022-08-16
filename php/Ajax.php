@@ -53,9 +53,28 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
 
+		// For resetting all options.
+		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
+
 		return $self;
 	}
 
+	/**
+	 * Reset all options.
+	 */
+	public static function ajax_reset_all_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Reset all the things.
+		Options_Defaults::reset( true );
+		Options_License::reset( true );
+		Options_Menu::reset( true );
+		Options_Theme::reset( true );
+
+		wp_send_json_success( array() );
+	}
 	/**
 	 * Retrieve the theme size options.
 	 */
@@ -274,11 +293,13 @@ class Ajax {
 			wp_die( 'Invalid request.' );
 		}
 
-		$template         = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
-		$font_size        = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
-		$line_height      = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
-		$screen           = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
-		$button_font_size = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$template              = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$font_size             = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height           = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$screen                = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
+		$button_font_size      = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+		$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 
 		wp_register_script(
 			'qdlx_twitter_actions',
@@ -328,6 +349,30 @@ class Ajax {
 			'all'
 		);
 
+		// Try to load font stylesheets.
+		$primary_font_css_url   = Functions::get_font_family_stylesheet_path( $primary_font_family );
+		$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
+
+		if ( $primary_font_css_url ) {
+			wp_register_style(
+				'qdlx_primary_font_css',
+				$primary_font_css_url,
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
+		if ( $secondary_font_css_url ) {
+			wp_register_style(
+				'qdlx_secondary_font_css',
+				$secondary_font_css_url,
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
 		// Get localized vars.
 		$themes = Themes\Themes_Addon::get_theme_data( $template );
 		if ( ! $themes ) {
@@ -342,18 +387,29 @@ class Ajax {
 			$saved_colors = $theme_default_colors;
 		}
 
+		if ( Functions::is_adobe_font( sanitize_title( $primary_font_family ) ) ) {
+			// If adobe font, use slug instead of quotes.
+			$primary_font_family = sanitize_title( $primary_font_family );
+		}
+		if ( Functions::is_adobe_font( sanitize_title( $secondary_font_family ) ) ) {
+			// If adobe font, use slug instead of quotes.
+			$secondary_font_family = sanitize_title( $secondary_font_family );
+		}
+
 		// Output local vars.
 		wp_localize_script(
 			'qdlx_twitter_preview_js',
 			'qdlx_theme_preview',
 			array(
-				'stylesheet'       => esc_url( $theme['stylesheet'] ),
-				'theme'            => $template,
-				'colors'           => $saved_colors,
-				'font_size'        => $font_size,
-				'line_height'      => (float) $line_height,
-				'button_font_size' => $button_font_size,
-				'screen'           => $screen,
+				'stylesheet'            => esc_url( $theme['stylesheet'] ),
+				'theme'                 => $template,
+				'colors'                => $saved_colors,
+				'font_size'             => $font_size,
+				'line_height'           => (float) $line_height,
+				'button_font_size'      => $button_font_size,
+				'screen'                => $screen,
+				'primary_font_family'   => $primary_font_family,
+				'secondary_font_family' => $secondary_font_family,
 			)
 		);
 		?>
@@ -361,25 +417,65 @@ class Ajax {
 		<html lang="en">
 			<head>
 				<?php
-				wp_print_styles(
+				/**
+				 * Action to run before printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $template              The template name/slug.
+				 * @param string $primary_font_family   The primary font family slug.
+				 * @param string $secondary_font_family The secondary font family slug.
+				 */
+				do_action( 'quotes_dlx_before_modal_scripts', $template, $primary_font_family, $secondary_font_family );
+
+				/**
+				 * Filter the styles print arguments.
+				 *
+				 * Add more handles to print.
+				 *
+				 * @since 1.0.0
+				 */
+				$modal_styles = apply_filters(
+					'quotes_dlx_plugin_preview_modal_styles',
 					array(
 						'qdlx_theme_css',
 						'qdlx_twitter_preview_css',
 						'qdlx_font_css',
 						'qdlx_frontend_css',
+						'qdlx_primary_font_css',
+						'qdlx_secondary_font_css',
 					)
+				);
+				wp_print_styles(
+					$modal_styles
 				);
 				?>
 			</head>
 			<body>
 				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $screen ); ?>"></div>
 				<?php
-					wp_print_scripts(
+					/**
+					 * Filter the scripts print arguments.
+					 *
+					 * Add more handles to print.
+					 *
+					 * @since 1.0.0
+					 */
+					$modal_scripts = apply_filters(
+						'quotes_dlx_plugin_preview_modal_scripts',
 						array(
 							'qdlx_twitter_actions',
 							'qdlx_twitter_preview_js',
 						)
 					);
+					wp_print_scripts( $modal_scripts );
+
+				/**
+				 * Action to run after printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 */
+				do_action( 'quotes_dlx_after_modal_scripts', 'quotes-dlx' );
 				?>
 			</body>
 		</html>
@@ -529,7 +625,7 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$options_to_save = array();
+		$options_to_save = Options_Defaults::get_options();
 
 		$form_data = $_POST['form_data']; // expect array.
 
@@ -593,6 +689,51 @@ class Ajax {
 					break;
 				case 'template':
 					$options_to_save['template'] = sanitize_text_field( $field_value );
+					break;
+				case 'desktopBreakpoint':
+					$options_to_save['desktop_breakpoint'] = (float) $field_value;
+					break;
+				case 'desktopBreakpointUnit':
+					$options_to_save['desktop_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'tabletBreakpoint':
+					$options_to_save['tablet_breakpoint'] = (float) $field_value;
+					break;
+				case 'tabletBreakpointUnit':
+					$options_to_save['tablet_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'mobileBreakpoint':
+					$options_to_save['mobile_breakpoint'] = (float) $field_value;
+					break;
+				case 'mobileBreakpointUnit':
+					$options_to_save['mobile_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableFonts':
+					$options_to_save['enable_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'customFontPrimary':
+					$options_to_save['custom_font_primary'] = sanitize_text_field( $field_value );
+					break;
+				case 'customFontSecondary':
+					$options_to_save['custom_font_secondary'] = sanitize_text_field( $field_value );
+					break;
+				case 'primaryFontFamily':
+					$options_to_save['primary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'secondaryFontFamily':
+					$options_to_save['secondary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableAdobeFonts':
+					$options_to_save['enable_adobe_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'adobeProjectId':
+					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'activateAdobeFontsAdmin':
+					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'activateAdobeFontsFrontend':
+					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
 					break;
 			}
 		}

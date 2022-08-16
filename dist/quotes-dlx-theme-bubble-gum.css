@@ -5,6 +5,9 @@
 /* Responsive styles - In hindsight, should've used mobile-first */
 /* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
 /* It's only used here, so no external file for mixin? */
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-bubble-gum {
   font-size: var(--qdlx-bubble-gum-font-size-mobile, 14px);
   /* If these are set, we're in a preview */
@@ -116,7 +119,7 @@
   z-index: 2;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
-  font-family: "Lato", serif;
+  font-family: var(--qdlx-primary-font-family), serif;
   font-weight: 400;
   font-size: 1.1em;
   color: var(--qdlx-bubble-gum-secondary, #fdeef2);
@@ -181,7 +184,7 @@
   border: 4px solid var(--qdlx-bubble-gum-primary, #E75480);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--qdlx-secondary-font-family), sans-serif;
   font-weight: 500;
   font-size: var(--qdlx-bubble-gum-button-font-size-mobile, 14px);
   line-height: 1em;
@@ -394,7 +397,7 @@
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
   color: var(--qdlx-bubble-gum-primary, #E75480);
   background: var(--qdlx-bubble-gum-light, #FFF);
-  font-family: "Lato", sans-serif;
+  font-family: var(--qdlx-primary-font-family), sans-serif;
 }
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {

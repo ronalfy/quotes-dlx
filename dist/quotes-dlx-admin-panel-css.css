@@ -1,6 +1,7 @@
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/admin-panel.scss ***!
   \***********************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 :root {
   --quotes-dlx-admin--color-white: #ffffff;
   --quotes-dlx-admin--color-dark: #393838;
@@ -528,6 +529,10 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-panel .qdlx-admin__tabs--content-heading {
   padding: 1em 1.0625rem;
 }
+.quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-panel .qdlx-admin__tabs--content-heading.qdlx-danger h1, .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-panel .qdlx-admin__tabs--content-heading.qdlx-danger svg, .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-panel .qdlx-admin__tabs--content-heading.qdlx-danger path {
+  color: var(--quotes-dlx-admin--color-red-alt);
+  fill: var(--quotes-dlx-admin--color-red-alt);
+}
 .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-panel .qdlx-admin__tabs--content-heading p.description {
   font-size: 1.1em;
   margin: 0;
@@ -548,8 +553,8 @@ button.button-reset.show-cursor {
   font-weight: 300;
 }
 .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap h1 svg {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap h1 svg path {
   fill: #9c68b0;
@@ -579,10 +584,14 @@ button.button-reset.show-cursor {
   padding: 1em 1.0625rem;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper .qdlx-admin__support--content-panel .qdlx-admin__support--content-heading p.description {
-  font-size: 1.3em;
+  font-size: 1.1em;
+  line-height: 1.2em;
   margin: 0;
   padding: 0;
-  margin-top: 8px;
+  padding: 15px 0;
+}
+.quotes-dlx-plugin .qdlx-admin__support-wrapper .qdlx-admin__support--content-panel .qdlx-admin__support--content-heading .qdlx-button-primary a {
+  margin-top: 0;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 {
   display: flex;
@@ -594,8 +603,8 @@ button.button-reset.show-cursor {
   font-weight: 300;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 svg {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 .quotes-dlx-plugin .qdlx-admin__support-wrapper h1 svg path {
   fill: #9c68b0;
@@ -835,10 +844,20 @@ button.button-reset.show-cursor {
 .qdlx-admin__tabs--content-inner {
   /* Modified Gutenberg styles */
 }
+.qdlx-admin__tabs--content-inner button:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions.no-flex {
+  display: block;
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions .qdlx-admin-reset-confirmation {
+  padding-bottom: 20px;
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button {
   background: var(--quotes-dlx-admin--color-white);
@@ -869,6 +888,17 @@ button.button-reset.show-cursor {
   background: var(--quotes-dlx-admin--color-red-light);
   color: var(--quotes-dlx-admin--color-red-alt);
   border-color: var(--quotes-dlx-admin--color-red-alt);
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent {
+  /* Load light purple button color and background with hover and focus states */
+  background: var(--quotes-dlx-admin--color-white);
+  color: var(--quotes-dlx-admin--color-accent);
+  border-color: var(--quotes-dlx-admin--color-accent);
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent:hover {
+  background: #f8f7fe;
+  color: var(--quotes-dlx-admin--color-accent);
+  border-color: var(--quotes-dlx-admin--color-accent);
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving {
   display: flex;
@@ -926,11 +956,14 @@ button.button-reset.show-cursor {
   font-weight: 700;
 }
 .qdlx-admin__tabs--content-inner .components-base-control input[type=text],
+.qdlx-admin__tabs--content-inner .components-base-control input[type=password],
 .qdlx-admin__tabs--content-inner .components-form-token-field input[type=text],
-.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=text] {
+.qdlx-admin__tabs--content-inner .components-form-token-field input[type=password],
+.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=text],
+.qdlx-admin__tabs--content-inner .qdlx-admin__button-group--align input[type=password] {
   position: relative;
   display: block;
-  min-width: 200px;
+  min-width: 350px;
   line-height: 2;
   font-size: 13px;
 }
@@ -1627,6 +1660,123 @@ table.form-table.qdlx-font-sizes td > div {
 }
 .qdlx-admin__range-control .components-range-control__track ~ span {
   background-color: #8019c4;
+}
+
+/* Theme Options Select Dropdown and Go Button */
+/* Lots of importants here to override core styles */
+.quotes-dlx-admin-theme-options__select {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  column-gap: 25px;
+  position: relative;
+  align-items: flex-end;
+}
+.quotes-dlx-admin-theme-options__select.span-2 {
+  grid-template-columns: 1fr;
+}
+.quotes-dlx-admin-theme-options__select .qdlx-admin__theme-fonts-select {
+  padding-bottom: 28px;
+}
+.quotes-dlx-admin-theme-options__select select {
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  display: flex;
+  flex: 1 !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  font-size: 1.2em !important;
+  line-height: 1.5em !important;
+  align-items: center;
+  color: var(--quotes-dlx-admin--color-dark) !important;
+  background-color: var(--quotes-dlx-admin--color-background) !important;
+  background-image: none;
+  cursor: pointer;
+  max-width: 100% !important;
+}
+.quotes-dlx-admin-theme-options__select > div.components-base-control {
+  margin-bottom: 0;
+}
+.quotes-dlx-admin-theme-options__select > div.quotes-dlx-admin-control-wrapper {
+  margin-bottom: 20px;
+}
+.quotes-dlx-admin-theme-options__select > div.components-base-control .components-input-control__container {
+  position: relative;
+  display: flex !important;
+  width: 100% !important;
+  border-radius: 0.25em;
+  overflow: hidden;
+  align-items: center;
+}
+.quotes-dlx-admin-theme-options__select > div.components-base-control .components-input-control__container:after {
+  content: "▼";
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  width: 3em !important;
+  background-color: var(--quotes-dlx-admin--color-accent);
+  transition: 0.25s all ease;
+  pointer-events: none;
+  color: var(--quotes-dlx-admin--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quotes-dlx-admin-theme-options__select > div.components-base-control .components-input-control__container:hover:after {
+  color: var(--quotes-dlx-admin--color-white);
+}
+.quotes-dlx-admin-theme-options__select .components-base-control__field {
+  margin-bottom: 0 !important;
+}
+.quotes-dlx-admin-theme-options__select button.qdlx__btn {
+  padding: 12px 10px;
+  border: 2px solid var(--quotes-dlx-admin--color-accent);
+  color: var(--quotes-dlx-admin--color-accent);
+  max-height: 45px;
+}
+.quotes-dlx-admin-theme-options__select button.qdlx__btn:hover, .quotes-dlx-admin-theme-options__select button.qdlx__btn:focus {
+  padding: 12px 10px;
+  background: #f8f7fe;
+  border: 2px solid var(--quotes-dlx-admin--color-accent);
+  color: var(--quotes-dlx-admin--color-accent);
+}
+
+/* Form control wrapper */
+.qdlx-admin__control-item {
+  border-bottom: 1px solid var(--quotes-dlx-admin--color-gray);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.qdlx-admin__control-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* Radio inputs */
+.quotes-dlx-admin-list-ul {
+  list-style-position: inside;
+  font-size: 1.1em;
+  position: relative;
+}
+.quotes-dlx-admin-list-ul li {
+  position: relative;
+  padding-left: 18px;
+}
+.quotes-dlx-admin-list-ul li:before {
+  position: absolute;
+  content: " ";
+  background: var(--quotes-dlx-admin--color-text-color);
+  color: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+  left: 0;
+  top: calc(0.55em - 4px);
 }
 
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

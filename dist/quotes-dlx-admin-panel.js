@@ -38183,15 +38183,10 @@ var Wrapper = function Wrapper() {
       licensesDirtyCount = _useState8[0],
       setLicensesDirtyCount = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      advancedTabDirtyCount = _useState10[0],
-      setAdvancedTabDirtyCount = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-      _useState12 = _slicedToArray(_useState11, 2),
-      defaultTheme = _useState12[0],
-      setDefaultTheme = _useState12[1];
+      defaultTheme = _useState10[0],
+      setDefaultTheme = _useState10[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
@@ -38203,8 +38198,6 @@ var Wrapper = function Wrapper() {
       setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
       licensesDirtyCount: licensesDirtyCount,
       setLicensesDirtyCount: setLicensesDirtyCount,
-      advancedTabDirtyCount: advancedTabDirtyCount,
-      setAdvancedTabDirtyCount: setAdvancedTabDirtyCount,
       defaultTheme: defaultTheme,
       setDefaultTheme: setDefaultTheme
     }

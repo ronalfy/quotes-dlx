@@ -160,34 +160,34 @@ class Blocks {
 
 					// Font sizes.
 					echo sprintf(
-						'--qdlx-%s-font-size-mobile: %s;',
+						'--qdlx-%s-font-size-mobile: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'mobile' ) )
 					);
 					echo sprintf(
-						'--qdlx-%s-font-size-tablet: %s;',
+						'--qdlx-%s-font-size-tablet: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'tablet' ) )
 					);
 					echo sprintf(
-						'--qdlx-%s-font-size-desktop: %s;',
+						'--qdlx-%s-font-size-desktop: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'desktop' ) )
 					);
 
 					// Button Font Sizes.
 					echo sprintf(
-						'--qdlx-%s-button-font-size-mobile: %s;',
+						'--qdlx-%s-button-font-size-mobile: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'mobile' ) )
 					);
 					echo sprintf(
-						'--qdlx-%s-button-font-size-tablet: %s;',
+						'--qdlx-%s-button-font-size-tablet: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'tablet' ) )
 					);
 					echo sprintf(
-						'--qdlx-%s-button-font-size-desktop: %s;',
+						'--qdlx-%s-button-font-size-desktop: %spx;',
 						esc_attr( $theme_options['slug'] ),
 						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
 					);

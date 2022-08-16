@@ -861,6 +861,20 @@
 				}
 			}
 
+			&.qdlx__btn-accent {
+				/* Load light purple button color and background with hover and focus states */
+				background: var(--quotes-dlx-admin--color-white);
+				color: var(--quotes-dlx-admin--color-accent);
+				border-color: var(--quotes-dlx-admin--color-accent);
+				&:hover {
+					background: #f8f7fe;
+					color: var(--quotes-dlx-admin--color-accent);
+					border-color: var( --quotes-dlx-admin--color-accent );
+				}
+
+
+			}
+
 			&.qdlx__btn--icon-right {
 				&.is-saving {
 					display: flex;

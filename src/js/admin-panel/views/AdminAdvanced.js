@@ -555,7 +555,7 @@ const Interface = ( props ) => {
 														<div className="qdlx-admin__tabs--content-actions">
 															<Button
 																className={ classNames(
-																	'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+																	'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent',
 																	{ 'has-error': hasErrors() },
 																	{ 'has-icon': saving },
 																	{ 'is-saving': { saving } }
@@ -563,8 +563,8 @@ const Interface = ( props ) => {
 																type="button"
 																text={
 																	saving
-																		? __( 'Saving…', 'quotes-dlx' )
-																		: __( 'Save and Refresh Fonts', 'quotes-dlx' )
+																		? __( 'Getting Fonts…', 'quotes-dlx' )
+																		: __( 'Refresh Fonts', 'quotes-dlx' )
 																}
 																icon={ saving ? Spinner : false }
 																iconSize="18"

@@ -355,6 +355,31 @@ class Functions {
 	}
 
 	/**
+	 * Retrieve theme font-sizes for a value.
+	 *
+	 * @param string $template   The template to retrieve the font-sizes for.
+	 * @param string $key        Can be font_size, line_height, button_font_size.
+	 * @param string $breakpoint The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+	 */
+	public static function get_theme_font_sizes( $template, $key, $breakpoint ) {
+		$saved_theme_options             = Options_Theme::get_options();
+		$theme_default_font_size_options = Options_Theme::get_default_sizes( $breakpoint );
+
+		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options[ $breakpoint ]['line_height'];
+		/**
+		 * Filter the font size for a given key.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $return_value Value to return.
+		 * @param string $template     The template to retrieve the font-sizes for.
+		 * @param string $key          Can be font_size, line_height, button_font_size.
+		 * @param string $breakpoint   The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+		 */
+		return apply_filters( 'quotes_dlx_get_theme_font_sizes', $return_value, $template, $key, $breakpoint );
+	}
+
+	/**
 	 * Retrieve the plugin title.
 	 */
 	public static function get_plugin_title() {

@@ -161,7 +161,7 @@ class Options_Theme extends Options_Abstract {
 	 */
 	public static function get_theme_colors( $template ) {
 		$options      = self::get_options();
-		$saved_colors = $options[ $template ] ?? false;
+		$saved_colors = $options[ $template ]['colors'] ?? false;
 		$themes       = Themes\Themes_Addon::get_theme_data( $template );
 
 		// Check that there's theme data.

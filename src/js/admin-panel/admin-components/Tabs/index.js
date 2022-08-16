@@ -15,6 +15,7 @@ import KeyIcon from '../../../components/icons/KeyIcon';
 import FlaskIcon from '../../../components/icons/FlaskIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
+import ErrorBoundary from '../../admin-components/ErrorBoundary/index.js';
 
 // Lazy load components.
 const AdminHome = lazy( () =>
@@ -89,65 +90,217 @@ const AdminTabs = ( props ) => {
 
 	const getAdminHome = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminHome />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Home screen for QuotesDLX. Please try refreshing and contact support at dlxplugins.com/support/ if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminHome />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminDefaults = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
-	const getAdminAdvanced = (
-		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminAdvanced />
-			</Suspense>
-		</>
-	);
-
+	
 	const getAdminLicense = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminLicense />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the License screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminLicense />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminContextualMenuDefaults = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminContextualMenuDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Contextual Menu screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminContextualMenuDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminThemesDefaults = (
 		<>
-			<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
-				<AdminThemesDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Theme Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+					<AdminThemesDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminThemeOptions = (
 		<>
-			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
-				<AdminThemeOptions />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Theme Colors and Font Sizes screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+					<AdminThemeOptions />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminSupport = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminSupport />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Admin Support screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminSupport />
+				</Suspense>
+			</ErrorBoundary>
+		</>
+	);
+	
+	const getAdminAdvanced = (
+		<>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Advanced screen for QuotesDLX. Please try refreshing and contact support at if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminAdvanced />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
 

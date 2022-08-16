@@ -809,6 +809,12 @@
 
 /* General form styles */
 .qdlx-admin__tabs--content-inner {
+	button {
+		&:disabled {
+			cursor: not-allowed !important;
+			opacity: 0.5;
+		}
+	}
 	.qdlx-admin__tabs--content-actions {
 		display: flex;
 		justify-content: space-between;
@@ -829,11 +835,6 @@
 			border-color: var(--quotes-dlx-admin--color-green-alt);
 			padding: 10px 20px;
 			cursor: pointer;
-
-			&:disabled {
-				cursor: not-allowed;
-				opacity: 0.5;
-			}
 
 			&:hover {
 				border-radius: 5px;
@@ -1786,7 +1787,7 @@ table.form-table.qdlx-font-sizes {
 		&:hover,
 		&:focus {
 			padding: 12px 10px;
-			background: #dad4eb;
+			background: #f8f7fe;
 			border: 2px solid var( --quotes-dlx-admin--color-accent);
 			color: var( --quotes-dlx-admin--color-accent);
 		}

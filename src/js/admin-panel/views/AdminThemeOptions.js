@@ -194,7 +194,7 @@ const Interface = ( props ) => {
 					icon={ saving ? Spinner : false }
 					iconSize="18"
 					iconPosition="right"
-					disabled={ saving || resetting || selectedTheme === activeTheme }
+					disabled={ saving || resetting || ( selectedTheme === activeTheme ) }
 					onClick={ ( e ) => {
 						if ( selectedTheme !== activeTheme ) {
 							setActiveTheme( selectedTheme );

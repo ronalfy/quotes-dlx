@@ -320,12 +320,12 @@ class Functions {
 	 * Retrieve the primary font CSS argument for font-family.
 	 */
 	public static function get_primary_font_family_css() {
-		$options = Options_Defaults::get_options();
-		$font    = $options['primary_font_family'];
+		$options     = Options_Defaults::get_options();
+		$font        = $options['primary_font_family'];
 		$custom_font = $options['custom_font_primary'];
 
 		if ( 'custom' === $font ) {
-			return esc_attr( $custom_font ) . ';';
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
 		}
 
 		if ( self::is_adobe_font( $font ) ) {
@@ -341,12 +341,12 @@ class Functions {
 	 * Retrieve the secondary font CSS argument for font-family.
 	 */
 	public static function get_secondary_font_family_css() {
-		$options = Options_Defaults::get_options();
-		$font    = $options['secondary_font_family'];
+		$options     = Options_Defaults::get_options();
+		$font        = $options['secondary_font_family'];
 		$custom_font = $options['custom_font_secondary'];
 
 		if ( 'custom' === $font ) {
-			return esc_attr( $custom_font ) . ';';
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
 		}
 
 		if ( self::is_adobe_font( $font ) ) {

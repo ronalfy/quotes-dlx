@@ -677,7 +677,6 @@ var Interface = function Interface(props) {
         setAdvancedTabDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
-        localStorage.removeItem(localStorageKey);
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);

@@ -164,7 +164,6 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem( localStorageKey );
 
 					setIsSaved( true );
 					setTimeout( () => {

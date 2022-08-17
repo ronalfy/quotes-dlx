@@ -454,22 +454,31 @@ var ThemePreview = function ThemePreview(props) {
 
   var getFontFamilies = function getFontFamilies() {
     var styles = '';
-    styles += "--qdlx-primary-font-family: \"".concat(primaryFontFamily, "\";");
-    styles += "--qdlx-secondary-font-family: \"".concat(secondaryFontFamily, "\";");
+    styles += "--qdlx-primary-font-family: \"".concat(primaryFontFamily.replace(/\"/g, ''), "\";");
+    styles += "--qdlx-secondary-font-family: \"".concat(secondaryFontFamily.replace(/\"/g, ''), "\";");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight(), getFontFamilies()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+  var previewInlineStyles = {
+    maxWidth: '1100px',
+    margin: '0 auto'
+  };
+
+  if (colorsOnly) {
+    previewInlineStyles = {
+      maxWidth: '650px',
+      margin: '0 auto',
+      marginBottom: '40px'
+    };
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), getFontFamilies(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
     rel: "stylesheet",
     href: stylesheet
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('quotes-dlx', (_classNames = {}, _defineProperty(_classNames, "quotes-dlx-block-theme-".concat(activeTheme), true), _defineProperty(_classNames, 'quotes-dlx-context-menu-disabled', false), _defineProperty(_classNames, 'quotes-dlx-has-no-tweet-button', false), _defineProperty(_classNames, "quotes-dlx-screen-".concat(screen), true), _classNames)),
-    style: {
-      maxWidth: '650px',
-      margin: '0 auto',
-      marginBottom: '40px'
-    }
+    style: previewInlineStyles
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "quotes-dlx-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("blockquote", {
@@ -1113,40 +1122,50 @@ var Interface = function Interface(props) {
       savedThemeColors = _useState10[0],
       setSavedThemeColors = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    primary: '',
+    secondary: '',
+    primaryStylesheet: '',
+    secondaryStylesheet: ''
+  }),
       _useState12 = _slicedToArray(_useState11, 2),
-      loading = _useState12[0],
-      setLoading = _useState12[1];
+      fontFamilies = _useState12[0],
+      setFontFamilies = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState14 = _slicedToArray(_useState13, 2),
-      saving = _useState14[0],
-      setSaving = _useState14[1];
+      loading = _useState14[0],
+      setLoading = _useState14[1];
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      isSaved = _useState16[0],
-      setIsSaved = _useState16[1];
+      saving = _useState16[0],
+      setSaving = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      resetting = _useState18[0],
-      setResetting = _useState18[1];
+      isSaved = _useState18[0],
+      setIsSaved = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      isReset = _useState20[0],
-      setIsReset = _useState20[1];
+      resetting = _useState20[0],
+      setResetting = _useState20[1];
 
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState22 = _slicedToArray(_useState21, 2),
-      changingTheme = _useState22[0],
-      setChangingTheme = _useState22[1];
+      isReset = _useState22[0],
+      setIsReset = _useState22[1];
 
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState24 = _slicedToArray(_useState23, 2),
-      hasUnsavedChanges = _useState24[0],
-      setHasUnsavedChanges = _useState24[1];
+      changingTheme = _useState24[0],
+      setChangingTheme = _useState24[1];
+
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState26 = _slicedToArray(_useState25, 2),
+      hasUnsavedChanges = _useState26[0],
+      setHasUnsavedChanges = _useState26[1];
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useForm)({
     defaultValues: {
@@ -1179,10 +1198,6 @@ var Interface = function Interface(props) {
       touchedFields = _useFormState.touchedFields;
 
   var getThemeOptions = function getThemeOptions() {
-    if (loading) {
-      return;
-    }
-
     setLoading(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_options', {
       nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -1196,6 +1211,12 @@ var Interface = function Interface(props) {
         setSavedThemeColors(Object.values(ajaxData.colors));
         setDefaultThemeColors(Object.values(ajaxData.defaults));
         setHasUnsavedChanges(false);
+        setFontFamilies({
+          primary: ajaxData.font_primary,
+          secondary: ajaxData.font_secondary,
+          primaryStylesheet: ajaxData.font_primary_stylesheet,
+          secondaryStylesheet: ajaxData.font_secondary_stylesheet
+        });
       } else {// Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
@@ -1267,7 +1288,9 @@ var Interface = function Interface(props) {
       fontSize: data.font_size_desktop + '',
       lineHeight: data.line_height_desktop,
       buttonFontSize: data.button_font_size_desktop + '',
-      colorsOnly: true
+      colorsOnly: true,
+      primaryFontFamily: fontFamilies.primary,
+      secondaryFontFamily: fontFamilies.secondary
     }));
   };
 
@@ -1426,6 +1449,30 @@ var Interface = function Interface(props) {
     })));
   };
 
+  var getPrimaryFontStylesheet = function getPrimaryFontStylesheet() {
+    if ('' !== fontFamilies.primary && '' !== fontFamilies.primaryStylesheet) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+        rel: "stylesheet",
+        href: fontFamilies.primaryStylesheet,
+        type: "text/css"
+      });
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+  };
+
+  var getSecondaryFontStylesheet = function getSecondaryFontStylesheet() {
+    if ('' !== fontFamilies.secondary && '' !== fontFamilies.secondaryStylesheet) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
+        rel: "stylesheet",
+        href: fontFamilies.secondaryStylesheet,
+        type: "text/css"
+      });
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+  };
+
   var getThemePreviewAndSwatches = function getThemePreviewAndSwatches() {
     if (loading) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1435,7 +1482,7 @@ var Interface = function Interface(props) {
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-wrap"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, getPrimaryFontStylesheet(), getSecondaryFontStylesheet(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-panel"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
       onSubmit: function onSubmit(e) {
@@ -1487,6 +1534,12 @@ var Interface = function Interface(props) {
       screenSizeLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile', 'quotes-dlx')
     }));
   };
+
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      showHeader: false
+    }));
+  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--home-grid-wrap"

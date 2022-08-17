@@ -301,6 +301,14 @@ class Ajax {
 		$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
 		$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 
+		// Double check font families.
+		if ( '' === $primary_font_family ) {
+			$primary_font_family = Functions::get_font_family( 'primary' );
+		}
+		if ( '' === $secondary_font_family ) {
+			$secondary_font_family = Functions::get_font_family( 'secondary' );
+		}
+
 		wp_register_script(
 			'qdlx_twitter_actions',
 			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
@@ -528,19 +536,28 @@ class Ajax {
 		// Get theme colors and merge with default colors.
 		// $theme_color_palette  = Functions::get_site_theme_colors(); // phpcs:ignore.
 
+		// Retrieve font families and stylsheets.
+		$primary_font   = Functions::get_font_family( 'primary' );
+		$secondary_font = Functions::get_font_family( 'secondary' );
+		$format_for_display = true;
+
 		wp_send_json_success(
 			array(
-				'colors'                   => $saved_colors,
-				'defaults'                 => $theme_default_colors,
-				'font_size_desktop'        => $theme_options[ $template_slug ]['font_size_desktop'] ?? 16,
-				'line_height_desktop'      => $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65,
-				'button_font_size_desktop' => $theme_options[ $template_slug ]['button_font_size_desktop'] ?? 16,
-				'font_size_tablet'         => $theme_options[ $template_slug ]['font_size_tablet'] ?? 14,
-				'line_height_tablet'       => $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1,
-				'button_font_size_tablet'  => $theme_options[ $template_slug ]['button_font_size_tablet'] ?? 14,
-				'font_size_mobile'         => $theme_options[ $template_slug ]['font_size_mobile'] ?? 12,
-				'line_height_mobile'       => $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1,
-				'button_font_size_mobile'  => $theme_options[ $template_slug ]['button_font_size_mobile'] ?? 12,
+				'colors'                    => $saved_colors,
+				'defaults'                  => $theme_default_colors,
+				'font_size_desktop'         => $theme_options[ $template_slug ]['font_size_desktop'] ?? 16,
+				'line_height_desktop'       => $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65,
+				'button_font_size_desktop'  => $theme_options[ $template_slug ]['button_font_size_desktop'] ?? 16,
+				'font_size_tablet'          => $theme_options[ $template_slug ]['font_size_tablet'] ?? 14,
+				'line_height_tablet'        => $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1,
+				'button_font_size_tablet'   => $theme_options[ $template_slug ]['button_font_size_tablet'] ?? 14,
+				'font_size_mobile'          => $theme_options[ $template_slug ]['font_size_mobile'] ?? 12,
+				'line_height_mobile'        => $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1,
+				'button_font_size_mobile'   => $theme_options[ $template_slug ]['button_font_size_mobile'] ?? 12,
+				'font_primary'              => sanitize_text_field( Functions::get_font_family( 'primary', $format_for_display ) ),
+				'font_secondary'            => sanitize_text_field( Functions::get_font_family( 'secondary', $format_for_display ) ),
+				'font_primary_stylesheet'   => esc_url( Functions::get_font_family_stylesheet_path( $primary_font ) ),
+				'font_secondary_stylesheet' => esc_url( Functions::get_font_family_stylesheet_path( $secondary_font ) ),
 			)
 		);
 		exit;

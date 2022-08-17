@@ -114,8 +114,14 @@ const Interface = ( props ) => {
 			value: '',
 		},
 	] );
+	const [ fontFamilies, setFontFamilies ] = useState( {
+		primary: '',
+		secondary: '',
+		primaryStylesheet: '',
+		secondaryStylesheet: '',
+	} );
 
-	const [ loading, setLoading ] = useState( false );
+	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
@@ -143,9 +149,6 @@ const Interface = ( props ) => {
 	} );
 
 	const getThemeOptions = () => {
-		if ( loading ) {
-			return;
-		}
 		setLoading( true );
 		sendCommand( 'quotes_dlx_get_theme_options', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -159,6 +162,12 @@ const Interface = ( props ) => {
 					setSavedThemeColors( Object.values( ajaxData.colors ) );
 					setDefaultThemeColors( Object.values( ajaxData.defaults ) );
 					setHasUnsavedChanges( false );
+					setFontFamilies( {
+						primary: ajaxData.font_primary,
+						secondary: ajaxData.font_secondary,
+						primaryStylesheet: ajaxData.font_primary_stylesheet,
+						secondaryStylesheet: ajaxData.font_secondary_stylesheet,
+					} );
 				} else {
 					// Error stuff.
 				}
@@ -235,6 +244,8 @@ const Interface = ( props ) => {
 					lineHeight={ data.line_height_desktop }
 					buttonFontSize={ data.button_font_size_desktop + '' }
 					colorsOnly={ true }
+					primaryFontFamily={ fontFamilies.primary }
+					secondaryFontFamily={ fontFamilies.secondary }
 				/>
 			</>
 		);
@@ -421,12 +432,40 @@ const Interface = ( props ) => {
 		);
 	};
 
+	const getPrimaryFontStylesheet = () => {
+		if ( '' !== fontFamilies.primary && '' !== fontFamilies.primaryStylesheet ) {
+			return (
+				<link
+					rel="stylesheet"
+					href={ fontFamilies.primaryStylesheet }
+					type="text/css"
+				/>
+			);
+		}
+		return <></>;
+	};
+
+	const getSecondaryFontStylesheet = () => {
+		if ( '' !== fontFamilies.secondary && '' !== fontFamilies.secondaryStylesheet ) {
+			return (
+				<link
+					rel="stylesheet"
+					href={ fontFamilies.secondaryStylesheet }
+					type="text/css"
+				/>
+			);
+		}
+		return <></>;
+	};
+
 	const getThemePreviewAndSwatches = () => {
 		if ( loading ) {
 			return <AdminThemeColorsLoader showHeader={ false } />;
 		}
 		return (
 			<div className="qdlx-admin__tabs--content-wrap">
+				{ getPrimaryFontStylesheet() }
+				{ getSecondaryFontStylesheet() }
 				<div className="qdlx-admin__tabs--content-panel">
 					<form
 						onSubmit={ ( e ) => {
@@ -495,6 +534,14 @@ const Interface = ( props ) => {
 			</>
 		);
 	};
+
+	if ( loading ) {
+		return (
+			<>
+				<AdminThemeColorsLoader showHeader={ false } />
+			</>
+		);
+	}
 
 	return (
 		<>

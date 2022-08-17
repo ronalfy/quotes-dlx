@@ -113,11 +113,11 @@ button.button-reset.show-cursor {
 #qdlx-theme-preview.mobile .quotes-dlx {
   max-width: 30em !important;
 }
-#qdlx-theme-preview.medium .quotes-dlx {
+#qdlx-theme-preview.tablet .quotes-dlx {
   max-width: 48em !important;
 }
 #qdlx-theme-preview.desktop .quotes-dlx {
-  max-width: 64em !important;
+  max-width: 64em;
 }
 
 /*# sourceMappingURL=quotes-dlx-frontend.css.map*/

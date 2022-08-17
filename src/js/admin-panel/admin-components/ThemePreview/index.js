@@ -47,24 +47,29 @@ const ThemePreview = ( props ) => {
 
 	const getFontFamilies = () => {
 		let styles = '';
-		styles += `--qdlx-primary-font-family: "${ primaryFontFamily }";`;
-		styles += `--qdlx-secondary-font-family: "${ secondaryFontFamily }";`;
+		styles += `--qdlx-primary-font-family: "${ primaryFontFamily.replace( /\"/g, '' ) }";`;
+		styles += `--qdlx-secondary-font-family: "${ secondaryFontFamily.replace( /\"/g, '' ) }";`;
 		styles = `:root { ${ styles } }`;
 		return (
 			<style>
 				{ styles }
 			</style>
 		);
+	};
+
+	let previewInlineStyles = { maxWidth: '1100px', margin: '0 auto' };
+	if ( colorsOnly ) {
+		previewInlineStyles = { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' };
 	}
 	return (
 		<>
 			{ getColorStyleVars() }
+			{ getFontFamilies() }
 
 			{ ! colorsOnly && (
 				<>
 					{ getFontSize() }
 					{ getLineHeight() }
-					{ getFontFamilies() }
 				</>
 
 			) }
@@ -77,7 +82,7 @@ const ThemePreview = ( props ) => {
 					'quotes-dlx-has-no-tweet-button': false,
 					[ `quotes-dlx-screen-${ screen }` ]: true,
 				} ) }
-				style={ { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' } }
+				style={ previewInlineStyles }
 			>
 				<div className="quotes-dlx-wrapper">
 					<figure>

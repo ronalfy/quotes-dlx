@@ -338,6 +338,32 @@ class Functions {
 	}
 
 	/**
+	 * Retrieve a primary or secondary font family.
+	 *
+	 * @param string $primary_or_secondary 'primary' or 'secondary'.
+	 * @param bool   $format_for_display    Whether to format it for display.
+	 *
+	 * @return string font family.
+	 */
+	public static function get_font_family( $primary_or_secondary = 'primary', $format_for_display = false ) {
+		$options = Options_Defaults::get_options();
+		if ( 'primary' === $primary_or_secondary ) {
+			$font = $options['primary_font_family'];
+		} else {
+			$font = $options['secondary_font_family'];
+		}
+		if ( ! $format_for_display ) {
+			return $font;
+		}
+		if ( self::is_adobe_font( $font ) ) {
+			return $font;
+		}
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
 	 * Retrieve the secondary font CSS argument for font-family.
 	 */
 	public static function get_secondary_font_family_css() {

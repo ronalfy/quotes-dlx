@@ -114,16 +114,12 @@ const Interface = ( props ) => {
 		template,
 	} = data;
 
-	const {
-		register,
-		control,
-		handleSubmit,
-		setValue,
-		getValues,
-		reset,
-		trigger,
-	} = useForm( {
-		defaultValues: {
+	const getDefaultValues = () => {
+		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
+		if ( null !== maybeSavedFormFields && 0 === advancedTabDirtyCount ) {
+			return JSON.parse( maybeSavedFormFields );
+		}
+		return {
 			desktopBreakpoint: desktop_breakpoint,
 			desktopBreakpointUnit: desktop_breakpoint_unit,
 			tabletBreakpoint: tablet_breakpoint,
@@ -139,7 +135,19 @@ const Interface = ( props ) => {
 			adobeProjectId: adobe_project_id,
 			activateAdobeFontsAdmin: activate_adobe_fonts_admin,
 			activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
-		},
+		};
+	}
+
+	const {
+		register,
+		control,
+		handleSubmit,
+		setValue,
+		getValues,
+		reset,
+		trigger,
+	} = useForm( {
+		defaultValues: getDefaultValues(),
 	} );
 
 	const formValues = useWatch( { control } );
@@ -162,8 +170,9 @@ const Interface = ( props ) => {
 					// Reset count.
 					setAdvancedTabDirtyCount( 0 );
 					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
 					// Clear form dirty.
-					reset( ajaxData );
+					reset( ajaxData, { keepDirty: false, keepDirtyValues: false } );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -194,6 +203,7 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					reset( ajaxData );
 					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
 
 					// On save, add local storage variable with from contents: qdlx_advanced_save
 					// Read in saved local storage variable qdlx_advanced_save
@@ -253,12 +263,16 @@ const Interface = ( props ) => {
 		if ( null !== maybeSavedFormFields ) {
 			const valuesToSave = JSON.parse( maybeSavedFormFields );
 			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+				const keyValue = getValues( key );
+				if ( undefined !== keyValue && keyValue !== value ) {
+					setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+				}
 			}
 		}
-		if ( isDirty ) {
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setAdvancedTabDirtyCount( touchedFieldsCountToSave );
+		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
+		if ( null !== maybeDirtyFields ) {
+			const dirtyFieldsParsedJson = JSON.parse( maybeDirtyFields );
+			setAdvancedTabDirtyCount( Object.keys( dirtyFieldsParsedJson ).length );
 		}
 		setLoading( false );
 	}, [] );
@@ -270,6 +284,7 @@ const Interface = ( props ) => {
 		if ( isDirty || advancedTabDirtyCount > 0 ) {
 			// Get current form values.
 			const formValuesToSave = JSON.stringify( getValues() );
+			const formDirtyFields = JSON.stringify( dirtyFields );
 
 			// Get the length of the fields that need to be saved.
 			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
@@ -278,6 +293,7 @@ const Interface = ( props ) => {
 
 			// Store touched fields.
 			localStorage.setItem( localStorageKey, formValuesToSave );
+			localStorage.setItem( localStorageKey + '_dirty_fields', formDirtyFields );
 		} else {
 			setAdvancedTabDirtyCount( 0 );
 		}

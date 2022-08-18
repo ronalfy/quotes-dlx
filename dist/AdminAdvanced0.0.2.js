@@ -624,8 +624,14 @@ var Interface = function Interface(props) {
       activate_adobe_fonts_frontend = data.activate_adobe_fonts_frontend,
       template = data.template;
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useForm)({
-    defaultValues: {
+  var getDefaultValues = function getDefaultValues() {
+    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
+
+    if (null !== maybeSavedFormFields && 0 === advancedTabDirtyCount) {
+      return JSON.parse(maybeSavedFormFields);
+    }
+
+    return {
       desktopBreakpoint: desktop_breakpoint,
       desktopBreakpointUnit: desktop_breakpoint_unit,
       tabletBreakpoint: tablet_breakpoint,
@@ -641,7 +647,11 @@ var Interface = function Interface(props) {
       adobeProjectId: adobe_project_id,
       activateAdobeFontsAdmin: activate_adobe_fonts_admin,
       activateAdobeFontsFrontend: activate_adobe_fonts_frontend
-    }
+    };
+  };
+
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useForm)({
+    defaultValues: getDefaultValues()
   }),
       register = _useForm.register,
       control = _useForm.control,
@@ -675,9 +685,13 @@ var Interface = function Interface(props) {
       if (ajaxSuccess) {
         // Reset count.
         setAdvancedTabDirtyCount(0);
-        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData)); // Clear form dirty.
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields'); // Clear form dirty.
 
-        reset(ajaxData);
+        reset(ajaxData, {
+          keepDirty: false,
+          keepDirtyValues: false
+        });
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
@@ -702,7 +716,8 @@ var Interface = function Interface(props) {
         setAdvancedTabDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
-        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData)); // On save, add local storage variable with from contents: qdlx_advanced_save
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields'); // On save, add local storage variable with from contents: qdlx_advanced_save
         // Read in saved local storage variable qdlx_advanced_save
         // Replace with saved local storage with no dirty update.
         // Remove local storage variable.
@@ -759,16 +774,22 @@ var Interface = function Interface(props) {
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
-        setValue(key, value, {
-          shouldDirty: true,
-          shouldValidate: true
-        });
+        var keyValue = getValues(key);
+
+        if (undefined !== keyValue && keyValue !== value) {
+          setValue(key, value, {
+            shouldDirty: true,
+            shouldValidate: true
+          });
+        }
       }
     }
 
-    if (isDirty) {
-      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setAdvancedTabDirtyCount(touchedFieldsCountToSave);
+    var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
+
+    if (null !== maybeDirtyFields) {
+      var dirtyFieldsParsedJson = JSON.parse(maybeDirtyFields);
+      setAdvancedTabDirtyCount(Object.keys(dirtyFieldsParsedJson).length);
     }
 
     setLoading(false);
@@ -780,12 +801,14 @@ var Interface = function Interface(props) {
 
     if (isDirty || advancedTabDirtyCount > 0) {
       // Get current form values.
-      var formValuesToSave = JSON.stringify(getValues()); // Get the length of the fields that need to be saved.
+      var formValuesToSave = JSON.stringify(getValues());
+      var formDirtyFields = JSON.stringify(dirtyFields); // Get the length of the fields that need to be saved.
 
       var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
       setAdvancedTabDirtyCount(touchedFieldsCountToSave); // Store touched fields.
 
       localStorage.setItem(localStorageKey, formValuesToSave);
+      localStorage.setItem(localStorageKey + '_dirty_fields', formDirtyFields);
     } else {
       setAdvancedTabDirtyCount(0);
     }

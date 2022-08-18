@@ -752,6 +752,9 @@ class Ajax {
 				case 'activateAdobeFontsFrontend':
 					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
 					break;
+				default:
+					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
+					break;
 			}
 		}
 

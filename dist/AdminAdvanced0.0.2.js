@@ -674,7 +674,8 @@ var Interface = function Interface(props) {
 
       if (ajaxSuccess) {
         // Reset count.
-        setAdvancedTabDirtyCount(0); // Clear form dirty.
+        setAdvancedTabDirtyCount(0);
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData)); // Clear form dirty.
 
         reset(ajaxData);
         setIsSaved(true);
@@ -701,12 +702,12 @@ var Interface = function Interface(props) {
         setAdvancedTabDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
-        localStorage.removeItem(localStorageKey); // Reset toggles.
-        // setShowButtonOptions( ajaxData.tweetButtonEnabled );
-        // setEnableLinks( ajaxData.enableLinksInTweet );
-        // setEnableUrlShortener( ajaxData.urlShortener );
-        // setAnchorDisplay( ajaxData.hasAnchor );
-        // setButtonDisplay( ajaxData.tweetButtonDisplay );
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData)); // On save, add local storage variable with from contents: qdlx_advanced_save
+        // Read in saved local storage variable qdlx_advanced_save
+        // Replace with saved local storage with no dirty update.
+        // Remove local storage variable.
+        // Reset toggles.
+        // Override variable upon save.
 
         setIsReset(true);
         setTimeout(function () {

@@ -109,15 +109,4 @@ button.button-reset.show-cursor {
   margin-bottom: 0;
 }
 
-/* Modal iframe popup in the theme options screen */
-#qdlx-theme-preview.mobile .quotes-dlx {
-  max-width: 30em !important;
-}
-#qdlx-theme-preview.tablet .quotes-dlx {
-  max-width: 48em !important;
-}
-#qdlx-theme-preview.desktop .quotes-dlx {
-  max-width: 64em;
-}
-
 /*# sourceMappingURL=quotes-dlx-frontend.css.map*/

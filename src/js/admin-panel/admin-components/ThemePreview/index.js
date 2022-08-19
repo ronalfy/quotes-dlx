@@ -60,7 +60,18 @@ const ThemePreview = ( props ) => {
 		);
 	};
 
-	let previewInlineStyles = { maxWidth: '1100px', margin: '0 auto' };
+	let previewInlineStyles = { maxWidth: '1100px !important', margin: '0 auto' };
+	switch ( screen ) {
+		case 'mobile':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-small, 480px)', margin: '0 auto' };
+			break;
+		case 'tablet':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-medium, 768px)', margin: '0 auto' };
+			break;
+		case 'desktop':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-large, 1024px)', margin: '0 auto' };
+			break;
+	}
 	if ( colorsOnly ) {
 		previewInlineStyles = { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' };
 	}

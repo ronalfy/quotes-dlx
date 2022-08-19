@@ -329,7 +329,7 @@ var Interface = function Interface(props) {
       return;
     }
 
-    if (isDirty || setBlockDefaultsDirtyCount > 0) {
+    if (isDirty || blockDefaultsDirtyCount > 0) {
       // Get current dirty fields.
       setBlockDefaultsDirtyCount(Object.keys(dirtyFields).length); // Save form values to local storage.
 

@@ -412,7 +412,8 @@ var Interface = function Interface(props) {
         setContextualMenuDefaultsDirtyCount(0); // Clear form dirty.
 
         reset(ajaxData);
-        localStorage.removeItem(localStorageFieldValuesKey);
+        localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageFieldValuesKey + '_dirty_fields');
         setIsSaved(true);
         setTimeout(function () {
           setIsSaved(false);
@@ -438,7 +439,8 @@ var Interface = function Interface(props) {
         // Set form fields.
 
         reset(ajaxData);
-        localStorage.removeItem(localStorageFieldValuesKey);
+        localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageFieldValuesKey + '_dirty_fields');
         setContextMenuActive(ajaxData.enableContextualMenu);
         setIsReset(true);
         setTimeout(function () {
@@ -456,50 +458,57 @@ var Interface = function Interface(props) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
     var maybeSavedFormFields = localStorage.getItem(localStorageFieldValuesKey);
+    var maybeDirtyFields = localStorage.getItem(localStorageFieldValuesKey + '_dirty_fields');
 
     if (null !== maybeSavedFormFields) {
-      var valuesToSave = JSON.parse(maybeSavedFormFields);
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields); // If saved form fields, proceed with setting fields.
 
-      for (var _i2 = 0, _Object$entries = Object.entries(valuesToSave); _i2 < _Object$entries.length; _i2++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {}; // Get any dirty fields.
 
-        if ('enableContextualMenu' === key && false === value) {
-          setContextMenuActive(false);
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
         }
 
-        setValue(key, value, {
-          shouldDirty: true,
-          shouldValidate: true
-        });
-      }
-    }
+        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
 
-    if (isDirty) {
-      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setContextualMenuDefaultsDirtyCount(touchedFieldsCountToSave);
+          // If key is in saved dirty fields, set dirty.
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, value, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, value, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
     }
 
     setLoading(false);
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (saving || resetting) {
+    if (saving || resetting || loading) {
       return;
-    } // Check for saved form fields and restore. Storage gets cleared on save.
-
+    }
 
     if (isDirty || contextualMenuDefaultsDirtyCount > 0) {
-      // Get current form values.
-      var formValuesToSave = JSON.stringify(getValues()); // Get the length of the fields that need to be saved.
+      // Get current dirty fields.
+      setContextualMenuDefaultsDirtyCount(Object.keys(dirtyFields).length); // Save form values to local storage.
 
-      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setContextualMenuDefaultsDirtyCount(touchedFieldsCountToSave); // Store touched fields.
-
-      localStorage.setItem(localStorageFieldValuesKey, formValuesToSave);
-    } else {
-      setContextualMenuDefaultsDirtyCount(0);
+      localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(formValues));
+      localStorage.setItem(localStorageFieldValuesKey + '_dirty_fields', JSON.stringify(dirtyFields));
     }
 
     setLoading(false);

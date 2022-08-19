@@ -246,7 +246,7 @@ const Interface = ( props ) => {
 		if ( saving || resetting || loading ) {
 			return;
 		}
-		if ( isDirty || setBlockDefaultsDirtyCount > 0 ) {
+		if ( isDirty || blockDefaultsDirtyCount > 0 ) {
 			// Get current dirty fields.
 			setBlockDefaultsDirtyCount( Object.keys( dirtyFields ).length );
 

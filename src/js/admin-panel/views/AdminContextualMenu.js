@@ -113,7 +113,8 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem( localStorageFieldValuesKey );
+					localStorage.setItem( localStorageFieldValuesKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageFieldValuesKey + '_dirty_fields' );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -144,7 +145,8 @@ const Interface = ( props ) => {
 					// Clear form dirty.
 					// Set form fields.
 					reset( ajaxData );
-					localStorage.removeItem( localStorageFieldValuesKey );
+					localStorage.setItem( localStorageFieldValuesKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageFieldValuesKey + '_dirty_fields' );
 
 					setContextMenuActive( ajaxData.enableContextualMenu );
 
@@ -167,43 +169,50 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
-		const maybeSavedFormFields = localStorage.getItem(
-			localStorageFieldValuesKey
-		);
+		// Get saved local storage JSON strings.
+		const maybeSavedFormFields = localStorage.getItem( localStorageFieldValuesKey );
+		const maybeDirtyFields = localStorage.getItem( localStorageFieldValuesKey + '_dirty_fields' );
+
 		if ( null !== maybeSavedFormFields ) {
-			const valuesToSave = JSON.parse( maybeSavedFormFields );
-			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				if ( 'enableContextualMenu' === key && false === value ) {
-					setContextMenuActive( false );
+			// Parse saved JSON string into JSON object.
+			const savedFormFields = JSON.parse( maybeSavedFormFields );
+
+			// If saved form fields, proceed with setting fields.
+			if ( Object.keys( savedFormFields.length > 0 ) ) {
+				let savedDirtyFields = {};
+
+				// Get any dirty fields.
+				if ( null !== maybeDirtyFields ) {
+					savedDirtyFields = JSON.parse( maybeDirtyFields );
 				}
-				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+
+				for ( const [ key, value ] of Object.entries( savedFormFields ) ) {
+					// If key is in saved dirty fields, set dirty.
+
+					if ( savedDirtyFields.hasOwnProperty( key ) ) {
+						// Key is dirty, so set dirty.
+						setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+					} else {
+						// Key is not dirty, so set value without dirty.
+						setValue( key, value, { shouldDirty: false, shouldValidate: false } );
+					}
+				}
 			}
-		}
-		if ( isDirty ) {
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setContextualMenuDefaultsDirtyCount( touchedFieldsCountToSave );
 		}
 		setLoading( false );
 	}, [] );
 
 	useEffect( () => {
-		if ( saving || resetting ) {
+		if ( saving || resetting || loading ) {
 			return;
 		}
-		// Check for saved form fields and restore. Storage gets cleared on save.
 		if ( isDirty || contextualMenuDefaultsDirtyCount > 0 ) {
-			// Get current form values.
-			const formValuesToSave = JSON.stringify( getValues() );
+			// Get current dirty fields.
+			setContextualMenuDefaultsDirtyCount( Object.keys( dirtyFields ).length );
 
-			// Get the length of the fields that need to be saved.
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-
-			setContextualMenuDefaultsDirtyCount( touchedFieldsCountToSave );
-
-			// Store touched fields.
-			localStorage.setItem( localStorageFieldValuesKey, formValuesToSave );
-		} else {
-			setContextualMenuDefaultsDirtyCount( 0 );
+			// Save form values to local storage.
+			localStorage.setItem( localStorageFieldValuesKey, JSON.stringify( formValues ) );
+			localStorage.setItem( localStorageFieldValuesKey + '_dirty_fields', JSON.stringify( dirtyFields ) );
 		}
 		setLoading( false );
 	}, [ formValues ] );

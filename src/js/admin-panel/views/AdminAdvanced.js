@@ -421,6 +421,383 @@ const Interface = ( props ) => {
 			} );
 	};
 
+	const getAdobeFontsInterface = () => {
+		if ( ! getValues( 'enableFonts' ) ) {
+			return <></>;
+		}
+		return (
+			<>
+				<tr>
+					<th scope="row">{ __( 'Adobe Fonts', 'quotes-dlx' ) }</th>
+					<td>
+						<Controller
+							name="enableAdobeFonts"
+							control={ control }
+							render={ ( { field: { onChange, value } } ) => (
+								<ToggleControl
+									label={ __( 'Enable Adobe Fonts', 'quotes-dlx' ) }
+									className="qdlx-admin__toggle-control"
+									checked={ value }
+									onChange={ ( boolValue ) => {
+										onChange( boolValue );
+									} }
+									help={ __(
+										'If you are using Adobe Fonts, you can use them in QuotesDLX.',
+										'quotes-dlx'
+									) }
+								/>
+							) }
+						/>
+						{ getValues( 'enableAdobeFonts' ) && (
+							<>
+								<Controller
+									name="activateAdobeFontsAdmin"
+									control={ control }
+									render={ ( { field: { onChange, value } } ) => (
+										<ToggleControl
+											label={ __(
+												'Activate Adobe Fonts in the Admin',
+												'quotes-dlx'
+											) }
+											className="qdlx-admin__toggle-control"
+											checked={ value }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+											help={ __(
+												'If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.',
+												'quotes-dlx'
+											) }
+										/>
+									) }
+								/>
+								<Controller
+									name="activateAdobeFontsFrontend"
+									control={ control }
+									render={ ( { field: { onChange, value } } ) => (
+										<ToggleControl
+											label={ __(
+												'Activate Adobe Fonts on the Frontend',
+												'quotes-dlx'
+											) }
+											className="qdlx-admin__toggle-control"
+											checked={ value }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+											help={ __(
+												'If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.',
+												'quotes-dlx'
+											) }
+										/>
+									) }
+								/>
+							</>
+						) }
+
+						{ getValues( 'enableAdobeFonts' ) && (
+							<>
+								<Controller
+									name="adobeProjectId"
+									control={ control }
+									rules={ {
+										required: true,
+										pattern: /^[a-z0-9]+$/i,
+									} }
+									render={ ( { field } ) => (
+										<TextControl
+											{ ...field }
+											type="password"
+											label={ __(
+												'Adobe Fonts Project ID',
+												'quotes-dlx'
+											) }
+											id="search-qdlx-no-autofill"
+											className={ classNames(
+												'qdlx-admin__text-control',
+												{
+													'has-error':
+														'pattern' ===
+															errors.anchorPrefix?.type ||
+														'required' ===
+															errors.anchorPrefix?.type,
+													'is-required': true,
+												}
+											) }
+											aria-required="true"
+											help={ __(
+												'Enter the Adobe Project ID of the web project in order to load Adobe Fonts.',
+												'quotes-dlx'
+											) }
+										/>
+									) }
+								/>
+								{ 'required' === errors.adobeProjectId?.type && (
+									<Notice
+										message={ __( 'This field is a required field.' ) }
+										status="error"
+										politeness="assertive"
+										inline={ true }
+										icon={ CircularExclamationIcon }
+									/>
+								) }
+								{ 'pattern' === errors.adobeProjectId?.type && (
+									<Notice
+										message={ __(
+											'Please use only lowercase letters and numbers.'
+										) }
+										status="error"
+										politeness="assertive"
+										inline={ true }
+										icon={ CircularExclamationIcon }
+									/>
+								) }
+								{ false !== adobeFonts && <>{ getAdobeFonts() }</> }
+								<div className="qdlx-admin__tabs--content-actions">
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent',
+											{ 'has-error': hasErrors() },
+											{ 'has-icon': saving },
+											{ 'is-saving': { saving } }
+										) }
+										type="button"
+										text={
+											saving
+												? __( 'Getting Fonts…', 'quotes-dlx' )
+												: __( 'Refresh Fonts', 'quotes-dlx' )
+										}
+										icon={ saving ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting }
+										onClick={ async() => {
+											const result = await trigger(
+												'adobeProjectId'
+											);
+											if ( result ) {
+												refreshAdobeFonts();
+											}
+										} }
+									/>
+								</div>
+							</>
+						) }
+					</td>
+				</tr>
+			</>
+		);
+	};
+
+	const getFontOptions = () => {
+		if ( ! getValues( 'enableFonts' ) ) {
+			return <></>;
+		}
+		return (
+			<>
+				<tr>
+					<th scope="row">{ __( 'Font Selection', 'quotes-dlx' ) }</th>
+					<td>
+						<div className="quotes-dlx-admin-theme-options__select span-2">
+							<Controller
+								name="primaryFontFamily"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<SelectControl
+										className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+										label={ __(
+											'Select a Primary Font',
+											'quotes-dlx'
+										) }
+										value={ value }
+										onChange={ ( newFont ) => onChange( newFont ) }
+										options={ getFontFamilies() }
+									/>
+								) }
+							/>
+							{ 'custom' === getValues( 'primaryFontFamily' ) && (
+								<>
+									<div className="quotes-dlx-admin-control-wrapper">
+										<Controller
+											name="customFontPrimary"
+											control={ control }
+											rules={ {
+												required: true,
+												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+											} }
+											render={ ( { field } ) => (
+												<TextControl
+													{ ...field }
+													label={ __(
+														'Enter your custom secondary font.',
+														'quotes-dlx'
+													) }
+													placeholder={ __(
+														'e.g. "Open Sans", sans-serif',
+														'quotes-dlx'
+													) }
+													className={ classNames(
+														'qdlx-admin__text-control',
+														{
+															'has-error':
+															'pattern' ===
+																errors.customFontPrimary?.type ||
+															'required' ===
+																errors.customFontPrimary?.type,
+															'is-required': true,
+														}
+													) }
+													help={ __(
+														'Set the font and fallbacks.',
+														'quotes-dlx'
+													) }
+													aria-required="true"
+												/>
+											) }
+										/>
+										{ 'required' ===
+										errors.customFontPrimary?.type && (
+											<Notice
+												message={ __(
+													'This field is a required field.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+										{ 'pattern' ===
+										errors.customFontPrimary?.type && (
+											<Notice
+												message={ __(
+													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+									</div>
+								</>
+							) }
+						</div>
+						<div className="quotes-dlx-admin-theme-options__select span-2">
+							<Controller
+								name="secondaryFontFamily"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<SelectControl
+										className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+										label={ __(
+											'Select a Secondary Font',
+											'quotes-dlx'
+										) }
+										value={ value }
+										onChange={ ( newFont ) => onChange( newFont ) }
+										options={ getFontFamilies() }
+									/>
+								) }
+							/>
+							{ 'custom' === getValues( 'secondaryFontFamily' ) && (
+								<>
+									<div className="quotes-dlx-admin-control-wrapper">
+										<Controller
+											name="customFontSecondary"
+											control={ control }
+											rules={ {
+												required: true,
+												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+											} }
+											render={ ( { field } ) => (
+												<TextControl
+													{ ...field }
+													label={ __(
+														'Enter your custom secondary font.',
+														'quotes-dlx'
+													) }
+													placeholder={ __(
+														'e.g. "Open Sans", sans-serif',
+														'quotes-dlx'
+													) }
+													className={ classNames(
+														'qdlx-admin__text-control',
+														{
+															'has-error':
+															'pattern' ===
+																errors.customFontSecondary
+																	?.type ||
+															'required' ===
+																errors.customFontSecondary?.type,
+															'is-required': true,
+														}
+													) }
+													help={ __(
+														'Set the font and fallbacks.',
+														'quotes-dlx'
+													) }
+													aria-required="true"
+												/>
+											) }
+										/>
+										{ 'required' ===
+										errors.customFontSecondary?.type && (
+											<Notice
+												message={ __(
+													'This field is a required field.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+										{ 'pattern' ===
+										errors.customFontSecondary?.type && (
+											<Notice
+												message={ __(
+													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+									</div>
+								</>
+							) }
+						</div>
+						<div className="components-base-control">
+							<a
+								data-fancybox
+								onClick={ ( e ) => {
+									e.preventDefault();
+									new Fancybox(
+										[
+											{
+												src: getPreviewLink(),
+												type: 'iframe',
+											},
+										],
+										{
+											mainClass: 'qdlx-theme-preview-mobile',
+											caption: __( 'Font Preview', 'quotes-dlx' ),
+										}
+									);
+								} }
+								href={ getPreviewLink() }
+							>
+								{ __( 'Preview Fonts', 'quotes-dlx' ) }
+							</a>
+						</div>
+					</td>
+				</tr>
+			</>
+		);
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--home-grid-wrap">
@@ -436,7 +813,7 @@ const Interface = ( props ) => {
 								</h1>
 								<p className="description">
 									{ __(
-										'Advanced options allow you to set breakpoints and reset options.',
+										'Advanced options allow you to set default font families, breakpoints, and a reset options feature.',
 										'quotes-dlx'
 									) }
 								</p>
@@ -467,358 +844,8 @@ const Interface = ( props ) => {
 												/>
 											</td>
 										</tr>
-										<tr>
-											<th scope="row">{ __( 'Adobe Fonts', 'quotes-dlx' ) }</th>
-											<td>
-												<Controller
-													name="enableAdobeFonts"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<ToggleControl
-															label={ __( 'Enable Adobe Fonts', 'quotes-dlx' ) }
-															className="qdlx-admin__toggle-control"
-															checked={ value }
-															onChange={ ( boolValue ) => {
-																onChange( boolValue );
-															} }
-															help={ __(
-																'If you are using Adobe Fonts, you can use them in QuotesDLX.',
-																'quotes-dlx'
-															) }
-														/>
-													) }
-												/>
-												<Controller
-													name="activateAdobeFontsAdmin"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<ToggleControl
-															label={ __(
-																'Activate Adobe Fonts in the Admin',
-																'quotes-dlx'
-															) }
-															className="qdlx-admin__toggle-control"
-															checked={ value }
-															onChange={ ( boolValue ) => {
-																onChange( boolValue );
-															} }
-															help={ __(
-																'If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.',
-																'quotes-dlx'
-															) }
-														/>
-													) }
-												/>
-												<Controller
-													name="activateAdobeFontsFrontend"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<ToggleControl
-															label={ __(
-																'Activate Adobe Fonts on the Frontend',
-																'quotes-dlx'
-															) }
-															className="qdlx-admin__toggle-control"
-															checked={ value }
-															onChange={ ( boolValue ) => {
-																onChange( boolValue );
-															} }
-															help={ __(
-																'If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.',
-																'quotes-dlx'
-															) }
-														/>
-													) }
-												/>
-												{ getValues( 'enableAdobeFonts' ) && (
-													<>
-														<Controller
-															name="adobeProjectId"
-															control={ control }
-															rules={ {
-																required: true,
-																pattern: /^[a-z0-9]+$/i,
-															} }
-															render={ ( { field } ) => (
-																<TextControl
-																	{ ...field }
-																	type="password"
-																	label={ __(
-																		'Adobe Fonts Project ID',
-																		'quotes-dlx'
-																	) }
-																	id="search-qdlx-no-autofill"
-																	className={ classNames(
-																		'qdlx-admin__text-control',
-																		{
-																			'has-error':
-																				'pattern' ===
-																					errors.anchorPrefix?.type ||
-																				'required' ===
-																					errors.anchorPrefix?.type,
-																			'is-required': true,
-																		}
-																	) }
-																	aria-required="true"
-																	help={ __(
-																		'Enter the Adobe Project ID of the web project in order to load Adobe Fonts.',
-																		'quotes-dlx'
-																	) }
-																/>
-															) }
-														/>
-														{ 'required' === errors.adobeProjectId?.type && (
-															<Notice
-																message={ __( 'This field is a required field.' ) }
-																status="error"
-																politeness="assertive"
-																inline={ true }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-														{ 'pattern' === errors.adobeProjectId?.type && (
-															<Notice
-																message={ __(
-																	'Please use only lowercase letters and numbers.'
-																) }
-																status="error"
-																politeness="assertive"
-																inline={ true }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-														{ false !== adobeFonts && <>{ getAdobeFonts() }</> }
-														<div className="qdlx-admin__tabs--content-actions">
-															<Button
-																className={ classNames(
-																	'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent',
-																	{ 'has-error': hasErrors() },
-																	{ 'has-icon': saving },
-																	{ 'is-saving': { saving } }
-																) }
-																type="button"
-																text={
-																	saving
-																		? __( 'Getting Fonts…', 'quotes-dlx' )
-																		: __( 'Refresh Fonts', 'quotes-dlx' )
-																}
-																icon={ saving ? Spinner : false }
-																iconSize="18"
-																iconPosition="right"
-																disabled={ saving || resetting }
-																onClick={ async() => {
-																	const result = await trigger(
-																		'adobeProjectId'
-																	);
-																	if ( result ) {
-																		refreshAdobeFonts();
-																	}
-																} }
-															/>
-														</div>
-													</>
-												) }
-											</td>
-										</tr>
-										<tr>
-											<th scope="row">{ __( 'Font Selection', 'quotes-dlx' ) }</th>
-											<td>
-												<div className="quotes-dlx-admin-theme-options__select span-2">
-													<Controller
-														name="primaryFontFamily"
-														control={ control }
-														render={ ( { field: { onChange, value } } ) => (
-															<SelectControl
-																className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
-																label={ __(
-																	'Select a Primary Font',
-																	'quotes-dlx'
-																) }
-																value={ value }
-																onChange={ ( newFont ) => onChange( newFont ) }
-																options={ getFontFamilies() }
-															/>
-														) }
-													/>
-													{ 'custom' === getValues( 'primaryFontFamily' ) && (
-														<>
-															<div className="quotes-dlx-admin-control-wrapper">
-																<Controller
-																	name="customFontPrimary"
-																	control={ control }
-																	rules={ {
-																		required: true,
-																		pattern: /^[-\" ,A-Za-z0-9]+$/i,
-																	} }
-																	render={ ( { field } ) => (
-																		<TextControl
-																			{ ...field }
-																			label={ __(
-																				'Enter your custom secondary font.',
-																				'quotes-dlx'
-																			) }
-																			placeholder={ __(
-																				'e.g. "Open Sans", sans-serif',
-																				'quotes-dlx'
-																			) }
-																			className={ classNames(
-																				'qdlx-admin__text-control',
-																				{
-																					'has-error':
-																						'pattern' ===
-																							errors.customFontPrimary?.type ||
-																						'required' ===
-																							errors.customFontPrimary?.type,
-																					'is-required': true,
-																				}
-																			) }
-																			help={ __(
-																				'Set the font and fallbacks.',
-																				'quotes-dlx'
-																			) }
-																			aria-required="true"
-																		/>
-																	) }
-																/>
-																{ 'required' ===
-																	errors.customFontPrimary?.type && (
-																	<Notice
-																		message={ __(
-																			'This field is a required field.'
-																		) }
-																		status="error"
-																		politeness="assertive"
-																		inline={ true }
-																		icon={ CircularExclamationIcon }
-																	/>
-																) }
-																{ 'pattern' ===
-																	errors.customFontPrimary?.type && (
-																	<Notice
-																		message={ __(
-																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
-																		) }
-																		status="error"
-																		politeness="assertive"
-																		inline={ true }
-																		icon={ CircularExclamationIcon }
-																	/>
-																) }
-															</div>
-														</>
-													) }
-												</div>
-												<div className="quotes-dlx-admin-theme-options__select span-2">
-													<Controller
-														name="secondaryFontFamily"
-														control={ control }
-														render={ ( { field: { onChange, value } } ) => (
-															<SelectControl
-																className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
-																label={ __(
-																	'Select a Secondary Font',
-																	'quotes-dlx'
-																) }
-																value={ value }
-																onChange={ ( newFont ) => onChange( newFont ) }
-																options={ getFontFamilies() }
-															/>
-														) }
-													/>
-													{ 'custom' === getValues( 'secondaryFontFamily' ) && (
-														<>
-															<div className="quotes-dlx-admin-control-wrapper">
-																<Controller
-																	name="customFontSecondary"
-																	control={ control }
-																	rules={ {
-																		required: true,
-																		pattern: /^[-\" ,A-Za-z0-9]+$/i,
-																	} }
-																	render={ ( { field } ) => (
-																		<TextControl
-																			{ ...field }
-																			label={ __(
-																				'Enter your custom secondary font.',
-																				'quotes-dlx'
-																			) }
-																			placeholder={ __(
-																				'e.g. "Open Sans", sans-serif',
-																				'quotes-dlx'
-																			) }
-																			className={ classNames(
-																				'qdlx-admin__text-control',
-																				{
-																					'has-error':
-																						'pattern' ===
-																							errors.customFontSecondary
-																								?.type ||
-																						'required' ===
-																							errors.customFontSecondary?.type,
-																					'is-required': true,
-																				}
-																			) }
-																			help={ __(
-																				'Set the font and fallbacks.',
-																				'quotes-dlx'
-																			) }
-																			aria-required="true"
-																		/>
-																	) }
-																/>
-																{ 'required' ===
-																	errors.customFontSecondary?.type && (
-																	<Notice
-																		message={ __(
-																			'This field is a required field.'
-																		) }
-																		status="error"
-																		politeness="assertive"
-																		inline={ true }
-																		icon={ CircularExclamationIcon }
-																	/>
-																) }
-																{ 'pattern' ===
-																	errors.customFontSecondary?.type && (
-																	<Notice
-																		message={ __(
-																			'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
-																		) }
-																		status="error"
-																		politeness="assertive"
-																		inline={ true }
-																		icon={ CircularExclamationIcon }
-																	/>
-																) }
-															</div>
-														</>
-													) }
-												</div>
-												<div className="components-base-control">
-													<a
-														data-fancybox
-														onClick={ ( e ) => {
-															e.preventDefault();
-															new Fancybox(
-																[
-																	{
-																		src: getPreviewLink(),
-																		type: 'iframe',
-																	},
-																],
-																{
-																	mainClass: 'qdlx-theme-preview-mobile',
-																	caption: __( 'Font Preview', 'quotes-dlx' ),
-																}
-															);
-														} }
-														href={ getPreviewLink() }
-													>
-														{ __( 'Preview Fonts', 'quotes-dlx' ) }
-													</a>
-												</div>
-											</td>
-										</tr>
+										{ getAdobeFontsInterface() }
+										{ getFontOptions() }
 										<tr>
 											<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
 											<td>

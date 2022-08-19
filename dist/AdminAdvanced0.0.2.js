@@ -625,12 +625,6 @@ var Interface = function Interface(props) {
       template = data.template;
 
   var getDefaultValues = function getDefaultValues() {
-    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
-
-    if (null !== maybeSavedFormFields && 0 === advancedTabDirtyCount) {
-      return JSON.parse(maybeSavedFormFields);
-    }
-
     return {
       desktopBreakpoint: desktop_breakpoint,
       desktopBreakpointUnit: desktop_breakpoint_unit,
@@ -764,32 +758,42 @@ var Interface = function Interface(props) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
     var maybeSavedFormFields = localStorage.getItem(localStorageKey);
-
-    if (null !== maybeSavedFormFields) {
-      var valuesToSave = JSON.parse(maybeSavedFormFields);
-
-      for (var _i2 = 0, _Object$entries = Object.entries(valuesToSave); _i2 < _Object$entries.length; _i2++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
-
-        var keyValue = getValues(key);
-
-        if (undefined !== keyValue && keyValue !== value) {
-          setValue(key, value, {
-            shouldDirty: true,
-            shouldValidate: true
-          });
-        }
-      }
-    }
-
     var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
 
-    if (null !== maybeDirtyFields) {
-      var dirtyFieldsParsedJson = JSON.parse(maybeDirtyFields);
-      setAdvancedTabDirtyCount(Object.keys(dirtyFieldsParsedJson).length);
+    if (null !== maybeSavedFormFields) {
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields); // If saved form fields, proceed with setting fields.
+
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {}; // Get any dirty fields.
+
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
+        }
+
+        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+
+          // If key is in saved dirty fields, set dirty.
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, value, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, value, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
     }
 
     setLoading(false);
@@ -800,17 +804,11 @@ var Interface = function Interface(props) {
     }
 
     if (isDirty || advancedTabDirtyCount > 0) {
-      // Get current form values.
-      var formValuesToSave = JSON.stringify(getValues());
-      var formDirtyFields = JSON.stringify(dirtyFields); // Get the length of the fields that need to be saved.
+      // Get current dirty fields.
+      setAdvancedTabDirtyCount(Object.keys(dirtyFields).length); // Save form values to local storage.
 
-      var touchedFieldsCountToSave = Object.keys(dirtyFields).length;
-      setAdvancedTabDirtyCount(touchedFieldsCountToSave); // Store touched fields.
-
-      localStorage.setItem(localStorageKey, formValuesToSave);
-      localStorage.setItem(localStorageKey + '_dirty_fields', formDirtyFields);
-    } else {
-      setAdvancedTabDirtyCount(0);
+      localStorage.setItem(localStorageKey, JSON.stringify(formValues));
+      localStorage.setItem(localStorageKey + '_dirty_fields', JSON.stringify(dirtyFields));
     }
 
     setLoading(false);

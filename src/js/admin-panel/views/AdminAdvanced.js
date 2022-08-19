@@ -115,10 +115,6 @@ const Interface = ( props ) => {
 	} = data;
 
 	const getDefaultValues = () => {
-		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
-		if ( null !== maybeSavedFormFields && 0 === advancedTabDirtyCount ) {
-			return JSON.parse( maybeSavedFormFields );
-		}
 		return {
 			desktopBreakpoint: desktop_breakpoint,
 			desktopBreakpointUnit: desktop_breakpoint_unit,
@@ -136,7 +132,7 @@ const Interface = ( props ) => {
 			activateAdobeFontsAdmin: activate_adobe_fonts_admin,
 			activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
 		};
-	}
+	};
 
 	const {
 		register,
@@ -259,20 +255,35 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
+		// Get saved local storage JSON strings.
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
+		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
+
 		if ( null !== maybeSavedFormFields ) {
-			const valuesToSave = JSON.parse( maybeSavedFormFields );
-			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				const keyValue = getValues( key );
-				if ( undefined !== keyValue && keyValue !== value ) {
-					setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+			// Parse saved JSON string into JSON object.
+			const savedFormFields = JSON.parse( maybeSavedFormFields );
+
+			// If saved form fields, proceed with setting fields.
+			if ( Object.keys( savedFormFields.length > 0 ) ) {
+				let savedDirtyFields = {};
+
+				// Get any dirty fields.
+				if ( null !== maybeDirtyFields ) {
+					savedDirtyFields = JSON.parse( maybeDirtyFields );
+				}
+
+				for ( const [ key, value ] of Object.entries( savedFormFields ) ) {
+					// If key is in saved dirty fields, set dirty.
+
+					if ( savedDirtyFields.hasOwnProperty( key ) ) {
+						// Key is dirty, so set dirty.
+						setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+					} else {
+						// Key is not dirty, so set value without dirty.
+						setValue( key, value, { shouldDirty: false, shouldValidate: false } );
+					}
 				}
 			}
-		}
-		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
-		if ( null !== maybeDirtyFields ) {
-			const dirtyFieldsParsedJson = JSON.parse( maybeDirtyFields );
-			setAdvancedTabDirtyCount( Object.keys( dirtyFieldsParsedJson ).length );
 		}
 		setLoading( false );
 	}, [] );
@@ -282,20 +293,12 @@ const Interface = ( props ) => {
 			return;
 		}
 		if ( isDirty || advancedTabDirtyCount > 0 ) {
-			// Get current form values.
-			const formValuesToSave = JSON.stringify( getValues() );
-			const formDirtyFields = JSON.stringify( dirtyFields );
+			// Get current dirty fields.
+			setAdvancedTabDirtyCount( Object.keys( dirtyFields ).length );
 
-			// Get the length of the fields that need to be saved.
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-
-			setAdvancedTabDirtyCount( touchedFieldsCountToSave );
-
-			// Store touched fields.
-			localStorage.setItem( localStorageKey, formValuesToSave );
-			localStorage.setItem( localStorageKey + '_dirty_fields', formDirtyFields );
-		} else {
-			setAdvancedTabDirtyCount( 0 );
+			// Save form values to local storage.
+			localStorage.setItem( localStorageKey, JSON.stringify( formValues ) );
+			localStorage.setItem( localStorageKey + '_dirty_fields', JSON.stringify( dirtyFields ) );
 		}
 		setLoading( false );
 	}, [ formValues ] );

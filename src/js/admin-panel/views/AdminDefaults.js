@@ -24,7 +24,11 @@ import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 
+let initialRender = 0; // 0 is saved state.
+let useEffectCount = 0;
+
 const retrieveDefaults = () => {
+	initialRender = true;
 	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
 	} );
@@ -98,10 +102,9 @@ const Interface = ( props ) => {
 		url_shortener,
 	} = data;
 
-	const { register, control, handleSubmit, setValue, getValues, reset } =
-		useForm( {
-			defaultValues: {
-				maximumWidth: maximum_width,
+	const getDefaultValues = () => {
+		return {
+			maximumWidth: maximum_width,
 				maximumWidthUnit: maximum_width_unit,
 				twitterUsername: twitter_username,
 				hashtags,
@@ -116,7 +119,12 @@ const Interface = ( props ) => {
 				enableLinksInTweet: enable_links_in_tweet,
 				urlShorteningService: url_shortening_service,
 				urlShortener: url_shortener,
-			},
+		};
+	};
+
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
+			defaultValues: getDefaultValues(),
 		} );
 
 	const formValues = useWatch( { control } );
@@ -145,7 +153,8 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem( localStorageKey );
+					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
 
 					setIsSaved( true );
 					setTimeout( () => {
@@ -175,7 +184,8 @@ const Interface = ( props ) => {
 
 					// Clear form dirty.
 					reset( ajaxData );
-					localStorage.removeItem( localStorageKey );
+					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
 
 					// Reset toggles.
 					setShowButtonOptions( ajaxData.tweetButtonEnabled );
@@ -203,17 +213,39 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
+		useEffectCount += 1;
+	}, [] );
+
+	useEffect( () => {
+		// Get saved local storage JSON strings.
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
+		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
 
 		if ( null !== maybeSavedFormFields ) {
-			const valuesToSave = JSON.parse( maybeSavedFormFields );
-			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+			// Parse saved JSON string into JSON object.
+			const savedFormFields = JSON.parse( maybeSavedFormFields );
+
+			// If saved form fields, proceed with setting fields.
+			if ( Object.keys( savedFormFields.length > 0 ) ) {
+				let savedDirtyFields = {};
+
+				// Get any dirty fields.
+				if ( null !== maybeDirtyFields ) {
+					savedDirtyFields = JSON.parse( maybeDirtyFields );
+				}
+
+				for ( const [ key, value ] of Object.entries( savedFormFields ) ) {
+					// If key is in saved dirty fields, set dirty.
+
+					if ( savedDirtyFields.hasOwnProperty( key ) ) {
+						// Key is dirty, so set dirty.
+						setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+					} else {
+						// Key is not dirty, so set value without dirty.
+						setValue( key, value, { shouldDirty: false, shouldValidate: false } );
+					}
+				}
 			}
-		}
-		if ( isDirty ) {
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
 		}
 		setLoading( false );
 	}, [] );
@@ -222,19 +254,13 @@ const Interface = ( props ) => {
 		if ( saving || resetting || loading ) {
 			return;
 		}
-		if ( isDirty || blockDefaultsDirtyCount > 0 ) {
-			// Get current form values.
-			const formValuesToSave = JSON.stringify( getValues() );
+		if ( isDirty || setBlockDefaultsDirtyCount > 0 ) {
+			// Get current dirty fields.
+			setBlockDefaultsDirtyCount( Object.keys( dirtyFields ).length );
 
-			// Get the length of the fields that need to be saved.
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-
-			setBlockDefaultsDirtyCount( touchedFieldsCountToSave );
-
-			// Store touched fields.
-			localStorage.setItem( localStorageKey, formValuesToSave );
-		} else {
-			setBlockDefaultsDirtyCount( 0 );
+			// Save form values to local storage.
+			localStorage.setItem( localStorageKey, JSON.stringify( formValues ) );
+			localStorage.setItem( localStorageKey + '_dirty_fields', JSON.stringify( dirtyFields ) );
 		}
 		setLoading( false );
 	}, [ formValues ] );

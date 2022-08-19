@@ -65,7 +65,7 @@ const Interface = ( props ) => {
 	const { defaults } = props;
 	const response = defaults();
 	const { data, success } = response.data;
-	const { template, categories } = data;
+	const { template, categories, enable_fonts } = data;
 
 	const getColors = () => {
 		let colors = {};
@@ -246,6 +246,7 @@ const Interface = ( props ) => {
 					colorsOnly={ true }
 					primaryFontFamily={ fontFamilies.primary }
 					secondaryFontFamily={ fontFamilies.secondary }
+					fontsEnabled={ enable_fonts }
 				/>
 			</>
 		);

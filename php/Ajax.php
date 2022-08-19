@@ -537,8 +537,8 @@ class Ajax {
 		// $theme_color_palette  = Functions::get_site_theme_colors(); // phpcs:ignore.
 
 		// Retrieve font families and stylsheets.
-		$primary_font   = Functions::get_font_family( 'primary' );
-		$secondary_font = Functions::get_font_family( 'secondary' );
+		$primary_font       = Functions::get_font_family( 'primary' );
+		$secondary_font     = Functions::get_font_family( 'secondary' );
 		$format_for_display = true;
 
 		wp_send_json_success(
@@ -802,7 +802,8 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$theme_slug = Options_Defaults::get_options( 'template' );
+		$theme_slug   = Options_Defaults::get_options( 'template' );
+		$enable_fonts = Options_Defaults::get_options( 'enable_fonts' );
 
 		// Retrieve categories.
 		$categories = Themes\Themes_Addon_Categories::get_categories();
@@ -841,6 +842,7 @@ class Ajax {
 				'line_height_tablet'  => $theme_line_height_tablet,
 				'font_size_mobile'    => $theme_font_size_mobile,
 				'line_height_mobile'  => $theme_line_height_mobile,
+				'enable_fonts'        => (bool) $enable_fonts,
 			)
 		);
 	}

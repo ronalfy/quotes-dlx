@@ -320,7 +320,14 @@ class Functions {
 	 * Retrieve the primary font CSS argument for font-family.
 	 */
 	public static function get_primary_font_family_css() {
-		$options     = Options_Defaults::get_options();
+		$options = Options_Defaults::get_options();
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_fonts'] ) {
+			return 'inherit';
+		}
+
+		// Retrieve font variables.
 		$font        = $options['primary_font_family'];
 		$custom_font = $options['custom_font_primary'];
 
@@ -367,7 +374,14 @@ class Functions {
 	 * Retrieve the secondary font CSS argument for font-family.
 	 */
 	public static function get_secondary_font_family_css() {
-		$options     = Options_Defaults::get_options();
+		$options = Options_Defaults::get_options();
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_fonts'] ) {
+			return 'inherit';
+		}
+
+		// Retrieve font variables.
 		$font        = $options['secondary_font_family'];
 		$custom_font = $options['custom_font_secondary'];
 

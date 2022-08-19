@@ -128,7 +128,7 @@ $dark: #000;
 		}
 
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: var( --qdlx-bubble-gum-font-family, var( --qdlx-primary-font-family, sans-serif ) );
+			font-family: var( --qdlx-bubble-gum-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
 			font-size: 1.1em;
 			color: var( --qdlx-bubble-gum-secondary, $secondary );
@@ -197,7 +197,7 @@ $dark: #000;
 			border: 4px solid var( --qdlx-bubble-gum-primary, $primary );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: var( --qdlx-secondary-font-family ), sans-serif;
+			font-family: var( --qdlx-bubble-gum-secondary-font-family, var( --qdlx-primary-secondary-family, inherit ) );
 			font-weight: 500;
 			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
 			line-height: 1.0em;

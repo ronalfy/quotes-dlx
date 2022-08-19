@@ -1921,7 +1921,8 @@ var ThemePreview = function ThemePreview(props) {
       colorsOnly = props.colorsOnly,
       screen = props.screen,
       primaryFontFamily = props.primaryFontFamily,
-      secondaryFontFamily = props.secondaryFontFamily;
+      secondaryFontFamily = props.secondaryFontFamily,
+      fontsEnabled = props.fontsEnabled;
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
@@ -1949,6 +1950,11 @@ var ThemePreview = function ThemePreview(props) {
 
   var getFontFamilies = function getFontFamilies() {
     var styles = '';
+
+    if (!fontsEnabled) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+
     styles += "--qdlx-primary-font-family: \"".concat(primaryFontFamily.replace(/\"/g, ''), "\";");
     styles += "--qdlx-secondary-font-family: \"".concat(secondaryFontFamily.replace(/\"/g, ''), "\";");
     styles = ":root { ".concat(styles, " }");
@@ -2009,7 +2015,8 @@ ThemePreview.defaultProps = {
   buttonFontSize: '16px',
   screen: 'desktop',
   primaryFontFamily: 'Lato',
-  secondaryFontFamily: 'Open Sans'
+  secondaryFontFamily: 'Open Sans',
+  fontsEnabled: true
 };
 ThemePreview.propTypes = {
   activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
@@ -2021,7 +2028,8 @@ ThemePreview.propTypes = {
   buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
   primaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  secondaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired)
+  secondaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
+  fontsEnabled: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 

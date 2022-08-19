@@ -24,11 +24,7 @@ import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 
-let initialRender = 0; // 0 is saved state.
-let useEffectCount = 0;
-
 const retrieveDefaults = () => {
-	initialRender = true;
 	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
 	} );
@@ -105,20 +101,20 @@ const Interface = ( props ) => {
 	const getDefaultValues = () => {
 		return {
 			maximumWidth: maximum_width,
-				maximumWidthUnit: maximum_width_unit,
-				twitterUsername: twitter_username,
-				hashtags,
-				align,
-				tweetButtonEnabled: tweet_button_enabled,
-				shareButtonText: share_button_text,
-				tweetButtonAlignment: tweet_button_alignment,
-				tweetIconAlignment: tweet_icon_alignment,
-				tweetButtonDisplay: tweet_button_display,
-				anchorPrefix: anchor_prefix,
-				hasAnchor: has_anchor,
-				enableLinksInTweet: enable_links_in_tweet,
-				urlShorteningService: url_shortening_service,
-				urlShortener: url_shortener,
+			maximumWidthUnit: maximum_width_unit,
+			twitterUsername: twitter_username,
+			hashtags,
+			align,
+			tweetButtonEnabled: tweet_button_enabled,
+			shareButtonText: share_button_text,
+			tweetButtonAlignment: tweet_button_alignment,
+			tweetIconAlignment: tweet_icon_alignment,
+			tweetButtonDisplay: tweet_button_display,
+			anchorPrefix: anchor_prefix,
+			hasAnchor: has_anchor,
+			enableLinksInTweet: enable_links_in_tweet,
+			urlShorteningService: url_shortening_service,
+			urlShortener: url_shortener,
 		};
 	};
 
@@ -211,10 +207,6 @@ const Interface = ( props ) => {
 	const hasErrors = () => {
 		return Object.keys( errors ).length > 0;
 	};
-
-	useEffect( () => {
-		useEffectCount += 1;
-	}, [] );
 
 	useEffect( () => {
 		// Get saved local storage JSON strings.
@@ -436,9 +428,9 @@ const Interface = ( props ) => {
 																	'quotes-dlx'
 																) }
 																selected={ value }
-																onChange={ ( value ) => {
-																	setButtonDisplay( value );
-																	onChange( value );
+																onChange={ ( newValue ) => {
+																	setButtonDisplay( newValue );
+																	onChange( newValue );
 																} }
 																options={ [
 																	{

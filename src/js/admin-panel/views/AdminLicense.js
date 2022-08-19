@@ -100,6 +100,7 @@ const Interface = ( props ) => {
 		setError,
 		getValues,
 		reset,
+		resetField
 	} = useForm( {
 		defaultValues: {
 			quotesdlxLicense: license_key.substr( 0, 8 ) + '********',
@@ -127,9 +128,6 @@ const Interface = ( props ) => {
 
 				setLicenseData( ajaxData );
 				if ( ajaxSuccess ) {
-					// Reset count.
-					setLicensesDirtyCount( 0 );
-
 					if ( ajaxData.license_activated ) {
 						setLicenseActivated( true );
 					} else {
@@ -137,7 +135,11 @@ const Interface = ( props ) => {
 					}
 
 					setIsSaved( true );
-					localStorage.removeItem( localStorageKey );
+					localStorage.setItem( localStorageKey, JSON.stringify( Object.assign( formValues, ajaxData ) ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
+					resetField( 'quotesdlxLicense', { keepDirty: false, keepError: false, keepTouched: false, defaultValue: ajaxData.quotesdlxLicense.substr( 0, 8 ) + '********' } );
+					// Reset count.
+					setLicensesDirtyCount( 0 );
 					setTimeout( () => {
 						setIsSaved( false );
 					}, 3000 );
@@ -161,13 +163,15 @@ const Interface = ( props ) => {
 			nonce: quotes_dlx_admin.options_save_nonce,
 		} )
 			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
 				const ajaxSuccess = ajaxResponse.data.success;
 				if ( ajaxSuccess ) {
 					// // Reset count.
 					setLicensesDirtyCount( 0 );
 					setLicenseActivated( false );
 					setIsRevoked( true );
-					localStorage.removeItem( localStorageKey );
+					localStorage.setItem( localStorageKey, JSON.stringify( Object.assign( formValues, ajaxData ) ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
 					setTimeout( () => {
 						setIsRevoked( false );
 					}, 3000 );
@@ -175,10 +179,11 @@ const Interface = ( props ) => {
 					setError( 'quotesdlxLicense', {
 						type: 'validate',
 						message: __(
-							'Revoking the license resulted in an error and could not be deactivated.',
+							'Revoking the license resulted in an error and could not be deactivated. Please reactivate the license and try again.',
 							'quotes-dlx'
 						),
 					} );
+					setLicenseActivated( false );
 				}
 			} )
 			.catch( ( ajaxResponse ) => {} )
@@ -241,16 +246,45 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
+		// Get saved local storage JSON strings.
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
+		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
+
 		if ( null !== maybeSavedFormFields ) {
-			const valuesToSave = JSON.parse( maybeSavedFormFields );
-			for ( const [ key, value ] of Object.entries( valuesToSave ) ) {
-				setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+			// Parse saved JSON string into JSON object.
+			const savedFormFields = JSON.parse( maybeSavedFormFields );
+			setLicenseData( savedFormFields );
+			if ( savedFormFields.hasOwnProperty( 'license' ) ) {
+				if ( 'valid' === savedFormFields.license ) {
+					setLicenseActivated( true );
+				}
 			}
-		}
-		if ( isDirty ) {
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-			setLicensesDirtyCount( touchedFieldsCountToSave );
+
+			// If saved form fields, proceed with setting fields.
+			if ( Object.keys( savedFormFields.length > 0 ) ) {
+				let savedDirtyFields = {};
+
+				// Get any dirty fields.
+				if ( null !== maybeDirtyFields ) {
+					savedDirtyFields = JSON.parse( maybeDirtyFields );
+				}
+
+				for ( const [ key, value ] of Object.entries( savedFormFields ) ) {
+					// If key is in saved dirty fields, set dirty.
+
+					let keyValue = value;
+					if ( 'quotesdlxLicense' === key ) {
+						keyValue = value.substr( 0, 8 ) + '********' 
+					}
+					if ( savedDirtyFields.hasOwnProperty( key ) ) {
+						// Key is dirty, so set dirty.
+						setValue( key, keyValue, { shouldDirty: true, shouldValidate: true } );
+					} else {
+						// Key is not dirty, so set value without dirty.
+						setValue( key, keyValue, { shouldDirty: false, shouldValidate: false } );
+					}
+				}
+			}
 		}
 		setLoading( false );
 	}, [] );
@@ -260,18 +294,12 @@ const Interface = ( props ) => {
 			return;
 		}
 		if ( isDirty || licensesDirtyCount > 0 ) {
-			// Get current form values.
-			const formValuesToSave = JSON.stringify( getValues() );
+			// Get current dirty fields.
+			setLicensesDirtyCount( Object.keys( dirtyFields ).length );
 
-			// Get the length of the fields that need to be saved.
-			const touchedFieldsCountToSave = Object.keys( dirtyFields ).length;
-
-			setLicensesDirtyCount( touchedFieldsCountToSave );
-
-			// Store touched fields.
-			localStorage.setItem( localStorageKey, formValuesToSave );
-		} else {
-			setLicensesDirtyCount( 0 );
+			// Save form values to local storage.
+			localStorage.setItem( localStorageKey, JSON.stringify( Object.assign( formValues, licenseData ) ) );
+			localStorage.setItem( localStorageKey + '_dirty_fields', JSON.stringify( dirtyFields ) );
 		}
 		setLoading( false );
 	}, [ formValues ] );

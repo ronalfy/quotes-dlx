@@ -888,6 +888,7 @@ class Ajax {
 			$response['license_valid']     = false;
 			$response['license_activated'] = false;
 		}
+		$response['quotesdlxLicense'] = $license_key;
 
 		wp_send_json_success( $response );
 	}

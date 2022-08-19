@@ -301,11 +301,14 @@ class Ajax {
 		$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
 		$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 
+		// Make sure fonts are enabled.
+		$enable_fonts = (bool) Options_Defaults::get_options( 'enable_fonts' );
+
 		// Double check font families.
-		if ( '' === $primary_font_family ) {
+		if ( '' === $primary_font_family && $enable_fonts ) {
 			$primary_font_family = Functions::get_font_family( 'primary' );
 		}
-		if ( '' === $secondary_font_family ) {
+		if ( '' === $secondary_font_family && $enable_fonts ) {
 			$secondary_font_family = Functions::get_font_family( 'secondary' );
 		}
 
@@ -342,13 +345,7 @@ class Ajax {
 			Functions::get_plugin_version(),
 			'all'
 		);
-		wp_register_style(
-			'qdlx_font_css',
-			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
+
 		wp_register_style(
 			'qdlx_frontend_css',
 			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
@@ -358,27 +355,29 @@ class Ajax {
 		);
 
 		// Try to load font stylesheets.
-		$primary_font_css_url   = Functions::get_font_family_stylesheet_path( $primary_font_family );
-		$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
+		if ( $enable_fonts ) {
+			$primary_font_css_url   = Functions::get_font_family_stylesheet_path( $primary_font_family );
+			$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
 
-		if ( $primary_font_css_url ) {
-			wp_register_style(
-				'qdlx_primary_font_css',
-				$primary_font_css_url,
-				array(),
-				Functions::get_plugin_version(),
-				'all'
-			);
-		}
+			if ( $primary_font_css_url ) {
+				wp_register_style(
+					'qdlx_primary_font_css',
+					$primary_font_css_url,
+					array(),
+					Functions::get_plugin_version(),
+					'all'
+				);
+			}
 
-		if ( $secondary_font_css_url ) {
-			wp_register_style(
-				'qdlx_secondary_font_css',
-				$secondary_font_css_url,
-				array(),
-				Functions::get_plugin_version(),
-				'all'
-			);
+			if ( $secondary_font_css_url ) {
+				wp_register_style(
+					'qdlx_secondary_font_css',
+					$secondary_font_css_url,
+					array(),
+					Functions::get_plugin_version(),
+					'all'
+				);
+			}
 		}
 
 		// Get localized vars.
@@ -395,13 +394,15 @@ class Ajax {
 			$saved_colors = $theme_default_colors;
 		}
 
-		if ( Functions::is_adobe_font( sanitize_title( $primary_font_family ) ) ) {
-			// If adobe font, use slug instead of quotes.
-			$primary_font_family = sanitize_title( $primary_font_family );
-		}
-		if ( Functions::is_adobe_font( sanitize_title( $secondary_font_family ) ) ) {
-			// If adobe font, use slug instead of quotes.
-			$secondary_font_family = sanitize_title( $secondary_font_family );
+		if ( $enable_fonts ) {
+			if ( Functions::is_adobe_font( sanitize_title( $primary_font_family ) ) ) {
+				// If adobe font, use slug instead of quotes.
+				$primary_font_family = sanitize_title( $primary_font_family );
+			}
+			if ( Functions::is_adobe_font( sanitize_title( $secondary_font_family ) ) ) {
+				// If adobe font, use slug instead of quotes.
+				$secondary_font_family = sanitize_title( $secondary_font_family );
+			}
 		}
 
 		// Output local vars.
@@ -416,8 +417,8 @@ class Ajax {
 				'line_height'           => (float) $line_height,
 				'button_font_size'      => $button_font_size,
 				'screen'                => $screen,
-				'primary_font_family'   => $primary_font_family,
-				'secondary_font_family' => $secondary_font_family,
+				'primary_font_family'   => $enable_fonts ? $primary_font_family : 'inherit',
+				'secondary_font_family' => $enable_fonts ? $secondary_font_family : 'inherit',
 			)
 		);
 		?>

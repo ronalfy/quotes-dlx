@@ -140,6 +140,32 @@ const Interface = ( props ) => {
 			} );
 	};
 
+	useEffect( () => {
+		getSizeOptions();
+	}, [] );
+
+	const getSizeOptions = () => {
+		setLoading( true );
+		sendCommand( 'quotes_dlx_get_theme_size_options', {
+			nonce: quotes_dlx_admin.options_retrieve_nonce,
+			template: props.template,
+			screen: props.screenSize,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					reset( ajaxData, { keepDirty: false } );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setLoading( false );
+			} );
+	};
+
 	const getSaveResetButtons = () => {
 		return (
 			<>

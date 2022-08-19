@@ -759,6 +759,31 @@ var Interface = function Interface(props) {
     });
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getSizeOptions();
+  }, []);
+
+  var getSizeOptions = function getSizeOptions() {
+    setLoading(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_size_options', {
+      nonce: quotes_dlx_admin.options_retrieve_nonce,
+      template: props.template,
+      screen: props.screenSize
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        reset(ajaxData, {
+          keepDirty: false
+        });
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setLoading(false);
+    });
+  };
+
   var getSaveResetButtons = function getSaveResetButtons() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-inner"

@@ -439,21 +439,6 @@
 		grid-template-columns: 1fr;
 		row-gap: 2em;
 		column-gap: 0;
-
-		/** This is the ad on the right sidebar **/
-		& > div:last-child {
-			display: none;
-		}
-
-		@include respond-to('xl') {
-			grid-template-columns: 7fr 3fr;
-			row-gap: 2em;
-			column-gap: 2em;
-
-			& > div:last-child {
-				display: block;
-			}
-		}
 	}
 
 	.qdlx-admin__tabs--home-grid-wrap {

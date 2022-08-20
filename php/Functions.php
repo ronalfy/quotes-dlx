@@ -371,6 +371,22 @@ class Functions {
 	}
 
 	/**
+	 * Format font family for output into CSS.
+	 *
+	 * @param string $font_family Font family to convert.
+	 *
+	 * @return string font family.
+	 */
+	public static function format_font_family( $font_family ) {
+		if ( self::is_adobe_font( $font_family ) ) {
+			return $font_family;
+		}
+		// Must be a google font.
+		$font_family = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font_family ) ) ) . '"';
+		return $font_family;
+	}
+
+	/**
 	 * Retrieve the secondary font CSS argument for font-family.
 	 */
 	public static function get_secondary_font_family_css() {

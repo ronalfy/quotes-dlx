@@ -184,7 +184,7 @@
   border: 4px solid var(--qdlx-bubble-gum-primary, #E75480);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: var(--qdlx-bubble-gum-secondary-font-family, var(--qdlx-primary-secondary-family, inherit));
+  font-family: var(--qdlx-bubble-gum-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
   font-weight: 500;
   font-size: var(--qdlx-bubble-gum-button-font-size-mobile, 14px);
   line-height: 1em;

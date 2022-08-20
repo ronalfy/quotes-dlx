@@ -3,9 +3,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Gallery, Item } from 'react-photoswipe-gallery';
-import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import 'photoswipe/dist/photoswipe.css';
+import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
+import '@fancyapps/ui/dist/fancybox.css';
 import { __, sprintf } from '@wordpress/i18n';
 import Notice from '../admin-components/Notice';
 
@@ -20,6 +19,13 @@ import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
 	const { defaultTheme, setCurrentTheme } = useContext( TabsContext );
+
+	const getPreviewLink = ( selectedTemplate ) => {
+		return `${ ajaxurl }?action=quotes_dlx_theme_preview&nonce=${
+			quotes_dlx_admin.options_retrieve_nonce
+		}&template=${ selectedTemplate }&screen=desktop`;
+	};
+
 	const outputCurrentTheme = () => {
 		// Get default theme from options or override with context.
 		let selectedTemplate = defaults.template;
@@ -56,38 +62,32 @@ const AdminHome = () => {
 						</h1>
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
-						<button
-							className="button-reset show-cursor"
-							data-fancybox
-							data-src={ currentTheme.preview_image_url }
-							data-caption={ currentTheme.name }
+						<a href={ getPreviewLink( currentTheme.slug ) }
+							onClick={ ( e ) => {
+								e.preventDefault();
+								new Fancybox(
+									[
+										{
+											src: getPreviewLink( currentTheme.slug ),
+											type: 'iframe',
+										},
+									],
+									{
+										mainClass: 'qdlx-theme-preview-mobile',
+										caption: __( 'Default Theme', 'quotes-dlx' ),
+									}
+								);
+							} }
 						>
-							<figure>
-								<Gallery withCaption>
-									<Item
-										original={ currentTheme.preview_image_url }
-										thumbnail={ currentTheme.preview_image_url }
-										width={ currentTheme.image_width }
-										height={ currentTheme.image_height }
-										caption={ currentTheme.name }
-									>
-										{ ( { ref, open } ) => (
-											<img
-												ref={ ref }
-												onClick={ open }
-												src={ currentTheme.preview_image_url }
-												caption={ currentTheme.name }
-												alt={ currentTheme.name }
-												style={ { maxWidth: '100%', height: 'auto' } }
-												width={ currentTheme.image_width }
-												height={ currentTheme.image_height }
-											/>
-										) }
-									</Item>
-								</Gallery>
-								<figcaption>{ currentTheme.name }</figcaption>
-							</figure>
-						</button>
+							<img
+								src={ currentTheme.preview_image_url }
+								caption={ currentTheme.name }
+								alt={ currentTheme.name }
+								style={ { maxWidth: '100%', height: 'auto' } }
+								width={ currentTheme.image_width }
+								height={ currentTheme.image_height }
+							/>
+						</a>
 						<hr />
 						<div className="qdlx-button-primary">
 							<a
@@ -125,15 +125,29 @@ const AdminHome = () => {
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
 								<div className="qdlx-admin__themes--wrapper">
-									<iframe
-										width="560"
-										height="315"
-										src="https://www.youtube.com/embed/kQxFr3Jt_ro"
-										title="YouTube video player"
-										frameBorder="0"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-										allowFullScreen
-									></iframe>
+									<a href="https://www.youtube.com/embed/kQxFr3Jt_ro?rel=0&amp;controls=0&amp;showinfo=0" className="qdlx-admin__themes--video" onClick={ ( e ) => {
+										e.preventDefault();
+										new Fancybox(
+											[
+												{
+													src: 'https://www.youtube.com/embed/kQxFr3Jt_ro?rel=0&amp;controls=0&amp;showinfo=0',
+													type: 'iframe',
+												},
+											],
+											{
+												mainClass: 'qdlx-theme-preview-mobile',
+												caption: __( 'QuotesDLX Overview Video', 'quotes-dlx' ),
+											}
+										);
+									} }>
+										<img 
+											src={ `${ quotes_dlx_admin.image_dir }/quotes-dlx-video.jpg` }
+											width="1600"
+											height="900"
+											alt="Quotes Deluxe Video"
+											style={{ maxWidth: '100%', height: 'auto' }}
+										/>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -202,27 +216,14 @@ const AdminHome = () => {
 								<div className="qdlx-button-primary">
 									<a
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-										href="https://mediaron.com/plugins/quotes-dlx/newsletter/"
+										href="https://dlxplugins.com/announcements/"
 									>
-										{ __( 'Sign-up for Updates (external link)', 'quotes-dlx' ) }
+										{ __( 'Read more (Announcements)', 'quotes-dlx' ) }
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div>
-					<a
-						href="https://mediaron.com/highlight-and-share"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							style={ { maxWidth: '100%' } }
-							src={ quotes_dlx_admin.image_dir + '/has-banner.jpg' }
-							alt="Highlight and Share banner"
-						/>
-					</a>
 				</div>
 			</div>
 		</>

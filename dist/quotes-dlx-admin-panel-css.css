@@ -497,20 +497,6 @@ button.button-reset.show-cursor {
   grid-template-columns: 1fr;
   row-gap: 2em;
   column-gap: 0;
-  /** This is the ad on the right sidebar **/
-}
-.quotes-dlx-plugin .qdlx-admin__tabs--home-grid > div:last-child {
-  display: none;
-}
-@media (min-width: 75em) {
-  .quotes-dlx-plugin .qdlx-admin__tabs--home-grid {
-    grid-template-columns: 7fr 3fr;
-    row-gap: 2em;
-    column-gap: 2em;
-  }
-  .quotes-dlx-plugin .qdlx-admin__tabs--home-grid > div:last-child {
-    display: block;
-  }
 }
 .quotes-dlx-plugin .qdlx-admin__tabs--home-grid-wrap {
   display: grid;

@@ -306,10 +306,10 @@ class Ajax {
 
 		// Double check font families.
 		if ( '' === $primary_font_family && $enable_fonts ) {
-			$primary_font_family = Functions::get_font_family( 'primary' );
+			$primary_font_family = Functions::get_font_family( 'primary', true );
 		}
 		if ( '' === $secondary_font_family && $enable_fonts ) {
-			$secondary_font_family = Functions::get_font_family( 'secondary' );
+			$secondary_font_family = Functions::get_font_family( 'secondary', true );
 		}
 
 		wp_register_script(
@@ -394,15 +394,15 @@ class Ajax {
 			$saved_colors = $theme_default_colors;
 		}
 
-		if ( $enable_fonts ) {
-			if ( Functions::is_adobe_font( sanitize_title( $primary_font_family ) ) ) {
-				// If adobe font, use slug instead of quotes.
-				$primary_font_family = sanitize_title( $primary_font_family );
-			}
-			if ( Functions::is_adobe_font( sanitize_title( $secondary_font_family ) ) ) {
-				// If adobe font, use slug instead of quotes.
-				$secondary_font_family = sanitize_title( $secondary_font_family );
-			}
+		// Double-check font-sizes.
+		if ( 0 === $font_size ) {
+			$font_size = '16';
+		}
+		if ( 0 === $button_font_size ) {
+			$button_font_size = '16';
+		}
+		if ( ! $line_height ) {
+			$line_height = 1.65;
 		}
 
 		// Output local vars.

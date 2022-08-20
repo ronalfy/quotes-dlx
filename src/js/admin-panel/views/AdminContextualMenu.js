@@ -241,7 +241,7 @@ const Interface = ( props ) => {
 							</p>
 						</div>
 						<div className="qdlx-admin__tabs--content-inner">
-							{ ! contextMenuActive && (
+							{ ! getValues( 'enableContextualMenu' ) && (
 								<Notice
 									message={ __(
 										'Disabling this feature will prevent shortcuts for getting a permalink, copying the quote, and copying the tweet.'
@@ -275,7 +275,7 @@ const Interface = ( props ) => {
 									/>
 								) }
 							/>
-							{ contextMenuActive && (
+							{ getValues( 'enableContextualMenu' ) && (
 								<>
 									<Controller
 										name="enableCopyText"

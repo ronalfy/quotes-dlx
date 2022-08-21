@@ -29,7 +29,7 @@ import fontFamilies from '../../../fonts/fonts';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
-	return sendCommand( 'quotes_dlx_retrieve_admin_options_defaults', {
+	return sendCommand( 'quotes_dlx_retrieve_admin_options_advanced', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
 	} );
 };
@@ -70,6 +70,7 @@ const Interface = ( props ) => {
 		setLicensesDirtyCount,
 		setBlockDefaultsDirtyCount,
 		setContextualMenuDefaultsDirtyCount,
+		defaultTheme,
 	} = useContext( TabsContext );
 	const { defaults } = props;
 	const response = defaults();
@@ -154,7 +155,7 @@ const Interface = ( props ) => {
 	const onSubmit = ( formData ) => {
 		setSaving( true );
 
-		sendCommand( 'quotes_dlx_save_admin_options_defaults', {
+		sendCommand( 'quotes_dlx_save_admin_options_advanced', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			form_data: formData,
 		} )
@@ -185,7 +186,7 @@ const Interface = ( props ) => {
 
 	const handleReset = ( e ) => {
 		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_admin_options_defaults', {
+		sendCommand( 'quotes_dlx_reset_admin_options_advanced', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 		} )
 			.then( ( ajaxResponse ) => {
@@ -368,13 +369,17 @@ const Interface = ( props ) => {
 	};
 
 	const getPreviewLink = () => {
+		let selectedTemplate = template;
+		if ( '' !== defaultTheme ) {
+			selectedTemplate = defaultTheme;
+		}
 		return `${ ajaxurl }?action=quotes_dlx_theme_preview&fontsize=16
 		) }&lineheight=${ encodeURIComponent( 1.65 ) }&buttonsize=${ encodeURIComponent(
 	16
 ) }&nonce=${
 	quotes_dlx_admin.options_retrieve_nonce
 }&template=${ encodeURIComponent(
-	template
+	selectedTemplate
 ) }&screen=tablet&primary_font_family=${ encodeURIComponent(
 	toTitleCase( getValues( 'primaryFontFamily' ) )
 ) }&secondary_font_family=${ encodeURIComponent(

@@ -53,6 +53,11 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
 
+		// For saving/resetting the advanced options.
+		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_advanced', array( static::class, 'ajax_retrieve_options_advanced' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_admin_options_advanced', array( static::class, 'ajax_save_options_advanced' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_advanced', array( static::class, 'ajax_reset_options_advanced' ) );
+
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
@@ -200,6 +205,36 @@ class Ajax {
 			$defaults = Options_Defaults::get_options();
 			wp_send_json_success(
 				$defaults
+			);
+		}
+	}
+
+	/**
+	 * Retrieve admin options for the defaults view.
+	 */
+	public static function ajax_retrieve_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		} else {
+			$defaults = Options_Advanced::get_options();
+			wp_send_json_success(
+				array(
+					'desktop_breakpoint'            => $defaults['desktop_breakpoint'],
+					'tablet_breakpoint'             => $defaults['tablet_breakpoint'],
+					'mobile_breakpoint'             => $defaults['mobile_breakpoint'],
+					'desktop_breakpoint_unit'       => $defaults['desktop_breakpoint_unit'],
+					'tablet_breakpoint_unit'        => $defaults['tablet_breakpoint_unit'],
+					'mobile_breakpoint_unit'        => $defaults['mobile_breakpoint_unit'],
+					'enable_fonts'                  => (bool) $defaults['enable_fonts'],
+					'custom_font_primary'           => $defaults['custom_font_primary'],
+					'custom_font_secondary'         => $defaults['custom_font_secondary'],
+					'enable_adobe_typekit'          => (bool) $defaults['enable_adobe_fonts'],
+					'adobe_project_id'              => $defaults['adobe_project_id'],
+					'activate_adobe_fonts_admin'    => (bool) $defaults['activate_adobe_fonts_admin'],
+					'activate_adobe_fonts_frontend' => (bool) $defaults['activate_adobe_fonts_frontend'],
+					'template'                      => Options_Defaults::get_options( 'template' ),
+
+				)
 			);
 		}
 	}
@@ -764,6 +799,105 @@ class Ajax {
 		$options_to_return = array();
 		// Format saved fields.
 		foreach ( $options_to_save as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
+	}
+
+	/**
+	 * Save form options for default options.
+	 */
+	public static function ajax_save_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$options_to_save = Options_Advanced::get_options();
+
+		$form_data = $_POST['form_data']; // expect array.
+
+		// Iterate and sanitize.
+		foreach ( $form_data as $field => $field_value ) {
+			switch ( $field ) {
+				case 'desktopBreakpoint':
+					$options_to_save['desktop_breakpoint'] = (float) $field_value;
+					break;
+				case 'desktopBreakpointUnit':
+					$options_to_save['desktop_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'tabletBreakpoint':
+					$options_to_save['tablet_breakpoint'] = (float) $field_value;
+					break;
+				case 'tabletBreakpointUnit':
+					$options_to_save['tablet_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'mobileBreakpoint':
+					$options_to_save['mobile_breakpoint'] = (float) $field_value;
+					break;
+				case 'mobileBreakpointUnit':
+					$options_to_save['mobile_breakpoint_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableFonts':
+					$options_to_save['enable_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'customFontPrimary':
+					$options_to_save['custom_font_primary'] = sanitize_text_field( $field_value );
+					break;
+				case 'customFontSecondary':
+					$options_to_save['custom_font_secondary'] = sanitize_text_field( $field_value );
+					break;
+				case 'primaryFontFamily':
+					$options_to_save['primary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'secondaryFontFamily':
+					$options_to_save['secondary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableAdobeFonts':
+					$options_to_save['enable_adobe_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'adobeProjectId':
+					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'activateAdobeFontsAdmin':
+					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'activateAdobeFontsFrontend':
+					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
+					break;
+			}
+		}
+
+		Options_Advanced::update_options( '', $options_to_save );
+
+		$options_to_return = array();
+		// Format saved fields.
+		foreach ( $options_to_save as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
+	}
+
+	/**
+	 * Reset form options for advanced options.
+	 */
+	public static function ajax_reset_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$options           = Options_Advanced::reset();
+		$options_to_return = array();
+
+		// Format saved fields.
+		foreach ( $options as $field => $value ) {
 			// Convert to camelcase.
 			$new_field                       = Functions::to_camelcase( $field );
 			$options_to_return[ $new_field ] = $value;

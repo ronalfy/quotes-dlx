@@ -60,119 +60,6 @@ function FormToggle(_ref) {
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/components/build-module/radio-control/index.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/build-module/radio-control/index.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RadioControl": () => (/* binding */ RadioControl),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
-/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
-
-
-
-/**
- * External dependencies
- */
-
-
-
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-/**
- * Render a user interface to select the user type using radio inputs.
- *
- * ```jsx
- * import { RadioControl } from '@wordpress/components';
- * import { useState } from '@wordpress/element';
- *
- * const MyRadioControl = () => {
- *   const [ option, setOption ] = useState( 'a' );
- *
- *   return (
- *     <RadioControl
- *       label="User type"
- *       help="The type of the current user"
- *       selected={ option }
- *       options={ [
- *         { label: 'Author', value: 'a' },
- *         { label: 'Editor', value: 'e' },
- *       ] }
- *       onChange={ ( value ) => setOption( value ) }
- *     />
- *   );
- * };
- * ```
- */
-function RadioControl( // ref is omitted until we have `WordPressComponentPropsWithoutRef` or add
-// ref forwarding to RadioControl.
-props) {
-  const {
-    label,
-    className,
-    selected,
-    help,
-    onChange,
-    hideLabelFromVision,
-    options = [],
-    ...additionalProps
-  } = props;
-  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["default"])(RadioControl);
-  const id = `inspector-radio-control-${instanceId}`;
-
-  const onChangeValue = event => onChange(event.target.value);
-
-  if ((0,lodash__WEBPACK_IMPORTED_MODULE_1__.isEmpty)(options)) {
-    return null;
-  }
-
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    label: label,
-    id: id,
-    hideLabelFromVision: hideLabelFromVision,
-    help: help,
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'components-radio-control')
-  }, options.map((option, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)("div", {
-    key: `${id}-${index}`,
-    className: "components-radio-control__option"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    id: `${id}-${index}`,
-    className: "components-radio-control__input",
-    type: "radio",
-    name: id,
-    value: option.value,
-    onChange: onChangeValue,
-    checked: option.value === selected,
-    "aria-describedby": !!help ? `${id}__help` : undefined
-  }, additionalProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.createElement)("label", {
-    htmlFor: `${id}-${index}`
-  }, option.label))));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RadioControl);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ "./node_modules/@wordpress/components/build-module/text-control/index.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@wordpress/components/build-module/text-control/index.js ***!
@@ -432,7 +319,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/radio-control/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
@@ -527,7 +413,6 @@ var Interface = function Interface(props) {
       setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount,
       setThemesDefaultsDirtyCount = _useContext.setThemesDefaultsDirtyCount,
       setLicensesDirtyCount = _useContext.setLicensesDirtyCount,
-      setDefaultTheme = _useContext.setDefaultTheme,
       setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount,
       setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount;
 
@@ -892,7 +777,6 @@ var Interface = function Interface(props) {
     setLicensesDirtyCount(0);
     setBlockDefaultsDirtyCount(0);
     setContextualMenuDefaultsDirtyCount(0);
-    setDefaultTheme('');
     setHardReset(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_all_options', {
       nonce: quotes_dlx_admin.options_save_nonce
@@ -1246,7 +1130,7 @@ var Interface = function Interface(props) {
 
       var field = _ref11.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint (px)', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
           'has-error': 'pattern' === ((_errors$desktopBreakp = errors.desktopBreakpoint) === null || _errors$desktopBreakp === void 0 ? void 0 : _errors$desktopBreakp.type) || 'required' === ((_errors$desktopBreakp2 = errors.desktopBreakpoint) === null || _errors$desktopBreakp2 === void 0 ? void 0 : _errors$desktopBreakp2.type),
           'is-required': true
@@ -1267,27 +1151,6 @@ var Interface = function Interface(props) {
     politeness: "assertive",
     inline: true,
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    control: control,
-    name: "desktopBreakpointUnit",
-    render: function render(_ref12) {
-      var _ref12$field = _ref12.field,
-          onChange = _ref12$field.onChange,
-          value = _ref12$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__["default"], {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint Unit', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the desktop breakpoint.', 'quotes-dlx'),
-        selected: value,
-        onChange: onChange,
-        options: [{
-          label: 'px',
-          value: 'px'
-        }, {
-          label: 'em',
-          value: 'em'
-        }]
-      });
-    }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__control-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
@@ -1297,12 +1160,12 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref13) {
+    render: function render(_ref12) {
       var _errors$tabletBreakpo, _errors$tabletBreakpo2;
 
-      var field = _ref13.field;
+      var field = _ref12.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint (px)', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
           'has-error': 'pattern' === ((_errors$tabletBreakpo = errors.tabletBreakpoint) === null || _errors$tabletBreakpo === void 0 ? void 0 : _errors$tabletBreakpo.type) || 'required' === ((_errors$tabletBreakpo2 = errors.tabletBreakpoint) === null || _errors$tabletBreakpo2 === void 0 ? void 0 : _errors$tabletBreakpo2.type),
           'is-required': true
@@ -1323,27 +1186,6 @@ var Interface = function Interface(props) {
     politeness: "assertive",
     inline: true,
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    control: control,
-    name: "tabletBreakpointUnit",
-    render: function render(_ref14) {
-      var _ref14$field = _ref14.field,
-          onChange = _ref14$field.onChange,
-          value = _ref14$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__["default"], {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint Unit', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the tablet breakpoint.', 'quotes-dlx'),
-        selected: value,
-        onChange: onChange,
-        options: [{
-          label: 'px',
-          value: 'px'
-        }, {
-          label: 'em',
-          value: 'em'
-        }]
-      });
-    }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__control-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
@@ -1353,12 +1195,12 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref15) {
+    render: function render(_ref13) {
       var _errors$mobileBreakpo, _errors$mobileBreakpo2;
 
-      var field = _ref15.field;
+      var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint (px)', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
           'has-error': 'pattern' === ((_errors$mobileBreakpo = errors.mobileBreakpoint) === null || _errors$mobileBreakpo === void 0 ? void 0 : _errors$mobileBreakpo.type) || 'required' === ((_errors$mobileBreakpo2 = errors.mobileBreakpoint) === null || _errors$mobileBreakpo2 === void 0 ? void 0 : _errors$mobileBreakpo2.type),
           'is-required': true
@@ -1379,27 +1221,6 @@ var Interface = function Interface(props) {
     politeness: "assertive",
     inline: true,
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    control: control,
-    name: "mobileBreakpointUnit",
-    render: function render(_ref16) {
-      var _ref16$field = _ref16.field,
-          onChange = _ref16$field.onChange,
-          value = _ref16$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__["default"], {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint Unit', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the mobile breakpoint.', 'quotes-dlx'),
-        selected: value,
-        onChange: onChange,
-        options: [{
-          label: 'px',
-          value: 'px'
-        }, {
-          label: 'em',
-          value: 'em'
-        }]
-      });
-    }
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {

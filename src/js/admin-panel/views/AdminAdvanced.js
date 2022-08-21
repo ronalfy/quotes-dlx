@@ -68,7 +68,6 @@ const Interface = ( props ) => {
 		setAdvancedTabDirtyCount,
 		setThemesDefaultsDirtyCount,
 		setLicensesDirtyCount,
-		setDefaultTheme,
 		setBlockDefaultsDirtyCount,
 		setContextualMenuDefaultsDirtyCount,
 	} = useContext( TabsContext );
@@ -396,7 +395,6 @@ const Interface = ( props ) => {
 		setLicensesDirtyCount( 0 );
 		setBlockDefaultsDirtyCount( 0 );
 		setContextualMenuDefaultsDirtyCount( 0 );
-		setDefaultTheme( '' );
 
 		setHardReset( true );
 
@@ -857,7 +855,7 @@ const Interface = ( props ) => {
 														render={ ( { field } ) => (
 															<TextControl
 																{ ...field }
-																label={ __( 'Desktop Breakpoint', 'quotes-dlx' ) }
+																label={ __( 'Desktop Breakpoint (px)', 'quotes-dlx' ) }
 																className={ classNames(
 																	'qdlx-admin__text-control',
 																	{
@@ -897,28 +895,7 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
-													<Controller
-														control={ control }
-														name="desktopBreakpointUnit"
-														render={ ( { field: { onChange, value } } ) => (
-															<RadioControl
-																label={ __(
-																	'Desktop Breakpoint Unit',
-																	'quotes-dlx'
-																) }
-																help={ __(
-																	'Select a unit for the desktop breakpoint.',
-																	'quotes-dlx'
-																) }
-																selected={ value }
-																onChange={ onChange }
-																options={ [
-																	{ label: 'px', value: 'px' },
-																	{ label: 'em', value: 'em' },
-																] }
-															/>
-														) }
-													/>
+													
 												</div>
 												<div className="qdlx-admin__control-item">
 													<Controller
@@ -928,7 +905,7 @@ const Interface = ( props ) => {
 														render={ ( { field } ) => (
 															<TextControl
 																{ ...field }
-																label={ __( 'Tablet Breakpoint', 'quotes-dlx' ) }
+																label={ __( 'Tablet Breakpoint (px)', 'quotes-dlx' ) }
 																className={ classNames(
 																	'qdlx-admin__text-control',
 																	{
@@ -968,28 +945,7 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
-													<Controller
-														control={ control }
-														name="tabletBreakpointUnit"
-														render={ ( { field: { onChange, value } } ) => (
-															<RadioControl
-																label={ __(
-																	'Tablet Breakpoint Unit',
-																	'quotes-dlx'
-																) }
-																help={ __(
-																	'Select a unit for the tablet breakpoint.',
-																	'quotes-dlx'
-																) }
-																selected={ value }
-																onChange={ onChange }
-																options={ [
-																	{ label: 'px', value: 'px' },
-																	{ label: 'em', value: 'em' },
-																] }
-															/>
-														) }
-													/>
+													
 												</div>
 												<div className="qdlx-admin__control-item">
 													<Controller
@@ -999,7 +955,7 @@ const Interface = ( props ) => {
 														render={ ( { field } ) => (
 															<TextControl
 																{ ...field }
-																label={ __( 'Mobile Breakpoint', 'quotes-dlx' ) }
+																label={ __( 'Mobile Breakpoint (px)', 'quotes-dlx' ) }
 																className={ classNames(
 																	'qdlx-admin__text-control',
 																	{
@@ -1039,28 +995,7 @@ const Interface = ( props ) => {
 															icon={ CircularExclamationIcon }
 														/>
 													) }
-													<Controller
-														control={ control }
-														name="mobileBreakpointUnit"
-														render={ ( { field: { onChange, value } } ) => (
-															<RadioControl
-																label={ __(
-																	'Mobile Breakpoint Unit',
-																	'quotes-dlx'
-																) }
-																help={ __(
-																	'Select a unit for the mobile breakpoint.',
-																	'quotes-dlx'
-																) }
-																selected={ value }
-																onChange={ onChange }
-																options={ [
-																	{ label: 'px', value: 'px' },
-																	{ label: 'em', value: 'em' },
-																] }
-															/>
-														) }
-													/>
+													
 												</div>
 											</td>
 										</tr>

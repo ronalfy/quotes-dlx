@@ -208,9 +208,9 @@ class Blocks {
 				:root {
 					--qdlx-primary-font-family: <?php echo Functions::get_primary_font_family_css(); ?>;
 					--qdlx-secondary-font-family: <?php echo Functions::get_secondary_font_family_css(); ?>;
-					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options['mobile_breakpoint'] ) . esc_html( $options['mobile_breakpoint_unit'] ); ?>;
-					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options['tablet_breakpoint'] ) . esc_html( $options['tablet_breakpoint_unit'] ); ?>;
-					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options['desktop_breakpoint'] ) . esc_html( $options['desktop_breakpoint_unit'] ); ?>;
+					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options['mobile_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options['tablet_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options['desktop_breakpoint'] ) . 'px'; ?>;
 				}
 			</style>
 		<style>

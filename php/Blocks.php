@@ -152,7 +152,7 @@ class Blocks {
 		$blocks = parse_blocks( $post_content );
 		if ( ! empty( $blocks ) ) {
 			foreach ( $blocks as $block ) {
-				if ( $block['blockName'] === 'mediaron/quotes-dlx' ) {
+				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
 					$template = $block['attrs']['template'] ?? false;
 					if ( $template ) {
 						$handle = 'quotes-dlx-' . $template;
@@ -200,6 +200,7 @@ class Blocks {
 
 		// Get options.
 		$options                         = Options_Defaults::get_options();
+		$options_advanced                = Options_Advanced::get_options();
 		$saved_theme_options             = Options_Theme::get_options();
 		$theme_default_font_size_options = Options_Theme::get_default_sizes( 'all' );
 		// Set breakpoints and font family variables.
@@ -208,9 +209,9 @@ class Blocks {
 				:root {
 					--qdlx-primary-font-family: <?php echo Functions::get_primary_font_family_css(); ?>;
 					--qdlx-secondary-font-family: <?php echo Functions::get_secondary_font_family_css(); ?>;
-					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options['mobile_breakpoint'] ) . 'px'; ?>;
-					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options['tablet_breakpoint'] ) . 'px'; ?>;
-					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options['desktop_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options_advanced['mobile_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options_advanced['tablet_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options_advanced['desktop_breakpoint'] ) . 'px'; ?>;
 				}
 			</style>
 		<style>

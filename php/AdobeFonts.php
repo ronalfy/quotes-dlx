@@ -58,7 +58,7 @@ class AdobeFonts {
 	 */
 	public static function add_preview_modal_scripts( $template, $font_primary ) {
 		if ( Functions::is_adobe_font( $font_primary ) ) {
-			$options    = Options_Defaults::get_options();
+			$options    = Options_Advanced::get_options();
 			$project_id = $options['adobe_project_id'];
 
 			if ( ! empty( $project_id ) ) {
@@ -134,10 +134,10 @@ class AdobeFonts {
 		}
 
 		// Retrieve options and add fonts.
-		$options                     = Options_Defaults::get_options( '', true );
+		$options                     = Options_Advanced::get_options( '', true );
 		$options['adobe_fonts']      = $fonts;
 		$options['adobe_project_id'] = $project_id;
-		Options_Defaults::update_options( '', $options, true );
+		Options_Advanced::update_options( '', $options, true );
 
 		wp_send_json_success( $fonts );
 	}

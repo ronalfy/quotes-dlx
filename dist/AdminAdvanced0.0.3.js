@@ -379,7 +379,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var retrieveDefaults = function retrieveDefaults() {
-  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_retrieve_admin_options_defaults', {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_retrieve_admin_options_advanced', {
     nonce: quotes_dlx_admin.options_retrieve_nonce
   });
 };
@@ -414,7 +414,8 @@ var Interface = function Interface(props) {
       setThemesDefaultsDirtyCount = _useContext.setThemesDefaultsDirtyCount,
       setLicensesDirtyCount = _useContext.setLicensesDirtyCount,
       setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount,
-      setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount;
+      setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount,
+      defaultTheme = _useContext.defaultTheme;
 
   var defaults = props.defaults;
   var response = defaults();
@@ -554,7 +555,7 @@ var Interface = function Interface(props) {
 
   var onSubmit = function onSubmit(formData) {
     setSaving(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_admin_options_defaults', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_admin_options_advanced', {
       nonce: quotes_dlx_admin.options_save_nonce,
       form_data: formData
     }).then(function (ajaxResponse) {
@@ -584,7 +585,7 @@ var Interface = function Interface(props) {
 
   var handleReset = function handleReset(e) {
     setResetting(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_admin_options_defaults', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_admin_options_advanced', {
       nonce: quotes_dlx_admin.options_save_nonce
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
@@ -762,7 +763,13 @@ var Interface = function Interface(props) {
   };
 
   var getPreviewLink = function getPreviewLink() {
-    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent(16), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(template), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
+    var selectedTemplate = template;
+
+    if ('' !== defaultTheme) {
+      selectedTemplate = defaultTheme;
+    }
+
+    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent(16), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(selectedTemplate), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
   };
 
   var resetAllOptions = function resetAllOptions() {

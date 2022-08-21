@@ -320,7 +320,7 @@ class Functions {
 	 * Retrieve the primary font CSS argument for font-family.
 	 */
 	public static function get_primary_font_family_css() {
-		$options = Options_Defaults::get_options();
+		$options = Options_Advanced::get_options();
 
 		// Make sure fonts are enabled.
 		if ( ! (bool) $options['enable_fonts'] ) {
@@ -353,7 +353,7 @@ class Functions {
 	 * @return string font family.
 	 */
 	public static function get_font_family( $primary_or_secondary = 'primary', $format_for_display = false ) {
-		$options = Options_Defaults::get_options();
+		$options = Options_Advanced::get_options();
 		if ( 'primary' === $primary_or_secondary ) {
 			$font = $options['primary_font_family'];
 		} else {
@@ -390,7 +390,7 @@ class Functions {
 	 * Retrieve the secondary font CSS argument for font-family.
 	 */
 	public static function get_secondary_font_family_css() {
-		$options = Options_Defaults::get_options();
+		$options = Options_Advanced::get_options();
 
 		// Make sure fonts are enabled.
 		if ( ! (bool) $options['enable_fonts'] ) {
@@ -438,7 +438,7 @@ class Functions {
 	 * @return bool true of adobe font, false if not.
 	 */
 	public static function is_adobe_font( $font_slug ) {
-		$options = Options_Defaults::get_options();
+		$options = Options_Advanced::get_options();
 
 		if ( true ) {
 			$adobe_fonts = $options['adobe_fonts'];

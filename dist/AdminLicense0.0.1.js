@@ -1,2 +1,983 @@
-(self.webpackChunkquotes_dlx=self.webpackChunkquotes_dlx||[]).push([[782],{9545:(e,t,n)=>{"use strict";n.d(t,{Z:()=>c});var a=n(7462),s=n(7294),i=n(4428),r=n(6819);const l=(0,s.forwardRef)((function(e,t){const{label:n,hideLabelFromVision:c,value:o,help:d,className:u,onChange:m,type:_="text",...p}=e,h=`inspector-text-control-${(0,i.Z)(l)}`;return(0,s.createElement)(r.ZP,{label:n,hideLabelFromVision:c,id:h,help:d,className:u},(0,s.createElement)("input",(0,a.Z)({className:"components-text-control__input",type:_,id:h,value:o,onChange:e=>m(e.target.value),"aria-describedby":d?h+"__help":void 0,ref:t},p)))})),c=l},8228:(e,t,n)=>{"use strict";n.d(t,{Z:()=>_});var a=n(7294),s=n(5697),i=n.n(s),r=n(6042),l=n(5518),c=n(4184),o=n.n(c);function d(){return d=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},d.apply(this,arguments)}function u(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var m=function(e){var t,n=e.message,s=e.status,i=e.politeness,c=e.icon,m=e.className,_=e.inline,p=e.children,h=e.animate,v=e.animationType;(0,a.useEffect)((function(){(0,r.D)(n,i)}),[n,s,i]);var f,x=function(){return null!==c},g=o()(m,"qdlx-admin__notice",(u(t={"qdlx-admin__notice--has-icon":x()},"qdlx-admin__notice-type--".concat(s),!0),u(t,"qdlx-admin__notice-appearance--inline",_),u(t,"qdlx-admin__notice-appearance--block",!_),u(t,"qdlx-admin__notice-animate",h),u(t,"qdlx-admin__notice-animate--".concat(v),h),t));return a.createElement("div",{className:g},a.createElement(l.Z,d({isDismissible:!1,spokenMessage:n,actions:[]},e),x()&&a.createElement("div",{className:"qdlx-admin__notice-icon"},(f=c,a.createElement(f,{width:16,height:16,fill:"#6c757d"}))),a.createElement("div",{className:"qldx-admin__notice-message"},a.createElement(a.Fragment,null,n," ",p," "))))};m.defaultProps={message:"",status:"info",politeness:"polite",icon:null,className:"",inline:!1,animate:!1,animationType:"fadein"},m.propTypes={message:i().string.isRequired,status:i().oneOf(["info","warning","success","error"]),politeness:i().oneOf(["assertive","polite"]),icon:i().func,className:i().string,inline:i().bool,animate:i().bool,animatitionType:i().oneOf(["fadein","fadeout"])};const _=m},5047:(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>L});var a=n(7294),s=n(2304),i=n(2248),r=n(9545),l=n(5302),c=n(7536),o=n(4184),d=n.n(o),u=n(8474),m=n(8228),_=n(6183),p=n(4429),h=n(984),v=n(3832),f=n(7214),x=n(1136),g=n(7625),q=n(2565),y=n(3631);function E(){return E=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},E.apply(this,arguments)}function b(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var a,s,i=[],r=!0,l=!1;try{for(n=n.call(e);!(r=(a=n.next()).done)&&(i.push(a.value),!t||i.length!==t);r=!0);}catch(e){l=!0,s=e}finally{try{r||null==n.return||n.return()}finally{if(l)throw s}}return i}}(e,t)||function(e,t){if(e){if("string"==typeof e)return w(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?w(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function w(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,a=new Array(t);n<t;n++)a[n]=e[n];return a}var S=function(){return(0,u.Z)("quotes_dlx_retrieve_admin_license_core",{nonce:quotes_dlx_admin.options_retrieve_nonce})},N=function(e){var t,n,l,o,y,w="quotes_dlx_licenses",S=(0,a.useContext)(h.Z),N=S.licensesDirtyCount,L=S.setLicensesDirtyCount,Z=(0,e.defaults)().data,O=Z.data,k=(Z.success,b((0,a.useState)(!0),2)),C=k[0],j=k[1],P=b((0,a.useState)(!1),2),I=P[0],A=P[1],T=b((0,a.useState)(!1),2),z=T[0],D=T[1],F=b((0,a.useState)(!1),2),V=F[0],M=F[1],J=b((0,a.useState)(!1),2),R=J[0],U=J[1],H=b((0,a.useState)(O.license),2),B=(H[0],H[1],b((0,a.useState)(O.license_activated),2)),Y=B[0],$=B[1],G=b((0,a.useState)(O),2),K=G[0],Q=G[1],X=b((0,a.useState)(!O.license_activated),2),W=X[0],ee=X[1],te=O.license_key,ne=(O.item_name,O.expires,O.expires_human_time_diff,O.license_limit,O.site_count,O.activations_left,O.license_activated,O.price_id),ae=(0,c.cI)({defaultValues:{quotesdlxLicense:te.substr(0,8)+"********"}}),se=(ae.register,ae.control),ie=ae.handleSubmit,re=ae.setValue,le=ae.setError,ce=(ae.getValues,ae.reset,ae.resetField),oe=(0,c.qo)({control:se}),de=(0,c.cl)({control:se}),ue=de.errors,me=de.isDirty,_e=de.dirtyFields,pe=(de.touchedFields,function(){return Object.keys(ue).length>0});return(0,a.useEffect)((function(){var e=localStorage.getItem(w),t=localStorage.getItem(w+"_dirty_fields");if(null!==e){var n=JSON.parse(e);if(Q(n),n.hasOwnProperty("license")&&"valid"===n.license&&$(!0),Object.keys(n.length>0)){var a={};null!==t&&(a=JSON.parse(t));for(var s=0,i=Object.entries(n);s<i.length;s++){var r=b(i[s],2),l=r[0],c=r[1],o=c;"quotesdlxLicense"===l&&(o=c.substr(0,8)+"********"),a.hasOwnProperty(l)?re(l,o,{shouldDirty:!0,shouldValidate:!0}):re(l,o,{shouldDirty:!1,shouldValidate:!1})}}}j(!1)}),[]),(0,a.useEffect)((function(){I||V||C||((me||N>0)&&(L(Object.keys(_e).length),localStorage.setItem(w,JSON.stringify(Object.assign(oe,K))),localStorage.setItem(w+"_dirty_fields",JSON.stringify(_e))),j(!1))}),[oe]),C?a.createElement(_.Z,null):a.createElement(a.Fragment,null,a.createElement("div",{className:"qdlx-admin__tabs--home-grid-wrap"},a.createElement("div",{className:"qdlx-admin__tabs--content-wrap"},a.createElement("form",{onSubmit:ie((function(e){A(!0);var t=e.quotesdlxLicense;(0,u.Z)("quotes_dlx_save_admin_license_core",{nonce:quotes_dlx_admin.options_save_nonce,license_key:t}).then((function(e){var t=e.data.data,n=e.data.success;Q(t),n?(t.license_activated?$(!0):$(!1),D(!0),localStorage.setItem(w,JSON.stringify(Object.assign(oe,t))),localStorage.removeItem(w+"_dirty_fields"),ce("quotesdlxLicense",{keepDirty:!1,keepError:!1,keepTouched:!1,defaultValue:t.quotesdlxLicense.substr(0,8)+"********"}),L(0),setTimeout((function(){D(!1)}),3e3)):le("quotesdlxLicense",{type:"validate",message:t.message})})).catch((function(e){})).then((function(e){A(!1)}))}))},a.createElement("div",{className:"qdlx-admin__tabs--content-panel"},a.createElement("div",{className:"qdlx-admin__tabs--content-heading"},a.createElement("h1",null,a.createElement(p.Z,{width:48,height:48,"aria-hidden":"true"}),a.createElement("span",{className:"qdlx-admin__heading--text"},(0,s.__)("License","quotes-dlx"))),a.createElement("p",{className:"description"},(0,s.__)("Add a license key to receive support and updates.","quotes-dlx"))),a.createElement("div",{className:"qdlx-admin__tabs--content-inner"},a.createElement("div",{className:"qdlx-admin__license--wrapper is-required"},Y&&a.createElement(m.Z,{message:(0,s.__)("Your license is valid.","quotes-dlx"),status:"success",politeness:"polite"}),!Y&&a.createElement(m.Z,{message:(0,s.__)("Please enter a valid license to receive support and updates","quotes-dlx"),status:"warning",politeness:"polite"}),a.createElement("div",{className:"qdlx-admin__license--input-wrapper"},a.createElement(c.Qr,{name:"quotesdlxLicense",control:se,rules:{required:!0,pattern:/^[0-9A-Za-z]+$/i,validate:!0},render:function(e){var t,n,i=e.field;return a.createElement(r.Z,E({},i,{label:(0,s.__)("License Key","quotes-dlx"),id:"search-quotes-dlx-license-secret",className:d()("qdlx-admin__text-control","qdlx-admin__text-control-license",{"has-error":"pattern"===(null===(t=ue.quotesdlxLicense)||void 0===t?void 0:t.type)||"required"===(null===(n=ue.quotesdlxLicense)||void 0===n?void 0:n.type),"is-required":!0}),disabled:Y,"aria-required":"true",help:(0,s.__)("Entering a license will enable support and updates.","quotes-dlx"),type:W?"text":"password"}))}}),a.createElement("div",{className:"qdlx-admin__license--input-preview"},a.createElement("input",{id:"quotes-dlx-license-show-hide",type:"checkbox","aria-label":(0,s.__)("Click to Show or Hide the License","quotes-dlx"),onClick:function(){ee(!W)},title:W?(0,s.__)("Hide License","quotes-dlx"):(0,s.__)("Show License","quotes-dlx")}),a.createElement("label",{htmlFor:"quotes-dlx-license-show-hide not-is-required"},a.createElement("span",{className:"quotes-dlx-license-show-hide--label"},(0,s.__)("Click to Show or Hide the License","quotes-dlx")),a.createElement("span",{className:"quotes-dlx-license-show-hide--icon"},W?a.createElement(g.G,{size:"1x",icon:q.Aq}):a.createElement(g.G,{size:"1x",icon:q.Mdf})))),"required"===(null===(t=ue.quotesdlxLicense)||void 0===t?void 0:t.type)&&a.createElement(m.Z,{message:(0,s.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),"pattern"===(null===(n=ue.quotesdlxLicense)||void 0===n?void 0:n.type)&&a.createElement(m.Z,{message:(0,s.__)("It appears there are invalid characters in the license."),status:"error",politeness:"assertive",inline:!0,icon:f.Z}),"validate"===(null===(l=ue.quotesdlxLicense)||void 0===l?void 0:l.type)&&a.createElement(m.Z,{message:ue.quotesdlxLicense.message,status:"error",politeness:"assertive",inline:!0,icon:f.Z}))),a.createElement("div",{className:"qdlx-admin__tabs--content-actions"},!Y&&(o=(0,s.__)("Save License","quotes-dlx"),y=(0,s.__)("Saving…","quotes-dlx"),Y||(o=(0,s.__)("Activate License","quotes-dlx"),y=(0,s.__)("Activating…","quotes-dlx")),a.createElement(a.Fragment,null,a.createElement(i.Z,{className:d()("qdlx__btn qdlx__btn-primary qdlx__btn--icon-right",{"has-error":pe()},{"has-icon":I},{"is-saving":{saving:I}}),type:"submit",text:I?y:o,icon:!!I&&v.Z,iconSize:"18",iconPosition:"right",disabled:I||V}))),Y&&a.createElement(i.Z,{className:d()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":V},{"is-resetting":{revokingLicense:V}}),type:"button",text:V?(0,s.__)("Revoking License…","quotes-dlx"):(0,s.__)("Revoke License","quotes-dlx"),icon:!!V&&v.Z,iconSize:"18",iconPosition:"right",disabled:I||V,onClick:function(e){M(!0),M(!0),(0,u.Z)("quotes_dlx_revoke_admin_license_core",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){var t=e.data.data;e.data.success?(L(0),$(!1),U(!0),localStorage.setItem(w,JSON.stringify(Object.assign(oe,t))),localStorage.removeItem(w+"_dirty_fields"),setTimeout((function(){U(!1)}),3e3)):(le("quotesdlxLicense",{type:"validate",message:(0,s.__)("Revoking the license resulted in an error and could not be deactivated. Please reactivate the license and try again.","quotes-dlx")}),$(!1))})).catch((function(e){})).then((function(e){M(!1)}))}})),pe()&&a.createElement(m.Z,{message:(0,s.__)("There are form validation errors. Please correct them above.","quotes-dlx"),status:"error",politeness:"polite"}),z&&a.createElement(m.Z,{message:(0,s.__)("Your settings have been saved.","quotes-dlx"),status:"success",politeness:"assertive"}),R&&a.createElement(m.Z,{message:(0,s.__)("Your license has been deactivated for this site.","quotes-dlx"),status:"success",politeness:"assertive"}))))),Y&&a.createElement("div",{className:"qdlx-admin__tabs--content-wrap"},a.createElement("div",{className:"qdlx-admin__tabs--content-panel"},a.createElement("div",{className:"qdlx-admin__tabs--content-heading"},a.createElement("h1",null,a.createElement(x.Z,{width:48,height:48,"aria-hidden":"true"}),a.createElement("span",{className:"qdlx-admin__heading--text"},(0,s.__)("License Information","quotes-dlx")))),a.createElement("div",{className:"qdlx-admin__tabs--content-inner"},a.createElement("table",{className:"quotes-dlx-table quotes-dlx-table--responsive quotes-dlx-table--license-ui"},a.createElement("thead",null,a.createElement("tr",null,a.createElement("th",{scope:"col"},(0,s.__)("Item Name","quotes-dlx")),a.createElement("th",{scope:"col"},(0,s.__)("License Type","quotes-dlx")),a.createElement("th",{scope:"col"},(0,s.__)("License Activations","quotes-dlx")),a.createElement("th",{scope:"col"},(0,s.__)("Expires On","quotes-dlx")),a.createElement("th",{scope:"col"},(0,s.__)("Days Left","quotes-dlx")))),a.createElement("tbody",null,a.createElement("tr",null,a.createElement("td",{"data-header":"Item Name"},a.createElement("p",null,K.item_name)),a.createElement("td",{"data-header":"License Type"},a.createElement("p",null,function(){switch(ne){case"1":return"Hobbyist";case"2":return"Freelancer";case"3":return"Agency";case"4":return"Unlimited";default:return"Unknown"}return"Unkown"}())),a.createElement("td",{"data-header":"License Activations"},a.createElement("p",null,a.createElement("span",{className:""},K.site_count," of"," ",0===K.license_limit?(0,s.__)("Unlimited","quotes-dlx"):K.license_limit))),a.createElement("td",{"data-header":"Expires On"},a.createElement("p",null,K.expires)),a.createElement("td",{"data-header":"Days Left"},a.createElement("p",null,K.expires_human_time_diff))))))))))};const L=function(e){var t=b((0,l.useAsyncResource)(S,[]),2),n=t[0];return t[1],a.createElement(y.Z,{fallback:a.createElement("p",null,(0,s.__)("Could not load license defaults.","quotes-dlx"),a.createElement("br",null),a.createElement("a",{href:"https://dlxplugins.com/support/",target:"_blank",rel:"noopener noreferrer"},"DLX Plugins Support"))},a.createElement(a.Suspense,{fallback:a.createElement(_.Z,null)},a.createElement(N,E({defaults:n},e))))}},7214:(e,t,n)=>{"use strict";n.d(t,{Z:()=>l});var a=n(7294),s=n(5697),i=n.n(s),r=function(e){return a.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},a.createElement("path",{fill:"var( ".concat(e.var,")"),d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"}))};r.defaultProps={width:16,height:16,fill:"#333333"},r.propTypes={width:i().number,height:i().number,fill:i().string};const l=r},1136:(e,t,n)=>{"use strict";n.d(t,{Z:()=>l});var a=n(7294),s=n(5697),i=n.n(s),r=function(e){return a.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},a.createElement("path",{fill:e.fill,d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"}))};r.defaultProps={width:16,height:16,fill:"#333333"},r.propTypes={width:i().number,height:i().number,fill:i().string};const l=r},3832:(e,t,n)=>{"use strict";n.d(t,{Z:()=>c});var a=n(7294),s=n(5697),i=n.n(s);function r(){return r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},r.apply(this,arguments)}var l=function(e){return a.createElement("svg",r({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 576 512"},e,{width:e.width,height:e.height}),a.createElement("path",{className:"fa-primary",fill:e.primaryColor,d:"M256 32c0-17.67 14.3-32 32-32 141.4 0 256 114.6 256 256 0 46.6-12.5 90.4-34.3 128-8.8 15.3-28.4 20.6-44.6 11.7-14.4-8.8-19.6-28.4-10.8-44.6 16.3-27.3 25.7-60.1 25.7-96 0-106-86-192-192-192-17.7 0-32-13.43-32-32v.9z"}),a.createElement("path",{d:"M287.1 64c-106 0-192 85.1-192 192 0 106 86 192 192 192 71 0 132.2-37.5 165.8-93.6l.1.1c-6.9 14.9-1.5 32.8 12.1 41.2 16.2 8.9 35.8 3.6 44.6-11.7.2-.3.4-.6.5-.9C466.1 460.1 383.1 512 288 512 146.6 512 32 397.4 32 256S146.6 0 288 0c-17.7 0-32 14.33-32 32s14.3 32 32 32h-.9z",fill:e.secondaryColor,style:{opacity:.4}}))};l.defaultProps={width:24,height:24,primaryColor:"currentColor",secondaryColor:"currentColor"},l.propTypes={width:i().number,height:i().number,primaryColor:i().string,secondaryColor:i().string};const c=l},8474:(e,t,n)=>{"use strict";n.d(t,{Z:()=>l});var a=n(9669),s=n.n(a),i=n(129),r=n.n(i);function l(e,t){var n={action:e},a={nonce:!1,action:e};for(var i in void 0===t&&(t={}),a)t.hasOwnProperty(i)||(t[i]=a[i]);var l={method:"post",url:ajaxurl,params:n,paramsSerializer:function(e){return r().stringify(e,{arrayFormat:"brackets"})},data:r().stringify(t)};return s()(l)}},4654:()=>{}}]);
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminLicense0.0.1"],{
+
+/***/ "./node_modules/@wordpress/components/build-module/text-control/index.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@wordpress/components/build-module/text-control/index.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TextControl": () => (/* binding */ TextControl),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
+/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
+
+
+
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function UnforwardedTextControl(props, ref) {
+  const {
+    label,
+    hideLabelFromVision,
+    value,
+    help,
+    className,
+    onChange,
+    type = 'text',
+    ...additionalProps
+  } = props;
+  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(TextControl);
+  const id = `inspector-text-control-${instanceId}`;
+
+  const onChangeValue = event => onChange(event.target.value);
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: label,
+    hideLabelFromVision: hideLabelFromVision,
+    id: id,
+    help: help,
+    className: className
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: "components-text-control__input",
+    type: type,
+    id: id,
+    value: value,
+    onChange: onChangeValue,
+    "aria-describedby": !!help ? id + '__help' : undefined,
+    ref: ref
+  }, additionalProps)));
+}
+/**
+ * TextControl components let users enter and edit text.
+ *
+ *
+ * @example
+ * ```jsx
+ * import { TextControl } from '@wordpress/components';
+ * import { useState } from '@wordpress/element';
+ *
+ * const MyTextControl = () => {
+ *   const [ className, setClassName ] = useState( '' );
+ *
+ *   return (
+ *     <TextControl
+ *       label="Additional CSS Class"
+ *       value={ className }
+ *       onChange={ ( value ) => setClassName( value ) }
+ *     />
+ *   );
+ * };
+ * ```
+ */
+
+
+const TextControl = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(UnforwardedTextControl);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextControl);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./src/js/admin-panel/admin-components/Notice/index.js":
+/*!*************************************************************!*\
+  !*** ./src/js/admin-panel/admin-components/Notice/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/a11y */ "./node_modules/@wordpress/a11y/build-module/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/notice/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// eslint-disable-next-line no-unused-vars
+
+ // ES6
+
+
+
+
+
+var Notice = function Notice(props) {
+  var _classNames;
+
+  var message = props.message,
+      status = props.status,
+      politeness = props.politeness,
+      icon = props.icon,
+      className = props.className,
+      inline = props.inline,
+      children = props.children,
+      animate = props.animate,
+      animationType = props.animationType;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__.speak)(message, politeness);
+  }, [message, status, politeness]);
+
+  var hasIcon = function hasIcon() {
+    return icon !== null;
+  };
+
+  var getIcon = function getIcon(Icon) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
+      width: 16,
+      height: 16,
+      fill: "#6c757d"
+    });
+  };
+
+  var containerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'qdlx-admin__notice', (_classNames = {
+    'qdlx-admin__notice--has-icon': hasIcon()
+  }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _defineProperty(_classNames, "qdlx-admin__notice-animate", animate), _defineProperty(_classNames, "qdlx-admin__notice-animate--".concat(animationType), animate), _classNames));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: containerClasses
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+    isDismissible: false,
+    spokenMessage: message,
+    actions: []
+  }, props), hasIcon() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__notice-icon"
+  }, getIcon(icon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qldx-admin__notice-message"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, message, " ", children, " "))));
+};
+
+Notice.defaultProps = {
+  message: '',
+  status: 'info',
+  politeness: 'polite',
+  icon: null,
+  className: '',
+  inline: false,
+  animate: false,
+  animationType: 'fadein'
+};
+Notice.propTypes = {
+  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string.isRequired),
+  status: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['info', 'warning', 'success', 'error']),
+  politeness: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['assertive', 'polite']),
+  icon: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+  inline: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animate: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animatitionType: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['fadein', 'fadeout'])
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notice);
+
+/***/ }),
+
+/***/ "./src/js/admin-panel/views/AdminLicense.js":
+/*!**************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminLicense.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
+/* harmony import */ var _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/KeyIcon */ "./src/js/components/icons/KeyIcon.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-unreachable */
+
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var retrieveDefaults = function retrieveDefaults() {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_retrieve_admin_license_core', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce
+  });
+};
+
+var AdminLicense = function AdminLicense(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_2__.useAsyncResource)(retrieveDefaults, []),
+      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+      defaults = _useAsyncResource2[0],
+      getDefaults = _useAsyncResource2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load license defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://dlxplugins.com/support/",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "DLX Plugins Support"))
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props))));
+};
+
+var Interface = function Interface(props) {
+  var _errors$quotesdlxLice3, _errors$quotesdlxLice4, _errors$quotesdlxLice5;
+
+  var localStorageKey = 'quotes_dlx_licenses';
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__["default"]),
+      licensesDirtyCount = _useContext.licensesDirtyCount,
+      setLicensesDirtyCount = _useContext.setLicensesDirtyCount;
+
+  var defaults = props.defaults;
+  var response = defaults();
+  var _response$data = response.data,
+      data = _response$data.data,
+      success = _response$data.success;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      saving = _useState4[0],
+      setSaving = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isSaved = _useState6[0],
+      setIsSaved = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      revokingLicense = _useState8[0],
+      setRevokingLicense = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      isRevoked = _useState10[0],
+      setIsRevoked = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
+      _useState12 = _slicedToArray(_useState11, 2),
+      validLicense = _useState12[0],
+      setValidLicense = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated),
+      _useState14 = _slicedToArray(_useState13, 2),
+      licenseActivated = _useState14[0],
+      setLicenseActivated = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data),
+      _useState16 = _slicedToArray(_useState15, 2),
+      licenseData = _useState16[0],
+      setLicenseData = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated ? false : true),
+      _useState18 = _slicedToArray(_useState17, 2),
+      showSecret = _useState18[0],
+      setShowSecret = _useState18[1];
+
+  var license_key = data.license_key,
+      item_name = data.item_name,
+      expires = data.expires,
+      expires_human_time_diff = data.expires_human_time_diff,
+      license_limit = data.license_limit,
+      site_count = data.site_count,
+      activations_left = data.activations_left,
+      license_activated = data.license_activated,
+      price_id = data.price_id;
+
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useForm)({
+    defaultValues: {
+      quotesdlxLicense: license_key.substr(0, 8) + '********'
+    }
+  }),
+      register = _useForm.register,
+      control = _useForm.control,
+      handleSubmit = _useForm.handleSubmit,
+      setValue = _useForm.setValue,
+      setError = _useForm.setError,
+      getValues = _useForm.getValues,
+      reset = _useForm.reset,
+      resetField = _useForm.resetField;
+
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useWatch)({
+    control: control
+  });
+
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useFormState)({
+    control: control
+  }),
+      errors = _useFormState.errors,
+      isDirty = _useFormState.isDirty,
+      dirtyFields = _useFormState.dirtyFields,
+      touchedFields = _useFormState.touchedFields;
+
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true);
+    var quotesdlxLicense = formData.quotesdlxLicense;
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_save_admin_license_core', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      license_key: quotesdlxLicense
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      setLicenseData(ajaxData);
+
+      if (ajaxSuccess) {
+        if (ajaxData.license_activated) {
+          setLicenseActivated(true);
+        } else {
+          setLicenseActivated(false);
+        }
+
+        setIsSaved(true);
+        localStorage.setItem(localStorageKey, JSON.stringify(Object.assign(formValues, ajaxData)));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+        resetField('quotesdlxLicense', {
+          keepDirty: false,
+          keepError: false,
+          keepTouched: false,
+          defaultValue: ajaxData.quotesdlxLicense.substr(0, 8) + '********'
+        }); // Reset count.
+
+        setLicensesDirtyCount(0);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+        setError('quotesdlxLicense', {
+          type: 'validate',
+          message: ajaxData.message
+        });
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+
+  var revokeLicense = function revokeLicense(e) {
+    setRevokingLicense(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_revoke_admin_license_core', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        // // Reset count.
+        setLicensesDirtyCount(0);
+        setLicenseActivated(false);
+        setIsRevoked(true);
+        localStorage.setItem(localStorageKey, JSON.stringify(Object.assign(formValues, ajaxData)));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+        setTimeout(function () {
+          setIsRevoked(false);
+        }, 3000);
+      } else {
+        setError('quotesdlxLicense', {
+          type: 'validate',
+          message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Revoking the license resulted in an error and could not be deactivated. Please reactivate the license and try again.', 'quotes-dlx')
+        });
+        setLicenseActivated(false);
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setRevokingLicense(false);
+    });
+  };
+
+  var hasErrors = function hasErrors() {
+    return Object.keys(errors).length > 0;
+  };
+
+  var getLicenseType = function getLicenseType() {
+    switch (price_id) {
+      case '1':
+        return 'Hobbyist';
+        break;
+
+      case '2':
+        return 'Freelancer';
+        break;
+
+      case '3':
+        return 'Agency';
+        break;
+
+      case '4':
+        return 'Unlimited';
+        break;
+
+      default:
+        return 'Unknown';
+        break;
+    }
+
+    return 'Unkown';
+  };
+
+  var getSaveButton = function getSaveButton() {
+    var saveText = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save License', 'quotes-dlx');
+
+    var saveTextLoading = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx');
+
+    if (!licenseActivated) {
+      saveText = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate License', 'quotes-dlx');
+      saveTextLoading = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activating…', 'quotes-dlx');
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+        'has-error': hasErrors()
+      }, {
+        'has-icon': saving
+      }, {
+        'is-saving': {
+          saving: saving
+        }
+      }),
+      type: "submit",
+      text: saving ? saveTextLoading : saveText,
+      icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"] : false,
+      iconSize: "18",
+      iconPosition: "right",
+      disabled: saving || revokingLicense
+    }));
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
+    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
+    var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
+
+    if (null !== maybeSavedFormFields) {
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields);
+      setLicenseData(savedFormFields);
+
+      if (savedFormFields.hasOwnProperty('license')) {
+        if ('valid' === savedFormFields.license) {
+          setLicenseActivated(true);
+        }
+      } // If saved form fields, proceed with setting fields.
+
+
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {}; // Get any dirty fields.
+
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
+        }
+
+        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+
+          // If key is in saved dirty fields, set dirty.
+          var keyValue = value;
+
+          if ('quotesdlxLicense' === key) {
+            keyValue = value.substr(0, 8) + '********';
+          }
+
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, keyValue, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, keyValue, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
+    }
+
+    setLoading(false);
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (saving || revokingLicense || loading) {
+      return;
+    }
+
+    if (isDirty || licensesDirtyCount > 0) {
+      // Get current dirty fields.
+      setLicensesDirtyCount(Object.keys(dirtyFields).length); // Save form values to local storage.
+
+      localStorage.setItem(localStorageKey, JSON.stringify(Object.assign(formValues, licenseData)));
+      localStorage.setItem(localStorageKey + '_dirty_fields', JSON.stringify(dirtyFields));
+    }
+
+    setLoading(false);
+  }, [formValues]);
+
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--home-grid-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add a license key to receive support and updates.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__license--wrapper is-required"
+  }, licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your license is valid.', 'quotes-dlx'),
+    status: "success",
+    politeness: "polite"
+  }), !licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please enter a valid license to receive support and updates', 'quotes-dlx'),
+    status: "warning",
+    politeness: "polite"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__license--input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "quotesdlxLicense",
+    control: control,
+    rules: {
+      required: true,
+      pattern: /^[0-9A-Za-z]+$/i,
+      validate: true
+    },
+    render: function render(_ref) {
+      var _errors$quotesdlxLice, _errors$quotesdlxLice2;
+
+      var field = _ref.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Key', 'quotes-dlx'),
+        id: "search-quotes-dlx-license-secret",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', 'qdlx-admin__text-control-license', {
+          'has-error': 'pattern' === ((_errors$quotesdlxLice = errors.quotesdlxLicense) === null || _errors$quotesdlxLice === void 0 ? void 0 : _errors$quotesdlxLice.type) || 'required' === ((_errors$quotesdlxLice2 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice2 === void 0 ? void 0 : _errors$quotesdlxLice2.type),
+          'is-required': true
+        }),
+        disabled: licenseActivated,
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Entering a license will enable support and updates.', 'quotes-dlx'),
+        type: showSecret ? 'text' : 'password'
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__license--input-preview"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    id: "quotes-dlx-license-show-hide",
+    type: "checkbox",
+    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Show or Hide the License', 'quotes-dlx'),
+    onClick: function onClick() {
+      if (showSecret) {
+        setShowSecret(false);
+      } else {
+        setShowSecret(true);
+      }
+    },
+    title: showSecret ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hide License', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show License', 'quotes-dlx')
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "quotes-dlx-license-show-hide not-is-required"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "quotes-dlx-license-show-hide--label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Show or Hide the License', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "quotes-dlx-license-show-hide--icon"
+  }, !showSecret ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
+    size: '1x',
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faEye
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
+    size: '1x',
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faEyeSlash
+  })))), 'required' === ((_errors$quotesdlxLice3 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice3 === void 0 ? void 0 : _errors$quotesdlxLice3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), 'pattern' === ((_errors$quotesdlxLice4 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice4 === void 0 ? void 0 : _errors$quotesdlxLice4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('It appears there are invalid characters in the license.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), 'validate' === ((_errors$quotesdlxLice5 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice5 === void 0 ? void 0 : _errors$quotesdlxLice5.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: errors.quotesdlxLicense.message,
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions"
+  }, !licenseActivated && getSaveButton(), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': revokingLicense
+    }, {
+      'is-resetting': {
+        revokingLicense: revokingLicense
+      }
+    }),
+    type: "button",
+    text: revokingLicense ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Revoking License…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Revoke License', 'quotes-dlx'),
+    icon: revokingLicense ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || revokingLicense,
+    onClick: function onClick(e) {
+      setRevokingLicense(true);
+      revokeLicense(e);
+    }
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.', 'quotes-dlx'),
+    status: "error",
+    politeness: "polite"
+  }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.', 'quotes-dlx'),
+    status: "success",
+    politeness: "assertive"
+  }), isRevoked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your license has been deactivated for this site.', 'quotes-dlx'),
+    status: "success",
+    politeness: "assertive"
+  }))))), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Information', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "quotes-dlx-table quotes-dlx-table--responsive quotes-dlx-table--license-ui"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Item Name', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Type', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Activations', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Expires On', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "col"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Days Left', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+    "data-header": "Item Name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.item_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+    "data-header": "License Type"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, getLicenseType())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+    "data-header": "License Activations"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: ""
+  }, licenseData.site_count, " of", ' ', licenseData.license_limit === 0 ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unlimited', 'quotes-dlx') : licenseData.license_limit))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+    "data-header": "Expires On"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+    "data-header": "Days Left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires_human_time_diff))))))))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminLicense);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularExplanation.js":
+/*!********************************************************!*\
+  !*** ./src/js/components/icons/CircularExplanation.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularExclamationIcon = function CircularExclamationIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: "var( ".concat(props["var"], ")"),
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"
+  }));
+};
+
+CircularExclamationIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularExclamationIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularExclamationIcon);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularInfo.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/icons/CircularInfo.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularInfo = function CircularInfo(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"
+  }));
+};
+
+CircularInfo.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularInfo.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularInfo);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/Spinner.js":
+/*!********************************************!*\
+  !*** ./src/js/components/icons/Spinner.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+ // ES6
+
+var Spinner = function Spinner(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", _extends({
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 576 512"
+  }, props, {
+    width: props.width,
+    height: props.height
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "fa-primary",
+    fill: props.primaryColor,
+    d: "M256 32c0-17.67 14.3-32 32-32 141.4 0 256 114.6 256 256 0 46.6-12.5 90.4-34.3 128-8.8 15.3-28.4 20.6-44.6 11.7-14.4-8.8-19.6-28.4-10.8-44.6 16.3-27.3 25.7-60.1 25.7-96 0-106-86-192-192-192-17.7 0-32-13.43-32-32v.9z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M287.1 64c-106 0-192 85.1-192 192 0 106 86 192 192 192 71 0 132.2-37.5 165.8-93.6l.1.1c-6.9 14.9-1.5 32.8 12.1 41.2 16.2 8.9 35.8 3.6 44.6-11.7.2-.3.4-.6.5-.9C466.1 460.1 383.1 512 288 512 146.6 512 32 397.4 32 256S146.6 0 288 0c-17.7 0-32 14.33-32 32s14.3 32 32 32h-.9z",
+    fill: props.secondaryColor,
+    style: {
+      opacity: 0.4
+    }
+  }));
+};
+
+Spinner.defaultProps = {
+  width: 24,
+  height: 24,
+  primaryColor: 'currentColor',
+  secondaryColor: 'currentColor'
+};
+Spinner.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  primaryColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string),
+  secondaryColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Spinner);
+
+/***/ }),
+
+/***/ "./src/js/utils/SendCommand.js":
+/*!*************************************!*\
+  !*** ./src/js/utils/SendCommand.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ sendCommand)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
+/* eslint-disable no-undef */
+
+/* eslint-disable camelcase */
+
+
+function sendCommand(action, data) {
+  var params = {
+    action: action
+  };
+  var default_data = {
+    nonce: false,
+    action: action
+  };
+
+  if ('undefined' === typeof data) {
+    data = {};
+  }
+
+  for (var opt in default_data) {
+    if (!data.hasOwnProperty(opt)) {
+      data[opt] = default_data[opt];
+    }
+  }
+
+  var options = {
+    method: 'post',
+    url: ajaxurl,
+    params: params,
+    paramsSerializer: function paramsSerializer(jsparams) {
+      return qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(jsparams, {
+        arrayFormat: 'brackets'
+      });
+    },
+    data: qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(data)
+  };
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()(options);
+}
+
+/***/ }),
+
+/***/ "?4f7e":
+/*!********************************!*\
+  !*** ./util.inspect (ignored) ***!
+  \********************************/
+/***/ (() => {
+
+/* (ignored) */
+
+/***/ })
+
+}]);
 //# sourceMappingURL=AdminLicense0.0.1.js.map

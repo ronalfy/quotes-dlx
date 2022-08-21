@@ -120,6 +120,19 @@
 	overflow: hidden;
 }
 
+$primary_font: Lato, sans-serif;
+$secondary_font: 'Source Sans Pro', sans-serif;
+
+/** Font overrides **/
+.quotes-dlx-plugin {
+	font-family: $secondary_font;
+
+	h1 .qdlx-admin__heading--text {
+		font-weight: 500;
+		font-family: $primary_font;
+	}
+}
+
 .quotes-dlx-plugin {
 	font-size: 16px;
 	/* Main wrapper container */

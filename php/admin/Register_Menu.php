@@ -61,24 +61,33 @@ class Register_Menu {
 			Functions::get_plugin_version(),
 			true
 		);
+
+		// Enqueue admin fonts.
+		$admin_font_handles = array(
+			'quotes-dlx-gfont-source-sans-pro',
+			'quotes-dlx-gfont-lato',
+		);
+		foreach ( $admin_font_handles as $admin_handle ) {
+			wp_enqueue_style(
+				$admin_handle,
+				esc_url( Functions::get_plugin_url( 'dist/' . $admin_handle . '.css' ) ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
 		wp_enqueue_style(
 			'quotes-dlx-admin-css',
 			Functions::get_plugin_url( 'dist/quotes-dlx-admin-panel-css.css' ),
-			array(),
+			$admin_font_handles,
 			Functions::get_plugin_version(),
 			'all'
 		);
 		wp_enqueue_style(
 			'quotes-dlx-front-end-css',
 			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
-		wp_enqueue_style(
-			'quotes-dlx-fonts',
-			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
-			array(),
+			$admin_font_handles,
 			Functions::get_plugin_version(),
 			'all'
 		);

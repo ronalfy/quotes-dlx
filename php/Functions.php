@@ -366,6 +366,66 @@ class Functions {
 	}
 
 	/**
+	 * Retrieve the primary font CSS argument for font-family.
+	 *
+	 * @param bool $theme_slug The slug of the theme.
+	 */
+	public static function get_theme_primary_font_family_css( $theme_slug ) {
+		$options = Options_Theme::get_options( $theme_slug );
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_custom_fonts'] ) {
+			return false;
+		}
+
+		// Retrieve font variables.
+		$font        = $options['primary_font_family'];
+		$custom_font = $options['custom_font_primary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the secondary font CSS argument for font-family.
+	 *
+	 * @param bool $theme_slug The slug of the theme.
+	 */
+	public static function get_theme_secondary_font_family_css( $theme_slug ) {
+		$options = Options_Theme::get_options( $theme_slug );
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_custom_fonts'] ) {
+			return false;
+		}
+
+		// Retrieve font variables.
+		$font        = $options['secondary_font_family'];
+		$custom_font = $options['custom_font_secondary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
 	 * Retrieve a primary or secondary font family.
 	 *
 	 * @param string $primary_or_secondary 'primary' or 'secondary'.

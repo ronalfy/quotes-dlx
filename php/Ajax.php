@@ -208,6 +208,13 @@ class Ajax {
 		$primary_font_family   = $theme_options[ $template_slug ]['primary_font_family'] ?? '';
 		$secondary_font_family = $theme_options[ $template_slug ]['secondary_font_family'] ?? '';
 
+		if ( '' === $primary_font_family ) {
+			$primary_font_family = 'lato';
+		}
+		if ( '' === $secondary_font_family ) {
+			$secondary_font_family = 'open-sans';
+		}
+
 		wp_send_json_success(
 			array(
 				'enableCustomFonts'   => $enable_custom_fonts,
@@ -232,12 +239,11 @@ class Ajax {
 
 		// Get the active template.
 		$template_slug         = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
-		$screen_size           = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
 		$enable_custom_fonts   = (bool) filter_input( INPUT_POST, 'enableCustomFonts', FILTER_DEFAULT );
-		$custom_font_primary   = sanitize_key( filter_input( INPUT_POST, 'customFontPrimary', FILTER_DEFAULT ) );
-		$custom_font_secondary = sanitize_key( filter_input( INPUT_POST, 'customFontSecondary', FILTER_DEFAULT ) );
-		$font_primary          = sanitize_key( filter_input( INPUT_POST, 'primaryFontFamily', FILTER_DEFAULT ) );
-		$font_secondary        = sanitize_key( filter_input( INPUT_POST, 'secondaryFontFamily', FILTER_DEFAULT ) );
+		$custom_font_primary   = sanitize_text_field( filter_input( INPUT_POST, 'customFontPrimary', FILTER_DEFAULT ) );
+		$custom_font_secondary = sanitize_text_field( filter_input( INPUT_POST, 'customFontSecondary', FILTER_DEFAULT ) );
+		$font_primary          = sanitize_text_field( filter_input( INPUT_POST, 'primaryFontFamily', FILTER_DEFAULT ) );
+		$font_secondary        = sanitize_text_field( filter_input( INPUT_POST, 'secondaryFontFamily', FILTER_DEFAULT ) );
 		$theme_options         = Options_Theme::get_options();
 
 		// Check to see if template slug is an array.

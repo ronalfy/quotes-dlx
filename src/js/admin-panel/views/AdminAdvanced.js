@@ -632,7 +632,7 @@ const Interface = ( props ) => {
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
-													value={ escapeAttribute( field.value ) }
+													value={ escapeAttribute( ( field.value.replace( /\\\'/g, "'" ) ) ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'
@@ -718,7 +718,7 @@ const Interface = ( props ) => {
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
-													value={ escapeAttribute( field.value ) }
+													value={ escapeAttribute( field.value.replace( /\\\'/g, "'" ) ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'

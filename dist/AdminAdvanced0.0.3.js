@@ -755,7 +755,7 @@ var Interface = function Interface(props) {
 
         var field = _ref7.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value),
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -811,7 +811,7 @@ var Interface = function Interface(props) {
 
         var field = _ref9.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value),
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {

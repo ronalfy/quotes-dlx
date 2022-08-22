@@ -58,6 +58,11 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_admin_options_advanced', array( static::class, 'ajax_save_options_advanced' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_advanced', array( static::class, 'ajax_reset_options_advanced' ) );
 
+		// For saving, resetting, and retrieving individual font CSS.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_font_families', array( static::class, 'ajax_get_theme_font_families' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_font_families', array( static::class, 'ajax_save_theme_font_families' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_font_families', array( static::class, 'ajax_reset_theme_font_families' ) );
+
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
@@ -181,6 +186,80 @@ class Ajax {
 	}
 
 	/**
+	 * Retrieve the theme font families.
+	 */
+	public static function ajax_get_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+
+		$theme_options = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+		$enable_custom_fonts   = (bool) $theme_options[ $template_slug ]['enable_custom_fonts'] ?? false;
+		$custom_font_primary   = $theme_options[ $template_slug ]['custom_font_primary'] ?? '';
+		$custom_font_secondary = $theme_options[ $template_slug ]['custom_font_secondary'] ?? '';
+		$primary_font_family   = $theme_options[ $template_slug ]['primary_font_family'] ?? '';
+		$secondary_font_family = $theme_options[ $template_slug ]['secondary_font_family'] ?? '';
+
+		wp_send_json_success(
+			array(
+				'enableCustomFonts'   => $enable_custom_fonts,
+				'customFontPrimary'   => $custom_font_primary,
+				'customFontSecondary' => $custom_font_secondary,
+				'primaryFontFamily'   => $primary_font_family,
+				'secondaryFontFamily' => $secondary_font_family,
+			)
+		);
+
+	}
+
+	/**
+	 * Save form options for custom font families.
+	 */
+	public static function ajax_save_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$form_data = $_POST['form_data']; // expect array.
+
+		// Get the active template.
+		$template_slug         = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size           = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$enable_custom_fonts   = (bool) filter_input( INPUT_POST, 'enableCustomFonts', FILTER_DEFAULT );
+		$custom_font_primary   = sanitize_key( filter_input( INPUT_POST, 'customFontPrimary', FILTER_DEFAULT ) );
+		$custom_font_secondary = sanitize_key( filter_input( INPUT_POST, 'customFontSecondary', FILTER_DEFAULT ) );
+		$font_primary          = sanitize_key( filter_input( INPUT_POST, 'primaryFontFamily', FILTER_DEFAULT ) );
+		$font_secondary        = sanitize_key( filter_input( INPUT_POST, 'secondaryFontFamily', FILTER_DEFAULT ) );
+		$theme_options         = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		// Now store options.
+		$theme_options[ $template_slug ]['enable_custom_fonts']   = $enable_custom_fonts;
+		$theme_options[ $template_slug ]['custom_font_primary']   = $custom_font_primary;
+		$theme_options[ $template_slug ]['custom_font_secondary'] = $custom_font_secondary;
+		$theme_options[ $template_slug ]['primary_font_family']   = $font_primary;
+		$theme_options[ $template_slug ]['secondary_font_family'] = $font_secondary;
+
+		// Store per-theme options.
+		Options_Theme::update_options( '', $theme_options );
+		wp_send_json_success(
+			$theme_options[ $template_slug ],
+		);
+	}
+
+	/**
 	 * Ajax callback for generating an anchor for the block.
 	 */
 	public static function ajax_generate_anchor() {
@@ -233,6 +312,8 @@ class Ajax {
 					'activate_adobe_fonts_admin'    => (bool) $defaults['activate_adobe_fonts_admin'],
 					'activate_adobe_fonts_frontend' => (bool) $defaults['activate_adobe_fonts_frontend'],
 					'template'                      => Options_Defaults::get_options( 'template' ),
+					'primary_font_family'           => $defaults['primary_font_family'],
+					'secondary_font_family'         => $defaults['secondary_font_family'],
 
 				)
 			);

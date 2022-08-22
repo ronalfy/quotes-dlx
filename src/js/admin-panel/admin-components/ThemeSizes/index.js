@@ -30,7 +30,7 @@ const ThemeSizes = ( props ) => {
 			fallback={
 				<p>
 					{ __(
-						'Could not load admin colors.',
+						'Could not load theme sizes.',
 						'quotes-dlx'
 					) }
 					<br />

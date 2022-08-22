@@ -4,7 +4,7 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-import { Button, SelectControl, RangeControl } from '@wordpress/components';
+import { Button, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
@@ -15,23 +15,24 @@ import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import Notice from '../Notice';
 import Spinner from '../../../components/icons/Spinner';
 import ErrorBoundary from '../ErrorBoundary';
+import fontFamilies from '../../../../fonts/fonts';
+import CircularExclamationIcon from '../../../components/icons/CircularExplanation';
 
 const retrieveDefaults = ( props ) => {
-	return sendCommand( 'quotes_dlx_get_theme_size_options', {
+	return sendCommand( 'quotes_dlx_get_theme_font_families', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
 		template: props.template,
-		screen: props.screenSize,
 	} );
 };
 
-const ThemeSizes = ( props ) => {
+const ThemeFontSelector = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, props );
 	return (
 		<ErrorBoundary
 			fallback={
 				<p>
 					{ __(
-						'Could not load admin colors.',
+						'Could not load theme font options.',
 						'quotes-dlx'
 					) }
 					<br />
@@ -63,16 +64,20 @@ const Interface = ( props ) => {
 	const [ resetting, setResetting ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 
-	const { fontSize, lineHeight, buttonFontSize } = data;
-
-	const screenSizeLabelLowercase = screenSizeLabel.toLowerCase();
+	const { enableCustomFonts,
+		customFontPrimary,
+		customFontSecondary,
+		primaryFontFamily,
+		secondaryFontFamily } = data;
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
-				fontSize,
-				lineHeight,
-				buttonFontSize,
+				enableCustomFonts,
+				customFontPrimary,
+				customFontSecondary,
+				primaryFontFamily,
+				secondaryFontFamily,
 			},
 		} );
 
@@ -88,10 +93,9 @@ const Interface = ( props ) => {
 
 	const onSubmit = ( formData ) => {
 		setSaving( true );
-		sendCommand( 'quotes_dlx_save_theme_size_options', {
+		sendCommand( 'quotes_dlx_save_theme_font_families', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			template: props.template,
-			screen: props.screenSize,
 			...formData,
 		} )
 			.then( ( ajaxResponse ) => {
@@ -141,15 +145,14 @@ const Interface = ( props ) => {
 	};
 
 	useEffect( () => {
-		getSizeOptions();
+		//getFontFamiliesOptions();
 	}, [] );
 
-	const getSizeOptions = () => {
+	const getFontFamiliesOptions = () => {
 		setLoading( true );
-		sendCommand( 'quotes_dlx_get_theme_size_options', {
+		sendCommand( 'quotes_dlx_get_theme_font_families', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
 			template: props.template,
-			screen: props.screenSize,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
@@ -182,10 +185,7 @@ const Interface = ( props ) => {
 							text={
 								saving
 									? __( 'Saving…', 'quotes-dlx' )
-									: sprintf(
-										__( 'Save %s Options', 'quotes-dlx' ),
-										screenSizeLabel
-									)
+									: __( 'Save Options', 'quotes-dlx' )
 							}
 							icon={ saving ? Spinner : false }
 							iconSize="18"
@@ -202,10 +202,7 @@ const Interface = ( props ) => {
 							text={
 								resetting
 									? __( 'Resetting…', 'quotes-dlx' )
-									: sprintf(
-										__( 'Reset %s Options', 'quotes-dlx' ),
-										screenSizeLabel
-									)
+									: __( 'Reset Options', 'quotes-dlx' )
 							}
 							icon={ resetting ? Spinner : false }
 							iconSize="18"
@@ -249,6 +246,16 @@ const Interface = ( props ) => {
 		);
 	};
 
+	const toTitleCase = ( string ) => {
+		const firstLetterRegex = /(^[a-z])/g;
+		const newString = string.replace( firstLetterRegex, ( match ) => {
+			return match.toUpperCase();
+		} );
+		return newString.replace( /-([a-z])/gi, function( all, letter ) {
+			return ' ' + letter.toUpperCase();
+		} );
+	};
+
 	const getUnsavedChangesWarning = () => {
 		if ( ! isDirty ) {
 			return null;
@@ -268,14 +275,237 @@ const Interface = ( props ) => {
 		);
 	};
 
+	const getFontFamilies = () => {
+		// Get font families in value label pair.
+		const families = [];
+
+		// Get the rest of the fonts.
+		for ( const [ key, fontfamily ] of Object.entries( fontFamilies ) ) {
+			families.push( {
+				label: fontfamily.name,
+				value: fontfamily.slug,
+			} );
+		}
+		families.push( {
+			label: __( 'Custom', 'quotes-dlx' ),
+			value: 'custom',
+		} );
+		return families;
+	};
+
+	const getFontOptions = () => {
+		if ( ! getValues( 'enableCustomFonts' ) ) {
+			return <></>;
+		}
+		return (
+			<>
+				<tr>
+					<th scope="row">{ __( 'Font Selection', 'quotes-dlx' ) }</th>
+					<td>
+						<div className="quotes-dlx-admin-theme-options__select span-2">
+							<Controller
+								name="primaryFontFamily"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<SelectControl
+										className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+										label={ __(
+											'Select a Primary Font',
+											'quotes-dlx'
+										) }
+										value={ value }
+										onChange={ ( newFont ) => onChange( newFont ) }
+										options={ getFontFamilies() }
+									/>
+								) }
+							/>
+							{ 'custom' === getValues( 'primaryFontFamily' ) && (
+								<>
+									<div className="quotes-dlx-admin-control-wrapper">
+										<Controller
+											name="customFontPrimary"
+											control={ control }
+											rules={ {
+												required: true,
+												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+											} }
+											render={ ( { field } ) => (
+												<TextControl
+													{ ...field }
+													label={ __(
+														'Enter your custom secondary font.',
+														'quotes-dlx'
+													) }
+													placeholder={ __(
+														'e.g. "Open Sans", sans-serif',
+														'quotes-dlx'
+													) }
+													className={ classNames(
+														'qdlx-admin__text-control',
+														{
+															'has-error':
+															'pattern' ===
+																errors.customFontPrimary?.type ||
+															'required' ===
+																errors.customFontPrimary?.type,
+															'is-required': true,
+														}
+													) }
+													help={ __(
+														'Set the font and fallbacks.',
+														'quotes-dlx'
+													) }
+													aria-required="true"
+												/>
+											) }
+										/>
+										{ 'required' ===
+										errors.customFontPrimary?.type && (
+											<Notice
+												message={ __(
+													'This field is a required field.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+										{ 'pattern' ===
+										errors.customFontPrimary?.type && (
+											<Notice
+												message={ __(
+													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+									</div>
+								</>
+							) }
+						</div>
+						<div className="quotes-dlx-admin-theme-options__select span-2">
+							<Controller
+								name="secondaryFontFamily"
+								control={ control }
+								render={ ( { field: { onChange, value } } ) => (
+									<SelectControl
+										className="qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select"
+										label={ __(
+											'Select a Secondary Font',
+											'quotes-dlx'
+										) }
+										value={ value }
+										onChange={ ( newFont ) => onChange( newFont ) }
+										options={ getFontFamilies() }
+									/>
+								) }
+							/>
+							{ 'custom' === getValues( 'secondaryFontFamily' ) && (
+								<>
+									<div className="quotes-dlx-admin-control-wrapper">
+										<Controller
+											name="customFontSecondary"
+											control={ control }
+											rules={ {
+												required: true,
+												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+											} }
+											render={ ( { field } ) => (
+												<TextControl
+													{ ...field }
+													label={ __(
+														'Enter your custom secondary font.',
+														'quotes-dlx'
+													) }
+													placeholder={ __(
+														'e.g. "Open Sans", sans-serif',
+														'quotes-dlx'
+													) }
+													className={ classNames(
+														'qdlx-admin__text-control',
+														{
+															'has-error':
+															'pattern' ===
+																errors.customFontSecondary
+																	?.type ||
+															'required' ===
+																errors.customFontSecondary?.type,
+															'is-required': true,
+														}
+													) }
+													help={ __(
+														'Set the font and fallbacks.',
+														'quotes-dlx'
+													) }
+													aria-required="true"
+												/>
+											) }
+										/>
+										{ 'required' ===
+										errors.customFontSecondary?.type && (
+											<Notice
+												message={ __(
+													'This field is a required field.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+										{ 'pattern' ===
+										errors.customFontSecondary?.type && (
+											<Notice
+												message={ __(
+													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+												) }
+												status="error"
+												politeness="assertive"
+												inline={ true }
+												icon={ CircularExclamationIcon }
+											/>
+										) }
+									</div>
+								</>
+							) }
+						</div>
+						<div className="components-base-control">
+							<a
+								data-fancybox
+								onClick={ ( e ) => {
+									e.preventDefault();
+									new Fancybox(
+										[
+											{
+												src: getPreviewLink(),
+												type: 'iframe',
+											},
+										],
+										{
+											mainClass: 'qdlx-theme-preview-mobile',
+											caption: __( 'Font Preview', 'quotes-dlx' ),
+										}
+									);
+								} }
+								href={ getPreviewLink() }
+							>
+								{ __( 'Preview Fonts', 'quotes-dlx' ) }
+							</a>
+						</div>
+					</td>
+				</tr>
+			</>
+		);
+	};
+
 	const getPreviewLink = () => {
-		return `${ ajaxurl }?action=quotes_dlx_theme_preview&fontsize=${ encodeURIComponent(
-			getValues( 'fontSize' )
-		) }&lineheight=${ encodeURIComponent(
-			getValues( 'lineHeight' )
-		) }&buttonsize=${ encodeURIComponent( getValues( 'buttonFontSize' ) ) }&nonce=${
+		return `${ ajaxurl }?action=quotes_dlx_theme_preview&nonce=${
 			quotes_dlx_admin.options_retrieve_nonce
-		}&template=${ encodeURIComponent( props.template ) }&screen=${ screenSize }`;
+		}&template=${ encodeURIComponent( props.template ) }&screen=tablet&primary_font_family=${ encodeURIComponent( toTitleCase( getValues( 'primaryFontFamily' ) ) ) }&secondary_font_family=${ encodeURIComponent( toTitleCase( getValues( 'secondaryFontFamily' ) ) ) }`;
 	};
 
 	return (
@@ -284,140 +514,45 @@ const Interface = ( props ) => {
 				<form onSubmit={ handleSubmit( onSubmit ) }>
 					<div className="qdlx-admin__tabs--content-heading">
 						<h2>
-							{ sprintf( __( 'Select %s Sizes', 'quotes-dlx' ), screenSizeLabel ) }
+							{ __( 'Select Font Families', 'quotes-dlx' ) }
 						</h2>
 						<p className="description">
 							{ __(
-								'Modify the quote and button sizes for the theme.',
+								'Override the advanced font settings and set a font family for an individual theme.',
 								'quotes-dlx'
 							) }
 						</p>
 					</div>
 					<div className="qdlx-admin__tabs--content-inner">
 						{ getUnsavedChangesWarning() }
-						<Controller
-							name="fontSize"
-							control={ control }
-							render={ ( { field: { onChange, value } } ) => (
-								<>
-									<RangeControl
-										label={ __(
-											'Set the Quote Base Font Size',
-											'comment-edit-pro'
-										) }
-										step={ 1 }
-										value={ value }
-										max={ 48 }
-										min={ 8 }
-										currentInput={ 16 }
-										initialPosition={ 16 }
-										allowReset={ true }
-										className="qdlx-admin__range-control"
-										onChange={ ( fontSizeValue ) => {
-											onChange( fontSizeValue );
-										} }
-										help={ sprintf(
-											__(
-												'Set the font size of the %s size for the theme.',
-												'quotes-dlx'
-											),
-											screenSizeLabelLowercase
-										) }
-										trackColor="#8019c4"
-										railColor="#dad4eb"
-									/>
-								</>
-							) }
-						/>
-						<Controller
-							name="lineHeight"
-							control={ control }
-							render={ ( { field: { onChange, value } } ) => (
-								<>
-									<RangeControl
-										label={ __( 'Set the Quote Line Height', 'comment-edit-pro' ) }
-										step={ 0.1 }
-										value={ value }
-										max={ 3 }
-										min={ 0.25 }
-										currentInput={ 1.2 }
-										initialPosition={ 1.2 }
-										allowReset={ true }
-										className="qdlx-admin__range-control"
-										onChange={ ( lineHeightValue ) => {
-											onChange( lineHeightValue );
-										} }
-										help={ sprintf(
-											__(
-												'Set the line-height of the theme for %s.',
-												'quotes-dlx'
-											),
-											screenSizeLabelLowercase
-										) }
-										trackColor="#8019c4"
-										railColor="#dad4eb"
-									/>
-								</>
-							) }
-						/>
-						<Controller
-							name="buttonFontSize"
-							control={ control }
-							render={ ( { field: { onChange, value } } ) => (
-								<>
-									<RangeControl
-										label={ __(
-											'Set the Button Base Font Size',
-											'comment-edit-pro'
-										) }
-										step={ 1 }
-										value={ value }
-										max={ 48 }
-										min={ 8 }
-										currentInput={ 16 }
-										initialPosition={ 16 }
-										allowReset={ true }
-										className="qdlx-admin__range-control"
-										onChange={ ( fontSizeValue ) => {
-											onChange( fontSizeValue );
-										} }
-										help={ sprintf(
-											__(
-												'Set the button font size of the %s size for the theme.',
-												'quotes-dlx'
-											),
-											screenSizeLabelLowercase
-										) }
-										trackColor="#8019c4"
-										railColor="#dad4eb"
-									/>
-								</>
-							) }
-						/>
-						<a
-							data-fancybox
-							onClick={ ( e ) => {
-								e.preventDefault();
-								new Fancybox(
-									[
-										{
-											src: getPreviewLink(),
-											type: 'iframe',
-										},
-									],
-									{
-										mainClass: 'qdlx-theme-preview-mobile',
-										caption: sprintf(
-											__( '%s Preview', 'quotes-dlx' ),
-											screenSizeLabel
-										),
-									}
-								);
-							} }
-							href={ getPreviewLink() }
-						>
-							{ sprintf( __( 'Preview %s Version', 'quotes-dlx' ), screenSizeLabel ) }
-						</a>
+						<table className="form-table" role="presentation">
+							<tbody>
+								<tr>
+									<th scope="row">{ __( 'Font Options', 'quotes-dlx' ) }</th>
+									<td>
+										<Controller
+											name="enableCustomFonts"
+											control={ control }
+											render={ ( { field: { onChange, value } } ) => (
+												<ToggleControl
+													label={ __( 'Enable Custom Theme Fonts', 'quotes-dlx' ) }
+													className="qdlx-admin__toggle-control"
+													checked={ value }
+													onChange={ ( boolValue ) => {
+														onChange( boolValue );
+													} }
+													help={ __(
+														'Default fonts can be set in the Advanced options. This will allow you to select a font family set for each individual theme.',
+														'quotes-dlx'
+													) }
+												/>
+											) }
+										/>
+									</td>
+								</tr>
+								{ getFontOptions() }
+							</tbody>
+						</table>
 						{ getUnsavedChangesWarning() }
 					</div>
 					{ getSaveResetButtons() }
@@ -427,4 +562,4 @@ const Interface = ( props ) => {
 	);
 };
 
-export default ThemeSizes;
+export default ThemeFontSelector;

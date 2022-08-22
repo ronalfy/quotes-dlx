@@ -209,10 +209,10 @@ class Ajax {
 		$secondary_font_family = $theme_options[ $template_slug ]['secondary_font_family'] ?? '';
 
 		if ( '' === $primary_font_family ) {
-			$primary_font_family = 'lato';
+			$primary_font_family = Functions::get_default_primary_font_slug();
 		}
 		if ( '' === $secondary_font_family ) {
-			$secondary_font_family = 'open-sans';
+			$secondary_font_family = Functions::get_default_secondary_font_slug();
 		}
 
 		wp_send_json_success(
@@ -234,6 +234,9 @@ class Ajax {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
 
 		$form_data = $_POST['form_data']; // expect array.
 
@@ -273,6 +276,9 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
+		// Clear font cache.
+		Functions::remove_font_cache();
+
 		// Get the active template.
 		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
 		$theme_options = Options_Theme::get_options();
@@ -298,8 +304,8 @@ class Ajax {
 				'enableCustomFonts'   => false,
 				'customFontPrimary'   => '',
 				'customFontSecondary' => '',
-				'primaryFontFamily'   => '',
-				'secondaryFontFamily' => '',
+				'primaryFontFamily'   => Functions::get_default_primary_font_slug(),
+				'secondaryFontFamily' => Functions::get_default_secondary_font_slug(),
 			)
 		);
 		exit;
@@ -898,6 +904,9 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
+		// Clear font cache.
+		Functions::remove_font_cache();
+
 		$options_to_save = Options_Advanced::get_options();
 
 		$form_data = $_POST['form_data']; // expect array.
@@ -974,6 +983,9 @@ class Ajax {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array() );
 		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
 
 		$options           = Options_Advanced::reset();
 		$options_to_return = array();

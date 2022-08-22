@@ -870,13 +870,116 @@ class Blocks {
 			return;
 		}
 
-		$font_urls = array(
-			Functions::get_plugin_url( 'dist/fonts/lato-v22-latin-300.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/lato-v22-latin-regular.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/lora-v23-latin-italic.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/open-sans-v28-latin-300.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/open-sans-v28-latin-regular.woff2' ),
-		);
+		/**
+		 * Whether to preload fonts or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param bool true to preload, false to not.
+		 */
+		$can_preload = apply_filters( 'quotes_dlx_can_preload_fonts', true );
+		if ( ! $can_preload ) {
+			return;
+		}
+
+		// Get font options.
+		$fonts_to_preload      = array();
+		$maybe_enable_fonts    = (bool) Options_Advanced::get_options( 'enable_fonts' );
+		$global_primary_font   = Options_Advanced::get_options( 'primary_font_family' );
+		$global_secondary_font = Options_Advanced::get_options( 'secondary_font_family' );
+
+		if ( ! $global_primary_font || '' === $global_primary_font ) {
+			$global_primary_font = Functions::get_default_primary_font_slug();
+		}
+		if ( ! $global_secondary_font || '' === $global_secondary_font ) {
+			$global_secondary_font = Functions::get_default_secondary_font_slug();
+		}
+
+		// Add fonts to preload if custom isn't set.
+		if ( 'custom' !== $global_primary_font ) {
+			$fonts_to_preload[] = $global_primary_font;
+		}
+		if ( 'custom' !== $global_secondary_font ) {
+			$fonts_to_preload[] = $global_secondary_font;
+		}
+
+		// Now get theme fonts.
+		$theme_options = Options_Theme::get_options();
+		$themes        = Themes::get_theme_data();
+		foreach ( $themes as $theme ) {
+			if ( isset( $theme_options[ $theme['slug'] ] ) ) {
+				// Check to see if custom fonts are enabled for the theme.
+				$custom_fonts_enabled = (bool) $theme_options[ $theme['slug'] ]['enable_custom_fonts'] ?? false;
+				if ( ! $custom_fonts_enabled ) {
+					continue;
+				}
+
+				// Start grabbing the fonts.
+				$theme_primary_font   = $theme_options[ $theme['slug'] ]['primary_font_family'] ?? '';
+				$theme_secondary_font = $theme_options[ $theme['slug'] ]['secondary_font_family'] ?? '';
+				if ( ! $theme_primary_font || '' === $theme_primary_font ) {
+					$theme_primary_font = Functions::get_default_primary_font_slug();
+				}
+				if ( ! $theme_secondary_font || '' === $theme_secondary_font ) {
+					$theme_secondary_font = Functions::get_default_secondary_font_slug();
+				}
+				if ( 'custom' !== $theme_primary_font ) {
+					$fonts_to_preload[] = $theme_primary_font;
+				}
+				if ( 'custom' !== $theme_secondary_font ) {
+					$fonts_to_preload[] = $theme_secondary_font;
+				}
+			}
+		}
+
+		// Finally, filter.
+		$fonts_to_preload = array_unique( $fonts_to_preload );
+
+		/**
+		 * Font slugs to preload.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array Font slugs to preload.
+		 */
+		$fonts_to_preload = apply_filters( 'quotes_dlx_fonts_to_preload', $fonts_to_preload );
+
+		// Get fonts in directory.
+		$fonts_path  = Functions::get_plugin_dir( 'dist/fonts/' );
+		$maybe_fonts = wp_cache_get( 'quotes_dlx_font_files' );
+		if ( ! $maybe_fonts || ! is_array( $maybe_fonts ) ) {
+			$maybe_fonts = array();
+		}
+		if ( is_dir( $fonts_path ) ) {
+			$maybe_fonts = array_diff( scandir( $fonts_path ), array( '..', '.' ) );
+			wp_cache_set( 'quotes_dlx_font_files', $maybe_fonts, 'quotes-dlx', HOUR_IN_SECONDS ); // Cache for 60 minutes. Could be longer since we clear the cache on save/reset.
+		}
+
+		// Get .woff2 files.
+		$woff2_filenames = array();
+		foreach ( $maybe_fonts as $font_file ) {
+			$path_info = pathinfo( $font_file );
+			if ( 'woff2' === $path_info['extension'] ) {
+				$woff2_filenames[] = $path_info['basename'];
+			}
+		}
+
+		// Now get fonts to preload.
+		$font_files_to_preload = array();
+		foreach ( $fonts_to_preload as $font_slug ) {
+			foreach ( $woff2_filenames as $woff2_filename ) {
+				if ( strstr( $woff2_filename, $font_slug ) ) {
+					$font_files_to_preload[] = $woff2_filename;
+					continue;
+				}
+			}
+		}
+
+		// Now get the full path to the font files.
+		$font_urls = array();
+		foreach ( $font_files_to_preload as $font_file ) {
+			$font_urls[] = Functions::get_plugin_url( 'dist/fonts/' . $font_file );
+		}
 
 		/**
 		 * Font URLs to pre-load.

@@ -317,6 +317,27 @@ class Functions {
 	}
 
 	/**
+	 * Retrieve the default primary font slug.
+	 */
+	public static function get_default_primary_font_slug() {
+		return 'lato';
+	}
+
+	/**
+	 * Retrieve the default secondary font slug.
+	 */
+	public static function get_default_secondary_font_slug() {
+		return 'open-sans';
+	}
+
+	/**
+	 * Clear the font cache.
+	 */
+	public static function remove_font_cache() {
+		wp_cache_delete( 'quotes_dlx_font_files', 'quotes-dlx' );
+	}
+
+	/**
 	 * Retrieve the primary font CSS argument for font-family.
 	 */
 	public static function get_primary_font_family_css() {

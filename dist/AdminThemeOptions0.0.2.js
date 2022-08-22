@@ -473,7 +473,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/toggle-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/toggle-control/index.js");
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/escape-html */ "./node_modules/@wordpress/escape-html/build-module/index.js");
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
@@ -482,7 +483,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox.js */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
 /* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
-/* harmony import */ var _Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
+/* harmony import */ var _Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Loaders/AdminThemeSizesLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js");
 /* harmony import */ var _Notice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
@@ -530,6 +531,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var retrieveDefaults = function retrieveDefaults(props) {
   return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_font_families', {
     nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -550,7 +552,7 @@ var ThemeFontSelector = function ThemeFontSelector(props) {
       rel: "noopener noreferrer"
     }, "DLX Plugins Support"))
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
       showHeader: true
     })
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
@@ -658,10 +660,9 @@ var Interface = function Interface(props) {
 
   var handleReset = function handleReset(e) {
     setResetting(true);
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_theme_size_options', {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_theme_font_families', {
       nonce: quotes_dlx_admin.options_save_nonce,
-      template: template,
-      screen: screenSize
+      template: props.template
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
@@ -849,20 +850,21 @@ var Interface = function Interface(props) {
       control: control,
       rules: {
         required: true,
-        pattern: /^[-\" ,A-Za-z0-9]+$/i
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
       },
       render: function render(_ref2) {
         var _errors$customFontPri, _errors$customFontPri2;
 
         var field = _ref2.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__.escapeAttribute)(field.value),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
             'has-error': 'pattern' === ((_errors$customFontPri = errors.customFontPrimary) === null || _errors$customFontPri === void 0 ? void 0 : _errors$customFontPri.type) || 'required' === ((_errors$customFontPri2 = errors.customFontPrimary) === null || _errors$customFontPri2 === void 0 ? void 0 : _errors$customFontPri2.type),
             'is-required': true
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks.', 'quotes-dlx'),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
           "aria-required": "true"
         }));
       }
@@ -873,7 +875,7 @@ var Interface = function Interface(props) {
       inline: true,
       icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), 'pattern' === ((_errors$customFontPri4 = errors.customFontPrimary) === null || _errors$customFontPri4 === void 0 ? void 0 : _errors$customFontPri4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'),
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
       status: "error",
       politeness: "assertive",
       inline: true,
@@ -904,20 +906,21 @@ var Interface = function Interface(props) {
       control: control,
       rules: {
         required: true,
-        pattern: /^[-\" ,A-Za-z0-9]+$/i
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
       },
       render: function render(_ref4) {
         var _errors$customFontSec, _errors$customFontSec2;
 
         var field = _ref4.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__.escapeAttribute)(field.value),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
             'has-error': 'pattern' === ((_errors$customFontSec = errors.customFontSecondary) === null || _errors$customFontSec === void 0 ? void 0 : _errors$customFontSec.type) || 'required' === ((_errors$customFontSec2 = errors.customFontSecondary) === null || _errors$customFontSec2 === void 0 ? void 0 : _errors$customFontSec2.type),
             'is-required': true
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks.', 'quotes-dlx'),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
           "aria-required": "true"
         }));
       }
@@ -928,7 +931,7 @@ var Interface = function Interface(props) {
       inline: true,
       icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), 'pattern' === ((_errors$customFontSec4 = errors.customFontSecondary) === null || _errors$customFontSec4 === void 0 ? void 0 : _errors$customFontSec4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'),
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
       status: "error",
       politeness: "assertive",
       inline: true,
@@ -979,7 +982,7 @@ var Interface = function Interface(props) {
       var _ref5$field = _ref5.field,
           _onChange3 = _ref5$field.onChange,
           value = _ref5$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Custom Theme Fonts', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: value,
@@ -1199,7 +1202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox.js */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
 /* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
-/* harmony import */ var _admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../admin-components/Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
+/* harmony import */ var _Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Loaders/AdminThemeSizesLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js");
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
@@ -1263,7 +1266,7 @@ var ThemeSizes = function ThemeSizes(props) {
       rel: "noopener noreferrer"
     }, "DLX Plugins Support"))
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_7__["default"], {
       showHeader: true
     })
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({

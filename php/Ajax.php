@@ -260,6 +260,46 @@ class Ajax {
 	}
 
 	/**
+	 * Reset the theme font fmailies.
+	 */
+	public static function ajax_reset_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$theme_options = Options_Theme::get_options();
+
+		$keys_to_unset = array(
+			'enable_custom_fonts',
+			'custom_font_primary',
+			'custom_font_secondary',
+			'primary_font_family',
+			'secondary_font_family',
+		);
+
+		if ( isset( $theme_options[ $template_slug ] ) && is_array( $theme_options[ $template_slug ] ) ) {
+			foreach ( $keys_to_unset as $key ) {
+				unset( $theme_options[ $template_slug ][ $key ] );
+			}
+		}
+
+		Options_Theme::update_options( $template_slug, $theme_options );
+
+		wp_send_json_success(
+			array(
+				'enableCustomFonts'   => false,
+				'customFontPrimary'   => '',
+				'customFontSecondary' => '',
+				'primaryFontFamily'   => '',
+				'secondaryFontFamily' => '',
+			)
+		);
+		exit;
+	}
+
+	/**
 	 * Ajax callback for generating an anchor for the block.
 	 */
 	public static function ajax_generate_anchor() {

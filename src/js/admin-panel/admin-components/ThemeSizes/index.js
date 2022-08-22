@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../../utils/SendCommand';
-import AdminThemeColorsLoader from '../../admin-components/Loaders/AdminThemeColorsLoader';
+import AdminThemeSizesLoader from '../Loaders/AdminThemeSizesLoader';
 import Notice from '../../admin-components/Notice';
 import Spinner from '../../../components/icons/Spinner';
 import ErrorBoundary from '../ErrorBoundary';
@@ -44,7 +44,7 @@ const ThemeSizes = ( props ) => {
 				</p>
 			}
 		>
-			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+			<Suspense fallback={ <AdminThemeSizesLoader showHeader={ true } /> }>
 				<Interface defaults={ defaults } { ...props } />
 			</Suspense>
 		</ErrorBoundary>

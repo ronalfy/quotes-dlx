@@ -5,13 +5,14 @@ import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { __, sprintf } from '@wordpress/i18n';
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
 import { Button, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { escapeAttribute } from '@wordpress/escape-html';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../../utils/SendCommand';
-import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
+import AdminThemeSizesLoader from '../Loaders/AdminThemeSizesLoader';
 import Notice from '../Notice';
 import Spinner from '../../../components/icons/Spinner';
 import ErrorBoundary from '../ErrorBoundary';
@@ -46,7 +47,7 @@ const ThemeFontSelector = ( props ) => {
 				</p>
 			}
 		>
-			<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+			<Suspense fallback={ <AdminThemeSizesLoader showHeader={ true } /> }>
 				<Interface defaults={ defaults } { ...props } />
 			</Suspense>
 		</ErrorBoundary>
@@ -120,10 +121,9 @@ const Interface = ( props ) => {
 
 	const handleReset = ( e ) => {
 		setResetting( true );
-		sendCommand( 'quotes_dlx_reset_theme_size_options', {
+		sendCommand( 'quotes_dlx_reset_theme_font_families', {
 			nonce: quotes_dlx_admin.options_save_nonce,
-			template,
-			screen: screenSize,
+			template: props.template,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
@@ -327,17 +327,18 @@ const Interface = ( props ) => {
 											control={ control }
 											rules={ {
 												required: true,
-												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+												pattern: /^[-\' ,A-Za-z0-9]+$/i,
 											} }
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
+													value={ escapeAttribute( field.value ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'
 													) }
 													placeholder={ __(
-														'e.g. "Open Sans", sans-serif',
+														"e.g. 'Open Sans', sans-serif'",
 														'quotes-dlx'
 													) }
 													className={ classNames(
@@ -352,7 +353,7 @@ const Interface = ( props ) => {
 														}
 													) }
 													help={ __(
-														'Set the font and fallbacks.',
+														'Set the font and fallbacks. Double quotes are not permitted.',
 														'quotes-dlx'
 													) }
 													aria-required="true"
@@ -375,7 +376,7 @@ const Interface = ( props ) => {
 										errors.customFontPrimary?.type && (
 											<Notice
 												message={ __(
-													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+													'There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'
 												) }
 												status="error"
 												politeness="assertive"
@@ -412,17 +413,18 @@ const Interface = ( props ) => {
 											control={ control }
 											rules={ {
 												required: true,
-												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+												pattern: /^[-\' ,A-Za-z0-9]+$/i,
 											} }
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
+													value={ escapeAttribute( field.value ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'
 													) }
 													placeholder={ __(
-														'e.g. "Open Sans", sans-serif',
+														"e.g. 'Open Sans', sans-serif'",
 														'quotes-dlx'
 													) }
 													className={ classNames(
@@ -438,7 +440,7 @@ const Interface = ( props ) => {
 														}
 													) }
 													help={ __(
-														'Set the font and fallbacks.',
+														'Set the font and fallbacks. Double quotes are not permitted.',
 														'quotes-dlx'
 													) }
 													aria-required="true"
@@ -461,7 +463,7 @@ const Interface = ( props ) => {
 										errors.customFontSecondary?.type && (
 											<Notice
 												message={ __(
-													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+													'There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'
 												) }
 												status="error"
 												politeness="assertive"

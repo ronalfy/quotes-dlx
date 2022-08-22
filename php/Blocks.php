@@ -134,10 +134,10 @@ class Blocks {
 		// Register theme fonts.
 		$themes = Themes::get_theme_data();
 		foreach ( $themes as $theme ) {
-			$theme_options = Options_Theme::get_options( $theme['slug'] );
+			$theme_options             = Options_Theme::get_options( $theme['slug'] );
 			$theme_enable_custom_fonts = (bool) $theme_options['enable_custom_fonts'] ?? false;
 			if ( $theme_enable_custom_fonts ) {
-				$primary_font_family = $theme_options['primary_font_family'] ?? '';
+				$primary_font_family   = $theme_options['primary_font_family'] ?? '';
 				$secondary_font_family = $theme_options['secondary_font_family'] ?? '';
 				if ( Functions::is_adobe_font( $primary_font_family ) || Functions::is_adobe_font( $secondary_font_family ) ) {
 					$project_id = Options_Defaults::get_options( 'adobe_project_id' );
@@ -255,10 +255,7 @@ class Blocks {
 					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options_advanced['desktop_breakpoint'] ) . 'px'; ?>;
 				}
 			</style>
-			<?php
-
-			?>
-		<style>
+					<style>
 			:root {
 				<?php
 				foreach ( $themes as $theme_options ) {
@@ -316,9 +313,9 @@ class Blocks {
 
 					// Set theme fonts.
 					$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
-					$allow_custom_fonts = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
+					$allow_custom_fonts   = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
 					if ( $allow_custom_fonts ) {
-						$theme_primary_font = Functions::get_theme_primary_font_family_css( $theme_options['slug'] );
+						$theme_primary_font   = Functions::get_theme_primary_font_family_css( $theme_options['slug'] );
 						$theme_secondary_font = Functions::get_theme_secondary_font_family_css( $theme_options['slug'] );
 						if ( $theme_primary_font ) {
 							echo sprintf(

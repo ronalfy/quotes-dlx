@@ -1,237 +1,6 @@
 "use strict";
 (self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.3"],{
 
-/***/ "./node_modules/@wordpress/components/build-module/form-toggle/index.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/build-module/form-toggle/index.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "noop": () => (/* binding */ noop)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-/**
- * External dependencies
- */
-
-const noop = () => {};
-
-function FormToggle(_ref) {
-  let {
-    className,
-    checked,
-    id,
-    disabled,
-    onChange = noop,
-    ...props
-  } = _ref;
-  const wrapperClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-form-toggle', className, {
-    'is-checked': checked,
-    'is-disabled': disabled
-  });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
-    className: wrapperClasses
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    className: "components-form-toggle__input",
-    id: id,
-    type: "checkbox",
-    checked: checked,
-    onChange: onChange,
-    disabled: disabled
-  }, props)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
-    className: "components-form-toggle__track"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("span", {
-    className: "components-form-toggle__thumb"
-  }));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormToggle);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/build-module/text-control/index.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/build-module/text-control/index.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TextControl": () => (/* binding */ TextControl),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
-/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
-
-
-
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function UnforwardedTextControl(props, ref) {
-  const {
-    label,
-    hideLabelFromVision,
-    value,
-    help,
-    className,
-    onChange,
-    type = 'text',
-    ...additionalProps
-  } = props;
-  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(TextControl);
-  const id = `inspector-text-control-${instanceId}`;
-
-  const onChangeValue = event => onChange(event.target.value);
-
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    label: label,
-    hideLabelFromVision: hideLabelFromVision,
-    id: id,
-    help: help,
-    className: className
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    className: "components-text-control__input",
-    type: type,
-    id: id,
-    value: value,
-    onChange: onChangeValue,
-    "aria-describedby": !!help ? id + '__help' : undefined,
-    ref: ref
-  }, additionalProps)));
-}
-/**
- * TextControl components let users enter and edit text.
- *
- *
- * @example
- * ```jsx
- * import { TextControl } from '@wordpress/components';
- * import { useState } from '@wordpress/element';
- *
- * const MyTextControl = () => {
- *   const [ className, setClassName ] = useState( '' );
- *
- *   return (
- *     <TextControl
- *       label="Additional CSS Class"
- *       value={ className }
- *       onChange={ ( value ) => setClassName( value ) }
- *     />
- *   );
- * };
- * ```
- */
-
-
-const TextControl = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(UnforwardedTextControl);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextControl);
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/components/build-module/toggle-control/index.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@wordpress/components/build-module/toggle-control/index.js ***!
-  \*********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ToggleControl)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/react/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/compose */ "./node_modules/@wordpress/compose/build-module/hooks/use-instance-id/index.js");
-/* harmony import */ var _form_toggle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form-toggle */ "./node_modules/@wordpress/components/build-module/form-toggle/index.js");
-/* harmony import */ var _base_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../base-control */ "./node_modules/@wordpress/components/build-module/base-control/index.js");
-
-
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function ToggleControl(_ref) {
-  let {
-    label,
-    checked,
-    help,
-    className,
-    onChange,
-    disabled
-  } = _ref;
-
-  function onChangeToggle(event) {
-    onChange(event.target.checked);
-  }
-
-  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(ToggleControl);
-  const id = `inspector-toggle-control-${instanceId}`;
-  let describedBy, helpLabel;
-
-  if (help) {
-    describedBy = id + '__help';
-    helpLabel = typeof help === 'function' ? help(checked) : help;
-  }
-
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_base_control__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    id: id,
-    help: helpLabel,
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('components-toggle-control', className)
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)(_form_toggle__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    id: id,
-    checked: checked,
-    onChange: onChangeToggle,
-    "aria-describedby": describedBy,
-    disabled: disabled
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createElement)("label", {
-    htmlFor: id,
-    className: "components-toggle-control__label"
-  }, label));
-}
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ "./src/fonts/fonts.js":
 /*!****************************!*\
   !*** ./src/fonts/fonts.js ***!
@@ -319,6 +88,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/escape-html */ "./node_modules/@wordpress/escape-html/build-module/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
@@ -357,6 +127,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable no-unused-vars */
+
 
 
 
@@ -977,20 +748,21 @@ var Interface = function Interface(props) {
       control: control,
       rules: {
         required: true,
-        pattern: /^[-\" ,A-Za-z0-9]+$/i
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
       },
       render: function render(_ref7) {
         var _errors$customFontPri, _errors$customFontPri2;
 
         var field = _ref7.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
             'has-error': 'pattern' === ((_errors$customFontPri = errors.customFontPrimary) === null || _errors$customFontPri === void 0 ? void 0 : _errors$customFontPri.type) || 'required' === ((_errors$customFontPri2 = errors.customFontPrimary) === null || _errors$customFontPri2 === void 0 ? void 0 : _errors$customFontPri2.type),
             'is-required': true
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks.', 'quotes-dlx'),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
           "aria-required": "true"
         }));
       }
@@ -1001,7 +773,7 @@ var Interface = function Interface(props) {
       inline: true,
       icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
     }), 'pattern' === ((_errors$customFontPri4 = errors.customFontPrimary) === null || _errors$customFontPri4 === void 0 ? void 0 : _errors$customFontPri4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'),
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
       status: "error",
       politeness: "assertive",
       inline: true,
@@ -1032,20 +804,21 @@ var Interface = function Interface(props) {
       control: control,
       rules: {
         required: true,
-        pattern: /^[-\" ,A-Za-z0-9]+$/i
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
       },
       render: function render(_ref9) {
         var _errors$customFontSec, _errors$customFontSec2;
 
         var field = _ref9.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_23__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('e.g. "Open Sans", sans-serif', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
             'has-error': 'pattern' === ((_errors$customFontSec = errors.customFontSecondary) === null || _errors$customFontSec === void 0 ? void 0 : _errors$customFontSec.type) || 'required' === ((_errors$customFontSec2 = errors.customFontSecondary) === null || _errors$customFontSec2 === void 0 ? void 0 : _errors$customFontSec2.type),
             'is-required': true
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks.', 'quotes-dlx'),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
           "aria-required": "true"
         }));
       }
@@ -1056,7 +829,7 @@ var Interface = function Interface(props) {
       inline: true,
       icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
     }), 'pattern' === ((_errors$customFontSec4 = errors.customFontSecondary) === null || _errors$customFontSec4 === void 0 ? void 0 : _errors$customFontSec4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'),
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
       status: "error",
       politeness: "assertive",
       inline: true,

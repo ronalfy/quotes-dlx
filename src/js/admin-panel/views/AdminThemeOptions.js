@@ -19,6 +19,7 @@ import ThemePreview from '../admin-components/ThemePreview';
 import Notice from '../admin-components/Notice';
 import Spinner from '../../components/icons/Spinner';
 import ThemeSizes from '../admin-components/ThemeSizes';
+import ThemeFontSelector from '../admin-components/ThemeFontSelector';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
@@ -535,6 +536,15 @@ const Interface = ( props ) => {
 			</>
 		);
 	};
+	const getThemeFontSelector = () => {
+		return (
+			<>
+				<ThemeFontSelector
+					template={ activeTheme }
+				/>
+			</>
+		);
+	};
 
 	if ( loading ) {
 		return (
@@ -570,6 +580,7 @@ const Interface = ( props ) => {
 				</div>
 				{ getThemePreviewAndSwatches() }
 				{ getFontSizeOptions() }
+				{ getThemeFontSelector() }
 			</div>
 		</>
 	);

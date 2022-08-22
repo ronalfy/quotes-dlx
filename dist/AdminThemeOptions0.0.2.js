@@ -1,5 +1,76 @@
 (self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminThemeOptions0.0.2"],{
 
+/***/ "./src/fonts/fonts.js":
+/*!****************************!*\
+  !*** ./src/fonts/fonts.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var fontFamilies = {
+  Roboto: {
+    name: 'Roboto',
+    slug: 'roboto',
+    family: 'Roboto',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  'Josefin Sans': {
+    name: 'Josefin Sans',
+    slug: 'josefin-sans',
+    family: 'Josefin Sans',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Karla: {
+    name: 'Karla',
+    slug: 'karla',
+    family: 'Karla',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Lato: {
+    name: 'Lato',
+    slug: 'lato',
+    family: 'Lato',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Montserrat: {
+    name: 'Montserrat',
+    slug: 'montserrat',
+    family: 'Montserrat',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  'Open Sans': {
+    name: 'Open Sans',
+    slug: 'open-sans',
+    family: 'Open Sans',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  'Playfair Display': {
+    name: 'Playfair Display',
+    slug: 'playfair-display',
+    family: 'Playfair Display',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Raleway: {
+    name: 'Raleway',
+    slug: 'raleway',
+    family: 'Raleway',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  'Source Sans Pro': {
+    name: 'Source Sans Pro',
+    slug: 'source-sans-pro',
+    family: 'Source Sans Pro',
+    fallback: 'Helvetica, Arial, sans-serif'
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fontFamilies);
+
+/***/ }),
+
 /***/ "./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js":
 /*!******************************************************************************!*\
   !*** ./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js ***!
@@ -384,6 +455,550 @@ var ThemeColorPicker = function ThemeColorPicker(props) {
 
 /***/ }),
 
+/***/ "./src/js/admin-panel/admin-components/ThemeFontSelector/index.js":
+/*!************************************************************************!*\
+  !*** ./src/js/admin-panel/admin-components/ThemeFontSelector/index.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var photoswipe_dynamic_caption_plugin_photoswipe_dynamic_caption_plugin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css */ "./node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/toggle-control/index.js");
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/escape-html */ "./node_modules/@wordpress/escape-html/build-module/index.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox.js */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
+/* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Loaders/AdminThemeSizesLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js");
+/* harmony import */ var _Notice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+/* harmony import */ var _fonts_fonts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../fonts/fonts */ "./src/fonts/fonts.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable @wordpress/i18n-translator-comments */
+
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var retrieveDefaults = function retrieveDefaults(props) {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_font_families', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce,
+    template: props.template
+  });
+};
+
+var ThemeFontSelector = function ThemeFontSelector(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_3__.useAsyncResource)(retrieveDefaults, props),
+      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+      defaults = _useAsyncResource2[0],
+      getDefaults = _useAsyncResource2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load theme font options.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://dlxplugins.com/support/",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "DLX Plugins Support"))
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      showHeader: true
+    })
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props))));
+};
+
+var Interface = function Interface(props) {
+  var defaults = props.defaults,
+      screenSizeLabel = props.screenSizeLabel,
+      screenSize = props.screenSize,
+      template = props.template;
+  var response = defaults();
+  var _response$data = response.data,
+      data = _response$data.data,
+      success = _response$data.success;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      saving = _useState4[0],
+      setSaving = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isSaved = _useState6[0],
+      setIsSaved = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      resetting = _useState8[0],
+      setResetting = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      isReset = _useState10[0],
+      setIsReset = _useState10[1];
+
+  var enableCustomFonts = data.enableCustomFonts,
+      customFontPrimary = data.customFontPrimary,
+      customFontSecondary = data.customFontSecondary,
+      primaryFontFamily = data.primaryFontFamily,
+      secondaryFontFamily = data.secondaryFontFamily;
+
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useForm)({
+    defaultValues: {
+      enableCustomFonts: enableCustomFonts,
+      customFontPrimary: customFontPrimary,
+      customFontSecondary: customFontSecondary,
+      primaryFontFamily: primaryFontFamily,
+      secondaryFontFamily: secondaryFontFamily
+    }
+  }),
+      register = _useForm.register,
+      control = _useForm.control,
+      handleSubmit = _useForm.handleSubmit,
+      setValue = _useForm.setValue,
+      getValues = _useForm.getValues,
+      reset = _useForm.reset;
+
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useWatch)({
+    control: control
+  });
+
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useFormState)({
+    control: control
+  }),
+      errors = _useFormState.errors,
+      isDirty = _useFormState.isDirty,
+      dirtyFields = _useFormState.dirtyFields,
+      touchedFields = _useFormState.touchedFields;
+
+  var hasErrors = function hasErrors() {
+    return false; //Object.keys( errors ).length > 0;
+  };
+
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_save_theme_font_families', _objectSpread({
+      nonce: quotes_dlx_admin.options_save_nonce,
+      template: props.template
+    }, formData)).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        setIsSaved(true);
+        setTimeout(function () {
+          reset(formData, {
+            keepDirty: false
+          }); // From: https://stackoverflow.com/questions/63953501/react-hook-form-resetting-isdirty-without-clearing-form
+
+          setIsSaved(false);
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_theme_font_families', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      template: props.template
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        reset(ajaxData, {
+          keepDirty: false
+        });
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {//getFontFamiliesOptions();
+  }, []);
+
+  var getFontFamiliesOptions = function getFontFamiliesOptions() {
+    setLoading(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_font_families', {
+      nonce: quotes_dlx_admin.options_retrieve_nonce,
+      template: props.template
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        reset(ajaxData, {
+          keepDirty: false
+        });
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setLoading(false);
+    });
+  };
+
+  var getSaveResetButtons = function getSaveResetButtons() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-inner"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-actions"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+        'has-error': hasErrors()
+      }, {
+        'has-icon': saving
+      }, {
+        'is-saving': {
+          saving: saving
+        }
+      }),
+      type: "submit",
+      text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Options', 'quotes-dlx'),
+      icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"] : false,
+      iconSize: "18",
+      iconPosition: "right",
+      disabled: saving || resetting
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+        'has-icon': resetting
+      }, {
+        'is-resetting': {
+          resetting: resetting
+        }
+      }),
+      type: "button",
+      text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Options', 'quotes-dlx'),
+      icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"] : false,
+      iconSize: "18",
+      iconPosition: "right",
+      disabled: saving || resetting,
+      onClick: function onClick(e) {
+        setResetting(true);
+        handleReset(e);
+      }
+    })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+      status: "error",
+      politeness: "polite"
+    }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
+      status: "success",
+      politeness: "assertive",
+      animate: true,
+      animationType: "fadein"
+    }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+      status: "success",
+      politeness: "assertive",
+      animate: true,
+      animationType: "fadein"
+    })));
+  };
+
+  var toTitleCase = function toTitleCase(string) {
+    var firstLetterRegex = /(^[a-z])/g;
+    var newString = string.replace(firstLetterRegex, function (match) {
+      return match.toUpperCase();
+    });
+    return newString.replace(/-([a-z])/gi, function (all, letter) {
+      return ' ' + letter.toUpperCase();
+    });
+  };
+
+  var getUnsavedChangesWarning = function getUnsavedChangesWarning() {
+    if (!isDirty) {
+      return null;
+    }
+
+    var animationType = 'fadein';
+
+    if (isDirty && isSaved) {
+      animationType = 'fadeout';
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      status: "warning",
+      className: "qdlx-admin__unsaved-changes-warning",
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You have unsaved changes.', 'quotes-dlx'),
+      animate: true,
+      animationType: animationType
+    });
+  };
+
+  var getFontFamilies = function getFontFamilies() {
+    // Get font families in value label pair.
+    var families = []; // Get the rest of the fonts.
+
+    for (var _i2 = 0, _Object$entries = Object.entries(_fonts_fonts__WEBPACK_IMPORTED_MODULE_12__["default"]); _i2 < _Object$entries.length; _i2++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+          key = _Object$entries$_i[0],
+          fontfamily = _Object$entries$_i[1];
+
+      families.push({
+        label: fontfamily.name,
+        value: fontfamily.slug
+      });
+    }
+
+    families.push({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Custom', 'quotes-dlx'),
+      value: 'custom'
+    });
+    return families;
+  };
+
+  var getFontOptions = function getFontOptions() {
+    var _errors$customFontPri3, _errors$customFontPri4, _errors$customFontSec3, _errors$customFontSec4;
+
+    if (!getValues('enableCustomFonts')) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      scope: "row"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Selection', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-theme-options__select span-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+      name: "primaryFontFamily",
+      control: control,
+      render: function render(_ref) {
+        var _ref$field = _ref.field,
+            _onChange = _ref$field.onChange,
+            value = _ref$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Primary Font', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newFont) {
+            return _onChange(newFont);
+          },
+          options: getFontFamilies()
+        });
+      }
+    }), 'custom' === getValues('primaryFontFamily') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-control-wrapper"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+      name: "customFontPrimary",
+      control: control,
+      rules: {
+        required: true,
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
+      },
+      render: function render(_ref2) {
+        var _errors$customFontPri, _errors$customFontPri2;
+
+        var field = _ref2.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
+          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+            'has-error': 'pattern' === ((_errors$customFontPri = errors.customFontPrimary) === null || _errors$customFontPri === void 0 ? void 0 : _errors$customFontPri.type) || 'required' === ((_errors$customFontPri2 = errors.customFontPrimary) === null || _errors$customFontPri2 === void 0 ? void 0 : _errors$customFontPri2.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$customFontPri3 = errors.customFontPrimary) === null || _errors$customFontPri3 === void 0 ? void 0 : _errors$customFontPri3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
+    }), 'pattern' === ((_errors$customFontPri4 = errors.customFontPrimary) === null || _errors$customFontPri4 === void 0 ? void 0 : _errors$customFontPri4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-theme-options__select span-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+      name: "secondaryFontFamily",
+      control: control,
+      render: function render(_ref3) {
+        var _ref3$field = _ref3.field,
+            _onChange2 = _ref3$field.onChange,
+            value = _ref3$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Secondary Font', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newFont) {
+            return _onChange2(newFont);
+          },
+          options: getFontFamilies()
+        });
+      }
+    }), 'custom' === getValues('secondaryFontFamily') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-control-wrapper"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+      name: "customFontSecondary",
+      control: control,
+      rules: {
+        required: true,
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
+      },
+      render: function render(_ref4) {
+        var _errors$customFontSec, _errors$customFontSec2;
+
+        var field = _ref4.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
+          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+            'has-error': 'pattern' === ((_errors$customFontSec = errors.customFontSecondary) === null || _errors$customFontSec === void 0 ? void 0 : _errors$customFontSec.type) || 'required' === ((_errors$customFontSec2 = errors.customFontSecondary) === null || _errors$customFontSec2 === void 0 ? void 0 : _errors$customFontSec2.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$customFontSec3 = errors.customFontSecondary) === null || _errors$customFontSec3 === void 0 ? void 0 : _errors$customFontSec3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
+    }), 'pattern' === ((_errors$customFontSec4 = errors.customFontSecondary) === null || _errors$customFontSec4 === void 0 ? void 0 : _errors$customFontSec4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Notice__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_13__["default"]
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "components-base-control"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      "data-fancybox": true,
+      onClick: function onClick(e) {
+        e.preventDefault();
+        new _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_5__.Fancybox([{
+          src: getPreviewLink(),
+          type: 'iframe'
+        }], {
+          mainClass: 'qdlx-theme-preview-mobile',
+          caption: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Preview', 'quotes-dlx')
+        });
+      },
+      href: getPreviewLink()
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Fonts', 'quotes-dlx'))))));
+  };
+
+  var getPreviewLink = function getPreviewLink() {
+    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(props.template), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Font Families', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Override the advanced font settings and set a font family for an individual theme.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, getUnsavedChangesWarning(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Options', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "enableCustomFonts",
+    control: control,
+    render: function render(_ref5) {
+      var _ref5$field = _ref5.field,
+          _onChange3 = _ref5$field.onChange,
+          value = _ref5$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Custom Theme Fonts', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange3(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default fonts can be set in the Advanced options. This will allow you to select a font family set for each individual theme.', 'quotes-dlx')
+      });
+    }
+  }))), getFontOptions())), getUnsavedChangesWarning()), getSaveResetButtons())));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeFontSelector);
+
+/***/ }),
+
 /***/ "./src/js/admin-panel/admin-components/ThemePreview/index.js":
 /*!*******************************************************************!*\
   !*** ./src/js/admin-panel/admin-components/ThemePreview/index.js ***!
@@ -587,7 +1202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox.js */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
 /* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
-/* harmony import */ var _admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../admin-components/Loaders/AdminThemeColorsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeColorsLoader.js");
+/* harmony import */ var _Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Loaders/AdminThemeSizesLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminThemeSizesLoader.js");
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
@@ -645,13 +1260,13 @@ var ThemeSizes = function ThemeSizes(props) {
       getDefaults = _useAsyncResource2[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load admin colors.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load theme sizes.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
       rel: "noopener noreferrer"
     }, "DLX Plugins Support"))
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeSizesLoader__WEBPACK_IMPORTED_MODULE_7__["default"], {
       showHeader: true
     })
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
@@ -1009,9 +1624,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var photoswipe_dynamic_caption_plugin_photoswipe_dynamic_caption_plugin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css */ "./node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/select-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
@@ -1028,7 +1643,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _admin_components_ThemeSizes__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../admin-components/ThemeSizes */ "./src/js/admin-panel/admin-components/ThemeSizes/index.js");
-/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+/* harmony import */ var _admin_components_ThemeFontSelector__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../admin-components/ThemeFontSelector */ "./src/js/admin-panel/admin-components/ThemeFontSelector/index.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -1067,6 +1683,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var retrieveDefaults = function retrieveDefaults() {
   return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_retrieve_admin_themes_defaults', {
     nonce: quotes_dlx_admin.options_retrieve_nonce
@@ -1079,7 +1696,7 @@ var AdminThemeOptions = function AdminThemeOptions(props) {
       defaults = _useAsyncResource2[0],
       getDefaults = _useAsyncResource2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load theme options.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -1222,7 +1839,7 @@ var Interface = function Interface(props) {
       hasUnsavedChanges = _useState26[0],
       setHasUnsavedChanges = _useState26[1];
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useForm)({
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useForm)({
     defaultValues: {
       fontSizeDesktop: data.font_size_desktop,
       fontSizeTablet: data.font_size_tablet,
@@ -1240,11 +1857,11 @@ var Interface = function Interface(props) {
       getValues = _useForm.getValues,
       reset = _useForm.reset;
 
-  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useWatch)({
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useWatch)({
     control: control
   });
 
-  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useFormState)({
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useFormState)({
     control: control
   }),
       errors = _useFormState.errors,
@@ -1300,7 +1917,7 @@ var Interface = function Interface(props) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         key: catIndex,
         className: "quotes-dlx-admin-theme-options__select"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
         key: cat.slug,
         className: "qdlx-admin__themes--content-inner",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Theme', 'quotes-dlx'),
@@ -1309,7 +1926,7 @@ var Interface = function Interface(props) {
           return setSelectedTheme(newTheme);
         },
         options: getThemes(cat)
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
         className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right button-reset', {
           'has-error': hasErrors()
         }, {
@@ -1456,7 +2073,7 @@ var Interface = function Interface(props) {
       className: "qdlx-admin__tabs--content-inner"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-actions"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
         'has-error': hasErrors()
       }, {
@@ -1472,7 +2089,7 @@ var Interface = function Interface(props) {
       iconSize: "18",
       iconPosition: "right",
       disabled: saving || resetting
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
         'has-icon': resetting
       }, {
@@ -1591,6 +2208,12 @@ var Interface = function Interface(props) {
     }));
   };
 
+  var getThemeFontSelector = function getThemeFontSelector() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemeFontSelector__WEBPACK_IMPORTED_MODULE_17__["default"], {
+      template: activeTheme
+    }));
+  };
+
   if (loading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], {
       showHeader: false
@@ -1615,7 +2238,7 @@ var Interface = function Interface(props) {
     className: "description"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the theme colors, font, and font-sizes for a theme.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
-  }, getCategories()))), getThemePreviewAndSwatches(), getFontSizeOptions()));
+  }, getCategories()))), getThemePreviewAndSwatches(), getFontSizeOptions(), getThemeFontSelector()));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminThemeOptions);
@@ -1781,6 +2404,50 @@ MeatballMenuItem.propTypes = {
   text: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MeatballMenuItem);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularExplanation.js":
+/*!********************************************************!*\
+  !*** ./src/js/components/icons/CircularExplanation.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularExclamationIcon = function CircularExclamationIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: "var( ".concat(props["var"], ")"),
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"
+  }));
+};
+
+CircularExclamationIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularExclamationIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularExclamationIcon);
 
 /***/ }),
 

@@ -10,6 +10,7 @@ import {
 	SelectControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { escapeAttribute } from '@wordpress/escape-html';
 import { useAsyncResource } from 'use-async-resource';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import classNames from 'classnames';
@@ -626,17 +627,18 @@ const Interface = ( props ) => {
 											control={ control }
 											rules={ {
 												required: true,
-												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+												pattern: /^[-\' ,A-Za-z0-9]+$/i,
 											} }
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
+													value={ escapeAttribute( ( field.value.replace( /\\\'/g, "'" ) ) ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'
 													) }
 													placeholder={ __(
-														'e.g. "Open Sans", sans-serif',
+														"e.g. 'Open Sans', sans-serif'",
 														'quotes-dlx'
 													) }
 													className={ classNames(
@@ -651,7 +653,7 @@ const Interface = ( props ) => {
 														}
 													) }
 													help={ __(
-														'Set the font and fallbacks.',
+														'Set the font and fallbacks. Double quotes are not permitted.',
 														'quotes-dlx'
 													) }
 													aria-required="true"
@@ -674,7 +676,7 @@ const Interface = ( props ) => {
 										errors.customFontPrimary?.type && (
 											<Notice
 												message={ __(
-													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+													'There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'
 												) }
 												status="error"
 												politeness="assertive"
@@ -711,17 +713,18 @@ const Interface = ( props ) => {
 											control={ control }
 											rules={ {
 												required: true,
-												pattern: /^[-\" ,A-Za-z0-9]+$/i,
+												pattern: /^[-\' ,A-Za-z0-9]+$/i,
 											} }
 											render={ ( { field } ) => (
 												<TextControl
 													{ ...field }
+													value={ escapeAttribute( field.value.replace( /\\\'/g, "'" ) ) }
 													label={ __(
 														'Enter your custom secondary font.',
 														'quotes-dlx'
 													) }
 													placeholder={ __(
-														'e.g. "Open Sans", sans-serif',
+														"e.g. 'Open Sans', sans-serif'",
 														'quotes-dlx'
 													) }
 													className={ classNames(
@@ -737,7 +740,7 @@ const Interface = ( props ) => {
 														}
 													) }
 													help={ __(
-														'Set the font and fallbacks.',
+														'Set the font and fallbacks. Double quotes are not permitted.',
 														'quotes-dlx'
 													) }
 													aria-required="true"
@@ -760,7 +763,7 @@ const Interface = ( props ) => {
 										errors.customFontSecondary?.type && (
 											<Notice
 												message={ __(
-													'There are invalid characters in the custom font. Make sure you are using double quotes instead of single quotes and leave out the semi-colon at the end.'
+													'There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'
 												) }
 												status="error"
 												politeness="assertive"

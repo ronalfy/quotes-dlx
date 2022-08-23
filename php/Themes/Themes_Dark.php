@@ -240,29 +240,71 @@ class Themes_Dark extends Themes_Addon {
 	}
 
 	/**
-	 * Get the primary color of the theme.
+	 * Get the colors of the theme.
 	 *
-	 * @return string Primary color of the theme (hex).
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
 	 */
-	protected static function get_color_primary() {
-		return self::$primary_color;
-	}
-
-	/**
-	 * Get the secondary color of the theme.
-	 *
-	 * @return string Secondary color of the theme (hex).
-	 */
-	protected static function get_color_secondary() {
-		return self::$secondary_color;
-	}
-
-	/**
-	 * Get the accent color of the theme.
-	 *
-	 * @return string accent color of the theme (hex).
-	 */
-	protected static function get_color_accent() {
-		return self::$accent_color;
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#2B2B2B',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Text Color', 'quotes-dlx' ),
+				'slug'  => 'text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Quote Bubble Inner Color', 'quotes-dlx' ),
+				'slug'  => 'quote-bubble-inner-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 	}
 }

@@ -1,11 +1,54 @@
 @import "../colors.scss";
+@import "../breakpoints-mixin.scss";
+@import "../breakpoints-mixin-variable.scss";
 
 $orange: #cc7000;
 $dark-bg: #2B2B2B;
 $accent-color: #FFF;
 
 .quotes-dlx-block-theme-dark-matter {
-	font-size: 16px;
+	font-size: var( --qdlx-dark-matter-font-size-mobile, 14px );
+	@include respond-to-var('medium') {
+		font-size: var( --qdlx-dark-matter-font-size-tablet, 15px );
+	}
+	@include respond-to-var('large') {
+		font-size: var( --qdlx-dark-matter-font-size-desktop, 16px );
+	}
+
+	/* If these are set, we're in a preview */
+	&.quotes-dlx-screen-mobile {
+		font-size: var( --qdlx-dark-matter-font-size-mobile, 14px ) !important;
+
+		.quotes-dlx-button {
+			font-size: var( --qdlx-dark-matter-button-font-size-mobile, 14px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-dark-matter-button-font-size-mobile, 14px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-dark-matter-button-font-size-mobile, 14px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-tablet {
+		font-size: var( --qdlx-dark-matter-font-size-tablet, 15px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-dark-matter-button-font-size-tablet, 15px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-dark-matter-button-font-size-tablet, 15px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-dark-matter-button-font-size-tablet, 15px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-desktop {
+		font-size: var( --qdlx-dark-matter-font-size-desktop, 16px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-dark-matter-button-font-size-desktop, 16px ) !important;
+		}
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-dark-matter-button-font-size-desktop, 16px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-dark-matter-button-font-size-desktop, 16px) / 2))) !important;
+		}
+	}
 
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 0;
@@ -13,7 +56,7 @@ $accent-color: #FFF;
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: var( --qdlx-dark-matter-primary, $orange );
+			color: var( --qdlx-dark-matter-accent, $orange );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
@@ -21,7 +64,7 @@ $accent-color: #FFF;
 
 			&:hover {
 				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-dark-matter-primary, $orange );
+				border-bottom: 2px solid var( --qdlx-dark-matter-accent, $orange );
 			}
 		}
 	}
@@ -32,8 +75,8 @@ $accent-color: #FFF;
 
 	.quotes-dlx-wrapper {
 		position: relative;
-		background: var( --qdlx-dark-matter-secondary, $dark-bg );
-		border-left: 14px solid var( --qdlx-dark-matter-primary, $orange );
+		background: var( --qdlx-dark-matter-primary, $dark-bg );
+		border-left: 14px solid var( --qdlx-dark-matter-secondary, $orange );
 
 		figure {
 			margin: 0;
@@ -44,8 +87,8 @@ $accent-color: #FFF;
 			content: '\201C';
 			position: absolute;
 			border-radius: 100%;
-			background-color: var( --qdlx-dark-matter-primary, $orange );
-			color: var( --qdlx-dark-matter-accent, $accent-color );
+			background-color: var( --qdlx-dark-matter-secondary, $orange );
+			color: var( --qdlx-dark-matter-quote-bubble-inner-color, $white );
 			width: 50px;
 			height: 50px;
 			font-size: 44px;
@@ -59,12 +102,12 @@ $accent-color: #FFF;
 		}
 
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: "Lato", serif;
+			font-family: var( --qdlx-light-branded-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
 			font-size: 1.5em;
 			line-height: 1.65;
-			background: var( --qdlx-dark-matter-secondary, $dark-bg );
-			color: var( --qdlx-dark-matter-accent, $accent-color );
+			background: var( --qdlx-dark-matter-primary, $dark-bg );
+			color: var( --qdlx-dark-matter-text-color, $accent-color );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;
@@ -75,7 +118,7 @@ $accent-color: #FFF;
 		.quotes-dlx-button-wrapper {
 			display: flex;
 			position: relative;
-			background: var( --qdlx-dark-matter-secondary, $dark-bg );
+			background: var( --qdlx-dark-matter-primary, $dark-bg );
 			padding: 45px 51px;
 			padding-top: 0;
 
@@ -114,27 +157,40 @@ $accent-color: #FFF;
 
 		.quotes-dlx-button {
 			position: relative;
-			background: var( --qdlx-dark-matter-primary, $orange );
-			color: var( --qdlx-dark-matter-accent, $accent-color );
+			background: var( --qdlx-dark-matter-button-primary-color, $orange );
+			color: var( --qdlx-dark-matter-button-primary-text-color, $white );
 			padding: 12px 25px;
 			border-radius: 4px;
-			border: 1px solid var( --qdlx-dark-matter-primary, $orange );
+			border: 1px solid var( --qdlx-dark-matter-button-primary-color, $orange );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: 'Open Sans', sans-serif;
+			font-family: var( --qdlx-dark-matter-secondary-font-family, var( --qdlx-secondary-font-family, inherit ) );
 			font-weight: 400;
-			font-size: 1.2em;
+			font-size: var( --qdlx-dark-matter-button-font-size-mobile, 14px );
 			line-height: 1.0em;
+
+			@include respond-to-var('medium') {
+				font-size: var( --qdlx-dark-matter-button-font-size-tablet, 15px );
+			}
+			@include respond-to-var('large') {
+				font-size: var( --qdlx-dark-matter-button-font-size-desktop, 16px);
+			}
+
+			svg path,
+			svg use {
+				fill: var( --qdlx-dark-matter-button-primary-text-color, $white );
+				transition: all 0.3s ease-in-out;
+			}
 
 			&:hover {
 				transition: all 0.3s ease-in-out;
-				color: var( --qdlx-dark-matter-primary, $orange );
-				background: var( --qdlx-dark-matter-accent, $accent-color );
-				border: 1px solid var( --qdlx-dark-matter-primary, $orange );
+				color: var( --qdlx-dark-matter-button-secondary-text-color, $orange );
+				background: var( --qdlx-dark-matter-button-secondary-color, $white );
+				border: 1px solid var( --qdlx-dark-matter-button-secondary-color, $orange );
 
 				svg path,
 				svg use {
-					fill: var( --qdlx-dark-matter-primary, $orange );
+					fill: var( --qdlx-dark-matter-button-secondary-text-color, $orange );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -240,7 +296,7 @@ $accent-color: #FFF;
 					border-radius: 5px;
 					margin-right: 15px;
 					background: var( --qdlx-dark-matter-accent, $accent-color );
-					border: 1px solid var( --qdlx-dark-matter-primary, $orange );
+					border: 1px solid var( --qdlx-dark-matter-accent, $orange );
 					z-index: 10;
 				}
 			}
@@ -267,7 +323,7 @@ $accent-color: #FFF;
 						border-radius: 100%;
 						transform: rotate(0deg);
 						transition: all 0.3s ease-in-out;
-						background: var( --qdlx-dark-matter-accent, $accent-color );
+						background: var( --qdlx-dark-matter-light, $accent-color );
 						margin-right: 5px;
 					}
 					&:after {
@@ -323,18 +379,22 @@ $accent-color: #FFF;
 			}
 	
 			li.quotes-dlx-meatball-menu-item {
-				border-bottom: 1px solid #DDD;
+				border-bottom: 0;
 	
-				button.button-reset {
-					color: #333;
-	
-					&:hover {
-						background: var( --qdlx-dark-matter-primary, $orange );
-						color: var( --qdlx-dark-matter-accent, $accent-color );
-	
-						svg use {
-							fill: var( --qdlx-dark-matter-accent, $accent-color );
-						}
+				svg path,
+				svg use {
+					fill: var( --qdlx-dark-matter-button-primary-text-color, $dark-bg );
+				}
+				color: var( --qdlx-dark-matter-button-primary-text-color, $dark-bg );
+				background: var( --qdlx-dark-matter-button-secondary-color, $orange );
+				font-family: var( --qdlx-dark-matter-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
+				&:hover {
+					background: var( --qdlx-dark-matter-button-secondary-color, $orange );
+					color: var( --qdlx-dark-matter-button-secondary-text-color, $light );
+
+					svg path,
+					svg use {
+						fill: var( --qdlx-dark-matter-button-secondary-text-color, $light );
 					}
 				}
 			}
@@ -352,7 +412,7 @@ $accent-color: #FFF;
 			}
 	
 			input:hover~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-dark-matter-accent, $accent-color );
+				background: var( --qdlx-dark-matter-button-secondary-color, $orange );
 	
 				&>div {
 	
@@ -360,7 +420,7 @@ $accent-color: #FFF;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-dark-matter-primary, $orange );
+						background: var( --qdlx-dark-matter-button-secondary-text-color, $white );
 					}
 				}
 			}
@@ -398,7 +458,7 @@ $accent-color: #FFF;
 	
 				&:hover {
 					transition: all 0.3s linear;
-					background: var( --qdlx-dark-matter-primary, $orange );
+					background: var( --qdlx-dark-matter-button-secondary-color, $orange );
 	
 					&>div {
 	
@@ -409,7 +469,7 @@ $accent-color: #FFF;
 	
 							&:before,
 							&:after {
-								background: var( --qdlx-dark-matter-primary, $orange );
+								background: var( --qdlx-dark-matter-light, $white );
 							}
 						}
 					}
@@ -421,14 +481,14 @@ $accent-color: #FFF;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-dark-matter-accent, $accent-color );
+						background: var( --qdlx-dark-matter-button-primary-color, $accent-color );
 					}
 				}
 	
 			}
 	
 			input:checked~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-dark-matter-accent, $accent-color );
+				background: var( --qdlx-dark-matter-button-secondary-color, $accent-color );
 	
 				&>div {
 	
@@ -436,7 +496,7 @@ $accent-color: #FFF;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-dark-matter-primary, $orange );
+						background: var( --qdlx-dark-matter-button-secondary-text-color, $orange );
 					}
 	
 					span {
@@ -444,8 +504,35 @@ $accent-color: #FFF;
 						&:before,
 						&:after {
 							display: inline-block;
-							background: var( --qdlx-dark-matter-primary, $orange );
+							background: var( --qdlx-dark-matter-utton-secondary-text-color, $orange );
 						}
+					}
+				}
+			}
+		}
+	}
+	/* Meatball Menu */
+	.quotes-dlx-meatball-content {
+		li.quotes-dlx-meatball-menu-item {
+			border-bottom: 1px solid transparent;
+			&:last-child {
+				border-bottom: none;
+			}	
+			button.button-reset {
+				svg path,
+				svg use {
+					fill: var( --qdlx-dark-matter-button-primary-text-color, $white );
+				}
+				color: var( --qdlx-dark-matter-button-primary-text-color, $white );
+				background: var( --qdlx-dark-matter-button-primary-color, $orange );
+				font-family: var( --qdlx-dark-matter-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
+				&:hover {
+					background: var( --qdlx-dark-matter-button-secondary-color, $orange );
+					color: var( --qdlx-dark-matter-button-secondary-text-color, $light );
+
+					svg path,
+					svg use {
+						fill: var( --qdlx-dark-matter-button-secondary-text-color, $light );
 					}
 				}
 			}

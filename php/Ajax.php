@@ -651,8 +651,12 @@ class Ajax {
 				 * Action to run after printing modal scripts/styles.
 				 *
 				 * @since 1.0.0
+				 *
+				 * @param string $template              The template name/slug.
+				 * @param string $primary_font_family   The primary font family slug.
+				 * @param string $secondary_font_family The secondary font family slug.
 				 */
-				do_action( 'quotes_dlx_after_modal_scripts', 'quotes-dlx' );
+				do_action( 'quotes_dlx_after_modal_scripts', $template, $primary_font_family, $secondary_font_family );
 				?>
 			</body>
 		</html>

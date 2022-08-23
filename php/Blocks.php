@@ -53,11 +53,22 @@ class Blocks {
 		add_action( 'wp_head', array( $this, 'add_header_fonts_preload' ) );
 
 		// Output styles based on block attributes.
+		add_action( 'quotes_dlx_before_modal_scripts', array( $this, 'add_modal_styles' ) );
+
 		if ( is_admin() ) {
 			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		} else {
 			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		}
+	}
+
+	/**
+	 * Add mobile style roots.
+	 *
+	 * @param [type] $template
+	 */
+	public function add_modal_styles( $template ) {
+		$this->output_theme_style_root();
 	}
 
 	/**
@@ -255,86 +266,85 @@ class Blocks {
 					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options_advanced['desktop_breakpoint'] ) . 'px'; ?>;
 				}
 			</style>
-					<style>
-			:root {
-				<?php
-				foreach ( $themes as $theme_options ) {
+			<style>
+				:root {
+					<?php
+					foreach ( $themes as $theme_options ) {
+						// Line height.
+						echo sprintf(
+							'--qdlx-%s-line-height-mobile: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-line-height-tablet: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-line-height-desktop: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'desktop' ) )
+						);
 
-					// Line height.
-					echo sprintf(
-						'--qdlx-%s-line-height-mobile: %s;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'mobile' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-line-height-tablet: %s;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'tablet' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-line-height-desktop: %s;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'desktop' ) )
-					);
+						// Font sizes.
+						echo sprintf(
+							'--qdlx-%s-font-size-mobile: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-font-size-tablet: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-font-size-desktop: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'desktop' ) )
+						);
 
-					// Font sizes.
-					echo sprintf(
-						'--qdlx-%s-font-size-mobile: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'mobile' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-font-size-tablet: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'tablet' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-font-size-desktop: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'desktop' ) )
-					);
+						// Button Font Sizes.
+						echo sprintf(
+							'--qdlx-%s-button-font-size-mobile: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-button-font-size-tablet: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-button-font-size-desktop: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
+						);
 
-					// Button Font Sizes.
-					echo sprintf(
-						'--qdlx-%s-button-font-size-mobile: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'mobile' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-button-font-size-tablet: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'tablet' ) )
-					);
-					echo sprintf(
-						'--qdlx-%s-button-font-size-desktop: %spx;',
-						esc_attr( $theme_options['slug'] ),
-						esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
-					);
-
-					// Set theme fonts.
-					$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
-					$allow_custom_fonts   = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
-					if ( $allow_custom_fonts ) {
-						$theme_primary_font   = Functions::get_theme_primary_font_family_css( $theme_options['slug'] );
-						$theme_secondary_font = Functions::get_theme_secondary_font_family_css( $theme_options['slug'] );
-						if ( $theme_primary_font ) {
-							echo sprintf(
-								'--qdlx-%s-primary-font-family: %s;',
-								esc_attr( $theme_options['slug'] ),
-								sanitize_text_field( $theme_primary_font )
-							);
-						}
-						if ( $theme_secondary_font ) {
-							echo sprintf(
-								'--qdlx-%s-secondary-font-family: %s;',
-								esc_attr( $theme_options['slug'] ),
-								sanitize_text_field( $theme_secondary_font )
-							);
+						// Set theme fonts.
+						$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
+						$allow_custom_fonts   = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
+						if ( $allow_custom_fonts ) {
+							$theme_primary_font   = Functions::get_theme_primary_font_family_css( $theme_options['slug'] );
+							$theme_secondary_font = Functions::get_theme_secondary_font_family_css( $theme_options['slug'] );
+							if ( $theme_primary_font ) {
+								echo sprintf(
+									'--qdlx-%s-primary-font-family: %s;',
+									esc_attr( $theme_options['slug'] ),
+									sanitize_text_field( $theme_primary_font )
+								);
+							}
+							if ( $theme_secondary_font ) {
+								echo sprintf(
+									'--qdlx-%s-secondary-font-family: %s;',
+									esc_attr( $theme_options['slug'] ),
+									sanitize_text_field( $theme_secondary_font )
+								);
+							}
 						}
 					}
+					?>
 				}
-				?>
-			}
 		</style>
 		<?php
 

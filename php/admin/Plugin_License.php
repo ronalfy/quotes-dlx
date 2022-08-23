@@ -165,7 +165,14 @@ class Plugin_License {
 			set_site_transient( 'quotes_dlx_core_license_check', $response, 12 * HOUR_IN_SECONDS );
 		}
 
-		// Perform an action based on response/action.
+		/**
+		 * Perform an action based on response/action.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $action   Can be: check_license, activate_license, deactivate_license
+		 * @param array  $response Response of the action.
+		 */
 		do_action( 'quotes_dlx_core_license_' . $action, $response );
 
 		// Return any custom data.

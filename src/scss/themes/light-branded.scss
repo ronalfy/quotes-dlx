@@ -1,11 +1,58 @@
 @import "../colors.scss";
+@import "../breakpoints-mixin.scss";
+@import "../breakpoints-mixin-variable.scss";
 
-$twitter-blue: #1DA1F2;
-$twitter-gray: #657786;
-$dark-bg: #2B2B2B;
+$primary_color: #1DA1F2;
+$secondary_color: #657786;
+$button_color: #657786;
+$accent: #1DA1F2;
+$quote_bubble: #1DA1F2;
+$light: #FFF;
+$dark: #2B2B2B;
 
 .quotes-dlx-block-theme-light-branded{
-	font-size: 16px;
+	font-size: var( --qdlx-light-branded-font-size-mobile, 14px );
+	@include respond-to-var('medium') {
+		font-size: var( --qdlx-light-branded-font-size-tablet, 15px );
+	}
+	@include respond-to-var('large') {
+		font-size: var( --qdlx-light-branded-font-size-desktop, 16px );
+	}
+
+	/* If these are set, we're in a preview */
+	&.quotes-dlx-screen-mobile {
+		font-size: var( --qdlx-light-branded-font-size-mobile, 14px ) !important;
+
+		.quotes-dlx-button {
+			font-size: var( --qdlx-light-branded-button-font-size-mobile, 14px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-light-branded-button-font-size-mobile, 14px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-light-branded-button-font-size-mobile, 14px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-tablet {
+		font-size: var( --qdlx-light-branded-font-size-tablet, 15px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-light-branded-button-font-size-tablet, 15px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-light-branded-button-font-size-tablet, 15px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-light-branded-button-font-size-tablet, 15px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-desktop {
+		font-size: var( --qdlx-light-branded-font-size-desktop, 16px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-light-branded-button-font-size-desktop, 16px ) !important;
+		}
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-light-branded-button-font-size-desktop, 16px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-light-branded-button-font-size-desktop, 16px) / 2))) !important;
+		}
+	}
 
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 50px;
@@ -13,16 +60,16 @@ $dark-bg: #2B2B2B;
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: var( --qdlx-light-branded-primary, $twitter-blue );
+			color: var( --qdlx-light-branded-accent, $accent );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
 			transition: all .35s ease-in-out;
 
 			&:hover {
-				color: var( --qdlx-light-branded-primary, $twitter-blue );
+				color: var( --qdlx-light-branded-accent, $accent );
 				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );
+				border-bottom: 2px solid var( --qdlx-light-branded-accent, $accent );
 			}
 		}
 	}
@@ -37,7 +84,7 @@ $dark-bg: #2B2B2B;
 		position: relative;
 		background: #FFF;
 		border-radius: 5px;
-		border: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );
+		border: 2px solid var( --qdlx-light-branded-primary, $primary_color );
 
 		figure {
 			margin: 0;
@@ -48,8 +95,8 @@ $dark-bg: #2B2B2B;
 			content: '\201C';
 			position: absolute;
 			border-radius: 100%;
-			background-color: var( --qdlx-light-branded-primary, $twitter-blue );
-			color: #FFF;
+			background-color: var( --qdlx-light-branded-quote-bubble, $quote_bubble );
+			color: var( --qdlx-light-branded-quote-bubble-inner-color, $light );
 			width: 76px;
 			height: 76px;
 			font-size: 80px;
@@ -67,7 +114,7 @@ $dark-bg: #2B2B2B;
 			font-weight: 400;
 			font-size: 1.5em;
 			line-height: 1.65;
-			color: var( --qdlx-light-branded-secondary, $dark-bg );
+			color: var( --qdlx-light-branded-secondary, $dark );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;
@@ -88,12 +135,6 @@ $dark-bg: #2B2B2B;
 				top: calc(50% + 6px - 0.9em);
 				bottom: 0;
 				right: 20px;
-
-				svg path,
-				svg use {
-					fill: var( --qdlx-light-branded-primary, $twitter-blue );
-					transition: all 0.3s ease-in-out;
-				}
 			}
 
 			.quotes-dlx-button-container {
@@ -116,11 +157,11 @@ $dark-bg: #2B2B2B;
 
 		.quotes-dlx-button {
 			position: relative;
-			background: $white;
-			color: var( --qdlx-light-branded-primary, $dark-bg );
+			background: var( --qdlx-light-branded-light, $light );
+			color: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
 			padding: 15px 25px;
 			border-radius: 4px;
-			border: 2px solid var( --qdlx-light-branded-primary, $twitter-blue );
+			border: 2px solid var( --qdlx-light-branded-button-primary-color, $primary_color );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
 			font-family: 'Open Sans', sans-serif;
@@ -128,15 +169,21 @@ $dark-bg: #2B2B2B;
 			font-size: 1.25em;
 			line-height: 1.0em;
 
+			svg path,
+			svg use {
+				fill: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
+				transition: all 0.3s ease-in-out;
+			}
+
 			&:hover {
 				transition: all 0.3s ease-in-out;
-				color: $white;
-				background: var( --qdlx-light-branded-primary, $twitter-blue );
-				border: 2px var( --qdlx-light-branded-primary, $twitter-blue );
+				color: var( --qdlx-light-branded-button-secondary-text-color, $light );
+				background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
+				border: 2px solid var( --qdlx-light-branded-button-secondary-color, $primary_color );
 
 				svg path,
 				svg use {
-					fill: $white;
+					fill: var( --qdlx-light-branded-button-secondary-text-color, $light );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -212,7 +259,7 @@ $dark-bg: #2B2B2B;
 				}
 
 				&:not(:checked) ~ ul {
-					background: white;
+					background: var( --qdlx-light-branded-light, $light );
 					position: relative;
 					transition: opacity 0.75s ease-in-out;
 					margin-right: 2px;
@@ -241,8 +288,8 @@ $dark-bg: #2B2B2B;
 					padding: 0;
 					border-radius: 2px;
 					margin-right: 15px;
-					background: #FFF;
-					border: 1px solid var( --qdlx-light-branded-primary, $twitter-blue );
+					background: var( --qdlx-light-branded-light, $light );
+					border: 1px solid var( --qdlx-light-branded-accent, $accent );
 					z-index: 10;
 				}
 			}
@@ -269,7 +316,7 @@ $dark-bg: #2B2B2B;
 						border-radius: 100%;
 						transform: rotate(0deg);
 						transition: all 0.3s ease-in-out;
-						background: #FFF;
+						background: var( --qdlx-light-branded-light, $light );
 						margin-right: 5px;
 					}
 					&:after {
@@ -287,7 +334,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: #FFF;
+						background: var( --qdlx-light-branded-light, $light );
 					}
 		
 					&:after {
@@ -324,43 +371,12 @@ $dark-bg: #2B2B2B;
 				}
 			}
 	
-			li.quotes-dlx-meatball-menu-item {
-				border-bottom: 1px solid #e4effd;
-
-				&:last-child {
-					svg path,
-					svg use {
-						fill: var( --qdlx-light-branded-primary, $twitter-blue );
-					}
-
-					&:hover {
-						svg path,
-						svg use {
-							fill: $white;
-						}
-					}
-				}
-	
-				button.button-reset {
-					color: var( --qdlx-light-branded-accent, $twitter-gray );
-	
-					&:hover {
-						background: var( --qdlx-light-branded-primary, $twitter-blue );
-						color: $white;
-	
-						svg use {
-							fill: $white;
-						}
-					}
-				}
-			}
-	
 			input {
 				cursor: pointer;
 	
 				&:hover {
 					.quotes-dlx-meatball-icon-wrapper {
-						background: #FFF;
+						background: var( --qdlx-light-branded-light, $light );
 	
 	
 					}
@@ -368,7 +384,7 @@ $dark-bg: #2B2B2B;
 			}
 	
 			input:hover~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-light-branded-primary, $twitter-blue );
+				background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
 	
 				&>div {
 	
@@ -376,7 +392,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $white;
+						background: var( --qdlx-light-branded-button-secondary-text-color, $light );
 					}
 				}
 			}
@@ -414,7 +430,7 @@ $dark-bg: #2B2B2B;
 	
 				&:hover {
 					transition: all 0.3s linear;
-					background: var( --qdlx-light-branded-primary, $twitter-blue );
+					background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
 	
 					&>div {
 	
@@ -425,7 +441,7 @@ $dark-bg: #2B2B2B;
 	
 							&:before,
 							&:after {
-								background: $white;
+								background: var( --qdlx-light-branded-light, $light );
 							}
 						}
 					}
@@ -437,14 +453,14 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-light-branded-primary, $twitter-blue );
+						background: var( --qdlx-light-branded-button-primary-color, $primary_color );
 					}
 				}
 	
 			}
 	
 			input:checked~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-light-branded-primary, $twitter-blue );
+				background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
 	
 				&>div {
 	
@@ -452,7 +468,7 @@ $dark-bg: #2B2B2B;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $white;
+						background: var( --qdlx-light-branded-button-secondary-text-color, $light );
 					}
 	
 					span {
@@ -460,8 +476,35 @@ $dark-bg: #2B2B2B;
 						&:before,
 						&:after {
 							display: inline-block;
-							background: $white;
+							background: var( --qdlx-light-branded-button-secondary-text-color, $light );
 						}
+					}
+				}
+			}
+		}
+	}
+	/* Meatball Menu */
+	.quotes-dlx-meatball-content {
+		li.quotes-dlx-meatball-menu-item {
+			border-bottom: 1px solid transparent;
+			&:last-child {
+				border-bottom: none;
+			}	
+			button.button-reset {
+				svg path,
+				svg use {
+					fill: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
+				}
+				color: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
+				background: var( --qdlx-light-branded-light, $light );
+				font-family: var( --qdlx-primary-font-family ), sans-serif;
+				&:hover {
+					background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
+					color: var( --qdlx-light-branded-button-secondary-text-color, $light );
+
+					svg path,
+					svg use {
+						fill: var( --qdlx-light-branded-button-secondary-text-color, $light );
 					}
 				}
 			}

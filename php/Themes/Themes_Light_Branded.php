@@ -253,16 +253,46 @@ class Themes_Light_Branded extends Themes_Addon {
 			array(
 				'name'  => __( 'Primary', 'quotes-dlx' ),
 				'slug'  => 'primary',
-				'color' => '#E75480',
+				'color' => '#1DA1F2',
 			),
 			array(
 				'name'  => __( 'Secondary', 'quotes-dlx' ),
 				'slug'  => 'secondary',
-				'color' => '#fdeef2',
+				'color' => '#657786',
 			),
 			array(
 				'name'  => __( 'Accent', 'quotes-dlx' ),
 				'slug'  => 'accent',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Quote Bubble', 'quotes-dlx' ),
+				'slug'  => 'quote-bubble',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Quote Bubble Inner Color', 'quotes-dlx' ),
+				'slug'  => 'quote-bubble-inner-color',
 				'color' => '#FFFFFF',
 			),
 			array(

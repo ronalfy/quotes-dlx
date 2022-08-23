@@ -1514,6 +1514,13 @@ button.button-reset.show-cursor {
 
 .qdlx-admin__color-primary {
   margin: 12px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 48em) {
+  .qdlx-admin__color-primary {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .ptam-component-color-picker {

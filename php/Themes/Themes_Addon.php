@@ -180,7 +180,6 @@ abstract class Themes_Addon {
 				'image_width'       => $instance->get_image_width(),
 				'image_height'      => $instance->get_image_height(),
 				'colors'            => $instance->get_colors(),
-				'fonts'             => $instance->get_fonts(),
 			);
 			// Short circuit if template-specific data is requested.
 			if ( $template === $instance->get_slug() ) {
@@ -294,17 +293,5 @@ abstract class Themes_Addon {
 	 * }
 	 */
 	abstract protected static function get_colors();
-
-	/**
-	 * Get the fonts for the theme.
-	 *
-	 * @return array $args {
-	 *    @type string $name     Name of the font (primary, secondary, accent).
-	 *    @type string $slug     Slug of the font.
-	 *    @type string $family   CSS Usage string (e.g., font-family: 'Lato').
-	 *    @type string $fallback Fallback fonts in case font isn't present.
-	 * }
-	 */
-	abstract protected static function get_fonts();
 
 }

@@ -149,11 +149,11 @@ const Interface = ( props ) => {
 		control,
 	} );
 
-	const getThemeOptions = () => {
+	const getThemeOptions = ( themeSlug = activeTheme ) => {
 		setLoading( true );
 		sendCommand( 'quotes_dlx_get_theme_options', {
 			nonce: quotes_dlx_admin.options_retrieve_nonce,
-			active_template: activeTheme,
+			active_template: themeSlug,
 		} )
 			.then( ( ajaxResponse ) => {
 				const ajaxData = ajaxResponse.data.data;
@@ -202,8 +202,10 @@ const Interface = ( props ) => {
 					key={ cat.slug }
 					className="qdlx-admin__themes--content-inner"
 					label={ __( 'Select a Theme', 'quotes-dlx' ) }
-					value={ activeTheme }
-					onChange={ ( newTheme ) => setSelectedTheme( newTheme ) }
+					value={ selectedTheme }
+					onChange={ ( newTheme ) => {
+						setSelectedTheme( newTheme );
+					} }
 					options={ getThemes( cat ) }
 				/>
 				<Button
@@ -226,7 +228,7 @@ const Interface = ( props ) => {
 					onClick={ ( e ) => {
 						if ( selectedTheme !== activeTheme ) {
 							setActiveTheme( selectedTheme );
-							getThemeOptions();
+							getThemeOptions( selectedTheme );
 						}
 					} }
 				/>
@@ -448,7 +450,10 @@ const Interface = ( props ) => {
 	};
 
 	const getSecondaryFontStylesheet = () => {
-		if ( '' !== fontFamilies.secondary && '' !== fontFamilies.secondaryStylesheet ) {
+		if (
+			'' !== fontFamilies.secondary &&
+			'' !== fontFamilies.secondaryStylesheet
+		) {
 			return (
 				<link
 					rel="stylesheet"
@@ -539,9 +544,7 @@ const Interface = ( props ) => {
 	const getThemeFontSelector = () => {
 		return (
 			<>
-				<ThemeFontSelector
-					template={ activeTheme }
-				/>
+				<ThemeFontSelector template={ activeTheme } />
 			</>
 		);
 	};

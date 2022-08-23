@@ -110,7 +110,7 @@ $dark: #2B2B2B;
 		}
 
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: "Lato", serif;
+			font-family: var( --qdlx-light-branded-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
 			font-size: 1.5em;
 			line-height: 1.65;
@@ -164,10 +164,17 @@ $dark: #2B2B2B;
 			border: 2px solid var( --qdlx-light-branded-button-primary-color, $primary_color );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: 'Open Sans', sans-serif;
+			font-family: var( --qdlx-bubble-gum-secondary-font-family, var( --qdlx-secondary-font-family, inherit ) );
 			font-weight: 400;
-			font-size: 1.25em;
+			font-size: var( --qdlx-light-branded-button-font-size-mobile, 14px );
 			line-height: 1.0em;
+
+			@include respond-to-var('medium') {
+				font-size: var( --qdlx-light-branded-button-font-size-tablet, 15px );
+			}
+			@include respond-to-var('large') {
+				font-size: var( --qdlx-light-branded-button-font-size-desktop, 16px);
+			}
 
 			svg path,
 			svg use {
@@ -497,7 +504,7 @@ $dark: #2B2B2B;
 				}
 				color: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
 				background: var( --qdlx-light-branded-light, $light );
-				font-family: var( --qdlx-primary-font-family ), sans-serif;
+				font-family: var( --qdlx-light-branded-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 				&:hover {
 					background: var( --qdlx-light-branded-button-secondary-color, $primary_color );
 					color: var( --qdlx-light-branded-button-secondary-text-color, $light );

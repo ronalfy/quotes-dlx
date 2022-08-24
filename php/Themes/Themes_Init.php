@@ -46,22 +46,37 @@ class Themes_Init {
 		// Register any categories.
 		Themes_Addon_Categories::register( 'Core', array( 'description' => __( 'Default themes that come with the plugin', 'quotes-dlx' ) ) );
 
-		// Register any themes.
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded'
+		$themes = array(
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Bubble_Gum',
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Dark',
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded',
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Blue',
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Purple',
 		);
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Dark'
-		);
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Bubble_Gum'
-		);
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Purple'
-		);
-		Themes_Addon::register(
-			'MediaRonLLC\QuotesDLX\Themes\Themes_Blue'
-		);
+
+		/**
+		 * Filter the array of themes to register.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param array $themes Theme classes to register.
+		 */
+		$themes = apply_filters( 'quotes_dlx_themes', $themes );
+
+		if ( empty( $themes ) ) {
+			// Add back in default theme (light-branded) if no themes.
+			$themes = array(
+				'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded',
+			);
+		}
+
+		foreach ( $themes as $theme ) {
+			if ( class_exists( $theme ) ) {
+				Themes_Addon::register(
+					$theme
+				);
+			}
+		}
 		return self::get_instance();
 	}
 }

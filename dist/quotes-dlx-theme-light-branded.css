@@ -75,7 +75,7 @@
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper {
   position: relative;
-  background: #FFF;
+  background: var(--qdlx-light-branded-light, #FFFFFF);
   border-radius: 5px;
   border: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
 }
@@ -142,11 +142,11 @@
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
   position: relative;
-  background: var(--qdlx-light-branded-light, #FFF);
+  background: var(--qdlx-light-branded-button-primary-color, #FFF);
   color: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
   padding: 15px 25px;
   border-radius: 4px;
-  border: 2px solid var(--qdlx-light-branded-button-primary-color, #1DA1F2);
+  border: 2px solid var(--qdlx-light-branded-button-secondary-color, #657786);
   display: inline-block;
   transition: all 0.3s ease-in-out;
   font-family: var(--qdlx-bubble-gum-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
@@ -163,6 +163,10 @@
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-light-branded-button-font-size-desktop, 16px);
   }
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button svg {
+  width: 100%;
+  height: 100%;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button svg path,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button svg use {
@@ -395,7 +399,7 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-light-branded-button-primary-color, #1DA1F2);
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);

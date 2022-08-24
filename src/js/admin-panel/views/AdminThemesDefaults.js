@@ -3,8 +3,8 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
-import { Gallery, Item } from 'react-photoswipe-gallery';
-import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
+import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
+import '@fancyapps/ui/dist/fancybox.css';
 import {
 	TextControl,
 	Button,
@@ -145,46 +145,67 @@ const Interface = ( props ) => {
 			} );
 	};
 
+	/**
+	 * Get a preview link.
+	 *
+	 * @param {string} templateToPreview The template slug.
+	 *
+	 * @return {string} The preview URL.
+	 */
+	const getPreviewLink = ( templateToPreview ) => {
+		return `${ ajaxurl }?action=quotes_dlx_theme_preview&fontsize=${ encodeURIComponent(
+			16
+		) }&lineheight=${ encodeURIComponent(
+			1.65
+		) }&buttonsize=${ encodeURIComponent( '16px' ) }&nonce=${
+			quotes_dlx_admin.options_retrieve_nonce
+		}&template=${ encodeURIComponent( templateToPreview ) }&screen=${ 'tablet' }`;
+	};
+
+	/**
+	 * Get Fancybox iFrame content in an array of theme sources.
+	 *
+	 * @return {Array} The array of theme sources.
+	 */
+	const getThemesFancyboxArray = () => {
+		const fancyThemesArray = [];
+		categories.forEach( ( cat, catIndex ) => {
+			cat.themes.forEach( ( theme, themeIndex ) => {
+				fancyThemesArray.push(
+					{
+						src: getPreviewLink( theme.slug ),
+						type: 'iframe',
+						preload: true,
+					}
+				);
+			} );
+		} );
+		return fancyThemesArray;
+	};
+
 	const getThemes = ( category ) => {
+		const fancyThemesOptions = getThemesFancyboxArray();
 		return category.themes.map( ( theme, themeIndex ) => (
 			<div className="qdlx-admin__themes--content-panel" key={ themeIndex }>
 				<div className="qdlx-admin__themes--content-panel-body">
 					<figure>
-						<Gallery withCaption>
-							<Item
-								original={ theme.preview_image_url }
-								thumbnail={ theme.preview_image_url }
+						<button
+							className="button-reset show-cursor"
+							onClick={ ( e ) => {
+								e.preventDefault();
+								const fancybox = Fancybox.show( fancyThemesOptions, { startIndex: themeIndex } );
+							} }
+							aria-label={ __( 'Preview Theme', 'quotes-dlx' ) }
+						>
+							<img
+								src={ theme.preview_image_url }
+								caption={ theme.name }
+								alt={ theme.name }
+								style={ { maxWidth: '100%', height: 'auto' } }
 								width={ theme.image_width }
 								height={ theme.image_height }
-								caption={ theme.name }
-							>
-								{ ( { ref, open } ) => (
-									<>
-										<button
-											className="button-reset show-cursor"
-											data-src={ theme.preview_image_url }
-											data-caption={ theme.name }
-										>
-											<img
-												ref={ ref }
-												onClick={ open }
-												src={ theme.preview_image_url }
-												caption={ theme.name }
-												alt={ theme.name }
-												style={ { maxWidth: '100%', height: 'auto' } }
-												width={ theme.image_width }
-												height={ theme.image_height }
-											/>
-										</button>
-									</>
-								) }
-							</Item>
-							<button
-								className="button-reset show-cursor"
-								data-src={ theme.preview_image_url }
-								data-caption={ theme.name }
-							></button>
-						</Gallery>
+							/>
+						</button>
 					</figure>
 					<div className="qdlx-admin__themes--content-panel-heading">
 						<h3>{ theme.name }</h3>

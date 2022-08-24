@@ -474,10 +474,10 @@ class Ajax {
 
 		// Double check font families.
 		if ( '' === $primary_font_family && $enable_fonts ) {
-			$primary_font_family = Functions::get_font_family( 'primary', true );
+			$primary_font_family = Functions::get_font_family( 'primary', $template, true );
 		}
 		if ( '' === $secondary_font_family && $enable_fonts ) {
-			$secondary_font_family = Functions::get_font_family( 'secondary', true );
+			$secondary_font_family = Functions::get_font_family( 'secondary', $template, true );
 		}
 
 		wp_register_script(

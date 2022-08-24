@@ -429,17 +429,35 @@ class Functions {
 	 * Retrieve a primary or secondary font family.
 	 *
 	 * @param string $primary_or_secondary 'primary' or 'secondary'.
+	 * @param string $theme_slug            Theme slug to retrieve custom options from.
 	 * @param bool   $format_for_display    Whether to format it for display.
 	 *
 	 * @return string font family.
 	 */
-	public static function get_font_family( $primary_or_secondary = 'primary', $format_for_display = false ) {
+	public static function get_font_family( $primary_or_secondary = 'primary', $theme_slug = '', $format_for_display = false ) {
 		$options = Options_Advanced::get_options();
 		if ( 'primary' === $primary_or_secondary ) {
 			$font = $options['primary_font_family'];
 		} else {
 			$font = $options['secondary_font_family'];
 		}
+
+		// Get theme specific fonts that override the advanced options.
+		$maybe_theme_specific_font = '';
+		if ( ! empty( $theme_slug ) ) {
+			$options = Options_Theme::get_options( $theme_slug );
+			if ( 'primary' === $primary_or_secondary ) {
+				$maybe_theme_specific_font = $options['primary_font_family'] ?? '';
+			} else {
+				$maybe_theme_specific_font = $options['secondary_font_family'] ?? '';
+			}
+		}
+		if ( ! empty( $maybe_theme_specific_font ) ) {
+			$font = $maybe_theme_specific_font;
+		}
+
+		// Now get theme-specific options.
+
 		if ( ! $format_for_display ) {
 			return $font;
 		}
@@ -543,7 +561,7 @@ class Functions {
 		$saved_theme_options             = Options_Theme::get_options();
 		$theme_default_font_size_options = Options_Theme::get_default_sizes( $breakpoint );
 
-		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options[ $breakpoint ]['line_height'];
+		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options['line_height'];
 		/**
 		 * Filter the font size for a given key.
 		 *

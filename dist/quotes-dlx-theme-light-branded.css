@@ -161,7 +161,7 @@
   border: 2px solid var(--qdlx-light-branded-button-secondary-color, #657786);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: var(--qdlx-bubble-gum-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
+  font-family: var(--qdlx-light-branded-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
   font-weight: 400;
   font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px);
   line-height: 1em;

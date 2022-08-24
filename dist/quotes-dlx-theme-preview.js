@@ -1923,6 +1923,7 @@ var ThemePreview = function ThemePreview(props) {
       primaryFontFamily = props.primaryFontFamily,
       secondaryFontFamily = props.secondaryFontFamily,
       fontsEnabled = props.fontsEnabled;
+  console.log(props);
 
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';

@@ -7,8 +7,6 @@ import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
 import classNames from 'classnames';
-import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import '@fancyapps/ui/dist/fancybox.css';
 import sendCommand from '../../utils/SendCommand';
 import AdminThemeColorsLoader from '../admin-components/Loaders/AdminThemeColorsLoader';
 import AdminThemeSizesLoader from '../admin-components/Loaders/AdminThemeSizesLoader';

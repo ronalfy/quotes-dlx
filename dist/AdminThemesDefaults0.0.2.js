@@ -113,8 +113,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var react_photoswipe_gallery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-photoswipe-gallery */ "./node_modules/react-photoswipe-gallery/dist/index.js");
-/* harmony import */ var photoswipe_dynamic_caption_plugin_photoswipe_dynamic_caption_plugin_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css */ "./node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css");
+/* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox.js */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
+/* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_4__);
@@ -307,46 +307,66 @@ var Interface = function Interface(props) {
       setSaving(false);
     });
   };
+  /**
+   * Get a preview link.
+   *
+   * @param {string} templateToPreview The template slug.
+   *
+   * @return {string} The preview URL.
+   */
+
+
+  var getPreviewLink = function getPreviewLink(templateToPreview) {
+    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=").concat(encodeURIComponent(16), "&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent('16px'), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(templateToPreview), "&screen=", 'tablet');
+  };
+  /**
+   * Get Fancybox iFrame content in an array of theme sources.
+   *
+   * @return {Array} The array of theme sources.
+   */
+
+
+  var getThemesFancyboxArray = function getThemesFancyboxArray() {
+    var fancyThemesArray = [];
+    categories.forEach(function (cat, catIndex) {
+      cat.themes.forEach(function (theme, themeIndex) {
+        fancyThemesArray.push({
+          src: getPreviewLink(theme.slug),
+          type: 'iframe',
+          preload: true
+        });
+      });
+    });
+    return fancyThemesArray;
+  };
 
   var getThemes = function getThemes(category) {
+    var fancyThemesOptions = getThemesFancyboxArray();
     return category.themes.map(function (theme, themeIndex) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "qdlx-admin__themes--content-panel",
         key: themeIndex
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "qdlx-admin__themes--content-panel-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_photoswipe_gallery__WEBPACK_IMPORTED_MODULE_2__.Gallery, {
-        withCaption: true
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_photoswipe_gallery__WEBPACK_IMPORTED_MODULE_2__.Item, {
-        original: theme.preview_image_url,
-        thumbnail: theme.preview_image_url,
-        width: theme.image_width,
-        height: theme.image_height,
-        caption: theme.name
-      }, function (_ref) {
-        var ref = _ref.ref,
-            open = _ref.open;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          className: "button-reset show-cursor",
-          "data-src": theme.preview_image_url,
-          "data-caption": theme.name
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          ref: ref,
-          onClick: open,
-          src: theme.preview_image_url,
-          caption: theme.name,
-          alt: theme.name,
-          style: {
-            maxWidth: '100%',
-            height: 'auto'
-          },
-          width: theme.image_width,
-          height: theme.image_height
-        })));
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "button-reset show-cursor",
-        "data-src": theme.preview_image_url,
-        "data-caption": theme.name
+        onClick: function onClick(e) {
+          e.preventDefault();
+          var fancybox = _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_2__.Fancybox.show(fancyThemesOptions, {
+            startIndex: themeIndex
+          });
+        },
+        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Theme', 'quotes-dlx')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: theme.preview_image_url,
+        caption: theme.name,
+        alt: theme.name,
+        style: {
+          maxWidth: '100%',
+          height: 'auto'
+        },
+        width: theme.image_width,
+        height: theme.image_height
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "qdlx-admin__themes--content-panel-heading"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, theme.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -566,6 +586,19 @@ function sendCommand(action, data) {
   };
   return axios__WEBPACK_IMPORTED_MODULE_0___default()(options);
 }
+
+/***/ }),
+
+/***/ "./node_modules/photoswipe/dist/photoswipe.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/photoswipe/dist/photoswipe.css ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 

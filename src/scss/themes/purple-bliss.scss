@@ -1,7 +1,54 @@
 @import "../colors.scss";
+@import "../breakpoints-mixin.scss";
+@import "../breakpoints-mixin-variable.scss";
+
+$primary_color: #f8f7fb;
+$secondary_color: #67009C;
+$accent: #ff6900;
 
 .quotes-dlx-block-theme-purple-bliss {
-	font-size: 16px;
+	font-size: var( --qdlx-purple-bliss-font-size-mobile, 14px );
+	@include respond-to-var('medium') {
+		font-size: var( --qdlx-purple-bliss-font-size-tablet, 15px );
+	}
+	@include respond-to-var('large') {
+		font-size: var( --qdlx-purple-bliss-font-size-desktop, 16px );
+	}
+
+	/* If these are set, we're in a preview */
+	&.quotes-dlx-screen-mobile {
+		font-size: var( --qdlx-purple-bliss-font-size-mobile, 14px ) !important;
+
+		.quotes-dlx-button {
+			font-size: var( --qdlx-purple-bliss-button-font-size-mobile, 14px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-purple-bliss-button-font-size-mobile, 14px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-purple-bliss-button-font-size-mobile, 14px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-tablet {
+		font-size: var( --qdlx-purple-bliss-font-size-tablet, 15px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-purple-bliss-button-font-size-tablet, 15px ) !important;
+		}
+
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-purple-bliss-button-font-size-tablet, 15px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-purple-bliss-button-font-size-tablet, 15px) / 2))) !important;
+		}
+	}
+	&.quotes-dlx-screen-desktop {
+		font-size: var( --qdlx-purple-bliss-font-size-desktop, 16px ) !important;
+		.quotes-dlx-button {
+			font-size: var( --qdlx-purple-bliss-button-font-size-desktop, 16px ) !important;
+		}
+		.quotes-dlx-button-icon {
+			font-size: var( --qdlx-purple-bliss-button-font-size-desktop, 16px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-purple-bliss-button-font-size-desktop, 16px) / 2))) !important;
+		}
+	}
 
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 0;
@@ -9,7 +56,7 @@
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: #ff6900;
+			color: var( --qdlx-purple-bliss-accent, #ff6900 );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
@@ -17,15 +64,15 @@
 
 			&:hover {
 				transition: all 0.35s ease-in-out;
-				color: darken( #ff6900, 5% );
-				border-bottom: 2px solid #ff6900;
+				color: var( --qdlx-purple-bliss-accent, #ff6900 );
+				border-bottom: 2px solid var( --qdlx-purple-bliss-accent, #ff6900 );
 			}
 		}
 	}
 
 	.quotes-dlx-wrapper {
 		position: relative;
-		background: #FFFFFF;
+		background: transparent;
 
 		figure {
 			position: relative;
@@ -37,10 +84,10 @@
 			display: inline-block;
 			content: '\201C';
 			position: absolute;
-			border: 1px solid $dark-purple;
+			border: 1px solid var( --qdlx-purple-bliss-secondary, $secondary_color );
 			border-radius: 100%;
-			background-color: $dark-purple;
-			color: $white;
+			background-color: var( --qdlx-purple-bliss-secondary, $secondary_color );
+			color: var( --qdlx-purple-bliss-light, $white );
 			width: 100px;
 			height: 100px;
 			font-size: 95px;
@@ -53,26 +100,35 @@
 		}
 
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: "Lato", serif;
+			font-family: var( --qdlx-purple-bliss-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 300;
-			font-size: 1.5em;
-			line-height: 1.65;
-			background: #f8f7fb;
-			color: #393838;
+			font-size: 1.1em;
+			line-height: var( --qdlx-purple-bliss-line-height-mobile, 1.2 );
+			background: var( --qdlx-purple-bliss-background, #f8f7fb );
+			color: var( --qdlx-purple-bliss-text, #393838 );
 			margin: 0 !important; /* override core style */
 			border: 0;
-			border-top: 5px solid $dark-purple;
+			border-top: 5px solid var( --qdlx-purple-bliss-secondary, $secondary_color );
 			quotes: none;
 			vertical-align:baseline;
 			font-style: inherit;
 			padding: 60px 35px 20px 35px;
 			text-align: center;
+
+			@include respond-to-var('medium') {
+				font-size: 1.35em;
+				line-height: var( --qdlx-purple-bliss-line-height-tablet, 1.35 );
+			}
+			@include respond-to-var('large') {
+				font-size: 1.5em;
+				line-height: var( --qdlx-purple-bliss-line-height-desktop, 1.65 );
+			}
 		}
 		.quotes-dlx-button-wrapper {
 			display: flex;
 			position: relative;
-			background: #f8f7fb;
-			border-bottom: 2px solid #cbc3e3;
+			background: var( --qdlx-purple-bliss-background, #f8f7fb );
+			border-bottom: 2px solid var( --qdlx-purple-bliss-border-bottom, #cbc3e3 );
 			padding: 20px 35px;
 			padding-top: 0;
 
@@ -86,7 +142,7 @@
 
 				svg path,
 				svg use {
-					fill: $white;
+					fill: var( --qdlx-purple-bliss-light, $white );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -111,26 +167,33 @@
 
 		.quotes-dlx-button {
 			position: relative;
-			background: $dark-purple;
-			color: $white;
+			background: var( --qdlx-purple-bliss-secondary, $secondary_color );
+			color: var( --qdlx-purple-bliss-light, $white );
 			padding: 12px 25px;
 			border-radius: 4px;
-			border: 1px solid $dark-purple;
+			border: 1px solid var( --qdlx-purple-bliss-secondary, $secondary_color );
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: 'Open Sans', sans-serif;
+			font-family: var( --qdlx-purple-bliss-secondary-font-family, var( --qdlx-secondary-font-family, inherit ) );
 			font-weight: 400;
-			font-size: 1.2em;
+			font-size: var( --qdlx-purple-bliss-button-font-size-mobile, 14px );
 			line-height: 1.0em;
+
+			@include respond-to-var('medium') {
+				font-size: var( --qdlx-purple-bliss-button-font-size-tablet, 15px );
+			}
+			@include respond-to-var('large') {
+				font-size: var( --qdlx-purple-bliss-button-font-size-desktop, 16px);
+			}
 
 			&:hover {
 				transition: all 0.3s ease-in-out;
-				color: $dark-purple;
-				background: $white;
+				color: var( --qdlx-purple-bliss-secondary, $dark-purple );
+				background: var( --qdlx-purple-bliss-light, $white );
 
 				svg path,
 				svg use {
-					fill: $dark-purple;
+					fill: var( --qdlx-purple-bliss-secondary, $dark-purple );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -206,7 +269,7 @@
 				}
 
 				&:not(:checked) ~ ul {
-					background: white;
+					background: var( --qdlx-purple-bliss-light, $white );
 					position: relative;
 					transition: opacity 0.75s ease-in-out;
 					margin-right: 2px;
@@ -235,8 +298,8 @@
 					margin: 0;
 					border-radius: 5px;
 					margin-right: 12px;
-					background: #FFF;
-					border: 1px solid $dark-purple;
+					background: var( --qdlx-purple-bliss-light, $white );
+					border: 1px solid var( --qdlx-purple-bliss-secondary, $dark-purple );
 					z-index: 10;
 				}
 			}
@@ -263,7 +326,7 @@
 						border-radius: 100%;
 						transform: rotate(0deg);
 						transition: all 0.3s ease-in-out;
-						background: #FFF;
+						background: var( --qdlx-purple-bliss-light, $white );
 						margin-right: 5px;
 					}
 					&:after {
@@ -281,7 +344,7 @@
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: #FFF;
+						background: var( --qdlx-purple-bliss-light, $white );
 					}
 		
 					&:after {
@@ -319,17 +382,17 @@
 			}
 	
 			li.quotes-dlx-meatball-menu-item {
-				border-bottom: 1px solid #ddd;
+				border-bottom: 0;
 	
 				button.button-reset {
-					color: #333;
+					color: var( --qdlx-purple-bliss-dark, #333333 );
 	
 					&:hover {
-						background: $dark-purple;
-						color: $white;
+						background: var( --qdlx-purple-bliss-secondary, $dark-purple );
+						color: var( --qdlx-purple-bliss-light, $white );
 	
 						svg use {
-							fill: $white;
+							fill: var( --qdlx-purple-bliss-light, $white );
 						}
 					}
 				}
@@ -340,7 +403,7 @@
 	
 				&:hover {
 					.quotes-dlx-meatball-icon-wrapper {
-						background: #FFF;
+						background: var( --qdlx-purple-bliss-light, $white );
 	
 	
 					}
@@ -348,7 +411,7 @@
 			}
 	
 			input:hover~.quotes-dlx-meatball-icon-wrapper {
-				background: #FFF;
+				background: var( --qdlx-purple-bliss-light, $white );
 	
 				&>div {
 	
@@ -356,7 +419,7 @@
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $blue;
+						background: var( --qdlx-purple-bliss-secondary, $dark-purple );
 					}
 				}
 			}
@@ -374,7 +437,7 @@
 				display: flex;
 				z-index: 2;
 				padding: 20px;
-				background: $white;
+				background: var( --qdlx-purple-bliss-light, $white );
 				box-shadow: none;
 				border-radius: 100%;
 				text-align: center;
@@ -394,7 +457,7 @@
 	
 				&:hover {
 					transition: all 0.3s linear;
-					background: $white;
+					background: var( --qdlx-purple-bliss-light, $white );
 	
 					&>div {
 	
@@ -405,7 +468,7 @@
 	
 							&:before,
 							&:after {
-								background: $dark-purple;
+								background: var( --qdlx-purple-bliss-secondary, $dark-purple );
 							}
 						}
 					}
@@ -417,14 +480,14 @@
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $dark-purple;
+						background: var( --qdlx-purple-bliss-secondary, $dark-purple );
 					}
 				}
 	
 			}
 	
 			input:checked~.quotes-dlx-meatball-icon-wrapper {
-				background: $white;
+				background: var( --qdlx-purple-bliss-light, $white );
 	
 				&>div {
 	
@@ -432,7 +495,7 @@
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: $dark-purple;
+						background: var( --qdlx-purple-bliss-secondary, $dark-purple );
 					}
 	
 					span {
@@ -440,7 +503,7 @@
 						&:before,
 						&:after {
 							display: inline-block;
-							background: $dark-purple;
+							background: var( --qdlx-purple-bliss-secondary, $dark-purple );
 						}
 					}
 				}

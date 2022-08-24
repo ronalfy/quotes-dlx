@@ -56,9 +56,9 @@ class Themes_Init {
 		Themes_Addon::register(
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Bubble_Gum'
 		);
-		// Themes_Addon::register(
-		// 	'MediaRonLLC\QuotesDLX\Themes\Themes_Purple'
-		// );
+		Themes_Addon::register(
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Purple'
+		);
 		Themes_Addon::register(
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Blue'
 		);

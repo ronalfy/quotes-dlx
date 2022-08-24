@@ -103,8 +103,8 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
   font-family: var(--qdlx-light-branded-primary-font-family, var(--qdlx-primary-font-family, inherit));
   font-weight: 400;
-  font-size: 1.5em;
-  line-height: 1.65;
+  font-size: 1.1em;
+  line-height: var(--qdlx-light-branded-line-height-mobile, 1.2);
   color: var(--qdlx-light-branded-secondary, #2B2B2B);
   margin: 0 !important; /* override core style */
   border: 0;
@@ -112,6 +112,18 @@
   vertical-align: baseline;
   font-style: inherit;
   padding: 60px 50px 35px 50px;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.35em;
+    line-height: var(--qdlx-light-branded-line-height-tablet, 1.35);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.5em;
+    line-height: var(--qdlx-light-branded-line-height-desktop, 1.65);
+  }
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper {
   display: flex;

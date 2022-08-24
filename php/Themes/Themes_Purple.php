@@ -78,6 +78,20 @@ class Themes_Purple extends Themes_Addon {
 	protected static $preview_gradient = 'linear-gradient(90deg, rgba(80,0,141,1) 14%, rgba(246,245,251,1) 85%);';
 
 	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static $full_width = 731;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static $full_height = 412;
+
+	/**
 	 * Preview URL image for theme.
 	 *
 	 * @var string $preview_image_url The theme preview image URL.
@@ -168,20 +182,6 @@ class Themes_Purple extends Themes_Addon {
 	}
 
 	/**
-	 * Large Image Width. Used for previews.
-	 *
-	 * @var int $full_width Image width of full-size image.
-	 */
-	protected static int $full_width = 731;
-
-	/**
-	 * Large Image height. Used for previews.
-	 *
-	 * @var int $full_height Image height of full-size image.
-	 */
-	protected static int $full_height = 412;
-
-	/**
 	 * Get the theme description.
 	 *
 	 * @return string Theme description.
@@ -216,5 +216,59 @@ class Themes_Purple extends Themes_Addon {
 	 */
 	protected static function get_image_height() {
 		return self::$full_height;
+	}
+
+	/**
+	 * Get the colors of the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
+	 */
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#67009C',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#ff6900',
+			),
+			array(
+				'name'  => __( 'Background Color', 'quotes-dlx' ),
+				'slug'  => 'background',
+				'color' => '#f8f7fb',
+			),
+			array(
+				'name'  => __( 'Text Color', 'quotes-dlx' ),
+				'slug'  => 'text',
+				'color' => '#393838',
+			),
+			array(
+				'name'  => __( 'Border Bottom Color', 'quotes-dlx' ),
+				'slug'  => 'border-bottom',
+				'color' => '#cbc3e3',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 	}
 }

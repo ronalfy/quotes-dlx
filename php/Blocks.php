@@ -321,12 +321,31 @@ class Blocks {
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
 						);
 
+						// Check to see if we need to override the font families returned. This is typically used in the Advanced section of the admin options.
+						$override_theme_fonts = false;
+						$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+						$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
+						if ( ! empty( $primary_font_family ) && ! empty( $secondary_font_family ) ) {
+							$override_theme_fonts = true;
+							echo sprintf(
+								'--qdlx-%s-primary-font-family: %s;',
+								esc_attr( $theme_options['slug'] ),
+								sanitize_text_field( Functions::format_font_family( $primary_font_family ) )
+							);
+							echo sprintf(
+								'--qdlx-%s-secondary-font-family: %s;',
+								esc_attr( $theme_options['slug'] ),
+								sanitize_text_field( Functions::format_font_family( $secondary_font_family ) )
+							);
+						}
+
 						// Set theme fonts.
 						$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
 						$allow_custom_fonts   = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
-						if ( $allow_custom_fonts ) {
-							$theme_primary_font   = Functions::get_theme_primary_font_family_css( $theme_options['slug'] );
-							$theme_secondary_font = Functions::get_theme_secondary_font_family_css( $theme_options['slug'] );
+						if ( $allow_custom_fonts && ! $override_theme_fonts ) {
+							$format_for_display = true;
+							$theme_primary_font   = Functions::get_font_family( 'primary', $theme_options['slug'], $format_for_display );
+							$theme_secondary_font = Functions::get_font_family( 'secondary', $theme_options['slug'], $format_for_display );
 							if ( $theme_primary_font ) {
 								echo sprintf(
 									'--qdlx-%s-primary-font-family: %s;',

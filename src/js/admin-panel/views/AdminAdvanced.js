@@ -309,6 +309,10 @@ const Interface = ( props ) => {
 	}
 
 	const getAdobeFonts = () => {
+		console.log( adobeFonts );
+		if ( undefined === adobeFonts || false === adobeFonts ) {
+			return <></>;
+		}
 		return (
 			<>
 				<div className="components-base-control">
@@ -336,7 +340,7 @@ const Interface = ( props ) => {
 		const families = [];
 
 		// Try to get adobe fonts. Push them to the top.
-		if ( false !== adobeFonts && getValues( 'enableAdobeFonts' ) ) {
+		if ( false !== adobeFonts && undefined !== adobeFonts && getValues( 'enableAdobeFonts' ) ) {
 			adobeFonts.forEach( ( font ) => {
 				families.push( {
 					label: font.name,

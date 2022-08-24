@@ -232,7 +232,7 @@ class Themes_Purple extends Themes_Addon {
 			array(
 				'name'  => __( 'Primary', 'quotes-dlx' ),
 				'slug'  => 'primary',
-				'color' => '#1DA1F2',
+				'color' => '#f8f7fb',
 			),
 			array(
 				'name'  => __( 'Secondary', 'quotes-dlx' ),

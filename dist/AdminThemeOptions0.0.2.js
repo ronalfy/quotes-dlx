@@ -599,7 +599,9 @@ var Interface = function Interface(props) {
       customFontPrimary = data.customFontPrimary,
       customFontSecondary = data.customFontSecondary,
       primaryFontFamily = data.primaryFontFamily,
-      secondaryFontFamily = data.secondaryFontFamily;
+      secondaryFontFamily = data.secondaryFontFamily,
+      adobeFonts = data.adobeFonts,
+      enableAdobeFonts = data.enableAdobeFonts;
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useForm)({
     defaultValues: {
@@ -795,7 +797,17 @@ var Interface = function Interface(props) {
 
   var getFontFamilies = function getFontFamilies() {
     // Get font families in value label pair.
-    var families = []; // Get the rest of the fonts.
+    var families = []; // Try to get adobe fonts. Push them to the top.
+
+    if (enableAdobeFonts && false !== adobeFonts && undefined !== adobeFonts) {
+      adobeFonts.forEach(function (font) {
+        families.push({
+          label: font.name,
+          value: font.slug
+        });
+      });
+    } // Get the rest of the fonts.
+
 
     for (var _i2 = 0, _Object$entries = Object.entries(_fonts_fonts__WEBPACK_IMPORTED_MODULE_12__["default"]); _i2 < _Object$entries.length; _i2++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),

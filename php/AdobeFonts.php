@@ -31,7 +31,7 @@ class AdobeFonts {
 		add_action( 'wp_ajax_quotes_dlx_retrieve_remote_adobe_fonts', array( static::class, 'ajax_retrieve_remote_adobe_fonts' ) );
 
 		// For loading the font in the preview modal.
-		add_action( 'quotes_dlx_before_modal_scripts', array( static::class, 'add_preview_modal_scripts' ), 10, 2 );
+		add_action( 'quotes_dlx_before_modal_scripts', array( static::class, 'add_preview_modal_scripts' ), 10, 3 );
 		// For adding the style in for the preview modal.
 		add_filter( 'quotes_dlx_plugin_preview_modal_styles', array( static::class, 'add_preview_modal_styles' ) );
 
@@ -56,8 +56,10 @@ class AdobeFonts {
 	 * @param string $template     The active template.
 	 * @param string $font_primary The primary font slug.
 	 */
-	public static function add_preview_modal_scripts( $template, $font_primary ) {
-		if ( Functions::is_adobe_font( $font_primary ) ) {
+	public static function add_preview_modal_scripts( $template, $font_primary, $font_secondary ) {
+		$font_primary   = sanitize_title( $font_primary );
+		$font_secondary = sanitize_title( $font_secondary );
+		if ( Functions::is_adobe_font( $font_primary ) || Functions::is_adobe_font( $font_secondary ) ) {
 			$options    = Options_Advanced::get_options();
 			$project_id = $options['adobe_project_id'];
 

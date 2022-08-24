@@ -476,6 +476,12 @@ var Interface = function Interface(props) {
   }
 
   var getAdobeFonts = function getAdobeFonts() {
+    console.log(adobeFonts);
+
+    if (undefined === adobeFonts || false === adobeFonts) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "components-base-control"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
@@ -495,7 +501,7 @@ var Interface = function Interface(props) {
     // Get font families in value label pair.
     var families = []; // Try to get adobe fonts. Push them to the top.
 
-    if (false !== adobeFonts && getValues('enableAdobeFonts')) {
+    if (false !== adobeFonts && undefined !== adobeFonts && getValues('enableAdobeFonts')) {
       adobeFonts.forEach(function (font) {
         families.push({
           label: font.name,

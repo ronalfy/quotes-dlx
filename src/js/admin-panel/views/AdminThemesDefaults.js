@@ -176,6 +176,7 @@ const Interface = ( props ) => {
 						src: getPreviewLink( theme.slug ),
 						type: 'iframe',
 						preload: true,
+						caption: theme.name,
 					}
 				);
 			} );
@@ -193,7 +194,7 @@ const Interface = ( props ) => {
 							className="button-reset show-cursor"
 							onClick={ ( e ) => {
 								e.preventDefault();
-								const fancybox = Fancybox.show( fancyThemesOptions, { startIndex: themeIndex } );
+								Fancybox.show( fancyThemesOptions, { startIndex: themeIndex } );
 							} }
 							aria-label={ __( 'Preview Theme', 'quotes-dlx' ) }
 						>

@@ -477,6 +477,7 @@ class Functions {
 	 * @return string font family.
 	 */
 	public static function format_font_family( $font_family ) {
+		$font_family = sanitize_title( $font_family );
 		if ( self::is_adobe_font( $font_family ) ) {
 			return $font_family;
 		}
@@ -537,14 +538,13 @@ class Functions {
 	 * @return bool true of adobe font, false if not.
 	 */
 	public static function is_adobe_font( $font_slug ) {
-		$options = Options_Advanced::get_options();
+		$font_slug = sanitize_title( $font_slug );
+		$options   = Options_Advanced::get_options();
 
-		if ( true ) {
-			$adobe_fonts = $options['adobe_fonts'];
-			foreach ( $adobe_fonts as $adobe_font ) {
-				if ( $adobe_font['slug'] === $font_slug ) {
-					return true;
-				}
+		$adobe_fonts = $options['adobe_fonts'];
+		foreach ( $adobe_fonts as $adobe_font ) {
+			if ( $adobe_font['slug'] === $font_slug ) {
+				return true;
 			}
 		}
 		return false;
@@ -561,7 +561,7 @@ class Functions {
 		$saved_theme_options             = Options_Theme::get_options();
 		$theme_default_font_size_options = Options_Theme::get_default_sizes( $breakpoint );
 
-		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options['line_height'];
+		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options[ $key ];
 		/**
 		 * Filter the font size for a given key.
 		 *

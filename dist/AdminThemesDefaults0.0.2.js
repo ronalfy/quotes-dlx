@@ -333,7 +333,8 @@ var Interface = function Interface(props) {
         fancyThemesArray.push({
           src: getPreviewLink(theme.slug),
           type: 'iframe',
-          preload: true
+          preload: true,
+          caption: theme.name
         });
       });
     });
@@ -352,7 +353,7 @@ var Interface = function Interface(props) {
         className: "button-reset show-cursor",
         onClick: function onClick(e) {
           e.preventDefault();
-          var fancybox = _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_2__.Fancybox.show(fancyThemesOptions, {
+          _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_2__.Fancybox.show(fancyThemesOptions, {
             startIndex: themeIndex
           });
         },

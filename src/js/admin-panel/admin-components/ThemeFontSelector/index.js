@@ -69,7 +69,10 @@ const Interface = ( props ) => {
 		customFontPrimary,
 		customFontSecondary,
 		primaryFontFamily,
-		secondaryFontFamily } = data;
+		secondaryFontFamily,
+		adobeFonts,
+		enableAdobeFonts,
+	} = data;
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
@@ -278,6 +281,16 @@ const Interface = ( props ) => {
 	const getFontFamilies = () => {
 		// Get font families in value label pair.
 		const families = [];
+
+		// Try to get adobe fonts. Push them to the top.
+		if ( enableAdobeFonts && false !== adobeFonts && undefined !== adobeFonts ) {
+			adobeFonts.forEach( ( font ) => {
+				families.push( {
+					label: font.name,
+					value: font.slug,
+				} );
+			} );
+		}
 
 		// Get the rest of the fonts.
 		for ( const [ key, fontfamily ] of Object.entries( fontFamilies ) ) {

@@ -215,8 +215,12 @@ class Ajax {
 			$secondary_font_family = Functions::get_default_secondary_font_slug();
 		}
 
+		$adobe_fonts = Options_Advanced::get_options( 'adobe_fonts' );
+
 		wp_send_json_success(
 			array(
+				'adobeFonts'          => $adobe_fonts,
+				'enableAdobeFonts'    => (bool) Options_Advanced::get_options( 'enable_adobe_fonts'),
 				'enableCustomFonts'   => $enable_custom_fonts,
 				'customFontPrimary'   => $custom_font_primary,
 				'customFontSecondary' => $custom_font_secondary,
@@ -361,6 +365,7 @@ class Ajax {
 					'custom_font_secondary'         => $defaults['custom_font_secondary'],
 					'enable_adobe_typekit'          => (bool) $defaults['enable_adobe_fonts'],
 					'adobe_project_id'              => $defaults['adobe_project_id'],
+					'adobe_fonts'                   => $defaults['adobe_fonts'] ?? array(),
 					'activate_adobe_fonts_admin'    => (bool) $defaults['activate_adobe_fonts_admin'],
 					'activate_adobe_fonts_frontend' => (bool) $defaults['activate_adobe_fonts_frontend'],
 					'template'                      => Options_Defaults::get_options( 'template' ),

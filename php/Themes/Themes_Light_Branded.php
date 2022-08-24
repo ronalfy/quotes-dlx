@@ -268,7 +268,7 @@ class Themes_Light_Branded extends Themes_Addon {
 			array(
 				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
 				'slug'  => 'button-primary-color',
-				'color' => '#1DA1F2',
+				'color' => '#FFFFFF',
 			),
 			array(
 				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),

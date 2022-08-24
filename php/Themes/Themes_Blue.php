@@ -96,14 +96,14 @@ class Themes_Blue extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static int $full_width = 866;
+	protected static $full_width = 866;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static int $full_height = 487;
+	protected static $full_height = 487;
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
@@ -216,6 +216,75 @@ class Themes_Blue extends Themes_Addon {
 	 */
 	protected static function get_image_height() {
 		return self::$full_height;
+	}
+
+	/**
+	 * Get the colors of the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
+	 */
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#00316e',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Text Color', 'quotes-dlx' ),
+				'slug'  => 'text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Border Color', 'quotes-dlx' ),
+				'slug'  => 'border-color',
+				'color' => '#0876ff',
+			),
+			array(
+				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#00316e',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 	}
 
 }

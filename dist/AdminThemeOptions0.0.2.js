@@ -1870,10 +1870,11 @@ var Interface = function Interface(props) {
       touchedFields = _useFormState.touchedFields;
 
   var getThemeOptions = function getThemeOptions() {
+    var themeSlug = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : activeTheme;
     setLoading(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_get_theme_options', {
       nonce: quotes_dlx_admin.options_retrieve_nonce,
-      active_template: activeTheme
+      active_template: themeSlug
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
@@ -1921,9 +1922,9 @@ var Interface = function Interface(props) {
         key: cat.slug,
         className: "qdlx-admin__themes--content-inner",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Theme', 'quotes-dlx'),
-        value: activeTheme,
+        value: selectedTheme,
         onChange: function onChange(newTheme) {
-          return setSelectedTheme(newTheme);
+          setSelectedTheme(newTheme);
         },
         options: getThemes(cat)
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
@@ -1945,7 +1946,7 @@ var Interface = function Interface(props) {
         onClick: function onClick(e) {
           if (selectedTheme !== activeTheme) {
             setActiveTheme(selectedTheme);
-            getThemeOptions();
+            getThemeOptions(selectedTheme);
           }
         }
       }));

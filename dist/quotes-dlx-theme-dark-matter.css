@@ -2,14 +2,62 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/themes/dark-matter.scss ***!
   \******************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-dark-matter {
-  font-size: 16px;
+  font-size: var(--qdlx-dark-matter-font-size-mobile, 14px);
+  /* If these are set, we're in a preview */
+  /* Meatball Menu */
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-dark-matter {
+    font-size: var(--qdlx-dark-matter-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-dark-matter {
+    font-size: var(--qdlx-dark-matter-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-mobile {
+  font-size: var(--qdlx-dark-matter-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-mobile .quotes-dlx-button {
+  font-size: var(--qdlx-dark-matter-button-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-mobile .quotes-dlx-button-icon {
+  font-size: var(--qdlx-dark-matter-button-font-size-mobile, 14px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-dark-matter-button-font-size-mobile, 14px) / 2)) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-tablet {
+  font-size: var(--qdlx-dark-matter-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-tablet .quotes-dlx-button {
+  font-size: var(--qdlx-dark-matter-button-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-tablet .quotes-dlx-button-icon {
+  font-size: var(--qdlx-dark-matter-button-font-size-tablet, 15px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-dark-matter-button-font-size-tablet, 15px) / 2)) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-desktop {
+  font-size: var(--qdlx-dark-matter-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-desktop .quotes-dlx-button {
+  font-size: var(--qdlx-dark-matter-button-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-dark-matter.quotes-dlx-screen-desktop .quotes-dlx-button-icon {
+  font-size: var(--qdlx-dark-matter-button-font-size-desktop, 16px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-dark-matter-button-font-size-desktop, 16px) / 2)) !important;
 }
 .quotes-dlx-block-theme-dark-matter.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 0;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-dark-matter-primary, #cc7000);
+  color: var(--qdlx-dark-matter-accent, #cc7000);
   text-transform: none;
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
@@ -17,15 +65,15 @@
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-text-wrapper a:hover {
   transition: all 0.35s ease-in-out;
-  border-bottom: 2px solid var(--qdlx-dark-matter-primary, #cc7000);
+  border-bottom: 2px solid var(--qdlx-dark-matter-accent, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper {
   position: relative;
-  background: var(--qdlx-dark-matter-secondary, #2B2B2B);
-  border-left: 14px solid var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-primary, #2B2B2B);
+  border-left: 14px solid var(--qdlx-dark-matter-secondary, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure {
   margin: 0;
@@ -35,8 +83,8 @@
   content: "“";
   position: absolute;
   border-radius: 100%;
-  background-color: var(--qdlx-dark-matter-primary, #cc7000);
-  color: var(--qdlx-dark-matter-accent, #FFF);
+  background-color: var(--qdlx-dark-matter-secondary, #cc7000);
+  color: var(--qdlx-dark-matter-quote-bubble-inner-color, #FFFFFF);
   width: 50px;
   height: 50px;
   font-size: 44px;
@@ -49,12 +97,12 @@
   z-index: 2;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
-  font-family: "Lato", serif;
+  font-family: var(--qdlx-light-branded-primary-font-family, var(--qdlx-primary-font-family, inherit));
   font-weight: 400;
   font-size: 1.5em;
   line-height: 1.65;
-  background: var(--qdlx-dark-matter-secondary, #2B2B2B);
-  color: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-primary, #2B2B2B);
+  color: var(--qdlx-dark-matter-text-color, #FFF);
   margin: 0 !important; /* override core style */
   border: 0;
   quotes: none;
@@ -65,7 +113,7 @@
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper {
   display: flex;
   position: relative;
-  background: var(--qdlx-dark-matter-secondary, #2B2B2B);
+  background: var(--qdlx-dark-matter-primary, #2B2B2B);
   padding: 45px 51px;
   padding-top: 0;
 }
@@ -97,27 +145,42 @@
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
   position: relative;
-  background: var(--qdlx-dark-matter-primary, #cc7000);
-  color: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-button-primary-color, #cc7000);
+  color: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
   padding: 12px 25px;
   border-radius: 4px;
-  border: 1px solid var(--qdlx-dark-matter-primary, #cc7000);
+  border: 1px solid var(--qdlx-dark-matter-button-primary-color, #cc7000);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--qdlx-dark-matter-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
   font-weight: 400;
-  font-size: 1.2em;
+  font-size: var(--qdlx-dark-matter-button-font-size-mobile, 14px);
   line-height: 1em;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-dark-matter-button-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-dark-matter-button-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button svg use {
+  fill: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+  transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;
-  color: var(--qdlx-dark-matter-primary, #cc7000);
-  background: var(--qdlx-dark-matter-accent, #FFF);
-  border: 1px solid var(--qdlx-dark-matter-primary, #cc7000);
+  color: var(--qdlx-dark-matter-button-secondary-text-color, #cc7000);
+  background: var(--qdlx-dark-matter-button-secondary-color, #FFFFFF);
+  border: 1px solid var(--qdlx-dark-matter-button-secondary-color, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button:hover svg path,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button:hover svg use {
-  fill: var(--qdlx-dark-matter-primary, #cc7000);
+  fill: var(--qdlx-dark-matter-button-secondary-text-color, #cc7000);
   transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-icon {
@@ -207,7 +270,7 @@
   border-radius: 5px;
   margin-right: 15px;
   background: var(--qdlx-dark-matter-accent, #FFF);
-  border: 1px solid var(--qdlx-dark-matter-primary, #cc7000);
+  border: 1px solid var(--qdlx-dark-matter-accent, #cc7000);
   z-index: 10;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper {
@@ -232,7 +295,7 @@
   border-radius: 100%;
   transform: rotate(0deg);
   transition: all 0.3s ease-in-out;
-  background: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-light, #FFF);
   margin-right: 5px;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after {
@@ -276,17 +339,22 @@
   opacity: 0;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
-  border-bottom: 1px solid #DDD;
+  border-bottom: 0;
+  color: var(--qdlx-dark-matter-button-primary-text-color, #2B2B2B);
+  background: var(--qdlx-dark-matter-button-secondary-color, #cc7000);
+  font-family: var(--qdlx-dark-matter-primary-font-family, var(--qdlx-primary-font-family, inherit));
 }
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
-  color: #333;
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg use {
+  fill: var(--qdlx-dark-matter-button-primary-text-color, #2B2B2B);
 }
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
-  background: var(--qdlx-dark-matter-primary, #cc7000);
-  color: var(--qdlx-dark-matter-accent, #FFF);
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:hover {
+  background: var(--qdlx-dark-matter-button-secondary-color, #cc7000);
+  color: var(--qdlx-dark-matter-button-secondary-text-color, #BFBFBF);
 }
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
-  fill: var(--qdlx-dark-matter-accent, #FFF);
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:hover svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:hover svg use {
+  fill: var(--qdlx-dark-matter-button-secondary-text-color, #BFBFBF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input {
   cursor: pointer;
@@ -295,12 +363,12 @@
   background: var(--qdlx-dark-matter-accent, #FFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper {
-  background: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-button-secondary-color, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-button-secondary-text-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   max-width: 30px;
@@ -334,7 +402,7 @@
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover {
   transition: all 0.3s linear;
-  background: var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-button-secondary-color, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span {
@@ -343,24 +411,47 @@
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:after, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:after,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:before,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:after {
-  background: var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-light, #FFFFFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-button-primary-color, #FFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
-  background: var(--qdlx-dark-matter-accent, #FFF);
+  background: var(--qdlx-dark-matter-button-secondary-color, #FFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-button-secondary-text-color, #cc7000);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
   display: inline-block;
-  background: var(--qdlx-dark-matter-primary, #cc7000);
+  background: var(--qdlx-dark-matter-utton-secondary-text-color, #cc7000);
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
+  border-bottom: 1px solid transparent;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
+  border-bottom: none;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
+  color: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+  background: var(--qdlx-dark-matter-button-primary-color, #cc7000);
+  font-family: var(--qdlx-dark-matter-primary-font-family, var(--qdlx-primary-font-family, inherit));
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
+  fill: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
+  background: var(--qdlx-dark-matter-button-secondary-color, #cc7000);
+  color: var(--qdlx-dark-matter-button-secondary-text-color, #BFBFBF);
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
+  fill: var(--qdlx-dark-matter-button-secondary-text-color, #BFBFBF);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-dark-matter.css.map*/

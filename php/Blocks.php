@@ -65,7 +65,7 @@ class Blocks {
 	/**
 	 * Add mobile style roots.
 	 *
-	 * @param [type] $template
+	 * @param string $template The template slug.
 	 */
 	public function add_modal_styles( $template ) {
 		$this->output_theme_style_root();

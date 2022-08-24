@@ -1542,6 +1542,13 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 
 .qdlx-admin__color-primary {
 	margin: 12px 0;
+	display: grid;
+	grid-template-columns: 1fr;
+
+	@include respond-to('medium') {
+		grid-template-columns: 1fr 1fr;
+	}
+	
 }
 .ptam-component-color-picker {
 	margin-left: -5px;

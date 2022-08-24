@@ -2,23 +2,71 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/themes/light-branded.scss ***!
   \********************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-light-branded {
-  font-size: 16px;
+  font-size: var(--qdlx-light-branded-font-size-mobile, 14px);
+  /* If these are set, we're in a preview */
+  /* Meatball Menu */
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-light-branded {
+    font-size: var(--qdlx-light-branded-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-light-branded {
+    font-size: var(--qdlx-light-branded-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-mobile {
+  font-size: var(--qdlx-light-branded-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-mobile .quotes-dlx-button {
+  font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-mobile .quotes-dlx-button-icon {
+  font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-light-branded-button-font-size-mobile, 14px) / 2)) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-tablet {
+  font-size: var(--qdlx-light-branded-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-tablet .quotes-dlx-button {
+  font-size: var(--qdlx-light-branded-button-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-tablet .quotes-dlx-button-icon {
+  font-size: var(--qdlx-light-branded-button-font-size-tablet, 15px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-light-branded-button-font-size-tablet, 15px) / 2)) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-desktop {
+  font-size: var(--qdlx-light-branded-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-desktop .quotes-dlx-button {
+  font-size: var(--qdlx-light-branded-button-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-light-branded.quotes-dlx-screen-desktop .quotes-dlx-button-icon {
+  font-size: var(--qdlx-light-branded-button-font-size-desktop, 16px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-light-branded-button-font-size-desktop, 16px) / 2)) !important;
 }
 .quotes-dlx-block-theme-light-branded.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 50px;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-light-branded-primary, #1DA1F2);
+  color: var(--qdlx-light-branded-accent, #1DA1F2);
   text-transform: none;
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
   transition: all 0.35s ease-in-out;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-text-wrapper a:hover {
-  color: var(--qdlx-light-branded-primary, #1DA1F2);
+  color: var(--qdlx-light-branded-accent, #1DA1F2);
   transition: all 0.35s ease-in-out;
-  border-bottom: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
+  border-bottom: 2px solid var(--qdlx-light-branded-accent, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
@@ -39,8 +87,8 @@
   content: "“";
   position: absolute;
   border-radius: 100%;
-  background-color: var(--qdlx-light-branded-primary, #1DA1F2);
-  color: #FFF;
+  background-color: var(--qdlx-light-branded-quote-bubble, #1DA1F2);
+  color: var(--qdlx-light-branded-quote-bubble-inner-color, #FFF);
   width: 76px;
   height: 76px;
   font-size: 80px;
@@ -53,7 +101,7 @@
   z-index: 2;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
-  font-family: "Lato", serif;
+  font-family: var(--qdlx-light-branded-primary-font-family, var(--qdlx-primary-font-family, inherit));
   font-weight: 400;
   font-size: 1.5em;
   line-height: 1.65;
@@ -79,11 +127,6 @@
   bottom: 0;
   right: 20px;
 }
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg path,
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg use {
-  fill: var(--qdlx-light-branded-primary, #1DA1F2);
-  transition: all 0.3s ease-in-out;
-}
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-container {
   position: relative;
   display: inline-block;
@@ -99,27 +142,42 @@
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
   position: relative;
-  background: #FFFFFF;
-  color: var(--qdlx-light-branded-primary, #2B2B2B);
+  background: var(--qdlx-light-branded-light, #FFF);
+  color: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
   padding: 15px 25px;
   border-radius: 4px;
-  border: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
+  border: 2px solid var(--qdlx-light-branded-button-primary-color, #1DA1F2);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--qdlx-bubble-gum-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
   font-weight: 400;
-  font-size: 1.25em;
+  font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px);
   line-height: 1em;
+}
+@media (min-width: 48em) {
+  .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-light-branded-button-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 64em) {
+  .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-light-branded-button-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button svg use {
+  fill: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
+  transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;
-  color: #FFFFFF;
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
-  border: 2px var(--qdlx-light-branded-primary, #1DA1F2);
+  color: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
+  border: 2px solid var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button:hover svg path,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button:hover svg use {
-  fill: #FFFFFF;
+  fill: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
   transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-icon {
@@ -180,7 +238,7 @@
   width: 0;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked) ~ ul {
-  background: white;
+  background: var(--qdlx-light-branded-light, #FFF);
   position: relative;
   transition: opacity 0.75s ease-in-out;
   margin-right: 2px;
@@ -208,8 +266,8 @@
   padding: 0;
   border-radius: 2px;
   margin-right: 15px;
-  background: #FFF;
-  border: 1px solid var(--qdlx-light-branded-primary, #1DA1F2);
+  background: var(--qdlx-light-branded-light, #FFF);
+  border: 1px solid var(--qdlx-light-branded-accent, #1DA1F2);
   z-index: 10;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper {
@@ -234,7 +292,7 @@
   border-radius: 100%;
   transform: rotate(0deg);
   transition: all 0.3s ease-in-out;
-  background: #FFF;
+  background: var(--qdlx-light-branded-light, #FFF);
   margin-right: 5px;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after {
@@ -247,7 +305,7 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFF;
+  background: var(--qdlx-light-branded-light, #FFF);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after {
   position: absolute;
@@ -277,40 +335,19 @@
   height: 0;
   opacity: 0;
 }
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
-  border-bottom: 1px solid #e4effd;
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child svg path,
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child svg use {
-  fill: var(--qdlx-light-branded-primary, #1DA1F2);
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child:hover svg path,
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child:hover svg use {
-  fill: #FFFFFF;
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
-  color: var(--qdlx-light-branded-accent, #657786);
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
-  color: #FFFFFF;
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
-  fill: #FFFFFF;
-}
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input {
   cursor: pointer;
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover .quotes-dlx-meatball-icon-wrapper {
-  background: #FFF;
+  background: var(--qdlx-light-branded-light, #FFF);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper {
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFFFFF;
+  background: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
   max-width: 30px;
@@ -344,7 +381,7 @@
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover {
   transition: all 0.3s linear;
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span {
@@ -353,24 +390,47 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:after, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:before,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:after {
-  background: #FFFFFF;
+  background: var(--qdlx-light-branded-light, #FFF);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
+  background: var(--qdlx-light-branded-button-primary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
-  background: var(--qdlx-light-branded-primary, #1DA1F2);
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFFFFF;
+  background: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
   display: inline-block;
-  background: #FFFFFF;
+  background: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
+  border-bottom: 1px solid transparent;
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
+  border-bottom: none;
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
+  color: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
+  background: var(--qdlx-light-branded-light, #FFF);
+  font-family: var(--qdlx-light-branded-primary-font-family, var(--qdlx-primary-font-family, inherit));
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
+  fill: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
+  background: var(--qdlx-light-branded-button-secondary-color, #1DA1F2);
+  color: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
+.quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
+  fill: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-light-branded.css.map*/

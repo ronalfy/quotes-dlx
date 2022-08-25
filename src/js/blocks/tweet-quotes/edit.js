@@ -1131,6 +1131,9 @@ const TweetQuotes = ( props ) => {
 	 */
 	const getFontStylesheets = () => {
 		const stylesheets = tweet_quotes_block_vars.themes_stylesheets[ template ];
+		if ( undefined === stylesheets ) {
+			return null;
+		}
 		return (
 			<>
 				<link rel="stylesheet" href={ stylesheets.primary_font_stylesheet } />

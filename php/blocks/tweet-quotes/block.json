@@ -20,7 +20,7 @@
 		},
 		"template": {
 			"type": "string",
-			"default": "light"
+			"default": "light-branded"
 		},
 		"button_style": {
 			"type": "string",

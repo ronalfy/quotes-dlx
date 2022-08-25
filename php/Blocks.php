@@ -95,7 +95,7 @@ class Blocks {
 		$can_enqueue = false;
 
 		// Check to see if we're in the admin and in the post editor.
-		if ( is_admin() && ( isset( $post ) && 'post' === $post->post_type ) ) {
+		if ( is_admin() && ( isset( $post->post_content ) ) ) {
 			$can_enqueue = true;
 		}
 
@@ -110,7 +110,7 @@ class Blocks {
 			return;
 		}
 
-		$can_enqueue_primary = true;
+		$can_enqueue_primary   = true;
 		$can_enqueue_secondary = true;
 		if ( is_singular() || is_page() ) {
 			$blocks = parse_blocks( $post->post_content );
@@ -126,7 +126,7 @@ class Blocks {
 							}
 
 							// Get primary font family for the theme and see if we can override the fonts set in the advanced section.
-							$primary_theme_font_family   = $theme_options['primary_font_family'] ?? '';
+							$primary_theme_font_family = $theme_options['primary_font_family'] ?? '';
 							if ( ! empty( $primary_theme_font_family ) ) {
 								$can_enqueue_primary = false;
 							}
@@ -139,6 +139,7 @@ class Blocks {
 							// Now enqueue the fonts for the theme.
 							if ( Functions::is_adobe_font( $primary_theme_font_family ) || Functions::is_adobe_font( $secondary_theme_font_family ) ) {
 								$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+								Adobe_Fonts::set_dns_prefetch();
 								Adobe_Fonts::enqueue_adobe_fonts( $project_id );
 							}
 							if ( ! Functions::is_adobe_font( $primary_theme_font_family ) && 'custom' !== $primary_theme_font_family ) {
@@ -171,6 +172,7 @@ class Blocks {
 			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
 
 			// Enqueue the Adobe Fonts stylesheet.
+			Adobe_Fonts::set_dns_prefetch();
 			Adobe_Fonts::enqueue_adobe_fonts( $project_id );
 		}
 
@@ -820,7 +822,7 @@ class Blocks {
 			wp_register_style(
 				$handle,
 				esc_url( $theme['stylesheet'] ),
-				$theme_deps,
+				array(),
 				$theme['version'],
 				'all'
 			);
@@ -897,6 +899,27 @@ class Blocks {
 			$block_defaults['hashtags'] = array();
 		}
 
+		// Get font properties for the themes.
+		$themes                      = Themes::get_theme_data();
+		$theme_stylesheets_localized = array();
+		$primary_font_advanced       = Options_Advanced::get_options( 'primary_font_family' );
+		$secondary_font_advanced     = Options_Advanced::get_options( 'secondary_font_family' );
+		foreach ( $themes as $theme ) {
+			$theme_options       = Options_Theme::get_options( $theme['slug'] );
+			$enable_custom_fonts = (bool) ( $theme_options['enable_custom_fonts'] ?? false );
+			if ( ! $enable_custom_fonts ) {
+				$theme_stylesheets_localized[ $theme['slug'] ] = array(
+					'primary_font_stylesheet'   => Functions::get_font_family_stylesheet_path( $primary_font_advanced ),
+					'secondary_font_stylesheet' => Functions::get_font_family_stylesheet_path( $secondary_font_advanced ),
+				);
+			} else {
+				$theme_stylesheets_localized[ $theme['slug'] ] = array(
+					'primary_font_stylesheet'   => Functions::get_font_family_stylesheet_path( $theme_options['primary_font_family'] ),
+					'secondary_font_stylesheet' => Functions::get_font_family_stylesheet_path( $theme_options['secondary_font_family'] ),
+				);
+			}
+		}
+
 		/**
 		 * Filter: quotes_dlx_block_defaults
 		 *
@@ -912,6 +935,7 @@ class Blocks {
 			'quotes-dlx-block',
 			'tweet_quotes_block_vars',
 			array(
+				'themes_stylesheets'       => $theme_stylesheets_localized,
 				'themes'                   => Themes::get_theme_data(),
 				'defaults'                 => $block_defaults,
 				'twp_nonce'                => wp_create_nonce( 'twp-click-to-tweet-ajax' ),

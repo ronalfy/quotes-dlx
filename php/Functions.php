@@ -521,7 +521,10 @@ class Functions {
 	 * @return bool|string false on path failure, URL if success..
 	 */
 	public static function get_font_family_stylesheet_path( $font_family_slug ) {
-		$font_family_slug    = sanitize_title( $font_family_slug );
+		$font_family_slug = sanitize_title( $font_family_slug );
+		if ( self::is_adobe_font( $font_family_slug ) ) {
+			return Adobe_Fonts::get_adobe_fonts_url();
+		}
 		$font_css_path       = 'dist/quotes-dlx-gfont-' . $font_family_slug . '.css';
 		$stylesheet_dir_path = self::get_plugin_dir( $font_css_path );
 		if ( file_exists( $stylesheet_dir_path ) ) {
@@ -538,8 +541,12 @@ class Functions {
 	 * @return bool true of adobe font, false if not.
 	 */
 	public static function is_adobe_font( $font_slug ) {
-		$font_slug = sanitize_title( $font_slug );
-		$options   = Options_Advanced::get_options();
+		$font_slug           = sanitize_title( $font_slug );
+		$options             = Options_Advanced::get_options();
+		$adobe_fonts_enabled = (bool) $options['enable_adobe_fonts'];
+		if ( ! $adobe_fonts_enabled ) {
+			return false;
+		}
 
 		$adobe_fonts = $options['adobe_fonts'];
 		foreach ( $adobe_fonts as $adobe_font ) {

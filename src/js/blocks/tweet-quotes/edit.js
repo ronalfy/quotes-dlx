@@ -163,14 +163,22 @@ const TweetQuotes = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		if ( selectedTab === 'appearance' && shareTextInput.current !== null && isSelected ) {
+		if (
+			selectedTab === 'appearance' &&
+			shareTextInput.current !== null &&
+			isSelected
+		) {
 			shareTextInput.current.focus();
 			// Note to self: not possible with component to focus on last character.
 		}
 	}, [ isSelected, shareTextInput, selectedTab ] );
 
 	useEffect( () => {
-		if ( manualUrlInput.current !== null && 'manual' === urlShortener && 'appearance' !== selectedTab ) {
+		if (
+			manualUrlInput.current !== null &&
+			'manual' === urlShortener &&
+			'appearance' !== selectedTab
+		) {
 			manualUrlInput.current.focus();
 			manualUrlInput.current.select();
 		}
@@ -647,7 +655,8 @@ const TweetQuotes = ( props ) => {
 							enable_copy_tweet ||
 							enable_copy_link ||
 							enable_tweet_this ) && (
-							<MeatballMenu id={ uniqueId } { ...attributes } />
+						// eslint-disable-next-line react/jsx-indent
+						<MeatballMenu id={ uniqueId } { ...attributes } />
 					) }
 				</div>
 			</div>
@@ -725,7 +734,8 @@ const TweetQuotes = ( props ) => {
 														enable_copy_tweet ||
 														enable_copy_link ||
 														enable_tweet_this ) && (
-														<MeatballMenu id={ uniqueId } { ...attributes } />
+													// eslint-disable-next-line react/jsx-indent
+													<MeatballMenu id={ uniqueId } { ...attributes } />
 												) }
 											</>
 										</div>
@@ -794,9 +804,8 @@ const TweetQuotes = ( props ) => {
 											onChange={ ( value ) => {
 												const replacement = value.replace( '@', '' ); // Strip @ symbol.
 												if ( value.length > 0 ) {
-													const usernames = twttr.txt.extractMentions(
-														replacement
-													);
+													const usernames =
+														twttr.txt.extractMentions( replacement );
 													if ( typeof usernames[ 0 ] !== 'undefined' ) {
 														setAttributes( {
 															twitter_username: usernames[ 0 ].replace( '@', '' ),
@@ -1114,13 +1123,26 @@ const TweetQuotes = ( props ) => {
 			stylesheet = themeObject.stylesheet;
 		}
 	} );
-		
+
+	/**
+	 * Retrieve the font stylesheet from localized vars.
+	 *
+	 * @return {string} The font stylesheet.
+	 */
+	const getFontStylesheets = () => {
+		const stylesheets = tweet_quotes_block_vars.themes_stylesheets[ template ];
+		return (
+			<>
+				<link rel="stylesheet" href={ stylesheets.primary_font_stylesheet } />
+				<link rel="stylesheet" href={ stylesheets.secondary_font_stylesheet } />
+			</>
+		);
+	};
 	if ( preview ) {
 		return (
 			<>
-				{ stylesheet &&
-					<link rel="stylesheet" href={ stylesheet } />
-				}
+				{ stylesheet && <link rel="stylesheet" href={ stylesheet } /> }
+				{ getFontStylesheets() }
 				<div { ...blockProps }>{ previewBlock }</div>;
 			</>
 		);
@@ -1128,10 +1150,9 @@ const TweetQuotes = ( props ) => {
 	} else {
 		return (
 			<>
-				{ stylesheet &&
-					<link rel="stylesheet" href={ stylesheet } />
-				}
-				<div { ...blockProps }>{ block }</div>;
+				{ stylesheet && <link rel="stylesheet" href={ stylesheet } /> }
+				{ getFontStylesheets() }
+				<div { ...blockProps }>{ block }</div>
 			</>
 		);
 	}

@@ -20,6 +20,12 @@ class Adobe_Fonts {
 	public static $typekit_css_url = 'https://use.typekit.net/';
 
 	/**
+	 * Determine if we've already prefetched adobe fonts.
+	 *
+	 * @var bool $has_prefetched true if fetched, false if not.
+	 */
+	private static $has_prefetched = false;
+	/**
 	 * Main class runner.
 	 *
 	 * @return Ajax.
@@ -48,17 +54,29 @@ class Adobe_Fonts {
 	}
 
 	/**
+	 * Set a DNS prefetch expicitly for loading Adobe fonts on the frontend or backend.
+	 */
+	public static function set_dns_prefetch() {
+		add_action( 'wp_head', array( static::class, 'add_dns_prefetch' ), 1 );
+		add_action( 'admin_head', array( static::class, 'add_dns_prefetch' ), 1 );
+	}
+
+	/**
 	 * Adds DNS prefetch for the typekit CSS URL.
 	 */
 	public static function add_dns_prefetch() {
+		if ( self::$has_prefetched ) {
+			return;
+		}
 		$typekit_css_url = rtrim( self::$typekit_css_url, '/' );
 		echo '<link rel="dns-prefetch" href="' . esc_url( $typekit_css_url ) . '">';
 		echo '<link rel="preconnect" href="' . esc_url( $typekit_css_url ) . '" crossorigin="anonymous">';
 
 		$preload_url = self::get_adobe_fonts_url();
 		if ( ! empty( $preload_url ) ) {
-			echo '<link rel="preload" href="' . esc_url( $preload_url ) . '" crossorigin="anonymous" as="style">';
+			echo '<link rel="preload" href="' . esc_url( $preload_url ) . '" crossorigin="anonymous" as="font">';
 		}
+		self::$has_prefetched = true;
 	}
 
 	/**

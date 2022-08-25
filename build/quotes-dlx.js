@@ -1345,7 +1345,10 @@ var TweetQuotes = function TweetQuotes(props) {
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  }))))), getClickToShareButton(), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
+  }))))), getClickToShareButton(), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
+  /*#__PURE__*/
+  // eslint-disable-next-line react/jsx-indent
+  React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
     id: uniqueId
   }, attributes)))));
   var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
@@ -1390,7 +1393,10 @@ var TweetQuotes = function TweetQuotes(props) {
           });
         },
         ref: shareTextInput
-      })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
+      })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
+      /*#__PURE__*/
+      // eslint-disable-next-line react/jsx-indent
+      React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
         id: uniqueId
       }, attributes)))));
     } else if ('settings' === tab.name) {
@@ -1621,17 +1627,33 @@ var TweetQuotes = function TweetQuotes(props) {
       stylesheet = themeObject.stylesheet;
     }
   });
+  /**
+   * Retrieve the font stylesheet from localized vars.
+   *
+   * @return {string} The font stylesheet.
+   */
+
+  var getFontStylesheets = function getFontStylesheets() {
+    var stylesheets = tweet_quotes_block_vars.themes_stylesheets[template];
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("link", {
+      rel: "stylesheet",
+      href: stylesheets.primary_font_stylesheet
+    }), /*#__PURE__*/React.createElement("link", {
+      rel: "stylesheet",
+      href: stylesheets.secondary_font_stylesheet
+    }));
+  };
 
   if (preview) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
       rel: "stylesheet",
       href: stylesheet
-    }), /*#__PURE__*/React.createElement("div", blockProps, previewBlock), ";"); // eslint-disable-next-line no-else-return
+    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", blockProps, previewBlock), ";"); // eslint-disable-next-line no-else-return
   } else {
     return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
       rel: "stylesheet",
       href: stylesheet
-    }), /*#__PURE__*/React.createElement("div", blockProps, block), ";");
+    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", blockProps, block));
   }
 };
 

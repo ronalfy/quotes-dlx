@@ -99,7 +99,7 @@ class Blocks {
 			$can_enqueue = true;
 		}
 
-		if ( ! is_singular() && 'settings_page_quotes_dlx' !== $hook && ! $can_enqueue ) {
+		if ( ! ( is_singular() || is_page() ) && 'settings_page_quotes_dlx' !== $hook && ! $can_enqueue ) {
 			return;
 		}
 		$primary_font   = Options_Advanced::get_options( 'primary_font_family' );
@@ -110,18 +110,71 @@ class Blocks {
 			return;
 		}
 
-		if ( Functions::is_adobe_font( $primary_font ) || Functions::is_adobe_font( $secondary_font ) ) {
-			$project_id = Options_Defaults::get_options( 'adobe_project_id' );
-			wp_enqueue_style(
-				'quotes-dlx-adobe-fonts',
-				esc_url( sprintf( 'https://use.typekit.net/%s.css', $project_id ) ),
-				array(),
-				Functions::get_plugin_version(),
-				'all'
-			);
+		$can_enqueue_primary = true;
+		$can_enqueue_secondary = true;
+		if ( is_singular() || is_page() ) {
+			$blocks = parse_blocks( $post->post_content );
+			if ( ! empty( $blocks ) ) {
+				foreach ( $blocks as $block ) {
+					if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
+						$template = $block['attrs']['template'] ?? false;
+						if ( $template ) {
+							$theme_options             = Options_Theme::get_options( $template );
+							$theme_enable_custom_fonts = (bool) ( $theme_options['enable_custom_fonts'] ?? false );
+							if ( ! $theme_enable_custom_fonts ) {
+								continue;
+							}
+
+							// Get primary font family for the theme and see if we can override the fonts set in the advanced section.
+							$primary_theme_font_family   = $theme_options['primary_font_family'] ?? '';
+							if ( ! empty( $primary_theme_font_family ) ) {
+								$can_enqueue_primary = false;
+							}
+
+							$secondary_theme_font_family = $theme_options['secondary_font_family'] ?? '';
+							if ( ! empty( $secondary_theme_font_family ) ) {
+								$can_enqueue_secondary = false;
+							}
+
+							// Now enqueue the fonts for the theme.
+							if ( Functions::is_adobe_font( $primary_theme_font_family ) || Functions::is_adobe_font( $secondary_theme_font_family ) ) {
+								$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+								Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+							}
+							if ( ! Functions::is_adobe_font( $primary_theme_font_family ) && 'custom' !== $primary_theme_font_family ) {
+								$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_theme_font_family . '.css' );
+								wp_enqueue_style(
+									'quotes-dlx-gfont-' . $primary_theme_font_family,
+									esc_url( $primary_font_url ),
+									array(),
+									Functions::get_plugin_version(),
+									'all'
+								);
+							}
+							if ( ! Functions::is_adobe_font( $secondary_theme_font_family ) && 'custom' !== $secondary_theme_font_family ) {
+								$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_theme_font_family . '.css' );
+								wp_enqueue_style(
+									'quotes-dlx-gfont-' . $secondary_theme_font_family,
+									esc_url( $secondary_font_url ),
+									array(),
+									Functions::get_plugin_version(),
+									'all'
+								);
+							}
+						}
+					}
+				}
+			}
 		}
 
-		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font ) {
+		if ( ( Functions::is_adobe_font( $primary_font && $can_enqueue_primary ) ) || ( Functions::is_adobe_font( $secondary_font ) && $can_enqueue_secondary ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+
+			// Enqueue the Adobe Fonts stylesheet.
+			Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+		}
+
+		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font && $can_enqueue_primary ) {
 			$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font . '.css' );
 			wp_enqueue_style(
 				'quotes-dlx-gfont-' . $primary_font,
@@ -131,7 +184,7 @@ class Blocks {
 				'all'
 			);
 		}
-		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font ) {
+		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font && $can_enqueue_secondary ) {
 			$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font . '.css' );
 			wp_enqueue_style(
 				'quotes-dlx-gfont-' . $secondary_font,
@@ -140,47 +193,6 @@ class Blocks {
 				Functions::get_plugin_version(),
 				'all'
 			);
-		}
-
-		// Register theme fonts.
-		$themes = Themes::get_theme_data();
-		foreach ( $themes as $theme ) {
-			$theme_options             = Options_Theme::get_options( $theme['slug'] );
-			$theme_enable_custom_fonts = (bool) $theme_options['enable_custom_fonts'] ?? false;
-			if ( $theme_enable_custom_fonts ) {
-				$primary_font_family   = $theme_options['primary_font_family'] ?? '';
-				$secondary_font_family = $theme_options['secondary_font_family'] ?? '';
-				if ( Functions::is_adobe_font( $primary_font_family ) || Functions::is_adobe_font( $secondary_font_family ) ) {
-					$project_id = Options_Defaults::get_options( 'adobe_project_id' );
-					wp_enqueue_style(
-						'quotes-dlx-adobe-fonts',
-						esc_url( sprintf( 'https://use.typekit.net/%s.css', $project_id ) ),
-						array(),
-						Functions::get_plugin_version(),
-						'all'
-					);
-				}
-				if ( ! Functions::is_adobe_font( $primary_font_family ) && 'custom' !== $primary_font_family ) {
-					$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font_family . '.css' );
-					wp_enqueue_style(
-						'quotes-dlx-gfont-' . $primary_font_family,
-						esc_url( $primary_font_url ),
-						array(),
-						Functions::get_plugin_version(),
-						'all'
-					);
-				}
-				if ( ! Functions::is_adobe_font( $secondary_font_family ) && 'custom' !== $secondary_font_family ) {
-					$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font_family . '.css' );
-					wp_enqueue_style(
-						'quotes-dlx-gfont-' . $secondary_font_family,
-						esc_url( $secondary_font_url ),
-						array(),
-						Functions::get_plugin_version(),
-						'all'
-					);
-				}
-			}
 		}
 	}
 
@@ -322,7 +334,7 @@ class Blocks {
 						);
 
 						// Check to see if we need to override the font families returned. This is typically used in the Advanced section of the admin options.
-						$override_theme_fonts = false;
+						$override_theme_fonts  = false;
 						$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
 						$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 						if ( ! empty( $primary_font_family ) && ! empty( $secondary_font_family ) ) {
@@ -341,9 +353,9 @@ class Blocks {
 
 						// Set theme fonts.
 						$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
-						$allow_custom_fonts   = (bool) $custom_theme_options['enable_custom_fonts'] ?? false;
+						$allow_custom_fonts   = (bool) ( $custom_theme_options['enable_custom_fonts'] ?? false );
 						if ( $allow_custom_fonts && ! $override_theme_fonts ) {
-							$format_for_display = true;
+							$format_for_display   = true;
 							$theme_primary_font   = Functions::get_font_family( 'primary', $theme_options['slug'], $format_for_display );
 							$theme_secondary_font = Functions::get_font_family( 'secondary', $theme_options['slug'], $format_for_display );
 							if ( $theme_primary_font ) {
@@ -792,15 +804,6 @@ class Blocks {
 	private function register_theme_styles() {
 		$theme_deps = array(); // Stores theme handles for enqueuing.
 
-		// Register fonts (todo: optimize).
-		wp_register_style(
-			'quotes-dlx-fonts',
-			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
-
 		/**
 		 * Allow or disallow loading of fonts.
 		 *
@@ -808,23 +811,20 @@ class Blocks {
 		 *
 		 * @param bool Whether to load the custom fonts or not.
 		 */
-		$load_fonts = apply_filters( 'quotes_dlx_load_fonts', true );
-		if ( $load_fonts ) {
-			$theme_deps[] = 'quotes-dlx-fonts';
-		}
+		$load_fonts = apply_filters( 'quotes_dlx_load_fonts', true ); // Not being used atm.
 
 		// Register themes and handles. (todo: optimize).
 		$themes = Themes::get_theme_data();
 		foreach ( $themes as $theme ) {
-			$dep = 'quotes-dlx-' . $theme['slug'];
+			$handle = 'quotes-dlx-' . $theme['slug'];
 			wp_register_style(
-				$dep,
+				$handle,
 				esc_url( $theme['stylesheet'] ),
 				$theme_deps,
 				$theme['version'],
 				'all'
 			);
-			$theme_deps[] = $dep;
+			$theme_deps[] = $handle;
 		}
 
 		return $theme_deps;
@@ -998,7 +998,7 @@ class Blocks {
 		foreach ( $themes as $theme ) {
 			if ( isset( $theme_options[ $theme['slug'] ] ) ) {
 				// Check to see if custom fonts are enabled for the theme.
-				$custom_fonts_enabled = (bool) $theme_options[ $theme['slug'] ]['enable_custom_fonts'] ?? false;
+				$custom_fonts_enabled = (bool) ( $theme_options[ $theme['slug'] ]['enable_custom_fonts'] ?? false );
 				if ( ! $custom_fonts_enabled ) {
 					continue;
 				}

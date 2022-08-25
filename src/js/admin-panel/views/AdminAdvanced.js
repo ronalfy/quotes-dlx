@@ -1025,7 +1025,7 @@ const Interface = ( props ) => {
 										text={
 											saving
 												? __( 'Saving…', 'quotes-dlx' )
-												: __( 'Save Defaults', 'quotes-dlx' )
+												: __( 'Save Advanced Options', 'quotes-dlx' )
 										}
 										icon={ saving ? Spinner : false }
 										iconSize="18"
@@ -1042,7 +1042,7 @@ const Interface = ( props ) => {
 										text={
 											resetting
 												? __( 'Resetting…', 'quotes-dlx' )
-												: __( 'Reset Defaults', 'quotes-dlx' )
+												: __( 'Reset Advanced Options', 'quotes-dlx' )
 										}
 										icon={ resetting ? Spinner : false }
 										iconSize="18"

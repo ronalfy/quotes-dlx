@@ -220,7 +220,7 @@ class Ajax {
 		wp_send_json_success(
 			array(
 				'adobeFonts'          => $adobe_fonts,
-				'enableAdobeFonts'    => (bool) Options_Advanced::get_options( 'enable_adobe_fonts'),
+				'enableAdobeFonts'    => (bool) Options_Advanced::get_options( 'enable_adobe_fonts' ),
 				'enableCustomFonts'   => $enable_custom_fonts,
 				'customFontPrimary'   => $custom_font_primary,
 				'customFontSecondary' => $custom_font_secondary,

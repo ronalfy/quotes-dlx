@@ -10,7 +10,7 @@ namespace MediaRonLLC\QuotesDLX;
 /**
  * Helper class for registering Adobe Fonts.
  */
-class AdobeFonts {
+class Adobe_Fonts {
 
 	/**
 	 * Typekit CSS URL.
@@ -32,10 +32,135 @@ class AdobeFonts {
 
 		// For loading the font in the preview modal.
 		add_action( 'quotes_dlx_before_modal_scripts', array( static::class, 'add_preview_modal_scripts' ), 10, 3 );
+
 		// For adding the style in for the preview modal.
 		add_filter( 'quotes_dlx_plugin_preview_modal_styles', array( static::class, 'add_preview_modal_styles' ) );
 
+		if ( self::can_enqueue( 'frontend' ) ) {
+			add_action( 'wp_head', array( static::class, 'add_dns_prefetch' ), 1 );
+			add_action( 'wp_enqueue_scripts', array( static::class, 'enqueue_adobe_fonts' ) );
+		}
+		if ( self::can_enqueue( 'backend' ) ) {
+			add_action( 'admin_head', array( static::class, 'add_dns_prefetch' ), 1 );
+			add_action( 'admin_enqueue_scripts', array( static::class, 'enqueue_adobe_fonts' ) );
+		}
 		return $self;
+	}
+
+	/**
+	 * Adds DNS prefetch for the typekit CSS URL.
+	 */
+	public static function add_dns_prefetch() {
+		$typekit_css_url = rtrim( self::$typekit_css_url, '/' );
+		echo '<link rel="dns-prefetch" href="' . esc_url( $typekit_css_url ) . '">';
+		echo '<link rel="preconnect" href="' . esc_url( $typekit_css_url ) . '" crossorigin="anonymous">';
+
+		$preload_url = self::get_adobe_fonts_url();
+		if ( ! empty( $preload_url ) ) {
+			echo '<link rel="preload" href="' . esc_url( $preload_url ) . '" crossorigin="anonymous" as="style">';
+		}
+	}
+
+	/**
+	 * Get the URL to adobe fonts with passed project ID.
+	 *
+	 * @param string $project_id The Adobe Fonts project ID.
+	 *
+	 * @return string URL for adobe fonts with project ID.
+	 */
+	public static function get_adobe_fonts_url( $project_id = '' ) {
+		// Retrieve project ID if empty.
+		if ( empty( $project_id ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+		}
+		// If still empty, return.
+		if ( empty( $project_id ) ) {
+			return '';
+		}
+
+		$adobe_fonts_url = sprintf(
+			'%s%s.css',
+			self::$typekit_css_url,
+			$project_id
+		);
+
+		return $adobe_fonts_url;
+	}
+
+	/**
+	 * Check to see if we need to load the Adobe Fonts.
+	 *
+	 * @param string $location Can be frontend or backend.
+	 *
+	 * @return bool True if we can load the Adobe Fonts.
+	 */
+	public static function can_enqueue( $location = 'frontend' ) {
+		$options = Options_Advanced::get_options();
+
+		// Check to see if adobe fonts are even enabled.
+		$adobe_fonts_enabled = (bool) $options['enable_adobe_fonts'] ?? false;
+		if ( $adobe_fonts_enabled ) {
+			$adobe_fonts = $options['adobe_fonts'] ?? array();
+
+			// Check to see if there are any stored Adobe Fonts.
+			if ( ! empty( $adobe_fonts ) && is_array( $adobe_fonts ) ) {
+				// Now check to see if frontend/backend fonts are enabled.
+				$backend_fonts_enabled  = (bool) ( $options['activate_adobe_fonts_admin'] ?? false );
+				$frontend_fonts_enabled = (bool) ( $options['activate_adobe_fonts_frontend'] ?? false );
+
+				// Check the type of request.
+				if ( 'frontend' === $location ) {
+					return $frontend_fonts_enabled;
+				} elseif ( 'backend' === $location ) {
+					return $backend_fonts_enabled;
+				} else {
+					return $frontend_fonts_enabled || $backend_fonts_enabled;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Enqueue adobe font scripts based on project id.
+	 *
+	 * @param string $project_id The project id.
+	 */
+	public static function enqueue_adobe_fonts( $project_id = '' ) {
+
+		// Retrieve project ID if empty.
+		if ( empty( $project_id ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+		}
+		// If still empty, return.
+		if ( empty( $project_id ) ) {
+			return;
+		}
+
+		/**
+		 * Filter: quotes_dlx_adobe_fonts_enqueue_handle
+		 *
+		 * Override the handle for enqueueing the Adobe Fonts.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string  $handle Default handle.
+		 * @param string  $project_id   The Adobe font project ID..
+		 *
+		 * @return string handle
+		 */
+
+		$adobe_fonts_handle = apply_filters( 'quotes_dlx_adobe_fonts_enqueue_handle', 'quotes-dlx-adobe-fonts', $project_id );
+
+		wp_enqueue_style(
+			'quotes-dlx-adobe-fonts',
+			esc_url(
+				self::get_adobe_fonts_url( $project_id )
+			),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
 	}
 
 	/**
@@ -53,8 +178,9 @@ class AdobeFonts {
 	/**
 	 * Check to see if font is adobe font, and then register styles.
 	 *
-	 * @param string $template     The active template.
-	 * @param string $font_primary The primary font slug.
+	 * @param string $template       The active template.
+	 * @param string $font_primary   The primary font slug.
+	 * @param string $font_secondary The secondary font slug.
 	 */
 	public static function add_preview_modal_scripts( $template, $font_primary, $font_secondary ) {
 		$font_primary   = sanitize_title( $font_primary );

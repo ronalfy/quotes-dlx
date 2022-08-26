@@ -17,7 +17,11 @@ const TabItem = ( props ) => {
 		active: props.isActive( location.pathname, slug ),
 	} );
 
+	// Scroll pages into view unless we're on the home screen.
 	useEffect( () => {
+		if ( location.pathname === '/' ) {
+			return;
+		}
 		// Can also use qdlx-tab-content
 		document.getElementById( 'qdlx-admin-container' ).scrollIntoView( {
 			behavior: 'smooth',

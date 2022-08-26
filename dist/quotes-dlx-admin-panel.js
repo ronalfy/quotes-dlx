@@ -38882,9 +38882,14 @@ var TabItem = function TabItem(props) {
       dirtyCount = props.dirtyCount;
   var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()('qdlx-admin__nav--item', {
     active: props.isActive(location.pathname, slug)
-  });
+  }); // Scroll pages into view unless we're on the home screen.
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // Can also use qdlx-tab-content
+    if (location.pathname === '/') {
+      return;
+    } // Can also use qdlx-tab-content
+
+
     document.getElementById('qdlx-admin-container').scrollIntoView({
       behavior: 'smooth'
     });

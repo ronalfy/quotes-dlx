@@ -82,15 +82,11 @@ class Adobe_Fonts {
 	/**
 	 * Get the URL to adobe fonts with passed project ID.
 	 *
-	 * @param string $project_id The Adobe Fonts project ID.
-	 *
 	 * @return string URL for adobe fonts with project ID.
 	 */
-	public static function get_adobe_fonts_url( $project_id = '' ) {
+	public static function get_adobe_fonts_url() {
 		// Retrieve project ID if empty.
-		if ( empty( $project_id ) ) {
-			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
-		}
+		$project_id = Options_Advanced::get_options( 'adobe_project_id' );
 		// If still empty, return.
 		if ( empty( $project_id ) ) {
 			return '';

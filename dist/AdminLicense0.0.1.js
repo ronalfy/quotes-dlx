@@ -210,24 +210,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/text-control/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/toggle-control/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
 /* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
 /* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
 /* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
 /* harmony import */ var _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/KeyIcon */ "./src/js/components/icons/KeyIcon.js");
-/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
-/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
-/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
-/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+/* harmony import */ var _components_icons_VialIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/VialIcon */ "./src/js/components/icons/VialIcon.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -263,6 +265,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var retrieveDefaults = function retrieveDefaults() {
   return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_retrieve_admin_license_core', {
     nonce: quotes_dlx_admin.options_retrieve_nonce
@@ -275,7 +278,7 @@ var AdminLicense = function AdminLicense(props) {
       defaults = _useAsyncResource2[0],
       getDefaults = _useAsyncResource2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load license defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -293,7 +296,7 @@ var Interface = function Interface(props) {
 
   var localStorageKey = 'quotes_dlx_licenses';
 
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_8__["default"]),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_9__["default"]),
       licensesDirtyCount = _useContext.licensesDirtyCount,
       setLicensesDirtyCount = _useContext.setLicensesDirtyCount;
 
@@ -315,38 +318,48 @@ var Interface = function Interface(props) {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      isSaved = _useState6[0],
-      setIsSaved = _useState6[1];
+      betaSaving = _useState6[0],
+      setBetaSaving = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.beta),
       _useState8 = _slicedToArray(_useState7, 2),
-      revokingLicense = _useState8[0],
-      setRevokingLicense = _useState8[1];
+      betaEnabled = _useState8[0],
+      setBetaEnabled = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      isRevoked = _useState10[0],
-      setIsRevoked = _useState10[1];
+      isSaved = _useState10[0],
+      setIsSaved = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      validLicense = _useState12[0],
-      setValidLicense = _useState12[1];
+      revokingLicense = _useState12[0],
+      setRevokingLicense = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      licenseActivated = _useState14[0],
-      setLicenseActivated = _useState14[1];
+      isRevoked = _useState14[0],
+      setIsRevoked = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license),
       _useState16 = _slicedToArray(_useState15, 2),
-      licenseData = _useState16[0],
-      setLicenseData = _useState16[1];
+      validLicense = _useState16[0],
+      setValidLicense = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated ? false : true),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated),
       _useState18 = _slicedToArray(_useState17, 2),
-      showSecret = _useState18[0],
-      setShowSecret = _useState18[1];
+      licenseActivated = _useState18[0],
+      setLicenseActivated = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data),
+      _useState20 = _slicedToArray(_useState19, 2),
+      licenseData = _useState20[0],
+      setLicenseData = _useState20[1];
+
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.license_activated ? false : true),
+      _useState22 = _slicedToArray(_useState21, 2),
+      showSecret = _useState22[0],
+      setShowSecret = _useState22[1];
 
   var license_key = data.license_key,
       item_name = data.item_name,
@@ -358,7 +371,7 @@ var Interface = function Interface(props) {
       license_activated = data.license_activated,
       price_id = data.price_id;
 
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useForm)({
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useForm)({
     defaultValues: {
       quotesdlxLicense: license_key.substr(0, 8) + '********'
     }
@@ -372,11 +385,11 @@ var Interface = function Interface(props) {
       reset = _useForm.reset,
       resetField = _useForm.resetField;
 
-  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useWatch)({
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useWatch)({
     control: control
   });
 
-  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useFormState)({
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useFormState)({
     control: control
   }),
       errors = _useFormState.errors,
@@ -458,6 +471,23 @@ var Interface = function Interface(props) {
     });
   };
 
+  var onBetaToggle = function onBetaToggle(on_or_off) {
+    setBetaSaving(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_save_beta_option', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      beta: on_or_off
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        setBetaEnabled(ajaxData.beta);
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setBetaSaving(false);
+    });
+  };
+
   var hasErrors = function hasErrors() {
     return Object.keys(errors).length > 0;
   };
@@ -481,11 +511,11 @@ var Interface = function Interface(props) {
         break;
 
       default:
-        return 'Unknown';
+        return 'Subscriber';
         break;
     }
 
-    return 'Unkown';
+    return 'Subscriber';
   };
 
   var getSaveButton = function getSaveButton() {
@@ -498,7 +528,7 @@ var Interface = function Interface(props) {
       saveTextLoading = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activating…', 'quotes-dlx');
     }
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
         'has-error': hasErrors()
       }, {
@@ -510,7 +540,7 @@ var Interface = function Interface(props) {
       }),
       type: "submit",
       text: saving ? saveTextLoading : saveText,
-      icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"] : false,
+      icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"] : false,
       iconSize: "18",
       iconPosition: "right",
       disabled: saving || revokingLicense
@@ -624,7 +654,7 @@ var Interface = function Interface(props) {
     politeness: "polite"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__license--input-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
     name: "quotesdlxLicense",
     control: control,
     rules: {
@@ -636,7 +666,7 @@ var Interface = function Interface(props) {
       var _errors$quotesdlxLice, _errors$quotesdlxLice2;
 
       var field = _ref.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License Key', 'quotes-dlx'),
         id: "search-quotes-dlx-license-secret",
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', 'qdlx-admin__text-control-license', {
@@ -669,33 +699,33 @@ var Interface = function Interface(props) {
     className: "quotes-dlx-license-show-hide--label"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Show or Hide the License', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "quotes-dlx-license-show-hide--icon"
-  }, !showSecret ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
+  }, !showSecret ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_13__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faEye
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_12__.FontAwesomeIcon, {
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faEye
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_13__.FontAwesomeIcon, {
     size: '1x',
-    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faEyeSlash
+    icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faEyeSlash
   })))), 'required' === ((_errors$quotesdlxLice3 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice3 === void 0 ? void 0 : _errors$quotesdlxLice3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), 'pattern' === ((_errors$quotesdlxLice4 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice4 === void 0 ? void 0 : _errors$quotesdlxLice4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('It appears there are invalid characters in the license.'),
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), 'validate' === ((_errors$quotesdlxLice5 = errors.quotesdlxLicense) === null || _errors$quotesdlxLice5 === void 0 ? void 0 : _errors$quotesdlxLice5.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: errors.quotesdlxLicense.message,
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, !licenseActivated && getSaveButton(), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, !licenseActivated && getSaveButton(), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': revokingLicense
     }, {
@@ -705,7 +735,7 @@ var Interface = function Interface(props) {
     }),
     type: "button",
     text: revokingLicense ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Revoking License…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Revoke License', 'quotes-dlx'),
-    icon: revokingLicense ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_9__["default"] : false,
+    icon: revokingLicense ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
     disabled: saving || revokingLicense,
@@ -725,13 +755,13 @@ var Interface = function Interface(props) {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your license has been deactivated for this site.', 'quotes-dlx'),
     status: "success",
     politeness: "assertive"
-  }))))), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))))), licenseActivated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-heading"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_12__["default"], {
     width: 48,
     height: 48,
     "aria-hidden": "true"
@@ -763,7 +793,29 @@ var Interface = function Interface(props) {
     "data-header": "Expires On"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
     "data-header": "Days Left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires_human_time_diff))))))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, licenseData.expires_human_time_diff)))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_VialIcon__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Beta Releases', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "You can enable Beta Releases by checking this option.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Beta Releases', 'quotes-dlx'),
+    className: "qdlx-admin__toggle-control",
+    checked: betaEnabled,
+    onChange: function onChange(boolValue) {
+      onBetaToggle(boolValue);
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If enabled, any betas available for release will show up in Dashboard->Updates.', 'quotes-dlx')
+  })))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminLicense);
@@ -911,6 +963,53 @@ Spinner.propTypes = {
   secondaryColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Spinner);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/VialIcon.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/icons/VialIcon.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+ // ES6
+
+var VialIcon = function VialIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", _extends({
+    width: props.width,
+    height: props.height
+  }, props, {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    fill: props.fill
+  }, props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "m502.6 169.4-160-160C336.4 3.125 328.2 0 320 0s-16.38 3.125-22.62 9.375c-12.5 12.5-12.5 32.75 0 45.25l6.975 6.977-271.4 271c-38.75 38.75-45.13 102-9.375 143.5C44.08 500 72.76 512 101.5 512h.447c26.38 0 52.75-9.1 72.88-30.12l275.2-274.6 7.365 7.367C463.6 220.9 471.8 224 480 224s16.38-3.125 22.62-9.375C515.1 202.1 515.1 181.9 502.6 169.4zm-192 86.6H200.2l149.3-149.1 55.18 55.12L310.6 256z"
+  }));
+};
+
+VialIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+VialIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VialIcon);
 
 /***/ }),
 

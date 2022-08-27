@@ -63,10 +63,33 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_font_families', array( static::class, 'ajax_save_theme_font_families' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_font_families', array( static::class, 'ajax_reset_theme_font_families' ) );
 
+		// For enabling or disabling the beta program.
+		add_action( 'wp_ajax_quotes_dlx_save_beta_option', array( static::class, 'ajax_save_beta_option' ) );
+
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
 		return $self;
+	}
+
+	/**
+	 * Save whether the licensee is opted in to betas.
+	 */
+	public static function ajax_save_beta_option() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$beta    = (bool) filter_input( INPUT_POST, 'beta', FILTER_VALIDATE_BOOLEAN );
+		$options = Options_License::get_options();
+		if ( $beta ) {
+			$options['beta'] = true;
+		} else {
+			$options['beta'] = false;
+		}
+		Options_License::update_options( '', $options, true );
+
+		wp_send_json_success( $options );
 	}
 
 	/**
@@ -1098,6 +1121,8 @@ class Ajax {
 		if ( $response['license_errors'] ) {
 			wp_send_json_error( $response );
 		}
+
+		$response['beta'] = Options_License::get_options( 'beta' );
 
 		wp_send_json_success( $response );
 	}

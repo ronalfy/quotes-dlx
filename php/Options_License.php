@@ -56,6 +56,7 @@ class Options_License extends Options_Abstract {
 			'license_limit'     => '',
 			'site_count'        => '',
 			'activations_left'  => '',
+			'beta'              => false,
 		);
 
 		/**

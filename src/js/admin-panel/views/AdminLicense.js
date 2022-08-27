@@ -18,6 +18,7 @@ import sendCommand from '../../utils/SendCommand';
 import Notice from '../admin-components/Notice';
 import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader';
 import KeyIcon from '../../components/icons/KeyIcon';
+import VialIcon from '../../components/icons/VialIcon';
 import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
@@ -68,6 +69,8 @@ const Interface = ( props ) => {
 
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
+	const [ betaSaving, setBetaSaving ] = useState( false );
+	const [ betaEnabled, setBetaEnabled ] = useState( data.beta );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ revokingLicense, setRevokingLicense ] = useState( false );
 	const [ isRevoked, setIsRevoked ] = useState( false );
@@ -100,7 +103,7 @@ const Interface = ( props ) => {
 		setError,
 		getValues,
 		reset,
-		resetField
+		resetField,
 	} = useForm( {
 		defaultValues: {
 			quotesdlxLicense: license_key.substr( 0, 8 ) + '********',
@@ -192,6 +195,25 @@ const Interface = ( props ) => {
 			} );
 	};
 
+	const onBetaToggle = ( on_or_off ) => {
+		setBetaSaving( true );
+		sendCommand( 'quotes_dlx_save_beta_option', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+			beta: on_or_off,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					setBetaEnabled( ajaxData.beta );
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setBetaSaving( false );
+			} );
+	};
+
 	const hasErrors = () => {
 		return Object.keys( errors ).length > 0;
 	};
@@ -211,10 +233,10 @@ const Interface = ( props ) => {
 				return 'Unlimited';
 				break;
 			default:
-				return 'Unknown';
+				return 'Subscriber';
 				break;
 		}
-		return 'Unkown';
+		return 'Subscriber';
 	};
 
 	const getSaveButton = () => {
@@ -274,7 +296,7 @@ const Interface = ( props ) => {
 
 					let keyValue = value;
 					if ( 'quotesdlxLicense' === key ) {
-						keyValue = value.substr( 0, 8 ) + '********' 
+						keyValue = value.substr( 0, 8 ) + '********';
 					}
 					if ( savedDirtyFields.hasOwnProperty( key ) ) {
 						// Key is dirty, so set dirty.
@@ -507,59 +529,91 @@ const Interface = ( props ) => {
 					</form>
 				</div>
 				{ licenseActivated && (
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<CircularInfo width={ 48 } height={ 48 } aria-hidden="true" />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'License Information', 'quotes-dlx' ) }
-									</span>
-								</h1>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<table className="quotes-dlx-table quotes-dlx-table--responsive quotes-dlx-table--license-ui">
-									<thead>
-										<tr>
-											<th scope="col">{ __( 'Item Name', 'quotes-dlx' ) }</th>
-											<th scope="col">{ __( 'License Type', 'quotes-dlx' ) }</th>
-											<th scope="col">
-												{ __( 'License Activations', 'quotes-dlx' ) }
-											</th>
-											<th scope="col">{ __( 'Expires On', 'quotes-dlx' ) }</th>
-											<th scope="col">{ __( 'Days Left', 'quotes-dlx' ) }</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td data-header="Item Name">
-												<p>{ licenseData.item_name }</p>
-											</td>
-											<td data-header="License Type">
-												<p>{ getLicenseType() }</p>
-											</td>
-											<td data-header="License Activations">
-												<p>
-													<span className="">
-														{ licenseData.site_count } of{ ' ' }
-														{ licenseData.license_limit === 0
-															? __( 'Unlimited', 'quotes-dlx' )
-															: licenseData.license_limit }
-													</span>
-												</p>
-											</td>
-											<td data-header="Expires On">
-												<p>{ licenseData.expires }</p>
-											</td>
-											<td data-header="Days Left">
-												<p>{ licenseData.expires_human_time_diff }</p>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+					<>
+						<div className="qdlx-admin__tabs--content-wrap">
+							<div className="qdlx-admin__tabs--content-panel">
+								<div className="qdlx-admin__tabs--content-heading">
+									<h1>
+										<CircularInfo width={ 48 } height={ 48 } aria-hidden="true" />
+										<span className="qdlx-admin__heading--text">
+											{ __( 'License Information', 'quotes-dlx' ) }
+										</span>
+									</h1>
+								</div>
+								<div className="qdlx-admin__tabs--content-inner">
+									<table className="quotes-dlx-table quotes-dlx-table--responsive quotes-dlx-table--license-ui">
+										<thead>
+											<tr>
+												<th scope="col">{ __( 'Item Name', 'quotes-dlx' ) }</th>
+												<th scope="col">{ __( 'License Type', 'quotes-dlx' ) }</th>
+												<th scope="col">
+													{ __( 'License Activations', 'quotes-dlx' ) }
+												</th>
+												<th scope="col">{ __( 'Expires On', 'quotes-dlx' ) }</th>
+												<th scope="col">{ __( 'Days Left', 'quotes-dlx' ) }</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td data-header="Item Name">
+													<p>{ licenseData.item_name }</p>
+												</td>
+												<td data-header="License Type">
+													<p>{ getLicenseType() }</p>
+												</td>
+												<td data-header="License Activations">
+													<p>
+														<span className="">
+															{ licenseData.site_count } of{ ' ' }
+															{ licenseData.license_limit === 0
+																? __( 'Unlimited', 'quotes-dlx' )
+																: licenseData.license_limit }
+														</span>
+													</p>
+												</td>
+												<td data-header="Expires On">
+													<p>{ licenseData.expires }</p>
+												</td>
+												<td data-header="Days Left">
+													<p>{ licenseData.expires_human_time_diff }</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
-					</div>
+						<div className="qdlx-admin__tabs--content-wrap">
+							<div className="qdlx-admin__tabs--content-panel">
+								<div className="qdlx-admin__tabs--content-heading">
+									<h1>
+										<VialIcon width={ 48 } height={ 48 } aria-hidden="true" />
+										<span className="qdlx-admin__heading--text">
+											{ __( 'Beta Releases', 'quotes-dlx' ) }
+										</span>
+									</h1>
+									<p>You can enable Beta Releases by checking this option.</p>
+								</div>
+								<div className="qdlx-admin__tabs--content-inner">
+									<ToggleControl
+										label={ __(
+											'Enable Beta Releases',
+											'quotes-dlx'
+										) }
+										className="qdlx-admin__toggle-control"
+										checked={ betaEnabled }
+										onChange={ ( boolValue ) => {
+											onBetaToggle( boolValue );
+										} }
+										help={ __(
+											'If enabled, any betas available for release will show up in Dashboard->Updates.',
+											'quotes-dlx'
+										) }
+									/>
+								</div>
+							</div>
+						</div>
+					</>
 				) }
 			</div>
 		</>

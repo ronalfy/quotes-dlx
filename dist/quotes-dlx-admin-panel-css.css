@@ -1781,4 +1781,13 @@ table.form-table.qdlx-font-sizes td > div {
   top: calc(0.55em - 4px);
 }
 
+.qdlx-admin__license-beta-saving svg {
+  width: 32px;
+  height: 32px;
+  animation: qdlx-rotate 1s linear infinite;
+}
+.qdlx-admin__license-beta-saving svg path {
+  fill: var(--quotes-dlx-admin--color-accent);
+}
+
 /*# sourceMappingURL=quotes-dlx-admin-panel-css.css.map*/

@@ -1835,3 +1835,14 @@ table.form-table.qdlx-font-sizes {
 		top: calc(1.1em/2 - 4px);
 	}
 }
+
+.qdlx-admin__license-beta-saving {
+	svg {
+		width: 32px;
+		height: 32px;
+		animation: qdlx-rotate 1s linear infinite;
+		path {
+			fill: var(--quotes-dlx-admin--color-accent );
+		}
+	}
+}

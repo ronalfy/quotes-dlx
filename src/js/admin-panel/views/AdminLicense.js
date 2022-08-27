@@ -23,6 +23,7 @@ import TabsContext from '../contexts/TabsContext';
 import Spinner from '../../components/icons/Spinner';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import CircularInfo from '../../components/icons/CircularInfo';
+import CodeBranchIcon from '../../components/icons/CodeBranchIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/pro-solid-svg-icons';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
@@ -592,24 +593,42 @@ const Interface = ( props ) => {
 											{ __( 'Beta Releases', 'quotes-dlx' ) }
 										</span>
 									</h1>
-									<p>You can enable Beta Releases by checking this option.</p>
+									<p className="description">You can enable Beta Releases by checking this option.</p>
 								</div>
-								<div className="qdlx-admin__tabs--content-inner">
-									<ToggleControl
-										label={ __(
-											'Enable Beta Releases',
+								{ betaEnabled && (
+									<Notice
+										message={ __(
+											'Beta Updates are enabled. You will receive beta updates for this plugin.',
 											'quotes-dlx'
 										) }
-										className="qdlx-admin__toggle-control"
-										checked={ betaEnabled }
-										onChange={ ( boolValue ) => {
-											onBetaToggle( boolValue );
-										} }
-										help={ __(
-											'If enabled, any betas available for release will show up in Dashboard->Updates.',
-											'quotes-dlx'
-										) }
+										status="info"
+										politeness="assertive"
+										icon={ CodeBranchIcon }
 									/>
+								) }
+								<div className="qdlx-admin__tabs--content-inner">
+									{ betaSaving && (
+										<div className="qdlx-admin__license-beta-saving">
+											<Spinner />
+										</div>
+									) }
+									{ ! betaSaving && (
+										<ToggleControl
+											label={ __(
+												'Enable Beta Releases',
+												'quotes-dlx'
+											) }
+											className="qdlx-admin__toggle-control"
+											checked={ betaEnabled }
+											onChange={ ( boolValue ) => {
+												onBetaToggle( boolValue );
+											} }
+											help={ __(
+												'If enabled, any betas available for release will show up in Dashboard->Updates.',
+												'quotes-dlx'
+											) }
+										/>
+									) }
 								</div>
 							</div>
 						</div>

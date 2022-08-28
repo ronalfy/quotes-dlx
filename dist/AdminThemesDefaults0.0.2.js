@@ -349,15 +349,16 @@ var Interface = function Interface(props) {
         key: themeIndex
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "qdlx-admin__themes--content-panel-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        className: "button-reset show-cursor",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        className: "quotes-dlx-button button-reset show-cursor",
         onClick: function onClick(e) {
           e.preventDefault();
           _fancyapps_ui_src_Fancybox_Fancybox_js__WEBPACK_IMPORTED_MODULE_2__.Fancybox.show(fancyThemesOptions, {
             startIndex: themeIndex
           });
         },
-        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Theme', 'quotes-dlx')
+        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Theme', 'quotes-dlx'),
+        href: getPreviewLink(theme.slug)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: theme.preview_image_url,
         caption: theme.name,

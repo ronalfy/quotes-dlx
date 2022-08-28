@@ -190,13 +190,14 @@ const Interface = ( props ) => {
 			<div className="qdlx-admin__themes--content-panel" key={ themeIndex }>
 				<div className="qdlx-admin__themes--content-panel-body">
 					<figure>
-						<button
-							className="button-reset show-cursor"
+						<a
+							className="quotes-dlx-button button-reset show-cursor"
 							onClick={ ( e ) => {
 								e.preventDefault();
 								Fancybox.show( fancyThemesOptions, { startIndex: themeIndex } );
 							} }
 							aria-label={ __( 'Preview Theme', 'quotes-dlx' ) }
+							href={ getPreviewLink( theme.slug ) }
 						>
 							<img
 								src={ theme.preview_image_url }
@@ -206,7 +207,7 @@ const Interface = ( props ) => {
 								width={ theme.image_width }
 								height={ theme.image_height }
 							/>
-						</button>
+						</a>
 					</figure>
 					<div className="qdlx-admin__themes--content-panel-heading">
 						<h3>{ theme.name }</h3>

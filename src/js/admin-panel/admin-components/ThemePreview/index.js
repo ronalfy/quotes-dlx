@@ -118,7 +118,7 @@ const ThemePreview = ( props ) => {
 					</figure>
 					<div className={ `quotes-dlx-button-wrapper right` }>
 						<button
-							className={ `quotes-dlx-button full quotes-dlx-button-icon-right` }
+							className={ `quotes-dlx-button full quotes-dlx-button-icon-right button-reset show-cursor` }
 							onClick={ ( e ) => {
 								e.preventDefault();
 							} }

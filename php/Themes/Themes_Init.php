@@ -43,6 +43,12 @@ class Themes_Init {
 	 */
 	public static function run() {
 
+		/**
+		 * Run an action just before all default themes are registered.
+		 * Use this action and filter below to register your own themes.
+		 */
+		do_action( 'quotes_dlx_pre_themes_loaded' );
+
 		// Register any categories.
 		Themes_Addon_Categories::register( 'Core', array( 'description' => __( 'Default themes that come with the plugin', 'quotes-dlx' ) ) );
 
@@ -55,7 +61,7 @@ class Themes_Init {
 		);
 
 		/**
-		 * Filter the array of themes to register.
+		 * Filter the array of themes to register. Use this to add your custom theme in.
 		 *
 		 * @since 2.0.0
 		 *
@@ -77,6 +83,13 @@ class Themes_Init {
 				);
 			}
 		}
+		/**
+		 * Themes have been registed by now. Run a custom action after themes are loaded.
+		 *
+		 * @param array $themes Array of registered themes.
+		 */
+		do_action( 'quotes_dlx_after_themes_loaded', $themes );
+
 		return self::get_instance();
 	}
 }

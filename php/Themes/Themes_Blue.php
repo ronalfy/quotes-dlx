@@ -96,14 +96,14 @@ class Themes_Blue extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static $full_width = 866;
+	protected static $full_width = 900;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static $full_height = 487;
+	protected static $full_height = 500;
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.

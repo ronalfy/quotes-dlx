@@ -75,14 +75,14 @@ class Themes_Dark extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static $full_width = 1555;
+	protected static $full_width = 900;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static $full_height = 874;
+	protected static $full_height = 500;
 
 	/**
 	 * Theme color or gradient.

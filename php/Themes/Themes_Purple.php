@@ -82,14 +82,14 @@ class Themes_Purple extends Themes_Addon {
 	 *
 	 * @var int $full_width Image width of full-size image.
 	 */
-	protected static $full_width = 731;
+	protected static $full_width = 900;
 
 	/**
 	 * Large Image height. Used for previews.
 	 *
 	 * @var int $full_height Image height of full-size image.
 	 */
-	protected static $full_height = 412;
+	protected static $full_height = 500;
 
 	/**
 	 * Preview URL image for theme.

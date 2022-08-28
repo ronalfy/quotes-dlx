@@ -522,18 +522,19 @@ class Ajax {
 			Functions::get_plugin_version(),
 			false
 		);
-		wp_register_style(
-			'qdlx_theme_css',
-			Functions::get_plugin_url(
-				sprintf(
-					'dist/quotes-dlx-theme-%s.css',
-					sanitize_text_field( $template )
-				)
-			),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
+
+		// Get stylesheet path.
+		$theme_template = Themes\Themes_Addon::get_theme_data( $template );
+		if ( $theme_template ) {
+			wp_register_style(
+				'qdlx_theme_css',
+				esc_url( $theme_template['stylesheet'] ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
 		wp_register_style(
 			'qdlx_preview_css',
 			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.css' ),

@@ -1334,6 +1334,8 @@ var TweetQuotes = function TweetQuotes(props) {
     style: maxWidthStyle
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-content-wrapper"
   }, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("blockquote", {
     className: "quotes-dlx-text-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1345,7 +1347,7 @@ var TweetQuotes = function TweetQuotes(props) {
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  }))))), getClickToShareButton(), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
+  }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
   React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({

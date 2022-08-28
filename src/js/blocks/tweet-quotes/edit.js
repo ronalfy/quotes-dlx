@@ -632,23 +632,25 @@ const TweetQuotes = ( props ) => {
 				style={ maxWidthStyle }
 			>
 				<div className="quotes-dlx-wrapper">
-					<figure>
-						<blockquote className="quotes-dlx-text-wrapper">
-							<div className="quotes-dlx-text">
-								{ htmlToReactParser.parse(
-									toHTMLString( {
+					<div className="quotes-dlx-content-wrapper">
+						<figure>
+							<blockquote className="quotes-dlx-text-wrapper">
+								<div className="quotes-dlx-text">
+									{ htmlToReactParser.parse(
+										toHTMLString( {
 										// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
-										value: create( {
-											html: share_text,
-											preserveWhiteSpace: true,
-										} ),
-										multilineTag: 'p',
-									} )
-								) }
-							</div>
-						</blockquote>
-					</figure>
-					{ getClickToShareButton() }
+											value: create( {
+												html: share_text,
+												preserveWhiteSpace: true,
+											} ),
+											multilineTag: 'p',
+										} )
+									) }
+								</div>
+							</blockquote>
+						</figure>
+						{ getClickToShareButton() }
+					</div>
 					{ enable_contextual_menu &&
 						! blockOnly &&
 						( enable_copy_text ||

@@ -89,7 +89,7 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var string $preview_color The theme preview color hexcode or gradient color.
 	 */
-	protected static $preview_gradient = 'linear-gradient(90deg, rgba(29,161,242,1) 14%, rgba(200,222,251,1) 85%);';
+	protected static $preview_gradient = 'linear-gradient(90deg, rgba(231,84,128,1) 14%, rgba(251,232,239,1) 85%);';
 
 	/**
 	 * Preview URL image for theme.

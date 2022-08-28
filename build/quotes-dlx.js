@@ -1382,6 +1382,8 @@ var TweetQuotes = function TweetQuotes(props) {
     if ('appearance' === tab.name) {
       tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-wrapper"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "quotes-dlx-content-wrapper"
       }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.RichText, {
         tagName: "blockquote",
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Add text to share', 'quotes-dlx'),
@@ -1400,7 +1402,7 @@ var TweetQuotes = function TweetQuotes(props) {
       // eslint-disable-next-line react/jsx-indent
       React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
         id: uniqueId
-      }, attributes)))));
+      }, attributes))))));
     } else if ('settings' === tab.name) {
       tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Customize Twitter Content', 'quotes-dlx'),

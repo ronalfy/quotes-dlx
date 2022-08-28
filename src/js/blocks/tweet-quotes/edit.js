@@ -707,39 +707,41 @@ const TweetQuotes = ( props ) => {
 								tabContent = (
 									<>
 										<div className="quotes-dlx-wrapper">
-											<>
-												<figure>
-													<RichText
-														tagName="blockquote"
-														placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
-														value={ share_text }
-														preserveWhiteSpace={ true }
-														className="quotes-dlx-text quotes-dlx-text-wrapper"
-														allowedFormats={ [
-															'core/bold',
-															'core/italic',
-															'core/text-color',
-															'core/subscript',
-															'core/superscript',
-															'core/strikethrough',
-															'core/link',
-														] }
-														onChange={ ( value ) => {
-															setAttributes( { share_text: value } );
-														} }
-														ref={ shareTextInput }
-													/>
-												</figure>
-												{ getClickToShareButton() }
-												{ enable_contextual_menu &&
-													( enable_copy_text ||
-														enable_copy_tweet ||
-														enable_copy_link ||
-														enable_tweet_this ) && (
-													// eslint-disable-next-line react/jsx-indent
-													<MeatballMenu id={ uniqueId } { ...attributes } />
-												) }
-											</>
+											<div className="quotes-dlx-content-wrapper">
+												<>
+													<figure>
+														<RichText
+															tagName="blockquote"
+															placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
+															value={ share_text }
+															preserveWhiteSpace={ true }
+															className="quotes-dlx-text quotes-dlx-text-wrapper"
+															allowedFormats={ [
+																'core/bold',
+																'core/italic',
+																'core/text-color',
+																'core/subscript',
+																'core/superscript',
+																'core/strikethrough',
+																'core/link',
+															] }
+															onChange={ ( value ) => {
+																setAttributes( { share_text: value } );
+															} }
+															ref={ shareTextInput }
+														/>
+													</figure>
+													{ getClickToShareButton() }
+													{ enable_contextual_menu &&
+														( enable_copy_text ||
+															enable_copy_tweet ||
+															enable_copy_link ||
+															enable_tweet_this ) && (
+														// eslint-disable-next-line react/jsx-indent
+														<MeatballMenu id={ uniqueId } { ...attributes } />
+													) }
+												</>
+											</div>
 										</div>
 									</>
 								);

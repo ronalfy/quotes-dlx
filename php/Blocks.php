@@ -542,50 +542,52 @@ class Blocks {
 		<div id="<?php echo esc_attr( $block_id ? $block_id : '' ); ?>" class="<?php echo esc_attr( implode( ' ', $block_wrapper_classes ) ); ?>" style="<?php echo esc_attr( $max_width_attr ? 'max-width: ' . $max_width_attr . ';' : '' ); ?>">
 
 			<div class="quotes-dlx-wrapper">
-				<figure>
-					<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
-					<?php
-						$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
-						echo wp_kses_post( nl2br( $tweet_text_rich ) );
-					?>
-					</blockquote>
-				</figure>
-				<?php
-				if ( $tweet_button_enabled ) :
-					?>
-				<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
-					<?php
-					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
-					$share_button_classes = array(
-						'quotes-dlx-button',
-						$tweet_button_display,
-						'quotes-dlx-button-icon-' . $tweet_icon_alignment,
-					);
-					?>
-					<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+				<div class="quotes-dlx-content-wrapper">
+					<figure>
+						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
 						<?php
-						// Output Twitter text.
-						if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
-							?>
-							<span class="quotes-dlx-button-text">
-									<?php echo wp_kses_post( $share_button_text ); ?>
-							</span>
-							<?php
-						endif;
-						// Output Twitter icon.
-						if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
-							?>
-							<span class="quotes-dlx-button-icon">
-								<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
-							</span>
-							<?php
-						endif;
+							$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
+							echo wp_kses_post( nl2br( $tweet_text_rich ) );
 						?>
-					</button>
+						</blockquote>
+					</figure>
+					<?php
+					if ( $tweet_button_enabled ) :
+						?>
+					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
+						<?php
+						$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+						$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+						$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+						$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+						$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+						$share_button_classes = array(
+							'quotes-dlx-button',
+							$tweet_button_display,
+							'quotes-dlx-button-icon-' . $tweet_icon_alignment,
+						);
+						?>
+						<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+							<?php
+							// Output Twitter text.
+							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-text">
+										<?php echo wp_kses_post( $share_button_text ); ?>
+								</span>
+								<?php
+							endif;
+							// Output Twitter icon.
+							if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-icon">
+									<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+								</span>
+								<?php
+							endif;
+							?>
+						</button>
+					</div>
 				</div>
 				<?php endif; ?>
 				<?php

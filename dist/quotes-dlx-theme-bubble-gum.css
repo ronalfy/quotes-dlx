@@ -13,12 +13,12 @@
   /* If these are set, we're in a preview */
   /* Meatball Menu */
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-bubble-gum {
     font-size: var(--qdlx-bubble-gum-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-bubble-gum {
     font-size: var(--qdlx-bubble-gum-font-size-desktop, 16px);
   }
@@ -131,13 +131,13 @@
   font-style: inherit;
   padding: 68px 68px 24px 68px;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
     font-size: 1.35em;
     line-height: var(--qdlx-bubble-gum-line-height-tablet, 1.35);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
     font-size: 1.5em;
     line-height: var(--qdlx-bubble-gum-line-height-desktop, 1.65);
@@ -189,12 +189,12 @@
   font-size: var(--qdlx-bubble-gum-button-font-size-mobile, 14px);
   line-height: 1em;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-bubble-gum-button-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-bubble-gum-button-font-size-desktop, 16px);
   }
@@ -210,13 +210,13 @@
   width: 100%;
   height: 100%;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
     font-size: var(--qdlx-bubble-gum-button-font-size-tablet, 15px);
     top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2));
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper .quotes-dlx-button .quotes-dlx-button-icon {
     font-size: var(--qdlx-bubble-gum-button-font-size-desktop, 16px);
     top: calc(50% - (0.125em + var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2));

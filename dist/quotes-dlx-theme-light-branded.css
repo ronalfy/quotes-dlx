@@ -13,12 +13,12 @@
   /* If these are set, we're in a preview */
   /* Meatball Menu */
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-light-branded {
     font-size: var(--qdlx-light-branded-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-light-branded {
     font-size: var(--qdlx-light-branded-font-size-desktop, 16px);
   }
@@ -113,13 +113,13 @@
   font-style: inherit;
   padding: 60px 50px 35px 50px;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
     font-size: 1.35em;
     line-height: var(--qdlx-light-branded-line-height-tablet, 1.35);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
     font-size: 1.5em;
     line-height: var(--qdlx-light-branded-line-height-desktop, 1.65);
@@ -166,12 +166,12 @@
   font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px);
   line-height: 1em;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-light-branded-button-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-light-branded-button-font-size-desktop, 16px);
   }

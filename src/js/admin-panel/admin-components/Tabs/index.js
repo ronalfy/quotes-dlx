@@ -384,7 +384,7 @@ const AdminTabs = ( props ) => {
 					<TabItem
 						icon={ FlaskIcon }
 						slug="advanced"
-						description={ __( 'Reset options, set breakpoints, and disable fonts.', 'quotes-dlx' ) }
+						description={ __( 'Reset options and set global theme fonts.', 'quotes-dlx' ) }
 						label={ __( 'Advanced', 'quotes-dlx' ) }
 						tabClicked={ ( tab ) => {
 							onTabClick( tab );

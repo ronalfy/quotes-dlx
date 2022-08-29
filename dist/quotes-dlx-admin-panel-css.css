@@ -208,7 +208,7 @@ button.button-reset.show-cursor {
   padding: 1.1rem;
   overflow: hidden;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin .qdlx-admin-container__wrap {
     grid-column-gap: 1.975rem;
     grid-template-columns: 2fr 2px 8fr; /* Thanks: https://stackoverflow.com/questions/50500305/css-grid-with-padding-overflows-container */
@@ -231,17 +231,17 @@ button.button-reset.show-cursor {
   grid-template-columns: 1fr;
   align-items: center;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin header .qdlx-admin-container__wrap {
     grid-template-columns: 1fr 2fr;
   }
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin header .qdlx-admin-container__wrap {
     grid-template-columns: 275px 1fr;
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-plugin header .qdlx-admin-container__wrap {
     grid-template-columns: 375px 1fr;
   }
@@ -249,7 +249,7 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin header .header__logo-wrap {
   text-align: center;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin header .header__logo-wrap {
     text-align: left;
   }
@@ -258,17 +258,17 @@ button.button-reset.show-cursor {
   width: 100%;
   max-width: 100%;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin header .qdlx__btn-primary {
     max-width: 80%;
   }
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin header .qdlx__btn-primary {
     max-width: 75%;
   }
 }
-@media (min-width: 75em) {
+@media (min-width: 1200px) {
   .quotes-dlx-plugin header .qdlx__btn-primary {
     max-width: 250px;
   }
@@ -279,7 +279,7 @@ button.button-reset.show-cursor {
   flex-wrap: wrap;
   margin-top: 35px;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin .header__btn-wrap {
     margin-top: 0;
   }
@@ -292,12 +292,12 @@ button.button-reset.show-cursor {
   width: 375px;
   height: auto;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin #svg--logo {
     width: 275px;
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-plugin #svg--logo {
     width: 375px;
   }
@@ -315,7 +315,7 @@ button.button-reset.show-cursor {
   text-align: center;
   margin-bottom: 15px;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin .qdlx__btn {
     padding: 12px 10px;
     margin-bottom: 15px;
@@ -324,7 +324,7 @@ button.button-reset.show-cursor {
     margin-bottom: 0;
   }
 }
-@media (min-width: 75em) {
+@media (min-width: 1200px) {
   .quotes-dlx-plugin .qdlx__btn {
     display: inline-block;
     margin-right: 15px;
@@ -380,7 +380,7 @@ button.button-reset.show-cursor {
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a {
     grid-template-columns: 26px 1fr 1fr;
     grid-column-gap: 0.5em;
@@ -456,7 +456,7 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-title {
   display: none;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-title {
     display: flex;
     align-items: center;
@@ -484,7 +484,7 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-description:hover {
   color: var(--quotes-dlx-admin--color-text-color);
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-plugin nav.qdlx-admin__tabs--nav a .qdlx-admin__tabs--nav-description {
     border: inherit;
     clip: unset;
@@ -560,7 +560,7 @@ button.button-reset.show-cursor {
 .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap h1 span.qdlx-admin__heading--text {
   margin-left: 8px;
 }
-@media (min-width: 30em) {
+@media (min-width: 520px) {
   .quotes-dlx-plugin .qdlx-admin__tabs--content-wrap h1 {
     font-size: 2.25em;
   }
@@ -634,7 +634,7 @@ button.button-reset.show-cursor {
   transition: opacity 0.2s ease-in-out;
   z-index: 6;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .qdlx-admin__tabs--save-count {
     top: 8px;
     right: 8px;
@@ -665,7 +665,7 @@ button.button-reset.show-cursor {
   min-width: 100px;
   border-radius: 3px;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .qdlx-admin__tabs--save-count:hover:after {
     bottom: 100%;
     right: 100%;
@@ -691,7 +691,7 @@ button.button-reset.show-cursor {
   right: -100%;
   border-radius: 3px;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .qdlx-admin__tabs--nav-icon:hover:after {
     display: none;
   }
@@ -1522,7 +1522,7 @@ button.button-reset.show-cursor {
   display: grid;
   grid-template-columns: 1fr;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .qdlx-admin__color-primary {
     grid-template-columns: 1fr 1fr;
   }

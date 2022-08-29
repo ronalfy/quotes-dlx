@@ -13,12 +13,12 @@
   /* If these are set, we're in a preview */
   /* Meatball Menu */
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter {
     font-size: var(--qdlx-dark-matter-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-dark-matter {
     font-size: var(--qdlx-dark-matter-font-size-desktop, 16px);
   }
@@ -157,12 +157,12 @@
   font-size: var(--qdlx-dark-matter-button-font-size-mobile, 14px);
   line-height: 1em;
 }
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-dark-matter-button-font-size-tablet, 15px);
   }
 }
-@media (min-width: 64em) {
+@media (min-width: 1024px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
     font-size: var(--qdlx-dark-matter-button-font-size-desktop, 16px);
   }

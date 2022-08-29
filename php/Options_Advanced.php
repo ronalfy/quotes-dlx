@@ -47,12 +47,6 @@ class Options_Advanced extends Options_Abstract {
 	 */
 	public static function get_defaults() {
 		$defaults = array(
-			'desktop_breakpoint'            => 1024,
-			'desktop_breakpoint_unit'       => 'px',
-			'tablet_breakpoint'             => 768,
-			'tablet_breakpoint_unit'        => 'px',
-			'mobile_breakpoint'             => 520,
-			'mobile_breakpoint_unit'        => 'px',
 			'enable_fonts'                  => true,
 			'enable_custom_fonts'           => false,
 			'custom_font_primary'           => '',

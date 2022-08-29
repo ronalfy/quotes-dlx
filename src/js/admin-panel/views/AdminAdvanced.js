@@ -88,6 +88,7 @@ const Interface = ( props ) => {
 	);
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
+	const [ refreshingFonts, setRefreshingFonts ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
 	const [ hardReset, setHardReset ] = useState( false );
@@ -97,12 +98,6 @@ const Interface = ( props ) => {
 	const [ canResetOptions, setCanResetOptions ] = useState( false );
 
 	const {
-		desktop_breakpoint,
-		desktop_breakpoint_unit,
-		tablet_breakpoint,
-		tablet_breakpoint_unit,
-		mobile_breakpoint,
-		mobile_breakpoint_unit,
 		enable_fonts,
 		custom_font_primary,
 		custom_font_secondary,
@@ -117,12 +112,6 @@ const Interface = ( props ) => {
 
 	const getDefaultValues = () => {
 		return {
-			desktopBreakpoint: desktop_breakpoint,
-			desktopBreakpointUnit: desktop_breakpoint_unit,
-			tabletBreakpoint: tablet_breakpoint,
-			tabletBreakpointUnit: tablet_breakpoint_unit,
-			mobileBreakpoint: mobile_breakpoint,
-			mobileBreakpointUnit: mobile_breakpoint_unit,
 			enableFonts: enable_fonts,
 			customFontPrimary: custom_font_primary,
 			customFontSecondary: custom_font_secondary,
@@ -225,7 +214,7 @@ const Interface = ( props ) => {
 	};
 
 	const refreshAdobeFonts = () => {
-		setSaving( true );
+		setRefreshingFonts( true );
 		sendCommand( 'quotes_dlx_retrieve_remote_adobe_fonts', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			project_id: getValues( 'adobeProjectId' ),
@@ -245,7 +234,7 @@ const Interface = ( props ) => {
 			} )
 			.catch( ( ajaxResponse ) => {} )
 			.then( ( ajaxResponse ) => {
-				setSaving( false );
+				setRefreshingFonts( false );
 			} );
 	};
 
@@ -309,7 +298,6 @@ const Interface = ( props ) => {
 	}
 
 	const getAdobeFonts = () => {
-		console.log( adobeFonts );
 		if ( undefined === adobeFonts || false === adobeFonts ) {
 			return <></>;
 		}
@@ -566,8 +554,8 @@ const Interface = ( props ) => {
 										className={ classNames(
 											'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent',
 											{ 'has-error': hasErrors() },
-											{ 'has-icon': saving },
-											{ 'is-saving': { saving } }
+											{ 'has-icon': refreshingFonts },
+											{ 'is-saving': { refreshingFonts } }
 										) }
 										type="button"
 										text={
@@ -575,10 +563,10 @@ const Interface = ( props ) => {
 												? __( 'Getting Fonts…', 'quotes-dlx' )
 												: __( 'Refresh Fonts', 'quotes-dlx' )
 										}
-										icon={ saving ? Spinner : false }
+										icon={ refreshingFonts ? Spinner : false }
 										iconSize="18"
 										iconPosition="right"
-										disabled={ saving || resetting }
+										disabled={ refreshingFonts || resetting }
 										onClick={ async() => {
 											const result = await trigger(
 												'adobeProjectId'
@@ -856,161 +844,6 @@ const Interface = ( props ) => {
 										</tr>
 										{ getAdobeFontsInterface() }
 										{ getFontOptions() }
-										<tr>
-											<th scope="row">{ __( 'Breakpoints', 'quotes-dlx' ) }</th>
-											<td>
-												<div className="qdlx-admin__control-item">
-													<Controller
-														name="desktopBreakpoint"
-														control={ control }
-														rules={ { required: true, pattern: /^[0-9]+$/i } }
-														render={ ( { field } ) => (
-															<TextControl
-																{ ...field }
-																label={ __( 'Desktop Breakpoint (px)', 'quotes-dlx' ) }
-																className={ classNames(
-																	'qdlx-admin__text-control',
-																	{
-																		'has-error':
-																			'pattern' ===
-																				errors.desktopBreakpoint?.type ||
-																			'required' ===
-																				errors.desktopBreakpoint?.type,
-																		'is-required': true,
-																	}
-																) }
-																help={ __(
-																	'Set the desktop breakpoint for all themes.',
-																	'quotes-dlx'
-																) }
-																aria-required="true"
-															/>
-														) }
-													/>
-													{ 'required' === errors.desktopBreakpoint?.type && (
-														<Notice
-															message={ __( 'This field is a required field.' ) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													{ 'pattern' === errors.desktopBreakpoint?.type && (
-														<Notice
-															message={ __(
-																'The desktop breakpoint can only be numbers.'
-															) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													
-												</div>
-												<div className="qdlx-admin__control-item">
-													<Controller
-														name="tabletBreakpoint"
-														control={ control }
-														rules={ { required: true, pattern: /^[0-9]+$/i } }
-														render={ ( { field } ) => (
-															<TextControl
-																{ ...field }
-																label={ __( 'Tablet Breakpoint (px)', 'quotes-dlx' ) }
-																className={ classNames(
-																	'qdlx-admin__text-control',
-																	{
-																		'has-error':
-																			'pattern' ===
-																				errors.tabletBreakpoint?.type ||
-																			'required' ===
-																				errors.tabletBreakpoint?.type,
-																		'is-required': true,
-																	}
-																) }
-																help={ __(
-																	'Set the tablet breakpoint for all themes.',
-																	'quotes-dlx'
-																) }
-																aria-required="true"
-															/>
-														) }
-													/>
-													{ 'required' === errors.tabletBreakpoint?.type && (
-														<Notice
-															message={ __( 'This field is a required field.' ) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													{ 'pattern' === errors.tabletBreakpoint?.type && (
-														<Notice
-															message={ __(
-																'The tablet breakpoint can only be numbers.'
-															) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													
-												</div>
-												<div className="qdlx-admin__control-item">
-													<Controller
-														name="mobileBreakpoint"
-														control={ control }
-														rules={ { required: true, pattern: /^[0-9]+$/i } }
-														render={ ( { field } ) => (
-															<TextControl
-																{ ...field }
-																label={ __( 'Mobile Breakpoint (px)', 'quotes-dlx' ) }
-																className={ classNames(
-																	'qdlx-admin__text-control',
-																	{
-																		'has-error':
-																			'pattern' ===
-																				errors.mobileBreakpoint?.type ||
-																			'required' ===
-																				errors.mobileBreakpoint?.type,
-																		'is-required': true,
-																	}
-																) }
-																help={ __(
-																	'Set the mobile breakpoint for all themes.',
-																	'quotes-dlx'
-																) }
-																aria-required="true"
-															/>
-														) }
-													/>
-													{ 'required' === errors.mobileBreakpoint?.type && (
-														<Notice
-															message={ __( 'This field is a required field.' ) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													{ 'pattern' === errors.mobileBreakpoint?.type && (
-														<Notice
-															message={ __(
-																'The mobile breakpoint can only be numbers.'
-															) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-													
-												</div>
-											</td>
-										</tr>
 									</tbody>
 								</table>
 								<div className="qdlx-admin__tabs--content-actions">

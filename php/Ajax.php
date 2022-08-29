@@ -947,24 +947,6 @@ class Ajax {
 		// Iterate and sanitize.
 		foreach ( $form_data as $field => $field_value ) {
 			switch ( $field ) {
-				case 'desktopBreakpoint':
-					$options_to_save['desktop_breakpoint'] = (float) $field_value;
-					break;
-				case 'desktopBreakpointUnit':
-					$options_to_save['desktop_breakpoint_unit'] = sanitize_text_field( $field_value );
-					break;
-				case 'tabletBreakpoint':
-					$options_to_save['tablet_breakpoint'] = (float) $field_value;
-					break;
-				case 'tabletBreakpointUnit':
-					$options_to_save['tablet_breakpoint_unit'] = sanitize_text_field( $field_value );
-					break;
-				case 'mobileBreakpoint':
-					$options_to_save['mobile_breakpoint'] = (float) $field_value;
-					break;
-				case 'mobileBreakpointUnit':
-					$options_to_save['mobile_breakpoint_unit'] = sanitize_text_field( $field_value );
-					break;
 				case 'enableFonts':
 					$options_to_save['enable_fonts'] = ( 'true' === $field_value ) ? true : false;
 					break;

@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminDefaults0.0.2"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminDefaults0.0.3"],{
 
 /***/ "./src/js/admin-panel/views/AdminDefaults.js":
 /*!***************************************************!*\
@@ -964,4 +964,4 @@ var Interface = function Interface(props) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminDefaults0.0.2.js.map
+//# sourceMappingURL=AdminDefaults0.0.3.js.map

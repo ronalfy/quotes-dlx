@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminHome0.0.1"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminHome0.0.2"],{
 
 /***/ "./src/js/admin-panel/admin-components/Notice/index.js":
 /*!*************************************************************!*\
@@ -305,4 +305,4 @@ var AdminHome = function AdminHome() {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminHome0.0.1.js.map
+//# sourceMappingURL=AdminHome0.0.2.js.map

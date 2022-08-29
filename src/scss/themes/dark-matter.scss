@@ -8,10 +8,10 @@ $accent-color: #FFF;
 
 .quotes-dlx-block-theme-dark-matter {
 	font-size: var( --qdlx-dark-matter-font-size-mobile, 14px );
-	@include respond-to-var('medium') {
+	@include respond-to('medium') {
 		font-size: var( --qdlx-dark-matter-font-size-tablet, 15px );
 	}
-	@include respond-to-var('large') {
+	@include respond-to('large') {
 		font-size: var( --qdlx-dark-matter-font-size-desktop, 16px );
 	}
 
@@ -169,10 +169,10 @@ $accent-color: #FFF;
 			font-size: var( --qdlx-dark-matter-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: var( --qdlx-dark-matter-button-font-size-tablet, 15px );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: var( --qdlx-dark-matter-button-font-size-desktop, 16px);
 			}
 

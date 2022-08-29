@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminMenuDefaults0.0.2"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminMenuDefaults0.0.3"],{
 
 /***/ "./src/js/admin-panel/admin-components/Notice/index.js":
 /*!*************************************************************!*\
@@ -759,4 +759,4 @@ function sendCommand(action, data) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminMenuDefaults0.0.2.js.map
+//# sourceMappingURL=AdminMenuDefaults0.0.3.js.map

@@ -870,8 +870,15 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 					color: var(--quotes-dlx-admin--color-accent);
 					border-color: var( --quotes-dlx-admin--color-accent );
 				}
-
-
+				&.qdlx__btn--icon-right {
+					&.is-saving {
+						svg,
+						path {
+							color: var(--quotes-dlx-admin--color-accent);
+							fill: var(--quotes-dlx-admin--color-accent);
+						}
+					}
+				}
 			}
 
 			&.qdlx__btn--icon-right {

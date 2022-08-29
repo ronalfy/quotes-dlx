@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.3"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.4"],{
 
 /***/ "./src/fonts/fonts.js":
 /*!****************************!*\
@@ -175,8 +175,6 @@ var AdminAdvanced = function AdminAdvanced(props) {
 };
 
 var Interface = function Interface(props) {
-  var _errors$desktopBreakp3, _errors$desktopBreakp4, _errors$tabletBreakpo3, _errors$tabletBreakpo4, _errors$mobileBreakpo3, _errors$mobileBreakpo4;
-
   var localStorageKey = 'quotes_dlx_form_advanced';
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_14__["default"]),
@@ -231,46 +229,45 @@ var Interface = function Interface(props) {
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      isSaved = _useState16[0],
-      setIsSaved = _useState16[1];
+      refreshingFonts = _useState16[0],
+      setRefreshingFonts = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      resetting = _useState18[0],
-      setResetting = _useState18[1];
+      isSaved = _useState18[0],
+      setIsSaved = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState20 = _slicedToArray(_useState19, 2),
-      hardReset = _useState20[0],
-      setHardReset = _useState20[1];
+      resetting = _useState20[0],
+      setResetting = _useState20[1];
 
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState22 = _slicedToArray(_useState21, 2),
-      isHardReset = _useState22[0],
-      setIsHardReset = _useState22[1];
+      hardReset = _useState22[0],
+      setHardReset = _useState22[1];
 
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState24 = _slicedToArray(_useState23, 2),
-      isReset = _useState24[0],
-      setIsReset = _useState24[1];
+      isHardReset = _useState24[0],
+      setIsHardReset = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState26 = _slicedToArray(_useState25, 2),
-      adobeFonts = _useState26[0],
-      setAdobeFonts = _useState26[1];
+      isReset = _useState26[0],
+      setIsReset = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
       _useState28 = _slicedToArray(_useState27, 2),
-      canResetOptions = _useState28[0],
-      setCanResetOptions = _useState28[1];
+      adobeFonts = _useState28[0],
+      setAdobeFonts = _useState28[1];
 
-  var desktop_breakpoint = data.desktop_breakpoint,
-      desktop_breakpoint_unit = data.desktop_breakpoint_unit,
-      tablet_breakpoint = data.tablet_breakpoint,
-      tablet_breakpoint_unit = data.tablet_breakpoint_unit,
-      mobile_breakpoint = data.mobile_breakpoint,
-      mobile_breakpoint_unit = data.mobile_breakpoint_unit,
-      enable_fonts = data.enable_fonts,
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState30 = _slicedToArray(_useState29, 2),
+      canResetOptions = _useState30[0],
+      setCanResetOptions = _useState30[1];
+
+  var enable_fonts = data.enable_fonts,
       custom_font_primary = data.custom_font_primary,
       custom_font_secondary = data.custom_font_secondary,
       primary_font_family = data.primary_font_family,
@@ -283,12 +280,6 @@ var Interface = function Interface(props) {
 
   var getDefaultValues = function getDefaultValues() {
     return {
-      desktopBreakpoint: desktop_breakpoint,
-      desktopBreakpointUnit: desktop_breakpoint_unit,
-      tabletBreakpoint: tablet_breakpoint,
-      tabletBreakpointUnit: tablet_breakpoint_unit,
-      mobileBreakpoint: mobile_breakpoint,
-      mobileBreakpointUnit: mobile_breakpoint_unit,
       enableFonts: enable_fonts,
       customFontPrimary: custom_font_primary,
       customFontSecondary: custom_font_secondary,
@@ -387,7 +378,7 @@ var Interface = function Interface(props) {
   };
 
   var refreshAdobeFonts = function refreshAdobeFonts() {
-    setSaving(true);
+    setRefreshingFonts(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_retrieve_remote_adobe_fonts', {
       nonce: quotes_dlx_admin.options_save_nonce,
       project_id: getValues('adobeProjectId')
@@ -404,7 +395,7 @@ var Interface = function Interface(props) {
       } else {// Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
-      setSaving(false);
+      setRefreshingFonts(false);
     });
   };
 
@@ -476,8 +467,6 @@ var Interface = function Interface(props) {
   }
 
   var getAdobeFonts = function getAdobeFonts() {
-    console.log(adobeFonts);
-
     if (undefined === adobeFonts || false === adobeFonts) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
     }
@@ -681,18 +670,18 @@ var Interface = function Interface(props) {
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent', {
         'has-error': hasErrors()
       }, {
-        'has-icon': saving
+        'has-icon': refreshingFonts
       }, {
         'is-saving': {
-          saving: saving
+          refreshingFonts: refreshingFonts
         }
       }),
       type: "button",
       text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Getting Fonts…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Refresh Fonts', 'quotes-dlx'),
-      icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
+      icon: refreshingFonts ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
       iconSize: "18",
       iconPosition: "right",
-      disabled: saving || resetting,
+      disabled: refreshingFonts || resetting,
       onClick: /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -900,114 +889,7 @@ var Interface = function Interface(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.', 'quotes-dlx')
       });
     }
-  }))), getAdobeFontsInterface(), getFontOptions(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    scope: "row"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Breakpoints', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__control-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    name: "desktopBreakpoint",
-    control: control,
-    rules: {
-      required: true,
-      pattern: /^[0-9]+$/i
-    },
-    render: function render(_ref11) {
-      var _errors$desktopBreakp, _errors$desktopBreakp2;
-
-      var field = _ref11.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop Breakpoint (px)', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
-          'has-error': 'pattern' === ((_errors$desktopBreakp = errors.desktopBreakpoint) === null || _errors$desktopBreakp === void 0 ? void 0 : _errors$desktopBreakp.type) || 'required' === ((_errors$desktopBreakp2 = errors.desktopBreakpoint) === null || _errors$desktopBreakp2 === void 0 ? void 0 : _errors$desktopBreakp2.type),
-          'is-required': true
-        }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the desktop breakpoint for all themes.', 'quotes-dlx'),
-        "aria-required": "true"
-      }));
-    }
-  }), 'required' === ((_errors$desktopBreakp3 = errors.desktopBreakpoint) === null || _errors$desktopBreakp3 === void 0 ? void 0 : _errors$desktopBreakp3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), 'pattern' === ((_errors$desktopBreakp4 = errors.desktopBreakpoint) === null || _errors$desktopBreakp4 === void 0 ? void 0 : _errors$desktopBreakp4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The desktop breakpoint can only be numbers.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__control-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    name: "tabletBreakpoint",
-    control: control,
-    rules: {
-      required: true,
-      pattern: /^[0-9]+$/i
-    },
-    render: function render(_ref12) {
-      var _errors$tabletBreakpo, _errors$tabletBreakpo2;
-
-      var field = _ref12.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet Breakpoint (px)', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
-          'has-error': 'pattern' === ((_errors$tabletBreakpo = errors.tabletBreakpoint) === null || _errors$tabletBreakpo === void 0 ? void 0 : _errors$tabletBreakpo.type) || 'required' === ((_errors$tabletBreakpo2 = errors.tabletBreakpoint) === null || _errors$tabletBreakpo2 === void 0 ? void 0 : _errors$tabletBreakpo2.type),
-          'is-required': true
-        }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the tablet breakpoint for all themes.', 'quotes-dlx'),
-        "aria-required": "true"
-      }));
-    }
-  }), 'required' === ((_errors$tabletBreakpo3 = errors.tabletBreakpoint) === null || _errors$tabletBreakpo3 === void 0 ? void 0 : _errors$tabletBreakpo3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), 'pattern' === ((_errors$tabletBreakpo4 = errors.tabletBreakpoint) === null || _errors$tabletBreakpo4 === void 0 ? void 0 : _errors$tabletBreakpo4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The tablet breakpoint can only be numbers.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__control-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    name: "mobileBreakpoint",
-    control: control,
-    rules: {
-      required: true,
-      pattern: /^[0-9]+$/i
-    },
-    render: function render(_ref13) {
-      var _errors$mobileBreakpo, _errors$mobileBreakpo2;
-
-      var field = _ref13.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile Breakpoint (px)', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
-          'has-error': 'pattern' === ((_errors$mobileBreakpo = errors.mobileBreakpoint) === null || _errors$mobileBreakpo === void 0 ? void 0 : _errors$mobileBreakpo.type) || 'required' === ((_errors$mobileBreakpo2 = errors.mobileBreakpoint) === null || _errors$mobileBreakpo2 === void 0 ? void 0 : _errors$mobileBreakpo2.type),
-          'is-required': true
-        }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the mobile breakpoint for all themes.', 'quotes-dlx'),
-        "aria-required": "true"
-      }));
-    }
-  }), 'required' === ((_errors$mobileBreakpo3 = errors.mobileBreakpoint) === null || _errors$mobileBreakpo3 === void 0 ? void 0 : _errors$mobileBreakpo3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), 'pattern' === ((_errors$mobileBreakpo4 = errors.mobileBreakpoint) === null || _errors$mobileBreakpo4 === void 0 ? void 0 : _errors$mobileBreakpo4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The mobile breakpoint can only be numbers.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
-  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))), getAdobeFontsInterface(), getFontOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
@@ -1116,4 +998,4 @@ var Interface = function Interface(props) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminAdvanced0.0.3.js.map
+//# sourceMappingURL=AdminAdvanced0.0.4.js.map

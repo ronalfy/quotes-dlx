@@ -895,6 +895,11 @@ button.button-reset.show-cursor {
   color: var(--quotes-dlx-admin--color-accent);
   border-color: var(--quotes-dlx-admin--color-accent);
 }
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent.qdlx__btn--icon-right.is-saving svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent.qdlx__btn--icon-right.is-saving path {
+  color: var(--quotes-dlx-admin--color-accent);
+  fill: var(--quotes-dlx-admin--color-accent);
+}
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving {
   display: flex;
   justify-content: center;

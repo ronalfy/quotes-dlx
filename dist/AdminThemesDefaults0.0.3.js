@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminThemesDefaults0.0.2"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminThemesDefaults0.0.3"],{
 
 /***/ "./src/js/admin-panel/admin-components/Notice/index.js":
 /*!*************************************************************!*\
@@ -612,4 +612,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminThemesDefaults0.0.2.js.map
+//# sourceMappingURL=AdminThemesDefaults0.0.3.js.map

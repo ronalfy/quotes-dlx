@@ -8,10 +8,10 @@ $accent: #FFFFFF;
 
 .quotes-dlx-block-theme-midnight-blue {
 	font-size: var( --qdlx-midnight-blue-font-size-mobile, 14px );
-	@include respond-to-var('medium') {
+	@include respond-to('medium') {
 		font-size: var( --qdlx-midnight-blue-font-size-tablet, 15px );
 	}
-	@include respond-to-var('large') {
+	@include respond-to('large') {
 		font-size: var( --qdlx-midnight-blue-font-size-desktop, 16px );
 	}
 
@@ -91,11 +91,11 @@ $accent: #FFFFFF;
 			vertical-align:baseline;
 			font-style: inherit;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: 1.35em;
 				line-height: var( --qdlx-midnight-blue-line-height-tablet, 1.35 );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: 1.5em;
 				line-height: var( --qdlx-midnight-blue-line-height-desktop, 1.65 );
 			}
@@ -195,10 +195,10 @@ $accent: #FFFFFF;
 			font-size: 1.2em;
 			line-height: 1.0em;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: var( --qdlx-midnight-blue-button-font-size-tablet, 15px );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: var( --qdlx-midnight-blue-button-font-size-desktop, 16px);
 			}
 

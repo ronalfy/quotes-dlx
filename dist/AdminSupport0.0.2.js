@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminSupport0.0.1"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminSupport0.0.2"],{
 
 /***/ "./src/js/admin-panel/views/AdminSupport.js":
 /*!**************************************************!*\
@@ -112,4 +112,4 @@ var AdminSupport = function AdminSupport() {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminSupport0.0.1.js.map
+//# sourceMappingURL=AdminSupport0.0.2.js.map

@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminLicense0.0.1"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminLicense0.0.2"],{
 
 /***/ "./node_modules/@wordpress/components/build-module/text-control/index.js":
 /*!*******************************************************************************!*\
@@ -1132,4 +1132,4 @@ function sendCommand(action, data) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminLicense0.0.1.js.map
+//# sourceMappingURL=AdminLicense0.0.2.js.map

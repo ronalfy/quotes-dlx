@@ -8,10 +8,10 @@ $accent: #ff6900;
 
 .quotes-dlx-block-theme-purple-bliss {
 	font-size: var( --qdlx-purple-bliss-font-size-mobile, 14px );
-	@include respond-to-var('medium') {
+	@include respond-to('medium') {
 		font-size: var( --qdlx-purple-bliss-font-size-tablet, 15px );
 	}
-	@include respond-to-var('large') {
+	@include respond-to('large') {
 		font-size: var( --qdlx-purple-bliss-font-size-desktop, 16px );
 	}
 
@@ -115,11 +115,11 @@ $accent: #ff6900;
 			padding: 60px 35px 20px 35px;
 			text-align: center;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: 1.35em;
 				line-height: var( --qdlx-purple-bliss-line-height-tablet, 1.35 );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: 1.5em;
 				line-height: var( --qdlx-purple-bliss-line-height-desktop, 1.65 );
 			}
@@ -179,10 +179,10 @@ $accent: #ff6900;
 			font-size: var( --qdlx-purple-bliss-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: var( --qdlx-purple-bliss-button-font-size-tablet, 15px );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: var( --qdlx-purple-bliss-button-font-size-desktop, 16px);
 			}
 

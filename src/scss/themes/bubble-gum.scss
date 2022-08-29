@@ -10,10 +10,10 @@ $dark: #000;
 
 .quotes-dlx-block-theme-bubble-gum{
 	font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px );
-	@include respond-to-var('medium') {
+	@include respond-to('medium') {
 		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px );
 	}
-	@include respond-to-var('large') {
+	@include respond-to('large') {
 		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px );
 	}
 
@@ -140,11 +140,11 @@ $dark: #000;
 			font-style: inherit;
 			padding: 68px 68px 24px 68px;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: 1.35em;
 				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.35 );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: 1.5em;
 				line-height: var( --qdlx-bubble-gum-line-height-desktop, 1.65 );
 			}
@@ -202,10 +202,10 @@ $dark: #000;
 			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 
-			@include respond-to-var('medium') {
+			@include respond-to('medium') {
 				font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
 			}
-			@include respond-to-var('large') {
+			@include respond-to('large') {
 				font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
 			}
 
@@ -221,11 +221,11 @@ $dark: #000;
 					height: 100%;
 				}
 
-				@include respond-to-var('medium') {
+				@include respond-to('medium') {
 					font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
 					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2)));
 				}
-				@include respond-to-var('large') {
+				@include respond-to('large') {
 					font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
 					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2)));
 				}

@@ -834,7 +834,8 @@ var TweetQuotes = function TweetQuotes(props) {
   var _classnames, _classnames2;
 
   var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
-  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null); // State.
+  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
+  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null); // State.
 
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -952,8 +953,14 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }, []);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
-    if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {
-      shareTextInput.current.focus(); // Note to self: not possible with component to focus on last character.
+    if (url_shortener === 'manual') {
+      manualUrlInput.current.focus();
+    }
+  }, [url_shortener]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+    if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {// Todo - this is not working. It's nulling the sidebar.
+      // shareTextInput.current.focus();
+      // Note to self: not possible with component to focus on last character.
     }
   }, [isSelected, shareTextInput, selectedTab]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
@@ -1134,13 +1141,14 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     }
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
-    type: 'number',
-    value: maximum_width ? maximum_width : '',
+    type: 'text',
+    value: maximum_width,
     onChange: function onChange(value) {
       setAttributes({
-        maximum_width: parseFloat(value)
+        maximum_width: value
       });
-    }
+    },
+    ref: maximumWidthInput
   }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
     initialOpen: true,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Click to Tweet Button', 'quotes-dlx')

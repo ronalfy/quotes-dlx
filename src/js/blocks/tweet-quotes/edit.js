@@ -56,6 +56,7 @@ const HtmlToReactParser = require( 'html-to-react' ).Parser;
 const TweetQuotes = ( props ) => {
 	const manualUrlInput = createRef( null );
 	const shareTextInput = createRef( null );
+	const maximumWidthInput = createRef( null );
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
 	const [ tweetHashtagCharLength, setTweetHashtagCharLength ] = useState( 0 );
@@ -163,12 +164,19 @@ const TweetQuotes = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
+		if ( url_shortener === 'manual' ) {
+			manualUrlInput.current.focus();
+		}
+	}, [ url_shortener ] );
+
+	useEffect( () => {
 		if (
 			selectedTab === 'appearance' &&
 			shareTextInput.current !== null &&
 			isSelected
 		) {
-			shareTextInput.current.focus();
+			// Todo - this is not working. It's nulling the sidebar.
+			// shareTextInput.current.focus();
 			// Note to self: not possible with component to focus on last character.
 		}
 	}, [ isSelected, shareTextInput, selectedTab ] );
@@ -364,13 +372,14 @@ const TweetQuotes = ( props ) => {
 					/>
 
 					<TextControl
-						type={ 'number' }
-						value={ maximum_width ? maximum_width : '' }
+						type={ 'text' }
+						value={ maximum_width }
 						onChange={ ( value ) => {
 							setAttributes( {
-								maximum_width: parseFloat( value ),
+								maximum_width: value,
 							} );
 						} }
+						ref={ maximumWidthInput }
 					/>
 				</>
 			</PanelBody>

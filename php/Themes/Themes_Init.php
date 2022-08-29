@@ -50,7 +50,12 @@ class Themes_Init {
 		do_action( 'quotes_dlx_pre_themes_loaded' );
 
 		// Register any categories.
-		Themes_Addon_Categories::register( 'Core', array( 'description' => __( 'Default themes that come with the plugin', 'quotes-dlx' ) ) );
+		Themes_Addon_Categories::register(
+			'Core',
+			array(
+				'description' => __( 'Default themes that come with the plugin', 'quotes-dlx' ),
+			)
+		);
 
 		$themes = array(
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Bubble_Gum',

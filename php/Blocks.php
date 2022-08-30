@@ -216,10 +216,24 @@ class Blocks {
 			return;
 		}
 		$blocks = parse_blocks( $post_content );
+		$this->print_block_styles( $blocks );
+	}
+
+	// I'm building a recursive function.
+	// It will check if a block contains a name of "mediaron/quotes-dlx".
+	// If it does, it will check if the block has a "template" attribute.
+	// If it does, it will print the stylesheet for that template.
+	// If there are more inner blocks with block names of "mediaron/quotes-dlx", it will check those too and print them out like above.
+	public function print_block_styles( $blocks ) {
 		if ( ! empty( $blocks ) ) {
 			foreach ( $blocks as $block ) {
 				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
 					$template = $block['attrs']['template'] ?? false;
+					// Try to get default template if there is no template.
+					if ( ! $template ) {
+						$block_defaults = Options_Defaults::get_defaults();
+						$template       = $block_defaults['template'] ?? false;
+					}
 					if ( $template ) {
 						$handle = 'quotes-dlx-' . $template;
 						if ( ! wp_script_is( $handle, 'done' ) ) {
@@ -228,10 +242,14 @@ class Blocks {
 						}
 					}
 				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$this->print_block_styles( $block['innerBlocks'] );
+				}
 			}
 		}
 	}
-
+	
+	
 	/**
 	 * Print out root css vars for the block.
 	 */

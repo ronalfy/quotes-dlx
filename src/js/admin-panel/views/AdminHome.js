@@ -10,10 +10,12 @@ import Notice from '../admin-components/Notice';
 
 import {
 	faHandWave,
-	faLightbulbExclamationOn,
+	faCode,
 	faPalette,
 	faGears,
 	faPuzzle,
+	faCodeBranch,
+	faBooks,
 } from '@fortawesome/pro-solid-svg-icons';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
@@ -185,34 +187,99 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faPuzzle } />
+									<FontAwesomeIcon size={ '1x' } icon={ faCodeBranch } />
 									<span className="qdlx-admin__heading--text">
-										{ __( 'Planning for…', 'quotes-dlx' ) }
+										{ __( 'Changelog', 'quotes-dlx' ) }
 									</span>
 								</h1>
 								<p className="description">
 									{ __(
-										'Several add-ons are planned should this plugin take off. Here are a few items that are in the planning stage.',
+										'View what has changed.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<div className="qdlx-button-primary">
+									<a
+										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
+										href={ `https://docs.dlxplugins.com/v/quotes-dlx/developers/changelog` }
+									>
+										{ __( 'View the Changelog', 'quotes-dlx' ) }
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="qdlx-admin__tabs--content-wrap">
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<FontAwesomeIcon size={ '1x' } icon={ faBooks } />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'Need Help?', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'View the extensive documentation for the plugin.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<div className="qdlx-button-primary">
+									<a
+										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
+										href={ `https://docs.dlxplugins.com/v/quotes-dlx/` }
+									>
+										{ __( 'View the Documentation', 'quotes-dlx' ) }
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="qdlx-admin__tabs--content-wrap">
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading">
+								<h1>
+									<FontAwesomeIcon size={ '1x' } icon={ faCode } />
+									<span className="qdlx-admin__heading--text">
+										{ __( 'Upcoming features', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'Here is what is next for the plugin.',
 										'quotes-dlx'
 									) }
 									.
 								</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<ul>
+								<ol className="qdlx-planning-for">
 									<li>
-										<strong>Presets</strong>: Similar to block patterns and
-										reusable blocks, these will allow you to save and re-use
-										presets depending on what type of quote you are creating.
+										<strong>Facebook Integration</strong>: Add Facebook to the contextual menu and have a section to add a Facebook APP ID. Phase 2 of this will be to add in a Facebook button to the block itself (in addition to the menu).
 									</li>
 									<li>
-										<strong>Overrides</strong>: Globally override the block
-										settings regardless of what was set when the block was.
+										<strong>Set Theme from the Home Screen</strong>: Change the default theme without having to go to the settings page.
 									</li>
 									<li>
-										<strong>Themes</strong>: More DLX themes are planned.
+										<strong>Set Default Twitter Name from the Home Screen</strong>: Change the default Twitter username without having to go to the settings page.
 									</li>
-								</ul>
+									<li>
+										<strong>More Fonts</strong>: As users request them, I will be adding fonts one-by-one.
+									</li>
+									<li>
+										<strong>More themes</strong>: More DLX themes are planned.
+									</li>
+									<li>
+										<strong>Presets (coming later)</strong>: Create presets that are portable across installs.
+									</li>
+									<li>
+										<strong>Overrides (coming later)</strong>: Override the default settings for a specific theme.
+									</li>
+								</ol>
 								<div className="qdlx-button-primary">
 									<a
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"

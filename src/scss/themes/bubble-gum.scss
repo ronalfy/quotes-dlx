@@ -139,6 +139,7 @@ $dark: #000;
 			vertical-align:baseline;
 			font-style: inherit;
 			padding: 68px 68px 24px 68px;
+			text-align: left;
 
 			@include respond-to('medium') {
 				font-size: 1.35em;

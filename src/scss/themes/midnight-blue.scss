@@ -54,6 +54,10 @@ $accent: #FFFFFF;
 		padding-right: 0;
 	}
 
+	figure blockquote.quotes-dlx-text-wrapper {
+		text-align: left;
+	}
+
 	.quotes-dlx-wrapper {
 		position: relative;
 		background: var( --qdlx-midnight-blue-primary, $primary_color );

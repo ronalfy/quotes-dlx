@@ -624,8 +624,8 @@ class Blocks {
 							?>
 						</button>
 					</div>
-				</div>
 				<?php endif; ?>
+				</div>
 				<?php
 				$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 				$enable_copy_text       = Functions::sanitize_attribute( $attributes, 'enable_copy_text', 'boolean' );
@@ -635,86 +635,86 @@ class Blocks {
 
 				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this ) ) :
 					?>
-						<div class="quotes-dlx-meatball-menu">
-							<div class="quotes-dlx-meatball-content">
-								<input
-									type="checkbox"
-									aria-label="<?php esc_attr_e( 'Open Menu Options', 'quotes_dlx' ); ?>"
-								/>
-								<ul>
-									<?php
-									if ( $enable_copy_text ) :
-										// Get all text and put in data attribute.
+				<div class="quotes-dlx-meatball-menu">
+					<div class="quotes-dlx-meatball-content">
+						<input
+							type="checkbox"
+							aria-label="<?php esc_attr_e( 'Open Menu Options', 'quotes_dlx' ); ?>"
+						/>
+						<ul>
+							<?php
+							if ( $enable_copy_text ) :
+								// Get all text and put in data attribute.
 
-										// Convert rich text to plain text.
-										$share_text_kses = (string) $attributes['share_text'];
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( wp_strip_all_tags( $share_text_kses ) ) ); ?> ">
-											<button class="button-reset">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Quote', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $enable_copy_tweet ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-tweet">
-											<button class="button-reset" data-clipboard-action="copy" data-clipboard-target="#quotes-dlx-tweet-text">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-copy-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Tweet', 'quotes_dlx' ); ?>
-											</button>
-											<div class="quotes-dlx-copy-tweet-textarea" style="width: 0; height: 0; display: none;" aria-hidden="true">
-												<textarea id="quotes-dlx-tweet-text">
-													<?php echo esc_textarea( $this->build_tweet( $attributes ) ); ?>
-												</textarea>
-											</div>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $permalink ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-link" data-url="<?php echo esc_attr( $permalink ); ?>">
-											<button class="button-reset">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Link', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $enable_tweet_this ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
-											<button class="button-reset" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Tweet This', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-								</ul>
-								<div class="quotes-dlx-meatball-icon-wrapper" aria-hidden="true">
-									<div class="quotes-dlx-meatball-icon">
-										<span></span>
+								// Convert rich text to plain text.
+								$share_text_kses = (string) $attributes['share_text'];
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( wp_strip_all_tags( $share_text_kses ) ) ); ?> ">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>
+										</span>
+										<?php esc_html_e( 'Copy Quote', 'quotes_dlx' ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_copy_tweet ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-tweet">
+									<button class="button-reset" data-clipboard-action="copy" data-clipboard-target="#quotes-dlx-tweet-text">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-copy-icon"></use></svg>
+										</span>
+										<?php esc_html_e( 'Copy Tweet', 'quotes_dlx' ); ?>
+									</button>
+									<div class="quotes-dlx-copy-tweet-textarea" style="width: 0; height: 0; display: none;" aria-hidden="true">
+										<textarea id="quotes-dlx-tweet-text">
+											<?php echo esc_textarea( $this->build_tweet( $attributes ) ); ?>
+										</textarea>
 									</div>
-								</div>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $permalink ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
+										</span>
+										<?php esc_html_e( 'Copy Link', 'quotes_dlx' ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_tweet_this ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
+									<button class="button-reset" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+										</span>
+										<?php esc_html_e( 'Tweet This', 'quotes_dlx' ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+						</ul>
+						<div class="quotes-dlx-meatball-icon-wrapper" aria-hidden="true">
+							<div class="quotes-dlx-meatball-icon">
+								<span></span>
 							</div>
 						</div>
+					</div>
+				</div>
 					<?php
 					endif;
 				?>

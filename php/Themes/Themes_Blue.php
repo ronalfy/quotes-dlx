@@ -47,7 +47,7 @@ class Themes_Blue extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.2';
+	protected static $version = '1.0.3';
 
 	/**
 	 * Description for the theme.

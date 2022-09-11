@@ -47,7 +47,7 @@ class Themes_Light_Branded extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.1';
+	protected static $version = '1.0.2';
 
 	/**
 	 * Description for the theme.

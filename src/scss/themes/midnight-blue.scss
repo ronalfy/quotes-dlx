@@ -78,7 +78,7 @@ $accent: #FFFFFF;
 
 		.quotes-dlx-text-wrapper {
 			position: relative;
-			font-size: 1.1em;
+			font-size: 1.5em;
 			font-family: var( --qdlx-midnight-blue-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			padding-left: 3.43em;
 			/* 5em:before / 2 + ( 1.875em / 2 ) */
@@ -86,7 +86,7 @@ $accent: #FFFFFF;
 			/* 1.875 - (1.6/2) line-height = 1.075em */
 			padding-top: 0;
 			padding-right: 65px;
-			line-height: var( --qdlx-midnight-blue-line-height-mobile, 1.2 );
+			line-height: var( --qdlx-midnight-blue-line-height-mobile, 1.3 );
 			margin: 0;
 			border: 0;
 			quotes: none;

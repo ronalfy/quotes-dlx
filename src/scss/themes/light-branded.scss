@@ -112,8 +112,8 @@ $dark: #2B2B2B;
 		figure blockquote.quotes-dlx-text-wrapper {
 			font-family: var( --qdlx-light-branded-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
-			font-size: 1.1em;
-			line-height: var( --qdlx-light-branded-line-height-mobile, 1.2 );
+			font-size: 1.5em;
+			line-height: var( --qdlx-light-branded-line-height-mobile, 1.3 );
 			color: var( --qdlx-light-branded-secondary, $dark );
 			margin: 0 !important; /* override core style */
 			border: 0;

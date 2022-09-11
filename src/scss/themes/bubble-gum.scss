@@ -130,9 +130,9 @@ $dark: #000;
 		figure blockquote.quotes-dlx-text-wrapper {
 			font-family: var( --qdlx-bubble-gum-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
-			font-size: 1.1em;
+			font-size: 1.5em;
 			color: var( --qdlx-bubble-gum-secondary, $secondary );
-			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.2 );
+			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.3 );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;

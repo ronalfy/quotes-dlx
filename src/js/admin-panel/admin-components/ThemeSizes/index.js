@@ -335,7 +335,7 @@ const Interface = ( props ) => {
 								<>
 									<RangeControl
 										label={ __( 'Set the Quote Line Height', 'comment-edit-pro' ) }
-										step={ 0.1 }
+										step={ 0.05 }
 										value={ value }
 										max={ 3 }
 										min={ 0.25 }

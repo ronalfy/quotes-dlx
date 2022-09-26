@@ -394,6 +394,7 @@ class Ajax {
 					'template'                      => Options_Defaults::get_options( 'template' ),
 					'primary_font_family'           => $defaults['primary_font_family'],
 					'secondary_font_family'         => $defaults['secondary_font_family'],
+					'facebook_app_id'               => $defaults['facebook_app_id'],
 
 				)
 			);
@@ -967,6 +968,9 @@ class Ajax {
 					break;
 				case 'adobeProjectId':
 					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookAppId':
+					$options_to_save['facebook_app_id'] = sanitize_text_field( $field_value );
 					break;
 				case 'activateAdobeFontsAdmin':
 					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;

@@ -276,7 +276,8 @@ var Interface = function Interface(props) {
       adobe_project_id = data.adobe_project_id,
       activate_adobe_fonts_admin = data.activate_adobe_fonts_admin,
       activate_adobe_fonts_frontend = data.activate_adobe_fonts_frontend,
-      template = data.template;
+      template = data.template,
+      facebook_app_id = data.facebook_app_id;
 
   var getDefaultValues = function getDefaultValues() {
     return {
@@ -288,7 +289,8 @@ var Interface = function Interface(props) {
       enableAdobeFonts: enable_adobe_fonts,
       adobeProjectId: adobe_project_id,
       activateAdobeFontsAdmin: activate_adobe_fonts_admin,
-      activateAdobeFontsFrontend: activate_adobe_fonts_frontend
+      activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
+      facebookAppId: facebook_app_id
     };
   };
 
@@ -872,13 +874,33 @@ var Interface = function Interface(props) {
     role: "presentation"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
+    name: "facebookAppId",
+    control: control,
+    render: function render(_ref10) {
+      var field = _ref10.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
+        type: "text",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook APP ID', 'quotes-dlx'),
+        id: "search-qdlx-no-autofill-fb-app-id",
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {})
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, "Log into the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://developers.facebook.com/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Facebook Developers site"), " to generate a new APP ID."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Options', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
     name: "enableFonts",
     control: control,
-    render: function render(_ref10) {
-      var _ref10$field = _ref10.field,
-          _onChange6 = _ref10$field.onChange,
-          value = _ref10$field.value;
+    render: function render(_ref11) {
+      var _ref11$field = _ref11.field,
+          _onChange6 = _ref11$field.onChange,
+          value = _ref11$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Theme Fonts', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",

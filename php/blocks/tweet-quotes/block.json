@@ -38,6 +38,10 @@
 			"type": "string",
 			"default": "Click to Tweet"
 		},
+		"facebook_share_button_text": {
+			"type": "string",
+			"default": "Share on Facebook"
+		},
 		"share_text_override_enabled": {
 			"type": "boolean",
 			"default": false
@@ -77,6 +81,10 @@
 		"tweet_button_enabled": {
 			"type": "boolean",
 			"default": true
+		},
+		"facebook_button_enabled": {
+			"type": "boolean",
+			"default": false
 		},
 		"tweet_button_display": {
 			"type": "string",

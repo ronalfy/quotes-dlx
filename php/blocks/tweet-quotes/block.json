@@ -146,6 +146,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"enable_share_this": {
+			"type": "boolean",
+			"default": false
+		},
 		"preview": {
 			"type": "boolean",
 			"default": false

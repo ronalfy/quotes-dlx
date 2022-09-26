@@ -6,6 +6,7 @@ import QuoteIcon from '../icons/QuoteIcon';
 import CopyIcon from '../icons/CopyIcon';
 import LinkIcon from '../icons/LinkIcon';
 import TwitterIcon from '../icons/twitter';
+import FacebookIcon from '../icons/FacebookIcon';
 import './editor.scss';
 
 const MeatballMenu = ( attributes ) => {
@@ -14,6 +15,7 @@ const MeatballMenu = ( attributes ) => {
 		enable_copy_tweet,
 		enable_copy_link,
 		enable_tweet_this,
+		enable_share_this,
 	} = attributes;
 
 	const getIcon = ( Icon ) => {
@@ -32,7 +34,8 @@ const MeatballMenu = ( attributes ) => {
 						{ ( enable_copy_text ||
 							enable_copy_tweet ||
 							enable_copy_link ||
-							enable_tweet_this ) && (
+							enable_tweet_this ||
+							enable_share_this ) && (
 							<ul>
 								{ enable_copy_text && (
 									<MeatballMenuItem
@@ -70,6 +73,16 @@ const MeatballMenu = ( attributes ) => {
 											return getIcon( TwitterIcon );
 										} }
 										text={ __( 'Tweet This', 'quotes-dlx' ) }
+										onClick={ ( e ) => {
+										} }
+									/>
+								) }
+								{ enable_share_this && (
+									<MeatballMenuItem
+										Icon={ () => {
+											return getIcon( FacebookIcon );
+										} }
+										text={ __( 'Share This', 'quotes-dlx' ) }
 										onClick={ ( e ) => {
 										} }
 									/>

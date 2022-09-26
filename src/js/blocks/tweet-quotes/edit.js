@@ -116,6 +116,7 @@ const TweetQuotes = ( props ) => {
 		enable_copy_tweet,
 		enable_copy_link,
 		enable_tweet_this,
+		enable_share_this,
 		preview,
 		blockOnly,
 		defaultsApplied,
@@ -425,6 +426,20 @@ const TweetQuotes = ( props ) => {
 						help={ __( 'Show or hide the Click to Tweet button.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
+				{ tweet_button_enabled && (
+					<PanelRow>
+						<TextControl
+							label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
+							help={ __( 'Enter the Click to Tweet button text.' ) }
+							value={ share_button_text }
+							onChange={ ( value ) => {
+								setAttributes( {
+									share_button_text: value,
+								} );
+							} }
+						/>
+					</PanelRow>
+				) }
 				<PanelRow>
 					<ToggleControl
 						label={ __( 'Enable Facebook Share Button', 'quotes-dlx' ) }
@@ -437,70 +452,64 @@ const TweetQuotes = ( props ) => {
 						help={ __( 'Show or hide the Share on Facebook button.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
-						help={ __( 'Enter the Click to Tweet button text.' ) }
-						value={ share_button_text }
-						onChange={ ( value ) => {
-							setAttributes( {
-								share_button_text: value,
-							} );
-						} }
-					/>
-				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
-						help={ __( 'Enter the Facebook Button text' ) }
-						value={ facebook_share_button_text }
-						onChange={ ( value ) => {
-							setAttributes( {
-								facebook_share_button_text: value,
-							} );
-						} }
-					/>
-				</PanelRow>
-				<PanelRow>
-					<AlignmentGroup
-						label={ __( 'Button Alignment', 'quotes-dlx' ) }
-						alignment={ tweet_button_alignment }
-						onClick={ ( value ) => {
-							setAttributes( { tweet_button_alignment: value } );
-						} }
-					/>
-				</PanelRow>
-				{ tweet_button_display === 'full' && (
+				{ facebook_button_enabled && (
 					<PanelRow>
-						<AlignmentGroup
-							label={ __( 'Icon Alignment', 'quotes-dlx' ) }
-							alignment={ tweet_icon_alignment }
-							onClick={ ( value ) => {
-								setAttributes( { tweet_icon_alignment: value } );
+						<TextControl
+							label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
+							help={ __( 'Enter the Facebook Button text' ) }
+							value={ facebook_share_button_text }
+							onChange={ ( value ) => {
+								setAttributes( {
+									facebook_share_button_text: value,
+								} );
 							} }
-							centerOn={ false }
 						/>
 					</PanelRow>
 				) }
-				<PanelRow className="quotes-dlx-sidebar-button-options">
-					<RadioControl
-						label={ __( 'Button Options', 'quotes-dlx' ) }
-						selected={ tweet_button_display }
-						options={ [
-							{ label: __( 'Text Only', 'quotes-dlx' ), value: 'text' },
-							{ label: __( 'Icon Only', 'quotes-dlx' ), value: 'icon' },
-							{
-								label: __( 'Text and Icon', 'quotes-dlx' ),
-								value: 'full',
-							},
-						] }
-						onChange={ ( value ) => {
-							setAttributes( {
-								tweet_button_display: value,
-							} );
-						} }
-					/>
-				</PanelRow>
+				{ ( tweet_button_enabled || facebook_button_enabled ) && (
+					<>
+						<PanelRow>
+							<AlignmentGroup
+								label={ __( 'Button Alignment', 'quotes-dlx' ) }
+								alignment={ tweet_button_alignment }
+								onClick={ ( value ) => {
+									setAttributes( { tweet_button_alignment: value } );
+								} }
+							/>
+						</PanelRow>
+						{ tweet_button_display === 'full' && (
+							<PanelRow>
+								<AlignmentGroup
+									label={ __( 'Icon Alignment', 'quotes-dlx' ) }
+									alignment={ tweet_icon_alignment }
+									onClick={ ( value ) => {
+										setAttributes( { tweet_icon_alignment: value } );
+									} }
+									centerOn={ false }
+								/>
+							</PanelRow>
+						) }
+						<PanelRow className="quotes-dlx-sidebar-button-options">
+							<RadioControl
+								label={ __( 'Button Options', 'quotes-dlx' ) }
+								selected={ tweet_button_display }
+								options={ [
+									{ label: __( 'Text Only', 'quotes-dlx' ), value: 'text' },
+									{ label: __( 'Icon Only', 'quotes-dlx' ), value: 'icon' },
+									{
+										label: __( 'Text and Icon', 'quotes-dlx' ),
+										value: 'full',
+									},
+								] }
+								onChange={ ( value ) => {
+									setAttributes( {
+										tweet_button_display: value,
+									} );
+								} }
+							/>
+						</PanelRow>
+					</>
+				) }
 			</PanelBody>
 			<PanelBody
 				initialOpen={ false }
@@ -566,6 +575,18 @@ const TweetQuotes = ( props ) => {
 										enable_tweet_this: value,
 									} );
 								} }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Enable Share This', 'quotes-dlx' ) }
+								checked={ enable_share_this }
+								onChange={ ( value ) => {
+									setAttributes( {
+										enable_share_this: value,
+									} );
+								} }
+								help={ __( 'Enable Facebook sharing in the context menu.', 'quotes-dlx' ) }
 							/>
 						</PanelRow>
 					</>
@@ -715,7 +736,8 @@ const TweetQuotes = ( props ) => {
 						( enable_copy_text ||
 							enable_copy_tweet ||
 							enable_copy_link ||
-							enable_tweet_this ) && (
+							enable_tweet_this ||
+							enable_share_this ) && (
 						// eslint-disable-next-line react/jsx-indent
 						<MeatballMenu id={ uniqueId } { ...attributes } />
 					) }

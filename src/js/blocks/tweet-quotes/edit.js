@@ -10,6 +10,7 @@ import twttr from '../../validation/twitter';
 import IconCircle from '../../components/icons/Circle';
 import UnitChooser from '../../components/unit-picker';
 import TwitterIcon from '../../components/icons/twitter';
+import FacebookIcon from '../../components/icons/FacebookIcon';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import PreviewIcon from '../../components/icons/Preview';
 import NewWindowIcon from '../../components/icons/NewWindow';
@@ -93,9 +94,11 @@ const TweetQuotes = ( props ) => {
 		share_text_override,
 		share_text_override_enabled,
 		share_button_text,
+		facebook_share_button_text,
 		maximum_width,
 		maximum_width_unit,
 		tweet_button_enabled,
+		facebook_button_enabled,
 		tweet_button_alignment,
 		tweet_icon_alignment,
 		rtl,
@@ -322,30 +325,53 @@ const TweetQuotes = ( props ) => {
 	};
 
 	const getClickToShareButton = () => {
-		if ( ! tweet_button_enabled ) {
+		if ( ! tweet_button_enabled && ! facebook_button_enabled ) {
 			return <></>;
 		}
 		return (
 			<div className={ `quotes-dlx-button-wrapper  ${ tweet_button_alignment } ` }>
-				<button
-					className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-					onClick={ ( value ) => {} }
-				>
-					<>
-						{ ( tweet_button_display === 'full' ||
-							tweet_button_display === 'text' ) && (
-							<span className="quotes-dlx-button-text">
-								{ share_button_text }
-							</span>
-						) }
-						{ ( tweet_button_display === 'icon' ||
-							tweet_button_display === 'full' ) && (
-							<span className="quotes-dlx-button-icon">
-								<TwitterIcon />
-							</span>
-						) }
-					</>
-				</button>
+				{ facebook_button_enabled && (
+					<button
+						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
+						onClick={ ( value ) => {} }
+					>
+						<>
+							{ ( tweet_button_display === 'full' ||
+								tweet_button_display === 'text' ) && (
+								<span className="quotes-dlx-button-text">
+									{ facebook_share_button_text }
+								</span>
+							) }
+							{ ( tweet_button_display === 'icon' ||
+								tweet_button_display === 'full' ) && (
+								<span className="quotes-dlx-button-icon">
+									<FacebookIcon />
+								</span>
+							) }
+						</>
+					</button>
+				) }
+				{ tweet_button_enabled && (
+					<button
+						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
+						onClick={ ( value ) => {} }
+					>
+						<>
+							{ ( tweet_button_display === 'full' ||
+								tweet_button_display === 'text' ) && (
+								<span className="quotes-dlx-button-text">
+									{ share_button_text }
+								</span>
+							) }
+							{ ( tweet_button_display === 'icon' ||
+								tweet_button_display === 'full' ) && (
+								<span className="quotes-dlx-button-icon">
+									<TwitterIcon />
+								</span>
+							) }
+						</>
+					</button>
+				) }
 			</div>
 		);
 	};
@@ -385,11 +411,11 @@ const TweetQuotes = ( props ) => {
 			</PanelBody>
 			<PanelBody
 				initialOpen={ true }
-				title={ __( 'Click to Tweet Button', 'quotes-dlx' ) }
+				title={ __( 'Share Buttons', 'quotes-dlx' ) }
 			>
 				<PanelRow>
 					<ToggleControl
-						label={ __( 'Enable Click to Tweet Button', 'quotes-dlx' ) }
+						label={ __( 'Enable Twitter Share Button', 'quotes-dlx' ) }
 						checked={ tweet_button_enabled }
 						onChange={ ( value ) => {
 							setAttributes( {
@@ -400,13 +426,37 @@ const TweetQuotes = ( props ) => {
 					/>
 				</PanelRow>
 				<PanelRow>
+					<ToggleControl
+						label={ __( 'Enable Facebook Share Button', 'quotes-dlx' ) }
+						checked={ facebook_button_enabled }
+						onChange={ ( value ) => {
+							setAttributes( {
+								facebook_button_enabled: value,
+							} );
+						} }
+						help={ __( 'Show or hide the Share on Facebook button.', 'quotes-dlx' ) }
+					/>
+				</PanelRow>
+				<PanelRow>
 					<TextControl
-						label={ __( 'Button Text', 'quotes-dlx' ) }
+						label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
 						help={ __( 'Enter the Click to Tweet button text.' ) }
 						value={ share_button_text }
 						onChange={ ( value ) => {
 							setAttributes( {
 								share_button_text: value,
+							} );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<TextControl
+						label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
+						help={ __( 'Enter the Facebook Button text' ) }
+						value={ facebook_share_button_text }
+						onChange={ ( value ) => {
+							setAttributes( {
+								facebook_share_button_text: value,
 							} );
 						} }
 					/>

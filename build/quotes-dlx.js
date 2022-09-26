@@ -753,30 +753,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
 /* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
 /* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
-/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
-/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
-/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
-/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
-/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
-/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
-/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
+/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
+/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
+/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
+/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
+/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -828,46 +829,47 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
 
 var TweetQuotes = function TweetQuotes(props) {
   var _classnames, _classnames2;
 
-  var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
-  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null);
-  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.createRef)(null); // State.
+  var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.createRef)(null);
+  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.createRef)(null);
+  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.createRef)(null); // State.
 
-  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       tweetCharacterTotal = _useState2[0],
       setTweetCharacterTotal = _useState2[1];
 
-  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       tweetHashtagCharLength = _useState4[0],
       setTweetHashtagCharLength = _useState4[1];
 
-  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
+  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       tweetContentCharLength = _useState6[0],
       setTweetContentCharLength = _useState6[1];
 
-  var _useState7 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
+  var _useState7 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       tweetUsernameCharLength = _useState8[0],
       setTweetUsernameCharLength = _useState8[1];
 
-  var _useState9 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)(0),
+  var _useState9 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
       tweetPermalinkCharLength = _useState10[0],
       setTweetPermalinkCharLength = _useState10[1];
 
-  var _useState11 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)('appearance'),
+  var _useState11 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)('appearance'),
       _useState12 = _slicedToArray(_useState11, 2),
       selectedTab = _useState12[0],
       setSelectedTab = _useState12[1];
 
-  var _useState13 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useState)('default'),
+  var _useState13 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useState)('default'),
       _useState14 = _slicedToArray(_useState13, 2),
       urlShortener = _useState14[0],
       setUrlShortener = _useState14[1]; // Shortcuts.
@@ -876,8 +878,8 @@ var TweetQuotes = function TweetQuotes(props) {
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
       isSelected = props.isSelected;
-  var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_18__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
-  var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_14__.useSelect)(function (select) {
+  var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_19__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
+  var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_15__.useSelect)(function (select) {
     // Useful functions: getCurrentPost, getCurrentPostId, getPermalink
     // Credit: https://ryanwelcher.com/2021/08/requesting-data-in-gutenberg-with-getentityrecords/
     return select('core/editor').getCurrentPost();
@@ -896,9 +898,11 @@ var TweetQuotes = function TweetQuotes(props) {
       share_text_override = attributes.share_text_override,
       share_text_override_enabled = attributes.share_text_override_enabled,
       share_button_text = attributes.share_button_text,
+      facebook_share_button_text = attributes.facebook_share_button_text,
       maximum_width = attributes.maximum_width,
       maximum_width_unit = attributes.maximum_width_unit,
       tweet_button_enabled = attributes.tweet_button_enabled,
+      facebook_button_enabled = attributes.facebook_button_enabled,
       tweet_button_alignment = attributes.tweet_button_alignment,
       tweet_icon_alignment = attributes.tweet_icon_alignment,
       rtl = attributes.rtl,
@@ -920,11 +924,11 @@ var TweetQuotes = function TweetQuotes(props) {
       blockOnly = attributes.blockOnly,
       defaultsApplied = attributes.defaultsApplied,
       transforming = attributes.transforming;
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     countCharacters();
     countInfoCharacters();
   }, [twitter_username, share_text, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     setAttributes({
       uniqueId: generatedUniqueId,
       anchor: generatedUniqueId
@@ -952,24 +956,24 @@ var TweetQuotes = function TweetQuotes(props) {
       }
     }
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     if (url_shortener === 'manual') {
       manualUrlInput.current.focus();
     }
   }, [url_shortener]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {// Todo - this is not working. It's nulling the sidebar.
       // shareTextInput.current.focus();
       // Note to self: not possible with component to focus on last character.
     }
   }, [isSelected, shareTextInput, selectedTab]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     if (manualUrlInput.current !== null && 'manual' === urlShortener && 'appearance' !== selectedTab) {
       manualUrlInput.current.focus();
       manualUrlInput.current.select();
     }
   }, [url_shortening_service]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_13__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
     var link = '' === permalink ? postObject.link : permalink;
     var manualLink = '' === manualPermalink ? postObject.link : permalink;
 
@@ -1051,7 +1055,7 @@ var TweetQuotes = function TweetQuotes(props) {
     var tweetContent = ''; // Add via.
 
     if (twitter_username.length > 0) {
-      tweetContent += (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Via', 'quotes-dlx') + ' ';
+      tweetContent += (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Via', 'quotes-dlx') + ' ';
       tweetContent += twitter_username;
     }
 
@@ -1101,19 +1105,26 @@ var TweetQuotes = function TweetQuotes(props) {
   };
 
   var getCharacterBar = function getCharacterBar() {
-    return /*#__PURE__*/React.createElement(_components_LineCount__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    return /*#__PURE__*/React.createElement(_components_LineCount__WEBPACK_IMPORTED_MODULE_12__["default"], {
       chars: tweetCharacterTotal
     });
   };
 
   var getClickToShareButton = function getClickToShareButton() {
-    if (!tweet_button_enabled) {
+    if (!tweet_button_enabled && !facebook_button_enabled) {
       return /*#__PURE__*/React.createElement(React.Fragment, null);
     }
 
     return /*#__PURE__*/React.createElement("div", {
       className: "quotes-dlx-button-wrapper  ".concat(tweet_button_alignment, " ")
-    }, /*#__PURE__*/React.createElement("button", {
+    }, facebook_button_enabled && /*#__PURE__*/React.createElement("button", {
+      className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
+      onClick: function onClick(value) {}
+    }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-text"
+    }, facebook_share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__["default"], null)))), tweet_button_enabled && /*#__PURE__*/React.createElement("button", {
       className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
       onClick: function onClick(value) {}
     }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
@@ -1123,16 +1134,16 @@ var TweetQuotes = function TweetQuotes(props) {
     }, /*#__PURE__*/React.createElement(_components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
   };
 
-  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Characters', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_components_CircularCount__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Characters', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_components_CircularCount__WEBPACK_IMPORTED_MODULE_11__["default"], {
     chars: tweetCharacterTotal
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Container Settings', 'quotes-dlx')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Container Settings', 'quotes-dlx')
   }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_unit_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Maximum Width', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Maximum Width', 'quotes-dlx'),
     value: maximum_width_unit,
     units: ['px', '%', 'vw'],
     onClick: function onClick(value) {
@@ -1140,7 +1151,7 @@ var TweetQuotes = function TweetQuotes(props) {
         maximum_width_unit: value
       });
     }
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
     type: 'text',
     value: maximum_width,
     onChange: function onChange(value) {
@@ -1149,37 +1160,55 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     ref: maximumWidthInput
-  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
+  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Click to Tweet Button', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Click to Tweet Button', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Share Buttons', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Twitter Share Button', 'quotes-dlx'),
     checked: tweet_button_enabled,
     onChange: function onChange(value) {
       setAttributes({
         tweet_button_enabled: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Show or hide the Click to Tweet button.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Button Text', 'quotes-dlx'),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enter the Click to Tweet button text.'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Show or hide the Click to Tweet button.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Facebook Share Button', 'quotes-dlx'),
+    checked: facebook_button_enabled,
+    onChange: function onChange(value) {
+      setAttributes({
+        facebook_button_enabled: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Show or hide the Share on Facebook button.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Button Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Click to Tweet button text.'),
     value: share_button_text,
     onChange: function onChange(value) {
       setAttributes({
         share_button_text: value
       });
     }
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Button Alignment', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Facebook Button Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Facebook Button text'),
+    value: facebook_share_button_text,
+    onChange: function onChange(value) {
+      setAttributes({
+        facebook_share_button_text: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Button Alignment', 'quotes-dlx'),
     alignment: tweet_button_alignment,
     onClick: function onClick(value) {
       setAttributes({
         tweet_button_alignment: value
       });
     }
-  })), tweet_button_display === 'full' && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Icon Alignment', 'quotes-dlx'),
+  })), tweet_button_display === 'full' && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Icon Alignment', 'quotes-dlx'),
     alignment: tweet_icon_alignment,
     onClick: function onClick(value) {
       setAttributes({
@@ -1187,19 +1216,19 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     centerOn: false
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, {
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, {
     className: "quotes-dlx-sidebar-button-options"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.RadioControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Button Options', 'quotes-dlx'),
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.RadioControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Button Options', 'quotes-dlx'),
     selected: tweet_button_display,
     options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Text Only', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Text Only', 'quotes-dlx'),
       value: 'text'
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Icon Only', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Icon Only', 'quotes-dlx'),
       value: 'icon'
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Text and Icon', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Text and Icon', 'quotes-dlx'),
       value: 'full'
     }],
     onChange: function onChange(value) {
@@ -1207,45 +1236,45 @@ var TweetQuotes = function TweetQuotes(props) {
         tweet_button_display: value
       });
     }
-  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
+  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: false,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Contextual Menu', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Menu', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Contextual Menu', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Menu', 'quotes-dlx'),
     checked: enable_contextual_menu,
     onChange: function onChange(value) {
       setAttributes({
         enable_contextual_menu: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Turn on the contextual menu.', 'quotes-dlx')
-  })), enable_contextual_menu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Copy Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Turn on the contextual menu.', 'quotes-dlx')
+  })), enable_contextual_menu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Text', 'quotes-dlx'),
     checked: enable_copy_text,
     onChange: function onChange(value) {
       setAttributes({
         enable_copy_text: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('This allows the copying of your full quote.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Copy Tweet', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('This allows the copying of your full quote.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Tweet', 'quotes-dlx'),
     checked: enable_copy_tweet,
     onChange: function onChange(value) {
       setAttributes({
         enable_copy_tweet: value
       });
     }
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Copy Link', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Link', 'quotes-dlx'),
     checked: enable_copy_link,
     onChange: function onChange(value) {
       setAttributes({
         enable_copy_link: value
       });
     }
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Tweet This', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Tweet This', 'quotes-dlx'),
     checked: enable_tweet_this,
     onChange: function onChange(value) {
       setAttributes({
@@ -1279,7 +1308,7 @@ var TweetQuotes = function TweetQuotes(props) {
     maxWidth: maximum_width + maximum_width_unit
   };
   var toolbarPreview = [{
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Preview On', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Preview On', 'quotes-dlx'),
     isActive: preview,
     onClick: function onClick() {
       setAttributes({
@@ -1287,7 +1316,7 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     }
   }, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Preview Off', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Preview Off', 'quotes-dlx'),
     isActive: !preview,
     onClick: function onClick() {
       setAttributes({
@@ -1296,48 +1325,48 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }]; // Start theme hooks. Find a way through PHP perhaps?
 
-  var toolbarThemeHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_15__.createHooks)();
+  var toolbarThemeHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_16__.createHooks)();
   toolbarThemes = toolbarThemeHook.applyFilters('has_ctt_react_themes', toolbarThemes); // Allow others to add themes via React.
 
-  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.BlockControls, null, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToolbarGroup, {
-    icon: /*#__PURE__*/React.createElement(_components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.BlockControls, null, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToolbarGroup, {
+    icon: /*#__PURE__*/React.createElement(_components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__["default"], {
       width: 24,
       height: 24,
       fill: "#000000"
     }),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Select a Theme', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Select a Theme', 'quotes-dlx'),
     isCollapsed: true,
     popoverProps: {
       className: "quotes-dlx-popover ".concat(template)
     },
     controls: [toolbarThemes]
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToolbarGroup, {
-    icon: /*#__PURE__*/React.createElement(_components_icons_Preview__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToolbarGroup, {
+    icon: /*#__PURE__*/React.createElement(_components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__["default"], {
       width: 25,
       height: 25,
       opacity: preview ? 0.8 : 0.4,
       fill: "#000000"
     }),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Preview Mode', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Preview Mode', 'quotes-dlx'),
     isCollapsed: true,
     popoverProps: {
       className: "quotes-dlx-preview-popover ".concat(template)
     },
     controls: [toolbarPreview]
   })));
-  var previewBlockInspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.PanelBody, {
+  var previewBlockInspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Preview Mode Active', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Button, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Preview Mode Active', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Button, {
     variant: "link",
     onClick: function onClick(e) {
       setAttributes({
         preview: false
       });
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
   var htmlToReactParser = new HtmlToReactParser();
-  var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
+  var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames = {}, _defineProperty(_classnames, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames)),
     style: maxWidthStyle
   }, /*#__PURE__*/React.createElement("div", {
@@ -1348,9 +1377,9 @@ var TweetQuotes = function TweetQuotes(props) {
     className: "quotes-dlx-text-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-text"
-  }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_17__.toHTMLString)({
+  }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_18__.toHTMLString)({
     // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
-    value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_17__.create)({
+    value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_18__.create)({
       html: share_text,
       preserveWhiteSpace: true
     }),
@@ -1358,29 +1387,29 @@ var TweetQuotes = function TweetQuotes(props) {
   }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
-  React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
+  React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
     id: uniqueId
   }, attributes)))));
-  var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
+  var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames2 = {}, _defineProperty(_classnames2, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames2, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames2, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames2)),
     style: maxWidthStyle
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-tabs"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TabPanel, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TabPanel, {
     activeClass: "active-tab",
     onSelect: function onSelect(currentTab) {
       setSelectedTab(currentTab);
     },
     tabs: [{
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Appearance', 'quotes-dlx'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Appearance', 'quotes-dlx'),
       name: 'appearance',
       className: 'quotes-dlx-tab-appearance'
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Tweet Settings', 'quotes-dlx'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Settings', 'quotes-dlx'),
       name: 'settings',
       className: 'quotes-dlx-tab-settings'
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Link Settings', 'quotes-dlx'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Link Settings', 'quotes-dlx'),
       name: 'link',
       className: 'quotes-dlx-tab-link'
     }]
@@ -1392,9 +1421,9 @@ var TweetQuotes = function TweetQuotes(props) {
         className: "quotes-dlx-wrapper"
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-content-wrapper"
-      }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.RichText, {
+      }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
         tagName: "blockquote",
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Add text to share', 'quotes-dlx'),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Add text to share', 'quotes-dlx'),
         value: share_text,
         preserveWhiteSpace: true,
         className: "quotes-dlx-text quotes-dlx-text-wrapper",
@@ -1408,34 +1437,34 @@ var TweetQuotes = function TweetQuotes(props) {
       })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
       /*#__PURE__*/
       // eslint-disable-next-line react/jsx-indent
-      React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({
+      React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
         id: uniqueId
       }, attributes))))));
     } else if ('settings' === tab.name) {
-      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Customize Twitter Content', 'quotes-dlx'),
+      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Customize Twitter Content', 'quotes-dlx'),
         checked: share_text_override_enabled,
         onChange: function onChange(value) {
           setAttributes({
             share_text_override_enabled: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('If your quote is too large for Twitter, you can create custom tweet content here.', 'quotes-dlx')
-      }), share_text_override_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextareaControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Custom Tweet Content', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enter your custom tweet content here if your quote is too long for Twitter'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('If your quote is too large for Twitter, you can create custom tweet content here.', 'quotes-dlx')
+      }), share_text_override_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextareaControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Custom Tweet Content', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter your custom tweet content here if your quote is too long for Twitter'),
         value: share_text_override,
         onChange: function onChange(value) {
           setAttributes({
             share_text_override: value
           });
         }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.FormTokenField, {
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.FormTokenField, {
         value: hashtags,
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
         className: "quotes-dlx-hashtag-fields",
         tokenizeOnSpace: true,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Hashtags', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Hashtags', 'quotes-dlx'),
         onChange: function onChange(tokens) {
           var filteredTokens = [];
           tokens.forEach(function (item, index) {
@@ -1452,9 +1481,9 @@ var TweetQuotes = function TweetQuotes(props) {
             hashtags: filteredTokens
           });
         }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Tweet Credit (via)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enter the Twitter username you would like to credit. Leave empty for no credit.'),
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Credit (via)', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Twitter username you would like to credit. Leave empty for no credit.'),
         value: twitter_username,
         onChange: function onChange(value) {
           var replacement = value.replace('@', ''); // Strip @ symbol.
@@ -1476,53 +1505,53 @@ var TweetQuotes = function TweetQuotes(props) {
         }
       }));
     } else if ('link' === tab.name) {
-      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Link in Tweet', 'quotes-dlx'),
+      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Link in Tweet', 'quotes-dlx'),
         checked: enable_links_in_tweet,
         onChange: function onChange(value) {
           setAttributes({
             enable_links_in_tweet: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Disabling this will strip the link from the Tweet.', 'quotes-dlx')
-      }), enable_links_in_tweet && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable Anchor', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Disabling this will strip the link from the Tweet.', 'quotes-dlx')
+      }), enable_links_in_tweet && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Anchor', 'quotes-dlx'),
         checked: has_anchor,
         onChange: function onChange(value) {
           setAttributes({
             has_anchor: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable anchors so users can link directly to the quote.', 'quotes-dlx')
-      }), has_anchor && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Anchor (ID)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable anchors so users can link directly to the quote.', 'quotes-dlx')
+      }), has_anchor && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Anchor (ID)', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
         value: anchor,
         onChange: function onChange(value) {
           setAttributes({
             anchor: value
           });
         }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable URL Shortening', 'quotes-dlx'),
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable URL Shortening', 'quotes-dlx'),
         checked: url_shortener,
         onChange: function onChange(value) {
           setAttributes({
             url_shortener: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Enable the URL shortener for your tweets.', 'quotes-dlx')
-      }), url_shortener && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.RadioControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Shortlink Service', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable the URL shortener for your tweets.', 'quotes-dlx')
+      }), url_shortener && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.RadioControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Shortlink Service', 'quotes-dlx'),
         selected: url_shortening_service,
         options: [{
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Bitly', 'quotes-dlx'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Bitly', 'quotes-dlx'),
           value: 'bitly'
         }, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Jetpack', 'quotes-dlx'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Jetpack', 'quotes-dlx'),
           value: 'jetpack'
         }, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Manual', 'quotes-dlx'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Manual', 'quotes-dlx'),
           value: 'manual'
         }],
         onChange: function onChange(value) {
@@ -1531,90 +1560,90 @@ var TweetQuotes = function TweetQuotes(props) {
           });
           setUrlShortener(value);
         }
-      }), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Notice, {
+      }), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Notice, {
         className: "quotes-dlx-notice quotes-dlx-notice-warning",
         status: "warning",
         politeness: "assertive",
         isDismissible: false
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
         width: 36,
         height: 36,
         className: "quotes-dlx-icon",
         "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('The Bitly short URL cannot be found.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.', 'quotes-dlx'))), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Notice, {
+      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('The Bitly short URL cannot be found.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.', 'quotes-dlx'))), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Notice, {
         className: "quotes-dlx-notice quotes-dlx-notice-warning",
         status: "warning",
         politeness: "assertive",
         isDismissible: false
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
         width: 36,
         height: 36,
         className: "quotes-dlx-icon",
         "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('The official Bitly plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('The official Bitly plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Button, {
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Button, {
         variant: "link",
         href: "https://wordpress.org/plugins/wp-bitly/",
         target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
           width: 12,
           height: 12
         }),
         iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Visit the Bitly plugin on WordPress.org', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Notice, {
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Visit the Bitly plugin on WordPress.org', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Notice, {
         className: "quotes-dlx-notice quotes-dlx-notice-warning",
         status: "warning",
         politeness: "assertive",
         isDismissible: false
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
         width: 36,
         height: 36,
         className: "quotes-dlx-icon",
         "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('A shortlink from Jetpack could not be found', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Please ensure that Jetpack is installed and that shortlinks are enabled.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('A shortlink from Jetpack could not be found', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Please ensure that Jetpack is installed and that shortlinks are enabled.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Button, {
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Button, {
         variant: "link",
         href: "https://jetpack.com/support/wp-me-shortlinks/",
         target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
           width: 12,
           height: 12
         }),
         iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Visit the Jetpack Shortlink Documentation', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Notice, {
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Visit the Jetpack Shortlink Documentation', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Notice, {
         className: "quotes-dlx-notice quotes-dlx-notice-warning",
         status: "warning",
         politeness: "assertive",
         isDismissible: false
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
         width: 36,
         height: 36,
         className: "quotes-dlx-icon",
         "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('The official Jetpack plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('The official Jetpack plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.Button, {
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Button, {
         variant: "link",
         href: "https://wordpress.org/plugins/jetpack/",
         target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
           width: 12,
           height: 12
         }),
         iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Visit the Jetpack plugin on WordPress.org', 'quotes-dlx'))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('Page URL', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_16__.__)('This displays the permanent URL to this block.'),
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Visit the Jetpack plugin on WordPress.org', 'quotes-dlx'))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Page URL', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('This displays the permanent URL to this block.'),
         placeholder: manualPermalink,
         value: manualPermalink !== null && manualPermalink !== void 0 ? manualPermalink : '',
         onChange: function onChange(value) {
@@ -1630,7 +1659,7 @@ var TweetQuotes = function TweetQuotes(props) {
 
     return /*#__PURE__*/React.createElement(React.Fragment, null, getCharacterBar(), tabContent);
   }))));
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_20__.useBlockProps)({
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.useBlockProps)({
     className: "quotes-dlx template-".concat(template)
   });
   var stylesheet = false;
@@ -2284,6 +2313,47 @@ CopyIcon.propTypes = {
   fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 /* harmony default export */ __webpack_exports__["default"] = (CopyIcon);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/FacebookIcon.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/icons/FacebookIcon.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var FacebookIcon = function FacebookIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+  }));
+};
+
+FacebookIcon.defaultProps = {
+  width: 24,
+  height: 24,
+  fill: '#FFFFFF'
+};
+FacebookIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ __webpack_exports__["default"] = (FacebookIcon);
 
 /***/ }),
 

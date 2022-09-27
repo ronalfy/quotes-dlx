@@ -428,6 +428,12 @@ class Ajax {
 		$form_data = $_POST['form_data']; // expect array.
 		foreach ( $form_data as $field => $field_value ) {
 			switch ( $field ) {
+				case 'enableGlobalContextualMenu':
+					$options_to_save['enable_global_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableEmailText':
+					$options_to_save['enable_email_text'] = ( 'true' === $field_value ) ? true : false;
+					break;
 				case 'enableContextualMenu':
 					$options_to_save['enable_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
 					break;
@@ -442,6 +448,9 @@ class Ajax {
 					break;
 				case 'enableTweetThis':
 					$options_to_save['enable_tweet_this'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableShareThis':
+					$options_to_save['enable_share_this'] = ( 'true' === $field_value ) ? true : false;
 					break;
 			}
 		}

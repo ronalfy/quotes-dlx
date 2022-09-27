@@ -315,6 +315,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'enableCopyText' ) && (
+														<>
+															<Controller
+																name="copyTextLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Quote Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyTextLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyTextLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
 												</td>
 											</tr>
 											<tr>
@@ -339,6 +373,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'enableCopyTweet' ) && (
+														<>
+															<Controller
+																name="copyTweetLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Tweet Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyTweetLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyTweetLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
 												</td>
 											</tr>
 											<tr>
@@ -363,6 +431,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'enableCopyLink' ) && (
+														<>
+															<Controller
+																name="copyLinkLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Link Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyLinkLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyLinkLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
 												</td>
 											</tr>
 											<tr>
@@ -387,6 +489,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'enableTweetThis' ) && (
+														<>
+															<Controller
+																name="tweetThisLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Tweet This Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.tweetThisLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.tweetThisLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
 												</td>
 											</tr>
 											<tr>
@@ -411,6 +547,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'enableShareThis' ) && (
+														<>
+															<Controller
+																name="shareThisLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Share This Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.shareThisLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.shareThisLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
 												</td>
 											</tr>
 										</>

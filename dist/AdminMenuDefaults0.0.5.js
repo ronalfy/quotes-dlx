@@ -189,7 +189,7 @@ var AdminDefaults = function AdminDefaults(props) {
 };
 
 var Interface = function Interface(props) {
-  var _errors$emailTextLabe2;
+  var _errors$copyTextLabel2, _errors$copyTweetLabe2, _errors$copyLinkLabel2, _errors$tweetThisLabe2, _errors$shareThisLabe2, _errors$emailTextLabe2;
 
   var localStorageFieldValuesKey = 'quotes_dlx_menu_defaults';
   var defaults = props.defaults;
@@ -467,15 +467,40 @@ var Interface = function Interface(props) {
         disabled: saving || resetting
       });
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }), getValues('enableCopyText') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "copyTextLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref3) {
+      var _errors$copyTextLabel;
+
+      var field = _ref3.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Quote Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyTextLabel = errors.copyTextLabel) === null || _errors$copyTextLabel === void 0 ? void 0 : _errors$copyTextLabel.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyTextLabel2 = errors.copyTextLabel) === null || _errors$copyTextLabel2 === void 0 ? void 0 : _errors$copyTextLabel2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Tweet', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableCopyTweet",
     control: control,
-    render: function render(_ref3) {
-      var _ref3$field = _ref3.field,
-          _onChange3 = _ref3$field.onChange,
-          value = _ref3$field.value;
+    render: function render(_ref4) {
+      var _ref4$field = _ref4.field,
+          _onChange3 = _ref4$field.onChange,
+          value = _ref4$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Copy Tweet', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -487,15 +512,40 @@ var Interface = function Interface(props) {
         disabled: saving || resetting
       });
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }), getValues('enableCopyTweet') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "copyTweetLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref5) {
+      var _errors$copyTweetLabe;
+
+      var field = _ref5.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Tweet Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyTweetLabe = errors.copyTweetLabel) === null || _errors$copyTweetLabe === void 0 ? void 0 : _errors$copyTweetLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyTweetLabe2 = errors.copyTweetLabel) === null || _errors$copyTweetLabe2 === void 0 ? void 0 : _errors$copyTweetLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableCopyLink",
     control: control,
-    render: function render(_ref4) {
-      var _ref4$field = _ref4.field,
-          _onChange4 = _ref4$field.onChange,
-          value = _ref4$field.value;
+    render: function render(_ref6) {
+      var _ref6$field = _ref6.field,
+          _onChange4 = _ref6$field.onChange,
+          value = _ref6$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Copy Link', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -507,15 +557,40 @@ var Interface = function Interface(props) {
         disabled: saving || resetting
       });
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }), getValues('enableCopyLink') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "copyLinkLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref7) {
+      var _errors$copyLinkLabel;
+
+      var field = _ref7.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyLinkLabel = errors.copyLinkLabel) === null || _errors$copyLinkLabel === void 0 ? void 0 : _errors$copyLinkLabel.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyLinkLabel2 = errors.copyLinkLabel) === null || _errors$copyLinkLabel2 === void 0 ? void 0 : _errors$copyLinkLabel2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet This', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableTweetThis",
     control: control,
-    render: function render(_ref5) {
-      var _ref5$field = _ref5.field,
-          _onChange5 = _ref5$field.onChange,
-          value = _ref5$field.value;
+    render: function render(_ref8) {
+      var _ref8$field = _ref8.field,
+          _onChange5 = _ref8$field.onChange,
+          value = _ref8$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Tweet This Button', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -527,15 +602,40 @@ var Interface = function Interface(props) {
         disabled: saving || resetting
       });
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+  }), getValues('enableTweetThis') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "tweetThisLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref9) {
+      var _errors$tweetThisLabe;
+
+      var field = _ref9.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet This Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$tweetThisLabe = errors.tweetThisLabel) === null || _errors$tweetThisLabe === void 0 ? void 0 : _errors$tweetThisLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$tweetThisLabe2 = errors.tweetThisLabel) === null || _errors$tweetThisLabe2 === void 0 ? void 0 : _errors$tweetThisLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableShareThis",
     control: control,
-    render: function render(_ref6) {
-      var _ref6$field = _ref6.field,
-          _onChange6 = _ref6$field.onChange,
-          value = _ref6$field.value;
+    render: function render(_ref10) {
+      var _ref10$field = _ref10.field,
+          _onChange6 = _ref10$field.onChange,
+          value = _ref10$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Share This (Facebook) Button', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -547,7 +647,32 @@ var Interface = function Interface(props) {
         disabled: saving || resetting
       });
     }
-  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), getValues('enableShareThis') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "shareThisLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref11) {
+      var _errors$shareThisLabe;
+
+      var field = _ref11.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$shareThisLabe = errors.shareThisLabel) === null || _errors$shareThisLabe === void 0 ? void 0 : _errors$shareThisLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$shareThisLabe2 = errors.shareThisLabel) === null || _errors$shareThisLabe2 === void 0 ? void 0 : _errors$shareThisLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The following features are experimental and may be removed or revised in a future release.'),
     status: "warning",
     politeness: "polite",
@@ -561,10 +686,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Option', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableEmailText",
     control: control,
-    render: function render(_ref7) {
-      var _ref7$field = _ref7.field,
-          _onChange7 = _ref7$field.onChange,
-          value = _ref7$field.value;
+    render: function render(_ref12) {
+      var _ref12$field = _ref12.field,
+          _onChange7 = _ref12$field.onChange,
+          value = _ref12$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Email Option', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set whether users can email a quote to themselves or others.', 'quotes-dlx'),
@@ -584,10 +709,10 @@ var Interface = function Interface(props) {
     rules: {
       required: true
     },
-    render: function render(_ref8) {
+    render: function render(_ref13) {
       var _errors$emailTextLabe;
 
-      var field = _ref8.field;
+      var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Quote Label', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -609,10 +734,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Globally', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableGlobalContextualMenu",
     control: control,
-    render: function render(_ref9) {
-      var _ref9$field = _ref9.field,
-          _onChange8 = _ref9$field.onChange,
-          value = _ref9$field.value;
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+          _onChange8 = _ref14$field.onChange,
+          value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Contextual Menu Options Globally', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The options on this page will be applied globally throughout your site content.', 'quotes-dlx'),

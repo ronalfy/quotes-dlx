@@ -921,6 +921,7 @@ var TweetQuotes = function TweetQuotes(props) {
       enable_copy_link = attributes.enable_copy_link,
       enable_tweet_this = attributes.enable_tweet_this,
       enable_share_this = attributes.enable_share_this,
+      enable_email_text = attributes.enable_email_text,
       preview = attributes.preview,
       blockOnly = attributes.blockOnly,
       defaultsApplied = attributes.defaultsApplied,
@@ -1005,8 +1006,24 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }, [postObject, url_shortening_service]);
   /**
+   * Check to see if the context menu is global.
+   *
+   * @return {boolean} Whether or not the contextual menu is global.
+   */
+
+  var isContextualMenuGlobal = function isContextualMenuGlobal() {
+    var contextualMenuOptions = tweet_quotes_block_vars.contextual_menu_options;
+
+    if (contextualMenuOptions.enable_global_contextual_menu) {
+      return true;
+    }
+
+    return false;
+  };
+  /**
    * Count  the characters including text, links, hashtags, and mentions.
    */
+
 
   var countCharacters = function countCharacters() {
     // Begin adding text entered.
@@ -1240,7 +1257,9 @@ var TweetQuotes = function TweetQuotes(props) {
   })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Contextual Menu', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+  }, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('The contextual menu is enabled globally. You can disable the global options in the admin settings under Contextual Menu.', 'quotes-dlx'))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Menu', 'quotes-dlx'),
     checked: enable_contextual_menu,
     onChange: function onChange(value) {
@@ -1248,7 +1267,8 @@ var TweetQuotes = function TweetQuotes(props) {
         enable_contextual_menu: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Turn on the contextual menu.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Turn on the contextual menu.', 'quotes-dlx'),
+    disabled: isContextualMenuGlobal()
   })), enable_contextual_menu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Text', 'quotes-dlx'),
     checked: enable_copy_text,
@@ -1257,7 +1277,8 @@ var TweetQuotes = function TweetQuotes(props) {
         enable_copy_text: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('This allows the copying of your full quote.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('This allows the copying of your full quote.', 'quotes-dlx'),
+    disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Tweet', 'quotes-dlx'),
     checked: enable_copy_tweet,
@@ -1265,7 +1286,8 @@ var TweetQuotes = function TweetQuotes(props) {
       setAttributes({
         enable_copy_tweet: value
       });
-    }
+    },
+    disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Link', 'quotes-dlx'),
     checked: enable_copy_link,
@@ -1273,7 +1295,18 @@ var TweetQuotes = function TweetQuotes(props) {
       setAttributes({
         enable_copy_link: value
       });
-    }
+    },
+    disabled: isContextualMenuGlobal()
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Email Quote (Experimental)', 'quotes-dlx'),
+    checked: enable_email_text,
+    onChange: function onChange(value) {
+      setAttributes({
+        enable_email_text: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('(Experimental) Enable email sharing of the quote.', 'quotes-dlx'),
+    disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Tweet This', 'quotes-dlx'),
     checked: enable_tweet_this,
@@ -1281,7 +1314,8 @@ var TweetQuotes = function TweetQuotes(props) {
       setAttributes({
         enable_tweet_this: value
       });
-    }
+    },
+    disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Share This', 'quotes-dlx'),
     checked: enable_share_this,
@@ -1290,7 +1324,8 @@ var TweetQuotes = function TweetQuotes(props) {
         enable_share_this: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Facebook sharing in the context menu.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Facebook sharing in the context menu.', 'quotes-dlx'),
+    disabled: isContextualMenuGlobal()
   }))))); // Load themes and display them in a dropdown menu.
   // There's a side-effect here if a theme is deleted. Need to use useEffect to
   // set default theme. This causes more issues, so solution is to set default on PHP side (front-end).
@@ -1394,12 +1429,14 @@ var TweetQuotes = function TweetQuotes(props) {
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this) &&
+  }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
-  React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+  React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
     id: uniqueId
-  }, attributes)))));
+  }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+    id: uniqueId
+  }, attributes))))));
   var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames2 = {}, _defineProperty(_classnames2, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames2, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames2, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames2)),
     style: maxWidthStyle
@@ -1444,12 +1481,14 @@ var TweetQuotes = function TweetQuotes(props) {
           });
         },
         ref: shareTextInput
-      })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) &&
+      })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
       /*#__PURE__*/
       // eslint-disable-next-line react/jsx-indent
-      React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+      React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
         id: uniqueId
-      }, attributes))))));
+      }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+        id: uniqueId
+      }, attributes)))))));
     } else if ('settings' === tab.name) {
       tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Customize Twitter Content', 'quotes-dlx'),
@@ -13462,7 +13501,7 @@ module.exports = JSON.parse('{"amp":"&","apos":"\'","gt":">","lt":"<","quot":"\\
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX","apiVersion":2,"name":"mediaron/quotes-dlx","category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_global_contextual_menu":{"type":"boolean","default":false},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX","apiVersion":2,"name":"mediaron/quotes-dlx","category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ })
 

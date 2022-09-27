@@ -117,6 +117,7 @@ const TweetQuotes = ( props ) => {
 		enable_copy_link,
 		enable_tweet_this,
 		enable_share_this,
+		enable_email_text,
 		preview,
 		blockOnly,
 		defaultsApplied,
@@ -222,6 +223,19 @@ const TweetQuotes = ( props ) => {
 		}
 	}, [ postObject, url_shortening_service ] );
 
+	/**
+	 * Check to see if the context menu is global.
+	 *
+	 * @return {boolean} Whether or not the contextual menu is global.
+	 */
+	const isContextualMenuGlobal = () => {
+		const contextualMenuOptions = tweet_quotes_block_vars.contextual_menu_options;
+
+		if ( contextualMenuOptions.enable_global_contextual_menu ) {
+			return true;
+		}
+		return false;
+	};
 	/**
 	 * Count  the characters including text, links, hashtags, and mentions.
 	 */
@@ -515,6 +529,13 @@ const TweetQuotes = ( props ) => {
 				initialOpen={ false }
 				title={ __( 'Contextual Menu', 'quotes-dlx' ) }
 			>
+				{ isContextualMenuGlobal() && (
+					<PanelRow>
+						<p className="description">
+							{ __( 'The contextual menu is enabled globally. You can disable the global options in the admin settings under Contextual Menu.', 'quotes-dlx' ) }
+						</p>
+					</PanelRow>
+				) }
 				<PanelRow>
 					<ToggleControl
 						label={ __( 'Enable Menu', 'quotes-dlx' ) }
@@ -525,6 +546,7 @@ const TweetQuotes = ( props ) => {
 							} );
 						} }
 						help={ __( 'Turn on the contextual menu.', 'quotes-dlx' ) }
+						disabled={ isContextualMenuGlobal() }
 					/>
 				</PanelRow>
 				{ enable_contextual_menu && (
@@ -542,6 +564,7 @@ const TweetQuotes = ( props ) => {
 									'This allows the copying of your full quote.',
 									'quotes-dlx'
 								) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -553,6 +576,7 @@ const TweetQuotes = ( props ) => {
 										enable_copy_tweet: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -564,6 +588,20 @@ const TweetQuotes = ( props ) => {
 										enable_copy_link: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Enable Email Quote (Experimental)', 'quotes-dlx' ) }
+								checked={ enable_email_text }
+								onChange={ ( value ) => {
+									setAttributes( {
+										enable_email_text: value,
+									} );
+								} }
+								help={ __( '(Experimental) Enable email sharing of the quote.', 'quotes-dlx' ) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -575,6 +613,7 @@ const TweetQuotes = ( props ) => {
 										enable_tweet_this: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -587,6 +626,7 @@ const TweetQuotes = ( props ) => {
 									} );
 								} }
 								help={ __( 'Enable Facebook sharing in the context menu.', 'quotes-dlx' ) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 					</>
@@ -737,9 +777,17 @@ const TweetQuotes = ( props ) => {
 							enable_copy_tweet ||
 							enable_copy_link ||
 							enable_tweet_this ||
-							enable_share_this ) && (
+							enable_share_this ||
+							enable_email_text ) && (
 						// eslint-disable-next-line react/jsx-indent
-						<MeatballMenu id={ uniqueId } { ...attributes } />
+						<>
+							{ isContextualMenuGlobal() && (
+								<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
+							) }
+							{ ! isContextualMenuGlobal() && (
+								<MeatballMenu id={ uniqueId } { ...attributes } />
+							) }
+						</>
 					) }
 				</div>
 			</div>
@@ -817,9 +865,18 @@ const TweetQuotes = ( props ) => {
 														( enable_copy_text ||
 															enable_copy_tweet ||
 															enable_copy_link ||
-															enable_tweet_this ) && (
+															enable_tweet_this ||
+															enable_email_text ||
+															enable_share_this ) && (
 														// eslint-disable-next-line react/jsx-indent
-														<MeatballMenu id={ uniqueId } { ...attributes } />
+														<>
+															{ isContextualMenuGlobal() && (
+																<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
+															) }
+															{ ! isContextualMenuGlobal() && (
+																<MeatballMenu id={ uniqueId } { ...attributes } />
+															) }
+														</>
 													) }
 												</>
 											</div>

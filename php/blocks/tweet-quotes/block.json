@@ -146,9 +146,37 @@
 			"type": "boolean",
 			"default": true
 		},
+		"enable_email_text": {
+			"type": "boolean",
+			"default": false
+		},
 		"enable_share_this": {
 			"type": "boolean",
 			"default": false
+		},
+		"email_text_label": {
+			"type": "string",
+			"default": "Email Quote"
+		},
+		"copy_text_label": {
+			"type": "string",
+			"default": "Copy Quote"
+		},
+		"copy_tweet_label": {
+			"type": "string",
+			"default": "Copy Tweet"
+		},
+		"copy_link_label": {
+			"type": "string",
+			"default": "Copy Link"
+		},
+		"tweet_this_label": {
+			"type": "string",
+			"default": "Tweet This"
+		},
+		"share_this_label": {
+			"type": "string",
+			"default": "Share This"
 		},
 		"preview": {
 			"type": "boolean",

@@ -930,7 +930,8 @@ class Blocks {
 		$post_id = isset( $post->ID ) ? $post->ID : 0;
 
 		// Get block defaults.
-		$block_defaults = Options_Defaults::get_options();
+		$block_defaults = array_merge( Options_Defaults::get_options(), Options_Menu::get_options() );
+
 		// Do a fix for hashtags. Null check.
 		$hashtags = $block_defaults['hashtags'] ?? null;
 		if ( ! is_array( $hashtags ) ) {

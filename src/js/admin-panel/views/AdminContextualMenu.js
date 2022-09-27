@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import sendCommand from '../../utils/SendCommand';
 import Notice from '../admin-components/Notice';
 import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader';
+import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import FlaskIcon from '../../components/icons/FlaskIcon';
 import CircularInfo from '../../components/icons/CircularInfo';
 import MenuIcon from '../../components/icons/MenuIcon';
@@ -83,6 +84,12 @@ const Interface = ( props ) => {
 		enable_tweet_this,
 		enable_share_this,
 		enable_email_text,
+		email_text_label,
+		copy_text_label,
+		copy_tweet_label,
+		copy_link_label,
+		tweet_this_label,
+		share_this_label,
 	} = data;
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
@@ -96,6 +103,12 @@ const Interface = ( props ) => {
 				enableTweetThis: enable_tweet_this,
 				enableShareThis: enable_share_this,
 				enableEmailText: enable_email_text,
+				copyTextLabel: copy_text_label,
+				emailTextLabel: email_text_label,
+				copyTweetLabel: copy_tweet_label,
+				copyLinkLabel: copy_link_label,
+				tweetThisLabel: tweet_this_label,
+				shareThisLabel: share_this_label,
 			},
 		} );
 
@@ -439,6 +452,44 @@ const Interface = ( props ) => {
 													/>
 												) }
 											/>
+											{ getValues( 'enableEmailText' ) && (
+												<>
+													<Controller
+														name="emailTextLabel"
+														control={ control }
+														rules={ { required: true } }
+														render={ ( { field } ) => (
+															<TextControl
+																{ ...field }
+																label={ __( 'Email Quote Label', 'quotes-dlx' ) }
+																className={ classNames(
+																	'qdlx-admin__text-control',
+																	{
+																		'has-error':
+																			'required' ===
+																			errors.emailTextLabel?.type,
+																		'is-required': true,
+																	}
+																) }
+																aria-required="true"
+																help={ __(
+																	'This text will be the text displayed for the Email Share option in the contextual menu.',
+																	'quotes-dlx'
+																) }
+															/>
+														) }
+													/>
+													{ 'required' === errors.emailTextLabel?.type && (
+														<Notice
+															message={ __( 'This field is a required field.' ) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
+														/>
+													) }
+												</>
+											) }
 										</td>
 									</tr>
 									<tr>

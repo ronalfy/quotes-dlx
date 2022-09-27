@@ -452,6 +452,24 @@ class Ajax {
 				case 'enableShareThis':
 					$options_to_save['enable_share_this'] = ( 'true' === $field_value ) ? true : false;
 					break;
+				case 'copyTextLabel':
+					$options_to_save['copy_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'emailTextLabel':
+					$options_to_save['email_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyTweetLabel':
+					$options_to_save['copy_tweet_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyLinkLabel':
+					$options_to_save['copy_link_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetThisLabel':
+					$options_to_save['tweet_this_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'shareThisLabel':
+					$options_to_save['share_this_label'] = sanitize_text_field( $field_value );
+					break;
 			}
 		}
 

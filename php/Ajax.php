@@ -910,6 +910,12 @@ class Ajax {
 				case 'template':
 					$options_to_save['template'] = sanitize_text_field( $field_value );
 					break;
+				case 'facebookShareButtonText':
+					$options_to_save['facebook_share_button_text'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookButtonEnabled':
+					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
 				default:
 					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
 					break;

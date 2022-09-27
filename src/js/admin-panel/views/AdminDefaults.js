@@ -69,8 +69,12 @@ const Interface = ( props ) => {
 		data.tweet_button_enabled
 	);
 	const [ buttonDisplay, setButtonDisplay ] = useState( data.tweet_button_display );
-	const [ twitterButtonEnabled, setTwitterButtonEnabled ] = useState( data.tweet_button_enabled );
-	const [ isFacebookButtonEnabled, setIsFacebookButtonEnabled ] = useState( data.facebook_button_enabled );
+	const [ isTwitterButtonEnabled, setIsTwitterButtonEnabled ] = useState(
+		data.tweet_button_enabled
+	);
+	const [ isFacebookButtonEnabled, setIsFacebookButtonEnabled ] = useState(
+		data.facebook_button_enabled
+	);
 	const [ anchorDisplay, setAnchorDisplay ] = useState( data.has_anchor );
 	const [ enableLinks, setEnableLinks ] = useState( data.enable_links_in_tweet );
 	const [ enableUrlShortener, setEnableUrlShortener ] = useState(
@@ -120,7 +124,6 @@ const Interface = ( props ) => {
 			urlShorteningService: url_shortening_service,
 			urlShortener: url_shortener,
 			facebookButtonEnabled: facebook_button_enabled,
-			facebookAppId: facebook_app_id,
 			facebookShareButtonText: facebook_share_button_text,
 		};
 	};
@@ -218,7 +221,9 @@ const Interface = ( props ) => {
 	useEffect( () => {
 		// Get saved local storage JSON strings.
 		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
-		const maybeDirtyFields = localStorage.getItem( localStorageKey + '_dirty_fields' );
+		const maybeDirtyFields = localStorage.getItem(
+			localStorageKey + '_dirty_fields'
+		);
 
 		if ( null !== maybeSavedFormFields ) {
 			// Parse saved JSON string into JSON object.
@@ -259,7 +264,10 @@ const Interface = ( props ) => {
 
 			// Save form values to local storage.
 			localStorage.setItem( localStorageKey, JSON.stringify( formValues ) );
-			localStorage.setItem( localStorageKey + '_dirty_fields', JSON.stringify( dirtyFields ) );
+			localStorage.setItem(
+				localStorageKey + '_dirty_fields',
+				JSON.stringify( dirtyFields )
+			);
 		}
 		setLoading( false );
 	}, [ formValues ] );
@@ -396,9 +404,7 @@ const Interface = ( props ) => {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">
-											{ __( 'Button Defaults', 'quotes-dlx' ) }
-										</th>
+										<th scope="row">{ __( 'Button Defaults', 'quotes-dlx' ) }</th>
 										<td>
 											<Controller
 												name="tweetButtonEnabled"
@@ -412,7 +418,7 @@ const Interface = ( props ) => {
 														className="qdlx-admin__toggle-control"
 														checked={ value }
 														onChange={ ( boolValue ) => {
-															setShowButtonOptions( boolValue );
+															setIsTwitterButtonEnabled( boolValue );
 															onChange( boolValue );
 														} }
 														help={ __(
@@ -422,6 +428,44 @@ const Interface = ( props ) => {
 													/>
 												) }
 											/>
+											{ isTwitterButtonEnabled && (
+												<>
+													<Controller
+														name="shareButtonText"
+														control={ control }
+														rules={ { required: true } }
+														render={ ( { field } ) => (
+															<TextControl
+																{ ...field }
+																label={ __( 'Click to Tweet Text', 'quotes-dlx' ) }
+																className={ classNames(
+																	'qdlx-admin__text-control',
+																	{
+																		'has-error':
+																			'required' ===
+																			errors.shareButtonText?.type,
+																		'is-required': true,
+																	}
+																) }
+																aria-required="true"
+																help={ __(
+																	'This text will be the text displayed for the Click to Tweet button',
+																	'quotes-dlx'
+																) }
+															/>
+														) }
+													/>
+													{ 'required' === errors.shareButtonText?.type && (
+														<Notice
+															message={ __( 'This field is a required field.' ) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
+														/>
+													) }
+												</>
+											) }
 											<Controller
 												name="facebookButtonEnabled"
 												control={ control }
@@ -434,12 +478,6 @@ const Interface = ( props ) => {
 														className="qdlx-admin__toggle-control"
 														checked={ isFacebookButtonEnabled }
 														onChange={ ( boolValue ) => {
-															if ( ! twitterButtonEnabled && ! boolValue ) {
-																setShowButtonOptions( false );
-															}
-															if ( twitterButtonEnabled || boolValue ) {
-																setShowButtonOptions( true );
-															}
 															setIsFacebookButtonEnabled( boolValue );
 															onChange( boolValue );
 														} }
@@ -450,7 +488,34 @@ const Interface = ( props ) => {
 													/>
 												) }
 											/>
-											{ showButtonOptions && (
+											{ isFacebookButtonEnabled && (
+												<Controller
+													name="facebookShareButtonText"
+													control={ control }
+													rules={ { required: true } }
+													render={ ( { field } ) => (
+														<TextControl
+															{ ...field }
+															label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
+															className={ classNames(
+																'qdlx-admin__text-control',
+																{
+																	'has-error':
+																		'required' ===
+																		errors.facebookButtonEnabled?.type,
+																	'is-required': true,
+																}
+															) }
+															aria-required="true"
+															help={ __(
+																'This text will be the text displayed for the Facebook share button',
+																'quotes-dlx'
+															) }
+														/>
+													) }
+												/>
+											) }
+											{ ( isFacebookButtonEnabled || isTwitterButtonEnabled ) && (
 												<>
 													<Controller
 														control={ control }
@@ -487,81 +552,6 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
-													{ ( 'text' === buttonDisplay ||
-														'full' === buttonDisplay ) && (
-														<>
-															<Controller
-																name="shareButtonText"
-																control={ control }
-																rules={ { required: true } }
-																render={ ( { field } ) => (
-																	<TextControl
-																		{ ...field }
-																		label={ __(
-																			'Click Button Text',
-																			'quotes-dlx'
-																		) }
-																		className={ classNames(
-																			'qdlx-admin__text-control',
-																			{
-																				'has-error':
-																					'required' ===
-																					errors.shareButtonText?.type,
-																				'is-required': true,
-																			}
-																		) }
-																		aria-required="true"
-																		help={ __(
-																			'This text will be the text displayed for the Click to Tweet button',
-																			'quotes-dlx'
-																		) }
-																	/>
-																) }
-															/>
-															{ 'required' === errors.shareButtonText?.type && (
-																<Notice
-																	message={ __(
-																		'This field is a required field.'
-																	) }
-																	status="error"
-																	politeness="assertive"
-																	inline={ true }
-																	icon={ CircularExclamationIcon }
-																/>
-															) }
-															{ isFacebookButtonEnabled && (
-																<Controller
-																	name="facebookShareButtonText"
-																	control={ control }
-																	rules={ { required: true } }
-																	render={ ( { field } ) => (
-																		<TextControl
-																			{ ...field }
-																			label={ __(
-																				'Facebook Button Text',
-																				'quotes-dlx'
-																			) }
-																			className={ classNames(
-																				'qdlx-admin__text-control',
-																				{
-																					'has-error':
-																						'required' ===
-																						errors.facebookButtonEnabled?.type,
-																					'is-required': true,
-																				}
-																			) }
-																			aria-required="true"
-																			help={ __(
-																				'This text will be the text displayed for the Facebook share button',
-																				'quotes-dlx'
-																			) }
-																		/>
-																	) }
-																/>
-															) }
-														</>
-													) }
-
 													<Controller
 														name="tweetButtonAlignment"
 														control={ control }

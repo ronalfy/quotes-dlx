@@ -119,8 +119,8 @@ var Interface = function Interface(props) {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_enabled),
       _useState6 = _slicedToArray(_useState5, 2),
-      twitterButtonEnabled = _useState6[0],
-      setTwitterButtonEnabled = _useState6[1];
+      isTwitterButtonEnabled = _useState6[0],
+      setIsTwitterButtonEnabled = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.facebook_button_enabled),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -204,7 +204,6 @@ var Interface = function Interface(props) {
       urlShorteningService: url_shortening_service,
       urlShortener: url_shortener,
       facebookButtonEnabled: facebook_button_enabled,
-      facebookAppId: facebook_app_id,
       facebookShareButtonText: facebook_share_button_text
     };
   };
@@ -494,33 +493,51 @@ var Interface = function Interface(props) {
         className: "qdlx-admin__toggle-control",
         checked: value,
         onChange: function onChange(boolValue) {
-          setShowButtonOptions(boolValue);
+          setIsTwitterButtonEnabled(boolValue);
 
           _onChange3(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or Disable the Click to Tweet button. This is useful if you want to hide the button and use the block for just quotes.', 'quotes-dlx')
       });
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+  }), isTwitterButtonEnabled && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "shareButtonText",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref4) {
+      var _errors$shareButtonTe;
+
+      var field = _ref4.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Tweet Text', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$shareButtonTe = errors.shareButtonText) === null || _errors$shareButtonTe === void 0 ? void 0 : _errors$shareButtonTe.type),
+          'is-required': true
+        }),
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Click to Tweet button', 'quotes-dlx')
+      }));
+    }
+  }), 'required' === ((_errors$shareButtonTe2 = errors.shareButtonText) === null || _errors$shareButtonTe2 === void 0 ? void 0 : _errors$shareButtonTe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "facebookButtonEnabled",
     control: control,
-    render: function render(_ref4) {
-      var _ref4$field = _ref4.field,
-          _onChange4 = _ref4$field.onChange,
-          value = _ref4$field.value;
+    render: function render(_ref5) {
+      var _ref5$field = _ref5.field,
+          _onChange4 = _ref5$field.onChange,
+          value = _ref5$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Share on Facebook Button', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: isFacebookButtonEnabled,
         onChange: function onChange(boolValue) {
-          if (!twitterButtonEnabled && !boolValue) {
-            setShowButtonOptions(false);
-          }
-
-          if (twitterButtonEnabled || boolValue) {
-            setShowButtonOptions(true);
-          }
-
           setIsFacebookButtonEnabled(boolValue);
 
           _onChange4(boolValue);
@@ -528,13 +545,33 @@ var Interface = function Interface(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or Disable the Share on Facebook button. If enabled, this will allow your users to share the quote on Facebook.', 'quotes-dlx')
       });
     }
-  }), showButtonOptions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+  }), isFacebookButtonEnabled && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "facebookShareButtonText",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref6) {
+      var _errors$facebookButto;
+
+      var field = _ref6.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook Button Text', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$facebookButto = errors.facebookButtonEnabled) === null || _errors$facebookButto === void 0 ? void 0 : _errors$facebookButto.type),
+          'is-required': true
+        }),
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Facebook share button', 'quotes-dlx')
+      }));
+    }
+  }), (isFacebookButtonEnabled || isTwitterButtonEnabled) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     control: control,
     name: "tweetButtonDisplay",
-    render: function render(_ref5) {
-      var _ref5$field = _ref5.field,
-          _onChange5 = _ref5$field.onChange,
-          value = _ref5$field.value;
+    render: function render(_ref7) {
+      var _ref7$field = _ref7.field,
+          _onChange5 = _ref7$field.onChange,
+          value = _ref7$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Display', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose to show just text, just an icon, or both.', 'quotes-dlx'),
@@ -556,53 +593,7 @@ var Interface = function Interface(props) {
         }]
       });
     }
-  }), ('text' === buttonDisplay || 'full' === buttonDisplay) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
-    name: "shareButtonText",
-    control: control,
-    rules: {
-      required: true
-    },
-    render: function render(_ref6) {
-      var _errors$shareButtonTe;
-
-      var field = _ref6.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click Button Text', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$shareButtonTe = errors.shareButtonText) === null || _errors$shareButtonTe === void 0 ? void 0 : _errors$shareButtonTe.type),
-          'is-required': true
-        }),
-        "aria-required": "true",
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Click to Tweet button', 'quotes-dlx')
-      }));
-    }
-  }), 'required' === ((_errors$shareButtonTe2 = errors.shareButtonText) === null || _errors$shareButtonTe2 === void 0 ? void 0 : _errors$shareButtonTe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), isFacebookButtonEnabled && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
-    name: "facebookShareButtonText",
-    control: control,
-    rules: {
-      required: true
-    },
-    render: function render(_ref7) {
-      var _errors$facebookButto;
-
-      var field = _ref7.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook Button Text', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$facebookButto = errors.facebookButtonEnabled) === null || _errors$facebookButto === void 0 ? void 0 : _errors$facebookButto.type),
-          'is-required': true
-        }),
-        "aria-required": "true",
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Facebook share button', 'quotes-dlx')
-      }));
-    }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "tweetButtonAlignment",
     control: control,
     render: function render(_ref8) {

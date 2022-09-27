@@ -130,6 +130,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"enable_global_contextual_menu": {
+			"type": "boolean",
+			"default": false
+		},
 		"enable_copy_text": {
 			"type": "boolean",
 			"default": true

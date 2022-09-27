@@ -977,6 +977,7 @@ class Blocks {
 				'themes_stylesheets'       => $theme_stylesheets_localized,
 				'themes'                   => Themes::get_theme_data(),
 				'defaults'                 => $block_defaults,
+				'contextual_menu_options'  => Options_Menu::get_options(),
 				'twp_nonce'                => wp_create_nonce( 'twp-click-to-tweet-ajax' ),
 				'bitly_plugin_active'      => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 				'bitly_plugin_short_url'   => get_post_meta( $post_id, '_wpbitly', true ),

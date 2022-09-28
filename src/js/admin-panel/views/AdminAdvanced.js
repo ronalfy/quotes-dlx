@@ -9,6 +9,7 @@ import {
 	RadioControl,
 	SelectControl,
 	ToggleControl,
+	RangeControl,
 } from '@wordpress/components';
 import { escapeAttribute } from '@wordpress/escape-html';
 import { useAsyncResource } from 'use-async-resource';
@@ -109,6 +110,10 @@ const Interface = ( props ) => {
 		activate_adobe_fonts_frontend,
 		template,
 		facebook_app_id,
+		recaptcha_enabled,
+		recaptcha_site_key,
+		recaptcha_secret_key,
+		recaptcha_score_threshold,
 	} = data;
 
 	const getDefaultValues = () => {
@@ -123,8 +128,14 @@ const Interface = ( props ) => {
 			activateAdobeFontsAdmin: activate_adobe_fonts_admin,
 			activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
 			facebookAppId: facebook_app_id,
+			recaptchaEnabled: recaptcha_enabled,
+			recaptchaSiteKey: recaptcha_site_key,
+			recaptchaSecretKey: recaptcha_secret_key,
+			recaptchaScoreThreshold: recaptcha_score_threshold,
 		};
 	};
+
+	console.log( data );
 
 	const {
 		register,
@@ -871,6 +882,137 @@ const Interface = ( props ) => {
 										</tr>
 										{ getAdobeFontsInterface() }
 										{ getFontOptions() }
+									</tbody>
+								</table>
+								<Notice
+									message={ __(
+										'The following features are experimental and may be removed or revised in a future release.',
+									) }
+									status="warning"
+									politeness="polite"
+									inline={ false }
+									icon={ FlaskIcon }
+								/>
+								<table className="form-table">
+									<tbody>
+										<tr>
+											<th scope="row">{ __( 'Recaptcha', 'comment-edit-pro' ) }</th>
+											<td>
+												<Controller
+													name="recaptchaEnabled"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<ToggleControl
+															label={ __( 'Enable Recaptcha 3', 'comment-edit-pro' ) }
+															className="sce-admin__toggle-control"
+															checked={ value }
+															onChange={ ( boolValue ) => {
+																onChange( boolValue );
+															} }
+															help={ __(
+																'Enable or disable Recaptcha 3 support, which will be used for the email functionality.',
+																'comment-edit-pro'
+															) }
+														/>
+													) }
+												/>
+												<Controller
+													name="recaptchaSiteKey"
+													control={ control }
+													rules={ { required: true } }
+													render={ ( { field } ) => (
+														<TextControl
+															label={ __( 'Recaptcha 3 Site Key', 'quotes-dlx' ) }
+															{ ...field }
+															className={ classNames( 'qdlx-admin__text-control', {
+																'has-error': 'required' === errors.recaptchaSiteKey?.type,
+																'is-required': true,
+															} ) }
+															help={ __(
+																'Enter your Recaptcha 3 Site Key',
+																'comment-edit-pro'
+															) }
+															aria-required="true"
+														/>
+													) }
+												/>
+												{ 'required' === errors.recaptchaSiteKey?.type && (
+													<Notice
+														message={ __( 'This field is a required field.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												<Controller
+													name="recaptchaSecretKey"
+													control={ control }
+													rules={ { required: true } }
+													render={ ( { field } ) => (
+														<TextControl
+															label={ __( 'Recaptcha 3 Secret Key', 'quotes-dlx' ) }
+															{ ...field }
+															className={ classNames( 'qdlx-admin__text-control', {
+																'has-error': 'required' === errors.recaptchaSiteKey?.type,
+																'is-required': true,
+															} ) }
+															help={ __(
+																'Enter your Recaptcha 3 Secret Key',
+																'comment-edit-pro'
+															) }
+															aria-required="true"
+														/>
+													) }
+												/>
+												{ 'required' === errors.recaptchaSecretKey?.type && (
+													<Notice
+														message={ __( 'This field is a required field.' ) }
+														status="error"
+														politeness="assertive"
+														inline={ true }
+														icon={ CircularExclamationIcon }
+													/>
+												) }
+												<Controller
+													name="recaptchaScoreThreshold"
+													control={ control }
+													render={ ( { field: { onChange, value } } ) => (
+														<>
+															<RangeControl
+																label={ __( 'Set reCAPTCHA Minimum Threshold', 'comment-edit-pro' ) }
+																step={ 0.05 }
+																value={ value }
+																max={ 1 }
+																min={ 0 }
+																currentInput={ value }
+																initialPosition={ value }
+																allowReset={ true }
+																className="sce-admin__range-control"
+																onChange={ ( recaptchaThreshold ) => {
+																	onChange( recaptchaThreshold );
+																} }
+																help={ __(
+																	'The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.',
+																	'comment-edit-pro'
+																) }
+																trackColor="#8019c4"
+																railColor="#dad4eb"
+															/>
+														</>
+													) }
+												/>
+											</td>
+										</tr>
+										{ getValues( 'recaptchaEnabled' ) && (
+											<>
+												{/* { getSiteKey() }
+												{ getSecretKey() }
+												{ getLoggedInToggle() }
+												{ getCommentEntityIds() }
+												{ getRecaptchaThreshold() } */}
+											</>
+										) }
 									</tbody>
 								</table>
 								<div className="qdlx-admin__tabs--content-actions">

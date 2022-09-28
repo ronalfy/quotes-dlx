@@ -395,6 +395,10 @@ class Ajax {
 					'primary_font_family'           => $defaults['primary_font_family'],
 					'secondary_font_family'         => $defaults['secondary_font_family'],
 					'facebook_app_id'               => $defaults['facebook_app_id'],
+					'recaptcha_enabled'             => (bool) $defaults['recaptcha_enabled'],
+					'recaptcha_site_key'            => $defaults['recaptcha_site_key'],
+					'recaptcha_secret_key'          => $defaults['recaptcha_secret_key'],
+					'recaptcha_score_threshold'     => (float) $defaults['recaptcha_score_threshold'],
 
 				)
 			);
@@ -1010,6 +1014,18 @@ class Ajax {
 					break;
 				case 'activateAdobeFontsFrontend':
 					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaEnabled':
+					$options_to_save['recaptcha_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaSiteKey':
+					$options_to_save['recaptcha_site_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaSecretKey':
+					$options_to_save['recaptcha_secret_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaSiteThreshold':
+					$options_to_save['recaptcha_site_threshold'] = (float) sanitize_text_field( $field_value );
 					break;
 			}
 		}

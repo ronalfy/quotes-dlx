@@ -59,6 +59,10 @@ class Options_Advanced extends Options_Abstract {
 			'activate_adobe_fonts_admin'    => false,
 			'activate_adobe_fonts_frontend' => false,
 			'facebook_app_id'               => '',
+			'recaptcha_enabled'             => false,
+			'recaptcha_site_key'            => '',
+			'recaptcha_secret_key'          => '',
+			'recaptcha_score_threshold'     => 0.5,
 		);
 
 		/**

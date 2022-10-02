@@ -623,6 +623,36 @@ class Blocks {
 							endif;
 							?>
 						</button>
+						<?php
+						$maybe_facebook_app_id      = Options_Advanced::get_options( 'facebook_app_id' );
+						$facebook_button_enabled    = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
+						$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
+
+						if ( ! empty( $maybe_facebook_app_id && $facebook_button_enabled ) ) {
+							?>
+							<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-facebook-text="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+							<?php
+							// Output Twitter text.
+							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-text">
+										<?php echo wp_kses_post( $facebook_share_button_text ); ?>
+								</span>
+								<?php
+							endif;
+							// Output Twitter icon.
+							if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-icon">
+									<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
+								</span>
+								<?php
+							endif;
+							?>
+						</button>
+							<?php
+						}
+						?>
 					</div>
 				<?php endif; ?>
 				</div>
@@ -632,8 +662,30 @@ class Blocks {
 				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
+				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
+				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
-				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this ) ) :
+				// Get text label values.
+				$copy_text_label   = Options_Menu::get_options( 'copy_text_label' );
+				$copy_tweet_label  = Options_Menu::get_options( 'copy_tweet_label' );
+				$copy_link_label   = Options_Menu::get_options( 'copy_link_label' );
+				$email_quote_label = Options_Menu::get_options( 'email_text_label' );
+				$tweet_this_label  = Options_Menu::get_options( 'tweet_this_label' );
+				$share_this_label  = Options_Menu::get_options( 'share_this_label' );
+
+				// Check to see if global options are set.
+				$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+				if ( $enable_global_contextual_menu ) {
+					$enable_contextual_menu = (bool) Options_Menu::get_options( 'enable_contextual_menu' );
+					$enable_email_text      = (bool) Options_Menu::get_options( 'enable_email_text' );
+					$enable_copy_text       = (bool) Options_Menu::get_options( 'enable_copy_text' );
+					$enable_copy_tweet      = (bool) Options_Menu::get_options( 'enable_copy_tweet' );
+					$enable_copy_link       = (bool) Options_Menu::get_options( 'enable_copy_link' );
+					$enable_tweet_this      = (bool) Options_Menu::get_options( 'enable_tweet_this' );
+					$enable_share_this      = (bool) Options_Menu::get_options( 'enable_share_this' );
+				}
+
+				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this || $enable_share_this || $enable_email_text ) ) :
 					?>
 				<div class="quotes-dlx-meatball-menu">
 					<div class="quotes-dlx-meatball-content">
@@ -654,7 +706,7 @@ class Blocks {
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>
 										</span>
-										<?php esc_html_e( 'Copy Quote', 'quotes_dlx' ); ?>
+										<?php echo esc_html( $copy_text_label ); ?>
 									</button>
 								</li>
 								<?php
@@ -668,7 +720,7 @@ class Blocks {
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-copy-icon"></use></svg>
 										</span>
-										<?php esc_html_e( 'Copy Tweet', 'quotes_dlx' ); ?>
+										<?php echo esc_html( $copy_tweet_label ); ?>
 									</button>
 									<div class="quotes-dlx-copy-tweet-textarea" style="width: 0; height: 0; display: none;" aria-hidden="true">
 										<textarea id="quotes-dlx-tweet-text">
@@ -687,7 +739,21 @@ class Blocks {
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
 										</span>
-										<?php esc_html_e( 'Copy Link', 'quotes_dlx' ); ?>
+										<?php echo esc_html( $copy_link_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_email_text ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $email_quote_label ); ?>
 									</button>
 								</li>
 								<?php
@@ -701,7 +767,21 @@ class Blocks {
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
 										</span>
-										<?php esc_html_e( 'Tweet This', 'quotes_dlx' ); ?>
+										<?php echo esc_html( $tweet_this_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_share_this ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $share_this_label ); ?>
 									</button>
 								</li>
 								<?php

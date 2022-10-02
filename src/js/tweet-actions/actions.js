@@ -55,6 +55,21 @@
 				tweet( e );
 			} );
 		}
+
+		// Click to Tweet.
+		const dlxFacebookButton = wrapper.querySelector( 'button.qdlx-facebook-button' );
+		if ( null !== dlxFacebookButton ) {
+			dlxFacebookButton.addEventListener( 'click', ( e ) => {
+				facebook( e );
+			} );
+		}
+
+		const facebookButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-share-facebook > button' );
+		if ( null !== facebookButtonWrapper ) {
+			facebookButtonWrapper.addEventListener( 'click', ( e ) => {
+				facebook( e );
+			} );
+		}
 	} );
 
 	/**
@@ -231,5 +246,23 @@
 		// Replace case if first item has an ampsersand.
 		newTweet = newTweet.replace( '?&', '?' );
 		window.open( newTweet, '_blank' );
+	};
+	const facebook = ( e ) => {
+		let facebookButton = e.target;
+		const element = e.target.nodeName.toLowerCase();
+
+		// Check element type.
+		if ( 'span' === element ) {
+			facebookButton = facebookButton.parentElement;
+		}
+		if ( 'use' === element ) {
+			facebookButton = facebookButton.parentElement.parentElement.parentElement;
+		}
+		const shareText = facebookButton.getAttribute( 'data-facebook-text' );
+		const shareAppId = facebookButton.getAttribute( 'data-app-id' );
+		const permalink = facebookButton.getAttribute( 'data-url' );
+		let fbShare = `https://www.facebook.com/dialog/share?app_id=${ shareAppId }&display=popup&quote=${ shareText }&href=${ permalink }`;
+		fbShare = fbShare.replace( '?&', '?' );
+		window.open( fbShare, '_blank' );
 	};
 }() );

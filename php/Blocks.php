@@ -629,8 +629,9 @@ class Blocks {
 						$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
 
 						if ( ! empty( $maybe_facebook_app_id && $facebook_button_enabled ) ) {
+							$share_button_classes[] = 'qdlx-facebook-button';
 							?>
-							<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-facebook-text="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+							<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-facebook-text="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
 							<?php
 							// Output Twitter text.
 							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
@@ -774,10 +775,10 @@ class Blocks {
 							endif;
 							?>
 							<?php
-							if ( $enable_share_this ) :
+							if ( $enable_share_this && ! empty( $maybe_facebook_app_id ) ) :
 								?>
-								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
-									<button class="button-reset">
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-share-facebook" data-url="<?php echo esc_attr( $permalink ); ?>">
+								<button class="button-reset" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
 										</span>

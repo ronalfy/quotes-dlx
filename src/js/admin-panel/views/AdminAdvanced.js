@@ -134,9 +134,6 @@ const Interface = ( props ) => {
 			recaptchaScoreThreshold: recaptcha_score_threshold,
 		};
 	};
-
-	console.log( data );
-
 	const {
 		register,
 		control,
@@ -896,7 +893,7 @@ const Interface = ( props ) => {
 								<table className="form-table">
 									<tbody>
 										<tr>
-											<th scope="row">{ __( 'Recaptcha', 'comment-edit-pro' ) }</th>
+											<th scope="row">{ __( 'reCAPTCHA 3', 'comment-edit-pro' ) }</th>
 											<td>
 												<Controller
 													name="recaptchaEnabled"
@@ -904,7 +901,7 @@ const Interface = ( props ) => {
 													render={ ( { field: { onChange, value } } ) => (
 														<ToggleControl
 															label={ __( 'Enable Recaptcha 3', 'comment-edit-pro' ) }
-															className="sce-admin__toggle-control"
+															className="qdlx-admin__toggle-control"
 															checked={ value }
 															onChange={ ( boolValue ) => {
 																onChange( boolValue );
@@ -916,101 +913,105 @@ const Interface = ( props ) => {
 														/>
 													) }
 												/>
-												<Controller
-													name="recaptchaSiteKey"
-													control={ control }
-													rules={ { required: true } }
-													render={ ( { field } ) => (
-														<TextControl
-															label={ __( 'Recaptcha 3 Site Key', 'quotes-dlx' ) }
-															{ ...field }
-															className={ classNames( 'qdlx-admin__text-control', {
-																'has-error': 'required' === errors.recaptchaSiteKey?.type,
-																'is-required': true,
-															} ) }
-															help={ __(
-																'Enter your Recaptcha 3 Site Key',
-																'comment-edit-pro'
+												{ getValues( 'recaptchaEnabled' ) && (
+													<>
+														<Controller
+															name="recaptchaSiteKey"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field } ) => (
+																<TextControl
+																	label={ __( 'Recaptcha 3 Site Key', 'quotes-dlx' ) }
+																	{ ...field }
+																	className={ classNames( 'qdlx-admin__text-control', {
+																		'has-error': 'required' === errors.recaptchaSiteKey?.type,
+																		'is-required': true,
+																	} ) }
+																	help={ __(
+																		'Enter your Recaptcha 3 Site Key',
+																		'comment-edit-pro'
+																	) }
+																	aria-required="true"
+																/>
 															) }
-															aria-required="true"
 														/>
-													) }
-												/>
-												{ 'required' === errors.recaptchaSiteKey?.type && (
-													<Notice
-														message={ __( 'This field is a required field.' ) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
-													/>
-												) }
-												<Controller
-													name="recaptchaSecretKey"
-													control={ control }
-													rules={ { required: true } }
-													render={ ( { field } ) => (
-														<TextControl
-															label={ __( 'Recaptcha 3 Secret Key', 'quotes-dlx' ) }
-															{ ...field }
-															className={ classNames( 'qdlx-admin__text-control', {
-																'has-error': 'required' === errors.recaptchaSiteKey?.type,
-																'is-required': true,
-															} ) }
-															help={ __(
-																'Enter your Recaptcha 3 Secret Key',
-																'comment-edit-pro'
-															) }
-															aria-required="true"
-														/>
-													) }
-												/>
-												{ 'required' === errors.recaptchaSecretKey?.type && (
-													<Notice
-														message={ __( 'This field is a required field.' ) }
-														status="error"
-														politeness="assertive"
-														inline={ true }
-														icon={ CircularExclamationIcon }
-													/>
-												) }
-												<Controller
-													name="recaptchaScoreThreshold"
-													control={ control }
-													render={ ( { field: { onChange, value } } ) => (
-														<>
-															<RangeControl
-																label={ __( 'Set reCAPTCHA Minimum Threshold', 'comment-edit-pro' ) }
-																step={ 0.05 }
-																value={ value }
-																max={ 1 }
-																min={ 0 }
-																currentInput={ value }
-																initialPosition={ value }
-																allowReset={ true }
-																className="sce-admin__range-control"
-																onChange={ ( recaptchaThreshold ) => {
-																	onChange( recaptchaThreshold );
-																} }
-																help={ __(
-																	'The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.',
-																	'comment-edit-pro'
-																) }
-																trackColor="#8019c4"
-																railColor="#dad4eb"
+														{ 'required' === errors.recaptchaSiteKey?.type && (
+															<Notice
+																message={ __( 'This field is a required field.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ true }
+																icon={ CircularExclamationIcon }
 															/>
-														</>
-													) }
-												/>
+														) }
+														<Controller
+															name="recaptchaSecretKey"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field } ) => (
+																<TextControl
+																	label={ __( 'Recaptcha 3 Secret Key', 'quotes-dlx' ) }
+																	{ ...field }
+																	className={ classNames( 'qdlx-admin__text-control', {
+																		'has-error': 'required' === errors.recaptchaSiteKey?.type,
+																		'is-required': true,
+																	} ) }
+																	help={ __(
+																		'Enter your Recaptcha 3 Secret Key',
+																		'comment-edit-pro'
+																	) }
+																	aria-required="true"
+																/>
+															) }
+														/>
+														{ 'required' === errors.recaptchaSecretKey?.type && (
+															<Notice
+																message={ __( 'This field is a required field.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ true }
+																icon={ CircularExclamationIcon }
+															/>
+														) }
+														<Controller
+															name="recaptchaScoreThreshold"
+															control={ control }
+															render={ ( { field: { onChange, value } } ) => (
+																<>
+																	<RangeControl
+																		label={ __( 'Set reCAPTCHA Minimum Threshold', 'comment-edit-pro' ) }
+																		step={ 0.05 }
+																		value={ value }
+																		max={ 1 }
+																		min={ 0 }
+																		currentInput={ value }
+																		initialPosition={ value }
+																		allowReset={ true }
+																		className="qdlx-admin__range-control"
+																		onChange={ ( recaptchaThreshold ) => {
+																			onChange( recaptchaThreshold );
+																		} }
+																		help={ __(
+																			'The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.',
+																			'comment-edit-pro'
+																		) }
+																		trackColor="#8019c4"
+																		railColor="#dad4eb"
+																	/>
+																</>
+															) }
+														/>
+													</>
+												) }
 											</td>
 										</tr>
 										{ getValues( 'recaptchaEnabled' ) && (
 											<>
-												{/* { getSiteKey() }
+												{ /* { getSiteKey() }
 												{ getSecretKey() }
 												{ getLoggedInToggle() }
 												{ getCommentEntityIds() }
-												{ getRecaptchaThreshold() } */}
+												{ getRecaptchaThreshold() } */ }
 											</>
 										) }
 									</tbody>

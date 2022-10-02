@@ -1027,8 +1027,8 @@ class Ajax {
 				case 'recaptchaSecretKey':
 					$options_to_save['recaptcha_secret_key'] = sanitize_text_field( $field_value );
 					break;
-				case 'recaptchaSiteThreshold':
-					$options_to_save['recaptcha_site_threshold'] = (float) sanitize_text_field( $field_value );
+				case 'recaptchaScoreThreshold':
+					$options_to_save['recaptchaScoreThreshold'] = (float) sanitize_text_field( $field_value );
 					break;
 			}
 		}

@@ -166,6 +166,7 @@ class Blocks {
 		}
 		$blocks = parse_blocks( $post_content );
 		$this->print_block_styles( $blocks );
+		$this->print_fancybox_styles( $blocks );
 	}
 
 	/**
@@ -262,6 +263,35 @@ class Blocks {
 				}
 				if ( ! empty( $block['innerBlocks'] ) ) {
 					$this->print_block_styles( $block['innerBlocks'] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Recursive function for printing out fancybox styles.
+	 *
+	 * @param array $blocks Array of blocks to parse.
+	 */
+	public function print_fancybox_styles( $blocks ) {
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block ) {
+				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
+					$email_text_option             = (bool) $block['attrs']['enable_email_text'] ?? false;
+					$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+					if ( $enable_global_contextual_menu ) {
+						$email_text_option = (bool) Options_Menu::get_options( 'enable_email_text' );
+					}
+					if ( $email_text_option ) {
+						$handle = 'quotes-dlx-fancybox';
+						if ( ! wp_script_is( $handle, 'done' ) ) {
+							wp_print_styles( array( $handle ) );
+						}
+						wp_enqueue_script( 'quotes-dlx-fancybox' );
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$this->print_fancybox_styles( $block['innerBlocks'] );
 				}
 			}
 		}
@@ -960,6 +990,24 @@ class Blocks {
 		wp_register_style(
 			'quotes-dlx-frontend',
 			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Register Fancybox Script.
+		wp_register_script(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			true
+		);
+
+		// Register fancybox style.
+		wp_register_style(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
 			array(),
 			Functions::get_plugin_version(),
 			'all'

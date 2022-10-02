@@ -129,7 +129,7 @@ $accent-color: #FFF;
 			display: flex;
 			position: relative;
 			background: var( --qdlx-dark-matter-primary, $dark-bg );
-			padding: 45px 51px;
+			padding: 45px 35px;
 			padding-top: 0;
 
 			.quotes-dlx-button-icon {
@@ -178,6 +178,10 @@ $accent-color: #FFF;
 			font-weight: 400;
 			font-size: var( --qdlx-dark-matter-button-font-size-mobile, 14px );
 			line-height: 1.0em;
+			margin-right: 5px;
+			&:last-child {
+				margin-right: 0;
+			}
 
 			@include respond-to('medium') {
 				font-size: var( --qdlx-dark-matter-button-font-size-tablet, 15px );
@@ -242,6 +246,19 @@ $accent-color: #FFF;
 			&.text .quotes-dlx-button-text {
 				display: inline-block;
 				padding-right: 0;
+			}
+		}
+
+		/* Show only the icon and not the button wrappers */
+		.quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+			background: transparent;
+			color: var( --qdlx-dark-matter-button-primary-text-color, $white );
+			padding: 4px;
+			border: 0;
+
+			svg path,
+			svg use {
+				fill: var( --qdlx-dark-matter-button-primary-text-color, $white );
 			}
 		}
 

@@ -152,6 +152,12 @@ p ~ .quotes-dlx.quotes-dlx-container {
 .quotes-dlx-sidebar-button-options .components-base-control__label {
   max-width: 100%;
 }
+.quotes-dlx-sidebar-button-options .components-radio-control__option {
+  margin-bottom: 8px;
+}
+.quotes-dlx-sidebar-button-options .components-radio-control__option:last-child {
+  margin-bottom: 0;
+}
 
 @keyframes quotes-dlx-line-count-move {
   0% {

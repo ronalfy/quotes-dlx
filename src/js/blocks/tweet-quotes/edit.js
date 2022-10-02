@@ -122,6 +122,7 @@ const TweetQuotes = ( props ) => {
 		blockOnly,
 		defaultsApplied,
 		transforming,
+		icon_appearance,
 	} = attributes;
 
 	useEffect( () => {
@@ -343,29 +344,12 @@ const TweetQuotes = ( props ) => {
 		if ( ! tweet_button_enabled && ! facebook_button_enabled ) {
 			return <></>;
 		}
+		const buttonClassNames = classnames( tweet_button_alignment, {
+			'quotes-dlx-button-wrapper': true,
+			'is-transparent-button': ( tweet_button_display === 'icon' && 'transparent' === icon_appearance ),
+		} );
 		return (
-			<div className={ `quotes-dlx-button-wrapper  ${ tweet_button_alignment } ` }>
-				{ facebook_button_enabled && (
-					<button
-						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-						onClick={ ( value ) => {} }
-					>
-						<>
-							{ ( tweet_button_display === 'full' ||
-								tweet_button_display === 'text' ) && (
-								<span className="quotes-dlx-button-text">
-									{ facebook_share_button_text }
-								</span>
-							) }
-							{ ( tweet_button_display === 'icon' ||
-								tweet_button_display === 'full' ) && (
-								<span className="quotes-dlx-button-icon">
-									<FacebookIcon />
-								</span>
-							) }
-						</>
-					</button>
-				) }
+			<div className={ buttonClassNames }>
 				{ tweet_button_enabled && (
 					<button
 						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
@@ -382,6 +366,27 @@ const TweetQuotes = ( props ) => {
 								tweet_button_display === 'full' ) && (
 								<span className="quotes-dlx-button-icon">
 									<TwitterIcon />
+								</span>
+							) }
+						</>
+					</button>
+				) }
+				{ facebook_button_enabled && (
+					<button
+						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
+						onClick={ ( value ) => {} }
+					>
+						<>
+							{ ( tweet_button_display === 'full' ||
+								tweet_button_display === 'text' ) && (
+								<span className="quotes-dlx-button-text">
+									{ facebook_share_button_text }
+								</span>
+							) }
+							{ ( tweet_button_display === 'icon' ||
+								tweet_button_display === 'full' ) && (
+								<span className="quotes-dlx-button-icon">
+									<FacebookIcon />
 								</span>
 							) }
 						</>
@@ -522,6 +527,23 @@ const TweetQuotes = ( props ) => {
 								} }
 							/>
 						</PanelRow>
+						{ 'icon' === tweet_button_display && (
+							<PanelRow className="quotes-dlx-sidebar-button-options">
+								<RadioControl
+									label={ __( 'Button Icon Appearance', 'quotes-dlx' ) }
+									selected={ icon_appearance }
+									options={ [
+										{ label: __( 'Button', 'quotes-dlx' ), value: 'button' },
+										{ label: __( 'Transparent', 'quotes-dlx' ), value: 'transparent' },
+									] }
+									onChange={ ( value ) => {
+										setAttributes( {
+											icon_appearance: value,
+										} );
+									} }
+								/>
+							</PanelRow>
+						) }
 					</>
 				) }
 			</PanelBody>

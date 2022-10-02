@@ -74,6 +74,7 @@
   position: relative;
   background: var(--qdlx-dark-matter-primary, #2B2B2B);
   border-left: 14px solid var(--qdlx-dark-matter-secondary, #cc7000);
+  /* Show only the icon and not the button wrappers */
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure {
   margin: 0;
@@ -127,7 +128,7 @@
   display: flex;
   position: relative;
   background: var(--qdlx-dark-matter-primary, #2B2B2B);
-  padding: 45px 51px;
+  padding: 45px 35px;
   padding-top: 0;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon {
@@ -169,6 +170,10 @@
   font-weight: 400;
   font-size: var(--qdlx-dark-matter-button-font-size-mobile, 14px);
   line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button {
@@ -224,6 +229,16 @@
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
   display: inline-block;
   padding-right: 0;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+  padding: 4px;
+  border: 0;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-menu {
   top: 15px;

@@ -67,6 +67,12 @@
 	.components-base-control__label {
 		max-width: 100%;
 	}
+	.components-radio-control__option {
+		margin-bottom: 8px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 @keyframes quotes-dlx-line-count-move {

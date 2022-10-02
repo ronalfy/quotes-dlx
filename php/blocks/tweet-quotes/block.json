@@ -90,6 +90,10 @@
 			"type": "string",
 			"default": "full"
 		},
+		"icon_appearance": {
+			"type": "string",
+			"default": "button"
+		},
 		"tweet_styles_disabled": {
 			"type": "boolean",
 			"default": false

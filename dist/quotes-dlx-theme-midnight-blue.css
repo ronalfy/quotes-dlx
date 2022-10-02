@@ -11,6 +11,7 @@
 .quotes-dlx-block-theme-midnight-blue {
   font-size: var(--qdlx-midnight-blue-font-size-mobile, 14px);
   /* If these are set, we're in a preview */
+  /* Show only the icon and not the button wrappers */
   /* Meatball Menu */
 }
 @media (min-width: 768px) {
@@ -185,6 +186,10 @@
   font-weight: 400;
   font-size: 1.2em;
   line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button {
@@ -237,6 +242,19 @@
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
   display: inline-block;
   padding-right: 0;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: #FFFFFF;
+  padding: 6px;
+  border: 2px solid transparent;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover {
+  border-color: var(--qdlx-midnight-blue-button-secondary-color, #00316e);
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: #FFFFFF;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content {
   position: relative;

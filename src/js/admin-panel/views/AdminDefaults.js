@@ -102,7 +102,7 @@ const Interface = ( props ) => {
 		url_shortening_service,
 		url_shortener,
 		facebook_button_enabled,
-		facebook_app_id,
+		icon_appearance,
 		facebook_share_button_text,
 	} = data;
 
@@ -125,6 +125,7 @@ const Interface = ( props ) => {
 			urlShortener: url_shortener,
 			facebookButtonEnabled: facebook_button_enabled,
 			facebookShareButtonText: facebook_share_button_text,
+			iconAppearance: icon_appearance,
 		};
 	};
 
@@ -552,6 +553,40 @@ const Interface = ( props ) => {
 															/>
 														) }
 													/>
+													{ getValues( 'tweetButtonDisplay' ) === 'icon' && (
+														<>
+															<Controller
+																control={ control }
+																name="iconAppearance"
+																render={ ( { field: { onChange, value } } ) => (
+																	<RadioControl
+																		label={ __( 'Icon Appearance', 'quotes-dlx' ) }
+																		help={ __(
+																			'Display the icons as buttons or choose transparent for no button appearance.',
+																			'quotes-dlx'
+																		) }
+																		selected={ value }
+																		onChange={ ( newValue ) => {
+																			onChange( newValue );
+																		} }
+																		options={ [
+																			{
+																				label: __(
+																					'Button',
+																					'quotes-dlx'
+																				),
+																				value: 'button',
+																			},
+																			{
+																				label: __( 'Transparent', 'quotes-dlx' ),
+																				value: 'transparent',
+																			},
+																		] }
+																	/>
+																) }
+															/>
+														</>
+													) }
 													<Controller
 														name="tweetButtonAlignment"
 														control={ control }

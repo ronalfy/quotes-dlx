@@ -74,6 +74,7 @@ class Options_Defaults extends Options_Abstract {
 			'template'                   => 'light-branded',
 			'facebook_button_enabled'    => false,
 			'facebook_share_button_text' => __( 'Share on Facebook', 'quotes-dlx' ),
+			'icon_appearance'            => 'button',
 		);
 
 		/**

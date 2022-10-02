@@ -947,6 +947,9 @@ class Ajax {
 				case 'facebookButtonEnabled':
 					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
 					break;
+				case 'iconAppearance':
+					$options_to_save['icon_appearance'] = sanitize_text_field( $field_value );
+					break;
 				default:
 					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
 					break;

@@ -183,7 +183,7 @@ var Interface = function Interface(props) {
       url_shortening_service = data.url_shortening_service,
       url_shortener = data.url_shortener,
       facebook_button_enabled = data.facebook_button_enabled,
-      facebook_app_id = data.facebook_app_id,
+      icon_appearance = data.icon_appearance,
       facebook_share_button_text = data.facebook_share_button_text;
 
   var getDefaultValues = function getDefaultValues() {
@@ -204,7 +204,8 @@ var Interface = function Interface(props) {
       urlShorteningService: url_shortening_service,
       urlShortener: url_shortener,
       facebookButtonEnabled: facebook_button_enabled,
-      facebookShareButtonText: facebook_share_button_text
+      facebookShareButtonText: facebook_share_button_text,
+      iconAppearance: icon_appearance
     };
   };
 
@@ -593,13 +594,36 @@ var Interface = function Interface(props) {
         }]
       });
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
-    name: "tweetButtonAlignment",
+  }), getValues('tweetButtonDisplay') === 'icon' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     control: control,
+    name: "iconAppearance",
     render: function render(_ref8) {
       var _ref8$field = _ref8.field,
-          onClick = _ref8$field.onClick,
+          _onChange6 = _ref8$field.onChange,
           value = _ref8$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Appearance', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display the icons as buttons or choose transparent for no button appearance.', 'quotes-dlx'),
+        selected: value,
+        onChange: function onChange(newValue) {
+          _onChange6(newValue);
+        },
+        options: [{
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button', 'quotes-dlx'),
+          value: 'button'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Transparent', 'quotes-dlx'),
+          value: 'transparent'
+        }]
+      });
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
+    name: "tweetButtonAlignment",
+    control: control,
+    render: function render(_ref9) {
+      var _ref9$field = _ref9.field,
+          onClick = _ref9$field.onClick,
+          value = _ref9$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Button Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
@@ -651,10 +675,10 @@ var Interface = function Interface(props) {
   }), ('icon' === buttonDisplay || 'full' === buttonDisplay) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "tweetIconAlignment",
     control: control,
-    render: function render(_ref9) {
-      var _ref9$field = _ref9.field,
-          onClick = _ref9$field.onClick,
-          value = _ref9$field.value;
+    render: function render(_ref10) {
+      var _ref10$field = _ref10.field,
+          onClick = _ref10$field.onClick,
+          value = _ref10$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Icon Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
@@ -700,10 +724,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "enableLinksInTweet",
     control: control,
-    render: function render(_ref10) {
-      var _ref10$field = _ref10.field,
-          _onChange6 = _ref10$field.onChange,
-          value = _ref10$field.value;
+    render: function render(_ref11) {
+      var _ref11$field = _ref11.field,
+          _onChange7 = _ref11$field.onChange,
+          value = _ref11$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Links in the Tweet', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -711,7 +735,7 @@ var Interface = function Interface(props) {
         onChange: function onChange(boolValue) {
           setEnableLinks(boolValue);
 
-          _onChange6(boolValue);
+          _onChange7(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can disable all links from showing in the Tweets', 'quotes-dlx')
       });
@@ -719,10 +743,10 @@ var Interface = function Interface(props) {
   }), enableLinks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "hasAnchor",
     control: control,
-    render: function render(_ref11) {
-      var _ref11$field = _ref11.field,
-          _onChange7 = _ref11$field.onChange,
-          value = _ref11$field.value;
+    render: function render(_ref12) {
+      var _ref12$field = _ref12.field,
+          _onChange8 = _ref12$field.onChange,
+          value = _ref12$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Anchors', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -730,7 +754,7 @@ var Interface = function Interface(props) {
         onChange: function onChange(boolValue) {
           setAnchorDisplay(boolValue);
 
-          _onChange7(boolValue);
+          _onChange8(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchors are appended to the end of a URL.', 'quotes-dlx')
       });
@@ -742,10 +766,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[a-z]+$/i
     },
-    render: function render(_ref12) {
+    render: function render(_ref13) {
       var _errors$anchorPrefix, _errors$anchorPrefix2;
 
-      var field = _ref12.field;
+      var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchor Prefix', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -771,10 +795,10 @@ var Interface = function Interface(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "urlShortener",
     control: control,
-    render: function render(_ref13) {
-      var _ref13$field = _ref13.field,
-          _onChange8 = _ref13$field.onChange,
-          value = _ref13$field.value;
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+          _onChange9 = _ref14$field.onChange,
+          value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable URL Shortener', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -782,7 +806,7 @@ var Interface = function Interface(props) {
         onChange: function onChange(boolValue) {
           setEnableUrlShortener(boolValue);
 
-          _onChange8(boolValue);
+          _onChange9(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A URL shortener shortens your link so you can have more characters in your Tweet.', 'quotes-dlx')
       });
@@ -806,16 +830,16 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit the Jetpack plugin', 'quotes-dlx')))), linkShortenerServices.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     control: control,
     name: "urlShorteningService",
-    render: function render(_ref14) {
-      var _ref14$field = _ref14.field,
-          _onChange9 = _ref14$field.onChange,
-          value = _ref14$field.value;
+    render: function render(_ref15) {
+      var _ref15$field = _ref15.field,
+          _onChange10 = _ref15$field.onChange,
+          value = _ref15$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('URL Shortening Service', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a URL shortening service. Select none for no link shortener.', 'quotes-dlx'),
         selected: value,
         onChange: function onChange(shorteningValue) {
-          _onChange9(shorteningValue);
+          _onChange10(shorteningValue);
         },
         options: linkShortenerServices
       });
@@ -829,10 +853,10 @@ var Interface = function Interface(props) {
       required: true,
       pattern: /^[0-9]+$/i
     },
-    render: function render(_ref15) {
+    render: function render(_ref16) {
       var _errors$maximumWidth, _errors$maximumWidth2;
 
-      var field = _ref15.field;
+      var field = _ref16.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Maximum Width', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {
@@ -858,10 +882,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     control: control,
     name: "maximumWidthUnit",
-    render: function render(_ref16) {
-      var _ref16$field = _ref16.field,
-          onChange = _ref16$field.onChange,
-          value = _ref16$field.value;
+    render: function render(_ref17) {
+      var _ref17$field = _ref17.field,
+          onChange = _ref17$field.onChange,
+          value = _ref17$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Maximum Width Unit', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the max-width.', 'quotes-dlx'),
@@ -882,10 +906,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_14__.Controller, {
     name: "align",
     control: control,
-    render: function render(_ref17) {
-      var _ref17$field = _ref17.field,
-          onClick = _ref17$field.onClick,
-          value = _ref17$field.value;
+    render: function render(_ref18) {
+      var _ref18$field = _ref18.field,
+          onClick = _ref18$field.onClick,
+          value = _ref18$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default block alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {

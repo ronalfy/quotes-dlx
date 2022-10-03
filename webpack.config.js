@@ -37,6 +37,7 @@ module.exports = ( env ) => {
 				'quotes-dlx-gfont-raleway': { import: './src/scss/fonts/raleway.scss' },
 				'quotes-dlx-gfont-roboto': { import: './src/scss/fonts/roboto.scss' },
 				'quotes-dlx-gfont-source-sans-pro': { import: './src/scss/fonts/source-sans-pro.scss' },
+				'quotes-dlx-email': [ './src/js/views/Email/index.js', './src/js/views/Email/style.scss' ],
 			},
 			resolve: {
 				alias: {

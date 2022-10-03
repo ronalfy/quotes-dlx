@@ -2271,13 +2271,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../MeatballMenuItem */ "./src/js/components/MeatballMenuItem/index.js");
 /* harmony import */ var _icons_QuoteIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icons/QuoteIcon */ "./src/js/components/icons/QuoteIcon.js");
 /* harmony import */ var _icons_CopyIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/CopyIcon */ "./src/js/components/icons/CopyIcon.js");
 /* harmony import */ var _icons_LinkIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../icons/LinkIcon */ "./src/js/components/icons/LinkIcon.js");
 /* harmony import */ var _icons_twitter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons/twitter */ "./src/js/components/icons/twitter.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/js/components/MeatballMenu/editor.scss");
+/* harmony import */ var _icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
+/* harmony import */ var _icons_AtIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../icons/AtIcon */ "./src/js/components/icons/AtIcon.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/js/components/MeatballMenu/editor.scss");
 /* eslint-disable camelcase */
+
+
+
 
 
 
@@ -2291,7 +2298,15 @@ var MeatballMenu = function MeatballMenu(attributes) {
   var enable_copy_text = attributes.enable_copy_text,
       enable_copy_tweet = attributes.enable_copy_tweet,
       enable_copy_link = attributes.enable_copy_link,
-      enable_tweet_this = attributes.enable_tweet_this;
+      enable_tweet_this = attributes.enable_tweet_this,
+      enable_share_this = attributes.enable_share_this,
+      enable_email_text = attributes.enable_email_text,
+      copy_text_label = attributes.copy_text_label,
+      copy_tweet_label = attributes.copy_tweet_label,
+      copy_link_label = attributes.copy_link_label,
+      tweet_this_label = attributes.tweet_this_label,
+      share_this_label = attributes.share_this_label,
+      email_text_label = attributes.email_text_label;
 
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
@@ -2309,29 +2324,41 @@ var MeatballMenu = function MeatballMenu(attributes) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
       type: "checkbox",
       "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Open menu options', 'quotes-dlx')
-    }), (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, enable_copy_text && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, enable_copy_text && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       Icon: function Icon() {
         return getIcon(_icons_QuoteIcon__WEBPACK_IMPORTED_MODULE_3__["default"]);
       },
-      text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Quote', 'quotes-dlx'),
+      text: copy_text_label,
       onClick: function onClick(e) {}
     }), enable_copy_tweet && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       Icon: function Icon() {
         return getIcon(_icons_CopyIcon__WEBPACK_IMPORTED_MODULE_4__["default"]);
       },
-      text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Tweet', 'quotes-dlx'),
+      text: copy_tweet_label,
       onClick: function onClick(e) {}
     }), enable_copy_link && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       Icon: function Icon() {
         return getIcon(_icons_LinkIcon__WEBPACK_IMPORTED_MODULE_5__["default"]);
       },
-      text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link', 'quotes-dlx'),
+      text: copy_link_label,
+      onClick: function onClick(e) {}
+    }), enable_email_text && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      Icon: function Icon() {
+        return getIcon(_icons_AtIcon__WEBPACK_IMPORTED_MODULE_8__["default"]);
+      },
+      text: email_text_label,
       onClick: function onClick(e) {}
     }), enable_tweet_this && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       Icon: function Icon() {
         return getIcon(_icons_twitter__WEBPACK_IMPORTED_MODULE_6__["default"]);
       },
-      text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet This', 'quotes-dlx'),
+      text: tweet_this_label,
+      onClick: function onClick(e) {}
+    }), enable_share_this && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      Icon: function Icon() {
+        return getIcon(_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_7__["default"]);
+      },
+      text: share_this_label,
       onClick: function onClick(e) {}
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "quotes-dlx-meatball-icon-wrapper",
@@ -2344,6 +2371,34 @@ var MeatballMenu = function MeatballMenu(attributes) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getButton());
 };
 
+MeatballMenu.defaultProps = {
+  enable_copy_text: true,
+  enable_copy_link: true,
+  enable_copy_tweet: true,
+  enable_tweet_this: true,
+  enable_share_this: false,
+  enable_email_text: false,
+  email_text_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Quote', 'quotes-dlx'),
+  copy_text_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Quote', 'quotes-dlx'),
+  copy_tweet_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Tweet', 'quotes-dlx'),
+  copy_link_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link', 'quotes-dlx'),
+  tweet_this_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet This', 'quotes-dlx'),
+  share_this_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This', 'quotes-dlx')
+};
+MeatballMenu.propTypes = {
+  enable_copy_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  enable_copy_link: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  enable_copy_tweet: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  enable_tweet_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  enable_share_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  enable_email_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+  email_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
+  copy_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
+  copy_tweet_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
+  copy_link_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
+  tweet_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
+  share_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired)
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MeatballMenu);
 
 /***/ }),
@@ -2416,6 +2471,50 @@ MeatballMenuItem.propTypes = {
   text: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MeatballMenuItem);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/AtIcon.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/icons/AtIcon.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var AtIcon = function AtIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0s256 114.6 256 256v32c0 53-43 96-96 96-29.3 0-55.6-13.2-73.2-33.9-22.8 21-53.3 33.9-86.8 33.9-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1 5.7-5 13.1-8.1 21.3-8.1 17.7 0 32 14.3 32 32v112c0 17.7 14.3 32 32 32s32-14.3 32-32v-32c0-106-86-192-192-192zm64 192c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64z"
+  }));
+};
+
+AtIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+AtIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AtIcon);
 
 /***/ }),
 
@@ -2504,6 +2603,50 @@ CopyIcon.propTypes = {
   fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CopyIcon);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/FacebookIcon.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/icons/FacebookIcon.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var FacebookIcon = function FacebookIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+  }));
+};
+
+FacebookIcon.defaultProps = {
+  width: 24,
+  height: 24,
+  fill: '#FFFFFF'
+};
+FacebookIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FacebookIcon);
 
 /***/ }),
 
@@ -2716,7 +2859,7 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable camelcase */
 
 
-function sendCommand(action, data) {
+function sendCommand(action, data, maybeAjaxUrl) {
   var params = {
     action: action
   };
@@ -2737,7 +2880,7 @@ function sendCommand(action, data) {
 
   var options = {
     method: 'post',
-    url: ajaxurl,
+    url: maybeAjaxUrl !== null && maybeAjaxUrl !== void 0 ? maybeAjaxUrl : ajaxurl,
     params: params,
     paramsSerializer: function paramsSerializer(jsparams) {
       return qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(jsparams, {

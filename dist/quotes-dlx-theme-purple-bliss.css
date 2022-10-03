@@ -70,6 +70,7 @@
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper {
   position: relative;
   background: transparent;
+  /* Show only the icon and not the button wrappers */
 }
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure {
   position: relative;
@@ -169,6 +170,10 @@
   font-weight: 400;
   font-size: var(--qdlx-purple-bliss-button-font-size-mobile, 14px);
   line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button {
@@ -218,6 +223,19 @@
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
   display: inline-block;
   padding-right: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: var(--qdlx-purple-bliss-secondary, #67009C);
+  padding: 6px;
+  border: 2px solid transparent;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover {
+  border-color: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: var(--qdlx-purple-bliss-secondary, #67009C);
 }
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-menu {
   top: 90px;

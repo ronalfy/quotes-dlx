@@ -56,6 +56,8 @@
   --quotes-dlx-admin--color-notice--warning-alt: #e8a931;
   --quotes-dlx-admin--color-notice--error: #f5e5e4;
   --quotes-dlx-admin--color-notice--error-alt: #bc2b2c;
+  --quotes-dlx-admin--color-notice--secondary: #e2e3e5;
+  --quotes-dlx-admin--color-notice--secondary-alt: #41464b;
 }
 
 @keyframes qdlx-fade-in {

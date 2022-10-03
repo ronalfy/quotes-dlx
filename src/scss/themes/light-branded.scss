@@ -179,6 +179,11 @@ $dark: #2B2B2B;
 			font-size: var( --qdlx-light-branded-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 
+			margin-right: 5px;
+			&:last-child {
+				margin-right: 0;
+			}
+
 			@include respond-to('medium') {
 				font-size: var( --qdlx-light-branded-button-font-size-tablet, 15px );
 			}
@@ -245,6 +250,23 @@ $dark: #2B2B2B;
 			&.text .quotes-dlx-button-text {
 				display: inline-block;
 				padding-right: 0;
+			}
+		}
+
+		/* Show only the icon and not the button wrappers */
+		.quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+			background: transparent;
+			color: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
+			padding: 6px;
+			border: 2px solid transparent;
+
+			&:hover {
+				border-color: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
+			}
+
+			svg path,
+			svg use {
+				fill: var( --qdlx-light-branded-button-primary-text-color, $primary_color );
 			}
 		}
 

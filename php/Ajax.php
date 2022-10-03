@@ -394,6 +394,11 @@ class Ajax {
 					'template'                      => Options_Defaults::get_options( 'template' ),
 					'primary_font_family'           => $defaults['primary_font_family'],
 					'secondary_font_family'         => $defaults['secondary_font_family'],
+					'facebook_app_id'               => $defaults['facebook_app_id'],
+					'recaptcha_enabled'             => (bool) $defaults['recaptcha_enabled'],
+					'recaptcha_site_key'            => $defaults['recaptcha_site_key'],
+					'recaptcha_secret_key'          => $defaults['recaptcha_secret_key'],
+					'recaptcha_score_threshold'     => (float) $defaults['recaptcha_score_threshold'],
 
 				)
 			);
@@ -427,6 +432,12 @@ class Ajax {
 		$form_data = $_POST['form_data']; // expect array.
 		foreach ( $form_data as $field => $field_value ) {
 			switch ( $field ) {
+				case 'enableGlobalContextualMenu':
+					$options_to_save['enable_global_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableEmailText':
+					$options_to_save['enable_email_text'] = ( 'true' === $field_value ) ? true : false;
+					break;
 				case 'enableContextualMenu':
 					$options_to_save['enable_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
 					break;
@@ -441,6 +452,27 @@ class Ajax {
 					break;
 				case 'enableTweetThis':
 					$options_to_save['enable_tweet_this'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableShareThis':
+					$options_to_save['enable_share_this'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'copyTextLabel':
+					$options_to_save['copy_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'emailTextLabel':
+					$options_to_save['email_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyTweetLabel':
+					$options_to_save['copy_tweet_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyLinkLabel':
+					$options_to_save['copy_link_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetThisLabel':
+					$options_to_save['tweet_this_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'shareThisLabel':
+					$options_to_save['share_this_label'] = sanitize_text_field( $field_value );
 					break;
 			}
 		}
@@ -909,6 +941,15 @@ class Ajax {
 				case 'template':
 					$options_to_save['template'] = sanitize_text_field( $field_value );
 					break;
+				case 'facebookShareButtonText':
+					$options_to_save['facebook_share_button_text'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookButtonEnabled':
+					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'iconAppearance':
+					$options_to_save['icon_appearance'] = sanitize_text_field( $field_value );
+					break;
 				default:
 					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
 					break;
@@ -968,11 +1009,26 @@ class Ajax {
 				case 'adobeProjectId':
 					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
 					break;
+				case 'facebookAppId':
+					$options_to_save['facebook_app_id'] = sanitize_text_field( $field_value );
+					break;
 				case 'activateAdobeFontsAdmin':
 					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;
 					break;
 				case 'activateAdobeFontsFrontend':
 					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaEnabled':
+					$options_to_save['recaptcha_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaSiteKey':
+					$options_to_save['recaptcha_site_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaSecretKey':
+					$options_to_save['recaptcha_secret_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaScoreThreshold':
+					$options_to_save['recaptchaScoreThreshold'] = (float) sanitize_text_field( $field_value );
 					break;
 			}
 		}

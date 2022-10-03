@@ -10,6 +10,7 @@ import twttr from '../../validation/twitter';
 import IconCircle from '../../components/icons/Circle';
 import UnitChooser from '../../components/unit-picker';
 import TwitterIcon from '../../components/icons/twitter';
+import FacebookIcon from '../../components/icons/FacebookIcon';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import PreviewIcon from '../../components/icons/Preview';
 import NewWindowIcon from '../../components/icons/NewWindow';
@@ -93,9 +94,11 @@ const TweetQuotes = ( props ) => {
 		share_text_override,
 		share_text_override_enabled,
 		share_button_text,
+		facebook_share_button_text,
 		maximum_width,
 		maximum_width_unit,
 		tweet_button_enabled,
+		facebook_button_enabled,
 		tweet_button_alignment,
 		tweet_icon_alignment,
 		rtl,
@@ -113,10 +116,13 @@ const TweetQuotes = ( props ) => {
 		enable_copy_tweet,
 		enable_copy_link,
 		enable_tweet_this,
+		enable_share_this,
+		enable_email_text,
 		preview,
 		blockOnly,
 		defaultsApplied,
 		transforming,
+		icon_appearance,
 	} = attributes;
 
 	useEffect( () => {
@@ -218,6 +224,19 @@ const TweetQuotes = ( props ) => {
 		}
 	}, [ postObject, url_shortening_service ] );
 
+	/**
+	 * Check to see if the context menu is global.
+	 *
+	 * @return {boolean} Whether or not the contextual menu is global.
+	 */
+	const isContextualMenuGlobal = () => {
+		const contextualMenuOptions = tweet_quotes_block_vars.contextual_menu_options;
+
+		if ( contextualMenuOptions.enable_global_contextual_menu ) {
+			return true;
+		}
+		return false;
+	};
 	/**
 	 * Count  the characters including text, links, hashtags, and mentions.
 	 */
@@ -322,30 +341,57 @@ const TweetQuotes = ( props ) => {
 	};
 
 	const getClickToShareButton = () => {
-		if ( ! tweet_button_enabled ) {
+		if ( ! tweet_button_enabled && ! facebook_button_enabled ) {
 			return <></>;
 		}
+		const buttonClassNames = classnames( tweet_button_alignment, {
+			'quotes-dlx-button-wrapper': true,
+			'is-transparent-button': ( tweet_button_display === 'icon' && 'transparent' === icon_appearance ),
+		} );
 		return (
-			<div className={ `quotes-dlx-button-wrapper  ${ tweet_button_alignment } ` }>
-				<button
-					className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-					onClick={ ( value ) => {} }
-				>
-					<>
-						{ ( tweet_button_display === 'full' ||
-							tweet_button_display === 'text' ) && (
-							<span className="quotes-dlx-button-text">
-								{ share_button_text }
-							</span>
-						) }
-						{ ( tweet_button_display === 'icon' ||
-							tweet_button_display === 'full' ) && (
-							<span className="quotes-dlx-button-icon">
-								<TwitterIcon />
-							</span>
-						) }
-					</>
-				</button>
+			<div className={ buttonClassNames }>
+				{ tweet_button_enabled && (
+					<button
+						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
+						onClick={ ( value ) => {} }
+					>
+						<>
+							{ ( tweet_button_display === 'full' ||
+								tweet_button_display === 'text' ) && (
+								<span className="quotes-dlx-button-text">
+									{ share_button_text }
+								</span>
+							) }
+							{ ( tweet_button_display === 'icon' ||
+								tweet_button_display === 'full' ) && (
+								<span className="quotes-dlx-button-icon">
+									<TwitterIcon />
+								</span>
+							) }
+						</>
+					</button>
+				) }
+				{ facebook_button_enabled && (
+					<button
+						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
+						onClick={ ( value ) => {} }
+					>
+						<>
+							{ ( tweet_button_display === 'full' ||
+								tweet_button_display === 'text' ) && (
+								<span className="quotes-dlx-button-text">
+									{ facebook_share_button_text }
+								</span>
+							) }
+							{ ( tweet_button_display === 'icon' ||
+								tweet_button_display === 'full' ) && (
+								<span className="quotes-dlx-button-icon">
+									<FacebookIcon />
+								</span>
+							) }
+						</>
+					</button>
+				) }
 			</div>
 		);
 	};
@@ -385,11 +431,11 @@ const TweetQuotes = ( props ) => {
 			</PanelBody>
 			<PanelBody
 				initialOpen={ true }
-				title={ __( 'Click to Tweet Button', 'quotes-dlx' ) }
+				title={ __( 'Share Buttons', 'quotes-dlx' ) }
 			>
 				<PanelRow>
 					<ToggleControl
-						label={ __( 'Enable Click to Tweet Button', 'quotes-dlx' ) }
+						label={ __( 'Enable Twitter Share Button', 'quotes-dlx' ) }
 						checked={ tweet_button_enabled }
 						onChange={ ( value ) => {
 							setAttributes( {
@@ -399,63 +445,119 @@ const TweetQuotes = ( props ) => {
 						help={ __( 'Show or hide the Click to Tweet button.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
-				<PanelRow>
-					<TextControl
-						label={ __( 'Button Text', 'quotes-dlx' ) }
-						help={ __( 'Enter the Click to Tweet button text.' ) }
-						value={ share_button_text }
-						onChange={ ( value ) => {
-							setAttributes( {
-								share_button_text: value,
-							} );
-						} }
-					/>
-				</PanelRow>
-				<PanelRow>
-					<AlignmentGroup
-						label={ __( 'Button Alignment', 'quotes-dlx' ) }
-						alignment={ tweet_button_alignment }
-						onClick={ ( value ) => {
-							setAttributes( { tweet_button_alignment: value } );
-						} }
-					/>
-				</PanelRow>
-				{ tweet_button_display === 'full' && (
+				{ tweet_button_enabled && (
 					<PanelRow>
-						<AlignmentGroup
-							label={ __( 'Icon Alignment', 'quotes-dlx' ) }
-							alignment={ tweet_icon_alignment }
-							onClick={ ( value ) => {
-								setAttributes( { tweet_icon_alignment: value } );
+						<TextControl
+							label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
+							help={ __( 'Enter the Click to Tweet button text.' ) }
+							value={ share_button_text }
+							onChange={ ( value ) => {
+								setAttributes( {
+									share_button_text: value,
+								} );
 							} }
-							centerOn={ false }
 						/>
 					</PanelRow>
 				) }
-				<PanelRow className="quotes-dlx-sidebar-button-options">
-					<RadioControl
-						label={ __( 'Button Options', 'quotes-dlx' ) }
-						selected={ tweet_button_display }
-						options={ [
-							{ label: __( 'Text Only', 'quotes-dlx' ), value: 'text' },
-							{ label: __( 'Icon Only', 'quotes-dlx' ), value: 'icon' },
-							{
-								label: __( 'Text and Icon', 'quotes-dlx' ),
-								value: 'full',
-							},
-						] }
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Enable Facebook Share Button', 'quotes-dlx' ) }
+						checked={ facebook_button_enabled }
 						onChange={ ( value ) => {
 							setAttributes( {
-								tweet_button_display: value,
+								facebook_button_enabled: value,
 							} );
 						} }
+						help={ __( 'Show or hide the Share on Facebook button.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
+				{ facebook_button_enabled && (
+					<PanelRow>
+						<TextControl
+							label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
+							help={ __( 'Enter the Facebook Button text' ) }
+							value={ facebook_share_button_text }
+							onChange={ ( value ) => {
+								setAttributes( {
+									facebook_share_button_text: value,
+								} );
+							} }
+						/>
+					</PanelRow>
+				) }
+				{ ( tweet_button_enabled || facebook_button_enabled ) && (
+					<>
+						<PanelRow>
+							<AlignmentGroup
+								label={ __( 'Button Alignment', 'quotes-dlx' ) }
+								alignment={ tweet_button_alignment }
+								onClick={ ( value ) => {
+									setAttributes( { tweet_button_alignment: value } );
+								} }
+							/>
+						</PanelRow>
+						{ tweet_button_display === 'full' && (
+							<PanelRow>
+								<AlignmentGroup
+									label={ __( 'Icon Alignment', 'quotes-dlx' ) }
+									alignment={ tweet_icon_alignment }
+									onClick={ ( value ) => {
+										setAttributes( { tweet_icon_alignment: value } );
+									} }
+									centerOn={ false }
+								/>
+							</PanelRow>
+						) }
+						<PanelRow className="quotes-dlx-sidebar-button-options">
+							<RadioControl
+								label={ __( 'Button Options', 'quotes-dlx' ) }
+								selected={ tweet_button_display }
+								options={ [
+									{ label: __( 'Text Only', 'quotes-dlx' ), value: 'text' },
+									{ label: __( 'Icon Only', 'quotes-dlx' ), value: 'icon' },
+									{
+										label: __( 'Text and Icon', 'quotes-dlx' ),
+										value: 'full',
+									},
+								] }
+								onChange={ ( value ) => {
+									setAttributes( {
+										tweet_button_display: value,
+									} );
+								} }
+							/>
+						</PanelRow>
+						{ 'icon' === tweet_button_display && (
+							<PanelRow className="quotes-dlx-sidebar-button-options">
+								<RadioControl
+									label={ __( 'Button Icon Appearance', 'quotes-dlx' ) }
+									selected={ icon_appearance }
+									options={ [
+										{ label: __( 'Button', 'quotes-dlx' ), value: 'button' },
+										{ label: __( 'Transparent', 'quotes-dlx' ), value: 'transparent' },
+									] }
+									onChange={ ( value ) => {
+										setAttributes( {
+											icon_appearance: value,
+										} );
+									} }
+								/>
+							</PanelRow>
+						) }
+					</>
+				) }
 			</PanelBody>
 			<PanelBody
 				initialOpen={ false }
 				title={ __( 'Contextual Menu', 'quotes-dlx' ) }
 			>
+				{ isContextualMenuGlobal() && (
+					<PanelRow>
+						<p className="description">
+							{ __( 'The contextual menu is enabled globally. You can disable the global options in the admin settings under Contextual Menu.', 'quotes-dlx' ) }
+						</p>
+					</PanelRow>
+				) }
 				<PanelRow>
 					<ToggleControl
 						label={ __( 'Enable Menu', 'quotes-dlx' ) }
@@ -466,6 +568,7 @@ const TweetQuotes = ( props ) => {
 							} );
 						} }
 						help={ __( 'Turn on the contextual menu.', 'quotes-dlx' ) }
+						disabled={ isContextualMenuGlobal() }
 					/>
 				</PanelRow>
 				{ enable_contextual_menu && (
@@ -483,6 +586,7 @@ const TweetQuotes = ( props ) => {
 									'This allows the copying of your full quote.',
 									'quotes-dlx'
 								) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -494,6 +598,7 @@ const TweetQuotes = ( props ) => {
 										enable_copy_tweet: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -505,6 +610,20 @@ const TweetQuotes = ( props ) => {
 										enable_copy_link: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Enable Email Quote (Experimental)', 'quotes-dlx' ) }
+								checked={ enable_email_text }
+								onChange={ ( value ) => {
+									setAttributes( {
+										enable_email_text: value,
+									} );
+								} }
+								help={ __( '(Experimental) Enable email sharing of the quote.', 'quotes-dlx' ) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -516,6 +635,20 @@ const TweetQuotes = ( props ) => {
 										enable_tweet_this: value,
 									} );
 								} }
+								disabled={ isContextualMenuGlobal() }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Enable Share This', 'quotes-dlx' ) }
+								checked={ enable_share_this }
+								onChange={ ( value ) => {
+									setAttributes( {
+										enable_share_this: value,
+									} );
+								} }
+								help={ __( 'Enable Facebook sharing in the context menu.', 'quotes-dlx' ) }
+								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
 					</>
@@ -665,9 +798,18 @@ const TweetQuotes = ( props ) => {
 						( enable_copy_text ||
 							enable_copy_tweet ||
 							enable_copy_link ||
-							enable_tweet_this ) && (
+							enable_tweet_this ||
+							enable_share_this ||
+							enable_email_text ) && (
 						// eslint-disable-next-line react/jsx-indent
-						<MeatballMenu id={ uniqueId } { ...attributes } />
+						<>
+							{ isContextualMenuGlobal() && (
+								<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
+							) }
+							{ ! isContextualMenuGlobal() && (
+								<MeatballMenu id={ uniqueId } { ...attributes } />
+							) }
+						</>
 					) }
 				</div>
 			</div>
@@ -745,9 +887,18 @@ const TweetQuotes = ( props ) => {
 														( enable_copy_text ||
 															enable_copy_tweet ||
 															enable_copy_link ||
-															enable_tweet_this ) && (
+															enable_tweet_this ||
+															enable_email_text ||
+															enable_share_this ) && (
 														// eslint-disable-next-line react/jsx-indent
-														<MeatballMenu id={ uniqueId } { ...attributes } />
+														<>
+															{ isContextualMenuGlobal() && (
+																<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
+															) }
+															{ ! isContextualMenuGlobal() && (
+																<MeatballMenu id={ uniqueId } { ...attributes } />
+															) }
+														</>
 													) }
 												</>
 											</div>

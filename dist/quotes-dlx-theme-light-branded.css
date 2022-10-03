@@ -78,6 +78,7 @@
   background: var(--qdlx-light-branded-light, #FFFFFF);
   border-radius: 5px;
   border: 2px solid var(--qdlx-light-branded-primary, #1DA1F2);
+  /* Show only the icon and not the button wrappers */
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper figure {
   margin: 0;
@@ -166,6 +167,10 @@
   font-weight: 400;
   font-size: var(--qdlx-light-branded-button-font-size-mobile, 14px);
   line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button {
@@ -225,6 +230,19 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
   display: inline-block;
   padding-right: 0;
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
+  padding: 6px;
+  border: 2px solid transparent;
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover {
+  border-color: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
+}
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: var(--qdlx-light-branded-button-primary-text-color, #1DA1F2);
 }
 .quotes-dlx-block-theme-light-branded .quotes-dlx-wrapper .quotes-dlx-meatball-menu {
   top: 15px;

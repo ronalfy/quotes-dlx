@@ -1,20 +1,20 @@
 {
-    "name": "mediaronllc/quotes-dlx",
-    "description": "WordPress Twitter block that makes it dead simple for users to share your quotes.",
-    "type": "project",
-    "license": "GPL3+",
-    "authors": [
-        {
-            "name": "Ronald Huereca",
-            "email": "ronald@mediaron.com"
-        }
-    ],
-    "config": {
-        "vendor-dir": "lib"
-    },
-      "autoload": {
-        "psr-4": {
-            "MediaRonLLC\\QuotesDLX\\": "php/"
-        }
-    }
+	"name": "mediaronllc/quotes-dlx",
+	"description": "WordPress Twitter block that makes it dead simple for users to share your quotes.",
+	"type": "project",
+	"license": "GPL3+",
+	"authors": [
+		{
+			"name": "Ronald Huereca",
+			"email": "ronald@mediaron.com"
+		}
+	],
+	"config": {
+		"vendor-dir": "lib"
+	},
+	"autoload": {
+		"psr-4": {
+			"MediaRonLLC\\QuotesDLX\\": "php/"
+		}
+	}
 }

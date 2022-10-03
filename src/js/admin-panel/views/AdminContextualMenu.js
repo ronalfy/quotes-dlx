@@ -17,6 +17,7 @@ import sendCommand from '../../utils/SendCommand';
 import Notice from '../admin-components/Notice';
 import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
+import FlaskIcon from '../../components/icons/FlaskIcon';
 import CircularInfo from '../../components/icons/CircularInfo';
 import MenuIcon from '../../components/icons/MenuIcon';
 import TabsContext from '../contexts/TabsContext';
@@ -74,21 +75,40 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 
 	const {
+
+		enable_global_contextual_menu,
 		enable_contextual_menu,
 		enable_copy_text,
 		enable_copy_tweet,
 		enable_copy_link,
 		enable_tweet_this,
+		enable_share_this,
+		enable_email_text,
+		email_text_label,
+		copy_text_label,
+		copy_tweet_label,
+		copy_link_label,
+		tweet_this_label,
+		share_this_label,
 	} = data;
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
 			defaultValues: {
+				enableGlobalContextualMenu: enable_global_contextual_menu,
 				enableContextualMenu: enable_contextual_menu,
 				enableCopyText: enable_copy_text,
 				enableCopyTweet: enable_copy_tweet,
 				enableCopyLink: enable_copy_link,
 				enableTweetThis: enable_tweet_this,
+				enableShareThis: enable_share_this,
+				enableEmailText: enable_email_text,
+				copyTextLabel: copy_text_label,
+				emailTextLabel: email_text_label,
+				copyTweetLabel: copy_tweet_label,
+				copyLinkLabel: copy_link_label,
+				tweetThisLabel: tweet_this_label,
+				shareThisLabel: share_this_label,
 			},
 		} );
 
@@ -241,120 +261,434 @@ const Interface = ( props ) => {
 							</p>
 						</div>
 						<div className="qdlx-admin__tabs--content-inner">
-							{ ! getValues( 'enableContextualMenu' ) && (
-								<Notice
-									message={ __(
-										'Disabling this feature will prevent shortcuts for getting a permalink, copying the quote, and copying the tweet.'
+							<table className="form-table" role="presentation">
+								<tbody>
+									<tr>
+										<th scope="row">{ __( 'Menu Visibility', 'quotes-dlx' ) }</th>
+										<td>
+											<Controller
+												name="enableContextualMenu"
+												control={ control }
+												render={ ( { field: { onChange, value } } ) => (
+													<ToggleControl
+														label={ __(
+															'Enable or disable the menu by default.',
+															'quotes-dlx'
+														) }
+														className="qdlx-admin__toggle-control"
+														checked={ value }
+														onChange={ ( boolValue ) => {
+															setContextMenuActive( boolValue );
+															onChange( boolValue );
+														} }
+														help={ __(
+															'The contextual menu hides away some options so as to not clutter up the Quote interface',
+															'quotes-dlx'
+														) }
+														disabled={ saving || resetting }
+													/>
+												) }
+											/>
+										</td>
+									</tr>
+									{ getValues( 'enableContextualMenu' ) && (
+										<>
+											<tr>
+												<th scope="row">{ __( 'Copy Quote', 'quotes-dlx' ) }</th>
+												<td>
+													<Controller
+														name="enableCopyText"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleControl
+																label={ __( 'Enable Copy Quote', 'quotes-dlx' ) }
+																className="qdlx-admin__toggle-control"
+																checked={ value }
+																onChange={ ( boolValue ) => {
+																	onChange( boolValue );
+																} }
+																help={ __(
+																	'Enable the copying of the full quote.',
+																	'quotes-dlx'
+																) }
+																disabled={ saving || resetting }
+															/>
+														) }
+													/>
+													{ getValues( 'enableCopyText' ) && (
+														<>
+															<Controller
+																name="copyTextLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Quote Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyTextLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyTextLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">{ __( 'Copy Tweet', 'quotes-dlx' ) }</th>
+												<td>
+													<Controller
+														name="enableCopyTweet"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleControl
+																label={ __( 'Enable Copy Tweet', 'quotes-dlx' ) }
+																className="qdlx-admin__toggle-control"
+																checked={ value }
+																onChange={ ( boolValue ) => {
+																	onChange( boolValue );
+																} }
+																help={ __(
+																	'Enable the copying of the tweet to be used elsewhere.',
+																	'quotes-dlx'
+																) }
+																disabled={ saving || resetting }
+															/>
+														) }
+													/>
+													{ getValues( 'enableCopyTweet' ) && (
+														<>
+															<Controller
+																name="copyTweetLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Tweet Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyTweetLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyTweetLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">{ __( 'Copy Link', 'quotes-dlx' ) }</th>
+												<td>
+													<Controller
+														name="enableCopyLink"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleControl
+																label={ __( 'Enable Copy Link', 'quotes-dlx' ) }
+																className="qdlx-admin__toggle-control"
+																checked={ value }
+																onChange={ ( boolValue ) => {
+																	onChange( boolValue );
+																} }
+																help={ __(
+																	'Enable the copying of the link to the post or quote.',
+																	'quotes-dlx'
+																) }
+																disabled={ saving || resetting }
+															/>
+														) }
+													/>
+													{ getValues( 'enableCopyLink' ) && (
+														<>
+															<Controller
+																name="copyLinkLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Copy Link Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.copyLinkLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.copyLinkLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">{ __( 'Tweet This', 'quotes-dlx' ) }</th>
+												<td>
+													<Controller
+														name="enableTweetThis"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleControl
+																label={ __( 'Enable Tweet This Button', 'quotes-dlx' ) }
+																className="qdlx-admin__toggle-control"
+																checked={ value }
+																onChange={ ( boolValue ) => {
+																	onChange( boolValue );
+																} }
+																help={ __(
+																	'A Tweet This option will show at the bottom of the menu with this selected.',
+																	'quotes-dlx'
+																) }
+																disabled={ saving || resetting }
+															/>
+														) }
+													/>
+													{ getValues( 'enableTweetThis' ) && (
+														<>
+															<Controller
+																name="tweetThisLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Tweet This Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.tweetThisLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.tweetThisLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">{ __( 'Share This', 'quotes-dlx' ) }</th>
+												<td>
+													<Controller
+														name="enableShareThis"
+														control={ control }
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleControl
+																label={ __( 'Enable Share This (Facebook) Button', 'quotes-dlx' ) }
+																className="qdlx-admin__toggle-control"
+																checked={ value }
+																onChange={ ( boolValue ) => {
+																	onChange( boolValue );
+																} }
+																help={ __(
+																	'A Share This (to Facebook) option will show at the bottom of the menu with this selected.',
+																	'quotes-dlx'
+																) }
+																disabled={ saving || resetting }
+															/>
+														) }
+													/>
+													{ getValues( 'enableShareThis' ) && (
+														<>
+															<Controller
+																name="shareThisLabel"
+																control={ control }
+																rules={ { required: true } }
+																render={ ( { field } ) => (
+																	<TextControl
+																		{ ...field }
+																		label={ __( 'Share This Label', 'quotes-dlx' ) }
+																		className={ classNames(
+																			'qdlx-admin__text-control',
+																			{
+																				'has-error':
+																			'required' ===
+																			errors.shareThisLabel?.type,
+																				'is-required': true,
+																			}
+																		) }
+																		aria-required="true"
+																	/>
+																) }
+															/>
+															{ 'required' === errors.shareThisLabel?.type && (
+																<Notice
+																	message={ __( 'This field is a required field.' ) }
+																	status="error"
+																	politeness="assertive"
+																	inline={ true }
+																	icon={ CircularExclamationIcon }
+																/>
+															) }
+														</>
+													) }
+												</td>
+											</tr>
+										</>
 									) }
-									status="info"
-									politeness="polite"
-									inline={ false }
-									icon={ CircularInfo }
-								/>
-							) }
-							<Controller
-								name="enableContextualMenu"
-								control={ control }
-								render={ ( { field: { onChange, value } } ) => (
-									<ToggleControl
-										label={ __(
-											'Enable or disable the menu by default.',
-											'quotes-dlx'
-										) }
-										className="qdlx-admin__toggle-control"
-										checked={ value }
-										onChange={ ( boolValue ) => {
-											setContextMenuActive( boolValue );
-											onChange( boolValue );
-										} }
-										help={ __(
-											'The contextual menu hides away some options so as to not clutter up the Quote interface',
-											'quotes-dlx'
-										) }
-										disabled={ saving || resetting }
-									/>
+								</tbody>
+							</table>
+
+							<Notice
+								message={ __(
+									'The following features are experimental and may be removed or revised in a future release.',
 								) }
+								status="warning"
+								politeness="polite"
+								inline={ false }
+								icon={ FlaskIcon }
 							/>
-							{ getValues( 'enableContextualMenu' ) && (
-								<>
-									<Controller
-										name="enableCopyText"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<ToggleControl
-												label={ __( 'Enable Copy Quote', 'quotes-dlx' ) }
-												className="qdlx-admin__toggle-control"
-												checked={ value }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'Enable the copying of the full quote.',
-													'quotes-dlx'
+							<table className="form-table" role="presentation">
+								<tbody>
+									<tr>
+										<th scope="row">{ __( 'Email Option', 'quotes-dlx' ) }</th>
+										<td>
+											<Controller
+												name="enableEmailText"
+												control={ control }
+												render={ ( { field: { onChange, value } } ) => (
+													<ToggleControl
+														label={ __( 'Enable Email Option', 'quotes-dlx' ) }
+														help={ __(
+															'Set whether users can email a quote to themselves or others.',
+															'quotes-dlx'
+														) }
+														className="qdlx-admin__toggle-control"
+														checked={ value }
+														onChange={ ( boolValue ) => {
+															setContextMenuActive( boolValue );
+															onChange( boolValue );
+														} }
+														disabled={ saving || resetting }
+													/>
 												) }
-												disabled={ saving || resetting }
 											/>
-										) }
-									/>
-									<Controller
-										name="enableCopyTweet"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<ToggleControl
-												label={ __( 'Enable Copy Tweet', 'quotes-dlx' ) }
-												className="qdlx-admin__toggle-control"
-												checked={ value }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'Enable the copying of the tweet to be used elsewhere.',
-													'quotes-dlx'
+											{ getValues( 'enableEmailText' ) && (
+												<>
+													<Controller
+														name="emailTextLabel"
+														control={ control }
+														rules={ { required: true } }
+														render={ ( { field } ) => (
+															<TextControl
+																{ ...field }
+																label={ __( 'Email Quote Label', 'quotes-dlx' ) }
+																className={ classNames(
+																	'qdlx-admin__text-control',
+																	{
+																		'has-error':
+																			'required' ===
+																			errors.emailTextLabel?.type,
+																		'is-required': true,
+																	}
+																) }
+																aria-required="true"
+																help={ __(
+																	'This text will be the text displayed for the Email Share option in the contextual menu.',
+																	'quotes-dlx'
+																) }
+															/>
+														) }
+													/>
+													{ 'required' === errors.emailTextLabel?.type && (
+														<Notice
+															message={ __( 'This field is a required field.' ) }
+															status="error"
+															politeness="assertive"
+															inline={ true }
+															icon={ CircularExclamationIcon }
+														/>
+													) }
+												</>
+											) }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">{ __( 'Set Globally', 'quotes-dlx' ) }</th>
+										<td>
+											<Controller
+												name="enableGlobalContextualMenu"
+												control={ control }
+												render={ ( { field: { onChange, value } } ) => (
+													<ToggleControl
+														label={ __(
+															'Set Contextual Menu Options Globally',
+															'quotes-dlx'
+														) }
+														help={ __( 'The options on this page will be applied globally throughout your site content.', 'quotes-dlx' ) }
+														className="qdlx-admin__toggle-control"
+														checked={ value }
+														onChange={ ( boolValue ) => {
+															setContextMenuActive( boolValue );
+															onChange( boolValue );
+														} }
+														disabled={ saving || resetting }
+													/>
 												) }
-												disabled={ saving || resetting }
 											/>
-										) }
-									/>
-									<Controller
-										name="enableCopyLink"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<ToggleControl
-												label={ __( 'Enable Copy Link', 'quotes-dlx' ) }
-												className="qdlx-admin__toggle-control"
-												checked={ value }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'Enable the copying of the link to the post or quote.',
-													'quotes-dlx'
-												) }
-												disabled={ saving || resetting }
-											/>
-										) }
-									/>
-									<Controller
-										name="enableTweetThis"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<ToggleControl
-												label={ __( 'Enable Tweet This Button', 'quotes-dlx' ) }
-												className="qdlx-admin__toggle-control"
-												checked={ value }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'A Tweet This option will show at the bottom of the menu with this selected.',
-													'quotes-dlx'
-												) }
-												disabled={ saving || resetting }
-											/>
-										) }
-									/>
-								</>
-							) }
+										</td>
+									</tr>
+								</tbody>
+							</table>
 							<div className="qdlx-admin__tabs--content-actions">
 								<Button
 									className={ classNames(

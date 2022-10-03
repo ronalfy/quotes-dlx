@@ -31,17 +31,34 @@ class Email {
 		return $self;
 	}
 
+	/**
+	 * Send an email based on Ajax data.
+	 */
 	public static function ajax_send_email() {
 		$permalink = urldecode( filter_input( INPUT_POST, 'permalink', FILTER_DEFAULT ) );
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), 'qdlx_share_' . $permalink ) ) {
 			wp_die( 'Invalid request.' );
 		}
 
+		// Get email vars.
+		$email_name    = sanitize_text_field( filter_input( INPUT_POST, 'fromName', FILTER_DEFAULT ) );
+		$email_from    = sanitize_text_field( filter_input( INPUT_POST, 'fromEmail', FILTER_DEFAULT ) );
+		$email_to      = sanitize_text_field( filter_input( INPUT_POST, 'toEmail', FILTER_DEFAULT ) );
+		$email_subject = sanitize_text_field( filter_input( INPUT_POST, 'subject', FILTER_DEFAULT ) );
+
+		if ( ! is_email( $email_from ) || ! is_email( $email_to ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Invalid email address.', 'quotes-dlx' ),
+				)
+			);
+		}
+
 		// Get recaptcha keys.
-		$recaptcha_site_key = Options_Advanced::get_options( 'recaptcha_site_key' );
+		$recaptcha_site_key   = Options_Advanced::get_options( 'recaptcha_site_key' );
 		$recaptcha_secret_key = Options_Advanced::get_options( 'recaptcha_secret_key' );
-		$recaptcha_enabled  = Options_Advanced::get_options( 'recaptcha_enabled' );
-		$score_threshold = (float) Options_Advanced::get_options( 'recaptcha_score_threshold' );
+		$recaptcha_enabled    = Options_Advanced::get_options( 'recaptcha_enabled' );
+		$score_threshold      = (float) Options_Advanced::get_options( 'recaptcha_score_threshold' );
 
 		if ( $recaptcha_enabled ) {
 			if ( empty( $recaptcha_site_key ) || empty( $recaptcha_secret_key ) ) {
@@ -61,17 +78,17 @@ class Email {
 			}
 
 			// Now get token back from reCAPTCHA.
-			$url        = 'https://www.google.com/recaptcha/api/siteverify';
-			$data       = array(
+			$url      = 'https://www.google.com/recaptcha/api/siteverify';
+			$data     = array(
 				'secret'   => $recaptcha_secret_key,
 				'response' => $token,
 			);
-			$args       = array(
+			$args     = array(
 				'body'      => $data,
 				'method'    => 'POST',
 				'sslverify' => true,
 			);
-			$response   = wp_remote_post( esc_url( $url ), $args );
+			$response = wp_remote_post( esc_url( $url ), $args );
 			if ( is_wp_error( $response ) ) {
 				wp_send_json_error(
 					array(
@@ -99,10 +116,58 @@ class Email {
 			}
 		}
 
+		// Now check Akismet.
+		if ( class_exists( 'Akismet' ) ) {
+			$akismet_fields                         = array();
+			$akismet_fields['comment_type']         = 'quotesdlx';
+			$akismet_fields['comment_author']       = $email_name;
+			$akismet_fields['comment_author_email'] = $email_from;
+			$akismet_fields['comment_author_url']   = '';
+			$akismet_fields['comment_content']      = '';
+			$akismet_fields['contact_form_subject'] = $subject;
+			$akismet_fields['comment_author_IP']    = Functions::get_user_ip();
+			$akismet_fields['permalink']            = esc_url( urldecode( $permalink ) );
+			$akismet_fields['user_ip']              = preg_replace( '/[^0-9., ]/', '', Functions::get_user_ip() );
+			$akismet_fields['user_agent']           = '';
+			$akismet_fields['referrer']             = $is_admin ? '' : sanitize_text_field( $_SERVER['HTTP_REFERER'] );
+			$akismet_fields['blog']                 = get_option( 'home' );
+
+			// Get all the fields and consolidate.
+			$akismet_http_query = http_build_query( $akismet_fields );
+
+			// Submit spam check.
+			$response = \Akismet::http_post( $akismet_fields, 'comment-check' );
+
+			// Get spam response.
+			$maybe_spam = (bool) filter_var( $response[1] ?? false, FILTER_VALIDATE_BOOLEAN );
+			if ( $maybe_spam ) {
+				wp_send_json_error(
+					array(
+						'message' => _x( 'The email coult not be sent.', 'The email was flagged for spam.', 'quotes-dlx' ),
+					)
+				);
+			}
+		}
+
+		// So far so good, let's gather the email variables.
+		$email_share_text = wp_kses_post( urldecode( filter_input( INPUT_POST, 'shareText', FILTER_DEFAULT ) ) );
+		$email_subject    = str_replace( '{sitename}', get_bloginfo( 'name' ), $email_subject );
+
+		// Create message.
+		$message  = sprintf( __( '%s (%s) wants to share a quote with you.', 'highlight-and-share' ), esc_html( $email_name ), esc_html( $email_from ) ) . "\r\n\n"; // phpcs:ignore
+		$message .= sprintf( '"%s"', esc_html( $email_share_text ) ) . "\r\n\r\n";
+		$message .= sprintf( '%s', esc_url( $permalink ) ) . "\r\n\r\n";
+
+		// Set headers.
+		$headers   = array();
+		$headers[] = sprintf( 'From: %s <%s>', $email_name, $email_from );
+
+		// Send email.
+		wp_mail( $email_to, $email_subject, $message, $headers );
+
 		wp_send_json_success(
 			array(
-				'message' => 'Email sent.',
-				'formData' => $_POST,
+				'message' => __( 'Email sent successfully.', 'quotes-dlx' ),
 			)
 		);
 	}

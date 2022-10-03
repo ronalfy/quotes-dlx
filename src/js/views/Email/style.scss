@@ -1,6 +1,12 @@
 // Text control styles.
 @import '../../../scss/admin-root.scss';
 
+@keyframes qdlx-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .qdlx-email--content-wrap {
 	position: relative;
 	font-family: sans-serif;

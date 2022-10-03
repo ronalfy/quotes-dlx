@@ -16,6 +16,8 @@ import sendCommand from '../../utils/SendCommand';
 const View = () => {
 	const [ isSent, setIsSent ] = useState( false );
 	const [ isSending, setIsSending ] = useState( false );
+	const [ formErrors, setFormErrors ] = useState( false );
+	const [ errorMessage, setErrorMessage ] = useState( false );
 
 	const getDefaultValues = () => {
 		return {
@@ -40,11 +42,28 @@ const View = () => {
 
 	const onSubmit = ( formData ) => {
 		setIsSending( true );
+		setFormErrors( false );
+		setErrorMessage( '' );
+
 		// Save stuff here.
 		sendCommand( 'quotes_dlx_send_email', {
-			...formData
+			...formData,
 		}, qdlx_email.ajaxurl ).then( ( ajaxResponse ) => {
-			console.log( ajaxResponse );
+			const ajaxData = ajaxResponse.data.data;
+			const ajaxSuccess = ajaxResponse.data.success;
+
+			if ( ajaxSuccess ) {
+				setIsSent( true );
+				setTimeout(
+					() => {
+						window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
+					},
+					3000
+				);
+			} else {
+				setFormErrors( true );
+				setErrorMessage( ajaxData.message );
+			}
 		} )
 		.catch( ( ajaxResponse ) => {} )
 		.then( ( ajaxResponse ) => {
@@ -323,6 +342,13 @@ const View = () => {
 						message={ __(
 							'There are form validation errors. Please correct them above.'
 						) }
+						status="error"
+						politeness="polite"
+					/>
+				) }
+				{ formErrors && (
+					<Notice
+						message={ errorMessage }
 						status="error"
 						politeness="polite"
 					/>

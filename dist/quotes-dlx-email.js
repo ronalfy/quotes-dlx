@@ -42927,6 +42927,16 @@ var View = function View() {
       isSending = _useState4[0],
       setIsSending = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      formErrors = _useState6[0],
+      setFormErrors = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      errorMessage = _useState8[0],
+      setErrorMessage = _useState8[1];
+
   var getDefaultValues = function getDefaultValues() {
     return {
       toEmail: '',
@@ -42953,10 +42963,23 @@ var View = function View() {
       errors = _useFormState.errors;
 
   var onSubmit = function onSubmit(formData) {
-    setIsSending(true); // Save stuff here.
+    setIsSending(true);
+    setFormErrors(false);
+    setErrorMessage(''); // Save stuff here.
 
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_6__["default"])('quotes_dlx_send_email', _objectSpread({}, formData), qdlx_email.ajaxurl).then(function (ajaxResponse) {
-      console.log(ajaxResponse);
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        setIsSent(true);
+        setTimeout(function () {
+          window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
+        }, 3000);
+      } else {
+        setFormErrors(true);
+        setErrorMessage(ajaxData.message);
+      }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setIsSending(false);
     });
@@ -43213,6 +43236,10 @@ var View = function View() {
     }
   })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_3__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+    status: "error",
+    politeness: "polite"
+  }), formErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    message: errorMessage,
     status: "error",
     politeness: "polite"
   }), isSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_3__["default"], {

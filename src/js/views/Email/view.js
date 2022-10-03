@@ -47,7 +47,7 @@ const View = () => {
 	const validateEmail = ( email ) => {
 		// From: https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
 		const regex =
-  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+			/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 		if ( regex.test( email ) ) {
 			return true;
 		}
@@ -69,20 +69,12 @@ const View = () => {
 							<TextControl
 								{ ...field }
 								label={ __( 'Your Name:', 'quotes-dlx' ) }
-								className={ classNames(
-									'qdlx-admin__text-control',
-									{
-										'has-error':
-											'required' ===
-											errors.fromName?.type,
-										'is-required': true,
-									}
-								) }
+								className={ classNames( 'qdlx-admin__text-control', {
+									'has-error': 'required' === errors.fromName?.type,
+									'is-required': true,
+								} ) }
 								register="fromName"
-								help={ __(
-									'Please enter your name.',
-									'quotes-dlx'
-								) }
+								help={ __( 'Please enter your name.', 'quotes-dlx' ) }
 							/>
 						) }
 					/>
@@ -113,15 +105,10 @@ const View = () => {
 							<TextControl
 								{ ...field }
 								label={ __( 'To (email):', 'quotes-dlx' ) }
-								className={ classNames(
-									'qdlx-admin__text-control',
-									{
-										'has-error':
-											'required' ===
-											errors.toEmail?.type,
-										'is-required': true,
-									}
-								) }
+								className={ classNames( 'qdlx-admin__text-control', {
+									'has-error': 'required' === errors.toEmail?.type,
+									'is-required': true,
+								} ) }
 								register="toEmail"
 								placeholder="yourcolleague@friends.com"
 								help={ __(
@@ -161,15 +148,10 @@ const View = () => {
 							<TextControl
 								{ ...field }
 								label={ __( 'Subject:', 'quotes-dlx' ) }
-								className={ classNames(
-									'qdlx-admin__text-control',
-									{
-										'has-error':
-											'required' ===
-											errors.subject?.type,
-										'is-required': true,
-									}
-								) }
+								className={ classNames( 'qdlx-admin__text-control', {
+									'has-error': 'required' === errors.subject?.type,
+									'is-required': true,
+								} ) }
 								register="subject"
 								help={ __(
 									'Please enter the subject of the email.',
@@ -196,7 +178,7 @@ const View = () => {
 							{ 'has-icon': isSending },
 							{ 'is-saving': { isSending } }
 						) }
-						type="submit"
+						type="button"
 						text={
 							isSending
 								? __( 'Sending…', 'quotes-dlx' )
@@ -206,6 +188,12 @@ const View = () => {
 						iconSize="18"
 						iconPosition="right"
 						disabled={ isSending || isSent }
+						onClick={ ( e ) => {
+							// This fake submits the form.
+							e.target.form.dispatchEvent(
+								new Event( 'submit', { cancelable: true, bubbles: true } )
+							);
+						} }
 					/>
 					<Button
 						className={ classNames(
@@ -213,8 +201,7 @@ const View = () => {
 						) }
 						type="button"
 						text={
-							isSent ? __( 'Close', 'quotes-dlx' )
-								: __( 'Cancel', 'quotes-dlx' )
+							isSent ? __( 'Close', 'quotes-dlx' ) : __( 'Cancel', 'quotes-dlx' )
 						}
 						disabled={ isSending }
 						onClick={ ( e ) => {

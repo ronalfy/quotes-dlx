@@ -43,6 +43,13 @@ class Email {
 			Functions::get_plugin_version(),
 			false
 		);
+		wp_register_script(
+			'qdlx-recaptcha',
+			esc_url_raw( 'https://www.google.com/recaptcha/api.js?render=' . sanitize_text_field( Options_Advanced::get_options( 'recaptcha_site_key' ) ) ),
+			array(),
+			Functions::get_plugin_version(),
+			true
+		);
 		wp_register_style(
 			'qdlx_email_view',
 			Functions::get_plugin_url( 'dist/quotes-dlx-email.css' ),
@@ -64,7 +71,10 @@ class Email {
 				<div id="qdlx-email-interface"></div>
 				<?php
 				wp_print_scripts(
-					array( 'qdlx_email_view' ),
+					array(
+						'qdlx_email_view',
+						'qdlx-recaptcha',
+					),
 				);
 				?>
 			</body>

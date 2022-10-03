@@ -2,7 +2,9 @@
 @import '../../../scss/admin-root.scss';
 
 .qdlx-email--content-wrap {
+	position: relative;
 	font-family: sans-serif;
+	max-width: calc(100% - 20px);
 }
 
 h2 {

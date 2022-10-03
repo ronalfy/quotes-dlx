@@ -49259,12 +49259,19 @@ var View = function View() {
         isSending: isSending
       }
     }),
-    type: "submit",
+    type: "button",
     text: isSending ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sending…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Send', 'quotes-dlx'),
     icon: isSending ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
-    disabled: isSending || isSent
+    disabled: isSending || isSent,
+    onClick: function onClick(e) {
+      // This fake submits the form.
+      e.target.form.dispatchEvent(new Event('submit', {
+        cancelable: true,
+        bubbles: true
+      }));
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-secondary qdlx__btn--icon-right'),
     type: "button",

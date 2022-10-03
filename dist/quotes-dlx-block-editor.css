@@ -6,7 +6,21 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+button.button-reset.show-cursor {
+  cursor: pointer;
+}
+
+.button-reset button,
+.button-reset:focus button,
+.button-reset:hover button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
   cursor: pointer;
   outline: inherit;
   text-transform: unset;
@@ -17,10 +31,16 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   pointer-events: none;
 }
 
+.quotes-dlx-meatball-content {
+  /* Hide any overflow for rounded corners */
+}
+.quotes-dlx-meatball-content ul {
+  overflow: hidden;
+}
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid #6c757d;
+  border-bottom: 1px solid transparent;
 }
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
   border-bottom: 0;
@@ -34,6 +54,9 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   color: #6c757d;
   transition: all 0.3s ease-in-out;
   text-transform: unset;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
 }
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
@@ -68,6 +91,10 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
 /* Top/Bottom Padding */
 .quotes-dlx-container {
   padding: 1.2em 0;
+}
+
+p ~ .quotes-dlx.quotes-dlx-container {
+  padding-top: 0;
 }
 
 .quotes-dlx-wrapper .quotes-dlx-button {
@@ -124,6 +151,12 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
 /* Click to Tweet button options */
 .quotes-dlx-sidebar-button-options .components-base-control__label {
   max-width: 100%;
+}
+.quotes-dlx-sidebar-button-options .components-radio-control__option {
+  margin-bottom: 8px;
+}
+.quotes-dlx-sidebar-button-options .components-radio-control__option:last-child {
+  margin-bottom: 0;
 }
 
 @keyframes quotes-dlx-line-count-move {
@@ -249,6 +282,13 @@ body .editor-styles-wrapper .quotes-dlx-notice p, body .editor-styles-wrapper .q
 }
 body .editor-styles-wrapper .quotes-dlx-notice p {
   margin-bottom: 8px;
+}
+
+/* Hashtags Section */
+.quotes-dlx-hashtag-fields .components-form-token-field__token {
+  display: flex;
+  align-items: center;
+  background: rgb(221, 221, 221);
 }
 
 /*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

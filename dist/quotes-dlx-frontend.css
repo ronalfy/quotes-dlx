@@ -11,6 +11,10 @@
   padding: 1.2em 0;
 }
 
+p ~ .quotes-dlx.quotes-dlx-container {
+  padding-top: 0;
+}
+
 .quotes-dlx-wrapper .quotes-dlx-button {
   text-transform: unset;
 }
@@ -20,7 +24,21 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+button.button-reset.show-cursor {
+  cursor: pointer;
+}
+
+.button-reset button,
+.button-reset:focus button,
+.button-reset:hover button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
   cursor: pointer;
   outline: inherit;
   text-transform: unset;
@@ -31,10 +49,16 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   pointer-events: none;
 }
 
+.quotes-dlx-meatball-content {
+  /* Hide any overflow for rounded corners */
+}
+.quotes-dlx-meatball-content ul {
+  overflow: hidden;
+}
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid #6c757d;
+  border-bottom: 1px solid transparent;
 }
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
   border-bottom: 0;
@@ -48,6 +72,9 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   color: #6c757d;
   transition: all 0.3s ease-in-out;
   text-transform: unset;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
 }
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
 .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
@@ -84,6 +111,9 @@ button.button-reset, button.button-reset:focus, button.button-reset:hover {
   top: 1.875em;
 }
 
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-text p:last-child {
   margin-bottom: 0;
 }

@@ -8,6 +8,8 @@
 namespace MediaRonLLC\QuotesDLX\Admin;
 
 use MediaRonLLC\QuotesDLX\Functions as Functions;
+use MediaRonLLC\QuotesDLX\Options_Defaults as Options_Defaults;
+use MediaRonLLC\QuotesDLX\Themes\Themes_Addon as Themes;
 
 /**
  * Create the admin menu.
@@ -59,10 +61,33 @@ class Register_Menu {
 			Functions::get_plugin_version(),
 			true
 		);
+
+		// Enqueue admin fonts.
+		$admin_font_handles = array(
+			'quotes-dlx-gfont-source-sans-pro',
+			'quotes-dlx-gfont-lato',
+		);
+		foreach ( $admin_font_handles as $admin_handle ) {
+			wp_enqueue_style(
+				$admin_handle,
+				esc_url( Functions::get_plugin_url( 'dist/' . $admin_handle . '.css' ) ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
 		wp_enqueue_style(
 			'quotes-dlx-admin-css',
 			Functions::get_plugin_url( 'dist/quotes-dlx-admin-panel-css.css' ),
-			array(),
+			$admin_font_handles,
+			Functions::get_plugin_version(),
+			'all'
+		);
+		wp_enqueue_style(
+			'quotes-dlx-front-end-css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			$admin_font_handles,
 			Functions::get_plugin_version(),
 			'all'
 		);
@@ -80,10 +105,10 @@ class Register_Menu {
 		 */
 		$defaults = apply_filters(
 			'quotes_dlx_block_defaults',
-			array(
-				'theme' => 'blue',
-			)
+			Options_Defaults::get_options()
 		);
+
+		$themes = Themes::get_theme_data();
 
 		$script_options = array(
 			'plugin_url'             => Functions::get_plugin_uri(),
@@ -92,11 +117,11 @@ class Register_Menu {
 			'plugin_support_url'     => Functions::get_plugin_support_uri(),
 			'plugin_settings_url'    => Functions::get_plugin_settings_uri(),
 			'defaults'               => $defaults,
+			'themes'                 => $themes,
 			'options_save_nonce'     => wp_create_nonce( Functions::get_admin_save_nonce() ),
 			'options_retrieve_nonce' => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
 			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 			'jetpack_plugin_active'  => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
-			'core_theme_blue'        => Functions::get_plugin_url( 'images/core-theme-blue.jpg' ),
 			'image_dir'              => Functions::get_plugin_url( 'images' ),
 		);
 

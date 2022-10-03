@@ -238,7 +238,7 @@ class Functions {
 		 *
 		 * @param string Plugin Support URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_support_uri', 'https://wordpress.org/support/plugin/quotes-dlx/' );
+		return apply_filters( 'quotes_dlx_plugin_support_uri', 'https://dlxplugins.com/support/' );
 	}
 
 	/**
@@ -254,7 +254,7 @@ class Functions {
 		 *
 		 * @param string Plugin Docs URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://mediaron.com/plugins/quotes-dlx/docs/' );
+		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://qdlx.dlxplugins.com/' );
 	}
 
 	/**
@@ -270,7 +270,7 @@ class Functions {
 		 *
 		 * @param string Plugin ratings URI.
 		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://wordpress.org/support/plugin/quotes-dlx/reviews/' );
+		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://dlxplugins.com/support/' );
 	}
 
 	/**
@@ -285,6 +285,317 @@ class Functions {
 				admin_url( 'options-general.php' )
 			)
 		);
+	}
+
+	/**
+	 * Retrieve the site theme's colors.
+	 *
+	 * Get default color pallette. From: https://www.wpdiaries.com/gutenberg-color-palette/.
+	 *
+	 * @return array colors.
+	 */
+	public static function get_site_theme_colors() {
+		$color_palette = array();
+
+		// Try to get theme setup colors (if available).
+		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
+
+		if ( false !== $theme_json_color_palette && is_array( $theme_setup_color_palette ) ) {
+			$color_palette = $theme_setup_color_palette;
+		}
+
+		// Now try to get theme.json colors.
+		if ( class_exists( 'WP_Theme_JSON_Resolver' ) ) {
+			$settings                 = \WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
+			$theme_json_color_palette = $settings['color']['palette']['theme'] ?? array();
+
+			if ( ! empty( $theme_json_color_palette ) && is_array( $theme_json_color_palette ) ) {
+				$color_palette = array_merge( $color_palette, $theme_json_color_palette );
+			}
+		}
+		return $color_palette;
+	}
+
+	/**
+	 * Retrieve the default primary font slug.
+	 */
+	public static function get_default_primary_font_slug() {
+		return 'lato';
+	}
+
+	/**
+	 * Retrieve the default secondary font slug.
+	 */
+	public static function get_default_secondary_font_slug() {
+		return 'open-sans';
+	}
+
+	/**
+	 * Clear the font cache.
+	 */
+	public static function remove_font_cache() {
+		wp_cache_delete( 'quotes_dlx_font_files', 'quotes-dlx' );
+	}
+
+	/**
+	 * Retrieve the primary font CSS argument for font-family.
+	 */
+	public static function get_primary_font_family_css() {
+		$options = Options_Advanced::get_options();
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_fonts'] ) {
+			return 'inherit';
+		}
+
+		// Retrieve font variables.
+		$font        = $options['primary_font_family'];
+		$custom_font = $options['custom_font_primary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the primary font CSS argument for font-family.
+	 *
+	 * @param bool $theme_slug The slug of the theme.
+	 */
+	public static function get_theme_primary_font_family_css( $theme_slug ) {
+		$options = Options_Theme::get_options( $theme_slug );
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_custom_fonts'] ) {
+			return false;
+		}
+
+		// Retrieve font variables.
+		$font        = $options['primary_font_family'];
+		$custom_font = $options['custom_font_primary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the secondary font CSS argument for font-family.
+	 *
+	 * @param bool $theme_slug The slug of the theme.
+	 */
+	public static function get_theme_secondary_font_family_css( $theme_slug ) {
+		$options = Options_Theme::get_options( $theme_slug );
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_custom_fonts'] ) {
+			return false;
+		}
+
+		// Retrieve font variables.
+		$font        = $options['secondary_font_family'];
+		$custom_font = $options['custom_font_secondary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve a primary or secondary font family.
+	 *
+	 * @param string $primary_or_secondary 'primary' or 'secondary'.
+	 * @param string $theme_slug            Theme slug to retrieve custom options from.
+	 * @param bool   $format_for_display    Whether to format it for display.
+	 *
+	 * @return string font family.
+	 */
+	public static function get_font_family( $primary_or_secondary = 'primary', $theme_slug = '', $format_for_display = false ) {
+		$options = Options_Advanced::get_options();
+		if ( 'primary' === $primary_or_secondary ) {
+			$font = $options['primary_font_family'];
+		} else {
+			$font = $options['secondary_font_family'];
+		}
+
+		// Get theme specific fonts that override the advanced options.
+		$maybe_theme_specific_font = '';
+		if ( ! empty( $theme_slug ) ) {
+			$options = Options_Theme::get_options( $theme_slug );
+			if ( 'primary' === $primary_or_secondary ) {
+				$maybe_theme_specific_font = $options['primary_font_family'] ?? '';
+			} else {
+				$maybe_theme_specific_font = $options['secondary_font_family'] ?? '';
+			}
+		}
+		if ( ! empty( $maybe_theme_specific_font ) ) {
+			$font = $maybe_theme_specific_font;
+		}
+
+		// Now get theme-specific options.
+
+		if ( ! $format_for_display ) {
+			return $font;
+		}
+		if ( self::is_adobe_font( $font ) ) {
+			return $font;
+		}
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Format font family for output into CSS.
+	 *
+	 * @param string $font_family Font family to convert.
+	 *
+	 * @return string font family.
+	 */
+	public static function format_font_family( $font_family ) {
+		$font_family = sanitize_title( $font_family );
+		if ( self::is_adobe_font( $font_family ) ) {
+			return $font_family;
+		}
+		// Must be a google font.
+		$font_family = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font_family ) ) ) . '"';
+		return $font_family;
+	}
+
+	/**
+	 * Retrieve the secondary font CSS argument for font-family.
+	 */
+	public static function get_secondary_font_family_css() {
+		$options = Options_Advanced::get_options();
+
+		// Make sure fonts are enabled.
+		if ( ! (bool) $options['enable_fonts'] ) {
+			return 'inherit';
+		}
+
+		// Retrieve font variables.
+		$font        = $options['secondary_font_family'];
+		$custom_font = $options['custom_font_secondary'];
+
+		if ( 'custom' === $font ) {
+			return esc_attr( str_replace( ';', '', $custom_font ) ) . ';';
+		}
+
+		if ( self::is_adobe_font( $font ) ) {
+			return esc_attr( $font ) . ';';
+		}
+		// Must be a google font.
+		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
+		return $font;
+	}
+
+	/**
+	 * Retrieve the plugin settings.
+	 *
+	 * @param string $font_family_slug The font family slug.
+	 *
+	 * @return bool|string false on path failure, URL if success..
+	 */
+	public static function get_font_family_stylesheet_path( $font_family_slug ) {
+		$font_family_slug = sanitize_title( $font_family_slug );
+		if ( self::is_adobe_font( $font_family_slug ) ) {
+			return Adobe_Fonts::get_adobe_fonts_url();
+		}
+		$font_css_path       = 'dist/quotes-dlx-gfont-' . $font_family_slug . '.css';
+		$stylesheet_dir_path = self::get_plugin_dir( $font_css_path );
+		if ( file_exists( $stylesheet_dir_path ) ) {
+			return self::get_plugin_url( $font_css_path );
+		}
+		return false;
+	}
+
+	/**
+	 * Determines if a font is adobe or not.
+	 *
+	 * @param string $font_slug Font slug to check.
+	 *
+	 * @return bool true of adobe font, false if not.
+	 */
+	public static function is_adobe_font( $font_slug ) {
+		$font_slug           = sanitize_title( $font_slug );
+		$options             = Options_Advanced::get_options();
+		$adobe_fonts_enabled = (bool) $options['enable_adobe_fonts'];
+		if ( ! $adobe_fonts_enabled ) {
+			return false;
+		}
+
+		$adobe_fonts = $options['adobe_fonts'];
+		foreach ( $adobe_fonts as $adobe_font ) {
+			if ( $adobe_font['slug'] === $font_slug ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Retrieve theme font-sizes for a value.
+	 *
+	 * @param string $template   The template to retrieve the font-sizes for.
+	 * @param string $key        Can be font_size, line_height, button_font_size.
+	 * @param string $breakpoint The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+	 */
+	public static function get_theme_font_sizes( $template, $key, $breakpoint ) {
+		$saved_theme_options             = Options_Theme::get_options();
+		$theme_default_font_size_options = Options_Theme::get_default_sizes( $breakpoint );
+
+		$return_value = $saved_theme_options[ $template ][ $breakpoint ][ $key ] ?? $theme_default_font_size_options[ $key ];
+		/**
+		 * Filter the font size for a given key.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $return_value Value to return.
+		 * @param string $template     The template to retrieve the font-sizes for.
+		 * @param string $key          Can be font_size, line_height, button_font_size.
+		 * @param string $breakpoint   The breakpoint to retrieve the font-size for. (can be desktop|tablet|mobile).
+		 */
+		return apply_filters( 'quotes_dlx_get_theme_font_sizes', $return_value, $template, $key, $breakpoint );
+	}
+
+	/**
+	 * Get's a user's IP address (or at least tries to).
+	 */
+	public static function get_user_ip() {
+		if ( array_key_exists( 'HTTP_X_FORWARDED_FOR', $_SERVER ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			if ( strpos( $_SERVER['HTTP_X_FORWARDED_FOR'], ',' ) > 0 ) {
+				$addr = explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+				return trim( $addr[0] );
+			} else {
+				return $_SERVER['HTTP_X_FORWARDED_FOR'];
+			}
+		} else {
+			return $_SERVER['REMOTE_ADDR'];
+		}
 	}
 
 	/**

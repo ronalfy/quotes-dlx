@@ -7,6 +7,8 @@
 
 namespace MediaRonLLC\QuotesDLX;
 
+use MediaRonLLC\QuotesDLX\Admin\Plugin_License as License;
+
 /**
  * Helper class for registering Ajax calls.
  */
@@ -20,7 +22,7 @@ class Ajax {
 	public static function run() {
 		$self = new self();
 
-		// For saving/resettign the default options.
+		// For saving/resetting the default options.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_defaults', array( static::class, 'ajax_retrieve_options_defaults' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_admin_options_defaults', array( static::class, 'ajax_save_options_defaults' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_defaults', array( static::class, 'ajax_reset_options_defaults' ) );
@@ -33,7 +35,307 @@ class Ajax {
 		// For saving/resetting the themes defaults.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_themes_defaults', array( static::class, 'ajax_retrieve_themes_defaults' ) );
 
+		// For retrieving/validating/revoking plugin license.
+		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_license_core', array( static::class, 'ajax_retrieve_license_core' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
+		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
+
+		// For retrieving a theme's options.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_options', array( static::class, 'ajax_get_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_options', array( static::class, 'ajax_save_theme_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_options', array( static::class, 'ajax_reset_theme_options' ) );
+
+		// Theme preview for font-size and line-height for desktop|tablet|mobile.
+		add_action( 'wp_ajax_quotes_dlx_theme_preview', array( static::class, 'ajax_theme_preview' ) );
+
+		// For saving, resetting, getting theme size options.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_size_options', array( static::class, 'ajax_get_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_size_options', array( static::class, 'ajax_save_theme_size_options' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_size_options', array( static::class, 'ajax_reset_theme_size_options' ) );
+
+		// For saving/resetting the advanced options.
+		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_advanced', array( static::class, 'ajax_retrieve_options_advanced' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_admin_options_advanced', array( static::class, 'ajax_save_options_advanced' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_advanced', array( static::class, 'ajax_reset_options_advanced' ) );
+
+		// For saving, resetting, and retrieving individual font CSS.
+		add_action( 'wp_ajax_quotes_dlx_get_theme_font_families', array( static::class, 'ajax_get_theme_font_families' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_theme_font_families', array( static::class, 'ajax_save_theme_font_families' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_theme_font_families', array( static::class, 'ajax_reset_theme_font_families' ) );
+
+		// For enabling or disabling the beta program.
+		add_action( 'wp_ajax_quotes_dlx_save_beta_option', array( static::class, 'ajax_save_beta_option' ) );
+
+		// For resetting all options.
+		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
+
 		return $self;
+	}
+
+	/**
+	 * Save whether the licensee is opted in to betas.
+	 */
+	public static function ajax_save_beta_option() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$beta    = (bool) filter_input( INPUT_POST, 'beta', FILTER_VALIDATE_BOOLEAN );
+		$options = Options_License::get_options();
+		if ( $beta ) {
+			$options['beta'] = true;
+		} else {
+			$options['beta'] = false;
+		}
+		Options_License::update_options( '', $options, true );
+
+		wp_send_json_success( $options );
+	}
+
+	/**
+	 * Reset all options.
+	 */
+	public static function ajax_reset_all_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Reset all the things.
+		Options_Defaults::reset( true );
+		Options_License::reset( true );
+		Options_Menu::reset( true );
+		Options_Theme::reset( true );
+
+		wp_send_json_success( array() );
+	}
+	/**
+	 * Retrieve the theme size options.
+	 */
+	public static function ajax_get_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+
+		// Get saved colors.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size        = $theme_options[ $template_slug ][ $screen_size ]['font_size'] ?? Options_Theme::get_default_size( $screen_size, 'font_size' );
+		$theme_line_height      = $theme_options[ $template_slug ][ $screen_size ]['line_height'] ?? Options_Theme::get_default_size( $screen_size, 'line_height' );
+		$theme_button_font_size = $theme_options[ $template_slug ][ $screen_size ]['button_font_size'] ?? Options_Theme::get_default_size( $screen_size, 'button_font_size' );
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => $theme_font_size,
+				'lineHeight'     => $theme_line_height,
+				'buttonFontSize' => $theme_button_font_size,
+			)
+		);
+
+	}
+
+	/**
+	 * Resize theme size options.
+	 */
+	public static function ajax_reset_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size   = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$theme_options = Options_Theme::get_options();
+
+		if ( ! isset( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		$theme_options[ $template_slug ][ $screen_size ] = Options_Theme::get_default_sizes( $screen_size );
+		Options_Theme::update_options( $template_slug, $theme_options );
+
+		wp_send_json_success(
+			array(
+				'fontSize'       => Options_Theme::get_default_size( $screen_size, 'font_size' ),
+				'lineHeight'     => Options_Theme::get_default_size( $screen_size, 'line_height' ),
+				'buttonFontSize' => Options_Theme::get_default_size( $screen_size, 'button_font_size' ),
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Save theme size options.
+	 */
+	public static function ajax_save_theme_size_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug    = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$screen_size      = sanitize_key( filter_input( INPUT_POST, 'screen', FILTER_DEFAULT ) );
+		$font_size        = absint( filter_input( INPUT_POST, 'fontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$button_font_size = absint( filter_input( INPUT_POST, 'buttonFontSize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height      = (float) filter_input( INPUT_POST, 'lineHeight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$theme_options    = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		// Check to see if screen size is part of the array.
+		if ( ! isset( $theme_options[ $template_slug ][ $screen_size ] ) || ! is_array( $theme_options[ $template_slug ][ $screen_size ] ) ) {
+			$theme_options[ $template_slug ][ $screen_size ] = array();
+		}
+
+		// Now store options.
+		$theme_options[ $template_slug ][ $screen_size ]['font_size']        = $font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['button_font_size'] = $button_font_size;
+		$theme_options[ $template_slug ][ $screen_size ]['line_height']      = $line_height;
+		Options_Theme::update_options( '', $theme_options );
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your theme sizes have been saved.', 'quotes-dlx' ),
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Retrieve the theme font families.
+	 */
+	public static function ajax_get_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+
+		$theme_options = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+		$enable_custom_fonts   = (bool) $theme_options[ $template_slug ]['enable_custom_fonts'] ?? false;
+		$custom_font_primary   = $theme_options[ $template_slug ]['custom_font_primary'] ?? '';
+		$custom_font_secondary = $theme_options[ $template_slug ]['custom_font_secondary'] ?? '';
+		$primary_font_family   = $theme_options[ $template_slug ]['primary_font_family'] ?? '';
+		$secondary_font_family = $theme_options[ $template_slug ]['secondary_font_family'] ?? '';
+
+		if ( '' === $primary_font_family ) {
+			$primary_font_family = Functions::get_default_primary_font_slug();
+		}
+		if ( '' === $secondary_font_family ) {
+			$secondary_font_family = Functions::get_default_secondary_font_slug();
+		}
+
+		$adobe_fonts = Options_Advanced::get_options( 'adobe_fonts' );
+
+		wp_send_json_success(
+			array(
+				'adobeFonts'          => $adobe_fonts,
+				'enableAdobeFonts'    => (bool) Options_Advanced::get_options( 'enable_adobe_fonts' ),
+				'enableCustomFonts'   => $enable_custom_fonts,
+				'customFontPrimary'   => $custom_font_primary,
+				'customFontSecondary' => $custom_font_secondary,
+				'primaryFontFamily'   => $primary_font_family,
+				'secondaryFontFamily' => $secondary_font_family,
+			)
+		);
+
+	}
+
+	/**
+	 * Save form options for custom font families.
+	 */
+	public static function ajax_save_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
+
+		$form_data = $_POST['form_data']; // expect array.
+
+		// Get the active template.
+		$template_slug         = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$enable_custom_fonts   = (bool) filter_input( INPUT_POST, 'enableCustomFonts', FILTER_DEFAULT );
+		$custom_font_primary   = sanitize_text_field( filter_input( INPUT_POST, 'customFontPrimary', FILTER_DEFAULT ) );
+		$custom_font_secondary = sanitize_text_field( filter_input( INPUT_POST, 'customFontSecondary', FILTER_DEFAULT ) );
+		$font_primary          = sanitize_text_field( filter_input( INPUT_POST, 'primaryFontFamily', FILTER_DEFAULT ) );
+		$font_secondary        = sanitize_text_field( filter_input( INPUT_POST, 'secondaryFontFamily', FILTER_DEFAULT ) );
+		$theme_options         = Options_Theme::get_options();
+
+		// Check to see if template slug is an array.
+		if ( ! isset( $theme_options[ $template_slug ] ) || ! is_array( $theme_options[ $template_slug ] ) ) {
+			$theme_options[ $template_slug ] = array();
+		}
+
+		// Now store options.
+		$theme_options[ $template_slug ]['enable_custom_fonts']   = $enable_custom_fonts;
+		$theme_options[ $template_slug ]['custom_font_primary']   = $custom_font_primary;
+		$theme_options[ $template_slug ]['custom_font_secondary'] = $custom_font_secondary;
+		$theme_options[ $template_slug ]['primary_font_family']   = $font_primary;
+		$theme_options[ $template_slug ]['secondary_font_family'] = $font_secondary;
+
+		// Store per-theme options.
+		Options_Theme::update_options( '', $theme_options );
+		wp_send_json_success(
+			$theme_options[ $template_slug ],
+		);
+	}
+
+	/**
+	 * Reset the theme font fmailies.
+	 */
+	public static function ajax_reset_theme_font_families() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
+
+		// Get the active template.
+		$template_slug = sanitize_key( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$theme_options = Options_Theme::get_options();
+
+		$keys_to_unset = array(
+			'enable_custom_fonts',
+			'custom_font_primary',
+			'custom_font_secondary',
+			'primary_font_family',
+			'secondary_font_family',
+		);
+
+		if ( isset( $theme_options[ $template_slug ] ) && is_array( $theme_options[ $template_slug ] ) ) {
+			foreach ( $keys_to_unset as $key ) {
+				unset( $theme_options[ $template_slug ][ $key ] );
+			}
+		}
+
+		Options_Theme::update_options( $template_slug, $theme_options );
+
+		wp_send_json_success(
+			array(
+				'enableCustomFonts'   => false,
+				'customFontPrimary'   => '',
+				'customFontSecondary' => '',
+				'primaryFontFamily'   => Functions::get_default_primary_font_slug(),
+				'secondaryFontFamily' => Functions::get_default_secondary_font_slug(),
+			)
+		);
+		exit;
 	}
 
 	/**
@@ -66,6 +368,44 @@ class Ajax {
 	}
 
 	/**
+	 * Retrieve admin options for the defaults view.
+	 */
+	public static function ajax_retrieve_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		} else {
+			$defaults = Options_Advanced::get_options();
+			wp_send_json_success(
+				array(
+					'desktop_breakpoint'            => $defaults['desktop_breakpoint'],
+					'tablet_breakpoint'             => $defaults['tablet_breakpoint'],
+					'mobile_breakpoint'             => $defaults['mobile_breakpoint'],
+					'desktop_breakpoint_unit'       => $defaults['desktop_breakpoint_unit'],
+					'tablet_breakpoint_unit'        => $defaults['tablet_breakpoint_unit'],
+					'mobile_breakpoint_unit'        => $defaults['mobile_breakpoint_unit'],
+					'enable_fonts'                  => (bool) $defaults['enable_fonts'],
+					'custom_font_primary'           => $defaults['custom_font_primary'],
+					'custom_font_secondary'         => $defaults['custom_font_secondary'],
+					'enable_adobe_typekit'          => (bool) $defaults['enable_adobe_fonts'],
+					'adobe_project_id'              => $defaults['adobe_project_id'],
+					'adobe_fonts'                   => $defaults['adobe_fonts'] ?? array(),
+					'activate_adobe_fonts_admin'    => (bool) $defaults['activate_adobe_fonts_admin'],
+					'activate_adobe_fonts_frontend' => (bool) $defaults['activate_adobe_fonts_frontend'],
+					'template'                      => Options_Defaults::get_options( 'template' ),
+					'primary_font_family'           => $defaults['primary_font_family'],
+					'secondary_font_family'         => $defaults['secondary_font_family'],
+					'facebook_app_id'               => $defaults['facebook_app_id'],
+					'recaptcha_enabled'             => (bool) $defaults['recaptcha_enabled'],
+					'recaptcha_site_key'            => $defaults['recaptcha_site_key'],
+					'recaptcha_secret_key'          => $defaults['recaptcha_secret_key'],
+					'recaptcha_score_threshold'     => (float) $defaults['recaptcha_score_threshold'],
+
+				)
+			);
+		}
+	}
+
+	/**
 	 * Retrieve admin options for the defaults menus view.
 	 */
 	public static function ajax_retrieve_menu_options_defaults() {
@@ -92,6 +432,12 @@ class Ajax {
 		$form_data = $_POST['form_data']; // expect array.
 		foreach ( $form_data as $field => $field_value ) {
 			switch ( $field ) {
+				case 'enableGlobalContextualMenu':
+					$options_to_save['enable_global_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableEmailText':
+					$options_to_save['enable_email_text'] = ( 'true' === $field_value ) ? true : false;
+					break;
 				case 'enableContextualMenu':
 					$options_to_save['enable_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
 					break;
@@ -106,6 +452,27 @@ class Ajax {
 					break;
 				case 'enableTweetThis':
 					$options_to_save['enable_tweet_this'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableShareThis':
+					$options_to_save['enable_share_this'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'copyTextLabel':
+					$options_to_save['copy_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'emailTextLabel':
+					$options_to_save['email_text_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyTweetLabel':
+					$options_to_save['copy_tweet_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'copyLinkLabel':
+					$options_to_save['copy_link_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetThisLabel':
+					$options_to_save['tweet_this_label'] = sanitize_text_field( $field_value );
+					break;
+				case 'shareThisLabel':
+					$options_to_save['share_this_label'] = sanitize_text_field( $field_value );
 					break;
 			}
 		}
@@ -147,6 +514,361 @@ class Ajax {
 	}
 
 	/**
+	 * Content for the theme preview modal popup. Loaded in an iframe.
+	 */
+	public static function ajax_theme_preview() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Invalid request.' );
+		}
+
+		$template              = sanitize_text_field( filter_input( INPUT_GET, 'template', FILTER_DEFAULT ) );
+		$font_size             = absint( filter_input( INPUT_GET, 'fontsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$line_height           = (float) filter_input( INPUT_GET, 'lineheight', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		$screen                = sanitize_text_field( filter_input( INPUT_GET, 'screen', FILTER_DEFAULT ) );
+		$button_font_size      = absint( filter_input( INPUT_GET, 'buttonsize', FILTER_SANITIZE_NUMBER_INT ) );
+		$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+		$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
+
+		// Make sure fonts are enabled.
+		$enable_fonts = (bool) Options_Advanced::get_options( 'enable_fonts' );
+
+		// Double check font families.
+		if ( '' === $primary_font_family && $enable_fonts ) {
+			$primary_font_family = Functions::get_font_family( 'primary', $template, true );
+		}
+		if ( '' === $secondary_font_family && $enable_fonts ) {
+			$secondary_font_family = Functions::get_font_family( 'secondary', $template, true );
+		}
+
+		wp_register_script(
+			'qdlx_twitter_actions',
+			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
+			array( 'wp-i18n' ),
+			Functions::get_plugin_version(),
+			false
+		);
+		wp_register_script(
+			'qdlx_twitter_preview_js',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			false
+		);
+
+		// Get stylesheet path.
+		$theme_template = Themes\Themes_Addon::get_theme_data( $template );
+		if ( $theme_template ) {
+			wp_register_style(
+				'qdlx_theme_css',
+				esc_url( $theme_template['stylesheet'] ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+
+		wp_register_style(
+			'qdlx_preview_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		wp_register_style(
+			'qdlx_frontend_css',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Try to load font stylesheets.
+		if ( $enable_fonts ) {
+			$primary_font_css_url   = Functions::get_font_family_stylesheet_path( $primary_font_family );
+			$secondary_font_css_url = Functions::get_font_family_stylesheet_path( $secondary_font_family );
+
+			if ( $primary_font_css_url ) {
+				wp_register_style(
+					'qdlx_primary_font_css',
+					$primary_font_css_url,
+					array(),
+					Functions::get_plugin_version(),
+					'all'
+				);
+			}
+
+			if ( $secondary_font_css_url ) {
+				wp_register_style(
+					'qdlx_secondary_font_css',
+					$secondary_font_css_url,
+					array(),
+					Functions::get_plugin_version(),
+					'all'
+				);
+			}
+		}
+
+		// Get localized vars.
+		$themes = Themes\Themes_Addon::get_theme_data( $template );
+		if ( ! $themes ) {
+			wp_die( 'Could not find a theme' );
+		}
+		$theme_default_colors = $themes['colors'];
+		$theme_options        = Options_Theme::get_options();
+		$saved_colors         = $theme_options[ $template ]['colors'] ?? false;
+
+		// Check colors and set to defaults if it doesn't exist.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
+
+		// Double-check font-sizes.
+		if ( 0 === $font_size ) {
+			$font_size = '16';
+		}
+		if ( 0 === $button_font_size ) {
+			$button_font_size = '16';
+		}
+		if ( ! $line_height ) {
+			$line_height = 1.65;
+		}
+
+		// Output local vars.
+		wp_localize_script(
+			'qdlx_twitter_preview_js',
+			'qdlx_theme_preview',
+			array(
+				'stylesheet'            => esc_url( $theme['stylesheet'] ),
+				'theme'                 => $template,
+				'colors'                => $saved_colors,
+				'font_size'             => $font_size,
+				'line_height'           => (float) $line_height,
+				'button_font_size'      => $button_font_size,
+				'screen'                => $screen,
+				'primary_font_family'   => $enable_fonts ? $primary_font_family : 'inherit',
+				'secondary_font_family' => $enable_fonts ? $secondary_font_family : 'inherit',
+			)
+		);
+		?>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<?php
+				/**
+				 * Action to run before printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $template              The template name/slug.
+				 * @param string $primary_font_family   The primary font family slug.
+				 * @param string $secondary_font_family The secondary font family slug.
+				 */
+				do_action( 'quotes_dlx_before_modal_scripts', $template, $primary_font_family, $secondary_font_family );
+
+				/**
+				 * Filter the styles print arguments.
+				 *
+				 * Add more handles to print.
+				 *
+				 * @since 1.0.0
+				 */
+				$modal_styles = apply_filters(
+					'quotes_dlx_plugin_preview_modal_styles',
+					array(
+						'qdlx_theme_css',
+						'qdlx_twitter_preview_css',
+						'qdlx_font_css',
+						'qdlx_frontend_css',
+						'qdlx_primary_font_css',
+						'qdlx_secondary_font_css',
+					)
+				);
+				wp_print_styles(
+					$modal_styles
+				);
+				?>
+			</head>
+			<body>
+				<div id="qdlx-theme-preview" class="<?php echo esc_attr( $screen ); ?>"></div>
+				<?php
+					/**
+					 * Filter the scripts print arguments.
+					 *
+					 * Add more handles to print.
+					 *
+					 * @since 1.0.0
+					 */
+					$modal_scripts = apply_filters(
+						'quotes_dlx_plugin_preview_modal_scripts',
+						array(
+							'qdlx_twitter_actions',
+							'qdlx_twitter_preview_js',
+						)
+					);
+					wp_print_scripts( $modal_scripts );
+
+				/**
+				 * Action to run after printing modal scripts/styles.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $template              The template name/slug.
+				 * @param string $primary_font_family   The primary font family slug.
+				 * @param string $secondary_font_family The secondary font family slug.
+				 */
+				do_action( 'quotes_dlx_after_modal_scripts', $template, $primary_font_family, $secondary_font_family );
+				?>
+			</body>
+		</html>
+		<?php
+		exit;
+	}
+
+	/**
+	 * Retrieve theme colors.
+	 */
+	public static function ajax_get_theme_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
+
+		$themes = Themes\Themes_Addon::get_theme_data( $template_slug );
+
+		// Check that there's theme data.
+		if ( ! $themes ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'No theme data could be found.', 'quotes-dlx' ),
+				)
+			);
+		}
+
+		// We have a theme.
+		$theme_default_colors = $themes['colors'];
+
+		// Get saved colors.
+		$theme_options = Options_Theme::get_options();
+		$saved_colors  = $theme_options[ $template_slug ]['colors'] ?? false;
+
+		// Get saved font size.
+		$theme_font_size_desktop   = $theme_options[ $template_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $template_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $template_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1;
+
+		// Check saved colors and set to defaults if not set.
+		if ( false === $saved_colors || ! is_array( $saved_colors ) || empty( $saved_colors ) ) {
+			$saved_colors = $theme_default_colors;
+		}
+
+		// Get theme colors and merge with default colors.
+		// $theme_color_palette  = Functions::get_site_theme_colors(); // phpcs:ignore.
+
+		// Retrieve font families and stylsheets.
+		$primary_font       = Functions::get_font_family( 'primary' );
+		$secondary_font     = Functions::get_font_family( 'secondary' );
+		$format_for_display = true;
+
+		wp_send_json_success(
+			array(
+				'colors'                    => $saved_colors,
+				'defaults'                  => $theme_default_colors,
+				'font_size_desktop'         => $theme_options[ $template_slug ]['font_size_desktop'] ?? 16,
+				'line_height_desktop'       => $theme_options[ $template_slug ]['line_height_desktop'] ?? 1.65,
+				'button_font_size_desktop'  => $theme_options[ $template_slug ]['button_font_size_desktop'] ?? 16,
+				'font_size_tablet'          => $theme_options[ $template_slug ]['font_size_tablet'] ?? 14,
+				'line_height_tablet'        => $theme_options[ $template_slug ]['line_height_tablet'] ?? 1.1,
+				'button_font_size_tablet'   => $theme_options[ $template_slug ]['button_font_size_tablet'] ?? 14,
+				'font_size_mobile'          => $theme_options[ $template_slug ]['font_size_mobile'] ?? 12,
+				'line_height_mobile'        => $theme_options[ $template_slug ]['line_height_mobile'] ?? 1.1,
+				'button_font_size_mobile'   => $theme_options[ $template_slug ]['button_font_size_mobile'] ?? 12,
+				'font_primary'              => sanitize_text_field( Functions::get_font_family( 'primary', $format_for_display ) ),
+				'font_secondary'            => sanitize_text_field( Functions::get_font_family( 'secondary', $format_for_display ) ),
+				'font_primary_stylesheet'   => esc_url( Functions::get_font_family_stylesheet_path( $primary_font ) ),
+				'font_secondary_stylesheet' => esc_url( Functions::get_font_family_stylesheet_path( $secondary_font ) ),
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset theme color options.
+	 */
+	public static function ajax_reset_theme_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+
+		// Get default and saved colors for return.
+		$themes                     = Themes\Themes_Addon::get_theme_data();
+		$theme_default_saved_colors = array();
+		$theme_default_colors       = array();
+		foreach ( $themes as $theme ) {
+			if ( $template_slug === $theme['slug'] ) {
+				$theme_default_saved_colors = $theme['colors'];
+				$theme_default_colors       = $theme['colors'];
+				break;
+			}
+		}
+
+		// Reset options.
+		$theme_options = Options_Theme::get_options();
+		if ( isset( $theme_options[ $template_slug ]['colors'] ) ) {
+			unset( $theme_options[ $template_slug ]['colors'] );
+		}
+		Options_Theme::update_options( '', $theme_options, true );
+
+		wp_send_json_success(
+			array(
+				'colors'   => $theme_default_saved_colors,
+				'defaults' => $theme_default_colors,
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Reset form options for contextual menu options.
+	 */
+	public static function ajax_save_theme_options() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'template', FILTER_DEFAULT ) );
+		$colors        = filter_input( INPUT_POST, 'colors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+
+		// Sanitize colors.
+		$sanitized_colors = array();
+		foreach ( $colors as $color ) {
+			$sanitized_colors[] = array(
+				'name'  => sanitize_text_field( $color['name'] ),
+				'color' => sanitize_text_field( $color['color'] ),
+				'slug'  => sanitize_text_field( $color['slug'] ),
+			);
+		}
+
+		$theme_options                             = Options_Theme::get_options( '', true );
+		$theme_options[ $template_slug ]['colors'] = $sanitized_colors;
+		Options_Theme::update_options( '', $theme_options, true );
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your theme colors have been saved.', 'quotes-dlx' ),
+			)
+		);
+		exit;
+	}
+
+	/**
 	 * Save form options for default options.
 	 */
 	public static function ajax_save_options_defaults() {
@@ -154,14 +876,14 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$options_to_save = array();
+		$options_to_save = Options_Defaults::get_options();
 
 		$form_data = $_POST['form_data']; // expect array.
 
 		// Ajax doesn't like empty arrays.
-		if ( isset( $form_data['twitterHashtags'] ) ) {
-			if ( empty( $form_data['twitterHashtags'] ) ) {
-				$form_data['twitterHashtags'] = array();
+		if ( isset( $form_data['hashtags'] ) ) {
+			if ( empty( $form_data['hashtags'] ) ) {
+				$form_data['hashtags'] = array();
 			}
 		}
 
@@ -219,6 +941,18 @@ class Ajax {
 				case 'template':
 					$options_to_save['template'] = sanitize_text_field( $field_value );
 					break;
+				case 'facebookShareButtonText':
+					$options_to_save['facebook_share_button_text'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookButtonEnabled':
+					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'iconAppearance':
+					$options_to_save['icon_appearance'] = sanitize_text_field( $field_value );
+					break;
+				default:
+					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
+					break;
 			}
 		}
 
@@ -227,6 +961,108 @@ class Ajax {
 		$options_to_return = array();
 		// Format saved fields.
 		foreach ( $options_to_save as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
+	}
+
+	/**
+	 * Save form options for default options.
+	 */
+	public static function ajax_save_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
+
+		$options_to_save = Options_Advanced::get_options();
+
+		$form_data = $_POST['form_data']; // expect array.
+
+		// Iterate and sanitize.
+		foreach ( $form_data as $field => $field_value ) {
+			switch ( $field ) {
+				case 'enableFonts':
+					$options_to_save['enable_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'customFontPrimary':
+					$options_to_save['custom_font_primary'] = sanitize_text_field( $field_value );
+					break;
+				case 'customFontSecondary':
+					$options_to_save['custom_font_secondary'] = sanitize_text_field( $field_value );
+					break;
+				case 'primaryFontFamily':
+					$options_to_save['primary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'secondaryFontFamily':
+					$options_to_save['secondary_font_family'] = sanitize_text_field( $field_value );
+					break;
+				case 'enableAdobeFonts':
+					$options_to_save['enable_adobe_fonts'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'adobeProjectId':
+					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookAppId':
+					$options_to_save['facebook_app_id'] = sanitize_text_field( $field_value );
+					break;
+				case 'activateAdobeFontsAdmin':
+					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'activateAdobeFontsFrontend':
+					$options_to_save['activate_adobe_fonts_frontend'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaEnabled':
+					$options_to_save['recaptcha_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'recaptchaSiteKey':
+					$options_to_save['recaptcha_site_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaSecretKey':
+					$options_to_save['recaptcha_secret_key'] = sanitize_text_field( $field_value );
+					break;
+				case 'recaptchaScoreThreshold':
+					$options_to_save['recaptchaScoreThreshold'] = (float) sanitize_text_field( $field_value );
+					break;
+			}
+		}
+
+		Options_Advanced::update_options( '', $options_to_save );
+
+		$options_to_return = array();
+		// Format saved fields.
+		foreach ( $options_to_save as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
+	}
+
+	/**
+	 * Reset form options for advanced options.
+	 */
+	public static function ajax_reset_options_advanced() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Clear font cache.
+		Functions::remove_font_cache();
+
+		$options           = Options_Advanced::reset();
+		$options_to_return = array();
+
+		// Format saved fields.
+		foreach ( $options as $field => $value ) {
 			// Convert to camelcase.
 			$new_field                       = Functions::to_camelcase( $field );
 			$options_to_return[ $new_field ] = $value;
@@ -266,7 +1102,8 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$theme_slug = Options_Defaults::get_options( 'theme' );
+		$theme_slug   = Options_Defaults::get_options( 'template' );
+		$enable_fonts = Options_Advanced::get_options( 'enable_fonts' );
 
 		// Retrieve categories.
 		$categories = Themes\Themes_Addon_Categories::get_categories();
@@ -284,11 +1121,98 @@ class Ajax {
 			}
 		}
 
+		// Get saved options.
+		$theme_options = Options_Theme::get_options();
+
+		// Get saved font size.
+		$theme_font_size_desktop   = $theme_options[ $theme_slug ]['font_size_desktop'] ?? 16;
+		$theme_line_height_desktop = $theme_options[ $theme_slug ]['line_height_desktop'] ?? 1.65;
+		$theme_font_size_tablet    = $theme_options[ $theme_slug ]['font_size_tablet'] ?? 14;
+		$theme_line_height_tablet  = $theme_options[ $theme_slug ]['line_height_tablet'] ?? 1.1;
+		$theme_font_size_mobile    = $theme_options[ $theme_slug ]['font_size_mobile'] ?? 12;
+		$theme_line_height_mobile  = $theme_options[ $theme_slug ]['line_height_mobile'] ?? 1.1;
+
 		wp_send_json_success(
 			array(
-				'theme' => $theme_slug,
-				'categories'    => $categories,
+				'template'            => $theme_slug,
+				'categories'          => $categories,
+				'font_size_desktop'   => $theme_font_size_desktop,
+				'line_height_desktop' => $theme_line_height_desktop,
+				'font_size_tablet'    => $theme_font_size_tablet,
+				'line_height_tablet'  => $theme_line_height_tablet,
+				'font_size_mobile'    => $theme_font_size_mobile,
+				'line_height_mobile'  => $theme_line_height_mobile,
+				'enable_fonts'        => (bool) $enable_fonts,
 			)
 		);
+	}
+
+	/**
+	 * Retrieve any saved license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_retrieve_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'check_license', '', true );
+
+		if ( $response['license_errors'] ) {
+			wp_send_json_error( $response );
+		}
+
+		$response['beta'] = Options_License::get_options( 'beta' );
+
+		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Save license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_save_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$license_key    = sanitize_text_field( filter_input( INPUT_POST, 'license_key', FILTER_DEFAULT ) );
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'activate_license', $license_key, true );
+
+		if ( $response['license_errors'] ) {
+			$license_helper->set_activated_status( false );
+			wp_send_json_error( $response );
+		}
+
+		if ( 'valid' === $response['license'] ) {
+			$license_helper->set_activated_status( true );
+			$response['license_valid']     = true;
+			$response['license_activated'] = true;
+		} else {
+			$license_helper->set_activated_status( false );
+			$response['license_valid']     = false;
+			$response['license_activated'] = false;
+		}
+		$response['quotesdlxLicense'] = $license_key;
+
+		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Revoke license data (labeled core in case there are additional add-ons).
+	 */
+	public static function ajax_revoke_license_core() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$license_helper = new License();
+		$response       = $license_helper->perform_action( 'deactivate_license' );
+
+		if ( ! $response['license_errors'] ) {
+			$license_helper->set_activated_status( false );
+			wp_send_json_success( $response );
+		}
+
+		wp_send_json_error( array() );
 	}
 }

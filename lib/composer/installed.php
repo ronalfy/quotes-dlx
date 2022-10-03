@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'e1d3dbc354ddeb86c0259cb46cb9d1b203863013',
+    'reference' => '4628e96c184bb29d01bfd6b782c46e2a9dfd152c',
     'name' => 'mediaronllc/quotes-dlx',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'e1d3dbc354ddeb86c0259cb46cb9d1b203863013',
+      'reference' => '4628e96c184bb29d01bfd6b782c46e2a9dfd152c',
     ),
   ),
 );

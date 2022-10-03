@@ -49,11 +49,20 @@ class Options_Menu extends Options_Abstract {
 		// Todo - Read values from block.json?
 		// Todo - Override block.json?
 		$defaults = array(
-			'enable_contextual_menu' => true,
-			'enable_copy_text'       => false,
-			'enable_copy_tweet'      => true,
-			'enable_copy_link'       => true,
-			'enable_tweet_this'      => true,
+			'enable_global_contextual_menu' => false,
+			'enable_contextual_menu'        => true,
+			'enable_email_text'             => false,
+			'enable_copy_text'              => true,
+			'enable_copy_tweet'             => true,
+			'enable_copy_link'              => true,
+			'enable_tweet_this'             => true,
+			'enable_share_this'             => false,
+			'email_text_label'              => __( 'Email Quote', 'quotes-dlx' ),
+			'copy_text_label'               => __( 'Copy Quote', 'quotes-dlx' ),
+			'copy_tweet_label'              => __( 'Copy Tweet', 'quotes-dlx' ),
+			'copy_link_label'               => __( 'Copy Link', 'quotes-dlx' ),
+			'tweet_this_label'              => __( 'Tweet This', 'quotes-dlx' ),
+			'share_this_label'              => __( 'Share This', 'quotes-dlx' ),
 		);
 
 		/**
@@ -69,9 +78,15 @@ class Options_Menu extends Options_Abstract {
 
 	/**
 	 * Clear/Reset the plugin auto-update options.
+	 *
+	 * @param bool $remove Whether to remove the options.
 	 */
-	public static function reset() {
-		self::update_options( '', self::get_defaults(), true );
+	public static function reset( $remove = false ) {
+		if ( $remove ) {
+			delete_site_option( self::$options_key );
+		} else {
+			self::update_options( '', self::get_defaults(), true );
+		}
 		return self::get_defaults();
 	}
 }

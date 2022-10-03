@@ -26,70 +26,105 @@ class Themes_Dark extends Themes_Addon {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static string $name = 'Dark Matter';
+	protected static $name = 'Dark Matter';
 
 	/**
 	 * Slug for the theme.
 	 *
 	 * @var string $slug The theme slug.
 	 */
-	protected static string $slug = 'dark-matter';
+	protected static $slug = 'dark-matter';
 
 	/**
 	 * Category for the theme.
 	 *
 	 * @var string $category The theme category.
 	 */
-	protected static string $category = 'core';
+	protected static $category = 'core';
 
 	/**
 	 * Theme version.
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static string $version = '1.0.2';
+	protected static $version = '1.0.3';
 
 	/**
 	 * Description for the theme.
 	 *
 	 * @var string $theme_description The theme description.
 	 */
-	protected static string $theme_description;
+	protected static $theme_description;
 
 	/**
 	 * Author name.
 	 *
 	 * @var string $author_name The author of the theme.
 	 */
-	protected static string $author_name = 'Ronald Huereca';
+	protected static $author_name = 'Ronald Huereca';
 
 	/**
 	 * Author URL.
 	 *
 	 * @var string $author_url URL for the author.
 	 */
-	protected static string $author_url = 'https://mediaron.com';
+	protected static $author_url = 'https://mediaron.com';
+
+	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static $full_width = 900;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static $full_height = 500;
 
 	/**
 	 * Theme color or gradient.
 	 *
 	 * @var string $preview_color The theme preview color hexcode or gradient color.
 	 */
-	protected static string $preview_gradient = 'linear-gradient(90deg, rgba(188,91,0,1) 14%, rgba(32,32,32,1) 85%);';
+	protected static $preview_gradient = 'linear-gradient(90deg, rgba(188,91,0,1) 14%, rgba(32,32,32,1) 85%);';
 
 	/**
 	 * Preview URL image for theme.
 	 *
 	 * @var string $preview_image_url The theme preview image URL.
 	 */
-	protected static string $preview_image_url = '';
+	protected static $preview_image_url = '';
 
 	/**
 	 * Stylesheet URL for enqueuing.
 	 *
 	 * @var string $stylesheet_url The stylesheet URL. Set 'core' for now stylesheet.
 	 */
-	protected static string $stylesheet_url = 'core';
+	protected static $stylesheet_url = 'core';
+
+	/**
+	 * Primary Color (hex code) for the theme.
+	 *
+	 * @var string $primary_color Primary color of theme.
+	 */
+	protected static $primary_color = '#cc7000';
+
+	/**
+	 * Secondary Color (hex code) for the theme.
+	 *
+	 * @var string $secondary_color Secondary color of theme.
+	 */
+	protected static $secondary_color = '#2B2B2B';
+
+	/**
+	 * Accent Color (hex code) for the theme.
+	 *
+	 * @var string $accent_color Accent color of theme.
+	 */
+	protected static $accent_color = '#FFFFFF';
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
@@ -184,5 +219,92 @@ class Themes_Dark extends Themes_Addon {
 	 */
 	protected static function get_version() {
 		return self::$version;
+	}
+
+	/**
+	 * Get the theme image preview width.
+	 *
+	 * @return int Theme image width.
+	 */
+	protected static function get_image_width() {
+		return self::$full_width;
+	}
+
+	/**
+	 * Get the theme image preview height.
+	 *
+	 * @return int Theme image height.
+	 */
+	protected static function get_image_height() {
+		return self::$full_height;
+	}
+
+	/**
+	 * Get the colors of the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
+	 */
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#2B2B2B',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Text Color', 'quotes-dlx' ),
+				'slug'  => 'text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Quote Bubble Inner Color', 'quotes-dlx' ),
+				'slug'  => 'quote-bubble-inner-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 	}
 }

@@ -10,6 +10,9 @@ const Wrapper = () => {
 		setContextualMenuDefaultsDirtyCount,
 	] = useState( 0 );
 	const [ themesDefaultsDirtyCount, setThemesDefaultsDirtyCount ] = useState( 0 );
+	const [ licensesDirtyCount, setLicensesDirtyCount ] = useState( 0 );
+	const [ advancedTabDirtyCount, setAdvancedTabDirtyCount ] = useState( 0 );
+	const [ defaultTheme, setDefaultTheme ] = useState( '' );
 	return (
 		<>
 			<Header />
@@ -21,6 +24,12 @@ const Wrapper = () => {
 					setContextualMenuDefaultsDirtyCount,
 					themesDefaultsDirtyCount,
 					setThemesDefaultsDirtyCount,
+					licensesDirtyCount,
+					setLicensesDirtyCount,
+					advancedTabDirtyCount,
+					setAdvancedTabDirtyCount,
+					defaultTheme,
+					setDefaultTheme,
 				} }
 			>
 				<AdminTabs />

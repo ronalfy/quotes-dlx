@@ -6,7 +6,7 @@ import { Notice as WPNotice } from '@wordpress/components';
 import classNames from 'classnames';
 
 const Notice = ( props ) => {
-	const { message, status, politeness, icon, className, inline, children } = props;
+	const { message, status, politeness, icon, className, inline, children, animate, animationType } = props;
 
 	useEffect( () => {
 		speak( message, politeness );
@@ -24,6 +24,9 @@ const Notice = ( props ) => {
 		[ `qdlx-admin__notice-type--${ status }` ]: true,
 		[ `qdlx-admin__notice-appearance--inline` ]: inline,
 		[ `qdlx-admin__notice-appearance--block` ]: ! inline,
+		[ `qdlx-admin__notice-animate` ]: animate,
+		[ `qdlx-admin__notice-animate--${ animationType }` ]: animate,
+
 	} );
 	return (
 		<div className={ containerClasses }>
@@ -44,6 +47,8 @@ Notice.defaultProps = {
 	icon: null,
 	className: '',
 	inline: false,
+	animate: false,
+	animationType: 'fadein',
 };
 
 Notice.propTypes = {
@@ -53,6 +58,8 @@ Notice.propTypes = {
 	icon: PropTypes.func,
 	className: PropTypes.string,
 	inline: PropTypes.bool,
+	animate: PropTypes.bool,
+	animatitionType: PropTypes.oneOf( [ 'fadein', 'fadeout' ] ),
 };
 
 export default Notice;

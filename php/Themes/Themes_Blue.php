@@ -26,70 +26,84 @@ class Themes_Blue extends Themes_Addon {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static string $name = 'Midnight Blue';
+	protected static $name = 'Midnight Blue';
 
 	/**
 	 * Slug for the theme.
 	 *
 	 * @var string $slug The theme slug.
 	 */
-	protected static string $slug = 'midnight-blue';
+	protected static $slug = 'midnight-blue';
 
 	/**
 	 * Category for the theme.
 	 *
 	 * @var string $category The theme category.
 	 */
-	protected static string $category = 'core';
+	protected static $category = 'core';
 
 	/**
 	 * Theme version.
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static string $version = '1.0.2';
+	protected static $version = '1.0.3';
 
 	/**
 	 * Description for the theme.
 	 *
 	 * @var string $theme_description The theme description.
 	 */
-	protected static string $theme_description;
+	protected static $theme_description;
 
 	/**
 	 * Author name.
 	 *
 	 * @var string $author_name The author of the theme.
 	 */
-	protected static string $author_name = 'Ronald Huereca';
+	protected static $author_name = 'Ronald Huereca';
 
 	/**
 	 * Author URL.
 	 *
 	 * @var string $author_url URL for the author.
 	 */
-	protected static string $author_url = 'https://mediaron.com';
+	protected static $author_url = 'https://mediaron.com';
 
 	/**
 	 * Theme color or gradient.
 	 *
 	 * @var string $preview_color The theme preview color hexcode or gradient color.
 	 */
-	protected static string $preview_gradient = 'linear-gradient(90deg, hsla(221, 62%, 61%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);';
+	protected static $preview_gradient = 'linear-gradient(90deg, hsla(221, 62%, 61%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);';
 
 	/**
 	 * Preview URL image for theme.
 	 *
 	 * @var string $preview_image_url The theme preview image URL.
 	 */
-	protected static string $preview_image_url = '';
+	protected static $preview_image_url = '';
 
 	/**
 	 * Stylesheet URL for enqueuing.
 	 *
 	 * @var string $stylesheet_url The stylesheet URL. Set 'core' for now stylesheet.
 	 */
-	protected static string $stylesheet_url = '';
+	protected static $stylesheet_url = '';
+
+	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static $full_width = 900;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static $full_height = 500;
 
 	/**
 	 * Returns an instance of this class, and stores it in the $instance property.
@@ -184,6 +198,93 @@ class Themes_Blue extends Themes_Addon {
 	 */
 	protected static function get_version() {
 		return self::$version;
+	}
+
+	/**
+	 * Get the theme image preview width.
+	 *
+	 * @return int Theme image width.
+	 */
+	protected static function get_image_width() {
+		return self::$full_width;
+	}
+
+	/**
+	 * Get the theme image preview height.
+	 *
+	 * @return int Theme image height.
+	 */
+	protected static function get_image_height() {
+		return self::$full_height;
+	}
+
+	/**
+	 * Get the colors of the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
+	 */
+	protected static function get_colors() {
+		return array(
+			array(
+				'name'  => __( 'Primary', 'quotes-dlx' ),
+				'slug'  => 'primary',
+				'color' => '#00316e',
+			),
+			array(
+				'name'  => __( 'Secondary', 'quotes-dlx' ),
+				'slug'  => 'secondary',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Accent', 'quotes-dlx' ),
+				'slug'  => 'accent',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Text Color', 'quotes-dlx' ),
+				'slug'  => 'text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Border Color', 'quotes-dlx' ),
+				'slug'  => 'border-color',
+				'color' => '#0876ff',
+			),
+			array(
+				'name'  => __( 'Buttons Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Buttons Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#00316e',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#2B2B2B',
+			),
+		);
 	}
 
 }

@@ -9,10 +9,14 @@
 }
 
 .quotes-dlx-meatball-content {
+	/* Hide any overflow for rounded corners */
+	ul {
+		overflow: hidden;
+	}
 	li.quotes-dlx-meatball-menu-item {
 		margin: 0;
 		padding: 0;
-		border-bottom: 1px solid #6c757d;
+		border-bottom: 1px solid transparent;
 
 		&:last-child {
 			border-bottom: 0;
@@ -27,6 +31,9 @@
 			color: #6c757d;
 			transition: all 0.3s ease-in-out;
 			text-transform: unset;
+			border: 0;
+			border-radius: 0;
+			margin: 0;
 			
 			svg path,
 			svg use {
@@ -58,5 +65,9 @@
 				}
 			} 
 		}
+		
 	}
+
+	
+
 }

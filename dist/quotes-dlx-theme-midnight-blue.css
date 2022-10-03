@@ -2,19 +2,71 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/themes/midnight-blue.scss ***!
   \********************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
 .quotes-dlx-block-theme-midnight-blue {
-  font-size: 16px;
+  font-size: var(--qdlx-midnight-blue-font-size-mobile, 14px);
+  /* If these are set, we're in a preview */
+  /* Show only the icon and not the button wrappers */
+  /* Meatball Menu */
+}
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-midnight-blue {
+    font-size: var(--qdlx-midnight-blue-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-midnight-blue {
+    font-size: var(--qdlx-midnight-blue-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-mobile {
+  font-size: var(--qdlx-midnight-blue-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-mobile .quotes-dlx-button {
+  font-size: var(--qdlx-midnight-blue-button-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-mobile .quotes-dlx-button-icon {
+  font-size: var(--qdlx-midnight-blue-button-font-size-mobile, 14px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-midnight-blue-button-font-size-mobile, 14px) / 2)) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-tablet {
+  font-size: var(--qdlx-midnight-blue-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-tablet .quotes-dlx-button {
+  font-size: var(--qdlx-midnight-blue-button-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-tablet .quotes-dlx-button-icon {
+  font-size: var(--qdlx-midnight-blue-button-font-size-tablet, 15px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-midnight-blue-button-font-size-tablet, 15px) / 2)) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-desktop {
+  font-size: var(--qdlx-midnight-blue-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-desktop .quotes-dlx-button {
+  font-size: var(--qdlx-midnight-blue-button-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx-screen-desktop .quotes-dlx-button-icon {
+  font-size: var(--qdlx-midnight-blue-button-font-size-desktop, 16px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-midnight-blue-button-font-size-desktop, 16px) / 2)) !important;
 }
 .quotes-dlx-block-theme-midnight-blue.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 0;
 }
+.quotes-dlx-block-theme-midnight-blue figure blockquote.quotes-dlx-text-wrapper {
+  text-align: left;
+}
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper {
   position: relative;
-  background: #00316e;
-  color: white;
-  border: 1px solid #0876ff;
+  background: var(--qdlx-midnight-blue-primary, #00316e);
+  color: var(--qdlx-midnight-blue-text-color, #FFFFFF);
+  border: 1px solid var(--qdlx-midnight-blue-border-color, #0876ff);
   border-radius: 5px;
-  box-shadow: 1px 1px 3px 0px rgba(0, 24, 168, 0.8);
+  box-shadow: 1px 1px 3px 0px var(--qdlx-midnight-blue-primary, #00316e);
   padding-bottom: 1.875em;
   /* 1.875 initial padding. See quotes-dlx-block-theme-blue above */
 }
@@ -26,31 +78,45 @@
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   position: relative;
-  font-size: 1.3em;
+  font-size: 1.5em;
+  font-family: var(--qdlx-midnight-blue-primary-font-family, var(--qdlx-primary-font-family, inherit));
   padding-left: 3.43em;
   /* 5em:before / 2 + ( 1.875em / 2 ) */
   padding-bottom: 1.075em;
   /* 1.875 - (1.6/2) line-height = 1.075em */
   padding-top: 0;
   padding-right: 65px;
-  line-height: 1.6;
+  line-height: var(--qdlx-midnight-blue-line-height-mobile, 1.3);
   margin: 0;
   border: 0;
   quotes: none;
   background: transparent;
+  color: var(--qdlx-midnight-blue-text-color, #FFFFFF);
   vertical-align: baseline;
   font-style: inherit;
 }
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
+    font-size: 1.35em;
+    line-height: var(--qdlx-midnight-blue-line-height-tablet, 1.35);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
+    font-size: 1.5em;
+    line-height: var(--qdlx-midnight-blue-line-height-desktop, 1.65);
+  }
+}
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper a {
-  color: #FFF;
+  color: var(--qdlx-midnight-blue-accent, #FFFFFF);
   text-transform: none;
   padding-bottom: 4px;
-  border-bottom: 2px solid #ff6900;
+  border-bottom: 2px solid var(--qdlx-midnight-blue-secondary, #FFFFFF);
   transition: all 0.35s ease-in-out;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper a:hover {
   transition: all 0.35s ease-in-out;
-  color: #ff9a31;
+  color: var(--qdlx-midnight-blue-secondary, #cc7000);
   border-bottom: 1px solid transparent;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper:before {
@@ -63,10 +129,10 @@
   display: inline-block;
   line-height: 0;
   font-size: 5em;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--qdlx-midnight-blue-text-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper .quotes-dlx-text {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--qdlx-midnight-blue-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
   font-weight: 300;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-text-wrapper .quotes-dlx-text p:last-child {
@@ -85,9 +151,13 @@
   bottom: 0;
   right: 20px;
 }
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg {
+  width: 100%;
+  height: 100%;
+}
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg path,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg use {
-  fill: #00316e;
+  fill: var(--qdlx-midnight-blue-primary, #00316e);
   transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-container {
@@ -105,27 +175,43 @@
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button {
   position: relative;
-  background: #FFFFFF;
-  color: #00316e;
+  background: var(--qdlx-midnight-blue-button-primary-color, #BFBFBF);
+  color: var(--qdlx-midnight-blue-primary, #00316e);
   padding: 12px 25px;
   border-radius: 4px;
-  border: 1px solid #6eafff;
+  border: 1px solid var(--qdlx-midnight-blue-primary, #00316e);
   display: inline-block;
   transition: all 0.3s ease-in-out;
-  font-family: "Lato", sans-serif;
+  font-family: var(--qdlx-midnight-blue-primary-font-family, var(--qdlx-primary-font-family, inherit));
   font-weight: 400;
   font-size: 1.2em;
   line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-midnight-blue-button-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-midnight-blue-button-font-size-desktop, 16px);
+  }
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:hover {
   transition: all 0.3s ease-in-out;
   color: #FFFFFF;
   background: #00316e;
-  border: 1px solid #FFFFFF;
+  color: var(--qdlx-midnight-blue-button-secondary-text-color, #BFBFBF);
+  background: var(--qdlx-midnight-blue-button-secondary-color, #00316e);
+  border: 1px solid var(--qdlx-midnight-blue-button-secondary-color, #00316e);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:hover svg path,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:hover svg use {
-  fill: #FFFFFF;
+  fill: var(--qdlx-midnight-blue-button-secondary-text-color, #BFBFBF);
   transition: all 0.3s ease-in-out;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-icon {
@@ -157,6 +243,19 @@
   display: inline-block;
   padding-right: 0;
 }
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: #FFFFFF;
+  padding: 6px;
+  border: 2px solid transparent;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover {
+  border-color: var(--qdlx-midnight-blue-button-secondary-color, #00316e);
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: #FFFFFF;
+}
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content {
   position: relative;
   min-width: 100%;
@@ -182,7 +281,7 @@
   z-index: -1;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:not(:checked) ~ ul {
-  background: white;
+  background: var(--qdlx-midnight-blue-light, #BFBFBF);
   position: relative;
   transition: opacity 0.75s ease-in-out;
   margin-right: 2px;
@@ -202,8 +301,8 @@
   position: relative;
   width: 100%;
   left: 0;
-  background: #FFF;
-  border: 1px solid #ffce91;
+  background: var(--qdlx-midnight-blue-light, #BFBFBF);
+  border: 1px solid var(--qdlx-midnight-blue-accent, #FFFFFF);
   z-index: 10;
   transition: opacity 0.75s ease-in-out;
   opacity: 1;
@@ -236,7 +335,7 @@
   border-radius: 100%;
   transform: rotate(0deg);
   transition: all 0.3s ease-in-out;
-  background: #FFF;
+  background: var(--qdlx-midnight-blue-light, #BFBFBF);
   margin-right: 5px;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after {
@@ -249,7 +348,7 @@
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #FFF;
+  background: var(--qdlx-midnight-blue-light, #BFBFBF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after {
   position: absolute;
@@ -276,7 +375,7 @@
   opacity: 0;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
   color: #333;
@@ -292,15 +391,15 @@
   cursor: pointer;
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:hover .quotes-dlx-meatball-icon-wrapper {
-  background: #FFF;
+  background: var(--qdlx-midnight-blue-button-secondary-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper {
-  background: #FFF;
+  background: var(--qdlx-midnight-blue-button-primary-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #00316e;
+  background: var(--qdlx-midnight-blue-button-primary-text-color, #00316e);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper {
   position: absolute;
@@ -310,7 +409,7 @@
   z-index: 2;
   padding: 25px;
   background: transparent;
-  border: 1.5px solid #dbdbdb;
+  border: 1.5px solid var(--qdlx-midnight-blue-button-primary-color, #FFFFFF);
   box-shadow: none;
   border-radius: 100%;
   text-align: center;
@@ -330,7 +429,7 @@
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover {
   transition: all 0.3s linear;
-  background: #FFFFFF;
+  background: var(--qdlx-midnight-blue-button-secondary-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span {
@@ -339,29 +438,47 @@
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:after, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:before,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:after {
-  background: #00316e;
+  background: var(--qdlx-midnight-blue-button-secondary-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #dbdbdb;
+  background: var(--qdlx-midnight-blue-button-primary-color, #FFFFFF);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
-  background: #FFF;
+  background: var(--qdlx-midnight-blue-button-primary-color, #cc7000);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
   transition: all 0.3s linear;
-  background: #00316e;
+  background: var(--qdlx-midnight-blue-button-secondary-color, #cc7000);
 }
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
   display: inline-block;
-  background: #00316e;
+  background: var(--qdlx-midnight-blue-button-secondary-text-color, #cc7000);
 }
-
-.quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper {
-  background-color: #00316e;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27978%27 height=%27815%27 viewBox=%270 0 1080 900%27%3E%3Cg fill-opacity=%270.04%27%3E%3Cpolygon fill=%27%23444%27 points=%2790 150 0 300 180 300%27/%3E%3Cpolygon points=%2790 150 180 0 0 0%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27270 150 360 0 180 0%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27450 150 360 300 540 300%27/%3E%3Cpolygon fill=%27%23999%27 points=%27450 150 540 0 360 0%27/%3E%3Cpolygon points=%27630 150 540 300 720 300%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27630 150 720 0 540 0%27/%3E%3Cpolygon fill=%27%23444%27 points=%27810 150 720 300 900 300%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27810 150 900 0 720 0%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27990 150 900 300 1080 300%27/%3E%3Cpolygon fill=%27%23444%27 points=%27990 150 1080 0 900 0%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%2790 450 0 600 180 600%27/%3E%3Cpolygon points=%2790 450 180 300 0 300%27/%3E%3Cpolygon fill=%27%23666%27 points=%27270 450 180 600 360 600%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27270 450 360 300 180 300%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27450 450 360 600 540 600%27/%3E%3Cpolygon fill=%27%23999%27 points=%27450 450 540 300 360 300%27/%3E%3Cpolygon fill=%27%23999%27 points=%27630 450 540 600 720 600%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27630 450 720 300 540 300%27/%3E%3Cpolygon points=%27810 450 720 600 900 600%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27810 450 900 300 720 300%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27990 450 900 600 1080 600%27/%3E%3Cpolygon fill=%27%23444%27 points=%27990 450 1080 300 900 300%27/%3E%3Cpolygon fill=%27%23222%27 points=%2790 750 0 900 180 900%27/%3E%3Cpolygon points=%27270 750 180 900 360 900%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%27270 750 360 600 180 600%27/%3E%3Cpolygon points=%27450 750 540 600 360 600%27/%3E%3Cpolygon points=%27630 750 540 900 720 900%27/%3E%3Cpolygon fill=%27%23444%27 points=%27630 750 720 600 540 600%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27810 750 720 900 900 900%27/%3E%3Cpolygon fill=%27%23666%27 points=%27810 750 900 600 720 600%27/%3E%3Cpolygon fill=%27%23999%27 points=%27990 750 900 900 1080 900%27/%3E%3Cpolygon fill=%27%23999%27 points=%27180 0 90 150 270 150%27/%3E%3Cpolygon fill=%27%23444%27 points=%27360 0 270 150 450 150%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27540 0 450 150 630 150%27/%3E%3Cpolygon points=%27900 0 810 150 990 150%27/%3E%3Cpolygon fill=%27%23222%27 points=%270 300 -90 450 90 450%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%270 300 90 150 -90 150%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27180 300 90 450 270 450%27/%3E%3Cpolygon fill=%27%23666%27 points=%27180 300 270 150 90 150%27/%3E%3Cpolygon fill=%27%23222%27 points=%27360 300 270 450 450 450%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27360 300 450 150 270 150%27/%3E%3Cpolygon fill=%27%23444%27 points=%27540 300 450 450 630 450%27/%3E%3Cpolygon fill=%27%23222%27 points=%27540 300 630 150 450 150%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27720 300 630 450 810 450%27/%3E%3Cpolygon fill=%27%23666%27 points=%27720 300 810 150 630 150%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27900 300 810 450 990 450%27/%3E%3Cpolygon fill=%27%23999%27 points=%27900 300 990 150 810 150%27/%3E%3Cpolygon points=%270 600 -90 750 90 750%27/%3E%3Cpolygon fill=%27%23666%27 points=%270 600 90 450 -90 450%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27180 600 90 750 270 750%27/%3E%3Cpolygon fill=%27%23444%27 points=%27180 600 270 450 90 450%27/%3E%3Cpolygon fill=%27%23444%27 points=%27360 600 270 750 450 750%27/%3E%3Cpolygon fill=%27%23999%27 points=%27360 600 450 450 270 450%27/%3E%3Cpolygon fill=%27%23666%27 points=%27540 600 630 450 450 450%27/%3E%3Cpolygon fill=%27%23222%27 points=%27720 600 630 750 810 750%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27900 600 810 750 990 750%27/%3E%3Cpolygon fill=%27%23222%27 points=%27900 600 990 450 810 450%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%270 900 90 750 -90 750%27/%3E%3Cpolygon fill=%27%23444%27 points=%27180 900 270 750 90 750%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27360 900 450 750 270 750%27/%3E%3Cpolygon fill=%27%23AAA%27 points=%27540 900 630 750 450 750%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%27720 900 810 750 630 750%27/%3E%3Cpolygon fill=%27%23222%27 points=%27900 900 990 750 810 750%27/%3E%3Cpolygon fill=%27%23222%27 points=%271080 300 990 450 1170 450%27/%3E%3Cpolygon fill=%27%23FFF%27 points=%271080 300 1170 150 990 150%27/%3E%3Cpolygon points=%271080 600 990 750 1170 750%27/%3E%3Cpolygon fill=%27%23666%27 points=%271080 600 1170 450 990 450%27/%3E%3Cpolygon fill=%27%23DDD%27 points=%271080 900 1170 750 990 750%27/%3E%3C/g%3E%3C/svg%3E");
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
+  border-bottom: 0;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
+  border-bottom: none;
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
+  color: var(--qdlx-midnight-blue-button-primary-text-color, #00316e);
+  background: var(--qdlx-midnight-blue-button-primary-color, #cc7000);
+  font-family: var(--qdlx-midnight-blue-primary-font-family, var(--qdlx-primary-font-family, inherit));
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
+  fill: var(--qdlx-midnight-blue-button-primary-text-color, #00316e);
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
+  background: var(--qdlx-midnight-blue-button-secondary-color, #00316e);
+  color: var(--qdlx-midnight-blue-button-secondary-text-color, #BFBFBF);
+}
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
+.quotes-dlx-block-theme-midnight-blue .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
+  fill: var(--qdlx-midnight-blue-button-secondary-text-color, #BFBFBF);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-midnight-blue.css.map*/

@@ -54,5 +54,5 @@ abstract class Options_Abstract {
 	/**
 	 * Clear/Reset the plugin auto-update options.
 	 */
-	abstract static function reset();
+	abstract static function reset( bool $remove = false);
 }

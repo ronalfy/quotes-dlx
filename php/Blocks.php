@@ -22,7 +22,6 @@ class Blocks {
 	public static function run() {
 		$self = new self();
 		add_action( 'init', array( $self, 'init' ) );
-
 		return $self;
 	}
 
@@ -41,6 +40,9 @@ class Blocks {
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_font_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_font_scripts' ) );
+
 		// Enqueue block assets.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_editor_scripts' ) );
 
@@ -49,6 +51,402 @@ class Blocks {
 
 		// Pre-load font files.
 		add_action( 'wp_head', array( $this, 'add_header_fonts_preload' ) );
+
+		// Output styles based on block attributes.
+		add_action( 'quotes_dlx_before_modal_scripts', array( $this, 'add_modal_styles' ) );
+
+		if ( is_admin() ) {
+			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
+		} else {
+			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
+		}
+	}
+
+	/**
+	 * Add mobile style roots.
+	 *
+	 * @param string $template The template slug.
+	 */
+	public function add_modal_styles( $template ) {
+		$this->output_theme_style_root();
+	}
+
+	/**
+	 * Register the fonts for the front-end and back-end.
+	 *
+	 * Grab the font CSS in the dist folder.
+	 * Check if we're in the admin and in the post editor
+	 * Check to see if we're on a singular page.
+	 * Get the primary and secondary fonts from the default options.
+	 * Check to see if the primary font is an Adobe font.
+	 * If it is, enqueue the Adobe Fonts stylesheet.
+	 * Check to see if the secondary font is an Adobe font.
+	 * If it is, enqueue the Adobe Fonts stylesheet.
+	 * If not adobe fonts, check if a font is custom.
+	 * If it is, exit gracefully.
+	 * Get the font family's css file in the dist folder.
+	 * If the file exists, enqueue the stylesheet.
+	 *
+	 * @param string $hook Hook for current admin screen.
+	 */
+	public function register_font_scripts( $hook ) {
+		global $post;
+
+		$can_enqueue = false;
+
+		// Check to see if we're in the admin and in the post editor.
+		if ( is_admin() && ( isset( $post->post_content ) ) ) {
+			$can_enqueue = true;
+		}
+
+		if ( ! ( is_singular() || is_page() ) && 'settings_page_quotes_dlx' !== $hook && ! $can_enqueue ) {
+			return;
+		}
+		$primary_font   = Options_Advanced::get_options( 'primary_font_family' );
+		$secondary_font = Options_Advanced::get_options( 'secondary_font_family' );
+
+		// Check for custom value in the primary font and secondary font.
+		if ( 'custom' === $primary_font && 'custom' === $secondary_font ) {
+			return;
+		}
+
+		$can_enqueue_primary   = true;
+		$can_enqueue_secondary = true;
+		if ( is_singular() || is_page() ) {
+			$blocks = parse_blocks( $post->post_content );
+			$this->print_block_fonts( $blocks );
+		}
+
+		if ( ( Functions::is_adobe_font( $primary_font && $can_enqueue_primary ) ) || ( Functions::is_adobe_font( $secondary_font ) && $can_enqueue_secondary ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+
+			// Enqueue the Adobe Fonts stylesheet.
+			Adobe_Fonts::set_dns_prefetch();
+			Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+		}
+
+		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font && $can_enqueue_primary ) {
+			$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font . '.css' );
+			wp_enqueue_style(
+				'quotes-dlx-gfont-' . $primary_font,
+				esc_url( $primary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font && $can_enqueue_secondary ) {
+			$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font . '.css' );
+			wp_enqueue_style(
+				'quotes-dlx-gfont-' . $secondary_font,
+				esc_url( $secondary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+		}
+	}
+
+	/**
+	 * Parse a block and output scripts/styles.
+	 *
+	 * @see register_frontend_scripts for registering.
+	 */
+	public function maybe_output_scripts_styles() {
+		global $post;
+
+		// Check for post content.
+		$post_content = $post->post_content ?? '';
+		if ( ! is_a( $post, 'WP_Post' ) ) {
+			return;
+		}
+		if ( is_admin() ) {
+			$this->output_theme_style_root();
+			return;
+		}
+		$blocks = parse_blocks( $post_content );
+		$this->print_block_styles( $blocks );
+		$this->print_fancybox_styles( $blocks );
+	}
+
+	/**
+	 * Recursive function for printing out any block styles.
+	 *
+	 * @param array $blocks Array of blocks to parse.
+	 */
+	public function print_block_fonts( $blocks ) {
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block ) {
+				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
+					$template = $block['attrs']['template'] ?? false;
+					// Try to get default template if there is no template.
+					if ( ! $template ) {
+						$block_defaults = Options_Defaults::get_defaults();
+						$template       = $block_defaults['template'] ?? false;
+					}
+					$template = $block['attrs']['template'] ?? false;
+					if ( $template ) {
+						$theme_options             = Options_Theme::get_options( $template );
+						$theme_enable_custom_fonts = (bool) ( $theme_options['enable_custom_fonts'] ?? false );
+						if ( ! $theme_enable_custom_fonts ) {
+							continue;
+						}
+
+						// Get primary font family for the theme and see if we can override the fonts set in the advanced section.
+						$primary_theme_font_family = $theme_options['primary_font_family'] ?? '';
+						if ( ! empty( $primary_theme_font_family ) ) {
+							$can_enqueue_primary = false;
+						}
+
+						$secondary_theme_font_family = $theme_options['secondary_font_family'] ?? '';
+						if ( ! empty( $secondary_theme_font_family ) ) {
+							$can_enqueue_secondary = false;
+						}
+
+						// Now enqueue the fonts for the theme.
+						if ( Functions::is_adobe_font( $primary_theme_font_family ) || Functions::is_adobe_font( $secondary_theme_font_family ) ) {
+							$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+							Adobe_Fonts::set_dns_prefetch();
+							Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+						}
+						if ( ! Functions::is_adobe_font( $primary_theme_font_family ) && 'custom' !== $primary_theme_font_family ) {
+							$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_theme_font_family . '.css' );
+							wp_enqueue_style(
+								'quotes-dlx-gfont-' . $primary_theme_font_family,
+								esc_url( $primary_font_url ),
+								array(),
+								Functions::get_plugin_version(),
+								'all'
+							);
+						}
+						if ( ! Functions::is_adobe_font( $secondary_theme_font_family ) && 'custom' !== $secondary_theme_font_family ) {
+							$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_theme_font_family . '.css' );
+							wp_enqueue_style(
+								'quotes-dlx-gfont-' . $secondary_theme_font_family,
+								esc_url( $secondary_font_url ),
+								array(),
+								Functions::get_plugin_version(),
+								'all'
+							);
+						}
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$this->print_block_fonts( $block['innerBlocks'] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Recursive function for printing out any block styles.
+	 *
+	 * @param array $blocks Array of blocks to parse.
+	 */
+	public function print_block_styles( $blocks ) {
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block ) {
+				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
+					$template = $block['attrs']['template'] ?? false;
+					// Try to get default template if there is no template.
+					if ( ! $template ) {
+						$block_defaults = Options_Defaults::get_defaults();
+						$template       = $block_defaults['template'] ?? false;
+					}
+					if ( $template ) {
+						$handle = 'quotes-dlx-' . $template;
+						if ( ! wp_script_is( $handle, 'done' ) ) {
+							$this->output_theme_style_root();
+							wp_print_styles( array( $handle ) );
+						}
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$this->print_block_styles( $block['innerBlocks'] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Recursive function for printing out fancybox styles.
+	 *
+	 * @param array $blocks Array of blocks to parse.
+	 */
+	public function print_fancybox_styles( $blocks ) {
+		if ( ! empty( $blocks ) ) {
+			foreach ( $blocks as $block ) {
+				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
+					$email_text_option             = (bool) $block['attrs']['enable_email_text'] ?? false;
+					$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+					if ( $enable_global_contextual_menu ) {
+						$email_text_option = (bool) Options_Menu::get_options( 'enable_email_text' );
+					}
+					if ( $email_text_option ) {
+						$handle = 'quotes-dlx-fancybox';
+						if ( ! wp_script_is( $handle, 'done' ) ) {
+							wp_print_styles( array( $handle ) );
+						}
+						wp_enqueue_script( 'quotes-dlx-fancybox' );
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$this->print_fancybox_styles( $block['innerBlocks'] );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Print out root css vars for the block.
+	 */
+	private function output_theme_style_root() {
+		// Get themes.
+		$themes = Themes::get_theme_data();
+
+		// Set color root variables.
+		foreach ( $themes as $theme ) {
+			$theme_colors = Options_Theme::get_theme_colors( $theme['slug'] );
+			if ( ! empty( $theme_colors ) ) {
+				?>
+				<style>
+					:root {
+				<?php
+				foreach ( $theme_colors as $color ) {
+					echo esc_html(
+						sprintf(
+							'--qdlx-%s-%s: %s;',
+							esc_attr( $theme['slug'] ),
+							esc_attr( $color['slug'] ),
+							esc_attr( $color['color'] )
+						)
+					);
+				}
+				?>
+					}
+				</style>
+				<?php
+			}
+		}
+
+		// Get options.
+		$options                         = Options_Defaults::get_options();
+		$options_advanced                = Options_Advanced::get_options();
+		$saved_theme_options             = Options_Theme::get_options();
+		$theme_default_font_size_options = Options_Theme::get_default_sizes( 'all' );
+		// Set breakpoints and font family variables.
+		?>
+			<style>
+				:root {
+					--qdlx-primary-font-family: <?php echo Functions::get_primary_font_family_css(); ?>;
+					--qdlx-secondary-font-family: <?php echo Functions::get_secondary_font_family_css(); ?>;
+					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options_advanced['mobile_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options_advanced['tablet_breakpoint'] ) . 'px'; ?>;
+					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options_advanced['desktop_breakpoint'] ) . 'px'; ?>;
+				}
+			</style>
+			<style>
+				:root {
+					<?php
+					foreach ( $themes as $theme_options ) {
+						// Line height.
+						echo sprintf(
+							'--qdlx-%s-line-height-mobile: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-line-height-tablet: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-line-height-desktop: %s;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'desktop' ) )
+						);
+
+						// Font sizes.
+						echo sprintf(
+							'--qdlx-%s-font-size-mobile: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-font-size-tablet: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-font-size-desktop: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'desktop' ) )
+						);
+
+						// Button Font Sizes.
+						echo sprintf(
+							'--qdlx-%s-button-font-size-mobile: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'mobile' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-button-font-size-tablet: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'tablet' ) )
+						);
+						echo sprintf(
+							'--qdlx-%s-button-font-size-desktop: %spx;',
+							esc_attr( $theme_options['slug'] ),
+							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
+						);
+
+						// Check to see if we need to override the font families returned. This is typically used in the Advanced section of the admin options.
+						$override_theme_fonts  = false;
+						$primary_font_family   = sanitize_text_field( filter_input( INPUT_GET, 'primary_font_family', FILTER_DEFAULT ) );
+						$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
+						if ( ! empty( $primary_font_family ) && ! empty( $secondary_font_family ) ) {
+							$override_theme_fonts = true;
+							echo sprintf(
+								'--qdlx-%s-primary-font-family: %s;',
+								esc_attr( $theme_options['slug'] ),
+								sanitize_text_field( Functions::format_font_family( $primary_font_family ) )
+							);
+							echo sprintf(
+								'--qdlx-%s-secondary-font-family: %s;',
+								esc_attr( $theme_options['slug'] ),
+								sanitize_text_field( Functions::format_font_family( $secondary_font_family ) )
+							);
+						}
+
+						// Set theme fonts.
+						$custom_theme_options = Options_Theme::get_options( $theme_options['slug'] );
+						$allow_custom_fonts   = (bool) ( $custom_theme_options['enable_custom_fonts'] ?? false );
+						if ( $allow_custom_fonts && ! $override_theme_fonts ) {
+							$format_for_display   = true;
+							$theme_primary_font   = Functions::get_font_family( 'primary', $theme_options['slug'], $format_for_display );
+							$theme_secondary_font = Functions::get_font_family( 'secondary', $theme_options['slug'], $format_for_display );
+							if ( $theme_primary_font ) {
+								echo sprintf(
+									'--qdlx-%s-primary-font-family: %s;',
+									esc_attr( $theme_options['slug'] ),
+									sanitize_text_field( $theme_primary_font )
+								);
+							}
+							if ( $theme_secondary_font ) {
+								echo sprintf(
+									'--qdlx-%s-secondary-font-family: %s;',
+									esc_attr( $theme_options['slug'] ),
+									sanitize_text_field( $theme_secondary_font )
+								);
+							}
+						}
+					}
+					?>
+				}
+		</style>
+		<?php
+
 	}
 
 	/**
@@ -58,6 +456,27 @@ class Blocks {
 	 * @param string $content   Current content.
 	 */
 	public function frontend( array $attributes, string $content ) {
+
+		// Get themes.
+		$themes = wp_cache_get( 'quotes-dlx-themes' );
+		if ( ! $themes ) {
+			$themes = Themes::get_theme_data();
+			wp_cache_set( 'quotes-dlx-themes', $themes, '', 3600 );
+		}
+
+		/**
+		 * Filter: quotes_dlx_block_attributes
+		 *
+		 * Override attributes (useful for overriding defaults or output).
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array  $attributes Pre-sanitized attributes.
+		 * @param string $content    Block content.
+		 *
+		 * @return array Block attributes and values.
+		 */
+		$attributes = apply_filters( 'quotes_dlx_block_attributes', $attributes, $content );
 
 		/**
 		 * Filter: quotes_dlx_block_output
@@ -80,16 +499,48 @@ class Blocks {
 		// Begin the output buffer.
 		ob_start();
 
-		$has_anchor              = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
-		$anchor                  = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
-		$rtl                     = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
-		$align                   = Functions::sanitize_attribute( $attributes, 'align', 'text' );
-		$template_name           = Functions::sanitize_attribute( $attributes, 'template', 'text' );
-		$maximum_width           = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
-		$maximum_width_unit      = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
-		$permalink               = $this->get_permalink( $attributes );
-		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
-		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+		$has_anchor             = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
+		$anchor                 = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
+		$rtl                    = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
+		$align                  = Functions::sanitize_attribute( $attributes, 'align', 'text' );
+		$template_name          = Functions::sanitize_attribute( $attributes, 'template', 'text' );
+		$maximum_width          = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
+		$maximum_width_unit     = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
+		$permalink              = $this->get_permalink( $attributes );
+		$tweet_button_enabled   = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
+		$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+
+		// If a theme is removed, find a default fallback.
+		$has_theme   = false;
+		$first_theme = null;
+		if ( is_array( $themes ) ) {
+			foreach ( $themes as $theme ) {
+				if ( null === $first_theme ) {
+					$first_theme = $theme['slug'];
+				}
+				if ( $template_name === $theme['slug'] ) {
+					$has_theme = true;
+				}
+			}
+		}
+		if ( ! $has_theme && null !== $first_theme ) {
+			$template_name = $first_theme;
+		}
+
+		/**
+		 * Filter: quotes_dlx_block_template
+		 *
+		 * Set a new default template.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string Template name (slug).
+		 *
+		 * @return string new template name (slug).
+		 */
+		$template_name = apply_filters( 'quotes_dlx_block_template', $template_name );
+
+		// Set wrapper classes.
 		$default_wrapper_classes = array(
 			'quotes-dlx',
 			'quotes-dlx-container',
@@ -157,139 +608,235 @@ class Blocks {
 		<div id="<?php echo esc_attr( $block_id ? $block_id : '' ); ?>" class="<?php echo esc_attr( implode( ' ', $block_wrapper_classes ) ); ?>" style="<?php echo esc_attr( $max_width_attr ? 'max-width: ' . $max_width_attr . ';' : '' ); ?>">
 
 			<div class="quotes-dlx-wrapper">
-				<figure>
-					<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
-					<?php
-						$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
-						echo wp_kses_post( nl2br( $tweet_text_rich ) );
-					?>
-					</blockquote>
-				</figure>
-				<?php
-				if ( $tweet_button_enabled ) :
-					?>
-				<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
-					<?php
-					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
-					$share_button_classes = array(
-						'quotes-dlx-button',
-						$tweet_button_display,
-						'quotes-dlx-button-icon-' . $tweet_icon_alignment,
-					);
-					?>
-					<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+				<div class="quotes-dlx-content-wrapper">
+					<figure>
+						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
 						<?php
-						// Output Twitter text.
-						if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
-							?>
-							<span class="quotes-dlx-button-text">
-									<?php echo wp_kses_post( $share_button_text ); ?>
-							</span>
-							<?php
-						endif;
-						// Output Twitter icon.
-						if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
-							?>
-							<span class="quotes-dlx-button-icon">
-								<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
-							</span>
-							<?php
-						endif;
+							$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
+							echo wp_kses_post( nl2br( $tweet_text_rich ) );
 						?>
-					</button>
-				</div>
+						</blockquote>
+					</figure>
+					<?php
+					if ( $tweet_button_enabled ) :
+						?>
+					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
+						<?php
+						$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+						$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+						$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+						$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+						$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+						$share_button_classes = array(
+							'quotes-dlx-button',
+							$tweet_button_display,
+							'quotes-dlx-button-icon-' . $tweet_icon_alignment,
+						);
+						?>
+						<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+							<?php
+							// Output Twitter text.
+							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-text">
+										<?php echo wp_kses_post( $share_button_text ); ?>
+								</span>
+								<?php
+							endif;
+							// Output Twitter icon.
+							if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-icon">
+									<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+								</span>
+								<?php
+							endif;
+							?>
+						</button>
+						<?php
+						$maybe_facebook_app_id      = Options_Advanced::get_options( 'facebook_app_id' );
+						$facebook_button_enabled    = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
+						$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
+
+						if ( ! empty( $maybe_facebook_app_id && $facebook_button_enabled ) ) {
+							$share_button_classes[] = 'qdlx-facebook-button';
+							?>
+							<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-facebook-text="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
+							<?php
+							// Output Twitter text.
+							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-text">
+										<?php echo wp_kses_post( $facebook_share_button_text ); ?>
+								</span>
+								<?php
+							endif;
+							// Output Twitter icon.
+							if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
+								?>
+								<span class="quotes-dlx-button-icon">
+									<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
+								</span>
+								<?php
+							endif;
+							?>
+						</button>
+							<?php
+						}
+						?>
+					</div>
 				<?php endif; ?>
+				</div>
 				<?php
 				$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 				$enable_copy_text       = Functions::sanitize_attribute( $attributes, 'enable_copy_text', 'boolean' );
 				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
+				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
+				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
-				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this ) ) :
+				// Get text label values.
+				$copy_text_label   = Options_Menu::get_options( 'copy_text_label' );
+				$copy_tweet_label  = Options_Menu::get_options( 'copy_tweet_label' );
+				$copy_link_label   = Options_Menu::get_options( 'copy_link_label' );
+				$email_quote_label = Options_Menu::get_options( 'email_text_label' );
+				$tweet_this_label  = Options_Menu::get_options( 'tweet_this_label' );
+				$share_this_label  = Options_Menu::get_options( 'share_this_label' );
+
+				// Check to see if global options are set.
+				$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+				if ( $enable_global_contextual_menu ) {
+					$enable_contextual_menu = (bool) Options_Menu::get_options( 'enable_contextual_menu' );
+					$enable_email_text      = (bool) Options_Menu::get_options( 'enable_email_text' );
+					$enable_copy_text       = (bool) Options_Menu::get_options( 'enable_copy_text' );
+					$enable_copy_tweet      = (bool) Options_Menu::get_options( 'enable_copy_tweet' );
+					$enable_copy_link       = (bool) Options_Menu::get_options( 'enable_copy_link' );
+					$enable_tweet_this      = (bool) Options_Menu::get_options( 'enable_tweet_this' );
+					$enable_share_this      = (bool) Options_Menu::get_options( 'enable_share_this' );
+				}
+
+				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this || $enable_share_this || $enable_email_text ) ) :
 					?>
-						<div class="quotes-dlx-meatball-menu">
-							<div class="quotes-dlx-meatball-content">
-								<input
-									type="checkbox"
-									aria-label="<?php esc_attr_e( 'Open Menu Options', 'quotes_dlx' ); ?>"
-								/>
-								<ul>
-									<?php
-									if ( $enable_copy_text ) :
-										// Get all text and put in data attribute.
-										$share_text_kses = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( $share_text_kses ) ); ?> ">
-											<button class="button-reset">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Quote', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $enable_copy_tweet ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-tweet">
-											<button class="button-reset" data-clipboard-action="copy" data-clipboard-target="#quotes-dlx-tweet-text">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-copy-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Tweet', 'quotes_dlx' ); ?>
-											</button>
-											<div class="quotes-dlx-copy-tweet-textarea" style="width: 0; height: 0; display: none;" aria-hidden="true">
-												<textarea id="quotes-dlx-tweet-text">
-													<?php echo esc_textarea( $this->build_tweet( $attributes ) ); ?>
-												</textarea>
-											</div>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $permalink ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-link" data-url="<?php echo esc_attr( $permalink ); ?>">
-											<button class="button-reset">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Copy Link', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-									<?php
-									if ( $enable_tweet_this ) :
-										?>
-										<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
-											<button class="button-reset">
-												<span class="quotes-dlx-meatball-menu-icon">
-													<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
-												</span>
-												<?php esc_html_e( 'Tweet This', 'quotes_dlx' ); ?>
-											</button>
-										</li>
-										<?php
-									endif;
-									?>
-								</ul>
-								<div class="quotes-dlx-meatball-icon-wrapper" aria-hidden="true">
-									<div class="quotes-dlx-meatball-icon">
-										<span></span>
+				<div class="quotes-dlx-meatball-menu">
+					<div class="quotes-dlx-meatball-content">
+						<input
+							type="checkbox"
+							aria-label="<?php esc_attr_e( 'Open Menu Options', 'quotes_dlx' ); ?>"
+						/>
+						<ul>
+							<?php
+							if ( $enable_copy_text ) :
+								// Get all text and put in data attribute.
+
+								// Convert rich text to plain text.
+								$share_text_kses = (string) $attributes['share_text'];
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-quote" data-text-full="<?php echo esc_attr( esc_html( wp_strip_all_tags( $share_text_kses ) ) ); ?> ">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-quote-left-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $copy_text_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_copy_tweet ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-tweet">
+									<button class="button-reset" data-clipboard-action="copy" data-clipboard-target="#quotes-dlx-tweet-text">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-copy-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $copy_tweet_label ); ?>
+									</button>
+									<div class="quotes-dlx-copy-tweet-textarea" style="width: 0; height: 0; display: none;" aria-hidden="true">
+										<textarea id="quotes-dlx-tweet-text">
+											<?php echo esc_textarea( $this->build_tweet( $attributes ) ); ?>
+										</textarea>
 									</div>
-								</div>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $permalink ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-copy-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+									<button class="button-reset">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $copy_link_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_email_text ) :
+								$ajax_nonce = wp_create_nonce( 'qdlx_share_' . $permalink );
+								$ajax_url   = admin_url( 'admin-ajax.php' );
+								$ajax_url   = add_query_arg(
+									array(
+										'action'    => 'quotes_dlx_email_interface',
+										'permalink' => urlencode( $permalink ),
+										'nonce'     => $ajax_nonce,
+										'text'      => wp_strip_all_tags( $share_text_kses ),
+									),
+									$ajax_url
+								);
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+									<button class="button-reset" data-ajax-url="<?php echo esc_url( $ajax_url ); ?>">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $email_quote_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_tweet_this ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
+									<button class="button-reset" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $tweet_this_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+							<?php
+							if ( $enable_share_this && ! empty( $maybe_facebook_app_id ) ) :
+								?>
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-share-facebook" data-url="<?php echo esc_attr( $permalink ); ?>">
+								<button class="button-reset" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
+										<span class="quotes-dlx-meatball-menu-icon">
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
+										</span>
+										<?php echo esc_html( $share_this_label ); ?>
+									</button>
+								</li>
+								<?php
+							endif;
+							?>
+						</ul>
+						<div class="quotes-dlx-meatball-icon-wrapper" aria-hidden="true">
+							<div class="quotes-dlx-meatball-icon">
+								<span></span>
 							</div>
 						</div>
+					</div>
+				</div>
 					<?php
 					endif;
 				?>
@@ -419,15 +966,6 @@ class Blocks {
 	private function register_theme_styles() {
 		$theme_deps = array(); // Stores theme handles for enqueuing.
 
-		// Register fonts (todo: optimize).
-		wp_register_style(
-			'quotes-dlx-fonts',
-			Functions::get_plugin_url( 'dist/quotes-dlx-fonts.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
-
 		/**
 		 * Allow or disallow loading of fonts.
 		 *
@@ -435,23 +973,20 @@ class Blocks {
 		 *
 		 * @param bool Whether to load the custom fonts or not.
 		 */
-		$load_fonts = apply_filters( 'quotes_dlx_load_fonts', true );
-		if ( $load_fonts ) {
-			$theme_deps[] = 'quotes-dlx-fonts';
-		}
+		$load_fonts = apply_filters( 'quotes_dlx_load_fonts', true ); // Not being used atm.
 
 		// Register themes and handles. (todo: optimize).
 		$themes = Themes::get_theme_data();
 		foreach ( $themes as $theme ) {
-			$dep = 'quotes-dlx-' . $theme['slug'];
+			$handle = 'quotes-dlx-' . $theme['slug'];
 			wp_register_style(
-				$dep,
+				$handle,
 				esc_url( $theme['stylesheet'] ),
 				array(),
 				$theme['version'],
 				'all'
 			);
-			$theme_deps[] = $dep;
+			$theme_deps[] = $handle;
 		}
 
 		return $theme_deps;
@@ -461,12 +996,30 @@ class Blocks {
 	 * Register front-end scripts/styles.
 	 */
 	public function register_frontend_scripts() {
-		$theme_deps = $this->register_theme_styles();
+		$this->register_theme_styles();
 
 		wp_register_style(
 			'quotes-dlx-frontend',
 			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
-			$theme_deps,
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Register Fancybox Script.
+		wp_register_script(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			true
+		);
+
+		// Register fancybox style.
+		wp_register_style(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
+			array(),
 			Functions::get_plugin_version(),
 			'all'
 		);
@@ -487,13 +1040,12 @@ class Blocks {
 	 * Register the block editor script with localized vars.
 	 */
 	public function register_block_editor_scripts() {
-		$theme_deps = $this->register_theme_styles();
 
 		// Register styles here because array in block.json fails when using array of styles (enqueues wrong script).
 		wp_register_style(
 			'quotes-dlx-block-editor',
 			Functions::get_plugin_url( 'dist/quotes-dlx-block-editor.css' ),
-			$theme_deps,
+			array(),
 			Functions::get_plugin_version(),
 			'all'
 		);
@@ -516,12 +1068,56 @@ class Blocks {
 		// Attempt to get post ID.
 		global $post;
 		$post_id = isset( $post->ID ) ? $post->ID : 0;
+
+		// Get block defaults.
+		$block_defaults = array_merge( Options_Defaults::get_options(), Options_Menu::get_options() );
+
+		// Do a fix for hashtags. Null check.
+		$hashtags = $block_defaults['hashtags'] ?? null;
+		if ( ! is_array( $hashtags ) ) {
+			$block_defaults['hashtags'] = array();
+		}
+
+		// Get font properties for the themes.
+		$themes                      = Themes::get_theme_data();
+		$theme_stylesheets_localized = array();
+		$primary_font_advanced       = Options_Advanced::get_options( 'primary_font_family' );
+		$secondary_font_advanced     = Options_Advanced::get_options( 'secondary_font_family' );
+		foreach ( $themes as $theme ) {
+			$theme_options       = Options_Theme::get_options( $theme['slug'] );
+			$enable_custom_fonts = (bool) ( $theme_options['enable_custom_fonts'] ?? false );
+			if ( ! $enable_custom_fonts ) {
+				$theme_stylesheets_localized[ $theme['slug'] ] = array(
+					'primary_font_stylesheet'   => Functions::get_font_family_stylesheet_path( $primary_font_advanced ),
+					'secondary_font_stylesheet' => Functions::get_font_family_stylesheet_path( $secondary_font_advanced ),
+				);
+			} else {
+				$theme_stylesheets_localized[ $theme['slug'] ] = array(
+					'primary_font_stylesheet'   => Functions::get_font_family_stylesheet_path( $theme_options['primary_font_family'] ),
+					'secondary_font_stylesheet' => Functions::get_font_family_stylesheet_path( $theme_options['secondary_font_family'] ),
+				);
+			}
+		}
+
+		/**
+		 * Filter: quotes_dlx_block_defaults
+		 *
+		 * Add in block defaults from admin settings.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array Key value pair of admin defaults.
+		 */
+		$block_defaults = apply_filters( 'quotes_dlx_block_defaults', $block_defaults );
+
 		wp_localize_script(
 			'quotes-dlx-block',
 			'tweet_quotes_block_vars',
 			array(
+				'themes_stylesheets'       => $theme_stylesheets_localized,
 				'themes'                   => Themes::get_theme_data(),
-				'defaults'                 => Options_Defaults::get_options(), // todo: make filterable.
+				'defaults'                 => $block_defaults,
+				'contextual_menu_options'  => Options_Menu::get_options(),
 				'twp_nonce'                => wp_create_nonce( 'twp-click-to-tweet-ajax' ),
 				'bitly_plugin_active'      => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 				'bitly_plugin_short_url'   => get_post_meta( $post_id, '_wpbitly', true ),
@@ -545,12 +1141,15 @@ class Blocks {
 		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
 		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-
+		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
 		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$permalink = esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
+			return $permalink;
+		} else {
+			$permalink = esc_url( $manual_permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 			return $permalink;
 		}
 		return false;
@@ -564,13 +1163,116 @@ class Blocks {
 			return;
 		}
 
-		$font_urls = array(
-			Functions::get_plugin_url( 'dist/fonts/lato-v22-latin-300.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/lato-v22-latin-regular.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/lora-v23-latin-italic.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/open-sans-v28-latin-300.woff2' ),
-			Functions::get_plugin_url( 'dist/fonts/open-sans-v28-latin-regular.woff2' ),
-		);
+		/**
+		 * Whether to preload fonts or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param bool true to preload, false to not.
+		 */
+		$can_preload = apply_filters( 'quotes_dlx_can_preload_fonts', true );
+		if ( ! $can_preload ) {
+			return;
+		}
+
+		// Get font options.
+		$fonts_to_preload      = array();
+		$maybe_enable_fonts    = (bool) Options_Advanced::get_options( 'enable_fonts' );
+		$global_primary_font   = Options_Advanced::get_options( 'primary_font_family' );
+		$global_secondary_font = Options_Advanced::get_options( 'secondary_font_family' );
+
+		if ( ! $global_primary_font || '' === $global_primary_font ) {
+			$global_primary_font = Functions::get_default_primary_font_slug();
+		}
+		if ( ! $global_secondary_font || '' === $global_secondary_font ) {
+			$global_secondary_font = Functions::get_default_secondary_font_slug();
+		}
+
+		// Add fonts to preload if custom isn't set.
+		if ( 'custom' !== $global_primary_font ) {
+			$fonts_to_preload[] = $global_primary_font;
+		}
+		if ( 'custom' !== $global_secondary_font ) {
+			$fonts_to_preload[] = $global_secondary_font;
+		}
+
+		// Now get theme fonts.
+		$theme_options = Options_Theme::get_options();
+		$themes        = Themes::get_theme_data();
+		foreach ( $themes as $theme ) {
+			if ( isset( $theme_options[ $theme['slug'] ] ) ) {
+				// Check to see if custom fonts are enabled for the theme.
+				$custom_fonts_enabled = (bool) ( $theme_options[ $theme['slug'] ]['enable_custom_fonts'] ?? false );
+				if ( ! $custom_fonts_enabled ) {
+					continue;
+				}
+
+				// Start grabbing the fonts.
+				$theme_primary_font   = $theme_options[ $theme['slug'] ]['primary_font_family'] ?? '';
+				$theme_secondary_font = $theme_options[ $theme['slug'] ]['secondary_font_family'] ?? '';
+				if ( ! $theme_primary_font || '' === $theme_primary_font ) {
+					$theme_primary_font = Functions::get_default_primary_font_slug();
+				}
+				if ( ! $theme_secondary_font || '' === $theme_secondary_font ) {
+					$theme_secondary_font = Functions::get_default_secondary_font_slug();
+				}
+				if ( 'custom' !== $theme_primary_font ) {
+					$fonts_to_preload[] = $theme_primary_font;
+				}
+				if ( 'custom' !== $theme_secondary_font ) {
+					$fonts_to_preload[] = $theme_secondary_font;
+				}
+			}
+		}
+
+		// Finally, filter.
+		$fonts_to_preload = array_unique( $fonts_to_preload );
+
+		/**
+		 * Font slugs to preload.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array Font slugs to preload.
+		 */
+		$fonts_to_preload = apply_filters( 'quotes_dlx_fonts_to_preload', $fonts_to_preload );
+
+		// Get fonts in directory.
+		$fonts_path  = Functions::get_plugin_dir( 'dist/fonts/' );
+		$maybe_fonts = wp_cache_get( 'quotes_dlx_font_files' );
+		if ( ! $maybe_fonts || ! is_array( $maybe_fonts ) ) {
+			$maybe_fonts = array();
+		}
+		if ( is_dir( $fonts_path ) ) {
+			$maybe_fonts = array_diff( scandir( $fonts_path ), array( '..', '.' ) );
+			wp_cache_set( 'quotes_dlx_font_files', $maybe_fonts, 'quotes-dlx', HOUR_IN_SECONDS ); // Cache for 60 minutes. Could be longer since we clear the cache on save/reset.
+		}
+
+		// Get .woff2 files.
+		$woff2_filenames = array();
+		foreach ( $maybe_fonts as $font_file ) {
+			$path_info = pathinfo( $font_file );
+			if ( 'woff2' === $path_info['extension'] ) {
+				$woff2_filenames[] = $path_info['basename'];
+			}
+		}
+
+		// Now get fonts to preload.
+		$font_files_to_preload = array();
+		foreach ( $fonts_to_preload as $font_slug ) {
+			foreach ( $woff2_filenames as $woff2_filename ) {
+				if ( strstr( $woff2_filename, $font_slug ) ) {
+					$font_files_to_preload[] = $woff2_filename;
+					continue;
+				}
+			}
+		}
+
+		// Now get the full path to the font files.
+		$font_urls = array();
+		foreach ( $font_files_to_preload as $font_file ) {
+			$font_urls[] = Functions::get_plugin_url( 'dist/fonts/' . $font_file );
+		}
 
 		/**
 		 * Font URLs to pre-load.
@@ -609,6 +1311,12 @@ class Blocks {
 			</symbol>
 			<symbol aria-hidden="true" data-prefix="fas" data-icon="link-solid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" id="quotes-dlx-link-icon">
 				<path d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/>
+			</symbol>
+			<symbol aria-hidden="true" data-prefix="fas" data-icon="at" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-at-icon">
+				<path d="M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256v32c0 53-43 96-96 96c-29.3 0-55.6-13.2-73.2-33.9C320 371.1 289.5 384 256 384c-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1c5.7-5 13.1-8.1 21.3-8.1c17.7 0 32 14.3 32 32v80 32c0 17.7 14.3 32 32 32s32-14.3 32-32V256c0-106-86-192-192-192zm64 192c0-35.3-28.7-64-64-64s-64 28.7-64 64s28.7 64 64 64s64-28.7 64-64z"/>
+			</symbol>
+			<symbol aria-hidden="true" data-prefix="fab" data-icon="facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-facebook-icon">
+				<path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/>
 			</symbol>
 		</svg>
 		<?php

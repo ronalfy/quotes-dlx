@@ -3,11 +3,11 @@
  * Plugin Name:       QuotesDLX
  * Plugin URI:        https://mediaron.com/plugins/quotes-dlx/
  * Description:       WordPress Twitter block that makes it dead simple for users to share your quotes.
- * Version:           1.0.0
+ * Version:           2.0.6
  * Requires at least: 5.9
  * Requires PHP:      7.2
- * Author:            MediaRon LLC
- * Author URI:        https://mediaron.com
+ * Author:            DLX Plugins
+ * Author URI:        https://dlxplugins.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       quotes-dlx
@@ -18,7 +18,7 @@
 
 namespace MediaRonLLC\QuotesDLX;
 
-define( 'QUOTES_DLX_VERSION', '1.0.4' );
+define( 'QUOTES_DLX_VERSION', '2.0.6' );
 define( 'QUOTES_DLX_FILE', __FILE__ );
 
 // Support for site-level autoloading.
@@ -66,12 +66,11 @@ class QuotesDLX {
 
 		Blocks::run();
 		Ajax::run();
+		Email::run();
+		Adobe_Fonts::run();
 
 		Admin\Plugin_Settings_Links::run();
 		Admin\Register_Menu::run();
-
-		// Example of accessing static class.
-		// $hi = Admin\Blah::run();
 
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -92,11 +91,22 @@ class QuotesDLX {
 	 * Init all the things.
 	 */
 	public function init() {
-		// Load all the themes.
-		//Themes\Themes_Addon::init_themes();
 
-		//$blah = Themes\Themes_Addon::get_theme_data();
-		//die( '<pre>' . print_r( $blah, true ) );
+		// Setup EDD licensing.
+		$license     = \MediaRonLLC\QuotesDLX\Options_License::get_options();
+		$license_key = $license['license_key'] ?? '';
+		$beta        = (bool) ( $license['beta'] ?? false );
+		$edd_updater = new \MediaRonLLC\QuotesDLX\Admin\Plugin_Updater(
+			'https://dlxplugins.com',
+			__FILE__,
+			array(
+				'version' => QUOTES_DLX_VERSION,
+				'license' => $license_key,
+				'item_id' => 676,
+				'author'  => 'DLX Plugins',
+				'beta'    => $beta,
+			)
+		);
 	}
 }
 
@@ -107,3 +117,5 @@ add_action(
 		$quotes_dlx->plugins_loaded();
 	}
 );
+register_activation_hook( __FILE__, array( '\MediaRonLLC\QuotesDLX\Admin\Plugin_Settings_Links', 'plugin_activate' ) );
+add_action( 'admin_init', array( '\MediaRonLLC\QuotesDLX\Admin\Plugin_Settings_Links', 'redirect_to_import_screen' ) );

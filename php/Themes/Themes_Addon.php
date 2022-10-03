@@ -20,70 +20,84 @@ abstract class Themes_Addon {
 	 *
 	 * @var string $name The theme name.
 	 */
-	protected static string $name;
+	protected static $name;
 
 	/**
 	 * Slug for the theme.
 	 *
 	 * @var string $slug The theme slug.
 	 */
-	protected static string $slug;
+	protected static $slug;
 
 	/**
 	 * Category for the theme.
 	 *
 	 * @var string $category The theme category.
 	 */
-	protected static string $category;
+	protected static $category;
 
 	/**
 	 * Theme version.
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static string $version;
+	protected static $version;
 
 	/**
 	 * Description for the theme.
 	 *
 	 * @var string $description The theme description.
 	 */
-	protected static string $theme_description;
+	protected static $theme_description;
 
 	/**
 	 * Stylesheet URL for enqueuing.
 	 *
 	 * @var string $stylesheet_url The stylesheet URL. Set 'core' for now stylesheet.
 	 */
-	protected static string $stylesheet_url;
+	protected static $stylesheet_url;
 
 	/**
 	 * Theme gradient.
 	 *
 	 * @var string $preview_gradient The theme preview color gradient.
 	 */
-	protected static string $preview_gradient;
+	protected static $preview_gradient;
 
 	/**
 	 * Preview URL image for theme.
 	 *
 	 * @var string $preview_image_url The theme preview image URL.
 	 */
-	protected static string $preview_image_url;
+	protected static $preview_image_url;
 
 	/**
 	 * Author name.
 	 *
 	 * @var string $author_name The author of the theme.
 	 */
-	protected static string $author_name;
+	protected static $author_name;
 
 	/**
 	 * Author URL.
 	 *
 	 * @var string $author_url URL for the author.
 	 */
-	protected static string $author_url;
+	protected static $author_url;
+
+	/**
+	 * Large Image Width. Used for previews.
+	 *
+	 * @var int $full_width Image width of full-size image.
+	 */
+	protected static $full_width;
+
+	/**
+	 * Large Image height. Used for previews.
+	 *
+	 * @var int $full_height Image height of full-size image.
+	 */
+	protected static $full_height;
 
 	/**
 	 * Variable to hold all the registered themes.
@@ -143,13 +157,15 @@ abstract class Themes_Addon {
 
 	/**
 	 * Return theme data in theme format.
+	 *
+	 * @param string $template The template to get theme data for. If empty, returns all.
 	 */
-	public static function get_theme_data() {
+	public static function get_theme_data( $template = '' ) {
 		$instances = self::init_themes();
 
 		$return = array();
 		foreach ( $instances as $instance ) {
-			$return[] = array(
+			$theme_data = array(
 				'name'              => $instance->get_name(),
 				'slug'              => $instance->get_slug(),
 				'gradient'          => $instance->get_preview_gradient(),
@@ -161,8 +177,25 @@ abstract class Themes_Addon {
 				'author_url'        => $instance->get_author_url(),
 				'preview_image_url' => $instance->get_preview_image_url(),
 				'version'           => $instance->get_version(),
+				'image_width'       => $instance->get_image_width(),
+				'image_height'      => $instance->get_image_height(),
+				'colors'            => $instance->get_colors(),
 			);
+			// Short circuit if template-specific data is requested.
+			if ( $template === $instance->get_slug() ) {
+				return $theme_data;
+			}
+
+			// No short circuit. Get all theme data.
+			$return[] = $theme_data;
 		}
+
+		// Return false if no template is found.
+		if ( ! empty( $template ) ) {
+			return false;
+		}
+
+		// All is good. Return all theme data.
 		return $return;
 	}
 
@@ -235,4 +268,30 @@ abstract class Themes_Addon {
 	 * @return string Theme description.
 	 */
 	abstract protected static function get_description();
+
+	/**
+	 * Get the theme image preview width.
+	 *
+	 * @return int Theme image width.
+	 */
+	abstract protected static function get_image_width();
+
+	/**
+	 * Get the theme image preview height.
+	 *
+	 * @return int Theme image height.
+	 */
+	abstract protected static function get_image_height();
+
+	/**
+	 * Get the colors of the theme.
+	 *
+	 * @return array $args {
+	 *    @type string $name  Name of the color.
+	 *    @type string $slug  Slug of the color.
+	 *    @type string $color Hex code (including #) of the color.
+	 * }
+	 */
+	abstract protected static function get_colors();
+
 }

@@ -26,6 +26,18 @@ module.exports = ( env ) => {
 				'quotes-dlx-theme-purple-bliss': { import: './src/scss/themes/purple-bliss.scss' },
 				'quotes-dlx-theme-dark-matter': { import: './src/scss/themes/dark-matter.scss' },
 				'quotes-dlx-theme-light-branded': { import: './src/scss/themes/light-branded.scss' },
+				'quotes-dlx-theme-bubble-gum': { import: './src/scss/themes/bubble-gum.scss' },
+				'quotes-dlx-theme-preview': [ './src/js/admin-panel/views/theme-preview/index.js', './src/scss/themes/preview.scss' ],
+				'quotes-dlx-gfont-josefin-sans': { import: './src/scss/fonts/josefin-sans.scss' },
+				'quotes-dlx-gfont-karla': { import: './src/scss/fonts/karla.scss' },
+				'quotes-dlx-gfont-lato': { import: './src/scss/fonts/lato.scss' },
+				'quotes-dlx-gfont-montserrat': { import: './src/scss/fonts/montserrat.scss' },
+				'quotes-dlx-gfont-open-sans': { import: './src/scss/fonts/open-sans.scss' },
+				'quotes-dlx-gfont-playfair-display': { import: './src/scss/fonts/playfair-display.scss' },
+				'quotes-dlx-gfont-raleway': { import: './src/scss/fonts/raleway.scss' },
+				'quotes-dlx-gfont-roboto': { import: './src/scss/fonts/roboto.scss' },
+				'quotes-dlx-gfont-source-sans-pro': { import: './src/scss/fonts/source-sans-pro.scss' },
+				'quotes-dlx-email': [ './src/js/views/Email/index.js', './src/js/views/Email/style.scss' ],
 			},
 			resolve: {
 				alias: {
@@ -38,6 +50,7 @@ module.exports = ( env ) => {
 				filename: '[name].js',
 				sourceMapFilename: '[file].map[query]',
 				assetModuleFilename: 'fonts/[name][ext]',
+				clean: true,
 			},
 			module: {
 				rules: [
@@ -83,6 +96,22 @@ module.exports = ( env ) => {
 							path.resolve(
 								__dirname,
 								'node_modules/react-loading-skeleton/dist'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/@fancyapps/ui/dist/fancybox.css'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/photoswipe/dist/photoswipe.css'
+							),
+							path.resolve(
+								__dirname,
+								'node_modules/@fancyapps/ui/dist/fancybox.css'
 							),
 						],
 						use: [

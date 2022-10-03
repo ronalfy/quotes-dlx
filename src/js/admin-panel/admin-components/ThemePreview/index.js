@@ -1,0 +1,178 @@
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState, Suspense, useContext } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { __ } from '@wordpress/i18n';
+import TwitterIcon from '../../../components/icons/twitter';
+import MeatballMenu from '../../../components/MeatballMenu';
+
+const ThemePreview = ( props ) => {
+	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen, primaryFontFamily, secondaryFontFamily, fontsEnabled } =
+		props;
+
+	console.log( props );
+
+	const getColorStyleVars = () => {
+		let styles = '';
+		colors.map( ( color, index ) => {
+			styles += `--qdlx-${ activeTheme }-${ color.slug }: ${ color.color };`;
+		} );
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+
+	const getFontSize = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-font-size-${ screen }: ${ fontSize }px;`;
+		styles += `--qdlx-${ activeTheme }-button-font-size-${ screen }: ${ buttonFontSize }px;`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+	const getLineHeight = () => {
+		let styles = '';
+		styles += `--qdlx-${ activeTheme }-line-height-${ screen }: ${ lineHeight };`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+
+	const getFontFamilies = () => {
+		let styles = '';
+		if ( ! fontsEnabled ) {
+			return <></>;
+		}
+		styles += `--qdlx-primary-font-family: "${ primaryFontFamily.replace( /\"/g, '' ) }";`;
+		styles += `--qdlx-secondary-font-family: "${ secondaryFontFamily.replace( /\"/g, '' ) }";`;
+		styles = `:root { ${ styles } }`;
+		return (
+			<style>
+				{ styles }
+			</style>
+		);
+	};
+
+	let previewInlineStyles = { maxWidth: '1100px !important', margin: '0 auto' };
+	switch ( screen ) {
+		case 'mobile':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-small, 480px)', margin: '0 auto' };
+			break;
+		case 'tablet':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-medium, 768px)', margin: '0 auto' };
+			break;
+		case 'desktop':
+			previewInlineStyles = { maxWidth: 'var(--qdlx-var-breakpoint-large, 1024px)', margin: '0 auto' };
+			break;
+	}
+	if ( colorsOnly ) {
+		previewInlineStyles = { maxWidth: '650px', margin: '0 auto', marginBottom: '40px' };
+	}
+	return (
+		<>
+			{ getColorStyleVars() }
+			{ getFontFamilies() }
+
+			{ ! colorsOnly && (
+				<>
+					{ getFontSize() }
+					{ getLineHeight() }
+				</>
+
+			) }
+
+			<link rel="stylesheet" href={ stylesheet } />
+			<div
+				className={ classNames( 'quotes-dlx', {
+					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
+					'quotes-dlx-context-menu-disabled': false,
+					'quotes-dlx-has-no-tweet-button': false,
+					[ `quotes-dlx-screen-${ screen }` ]: true,
+				} ) }
+				style={ previewInlineStyles }
+			>
+				<div className="quotes-dlx-wrapper">
+					<div className="quotes-dlx-content-wrapper">
+						<figure>
+							<blockquote className="quotes-dlx-text-wrapper">
+								<div className="quotes-dlx-text">
+									<div>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Mauris imperdiet leo sed tellus ultrices, eget lobortis eros
+										molestie.
+									</div>
+									<br />
+									<div>
+										<strong>By</strong>: <a>Maximus</a>
+									</div>
+								</div>
+							</blockquote>
+						</figure>
+						<div className={ `quotes-dlx-button-wrapper right` }>
+							<button
+								className={ `quotes-dlx-button full quotes-dlx-button-icon-right button-reset show-cursor` }
+								onClick={ ( e ) => {
+									e.preventDefault();
+								} }
+							>
+								<>
+									<span className="quotes-dlx-button-text">
+										{ __( 'Click to Tweet', 'quotes-dlx' ) }
+									</span>
+									<span className="quotes-dlx-button-icon">
+										<TwitterIcon />
+									</span>
+								</>
+							</button>
+						</div>
+					</div>
+					<MeatballMenu
+						enable_copy_text={ true }
+						enable_copy_tweet={ true }
+						enable_copy_link={ true }
+						enable_tweet_this={ true }
+					/>
+				</div>
+			</div>
+		</>
+	);
+};
+
+ThemePreview.defaultProps = {
+	activeTheme: '',
+	colors: [],
+	stylesheet: '',
+	fontSize: '16px',
+	lineHeight: 1.65,
+	colorsOnly: false,
+	buttonFontSize: '16px',
+	screen: 'desktop',
+	primaryFontFamily: 'Lato',
+	secondaryFontFamily: 'Open Sans',
+	fontsEnabled: true,
+};
+
+ThemePreview.propTypes = {
+	activeTheme: PropTypes.string.isRequired,
+	colors: PropTypes.array.isRequired,
+	stylesheet: PropTypes.string.isRequired,
+	fontSize: PropTypes.string.isRequired,
+	lineHeight: PropTypes.number.isRequired,
+	colorsOnly: PropTypes.bool.isRequired,
+	buttonFontSize: PropTypes.string.isRequired,
+	screen: PropTypes.string.isRequired,
+	primaryFontFamily: PropTypes.string.isRequired,
+	secondaryFontFamily: PropTypes.string.isRequired,
+	fontsEnabled: PropTypes.bool.isRequired,
+};
+
+export default ThemePreview;

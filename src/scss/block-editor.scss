@@ -67,6 +67,12 @@
 	.components-base-control__label {
 		max-width: 100%;
 	}
+	.components-radio-control__option {
+		margin-bottom: 8px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 @keyframes quotes-dlx-line-count-move {
@@ -212,5 +218,14 @@ body .editor-styles-wrapper {
 		p {
 			margin-bottom: 8px;
 		}
+	}
+}
+
+/* Hashtags Section */
+.quotes-dlx-hashtag-fields {
+	.components-form-token-field__token {
+		display: flex;
+		align-items: center;
+		background: rgb(221, 221, 221);
 	}
 }

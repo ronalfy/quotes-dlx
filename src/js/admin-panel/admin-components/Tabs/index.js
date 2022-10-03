@@ -3,46 +3,64 @@ import { __ } from '@wordpress/i18n';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import AdminDefaultsLoader from '../Loaders/AdminDefaultsLoader';
 import AdminThemeDefaultsLoader from '../Loaders/AdminThemeDefaultsLoader';
+import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import 'react-loading-skeleton/dist/skeleton.css';
 import CircularQuestionIcon from '../../../components/icons/CircularQuestion';
 import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
+import ColorPaletteIcon from '../../../components/icons/ColorPalette';
+import KeyIcon from '../../../components/icons/KeyIcon';
+import FlaskIcon from '../../../components/icons/FlaskIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
+import ErrorBoundary from '../../admin-components/ErrorBoundary/index.js';
 
 // Lazy load components.
 const AdminHome = lazy( () =>
-	import( /* webpackChunkName: "AdminHome" */ '../../views/AdminHome' )
+	import( /* webpackChunkName: "AdminHome0.0.4" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.5" */ '../../views/AdminDefaults' )
+);
+
+const AdminAdvanced = lazy( () =>
+	import( /* webpackChunkName: "AdminAdvanced0.0.6" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminDefaults" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.5" */ '../../views/AdminContextualMenu'
 	)
 );
 
 const AdminThemesDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemesDefaults" */ '../../views/AdminThemesDefaults'
+		/* webpackChunkName: "AdminThemesDefaults0.0.5" */ '../../views/AdminThemesDefaults'
+	)
+);
+
+const AdminThemeOptions = lazy( () =>
+	import(
+		/* webpackChunkName: "AdminThemeOptions0.0.5" */ '../../views/AdminThemeOptions'
 	)
 );
 
 const AdminSupport = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminSupport" */ '../../views/AdminSupport'
+		/* webpackChunkName: "AdminSupport0.0.4" */ '../../views/AdminSupport'
 	)
+);
+
+const AdminLicense = lazy( () =>
+	import( /* webpackChunkName: "AdminLicense0.0.4" */ '../../views/AdminLicense' )
 );
 
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount } =
-		useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -50,6 +68,8 @@ const AdminTabs = ( props ) => {
 		blockDefaultsDirtyCount,
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
+		licensesDirtyCount,
+		advancedTabDirtyCount,
 	] );
 
 	/**
@@ -70,46 +90,229 @@ const AdminTabs = ( props ) => {
 
 	const getAdminHome = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminHome />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Home screen for QuotesDLX. Please try refreshing and contact support at dlxplugins.com/support/ if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminHome />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminDefaults = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
+	const getAdminLicense = (
+		<>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the License screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminLicense />
+				</Suspense>
+			</ErrorBoundary>
+		</>
+	);
+	
 	const getAdminContextualMenuDefaults = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminContextualMenuDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Contextual Menu screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminContextualMenuDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
 	const getAdminThemesDefaults = (
 		<>
-			<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
-				<AdminThemesDefaults />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Theme Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminThemeDefaultsLoader /> }>
+					<AdminThemesDefaults />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
-
+	
+	const getAdminThemeOptions = (
+		<>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Theme Colors and Font Sizes screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
+					<AdminThemeOptions />
+				</Suspense>
+			</ErrorBoundary>
+		</>
+	);
+	
 	const getAdminSupport = (
 		<>
-			<Suspense fallback={ <AdminDefaultsLoader /> }>
-				<AdminSupport />
-			</Suspense>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Admin Support screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminSupport />
+				</Suspense>
+			</ErrorBoundary>
+		</>
+	);
+	
+	const getAdminAdvanced = (
+		<>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Advanced screen for QuotesDLX. Please try refreshing and contact support at if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminAdvanced />
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
 
+	// Set browser unload event if dirtycounts are not zero.
+	window.onbeforeunload = function() {
+		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount ) {
+			return true;
+		}
+	};
+
 	return (
-		<div className="qdlx-admin-container__wrap">
+		<div className="qdlx-admin-container__wrap" id="qdlx-admin-container">
 			<nav className="qdlx-admin__tabs--nav">
 				<Router>
 					<TabItem
@@ -121,6 +324,7 @@ const AdminTabs = ( props ) => {
 							onTabClick( tab );
 						} }
 						isActive={ isActive }
+						dirtyCount={ 0 }
 					/>
 					<TabItem
 						icon={ GearIcon }
@@ -156,6 +360,39 @@ const AdminTabs = ( props ) => {
 						dirtyCount={ themesDefaultsDirtyCount }
 					/>
 					<TabItem
+						icon={ ColorPaletteIcon }
+						slug="theme-options"
+						description={ __( 'Set the theme color, line-height, and font sizes', 'quotes-dlx' ) }
+						label={ __( 'Theme Options', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ 0 }
+					/>
+					<TabItem
+						icon={ KeyIcon }
+						slug="licenses"
+						description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
+						label={ __( 'License', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ licensesDirtyCount }
+					/>
+					<TabItem
+						icon={ FlaskIcon }
+						slug="advanced"
+						description={ __( 'Reset options and set global theme fonts.', 'quotes-dlx' ) }
+						label={ __( 'Advanced', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ advancedTabDirtyCount }
+					/>
+					<TabItem
 						icon={ CircularQuestionIcon }
 						slug="support"
 						description={ __( 'Quick links for docs and support.', 'quotes-dlx' ) }
@@ -170,28 +407,45 @@ const AdminTabs = ( props ) => {
 			</nav>
 			<span aria-hidden="true"></span>
 			<>
-				<Router>
-					<Routes>
-						<Route path="/defaults" exact element={ getAdminDefaults } />
-						<Route
-							path="/menu"
-							exact
-							element={ getAdminContextualMenuDefaults }
-						/>
-						<Route
-							path="/themes"
-							exact
-							element={ getAdminThemesDefaults }
-						/>
-						<Route
-							path="/support"
-							exact
-							element={ getAdminSupport }
-						/>
-						<Route path="/" exact element={ getAdminHome } />
-						<Route path="*" element={ <Navigate to="/" /> } />
-					</Routes>
-				</Router>
+				<div id="qdlx-tab-content">
+					<Router>
+						<Routes>
+							<Route path="/defaults" exact element={ getAdminDefaults } />
+							<Route
+								path="/menu"
+								exact
+								element={ getAdminContextualMenuDefaults }
+							/>
+							<Route
+								path="/themes"
+								exact
+								element={ getAdminThemesDefaults }
+							/>
+							<Route
+								path="/theme-options"
+								exact
+								element={ getAdminThemeOptions }
+							/>
+							<Route
+								path="/advanced"
+								exact
+								element={ getAdminAdvanced }
+							/>
+							<Route
+								path="/support"
+								exact
+								element={ getAdminSupport }
+							/>
+							<Route
+								path="/licenses"
+								exact
+								element={ getAdminLicense }
+							/>
+							<Route path="/" exact element={ getAdminHome } />
+							<Route path="*" element={ <Navigate to="/" /> } />
+						</Routes>
+					</Router>
+				</div>
 			</>
 		</div>
 	);

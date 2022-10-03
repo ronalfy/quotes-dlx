@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
@@ -17,14 +17,27 @@ const TabItem = ( props ) => {
 		active: props.isActive( location.pathname, slug ),
 	} );
 
+	// Scroll pages into view unless we're on the home screen.
+	useEffect( () => {
+		if ( location.pathname === '/' ) {
+			return;
+		}
+		// Can also use qdlx-tab-content
+		document.getElementById( 'qdlx-admin-container' ).scrollIntoView( {
+			behavior: 'smooth',
+		} );
+	}, [ location ] );
+
+	const tabId = 'dlx' + slug;
+
 	return (
 		<a
 			onClick={ ( e ) => props.tabClicked( slug ) }
 			href={ `#/${ slug }` }
 			className={ classes }
 		>
-			<div className="qdlx-admin__tabs--nav-icon">{ getIcon( icon ) }</div>
-			<div className="qdlx-admin__tabs--nav-title">{ label }</div>
+			<div className="qdlx-admin__tabs--nav-icon" aria-label={ label } data-caption={ label } aria-describedby={ tabId }>{ getIcon( icon ) }</div>
+			<div className="qdlx-admin__tabs--nav-title" aria-hidden="true" >{ label }</div>
 			{ dirtyCount > 0 &&
 				<div
 					className="qdlx-admin__tabs--save-count"
@@ -38,11 +51,21 @@ const TabItem = ( props ) => {
 						),
 						dirtyCount
 					) }
+					aria-label={ sprintf(
+						/* Translators: %d is the number of unsaved items */
+						_n(
+							'You have %d unsaved item.',
+							'You have %d unsaved items',
+							dirtyCount,
+							'quotes-dlx'
+						),
+						dirtyCount
+					) }
 				>
-					<span>{ dirtyCount }</span>
+					<span aria-hidden="true">{ dirtyCount }</span>
 				</div>
 			}
-			<div className="qdlx-admin__tabs--nav-description">{ description }</div>
+			<div id={ tabId } className="qdlx-admin__tabs--nav-description">{ description }</div>
 		</a>
 	);
 };

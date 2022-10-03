@@ -36,6 +36,8 @@ class Email {
 			wp_die( 'Invalid request.' );
 		}
 
+		$recaptcha_site_key = Options_Advanced::get_options( 'recaptcha_site_key' );
+		$recaptcha_enabled  = Options_Advanced::get_options( 'recaptcha_enabled' );
 		wp_register_script(
 			'qdlx_email_view',
 			Functions::get_plugin_url( 'dist/quotes-dlx-email.js' ),
@@ -43,13 +45,41 @@ class Email {
 			Functions::get_plugin_version(),
 			false
 		);
-		wp_register_script(
-			'qdlx-recaptcha',
-			esc_url_raw( 'https://www.google.com/recaptcha/api.js?render=' . sanitize_text_field( Options_Advanced::get_options( 'recaptcha_site_key' ) ) ),
-			array(),
-			Functions::get_plugin_version(),
-			true
-		);
+		if ( $recaptcha_enabled && ! empty( $recaptcha_site_key ) ) {
+			wp_localize_script(
+				'qdlx_email_view',
+				'qdlx_email',
+				array(
+					'recaptcha_enabled'  => true,
+					'recaptcha_site_key' => $recaptcha_site_key,
+					'nonce'              => sanitize_text_field( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ) ),
+					'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+					'permalink'          => urlencode( $permalink ),
+					'share_text'         => urlencode( filter_input( INPUT_GET, 'text', FILTER_DEFAULT ) ),
+
+				)
+			);
+			wp_register_script(
+				'qdlx-recaptcha',
+				esc_url_raw( 'https://www.google.com/recaptcha/api.js?render=' . sanitize_text_field( Options_Advanced::get_options( 'recaptcha_site_key' ) ) ),
+				array(),
+				Functions::get_plugin_version(),
+				true
+			);
+		} else {
+			wp_localize_script(
+				'qdlx_email_view',
+				'qdlx_email',
+				array(
+					'recaptcha_enabled'  => false,
+					'recaptcha_site_key' => '',
+					'nonce'              => sanitize_text_field( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ) ),
+					'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+					'permalink'          => urlencode( $permalink ),
+					'share_text'         => urlencode( filter_input( INPUT_GET, 'text', FILTER_DEFAULT ) ),
+				)
+			);
+		}
 		wp_register_style(
 			'qdlx_email_view',
 			Functions::get_plugin_url( 'dist/quotes-dlx-email.css' ),

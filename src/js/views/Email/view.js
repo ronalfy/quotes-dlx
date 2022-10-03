@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
@@ -18,11 +19,16 @@ import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox';
 const View = () => {
 	const [ isSent, setIsSent ] = useState( false );
 	const [ isSending, setIsSending ] = useState( false );
+
 	const getDefaultValues = () => {
 		return {
 			toEmail: '',
 			fromName: '',
 			subject: __( 'Check out this quote from {sitename}', 'quotes-dlx' ),
+			recaptchaToken: '',
+			nonce: qdlx_email.nonce,
+			permalink: qdlx_email.permalink,
+			shareText: qdlx_email.share_text,
 		};
 	};
 	const { register, control, handleSubmit, setValue, getValues, reset } =
@@ -38,6 +44,7 @@ const View = () => {
 
 	const onSubmit = ( formData ) => {
 		// Save stuff here.
+		console.log( formData );
 	};
 
 	const hasErrors = () => {
@@ -57,7 +64,7 @@ const View = () => {
 	return (
 		<section className="qdlx-email--content-wrap">
 			<h2>{ __( 'Email this Quote', 'quotes-dlx' ) }</h2>
-			<form onSubmit={ handleSubmit( onSubmit ) }>
+			<form id="qdlx-email-quote-form" onSubmit={ handleSubmit( onSubmit ) }>
 				<div className="qdlx-email-control-row">
 					<Controller
 						name="fromName"
@@ -169,11 +176,40 @@ const View = () => {
 							icon={ CircularExclamationIcon }
 						/>
 					) }
+					<Controller
+						name="recaptchaToken"
+						control={ control }
+						render={ ( { field } ) => (
+							<TextControl { ...field } type="hidden" register="recaptchaToken" />
+						) }
+					/>
+					<Controller
+						name="nonce"
+						control={ control }
+						render={ ( { field } ) => (
+							<TextControl { ...field } type="hidden" register="nonce" />
+						) }
+					/>
+					<Controller
+						name="permalink"
+						control={ control }
+						render={ ( { field } ) => (
+							<TextControl { ...field } type="hidden" register="permalink" />
+						) }
+					/>
+					<Controller
+						name="shareText"
+						control={ control }
+						render={ ( { field } ) => (
+							<TextControl { ...field } type="hidden" register="shareText" />
+						) }
+					/>
 				</div>
 				<div className="qdlx-admin__tabs--content-actions">
 					<Button
+						id="qdlx-recaptcha-submit"
 						className={ classNames(
-							'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+							'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha',
 							{ 'has-error': hasErrors() },
 							{ 'has-icon': isSending },
 							{ 'is-saving': { isSending } }
@@ -189,10 +225,29 @@ const View = () => {
 						iconPosition="right"
 						disabled={ isSending || isSent }
 						onClick={ ( e ) => {
-							// This fake submits the form.
-							e.target.form.dispatchEvent(
-								new Event( 'submit', { cancelable: true, bubbles: true } )
-							);
+							// eslint-disable-next-line no-undef
+							if (
+								qdlx_email.recaptcha_enabled &&
+								typeof grecaptcha !== 'undefined'
+							) {
+								grecaptcha.ready( function() {
+									grecaptcha
+										.execute( qdlx_email.recaptcha_site_key, {
+											action: 'submit',
+										} )
+										.then( function( token ) {
+											setValue( 'recaptchaToken', token );
+											e.target.form.dispatchEvent(
+												new Event( 'submit', { cancelable: true, bubbles: true } )
+											);
+										} );
+								} );
+							} else {
+								// This force submits the form.
+								e.target.form.dispatchEvent(
+									new Event( 'submit', { cancelable: true, bubbles: true } )
+								);
+							}
 						} }
 					/>
 					<Button
@@ -204,7 +259,7 @@ const View = () => {
 							isSent ? __( 'Close', 'quotes-dlx' ) : __( 'Cancel', 'quotes-dlx' )
 						}
 						disabled={ isSending }
-						onClick={ ( e ) => {
+						onClick={ () => {
 							window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
 						} }
 					/>

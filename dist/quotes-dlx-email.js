@@ -49074,6 +49074,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable no-undef */
 
 
 
@@ -49101,7 +49102,11 @@ var View = function View() {
     return {
       toEmail: '',
       fromName: '',
-      subject: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Check out this quote from {sitename}', 'quotes-dlx')
+      subject: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Check out this quote from {sitename}', 'quotes-dlx'),
+      recaptchaToken: '',
+      nonce: qdlx_email.nonce,
+      permalink: qdlx_email.permalink,
+      shareText: qdlx_email.share_text
     };
   };
 
@@ -49127,7 +49132,9 @@ var View = function View() {
       dirtyFields = _useFormState.dirtyFields,
       touchedFields = _useFormState.touchedFields;
 
-  var onSubmit = function onSubmit(formData) {// Save stuff here.
+  var onSubmit = function onSubmit(formData) {
+    // Save stuff here.
+    console.log(formData);
   };
 
   var hasErrors = function hasErrors() {
@@ -49148,6 +49155,7 @@ var View = function View() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "qdlx-email--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email this Quote', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    id: "qdlx-email-quote-form",
     onSubmit: handleSubmit(onSubmit)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-email-control-row"
@@ -49247,10 +49255,51 @@ var View = function View() {
     politeness: "assertive",
     inline: true,
     icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_7__.Controller, {
+    name: "recaptchaToken",
+    control: control,
+    render: function render(_ref4) {
+      var field = _ref4.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, field, {
+        type: "hidden",
+        register: "recaptchaToken"
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_7__.Controller, {
+    name: "nonce",
+    control: control,
+    render: function render(_ref5) {
+      var field = _ref5.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, field, {
+        type: "hidden",
+        register: "nonce"
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_7__.Controller, {
+    name: "permalink",
+    control: control,
+    render: function render(_ref6) {
+      var field = _ref6.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, field, {
+        type: "hidden",
+        register: "permalink"
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_7__.Controller, {
+    name: "shareText",
+    control: control,
+    render: function render(_ref7) {
+      var field = _ref7.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, field, {
+        type: "hidden",
+        register: "shareText"
+      }));
+    }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+    id: "qdlx-recaptcha-submit",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha', {
       'has-error': hasErrors()
     }, {
       'has-icon': isSending
@@ -49266,18 +49315,33 @@ var View = function View() {
     iconPosition: "right",
     disabled: isSending || isSent,
     onClick: function onClick(e) {
-      // This fake submits the form.
-      e.target.form.dispatchEvent(new Event('submit', {
-        cancelable: true,
-        bubbles: true
-      }));
+      // eslint-disable-next-line no-undef
+      if (qdlx_email.recaptcha_enabled && typeof grecaptcha !== 'undefined') {
+        grecaptcha.ready(function () {
+          grecaptcha.execute(qdlx_email.recaptcha_site_key, {
+            action: 'submit'
+          }).then(function (token) {
+            setValue('recaptchaToken', token);
+            e.target.form.dispatchEvent(new Event('submit', {
+              cancelable: true,
+              bubbles: true
+            }));
+          });
+        });
+      } else {
+        // This force submits the form.
+        e.target.form.dispatchEvent(new Event('submit', {
+          cancelable: true,
+          bubbles: true
+        }));
+      }
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-secondary qdlx__btn--icon-right'),
     type: "button",
     text: isSent ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Cancel', 'quotes-dlx'),
     disabled: isSending,
-    onClick: function onClick(e) {
+    onClick: function onClick() {
       window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
     }
   })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_3__["default"], {

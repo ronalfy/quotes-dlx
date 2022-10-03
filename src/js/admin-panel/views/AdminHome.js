@@ -259,13 +259,7 @@ const AdminHome = () => {
 							<div className="qdlx-admin__tabs--content-inner">
 								<ol className="qdlx-planning-for">
 									<li>
-										<strong>Facebook Integration</strong>: Add Facebook to the contextual menu and have a section to add a Facebook APP ID. Phase 2 of this will be to add in a Facebook button to the block itself (in addition to the menu).
-									</li>
-									<li>
-										<strong>Set Theme from the Home Screen</strong>: Change the default theme without having to go to the settings page.
-									</li>
-									<li>
-										<strong>Set Default Twitter Name from the Home Screen</strong>: Change the default Twitter username without having to go to the settings page.
+										<strong>Setup Wizard</strong>: A setup wizard to help you more easily set up the plugin.
 									</li>
 									<li>
 										<strong>More Fonts</strong>: As users request them, I will be adding fonts one-by-one.
@@ -283,9 +277,9 @@ const AdminHome = () => {
 								<div className="qdlx-button-primary">
 									<a
 										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-										href="https://dlxplugins.com/announcements/"
+										href="https://docs.dlxplugins.com/developers/changelog"
 									>
-										{ __( 'Read more (Announcements)', 'quotes-dlx' ) }
+										{ __( 'Read the Changelog', 'quotes-dlx' ) }
 									</a>
 								</div>
 							</div>

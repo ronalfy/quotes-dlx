@@ -66,6 +66,7 @@ class QuotesDLX {
 
 		Blocks::run();
 		Ajax::run();
+		Email::run();
 		Adobe_Fonts::run();
 
 		Admin\Plugin_Settings_Links::run();

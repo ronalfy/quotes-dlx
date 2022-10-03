@@ -778,9 +778,20 @@ class Blocks {
 							?>
 							<?php
 							if ( $enable_email_text ) :
+								$ajax_nonce = wp_create_nonce( 'qdlx_share_' . $permalink );
+								$ajax_url   = admin_url( 'admin-ajax.php' );
+								$ajax_url   = add_query_arg(
+									array(
+										'action'    => 'quotes_dlx_email_interface',
+										'permalink' => urlencode( $permalink ),
+										'nonce'     => $ajax_nonce,
+										'text'      => wp_strip_all_tags( $share_text_kses ),
+									),
+									$ajax_url
+								);
 								?>
 								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
-									<button class="button-reset">
+									<button class="button-reset" data-ajax-url="<?php echo esc_url( $ajax_url ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
 										</span>

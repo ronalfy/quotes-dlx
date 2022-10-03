@@ -3,8 +3,17 @@
  * Main QuotesDLX front-end JS.
  */
 
+import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
+
 ( function() {
 	const { __ } = wp.i18n;
+
+	// Set Fancybox global.
+	if ( typeof Fancybox !== 'undefined' ) {
+		window.Fancybox = Fancybox;
+	} else {
+		window.Fancybox = null;
+	}
 
 	// Gather all wrappers.
 	const wrappers = document.querySelectorAll( '.quotes-dlx-wrapper' );
@@ -19,7 +28,6 @@
 				copyQuoteCallback( e, copyQuoteWrapper, wrapper );
 			} );
 		}
-		
 
 		// Click to copy Tweet.
 		const copyTweetWrapper = wrapper.querySelector(
@@ -68,6 +76,13 @@
 		if ( null !== facebookButtonWrapper ) {
 			facebookButtonWrapper.addEventListener( 'click', ( e ) => {
 				facebook( e );
+			} );
+		}
+
+		const emailButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-email-link > button' );
+		if ( null !== emailButtonWrapper ) {
+			emailButtonWrapper.addEventListener( 'click', ( e ) => {
+				fancyboxEmail( e );
 			} );
 		}
 	} );
@@ -264,5 +279,26 @@
 		let fbShare = `https://www.facebook.com/dialog/share?app_id=${ shareAppId }&display=popup&quote=${ shareText }&href=${ permalink }`;
 		fbShare = fbShare.replace( '?&', '?' );
 		window.open( fbShare, '_blank' );
+	};
+	const fancyboxEmail = ( e ) => {
+		let fancyboxEmailButton = e.target;
+		const element = e.target.nodeName.toLowerCase();
+
+		// Check element type.
+		if ( 'span' === element ) {
+			fancyboxEmailButton = fancyboxEmailButton.parentElement;
+		}
+		if ( 'use' === element ) {
+			fancyboxEmailButton = fancyboxEmailButton.parentElement.parentElement.parentElement;
+		}
+		const ajaxUrl = fancyboxEmailButton.getAttribute( 'data-ajax-url' );
+		Fancybox.show(
+			[
+				{
+					src: ajaxUrl,
+					type: 'iframe',
+				},
+			],
+		);
 	};
 }() );

@@ -1,20 +1,17 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import {
 	TextControl,
 	Button,
-	ButtonGroup,
-	RadioControl,
-	FormTokenField,
-	ToggleControl,
 } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import Notice from '../../admin-panel/admin-components/Notice';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import Spinner from '../../components/icons/Spinner';
-import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox';
+import sendCommand from '../../utils/SendCommand';
 
 const View = () => {
 	const [ isSent, setIsSent ] = useState( false );
@@ -23,6 +20,7 @@ const View = () => {
 	const getDefaultValues = () => {
 		return {
 			toEmail: '',
+			fromEmail: '',
 			fromName: '',
 			subject: __( 'Check out this quote from {sitename}', 'quotes-dlx' ),
 			recaptchaToken: '',
@@ -31,20 +29,27 @@ const View = () => {
 			shareText: qdlx_email.share_text,
 		};
 	};
-	const { register, control, handleSubmit, setValue, getValues, reset } =
+	const { control, handleSubmit, setValue } =
 		useForm( {
 			defaultValues: getDefaultValues(),
 		} );
 
-	const formValues = useWatch( { control } );
-
-	const { errors, isDirty, dirtyFields, touchedFields } = useFormState( {
+	const { errors } = useFormState( {
 		control,
 	} );
 
 	const onSubmit = ( formData ) => {
+		setIsSending( true );
 		// Save stuff here.
-		console.log( formData );
+		sendCommand( 'quotes_dlx_send_email', {
+			...formData
+		}, qdlx_email.ajaxurl ).then( ( ajaxResponse ) => {
+			console.log( ajaxResponse );
+		} )
+		.catch( ( ajaxResponse ) => {} )
+		.then( ( ajaxResponse ) => {
+			setIsSending( false );
+		} );
 	};
 
 	const hasErrors = () => {
@@ -86,6 +91,55 @@ const View = () => {
 						) }
 					/>
 					{ 'required' === errors.fromName?.type && (
+						<Notice
+							message={ __( 'This is a required field.' ) }
+							status="error"
+							politeness="assertive"
+							inline={ true }
+							icon={ CircularExclamationIcon }
+						/>
+					) }
+				</div>
+				<div className="qdlx-email-control-row">
+					<Controller
+						name="fromEmail"
+						control={ control }
+						rules={ {
+							validate: ( value ) => {
+								if ( validateEmail( value ) ) {
+									return true;
+								}
+								return false;
+							},
+							required: true,
+						} }
+						render={ ( { field } ) => (
+							<TextControl
+								{ ...field }
+								label={ __( 'From (email):', 'quotes-dlx' ) }
+								className={ classNames( 'qdlx-admin__text-control', {
+									'has-error': 'required' === errors.fromEmail?.type,
+									'is-required': true,
+								} ) }
+								register="fromEmail"
+								placeholder="you@yourdomain.com"
+								help={ __(
+									'Please add in your email address.',
+									'quotes-dlx'
+								) }
+							/>
+						) }
+					/>
+					{ 'validate' === errors.fromEmail?.type && (
+						<Notice
+							message={ __( 'The Email is Invalid.' ) }
+							status="error"
+							politeness="assertive"
+							inline={ true }
+							icon={ CircularExclamationIcon }
+						/>
+					) }
+					{ 'required' === errors.fromEmail?.type && (
 						<Notice
 							message={ __( 'This is a required field.' ) }
 							status="error"

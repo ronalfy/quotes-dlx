@@ -2859,7 +2859,7 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable camelcase */
 
 
-function sendCommand(action, data) {
+function sendCommand(action, data, maybeAjaxUrl) {
   var params = {
     action: action
   };
@@ -2880,7 +2880,7 @@ function sendCommand(action, data) {
 
   var options = {
     method: 'post',
-    url: ajaxurl,
+    url: maybeAjaxUrl !== null && maybeAjaxUrl !== void 0 ? maybeAjaxUrl : ajaxurl,
     params: params,
     paramsSerializer: function paramsSerializer(jsparams) {
       return qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(jsparams, {

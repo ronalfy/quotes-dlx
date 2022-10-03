@@ -10,7 +10,6 @@ const ThemePreview = ( props ) => {
 	const { activeTheme, colors, stylesheet, fontSize, lineHeight, buttonFontSize, colorsOnly, screen, primaryFontFamily, secondaryFontFamily, fontsEnabled } =
 		props;
 
-	console.log( props );
 
 	const getColorStyleVars = () => {
 		let styles = '';

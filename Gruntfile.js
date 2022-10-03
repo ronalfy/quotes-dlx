@@ -12,6 +12,7 @@ module.exports = function (grunt) {
 				{src: ['php/**'], dest: '/'}, // includes files in path and its subdirs
 				{src: ['images/**'], dest: '/'},
 				{src: ['lib/**'], dest: '/'}, // includes files in path and its subdirs
+				{src: ['fancybox/**'], dest: '/'}, // includes files in path and its subdirs
 				{src: ['dist/**'], dest: '/'}, // includes files in path and its subdirs
 				{src: ['build/**'], dest: '/'}, // includes files in path and its subdirs
 			  ]

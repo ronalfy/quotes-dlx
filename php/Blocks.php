@@ -277,7 +277,7 @@ class Blocks {
 		if ( ! empty( $blocks ) ) {
 			foreach ( $blocks as $block ) {
 				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
-					$email_text_option             = (bool) $block['attrs']['enable_email_text'] ?? false;
+					$email_text_option             = (bool) ( $block['attrs']['enable_email_text'] ?? false );
 					$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
 					if ( $enable_global_contextual_menu ) {
 						$email_text_option = (bool) Options_Menu::get_options( 'enable_email_text' );
@@ -819,7 +819,7 @@ class Blocks {
 							if ( $enable_share_this && ! empty( $maybe_facebook_app_id ) ) :
 								?>
 								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-share-facebook" data-url="<?php echo esc_attr( $permalink ); ?>">
-								<button class="button-reset" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
+								<button class="button-reset" data-facebook-text="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>" data-app-id="<?php echo esc_attr( $maybe_facebook_app_id ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-facebook-icon"></use></svg>
 										</span>

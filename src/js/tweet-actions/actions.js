@@ -8,13 +8,6 @@ import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
 ( function() {
 	const { __ } = wp.i18n;
 
-	// Set Fancybox global.
-	if ( typeof Fancybox !== 'undefined' ) {
-		window.Fancybox = Fancybox;
-	} else {
-		window.Fancybox = null;
-	}
-
 	// Gather all wrappers.
 	const wrappers = document.querySelectorAll( '.quotes-dlx-wrapper' );
 
@@ -292,13 +285,22 @@ import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
 			fancyboxEmailButton = fancyboxEmailButton.parentElement.parentElement.parentElement;
 		}
 		const ajaxUrl = fancyboxEmailButton.getAttribute( 'data-ajax-url' );
-		Fancybox.show(
+		window.qdlxfancy = Fancybox.show(
 			[
 				{
 					src: ajaxUrl,
 					type: 'iframe',
+					caption: __( 'Email This Quote', 'quotes-dlx' ),
+					width: 450,
 				},
 			],
+			{
+				mainClass: 'qdlx-fancybox',
+				closeButton: 'inside',
+				click: ( e ) => {
+					e.preventDefault();
+				},
+			}
 		);
 	};
 }() );

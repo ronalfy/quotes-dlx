@@ -8439,14 +8439,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 (function () {
-  var __ = wp.i18n.__; // Set Fancybox global.
-
-  if (typeof _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__.Fancybox !== 'undefined') {
-    window.Fancybox = _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__.Fancybox;
-  } else {
-    window.Fancybox = null;
-  } // Gather all wrappers.
-
+  var __ = wp.i18n.__; // Gather all wrappers.
 
   var wrappers = document.querySelectorAll('.quotes-dlx-wrapper');
   wrappers.forEach(function (wrapper) {
@@ -8693,10 +8686,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     var ajaxUrl = fancyboxEmailButton.getAttribute('data-ajax-url');
-    _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__.Fancybox.show([{
+    window.qdlxfancy = _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__.Fancybox.show([{
       src: ajaxUrl,
-      type: 'iframe'
-    }]);
+      type: 'iframe',
+      caption: __('Email This Quote', 'quotes-dlx'),
+      width: 450
+    }], {
+      mainClass: 'qdlx-fancybox',
+      closeButton: 'inside',
+      click: function click(e) {
+        e.preventDefault();
+      }
+    });
   };
 })();
 })();

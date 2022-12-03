@@ -124,12 +124,12 @@ class Email {
 			$akismet_fields['comment_author_email'] = $email_from;
 			$akismet_fields['comment_author_url']   = '';
 			$akismet_fields['comment_content']      = '';
-			$akismet_fields['contact_form_subject'] = $subject;
+			$akismet_fields['contact_form_subject'] = $email_subject;
 			$akismet_fields['comment_author_IP']    = Functions::get_user_ip();
 			$akismet_fields['permalink']            = esc_url( urldecode( $permalink ) );
 			$akismet_fields['user_ip']              = preg_replace( '/[^0-9., ]/', '', Functions::get_user_ip() );
 			$akismet_fields['user_agent']           = '';
-			$akismet_fields['referrer']             = $is_admin ? '' : sanitize_text_field( $_SERVER['HTTP_REFERER'] );
+			$akismet_fields['referrer']             = is_admin() ? '' : sanitize_text_field( $_SERVER['HTTP_REFERER'] );
 			$akismet_fields['blog']                 = get_option( 'home' );
 
 			// Get all the fields and consolidate.
@@ -143,7 +143,7 @@ class Email {
 			if ( $maybe_spam ) {
 				wp_send_json_error(
 					array(
-						'message' => _x( 'The email coult not be sent.', 'The email was flagged for spam.', 'quotes-dlx' ),
+						'message' => _x( 'The email could not be sent.', 'The email was flagged for spam.', 'quotes-dlx' ),
 					)
 				);
 			}

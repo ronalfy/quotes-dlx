@@ -90,7 +90,7 @@
     "@fortawesome/pro-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@wordpress/a11y": "^3.11.0",
-    "@wordpress/components": "^19.13.0",
+    "@wordpress/components": "^19.17.0",
     "@wordpress/icons": "^8.4.0",
     "html-to-react": "^1.4.8",
     "photoswipe": "^5.2.7",

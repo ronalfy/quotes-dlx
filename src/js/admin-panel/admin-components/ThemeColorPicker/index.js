@@ -24,6 +24,8 @@ const ThemeColorPicker = ( props ) => {
 	const [ isVisible, setIsVisible ] = useState( false );
 	const [ color, setColor ] = useState( props.value );
 
+	const [ colorSettingsPopoverAnchor, setColorSettingsPopoverAnchor ] = useState( null );
+
 	const {
 		defaultColor,
 		defaultColors,
@@ -97,7 +99,9 @@ const ThemeColorPicker = ( props ) => {
 	};
 
 	return (
-		<BaseControl className="ptam-component-color-picker-wrapper">
+		<BaseControl className={ classnames( 'ptam-component-color-picker-wrapper', {
+			'color-picker-popup-visible': isVisible,
+		} ) }>
 			{ !! label && (
 				<div className="ptam-color-component-label">
 					<span>{ label }</span>
@@ -107,7 +111,6 @@ const ThemeColorPicker = ( props ) => {
 				<div className="ptam-color-picker-area ptam-component-color-picker-palette">
 					{ ! isVisible && (
 						<>
-							<Popover.Slot />
 							<div
 								className={ classnames(
 									'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper ptam-color-picker-area ptam-component-color-picker-palette',
@@ -115,43 +118,11 @@ const ThemeColorPicker = ( props ) => {
 									value ? '' : 'components-color-palette__custom-color'
 								) }
 							>
-								<Tooltip text={ __( 'Choose Color', 'quotes-dlx' ) }>
-									<button
-										type="button"
-										aria-expanded={ isVisible }
-										className="button-reset components-button components-circular-option-picker__option is-pressed"
-										onClick={ toggleVisible }
-										aria-label={ __(
-											'Custom color picker',
-											'quotes-dlx'
-										) }
-										style={ {
-											background: color
-												? hexToRgba( color, valueOpacity )
-												: 'transparent',
-										} }
-									>
-										<span className="components-color-palette__custom-color-gradient" />
-									</button>
-								</Tooltip>
-							</div>
-						</>
-					) }
-
-					{ isVisible && (
-						<div
-							className={ classnames(
-								'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper ptam-color-picker-area ptam-component-color-picker-palette',
-
-								value ? '' : 'components-color-palette__custom-color'
-							) }
-						>
-							<Tooltip text={ __( 'Choose Color', 'quotes-dlx' ) }>
 								<button
 									type="button"
 									aria-expanded={ isVisible }
-									className="components-button components-circular-option-picker__option is-pressed"
-									onClick={ toggleClose }
+									className="button-reset components-button components-circular-option-picker__option is-pressed"
+									onClick={ toggleVisible }
 									aria-label={ __(
 										'Custom color picker',
 										'quotes-dlx'
@@ -164,15 +135,45 @@ const ThemeColorPicker = ( props ) => {
 								>
 									<span className="components-color-palette__custom-color-gradient" />
 								</button>
-							</Tooltip>
-						</div>
+							</div>
+						</>
 					) }
 
+					{ isVisible && (
+						<div
+							className={ classnames(
+								'components-color-palette__item-wrapper components-circular-option-picker__option-wrapper ptam-color-picker-area ptam-component-color-picker-palette',
+
+								value ? '' : 'components-color-palette__custom-color'
+							) }
+						>
+								<button
+									type="button"
+									aria-expanded={ isVisible }
+									className="components-button components-circular-option-picker__option is-pressed button-reset"
+									onClick={ toggleClose }
+									aria-label={ __(
+										'Custom color picker',
+										'quotes-dlx'
+									) }
+									style={ {
+										background: color
+											? hexToRgba( color, valueOpacity )
+											: 'transparent',
+									} }
+									ref={ setColorSettingsPopoverAnchor }
+								>
+									<span className="components-color-palette__custom-color-gradient" />
+								</button>
+						</div>
+					) }
 					{ isVisible && (
 						<Popover
 							className="ptam-component-color-picker"
 							onClose={ toggleClose }
-							noArrow={ false }
+							noArrow={ true }
+							placement="top-start"
+							offset={ 20 }
 						>
 							<BaseControl key={ colorKey }>
 								<ColorPicker

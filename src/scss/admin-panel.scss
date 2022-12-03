@@ -435,7 +435,7 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 				}
 			}
 		}
-		.qdlx-admin__tabs--content-inner {
+		.qdlx-admin__tabs--content-inner:not(.no-padding) {
 			border-top: 1px solid var(--quotes-dlx-admin--color-gray);
 			padding: 1rem 1.0625rem 1rem 1.0625rem;
 		}
@@ -805,6 +805,27 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 					border-color: var(--quotes-dlx-admin--color-red-alt);
 				}
 			}
+			&.qdlx__btn-export {
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 1rem;
+				background: var(--quotes-dlx-admin--color-anchor);
+				color: var(--quotes-dlx-admin--color-white);
+				border-color: var(--quotes-dlx-admin--color-anchor--hover);
+				font-size: 18px;
+				&:hover {
+					background: var(--quotes-dlx-admin--color-anchor--hover);
+					color: var(--quotes-dlx-admin--color-white);
+					border-color: var(--quotes-dlx-admin--color-dark);
+				}
+
+				svg {
+					width: 24px;
+					height: 24px;
+					fill: var(--quotes-dlx-admin--color-white);
+				}
+			}
 
 			&.qdlx__btn-accent {
 				/* Load light purple button color and background with hover and focus states */
@@ -839,6 +860,16 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 						path {
 							fill: var(--quotes-dlx-admin--color-green-alt);
 						}
+					}
+				}
+				&.is-exporting {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					svg {
+						width: 24px;
+						height: 24px;
+						animation: qdlx-rotate 1s linear infinite;
 					}
 				}
 				&.is-resetting {

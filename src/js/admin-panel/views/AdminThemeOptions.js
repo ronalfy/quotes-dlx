@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Button, SelectControl, RangeControl } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
 import { useAsyncResource } from 'use-async-resource';
@@ -18,6 +18,7 @@ import Spinner from '../../components/icons/Spinner';
 import ThemeSizes from '../admin-components/ThemeSizes';
 import ThemeFontSelector from '../admin-components/ThemeFontSelector';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
+import ExportIcon from '../../components/icons/ExportIcon';
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -126,6 +127,7 @@ const Interface = ( props ) => {
 	const [ isReset, setIsReset ] = useState( false );
 	const [ changingTheme, setChangingTheme ] = useState( false );
 	const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState( false );
+	const [ isExporting, setIsExporting ] = useState( false );
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
@@ -315,6 +317,23 @@ const Interface = ( props ) => {
 			} );
 		} );
 		return themeCollection;
+	};
+
+	/**
+	 * Get the active theme label.
+	 *
+	 * @return {string|null} Active theme label.
+	 */
+	const getThemeLabel = () => {
+		let themeLabel = null;
+		categories.forEach( ( cat, catIndex ) => {
+			cat.themes.forEach( ( theme, themeIndex ) => {
+				if ( activeTheme === theme.slug ) {
+					themeLabel = theme.name;
+				}
+			} );
+		} );
+		return themeLabel;
 	};
 
 	const defaultColors = getColors();
@@ -554,6 +573,67 @@ const Interface = ( props ) => {
 		);
 	}
 
+	const getThemeExportOptions = () => {
+		if ( loading ) {
+			return <AdminThemeColorsLoader showHeader={ false } />;
+		}
+		return (
+			<div className="qdlx-admin__tabs--content-wrap">
+				<div className="qdlx-admin__tabs--content-panel">
+					<form
+						onSubmit={ ( e ) => {
+							e.preventDefault();
+							onSubmit();
+						} }
+					>
+						<div className="qdlx-admin__tabs--content-heading">
+							<h2>
+								{ sprintf(
+									// translators: %s is the name of the active theme.
+									__( 'Export %s Options', 'quotes-dlx' ),
+									getThemeLabel()
+								) }
+							</h2>
+							<p className="description">
+								{
+									sprintf(
+										/* Translators: %s is the theme name */
+										__( 'Export the theme options for %s', 'quotes-dlx' )
+										, getThemeLabel()
+									)
+								}
+							</p>
+							<div className="qdlx-admin__tabs--content-inner no-padding">
+								<div className="qdlx-admin__tabs--content-actions no-flex">
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-export qdlx__btn--icon-right',
+											{ 'has-icon': isExporting },
+											{ 'is-exporting': isExporting },
+										) }
+										type="button"
+										text={
+											isExporting
+												? __( 'Exporting…', 'quotes-dlx' )
+												: __( 'Export Options', 'quotes-dlx' )
+										}
+										icon={ isExporting ? Spinner : ExportIcon }
+										iconSize="18"
+										iconPosition="right"
+										disabled={ saving || resetting || isExporting }
+										onClick={ ( e ) => {
+											setIsExporting( true );
+										} }
+									/>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--home-grid-wrap">
@@ -581,6 +661,7 @@ const Interface = ( props ) => {
 				{ getThemePreviewAndSwatches() }
 				{ getFontSizeOptions() }
 				{ getThemeFontSelector() }
+				{ getThemeExportOptions() }
 			</div>
 		</>
 	);

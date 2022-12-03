@@ -536,7 +536,7 @@ button.button-reset.show-cursor {
   padding: 0;
   margin-top: 8px;
 }
-.quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-inner {
+.quotes-dlx-plugin .qdlx-admin__tabs--content-wrap .qdlx-admin__tabs--content-inner:not(.no-padding) {
   border-top: 1px solid var(--quotes-dlx-admin--color-gray);
   padding: 1rem 1.0625rem 1rem 1.0625rem;
 }
@@ -886,6 +886,26 @@ button.button-reset.show-cursor {
   color: var(--quotes-dlx-admin--color-red-alt);
   border-color: var(--quotes-dlx-admin--color-red-alt);
 }
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  background: var(--quotes-dlx-admin--color-anchor);
+  color: var(--quotes-dlx-admin--color-white);
+  border-color: var(--quotes-dlx-admin--color-anchor--hover);
+  font-size: 18px;
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export:hover {
+  background: var(--quotes-dlx-admin--color-anchor--hover);
+  color: var(--quotes-dlx-admin--color-white);
+  border-color: var(--quotes-dlx-admin--color-dark);
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--quotes-dlx-admin--color-white);
+}
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent {
   /* Load light purple button color and background with hover and focus states */
   background: var(--quotes-dlx-admin--color-white);
@@ -914,6 +934,16 @@ button.button-reset.show-cursor {
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving svg path {
   fill: var(--quotes-dlx-admin--color-green-alt);
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting svg {
+  width: 24px;
+  height: 24px;
+  animation: qdlx-rotate 1s linear infinite;
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting {
   display: flex;

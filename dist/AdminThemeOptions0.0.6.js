@@ -1745,6 +1745,7 @@ var Interface = function Interface(props) {
   var template = data.template,
       categories = data.categories,
       enable_fonts = data.enable_fonts;
+  var importFileUploadRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var getColors = function getColors() {
     var colors = {};
@@ -1859,6 +1860,16 @@ var Interface = function Interface(props) {
       _useState28 = _slicedToArray(_useState27, 2),
       isExporting = _useState28[0],
       setIsExporting = _useState28[1];
+
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState30 = _slicedToArray(_useState29, 2),
+      isImporting = _useState30[0],
+      setIsImporting = _useState30[1];
+
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState32 = _slicedToArray(_useState31, 2),
+      selectedImportFile = _useState32[0],
+      setSelectedImportFile = _useState32[1];
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_17__.useForm)({
     defaultValues: {
@@ -2009,6 +2020,58 @@ var Interface = function Interface(props) {
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setSaving(false);
+    });
+  };
+
+  var onFileChange = function onFileChange(e) {
+    setSelectedImportFile(e.target.files[0]);
+  };
+
+  var onFileUpload = function onFileUpload() {
+    var fileuploadElement = document.querySelector('#qdlx-import-file-form');
+    console.log(fileuploadElement);
+    var form = new FormData(fileuploadElement);
+    fetch("".concat(ajaxurl, "?action=quotes_dlx_process_import_file&nonce=").concat(quotes_dlx_admin.options_save_nonce), {
+      method: 'POST',
+      body: form
+    }).then(function (response) {
+      console.log(response);
+    }).then(function (data) {
+      console.log(data);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  var onExport = function onExport() {
+    setIsExporting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_4__["default"])('quotes_dlx_export_theme_json', {
+      nonce: quotes_dlx_admin.options_export_nonce,
+      active_template: activeTheme
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        setIsExporting(false); // Begin export JSON. from: https://theroadtoenterprise.com/blog/how-to-download-csv-and-json-files-in-react
+
+        var blob = new Blob([JSON.stringify(ajaxData)], {
+          type: 'text/json'
+        });
+        var a = document.createElement('a');
+        a.download = "quotes-dlx-".concat(activeTheme, ".json");
+        a.href = window.URL.createObjectURL(blob);
+        var clickEvt = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        a.dispatchEvent(clickEvt);
+        a.remove();
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setIsExporting(false);
     });
   };
 
@@ -2295,13 +2358,67 @@ var Interface = function Interface(props) {
         'is-exporting': isExporting
       }),
       type: "button",
-      text: isExporting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Exporting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Export Options', 'quotes-dlx'),
+      text: isExporting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Exporting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Export Theme Settings', 'quotes-dlx'),
       icon: isExporting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"] : _components_icons_ExportIcon__WEBPACK_IMPORTED_MODULE_16__["default"],
       iconSize: "18",
       iconPosition: "right",
       disabled: saving || resetting || isExporting,
       onClick: function onClick(e) {
-        setIsExporting(true);
+        onExport();
+      }
+    })))))));
+  };
+
+  var getThemeImportOptions = function getThemeImportOptions() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeColorsLoader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        showHeader: false
+      });
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-wrap"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-panel"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      onSubmit: function onSubmit(e) {
+        e.preventDefault();
+
+        _onSubmit();
+      },
+      id: "qdlx-import-file-form"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-heading"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)( // translators: %s is the name of the active theme.
+    (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Import %s Settings', 'quotes-dlx'), getThemeLabel())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "description"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)(
+    /* Translators: %s is the theme name */
+    (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Import the theme settings for %s', 'quotes-dlx'), getThemeLabel())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-inner no-padding"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-actions no-flex"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      type: "file",
+      ref: importFileUploadRef,
+      onChange: onFileChange,
+      name: "qdlx-import-file",
+      id: "qdlx-import-file"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-export qdlx__btn--icon-right', {
+        'has-icon': isImporting
+      }, {
+        'is-exporting': isImporting
+      }),
+      type: "button",
+      text: isImporting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Importing…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Import Theme Settings', 'quotes-dlx'),
+      icon: isImporting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"] : _components_icons_ExportIcon__WEBPACK_IMPORTED_MODULE_16__["default"],
+      iconSize: "18",
+      iconPosition: "right",
+      disabled: saving || resetting || isImporting,
+      onClick: function onClick(e) {
+        e.preventDefault();
+        onFileUpload();
       }
     })))))));
   };
@@ -2324,7 +2441,7 @@ var Interface = function Interface(props) {
     className: "description"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can modify the theme colors, font, and font-sizes for a theme.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
-  }, getCategories()))), getThemePreviewAndSwatches(), getFontSizeOptions(), getThemeFontSelector(), getThemeExportOptions()));
+  }, getCategories()))), getThemePreviewAndSwatches(), getFontSizeOptions(), getThemeFontSelector(), getThemeExportOptions(), getThemeImportOptions()));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminThemeOptions);

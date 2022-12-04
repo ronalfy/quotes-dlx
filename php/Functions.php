@@ -711,6 +711,24 @@ class Functions {
 	}
 
 	/**
+	 * Return the nonce action for exporting options.
+	 *
+	 * @return string Nonce action value.
+	 */
+	public static function get_admin_export_nonce() {
+		return 'quotes-dlx-admin-export-theme-options';
+	}
+
+	/**
+	 * Return the nonce action for importig options.
+	 *
+	 * @return string Nonce action value.
+	 */
+	public static function get_admin_import_nonce() {
+		return 'quotes-dlx-admin-import-theme-options';
+	}
+
+	/**
 	 * Gets the highest priority for a filter.
 	 *
 	 * @param int $subtract The amount to subtract from the high priority.

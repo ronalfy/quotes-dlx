@@ -69,7 +69,124 @@ class Ajax {
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
+		// For exporting the theme options.
+		add_action( 'wp_ajax_quotes_dlx_export_theme_json', array( static::class, 'ajax_export_theme_json' ) );
+
+		// For importing the theme options.
+		add_action( 'wp_ajax_quotes_dlx_process_import_file', array( static::class, 'ajax_process_import_file' ) );
+
 		return $self;
+	}
+
+	/**
+	 * Process the import file.
+	 */
+	public static function ajax_process_import_file() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get file.
+		$json_file_object = $_FILES['qdlx-import-file'];
+		$tmp_file         = $json_file_object['tmp_name'] ?? false;
+
+		// Get the file contents.
+		$maybe_json = file_get_contents( $tmp_file );
+		if ( ! $maybe_json ) {
+			wp_send_json_error( array( 'message' => __( 'Could not parse JSON file', 'quotes-dlx' ) ) );
+		}
+
+		// Get JSON in array format.
+		$maybe_json = json_decode( $maybe_json, true );
+
+		// Get theme.
+		$theme               = sanitize_text_field( $maybe_json['theme'] );
+		$theme_options       = Options_Theme::get_options();
+		$theme_colors        = $theme_options[ $theme ]['colors'];
+		$theme_import_colors = $maybe_json['colors'];
+
+		// Change theme colors.
+		foreach ( $theme_colors as &$theme_color ) {
+			$slug = $theme_color['slug'];
+			foreach ( $theme_import_colors as $import_color ) {
+				if ( $import_color['slug'] === $slug ) {
+					$theme_color['color'] = sanitize_text_field( $import_color['color'] );
+				}
+			}
+		}
+		$theme_options[ $theme ]['colors'] = $theme_colors;
+
+		// Set font sizes.
+		$theme_options[ $theme ]['desktop']['font_size']        = (int) sanitize_text_field( $maybe_json['font_size_desktop'] );
+		$theme_options[ $theme ]['desktop']['button_font_size'] =(int) sanitize_text_field( $maybe_json['button_font_size_desktop'] );
+		$theme_options[ $theme ]['desktop']['line_height']      = (float) sanitize_text_field( $maybe_json['line_height_desktop'] );
+		$theme_options[ $theme ]['tablet']['font_size']         = (int) sanitize_text_field( $maybe_json['font_size_tablet'] );
+		$theme_options[ $theme ]['tablet']['button_font_size']  = (int) sanitize_text_field( $maybe_json['button_font_size_tablet'] );
+		$theme_options[ $theme ]['tablet']['line_height']       = (float) sanitize_text_field( $maybe_json['line_height_tablet'] );
+		$theme_options[ $theme ]['mobile']['font_size']         = (int) sanitize_text_field( $maybe_json['font_size_mobile'] );
+		$theme_options[ $theme ]['mobile']['button_font_size']  = (int) sanitize_text_field( $maybe_json['button_font_size_mobile'] );
+		$theme_options[ $theme ]['mobile']['line_height']       = (float) sanitize_text_field( $maybe_json['line_height_mobile'] );
+
+		// Get primary/secondary font family.
+		$theme_options[ $theme ]['primary_font_family'] = sanitize_text_field( $maybe_json['primary_font_family'] );
+		$theme_options[ $theme ]['secondary_font_family'] = sanitize_text_field( $maybe_json['secondary_font_family'] );
+
+		// Update theme options.
+		Options_Theme::update_options( '', $theme_options, true );
+
+		wp_send_json_success( array() );
+	}
+
+	/**
+	 * Export theme as JSON.
+	 */
+	public static function ajax_export_theme_json() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_export_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Get the active template.
+		$template_slug = sanitize_text_field( filter_input( INPUT_POST, 'active_template', FILTER_DEFAULT ) );
+
+		$themes = Themes\Themes_Addon::get_theme_data( $template_slug );
+
+		// Check that there's theme data.
+		if ( ! $themes ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'No theme data could be found.', 'quotes-dlx' ),
+				)
+			);
+		}
+
+		// We have a theme.
+		$theme_saved_colors = $themes['colors'];
+
+		// Get saved colors.
+		$theme_options = Options_Theme::get_options();
+		$saved_colors  = $theme_options[ $template_slug ]['colors'] ?? $theme_saved_colors;
+
+		// Return array of JSON.
+		$return = array(
+			'theme'                    => $template_slug,
+			'plugin'                   => 'quotes-dlx',
+			'colors'                   => $saved_colors,
+			'font_size_desktop'        => $theme_options[ $template_slug ]['desktop']['font_size'] ?? 16,
+			'line_height_desktop'      => $theme_options[ $template_slug ]['desktop']['line_height'] ?? 1.65,
+			'button_font_size_desktop' => $theme_options[ $template_slug ]['desktop']['button_font_size'] ?? 16,
+			'font_size_tablet'         => $theme_options[ $template_slug ]['tablet']['font_size'] ?? 14,
+			'line_height_tablet'       => $theme_options[ $template_slug ]['tablet']['line_height'] ?? 1.1,
+			'button_font_size_tablet'  => $theme_options[ $template_slug ]['tablet']['button_font_size'] ?? 14,
+			'font_size_mobile'         => $theme_options[ $template_slug ]['mobile']['font_size'] ?? 12,
+			'line_height_mobile'       => $theme_options[ $template_slug ]['mobile']['line_height'] ?? 1.1,
+			'button_font_size_mobile'  => $theme_options[ $template_slug ]['mobile']['button_font_size'] ?? 12,
+			'primary_font_family'      => $theme_options[ $template_slug ]['primary_font_family'] ?? '',
+			'secondary_font_family'    => $theme_options[ $template_slug ]['secondary_font_family'] ?? '',
+		);
+
+		wp_send_json_success(
+			$return
+		);
 	}
 
 	/**

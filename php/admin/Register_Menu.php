@@ -120,6 +120,7 @@ class Register_Menu {
 			'themes'                 => $themes,
 			'options_save_nonce'     => wp_create_nonce( Functions::get_admin_save_nonce() ),
 			'options_retrieve_nonce' => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
+			'options_export_nonce'   => wp_create_nonce( Functions::get_admin_export_nonce() ),
 			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 			'jetpack_plugin_active'  => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
 			'image_dir'              => Functions::get_plugin_url( 'images' ),

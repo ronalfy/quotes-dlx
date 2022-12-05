@@ -759,11 +759,17 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 			opacity: 0.5;
 		}
 	}
+	#qdlx-import-file {
+		display: none;
+	}
 	.qdlx-admin__tabs--content-actions {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 
+		label {
+			padding: 0;
+		}
 		&.no-flex {
 			display: block;
 		}
@@ -772,7 +778,8 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 			padding-bottom: 20px;
 		}
 
-		button {
+		button,
+		label {
 			background: var(--quotes-dlx-admin--color-white);
 			color: var(--quotes-dlx-admin--color-green-alt);
 			border-style: solid;
@@ -823,6 +830,9 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 				svg {
 					width: 24px;
 					height: 24px;
+					fill: var(--quotes-dlx-admin--color-white);
+				}
+				path {
 					fill: var(--quotes-dlx-admin--color-white);
 				}
 			}

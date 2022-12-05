@@ -845,10 +845,16 @@ button.button-reset.show-cursor {
   cursor: not-allowed !important;
   opacity: 0.5;
 }
+.qdlx-admin__tabs--content-inner #qdlx-import-file {
+  display: none;
+}
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label {
+  padding: 0;
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions.no-flex {
   display: block;
@@ -856,7 +862,8 @@ button.button-reset.show-cursor {
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions .qdlx-admin-reset-confirmation {
   padding-bottom: 20px;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label {
   background: var(--quotes-dlx-admin--color-white);
   color: var(--quotes-dlx-admin--color-green-alt);
   border-style: solid;
@@ -864,29 +871,35 @@ button.button-reset.show-cursor {
   padding: 10px 20px;
   cursor: pointer;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button:hover {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button:hover,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label:hover {
   border-radius: 5px;
   background: #e9ece6;
   color: var(--quotes-dlx-admin--color-green-dark);
   border-color: var(--quotes-dlx-admin--color-green);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.has-error {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.has-error,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.has-error {
   border: 1px solid var(--quotes-dlx-admin--color-notice--error-alt);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.has-error:hover {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.has-error:hover,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.has-error:hover {
   cursor: not-allowed;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-danger {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-danger,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-danger {
   background: var(--quotes-dlx-admin--color-white);
   color: var(--quotes-dlx-admin--color-red-alt);
   border-color: var(--quotes-dlx-admin--color-red-alt);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-danger:hover {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-danger:hover,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-danger:hover {
   background: var(--quotes-dlx-admin--color-red-light);
   color: var(--quotes-dlx-admin--color-red-alt);
   border-color: var(--quotes-dlx-admin--color-red-alt);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-export {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -896,66 +909,84 @@ button.button-reset.show-cursor {
   border-color: var(--quotes-dlx-admin--color-anchor--hover);
   font-size: 18px;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export:hover {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export:hover,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-export:hover {
   background: var(--quotes-dlx-admin--color-anchor--hover);
   color: var(--quotes-dlx-admin--color-white);
   border-color: var(--quotes-dlx-admin--color-dark);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export svg {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-export svg {
   width: 24px;
   height: 24px;
   fill: var(--quotes-dlx-admin--color-white);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-export path,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-export path {
+  fill: var(--quotes-dlx-admin--color-white);
+}
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-accent {
   /* Load light purple button color and background with hover and focus states */
   background: var(--quotes-dlx-admin--color-white);
   color: var(--quotes-dlx-admin--color-accent);
   border-color: var(--quotes-dlx-admin--color-accent);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent:hover {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent:hover,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-accent:hover {
   background: #f8f7fe;
   color: var(--quotes-dlx-admin--color-accent);
   border-color: var(--quotes-dlx-admin--color-accent);
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent.qdlx__btn--icon-right.is-saving svg,
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent.qdlx__btn--icon-right.is-saving path {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn-accent.qdlx__btn--icon-right.is-saving path,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-accent.qdlx__btn--icon-right.is-saving svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn-accent.qdlx__btn--icon-right.is-saving path {
   color: var(--quotes-dlx-admin--color-accent);
   fill: var(--quotes-dlx-admin--color-accent);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-saving {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving svg {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-saving svg {
   width: 24px;
   height: 24px;
   animation: qdlx-rotate 1s linear infinite;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving svg path {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-saving svg path,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-saving svg path {
   fill: var(--quotes-dlx-admin--color-green-alt);
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-exporting {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting svg {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-exporting svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-exporting svg {
   width: 24px;
   height: 24px;
   animation: qdlx-rotate 1s linear infinite;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-resetting {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting svg {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting svg,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-resetting svg {
   width: 24px;
   height: 24px;
   animation: qdlx-rotate 1s linear infinite;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting svg path {
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions button.qdlx__btn--icon-right.is-resetting svg path,
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label.qdlx__btn--icon-right.is-resetting svg path {
   fill: var(--quotes-dlx-admin--color-red-alt);
 }
 .qdlx-admin__tabs--content-inner .has-error input {

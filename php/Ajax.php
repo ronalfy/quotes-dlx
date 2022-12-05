@@ -83,12 +83,17 @@ class Ajax {
 	 */
 	public static function ajax_process_import_file() {
 		if ( ! wp_verify_nonce( filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
+			wp_send_json_error( array( 'message' => __( 'Could not pass security check.', 'quotes-dlx' ) ) );
 		}
 
 		// Get file.
 		$json_file_object = $_FILES['qdlx-import-file'];
+		$file_type        = $json_file_object['type'] ?? '';
 		$tmp_file         = $json_file_object['tmp_name'] ?? false;
+
+		if ( 'application/json' !== $file_type || ! $tmp_file ) {
+			wp_send_json_error( array( 'message' => __( 'Invalid import file detected.', 'quotes-dlx' ) ) );
+		}
 
 		// Get the file contents.
 		$maybe_json = file_get_contents( $tmp_file );
@@ -98,6 +103,11 @@ class Ajax {
 
 		// Get JSON in array format.
 		$maybe_json = json_decode( $maybe_json, true );
+
+		// Check to see if there is a theme.
+		if ( ! isset( $maybe_json['theme'] ) ) {
+			wp_send_json_error( array( 'message' => __( 'No theme detected in import file.', 'quotes-dlx' ) ) );
+		}
 
 		// Get theme.
 		$theme               = sanitize_text_field( $maybe_json['theme'] );
@@ -118,7 +128,7 @@ class Ajax {
 
 		// Set font sizes.
 		$theme_options[ $theme ]['desktop']['font_size']        = (int) sanitize_text_field( $maybe_json['font_size_desktop'] );
-		$theme_options[ $theme ]['desktop']['button_font_size'] =(int) sanitize_text_field( $maybe_json['button_font_size_desktop'] );
+		$theme_options[ $theme ]['desktop']['button_font_size'] = (int) sanitize_text_field( $maybe_json['button_font_size_desktop'] );
 		$theme_options[ $theme ]['desktop']['line_height']      = (float) sanitize_text_field( $maybe_json['line_height_desktop'] );
 		$theme_options[ $theme ]['tablet']['font_size']         = (int) sanitize_text_field( $maybe_json['font_size_tablet'] );
 		$theme_options[ $theme ]['tablet']['button_font_size']  = (int) sanitize_text_field( $maybe_json['button_font_size_tablet'] );
@@ -128,7 +138,7 @@ class Ajax {
 		$theme_options[ $theme ]['mobile']['line_height']       = (float) sanitize_text_field( $maybe_json['line_height_mobile'] );
 
 		// Get primary/secondary font family.
-		$theme_options[ $theme ]['primary_font_family'] = sanitize_text_field( $maybe_json['primary_font_family'] );
+		$theme_options[ $theme ]['primary_font_family']   = sanitize_text_field( $maybe_json['primary_font_family'] );
 		$theme_options[ $theme ]['secondary_font_family'] = sanitize_text_field( $maybe_json['secondary_font_family'] );
 
 		// Update theme options.

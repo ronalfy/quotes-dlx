@@ -19,6 +19,8 @@ import ThemeSizes from '../admin-components/ThemeSizes';
 import ThemeFontSelector from '../admin-components/ThemeFontSelector';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 import ExportIcon from '../../components/icons/ExportIcon';
+import ImportIcon from '../../components/icons/ImportIcon';
+
 const retrieveDefaults = () => {
 	return sendCommand( 'quotes_dlx_retrieve_admin_themes_defaults', {
 		nonce: quotes_dlx_admin.options_retrieve_nonce,
@@ -284,13 +286,11 @@ const Interface = ( props ) => {
 			} );
 	};
 
-	const onFileChange = ( e ) => {
-		setSelectedImportFile( e.target.files[ 0 ] );
-	};
-
-	const onFileUpload = () => {
-		const fileuploadElement = document.querySelector('#qdlx-import-file-form');
-		console.log( fileuploadElement );
+	const onFileUpload = ( e ) => {
+		const file = e.target.files[ 0 ];
+		setSelectedImportFile( file );
+		setIsImporting( true );
+		const fileuploadElement = document.querySelector( '#qdlx-import-file-form' );
 		const form = new FormData( fileuploadElement );
 		fetch(
 			`${ ajaxurl }?action=quotes_dlx_process_import_file&nonce=${ quotes_dlx_admin.options_save_nonce }`,
@@ -299,11 +299,9 @@ const Interface = ( props ) => {
 				body: form,
 			}
 		).then( ( response ) => {
-			console.log( response );
 		} ).then( ( data ) => {
 			console.log( data );
 		} ).catch( ( err ) => {
-			console.log( err );
 		} );
 	};
 
@@ -727,28 +725,22 @@ const Interface = ( props ) => {
 							</p>
 							<div className="qdlx-admin__tabs--content-inner no-padding">
 								<div className="qdlx-admin__tabs--content-actions no-flex">
-									<input type="file" ref={ importFileUploadRef } onChange={ onFileChange } name="qdlx-import-file" id="qdlx-import-file" />
-									<Button
-										className={ classNames(
-											'qdlx__btn qdlx__btn-export qdlx__btn--icon-right',
-											{ 'has-icon': isImporting },
-											{ 'is-exporting': isImporting },
-										) }
-										type="button"
-										text={
-											isImporting
-												? __( 'Importing…', 'quotes-dlx' )
-												: __( 'Import Theme Settings', 'quotes-dlx' )
+									<label htmlFor="qdlx-import-file" className={ classNames(
+										'qdlx__btn qdlx__btn-export qdlx__btn--icon-right',
+										{ 'has-icon': isImporting },
+										{ 'is-exporting': isImporting },
+									) }>
+										<input type="file" ref={ importFileUploadRef } onChange={ () => {
+											onFileUpload( e );
+										} } name="qdlx-import-file" id="qdlx-import-file" accept="application/json" />
+										{ isImporting
+											? __( 'Importing…', 'quotes-dlx' )
+											: __( 'Import Theme Settings', 'quotes-dlx' )
 										}
-										icon={ isImporting ? Spinner : ExportIcon }
-										iconSize="18"
-										iconPosition="right"
-										disabled={ saving || resetting || isImporting }
-										onClick={ ( e ) => {
-											e.preventDefault();
-											onFileUpload();
-										} }
-									/>
+										{ isImporting && <Spinner /> }
+										{ ! isImporting && <ImportIcon /> }
+									</label>
+
 								</div>
 							</div>
 						</div>

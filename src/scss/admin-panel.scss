@@ -770,8 +770,9 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 		label {
 			padding: 0;
 		}
-		&.no-flex {
-			display: block;
+		&.no-flex,
+		&.no-flex label {
+			display: inline-flex !important;
 		}
 
 		.qdlx-admin-reset-confirmation {

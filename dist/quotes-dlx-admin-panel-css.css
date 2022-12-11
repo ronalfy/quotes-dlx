@@ -856,8 +856,8 @@ button.button-reset.show-cursor {
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions label {
   padding: 0;
 }
-.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions.no-flex {
-  display: block;
+.qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions.no-flex, .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions.no-flex label {
+  display: inline-flex !important;
 }
 .qdlx-admin__tabs--content-inner .qdlx-admin__tabs--content-actions .qdlx-admin-reset-confirmation {
   padding-bottom: 20px;

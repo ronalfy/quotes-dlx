@@ -1873,6 +1873,16 @@ var Interface = function Interface(props) {
       selectedImportFile = _useState32[0],
       setSelectedImportFile = _useState32[1];
 
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState34 = _slicedToArray(_useState33, 2),
+      hasImportError = _useState34[0],
+      setHasImportError = _useState34[1];
+
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState36 = _slicedToArray(_useState35, 2),
+      importError = _useState36[0],
+      setImportError = _useState36[1];
+
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_18__.useForm)({
     defaultValues: {
       fontSizeDesktop: data.font_size_desktop,
@@ -2027,6 +2037,7 @@ var Interface = function Interface(props) {
 
   var onFileUpload = function onFileUpload(e) {
     var file = e.target.files[0];
+    setHasImportError(false);
     setSelectedImportFile(file);
     setIsImporting(true);
     var fileuploadElement = document.querySelector('#qdlx-import-file-form');
@@ -2034,8 +2045,20 @@ var Interface = function Interface(props) {
     fetch("".concat(ajaxurl, "?action=quotes_dlx_process_import_file&nonce=").concat(quotes_dlx_admin.options_save_nonce), {
       method: 'POST',
       body: form
-    }).then(function (response) {}).then(function (data) {
-      console.log(data);
+    }).then(function (ajaxResponse) {
+      return ajaxResponse.json();
+    }).then(function (responseData) {
+      var isSuccess = responseData.success;
+      var dataObject = responseData.data;
+
+      if (isSuccess) {
+        setIsImporting(false);
+        getThemeOptions(activeTheme);
+      } else {
+        setIsImporting(false);
+        setImportError(dataObject.message);
+        setHasImportError(true);
+      }
     })["catch"](function (err) {});
   };
 
@@ -2404,13 +2427,17 @@ var Interface = function Interface(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
       type: "file",
       ref: importFileUploadRef,
-      onChange: function onChange() {
+      onChange: function onChange(e) {
         onFileUpload(e);
       },
       name: "qdlx-import-file",
       id: "qdlx-import-file",
       accept: "application/json"
-    }), isImporting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Importing…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Import Theme Settings', 'quotes-dlx'), isImporting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"], null), !isImporting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_ImportIcon__WEBPACK_IMPORTED_MODULE_17__["default"], null))))))));
+    }), isImporting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Importing…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Import Theme Settings', 'quotes-dlx'), isImporting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__["default"], null), !isImporting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_ImportIcon__WEBPACK_IMPORTED_MODULE_17__["default"], null))), hasImportError && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      message: importError,
+      status: "error",
+      politeness: "polite"
+    }))))));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

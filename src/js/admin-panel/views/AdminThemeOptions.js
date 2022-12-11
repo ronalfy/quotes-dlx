@@ -133,6 +133,8 @@ const Interface = ( props ) => {
 	const [ isExporting, setIsExporting ] = useState( false );
 	const [ isImporting, setIsImporting ] = useState( false );
 	const [ selectedImportFile, setSelectedImportFile ] = useState( '' );
+	const [ hasImportError, setHasImportError ] = useState( false );
+	const [ importError, setImportError ] = useState( '' );
 
 	const { register, control, handleSubmit, setValue, getValues, reset } =
 		useForm( {
@@ -288,6 +290,7 @@ const Interface = ( props ) => {
 
 	const onFileUpload = ( e ) => {
 		const file = e.target.files[ 0 ];
+		setHasImportError( false );
 		setSelectedImportFile( file );
 		setIsImporting( true );
 		const fileuploadElement = document.querySelector( '#qdlx-import-file-form' );
@@ -298,11 +301,20 @@ const Interface = ( props ) => {
 				method: 'POST',
 				body: form,
 			}
-		).then( ( response ) => {
-		} ).then( ( data ) => {
-			console.log( data );
-		} ).catch( ( err ) => {
-		} );
+		).then( ( ajaxResponse ) => ajaxResponse.json() )
+			.then( ( responseData ) => {
+				const isSuccess = responseData.success;
+				const dataObject = responseData.data;
+				if ( isSuccess ) {
+					setIsImporting( false );
+					getThemeOptions( activeTheme );
+				} else {
+					setIsImporting( false );
+					setImportError( dataObject.message );
+					setHasImportError( true );
+				}
+			} ).catch( ( err ) => {
+			} );
 	};
 
 	const onExport = () => {
@@ -730,7 +742,7 @@ const Interface = ( props ) => {
 										{ 'has-icon': isImporting },
 										{ 'is-exporting': isImporting },
 									) }>
-										<input type="file" ref={ importFileUploadRef } onChange={ () => {
+										<input type="file" ref={ importFileUploadRef } onChange={ ( e ) => {
 											onFileUpload( e );
 										} } name="qdlx-import-file" id="qdlx-import-file" accept="application/json" />
 										{ isImporting
@@ -742,6 +754,13 @@ const Interface = ( props ) => {
 									</label>
 
 								</div>
+								{ hasImportError && (
+									<Notice
+										message={ importError }
+										status="error"
+										politeness="polite"
+									/>
+								) }
 							</div>
 						</div>
 					</form>

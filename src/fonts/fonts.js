@@ -35,6 +35,12 @@ const fontFamilies = {
 		family: 'Open Sans',
 		fallback: 'Helvetica, Arial, sans-serif',
 	},
+	Oxygen: {
+		name: 'Oxygen',
+		slug: 'oxygen',
+		family: 'Oxygen',
+		fallback: 'sans-serif',
+	},
 	'Playfair Display': {
 		name: 'Playfair Display',
 		slug: 'playfair-display',
@@ -52,6 +58,12 @@ const fontFamilies = {
 		slug: 'source-sans-pro',
 		family: 'Source Sans Pro',
 		fallback: 'Helvetica, Arial, sans-serif',
+	},
+	Spinnaker: {
+		name: 'Spinnaker',
+		slug: 'spinnaker',
+		family: 'Spinnaker',
+		fallback: 'sans-serif',
 	},
 };
 

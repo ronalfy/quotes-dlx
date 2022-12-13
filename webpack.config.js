@@ -11,7 +11,7 @@ module.exports = ( env ) => {
 				rules: [ ...defaultConfig.module.rules ],
 			},
 			mode: env.mode,
-			devtool: 'source-map',
+			devtool: 'production' === env.mode ? false : 'source-map',
 		},
 		{
 			entry: {
@@ -32,11 +32,14 @@ module.exports = ( env ) => {
 				'quotes-dlx-gfont-karla': { import: './src/scss/fonts/karla.scss' },
 				'quotes-dlx-gfont-lato': { import: './src/scss/fonts/lato.scss' },
 				'quotes-dlx-gfont-montserrat': { import: './src/scss/fonts/montserrat.scss' },
+				'quotes-dlx-gfont-nunito': { import: './src/scss/fonts/nunito.scss' },
 				'quotes-dlx-gfont-open-sans': { import: './src/scss/fonts/open-sans.scss' },
+				'quotes-dlx-gfont-oxygen': { import: './src/scss/fonts/oxygen.scss' },
 				'quotes-dlx-gfont-playfair-display': { import: './src/scss/fonts/playfair-display.scss' },
 				'quotes-dlx-gfont-raleway': { import: './src/scss/fonts/raleway.scss' },
 				'quotes-dlx-gfont-roboto': { import: './src/scss/fonts/roboto.scss' },
 				'quotes-dlx-gfont-source-sans-pro': { import: './src/scss/fonts/source-sans-pro.scss' },
+				'quotes-dlx-gfont-spinnaker': { import: './src/scss/fonts/spinnaker.scss' },
 				'quotes-dlx-email': [ './src/js/views/Email/index.js', './src/js/views/Email/style.scss' ],
 			},
 			resolve: {
@@ -45,7 +48,7 @@ module.exports = ( env ) => {
 				},
 			},
 			mode: env.mode,
-			devtool: 'source-map',
+			devtool: 'production' === env.mode ? false : 'source-map',
 			output: {
 				filename: '[name].js',
 				sourceMapFilename: '[file].map[query]',

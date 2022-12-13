@@ -315,7 +315,6 @@ var Interface = function Interface(props) {
       adobeProjectId: adobe_project_id,
       activateAdobeFontsAdmin: activate_adobe_fonts_admin,
       activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
-      facebookAppId: facebook_app_id,
       recaptchaEnabled: recaptcha_enabled,
       recaptchaSiteKey: recaptcha_site_key,
       recaptchaSecretKey: recaptcha_secret_key,
@@ -903,33 +902,13 @@ var Interface = function Interface(props) {
     role: "presentation"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     scope: "row"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
-    name: "facebookAppId",
-    control: control,
-    render: function render(_ref10) {
-      var field = _ref10.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, field, {
-        type: "text",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook APP ID', 'quotes-dlx'),
-        id: "search-qdlx-no-autofill-fb-app-id",
-        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx-admin__text-control', {})
-      }));
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "description"
-  }, "Log into the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "https://developers.facebook.com/",
-    target: "_blank",
-    rel: "noreferrer"
-  }, "Facebook Developers site"), " to generate a new APP ID."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    scope: "row"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Options', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
     name: "enableFonts",
     control: control,
-    render: function render(_ref11) {
-      var _ref11$field = _ref11.field,
-          _onChange6 = _ref11$field.onChange,
-          value = _ref11$field.value;
+    render: function render(_ref10) {
+      var _ref10$field = _ref10.field,
+          _onChange6 = _ref10$field.onChange,
+          value = _ref10$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Theme Fonts', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
@@ -953,10 +932,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('reCAPTCHA 3', 'comment-edit-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
     name: "recaptchaEnabled",
     control: control,
-    render: function render(_ref12) {
-      var _ref12$field = _ref12.field,
-          _onChange7 = _ref12$field.onChange,
-          value = _ref12$field.value;
+    render: function render(_ref11) {
+      var _ref11$field = _ref11.field,
+          _onChange7 = _ref11$field.onChange,
+          value = _ref11$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Recaptcha 3', 'comment-edit-pro'),
         className: "qdlx-admin__toggle-control",
@@ -973,10 +952,10 @@ var Interface = function Interface(props) {
     rules: {
       required: true
     },
-    render: function render(_ref13) {
+    render: function render(_ref12) {
       var _errors$recaptchaSite;
 
-      var field = _ref13.field;
+      var field = _ref12.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Site Key', 'quotes-dlx')
       }, field, {
@@ -1000,10 +979,10 @@ var Interface = function Interface(props) {
     rules: {
       required: true
     },
-    render: function render(_ref14) {
+    render: function render(_ref13) {
       var _errors$recaptchaSite3;
 
-      var field = _ref14.field;
+      var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Secret Key', 'quotes-dlx')
       }, field, {
@@ -1024,10 +1003,10 @@ var Interface = function Interface(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_18__.Controller, {
     name: "recaptchaScoreThreshold",
     control: control,
-    render: function render(_ref15) {
-      var _ref15$field = _ref15.field,
-          _onChange8 = _ref15$field.onChange,
-          value = _ref15$field.value;
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+          _onChange8 = _ref14$field.onChange,
+          value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_24__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set reCAPTCHA Minimum Threshold', 'comment-edit-pro'),
         step: 0.05,

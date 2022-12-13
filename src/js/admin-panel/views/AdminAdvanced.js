@@ -127,7 +127,6 @@ const Interface = ( props ) => {
 			adobeProjectId: adobe_project_id,
 			activateAdobeFontsAdmin: activate_adobe_fonts_admin,
 			activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
-			facebookAppId: facebook_app_id,
 			recaptchaEnabled: recaptcha_enabled,
 			recaptchaSiteKey: recaptcha_site_key,
 			recaptchaSecretKey: recaptcha_secret_key,
@@ -829,31 +828,6 @@ const Interface = ( props ) => {
 							<div className="qdlx-admin__tabs--content-inner">
 								<table className="form-table" role="presentation">
 									<tbody>
-										<tr>
-											<th scope="row">{ __( 'Facebook', 'quotes-dlx' ) }</th>
-											<td>
-												<Controller
-													name="facebookAppId"
-													control={ control }
-													render={ ( { field } ) => (
-														<TextControl
-															{ ...field }
-															type="text"
-															label={ __(
-																'Facebook APP ID',
-																'quotes-dlx'
-															) }
-															id="search-qdlx-no-autofill-fb-app-id"
-															className={ classNames(
-																'qdlx-admin__text-control',
-																{},
-															) }
-														/>
-													) }
-												/>
-												<p className="description">Log into the <a href="https://developers.facebook.com/" target="_blank" rel="noreferrer">Facebook Developers site</a> to generate a new APP ID.</p>
-											</td>
-										</tr>
 										<tr>
 											<th scope="row">{ __( 'Font Options', 'quotes-dlx' ) }</th>
 											<td>

@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"module": "esnext",
+    	"target": "esnext",
+		"experimentalDecorators": true
+	},
+	"include": ["src/**/*"],
+	"exclude": [
+		"node_modules",
+		"build",
+		"dist"
+	]
+}

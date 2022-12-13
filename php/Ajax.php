@@ -69,6 +69,9 @@ class Ajax {
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
+		// For uninstalling all options.
+		add_action( 'wp_ajax_quotes_dlx_uninstall_and_deactivate', array( static::class, 'ajax_uninstall_and_deactivate' ) );
+
 		// For exporting the theme options.
 		add_action( 'wp_ajax_quotes_dlx_export_theme_json', array( static::class, 'ajax_export_theme_json' ) );
 
@@ -217,6 +220,32 @@ class Ajax {
 		Options_License::update_options( '', $options, true );
 
 		wp_send_json_success( $options );
+	}
+
+	/**
+	 * Uninstall options and deactivate.
+	 */
+	public static function ajax_uninstall_and_deactivate() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) || ! current_user_can( 'install_plugins' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		// Reset all the things.
+		Options_Defaults::reset( true );
+		Options_License::reset( true );
+		Options_Menu::reset( true );
+		Options_Theme::reset( true );
+
+		// Deactivate the plugin. No need for multisite permissions as this is only a deactivation.
+		deactivate_plugins(
+			Functions::get_plugin_file(),
+			true
+		);
+
+		// Get path to the site's plugins screen.
+		$plugins_url = admin_url( 'plugins.php' );
+
+		wp_send_json_success( array( 'redirect_url' => esc_url( $plugins_url ) ) );
 	}
 
 	/**
@@ -521,7 +550,6 @@ class Ajax {
 					'template'                      => Options_Defaults::get_options( 'template' ),
 					'primary_font_family'           => $defaults['primary_font_family'],
 					'secondary_font_family'         => $defaults['secondary_font_family'],
-					'facebook_app_id'               => $defaults['facebook_app_id'],
 					'recaptcha_enabled'             => (bool) $defaults['recaptcha_enabled'],
 					'recaptcha_site_key'            => $defaults['recaptcha_site_key'],
 					'recaptcha_secret_key'          => $defaults['recaptcha_secret_key'],
@@ -766,7 +794,7 @@ class Ajax {
 			'qdlx_twitter_preview_js',
 			'qdlx_theme_preview',
 			array(
-				'stylesheet'            => esc_url( $theme['stylesheet'] ),
+				'stylesheet'            => esc_url( $theme_template['stylesheet'] ),
 				'theme'                 => $template,
 				'colors'                => $saved_colors,
 				'font_size'             => $font_size,
@@ -1135,9 +1163,6 @@ class Ajax {
 					break;
 				case 'adobeProjectId':
 					$options_to_save['adobe_project_id'] = sanitize_text_field( $field_value );
-					break;
-				case 'facebookAppId':
-					$options_to_save['facebook_app_id'] = sanitize_text_field( $field_value );
 					break;
 				case 'activateAdobeFontsAdmin':
 					$options_to_save['activate_adobe_fonts_admin'] = ( 'true' === $field_value ) ? true : false;

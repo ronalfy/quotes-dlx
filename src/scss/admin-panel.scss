@@ -774,13 +774,18 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 		&.no-flex label {
 			display: inline-flex !important;
 		}
+		&.no-flex-grid {
+			display: block;
+		}
 
 		.qdlx-admin-reset-confirmation {
 			padding-bottom: 20px;
+			display: flex;
+			align-items: center;
 		}
 
 		button,
-		label {
+		label:not(.qdlx-admin__reset-confirm-label,.qdlx-admin__uninstall-confirm-label) {
 			background: var(--quotes-dlx-admin--color-white);
 			color: var(--quotes-dlx-admin--color-green-alt);
 			border-style: solid;

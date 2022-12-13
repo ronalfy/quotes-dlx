@@ -92,11 +92,15 @@ const Interface = ( props ) => {
 	const [ refreshingFonts, setRefreshingFonts ] = useState( false );
 	const [ isSaved, setIsSaved ] = useState( false );
 	const [ resetting, setResetting ] = useState( false );
+	const [ uninstalling, setUninstalling ] = useState( false );
 	const [ hardReset, setHardReset ] = useState( false );
+	const [ hardUninstall, setHardUninstall ] = useState( false );
+	const [ isHardUninstall, setIsHardUninstall ] = useState( false );
 	const [ isHardReset, setIsHardReset ] = useState( false );
 	const [ isReset, setIsReset ] = useState( false );
 	const [ adobeFonts, setAdobeFonts ] = useState( data.adobe_fonts );
 	const [ canResetOptions, setCanResetOptions ] = useState( false );
+	const [ canUninstall, setCanUninstall ] = useState( false );
 
 	const {
 		enable_fonts,
@@ -389,8 +393,10 @@ const Interface = ( props ) => {
 ) }`;
 	};
 
-	const resetAllOptions = () => {
-		// Clear local storage keys.
+	/**
+	 * Remove all local storage keys and context.
+	 */
+	const clearLocalStorage = () => {
 		localStorage.removeItem( 'quotes_dlx_menu_defaults' );
 		localStorage.removeItem( 'quotes_dlx_form_defaults' );
 		localStorage.removeItem( 'quotes_dlx_licenses' );
@@ -402,6 +408,41 @@ const Interface = ( props ) => {
 		setLicensesDirtyCount( 0 );
 		setBlockDefaultsDirtyCount( 0 );
 		setContextualMenuDefaultsDirtyCount( 0 );
+	};
+
+	/**
+	 * Uninstall and deactivate the QuotesDLX Plugin.
+	 */
+	const uninstallAndDeactivate = () => {
+		// Clear local storage keys.
+		clearLocalStorage();
+
+		setHardUninstall( true );
+
+		sendCommand( 'quotes_dlx_uninstall_and_deactivate', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					setIsHardUninstall( true );
+					setTimeout( () => {
+						window.location.href = ajaxData.redirect_url;
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setHardUninstall( false );
+			} );
+	}
+
+	const resetAllOptions = () => {
+		// Clear local storage keys.
+		clearLocalStorage();
 
 		setHardReset( true );
 
@@ -1084,7 +1125,7 @@ const Interface = ( props ) => {
 								</p>
 							</div>
 							<div className="qdlx-admin__tabs--content-inner">
-								<div className="qdlx-admin__tabs--content-actions no-flex">
+								<div className="qdlx-admin__tabs--content-actions no-flex-grid">
 									<div className="qdlx-admin-reset-confirmation">
 										<input
 											type="checkbox"
@@ -1093,7 +1134,7 @@ const Interface = ( props ) => {
 												setCanResetOptions( e.target.checked );
 											} }
 										/>
-										<label htmlFor="qdlx-admin__reset-confirm">
+										<label htmlFor="qdlx-admin__reset-confirm" className="qdlx-admin__reset-confirm-label">
 											{ __(
 												'I understand that this will reset all options.',
 												'quotes-dlx'
@@ -1116,7 +1157,7 @@ const Interface = ( props ) => {
 										iconSize="18"
 										iconPosition="right"
 										disabled={
-											saving || resetting || hardReset || ! canResetOptions
+											saving || resetting || hardReset || hardUninstall || ! canResetOptions
 										}
 										onClick={ ( e ) => {
 											resetAllOptions();
@@ -1125,8 +1166,84 @@ const Interface = ( props ) => {
 								</div>
 								{ isHardReset && (
 									<Notice
-										message={ __( 'Your settings have been reset. Reloading…' ) }
-										status="success"
+										message={ __( 'Your settings have been reset. Reloading…', 'quotes-dlx' ) }
+										status="warning"
+										politeness="assertive"
+									/>
+								) }
+							</div>
+						</div>
+					</form>
+				</div>
+				<div className="qdlx-admin__tabs--content-wrap">
+					<form
+						onSubmit={ ( e ) => {
+							e.preventDefault();
+						} }
+					>
+						<div className="qdlx-admin__tabs--content-panel">
+							<div className="qdlx-admin__tabs--content-heading qdlx-danger">
+								<h1>
+									<CircularExclamationIcon
+										width={ 48 }
+										height={ 48 }
+										aria-hidden="true"
+									/>
+									<span className="qdlx-admin__heading--text">
+										{ __( 'Uninstall and Deactivate', 'quotes-dlx' ) }
+									</span>
+								</h1>
+								<p className="description">
+									{ __(
+										'Remove all options and deactivate QuotesDLX.',
+										'quotes-dlx'
+									) }
+								</p>
+							</div>
+							<div className="qdlx-admin__tabs--content-inner">
+								<div className="qdlx-admin__tabs--content-actions no-flex-grid">
+									<div className="qdlx-admin-reset-confirmation">
+										<input
+											type="checkbox"
+											id="qdlx-admin__uninstall-confirm"
+											onClick={ ( e ) => {
+												setCanUninstall( e.target.checked );
+											} }
+										/>
+										<label htmlFor="qdlx-admin__uninstall-confirm" className="qdlx-admin__uninstall-confirm-label">
+											{ __(
+												'I understand that this remove all saved options and deactivate the plugin.',
+												'quotes-dlx'
+											) }
+										</label>
+									</div>
+									<Button
+										className={ classNames(
+											'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+											{ 'has-icon': uninstalling },
+											{ 'is-resetting': { uninstalling } }
+										) }
+										type="button"
+										text={
+											hardUninstall
+												? __( 'Uninstalling…', 'quotes-dlx' )
+												: __( 'Uninstall QuotesDLX', 'quotes-dlx' )
+										}
+										icon={ hardUninstall ? Spinner : false }
+										iconSize="18"
+										iconPosition="right"
+										disabled={
+											saving || resetting || hardReset || hardUninstall || ! canUninstall
+										}
+										onClick={ ( e ) => {
+											uninstallAndDeactivate();
+										} }
+									/>
+								</div>
+								{ isHardUninstall && (
+									<Notice
+										message={ __( 'QuotesDLX has been uninstalled. Redirecting to the plugins screen…', 'quotes-dlx' ) }
+										status="warning"
 										politeness="assertive"
 									/>
 								) }

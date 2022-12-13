@@ -265,28 +265,48 @@ var Interface = function Interface(props) {
 
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState22 = _slicedToArray(_useState21, 2),
-      hardReset = _useState22[0],
-      setHardReset = _useState22[1];
+      uninstalling = _useState22[0],
+      setUninstalling = _useState22[1];
 
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState24 = _slicedToArray(_useState23, 2),
-      isHardReset = _useState24[0],
-      setIsHardReset = _useState24[1];
+      hardReset = _useState24[0],
+      setHardReset = _useState24[1];
 
   var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState26 = _slicedToArray(_useState25, 2),
-      isReset = _useState26[0],
-      setIsReset = _useState26[1];
+      hardUninstall = _useState26[0],
+      setHardUninstall = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState28 = _slicedToArray(_useState27, 2),
-      adobeFonts = _useState28[0],
-      setAdobeFonts = _useState28[1];
+      isHardUninstall = _useState28[0],
+      setIsHardUninstall = _useState28[1];
 
   var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState30 = _slicedToArray(_useState29, 2),
-      canResetOptions = _useState30[0],
-      setCanResetOptions = _useState30[1];
+      isHardReset = _useState30[0],
+      setIsHardReset = _useState30[1];
+
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState32 = _slicedToArray(_useState31, 2),
+      isReset = _useState32[0],
+      setIsReset = _useState32[1];
+
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+      _useState34 = _slicedToArray(_useState33, 2),
+      adobeFonts = _useState34[0],
+      setAdobeFonts = _useState34[1];
+
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState36 = _slicedToArray(_useState35, 2),
+      canResetOptions = _useState36[0],
+      setCanResetOptions = _useState36[1];
+
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState38 = _slicedToArray(_useState37, 2),
+      canUninstall = _useState38[0],
+      setCanUninstall = _useState38[1];
 
   var enable_fonts = data.enable_fonts,
       custom_font_primary = data.custom_font_primary,
@@ -567,9 +587,12 @@ var Interface = function Interface(props) {
 
     return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent(16), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(selectedTemplate), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
   };
+  /**
+   * Remove all local storage keys and context.
+   */
 
-  var resetAllOptions = function resetAllOptions() {
-    // Clear local storage keys.
+
+  var clearLocalStorage = function clearLocalStorage() {
     localStorage.removeItem('quotes_dlx_menu_defaults');
     localStorage.removeItem('quotes_dlx_form_defaults');
     localStorage.removeItem('quotes_dlx_licenses');
@@ -580,6 +603,37 @@ var Interface = function Interface(props) {
     setLicensesDirtyCount(0);
     setBlockDefaultsDirtyCount(0);
     setContextualMenuDefaultsDirtyCount(0);
+  };
+  /**
+   * Uninstall and deactivate the QuotesDLX Plugin.
+   */
+
+
+  var uninstallAndDeactivate = function uninstallAndDeactivate() {
+    // Clear local storage keys.
+    clearLocalStorage();
+    setHardUninstall(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_uninstall_and_deactivate', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+
+      if (ajaxSuccess) {
+        setIsHardUninstall(true);
+        setTimeout(function () {
+          window.location.href = ajaxData.redirect_url;
+        }, 3000);
+      } else {// Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setHardUninstall(false);
+    });
+  };
+
+  var resetAllOptions = function resetAllOptions() {
+    // Clear local storage keys.
+    clearLocalStorage();
     setHardReset(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_all_options', {
       nonce: quotes_dlx_admin.options_save_nonce
@@ -1094,7 +1148,7 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset all options. Resetting can not be undone.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-admin__tabs--content-actions no-flex"
+    className: "qdlx-admin__tabs--content-actions no-flex-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin-reset-confirmation"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -1104,7 +1158,8 @@ var Interface = function Interface(props) {
       setCanResetOptions(e.target.checked);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "qdlx-admin__reset-confirm"
+    htmlFor: "qdlx-admin__reset-confirm",
+    className: "qdlx-admin__reset-confirm-label"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that this will reset all options.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
       'has-icon': resetting
@@ -1118,13 +1173,67 @@ var Interface = function Interface(props) {
     icon: hardReset ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
-    disabled: saving || resetting || hardReset || !canResetOptions,
+    disabled: saving || resetting || hardReset || hardUninstall || !canResetOptions,
     onClick: function onClick(e) {
       resetAllOptions();
     }
   })), isHardReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset. Reloading…'),
-    status: "success",
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset. Reloading…', 'quotes-dlx'),
+    status: "warning",
+    politeness: "assertive"
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading qdlx-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstall and Deactivate', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove all options and deactivate QuotesDLX.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions no-flex-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-reset-confirmation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "checkbox",
+    id: "qdlx-admin__uninstall-confirm",
+    onClick: function onClick(e) {
+      setCanUninstall(e.target.checked);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "qdlx-admin__uninstall-confirm",
+    className: "qdlx-admin__uninstall-confirm-label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that this remove all saved options and deactivate the plugin.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__["default"], {
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': uninstalling
+    }, {
+      'is-resetting': {
+        uninstalling: uninstalling
+      }
+    }),
+    type: "button",
+    text: hardUninstall ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstalling…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstall QuotesDLX', 'quotes-dlx'),
+    icon: hardUninstall ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_15__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting || hardReset || hardUninstall || !canUninstall,
+    onClick: function onClick(e) {
+      uninstallAndDeactivate();
+    }
+  })), isHardUninstall && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('QuotesDLX has been uninstalled. Redirecting to the plugins screen…', 'quotes-dlx'),
+    status: "warning",
     politeness: "assertive"
   })))))));
 };

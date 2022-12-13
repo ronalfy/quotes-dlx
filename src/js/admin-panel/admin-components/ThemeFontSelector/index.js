@@ -347,7 +347,7 @@ const Interface = ( props ) => {
 													{ ...field }
 													value={ escapeAttribute( field.value.replace( /\\\'/g, "'" ) ) }
 													label={ __(
-														'Enter your custom secondary font.',
+														'Enter your custom primary font.',
 														'quotes-dlx'
 													) }
 													placeholder={ __(

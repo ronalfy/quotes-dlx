@@ -894,7 +894,7 @@ var Interface = function Interface(props) {
         var field = _ref2.field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], _extends({}, field, {
           value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_18__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom primary font.', 'quotes-dlx'),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
           className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
             'has-error': 'pattern' === ((_errors$customFontPri = errors.customFontPrimary) === null || _errors$customFontPri === void 0 ? void 0 : _errors$customFontPri.type) || 'required' === ((_errors$customFontPri2 = errors.customFontPrimary) === null || _errors$customFontPri2 === void 0 ? void 0 : _errors$customFontPri2.type),

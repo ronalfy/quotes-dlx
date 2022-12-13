@@ -1,10 +1,4 @@
 const fontFamilies = {
-	Roboto: {
-		name: 'Roboto',
-		slug: 'roboto',
-		family: 'Roboto',
-		fallback: 'Helvetica, Arial, sans-serif',
-	},
 	'Josefin Sans': {
 		name: 'Josefin Sans',
 		slug: 'josefin-sans',
@@ -57,6 +51,12 @@ const fontFamilies = {
 		name: 'Raleway',
 		slug: 'raleway',
 		family: 'Raleway',
+		fallback: 'Helvetica, Arial, sans-serif',
+	},
+	Roboto: {
+		name: 'Roboto',
+		slug: 'roboto',
+		family: 'Roboto',
 		fallback: 'Helvetica, Arial, sans-serif',
 	},
 	'Source Sans Pro': {

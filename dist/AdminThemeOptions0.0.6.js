@@ -12,12 +12,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var fontFamilies = {
-  Roboto: {
-    name: 'Roboto',
-    slug: 'roboto',
-    family: 'Roboto',
-    fallback: 'Helvetica, Arial, sans-serif'
-  },
   'Josefin Sans': {
     name: 'Josefin Sans',
     slug: 'josefin-sans',
@@ -70,6 +64,12 @@ var fontFamilies = {
     name: 'Raleway',
     slug: 'raleway',
     family: 'Raleway',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Roboto: {
+    name: 'Roboto',
+    slug: 'roboto',
+    family: 'Roboto',
     fallback: 'Helvetica, Arial, sans-serif'
   },
   'Source Sans Pro': {

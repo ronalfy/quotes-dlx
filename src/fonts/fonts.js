@@ -29,6 +29,12 @@ const fontFamilies = {
 		family: 'Montserrat',
 		fallback: 'Helvetica, Arial, sans-serif',
 	},
+	Nunito: {
+		name: 'Nunito',
+		slug: 'nunito',
+		family: 'Nunito',
+		fallback: 'sans-serif',
+	},
 	'Open Sans': {
 		name: 'Open Sans',
 		slug: 'open-sans',

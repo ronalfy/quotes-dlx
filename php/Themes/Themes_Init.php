@@ -63,6 +63,7 @@ class Themes_Init {
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Light_Branded',
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Blue',
 			'MediaRonLLC\QuotesDLX\Themes\Themes_Purple',
+			'MediaRonLLC\QuotesDLX\Themes\Themes_Cotton_Candy',
 		);
 
 		/**

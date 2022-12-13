@@ -27,6 +27,7 @@ module.exports = ( env ) => {
 				'quotes-dlx-theme-dark-matter': { import: './src/scss/themes/dark-matter.scss' },
 				'quotes-dlx-theme-light-branded': { import: './src/scss/themes/light-branded.scss' },
 				'quotes-dlx-theme-bubble-gum': { import: './src/scss/themes/bubble-gum.scss' },
+				'quotes-dlx-theme-cotton-candy': { import: './src/scss/themes/cotton-candy.scss' },
 				'quotes-dlx-theme-preview': [ './src/js/admin-panel/views/theme-preview/index.js', './src/scss/themes/preview.scss' ],
 				'quotes-dlx-gfont-josefin-sans': { import: './src/scss/fonts/josefin-sans.scss' },
 				'quotes-dlx-gfont-karla': { import: './src/scss/fonts/karla.scss' },

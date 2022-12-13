@@ -1,4 +1,4 @@
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminThemeOptions0.0.6"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminThemeOptions0.0.7"],{
 
 /***/ "./src/fonts/fonts.js":
 /*!****************************!*\
@@ -3245,4 +3245,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminThemeOptions0.0.6.js.map
+//# sourceMappingURL=AdminThemeOptions0.0.7.js.map

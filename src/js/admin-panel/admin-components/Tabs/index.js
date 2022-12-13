@@ -26,7 +26,7 @@ const AdminDefaults = lazy( () =>
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.7" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.8" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
@@ -43,7 +43,7 @@ const AdminThemesDefaults = lazy( () =>
 
 const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeOptions0.0.6" */ '../../views/AdminThemeOptions'
+		/* webpackChunkName: "AdminThemeOptions0.0.7" */ '../../views/AdminThemeOptions'
 	)
 );
 

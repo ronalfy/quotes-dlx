@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.7"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.8"],{
 
 /***/ "./src/fonts/fonts.js":
 /*!****************************!*\
@@ -1243,4 +1243,4 @@ var Interface = function Interface(props) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminAdvanced0.0.7.js.map
+//# sourceMappingURL=AdminAdvanced0.0.8.js.map

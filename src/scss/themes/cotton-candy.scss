@@ -2,53 +2,58 @@
 @import "../breakpoints-mixin.scss";
 @import "../breakpoints-mixin-variable.scss";
 
-$primary: #E75480;
-$secondary: #fdeef2;
-$accent: #FFF;
+$primary: #8BC6FC;
+$secondary: #F8C8DC;
+$accent: #FAC898;
+$text_color: #FFFFFF;
+$button_background: #FFFFFF;
+$button_background_hover: #8BC6FC;
+$button_text_color: #8BC6FC;
+$button_text_color_hover: #FFFFFF;
 $light: #FFF;
 $dark: #000;
 
-.quotes-dlx-block-theme-bubble-gum{
-	font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px );
+.quotes-dlx-block-theme-cotton-candy{
+	font-size: var( --qdlx-cotton-candy-font-size-mobile, 14px );
 	@include respond-to('medium') {
-		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px );
+		font-size: var( --qdlx-cotton-candy-font-size-tablet, 15px );
 	}
 	@include respond-to('large') {
-		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px );
+		font-size: var( --qdlx-cotton-candy-font-size-desktop, 16px );
 	}
 
 	/* If these are set, we're in a preview */
 	&.quotes-dlx-screen-mobile {
-		font-size: var( --qdlx-bubble-gum-font-size-mobile, 14px ) !important;
+		font-size: var( --qdlx-cotton-candy-font-size-mobile, 14px ) !important;
 
 		.quotes-dlx-button {
-			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px ) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-mobile, 14px ) !important;
 		}
 
 		.quotes-dlx-button-icon {
-			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px ) !important;
-			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-mobile, 14px) / 2))) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-mobile, 14px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-mobile, 14px) / 2))) !important;
 		}
 	}
 	&.quotes-dlx-screen-tablet {
-		font-size: var( --qdlx-bubble-gum-font-size-tablet, 15px ) !important;
+		font-size: var( --qdlx-cotton-candy-font-size-tablet, 15px ) !important;
 		.quotes-dlx-button {
-			font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px ) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-tablet, 15px ) !important;
 		}
 
 		.quotes-dlx-button-icon {
-			font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px ) !important;
-			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2))) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-tablet, 15px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-tablet, 15px) / 2))) !important;
 		}
 	}
 	&.quotes-dlx-screen-desktop {
-		font-size: var( --qdlx-bubble-gum-font-size-desktop, 16px ) !important;
+		font-size: var( --qdlx-cotton-candy-font-size-desktop, 16px ) !important;
 		.quotes-dlx-button {
-			font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px ) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-desktop, 16px ) !important;
 		}
 		.quotes-dlx-button-icon {
-			font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px ) !important;
-			top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2))) !important;
+			font-size: var( --qdlx-cotton-candy-button-font-size-desktop, 16px ) !important;
+			top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-desktop, 16px) / 2))) !important;
 		}
 	}
 
@@ -58,37 +63,25 @@ $dark: #000;
 
 	.quotes-dlx-text-wrapper {
 		a {
-			color: var( --qdlx-bubble-gum-accent, $accent );
+			color: var( --qdlx-cotton-candy-accent, $accent );
 			text-transform: none;
 			padding-bottom: 4px;
 			border-bottom: 2px solid transparent;
 			transition: all .35s ease-in-out;
 
 			&:hover {
-				color: var( --qdlx-bubble-gum-accent, $accent );
+				color: var( --qdlx-cotton-candy-accent, $accent );
 				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-bubble-gum-accent, $accent );
+				border-bottom: 2px solid var( --qdlx-cotton-candy-accent, $accent );
 			}
 		}
 	}
 
 	&.quotes-dlx .quotes-dlx-wrapper {
 		padding: 0;
-		margin-top: 65px;
+		margin-top: 20px;
 		margin-bottom: 20px;
-
-		&:before {
-			content: '';
-			display: block;
-			z-index: 1;
-			position: absolute;
-			bottom: 32px;
-			right: 32px;
-			left: 32px;
-			top: 32px;
-			border-radius: 5px;
-			border: 4px solid var( --qdlx-bubble-gum-accent, $accent );
-		}
+		border-left: 32px solid var( --qdlx-cotton-candy-secondary, $secondary );
 
 		figure,
 		div.quotes-dlx-button-wrapper {
@@ -97,42 +90,29 @@ $dark: #000;
 		}
 	}
 
+	&.quotes-dlx.quotes-dlx-has-no-tweet-button {
+		figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 68px;
+		}
+	}
+
 	.quotes-dlx-wrapper {
 		position: relative;
-		background: var( --qdlx-bubble-gum-primary, $primary );
-		border-radius: 5px;
+		background: var( --qdlx-cotton-candy-primary, $primary );
+		border: 0;
+		border-radius: 0;
 		padding: 32px;
-		border: 4px solid var( --qdlx-bubble-gum-primary, $primary );
 
 		figure {
 			margin: 0;
 		}
 
-		figure:before {
-			display: inline-block;
-			content: '\201C';
-			position: absolute;
-			border-radius: 100%;
-			background-color: var( --qdlx-bubble-gum-secondary, $secondary );
-			color: var( --qdlx-bubble-gum-primary, $primary );
-			width: 76px;
-			height: 76px;
-			font-size: 80px;
-			line-height: 108px;
-			font-family: serif;
-			text-align: center;
-			border: 2px solid var( --qdlx-bubble-gum-primary, $primary );
-			top: -38px;
-			left: -40px;
-			z-index: 2;
-		}
-
 		figure blockquote.quotes-dlx-text-wrapper {
-			font-family: var( --qdlx-bubble-gum-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
+			font-family: var( --qdlx-cotton-candy-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			font-weight: 400;
 			font-size: 1.5em;
-			color: var( --qdlx-bubble-gum-secondary, $secondary );
-			line-height: var( --qdlx-bubble-gum-line-height-mobile, 1.3 );
+			color: var( --qdlx-cotton-candy-text-color, $text_color );
+			line-height: var( --qdlx-cotton-candy-line-height-mobile, 1.3 );
 			margin: 0 !important; /* override core style */
 			border: 0;
 			quotes: none;
@@ -143,11 +123,11 @@ $dark: #000;
 
 			@include respond-to('medium') {
 				font-size: 1.35em;
-				line-height: var( --qdlx-bubble-gum-line-height-tablet, 1.35 );
+				line-height: var( --qdlx-cotton-candy-line-height-tablet, 1.35 );
 			}
 			@include respond-to('large') {
 				font-size: 1.5em;
-				line-height: var( --qdlx-bubble-gum-line-height-desktop, 1.65 );
+				line-height: var( --qdlx-cotton-candy-line-height-desktop, 1.65 );
 			}
 		}
 		.quotes-dlx-button-wrapper {
@@ -166,7 +146,7 @@ $dark: #000;
 
 				svg path,
 				svg use {
-					fill: var( --qdlx-bubble-gum-primary, $primary );
+					fill: var( --qdlx-cotton-candy-button-primary-text-color, $button_text_color );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -191,16 +171,16 @@ $dark: #000;
 
 		.quotes-dlx-button {
 			position: relative;
-			background: var( --qdlx-bubble-gum-secondary, $secondary );
-			color: var( --qdlx-bubble-gum-primary, $primary );
+			background: var( --qdlx-cotton-candy-button-color, $button_background );
+			color: var( --qdlx-cotton-candy-button-primary-text-color, $button_text_color );
 			padding: 15px 25px;
 			border-radius: 4px;
-			border: 2px solid var( --qdlx-bubble-gum-primary, $primary );
+			border: 2px solid transparent;
 			display: inline-block;
 			transition: all 0.3s ease-in-out;
-			font-family: var( --qdlx-bubble-gum-secondary-font-family, var( --qdlx-secondary-font-family, inherit ) );
+			font-family: var( --qdlx-cotton-candy-secondary-font-family, var( --qdlx-secondary-font-family, inherit ) );
 			font-weight: 500;
-			font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
+			font-size: var( --qdlx-cotton-candy-button-font-size-mobile, 14px );
 			line-height: 1.0em;
 			margin-right: 5px;
 			&:last-child {
@@ -208,18 +188,18 @@ $dark: #000;
 			}
 
 			@include respond-to('medium') {
-				font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
+				font-size: var( --qdlx-cotton-candy-button-font-size-tablet, 15px );
 			}
 			@include respond-to('large') {
-				font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
+				font-size: var( --qdlx-cotton-candy-button-font-size-desktop, 16px);
 			}
 
 			.quotes-dlx-button-text {
 				font-size: 1.25em;
 			}
 			.quotes-dlx-button-icon {
-				font-size: var( --qdlx-bubble-gum-button-font-size-mobile, 14px );
-				top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-mobile, 14px) / 2)));
+				font-size: var( --qdlx-cotton-candy-button-font-size-mobile, 14px );
+				top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-mobile, 14px) / 2)));
 
 				svg {
 					width: 100%;
@@ -227,24 +207,24 @@ $dark: #000;
 				}
 
 				@include respond-to('medium') {
-					font-size: var( --qdlx-bubble-gum-button-font-size-tablet, 15px );
-					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-tablet, 15px) / 2)));
+					font-size: var( --qdlx-cotton-candy-button-font-size-tablet, 15px );
+					top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-tablet, 15px) / 2)));
 				}
 				@include respond-to('large') {
-					font-size: var( --qdlx-bubble-gum-button-font-size-desktop, 16px);
-					top: calc(50% - (0.125em + (var(--qdlx-bubble-gum-button-font-size-desktop, 16px) / 2)));
+					font-size: var( --qdlx-cotton-candy-button-font-size-desktop, 16px);
+					top: calc(50% - (0.125em + (var(--qdlx-cotton-candy-button-font-size-desktop, 16px) / 2)));
 				}
 			}
 
 			&:hover {
 				transition: all 0.3s ease-in-out;
-				color: var( --qdlx-bubble-gum-light, $light );
-				background: var( --qdlx-bubble-gum-primary, $primary );
-				border: 2px solid var( --qdlx-bubble-gum-secondary, $secondary );
+				color: var( --qdlx-cotton-candy-button-secondary-text-color, $button_text_color_hover );
+				background: var( --qdlx-cotton-candy-button-secondary-color, $button_background_hover );
+				border: 2px solid var( --qdlx-cotton-candy-button-secondary-text-color, $button_text_color_hover );
 
 				svg path,
 				svg use {
-					fill: var( --qdlx-bubble-gum-secondary, $secondary );
+					fill: var( --qdlx-cotton-candy-button-secondary-text-color, $button_text_color_hover );
 					transition: all 0.3s ease-in-out;
 				}
 			}
@@ -292,12 +272,12 @@ $dark: #000;
 		/* Show only the icon and not the button wrappers */
 		.quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
 			background: transparent;
-			color: var( --qdlx-bubble-gum-light, $light );
+			color: var( --qdlx-cotton-candy-button-primary-text-color, $button_text_color );
 			padding: 4px;
 
 			svg path,
 			svg use {
-				fill: var( --qdlx-bubble-gum-light, $light );
+				fill: var( --qdlx-cotton-candy-light, $light );
 			}
 		}
 
@@ -333,7 +313,7 @@ $dark: #000;
 				}
 
 				&:not(:checked) ~ ul {
-					background: var( --qdlx-bubble-gum-light, $light );
+					background: var( --qdlx-cotton-candy-secondary, $secondary );
 					position: relative;
 					transition: opacity 0.75s ease-in-out;
 					margin-right: 2px;
@@ -362,8 +342,8 @@ $dark: #000;
 					padding: 0;
 					border-radius: 2px;
 					margin-right: 15px;
-					background: var( --qdlx-bubble-gum-secondary, $secondary );
-					border: 1px solid var( --qdlx-bubble-gum-accent, $accent );
+					background: var( --qdlx-cotton-candy-secondary, $secondary );
+					border: 1px solid var( --qdlx-cotton-candy-accent, $accent );
 					z-index: 10;
 				}
 			}
@@ -390,7 +370,7 @@ $dark: #000;
 						border-radius: 100%;
 						transform: rotate(0deg);
 						transition: all 0.3s ease-in-out;
-						background: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-secondary, $secondary );
 						margin-right: 5px;
 					}
 					&:after {
@@ -408,7 +388,7 @@ $dark: #000;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-light, $light );
 					}
 		
 					&:after {
@@ -446,25 +426,26 @@ $dark: #000;
 			}
 	
 			li.quotes-dlx-meatball-menu-item {
-				border-bottom: 1px solid var( --qdlx-bubble-gum-secondary, $secondary );
+				border-bottom: 1px solid var( --qdlx-cotton-candy-primary, $primary );
+				font-weight: 600;
 				&:last-child {
 					border-bottom: none;
 				}	
 				button.button-reset {
 					svg path,
 					svg use {
-						fill: var( --qdlx-bubble-gum-primary, $primary );
+						fill: var( --qdlx-cotton-candy-primary, $primary );
 					}
-					color: var( --qdlx-bubble-gum-primary, $primary );
-					background: var( --qdlx-bubble-gum-light, $light );
+					color: var( --qdlx-cotton-candy-primary, $primary );
+					background: var( --qdlx-cotton-candy-light, $light );
 					font-family: var( --qdlx-primary-font-family ), sans-serif;
 					&:hover {
-						background: var( --qdlx-bubble-gum-primary, $primary );
-						color: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-primary, $primary );
+						color: var( --qdlx-cotton-candy-light, $light );
 	
 						svg path,
 						svg use {
-							fill: var( --qdlx-bubble-gum-light, $light );;
+							fill: var( --qdlx-cotton-candy-light, $light );
 						}
 					}
 				}
@@ -475,7 +456,7 @@ $dark: #000;
 	
 				&:hover {
 					.quotes-dlx-meatball-icon-wrapper {
-						background: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-light, $light );
 	
 	
 					}
@@ -483,7 +464,7 @@ $dark: #000;
 			}
 	
 			input:hover~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-bubble-gum-primary, $primary );
+				background: var( --qdlx-cotton-candy-primary, $primary );
 	
 				&>div {
 	
@@ -491,7 +472,8 @@ $dark: #000;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-secondary, $secondary );
+						color: var( --qdlx-cotton-candy-primary, $primary );
 					}
 				}
 			}
@@ -509,7 +491,7 @@ $dark: #000;
 				z-index: 2;
 				padding: 20px;
 				border: 1px solid transparent;
-				background: var( --qdlx-bubble-gum-primary, $primary );
+				background: var( --qdlx-cotton-candy-primary, $primary );
 				box-shadow: none;
 				border-radius: 100%;
 				text-align: center;
@@ -529,7 +511,7 @@ $dark: #000;
 	
 				&:hover {
 					transition: all 0.3s linear;
-					background: var( --qdlx-bubble-gum-primary, $primary );
+					background: var( --qdlx-cotton-candy-primary, $primary );
 	
 					&>div {
 	
@@ -540,7 +522,7 @@ $dark: #000;
 	
 							&:before,
 							&:after {
-								background: var( --qdlx-bubble-gum-light, $light );
+								background: var( --qdlx-cotton-candy-secondary, $secondary );
 							}
 						}
 					}
@@ -552,14 +534,14 @@ $dark: #000;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-bubble-gum-accent, $accent );
+						background: var( --qdlx-cotton-candy-secondary, $secondary );
 					}
 				}
 	
 			}
 	
 			input:checked~.quotes-dlx-meatball-icon-wrapper {
-				background: var( --qdlx-bubble-gum-primary, $primary );
+				background: var( --qdlx-cotton-candy-secondary, $secondary );
 	
 				&>div {
 	
@@ -567,7 +549,7 @@ $dark: #000;
 					&:after,
 					span {
 						transition: all 0.3s linear;
-						background: var( --qdlx-bubble-gum-light, $light );
+						background: var( --qdlx-cotton-candy-text-color, $text_color );
 					}
 	
 					span {
@@ -575,7 +557,7 @@ $dark: #000;
 						&:before,
 						&:after {
 							display: inline-block;
-							background: var( --qdlx-bubble-gum-light, $light );
+							background: var( --qdlx-cotton-candy-secondary, $secondary );
 						}
 					}
 				}
@@ -588,7 +570,7 @@ $dark: #000;
 		li.quotes-dlx-meatball-menu-item {
 			svg path,
 			svg use {
-				fill: var( --qdlx-bubble-gum-accent, $accent );
+				fill: var( --qdlx-cotton-candy-accent, $accent );
 			}
 		}
 	}

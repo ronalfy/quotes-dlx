@@ -249,12 +249,47 @@ class Themes_Cotton_Candy extends Themes_Addon {
 			array(
 				'name'  => __( 'Accent', 'quotes-dlx' ),
 				'slug'  => 'accent',
-				'color' => '#FDFD96',
+				'color' => '#FAC898',
 			),
 			array(
 				'name'  => __( 'Text Color', 'quotes-dlx' ),
 				'slug'  => 'text-color',
 				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Primary Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Primary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-primary-text-color',
+				'color' => '#8BC6FC',
+			),
+			array(
+				'name'  => __( 'Button Secondary Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-color',
+				'color' => '#8BC6FC',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Button Secondary Text Color', 'quotes-dlx' ),
+				'slug'  => 'button-secondary-text-color',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Light', 'quotes-dlx' ),
+				'slug'  => 'light',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Dark', 'quotes-dlx' ),
+				'slug'  => 'dark',
+				'color' => '#000000',
 			),
 		);
 	}

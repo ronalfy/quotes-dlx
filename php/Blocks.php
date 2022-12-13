@@ -618,21 +618,19 @@ class Blocks {
 						</blockquote>
 					</figure>
 					<?php
+					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+					$share_button_classes = array(
+						'quotes-dlx-button',
+						$tweet_button_display,
+						'quotes-dlx-button-icon-' . $tweet_icon_alignment,
+					);
 					if ( $tweet_button_enabled ) :
 						?>
 					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
-						<?php
-						$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-						$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-						$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-						$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-						$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
-						$share_button_classes = array(
-							'quotes-dlx-button',
-							$tweet_button_display,
-							'quotes-dlx-button-icon-' . $tweet_icon_alignment,
-						);
-						?>
 						<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
 							<?php
 							// Output Twitter text.

@@ -1434,8 +1434,7 @@ var TweetQuotes = function TweetQuotes(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
   var htmlToReactParser = new HtmlToReactParser();
   var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames = {}, _defineProperty(_classnames, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames)),
-    style: maxWidthStyle
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames = {}, _defineProperty(_classnames, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames))
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1460,8 +1459,7 @@ var TweetQuotes = function TweetQuotes(props) {
     id: uniqueId
   }, attributes))))));
   var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames2 = {}, _defineProperty(_classnames2, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames2, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames2, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames2)),
-    style: maxWidthStyle
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames2 = {}, _defineProperty(_classnames2, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames2, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames2, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames2))
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-tabs"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TabPanel, {
@@ -1765,12 +1763,16 @@ var TweetQuotes = function TweetQuotes(props) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
       rel: "stylesheet",
       href: stylesheet
-    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", blockProps, previewBlock), ";"); // eslint-disable-next-line no-else-return
+    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", _extends({}, blockProps, {
+      style: maxWidthStyle
+    }), previewBlock), ";"); // eslint-disable-next-line no-else-return
   } else {
     return /*#__PURE__*/React.createElement(React.Fragment, null, stylesheet && /*#__PURE__*/React.createElement("link", {
       rel: "stylesheet",
       href: stylesheet
-    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", blockProps, block));
+    }), getFontStylesheets(), /*#__PURE__*/React.createElement("div", _extends({}, blockProps, {
+      style: maxWidthStyle
+    }), block));
   }
 };
 

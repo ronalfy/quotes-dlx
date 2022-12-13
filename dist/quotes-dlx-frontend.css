@@ -118,4 +118,11 @@ button.button-reset.show-cursor {
   margin-bottom: 0;
 }
 
+/* QuotesDLX Full-width */
+.quotes-dlx.alignfull,
+.wp-site-blocks .quotes-dlx.alignfull {
+  margin-left: auto !important; /* override core styles */
+  margin-right: auto !important; /* override core styles */
+}
+
 /*# sourceMappingURL=quotes-dlx-frontend.css.map*/

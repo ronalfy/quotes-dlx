@@ -8665,10 +8665,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       facebookButton = facebookButton.parentElement.parentElement.parentElement;
     }
 
-    var shareText = facebookButton.getAttribute('data-facebook-text');
-    var shareAppId = facebookButton.getAttribute('data-app-id');
     var permalink = facebookButton.getAttribute('data-url');
-    var fbShare = "https://www.facebook.com/dialog/share?app_id=".concat(shareAppId, "&display=popup&quote=").concat(shareText, "&href=").concat(permalink);
+    var fbShare = "https://www.facebook.com/sharer/sharer.php?&u=".concat(permalink);
     fbShare = fbShare.replace('?&', '?');
     window.open(fbShare, '_blank');
   };

@@ -291,4 +291,9 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
   background: rgb(221, 221, 221);
 }
 
+/* QuotesDLX Full-width */
+.quotes-dlx.alignfull {
+  margin: 0 auto;
+}
+
 /*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

@@ -266,10 +266,8 @@ import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
 		if ( 'use' === element ) {
 			facebookButton = facebookButton.parentElement.parentElement.parentElement;
 		}
-		const shareText = facebookButton.getAttribute( 'data-facebook-text' );
-		const shareAppId = facebookButton.getAttribute( 'data-app-id' );
 		const permalink = facebookButton.getAttribute( 'data-url' );
-		let fbShare = `https://www.facebook.com/dialog/share?app_id=${ shareAppId }&display=popup&quote=${ shareText }&href=${ permalink }`;
+		let fbShare = `https://www.facebook.com/sharer/sharer.php?&u=${ permalink }`;
 		fbShare = fbShare.replace( '?&', '?' );
 		window.open( fbShare, '_blank' );
 	};

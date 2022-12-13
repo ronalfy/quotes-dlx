@@ -771,7 +771,6 @@ const TweetQuotes = ( props ) => {
 					'quotes-dlx-context-menu-disabled': ! enable_contextual_menu,
 					'quotes-dlx-has-no-tweet-button': ! tweet_button_enabled,
 				} ) }
-				style={ maxWidthStyle }
 			>
 				<div className="quotes-dlx-wrapper">
 					<div className="quotes-dlx-content-wrapper">
@@ -826,7 +825,6 @@ const TweetQuotes = ( props ) => {
 					'quotes-dlx-context-menu-disabled': ! enable_contextual_menu,
 					'quotes-dlx-has-no-tweet-button': ! tweet_button_enabled,
 				} ) }
-				style={ maxWidthStyle }
 			>
 				<div className="quotes-dlx-tabs">
 					<TabPanel
@@ -1310,7 +1308,7 @@ const TweetQuotes = ( props ) => {
 			<>
 				{ stylesheet && <link rel="stylesheet" href={ stylesheet } /> }
 				{ getFontStylesheets() }
-				<div { ...blockProps }>{ previewBlock }</div>;
+				<div { ...blockProps } style={ maxWidthStyle }>{ previewBlock }</div>;
 			</>
 		);
 		// eslint-disable-next-line no-else-return
@@ -1319,7 +1317,7 @@ const TweetQuotes = ( props ) => {
 			<>
 				{ stylesheet && <link rel="stylesheet" href={ stylesheet } /> }
 				{ getFontStylesheets() }
-				<div { ...blockProps }>{ block }</div>
+				<div { ...blockProps } style={ maxWidthStyle }>{ block }</div>
 			</>
 		);
 	}

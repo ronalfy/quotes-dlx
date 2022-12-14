@@ -160,7 +160,7 @@ class Themes_Cotton_Candy extends Themes_Addon {
 	 * Get the image preview URL.
 	 */
 	protected static function get_preview_image_url() {
-		return Functions::get_plugin_url( 'images/core-theme-bubble-gum.jpg' );
+		return Functions::get_plugin_url( 'images/core-theme-cotton-candy.jpg' );
 	}
 
 	/**

@@ -19,42 +19,42 @@ import ErrorBoundary from '../../admin-components/ErrorBoundary/index.js';
 
 // Lazy load components.
 const AdminHome = lazy( () =>
-	import( /* webpackChunkName: "AdminHome0.0.5" */ '../../views/AdminHome' )
+	import( /* webpackChunkName: "AdminHome0.0.6" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults0.0.6" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.7" */ '../../views/AdminDefaults' )
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.8" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.9" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminMenuDefaults0.0.6" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.5" */ '../../views/AdminContextualMenu'
 	)
 );
 
 const AdminThemesDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemesDefaults0.0.6" */ '../../views/AdminThemesDefaults'
+		/* webpackChunkName: "AdminThemesDefaults0.0.7" */ '../../views/AdminThemesDefaults'
 	)
 );
 
 const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeOptions0.0.7" */ '../../views/AdminThemeOptions'
+		/* webpackChunkName: "AdminThemeOptions0.0.8" */ '../../views/AdminThemeOptions'
 	)
 );
 
 const AdminSupport = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminSupport0.0.5" */ '../../views/AdminSupport'
+		/* webpackChunkName: "AdminSupport0.0.6" */ '../../views/AdminSupport'
 	)
 );
 
 const AdminLicense = lazy( () =>
-	import( /* webpackChunkName: "AdminLicense0.0.5" */ '../../views/AdminLicense' )
+	import( /* webpackChunkName: "AdminLicense0.0.6" */ '../../views/AdminLicense' )
 );
 
 const AdminTabs = ( props ) => {

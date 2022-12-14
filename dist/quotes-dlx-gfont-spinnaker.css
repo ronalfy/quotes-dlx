@@ -1,13 +1,1 @@
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/fonts/spinnaker.scss ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/* spinnaker-regular - latin */
-@font-face {
-  font-family: "Spinnaker";
-  font-style: normal;
-  font-weight: 400;
-  src: url(fonts/spinnaker-v17-latin-regular.eot); /* IE9 Compat Modes */
-  src: local(""), url(fonts/spinnaker-v17-latin-regular.eot?#iefix) format("embedded-opentype"), url(fonts/spinnaker-v17-latin-regular.woff2) format("woff2"), url(fonts/spinnaker-v17-latin-regular.woff) format("woff"), url(fonts/spinnaker-v17-latin-regular.ttf) format("truetype"), url(fonts/spinnaker-v17-latin-regular.svg#Spinnaker) format("svg"); /* Legacy iOS */
-}
-
-/*# sourceMappingURL=quotes-dlx-gfont-spinnaker.css.map*/
+@font-face{font-family:"Spinnaker";font-style:normal;font-weight:400;src:url(fonts/spinnaker-v17-latin-regular.eot);src:local(""),url(fonts/spinnaker-v17-latin-regular.eot?#iefix) format("embedded-opentype"),url(fonts/spinnaker-v17-latin-regular.woff2) format("woff2"),url(fonts/spinnaker-v17-latin-regular.woff) format("woff"),url(fonts/spinnaker-v17-latin-regular.ttf) format("truetype"),url(fonts/spinnaker-v17-latin-regular.svg#Spinnaker) format("svg")}

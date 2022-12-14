@@ -136,9 +136,14 @@ $accent: #ff6900;
 				position: absolute;
 				width: 1.2em;
 				height: 1.2em;
-				top: calc(50% + 6px - 0.9em);
+				top: calc(50% - 0.6em);
 				bottom: 0;
 				right: 20px;
+
+				svg {
+					width: 100%;
+					height: 100%;
+				}
 
 				svg path,
 				svg use {

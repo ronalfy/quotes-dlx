@@ -135,9 +135,13 @@
   position: absolute;
   width: 1.2em;
   height: 1.2em;
-  top: calc(50% + 6px - 0.9em);
+  top: calc(50% - 0.6em);
   bottom: 0;
   right: 20px;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg {
+  width: 100%;
+  height: 100%;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg path,
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg use {

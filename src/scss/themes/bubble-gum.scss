@@ -97,6 +97,12 @@ $dark: #000;
 		}
 	}
 
+	&.quotes-dlx.quotes-dlx-has-no-tweet-button {
+		figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 68px;
+		}
+	}
+
 	.quotes-dlx-wrapper {
 		position: relative;
 		background: var( --qdlx-bubble-gum-primary, $primary );

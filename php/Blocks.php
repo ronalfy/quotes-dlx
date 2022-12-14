@@ -499,16 +499,17 @@ class Blocks {
 		// Begin the output buffer.
 		ob_start();
 
-		$has_anchor             = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
-		$anchor                 = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
-		$rtl                    = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
-		$align                  = Functions::sanitize_attribute( $attributes, 'align', 'text' );
-		$template_name          = Functions::sanitize_attribute( $attributes, 'template', 'text' );
-		$maximum_width          = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
-		$maximum_width_unit     = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
-		$permalink              = $this->get_permalink( $attributes );
-		$tweet_button_enabled   = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
-		$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+		$has_anchor              = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
+		$anchor                  = Functions::sanitize_attribute( $attributes, 'anchor', 'text' );
+		$rtl                     = Functions::sanitize_attribute( $attributes, 'rtl', 'boolean' );
+		$align                   = Functions::sanitize_attribute( $attributes, 'align', 'text' );
+		$template_name           = Functions::sanitize_attribute( $attributes, 'template', 'text' );
+		$maximum_width           = Functions::sanitize_attribute( $attributes, 'maximum_width', 'integer' );
+		$maximum_width_unit      = Functions::sanitize_attribute( $attributes, 'maximum_width_unit', 'string' );
+		$permalink               = $this->get_permalink( $attributes );
+		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
+		$facebook_button_enabled = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
+		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 
 		// If a theme is removed, find a default fallback.
 		$has_theme   = false;
@@ -553,7 +554,7 @@ class Blocks {
 		if ( ! $enable_contextual_menu ) {
 			$default_wrapper_classes[] = 'quotes-dlx-context-menu-disabled';
 		}
-		if ( ! $tweet_button_enabled ) {
+		if ( ! $tweet_button_enabled && ! $facebook_button_enabled ) {
 			$default_wrapper_classes[] = 'quotes-dlx-has-no-tweet-button';
 		}
 
@@ -618,43 +619,46 @@ class Blocks {
 						</blockquote>
 					</figure>
 					<?php
-					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
-					$share_button_classes = array(
+					$tweet_button_display       = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+					$tweet_icon_alignment       = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+					$share_button_text          = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+					$hashtags                   = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+					$twitter_username           = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+					$share_button_classes       = array(
 						'quotes-dlx-button',
 						$tweet_button_display,
 						'quotes-dlx-button-icon-' . $tweet_icon_alignment,
 					);
-					if ( $tweet_button_enabled ) :
+					$facebook_button_enabled    = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
+					$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
+					if ( $tweet_button_enabled || $facebook_button_enabled ) :
 						?>
 					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
-						<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
-							<?php
-							// Output Twitter text.
-							if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
-								?>
-								<span class="quotes-dlx-button-text">
-										<?php echo wp_kses_post( $share_button_text ); ?>
-								</span>
-								<?php
-							endif;
-							// Output Twitter icon.
-							if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
-								?>
-								<span class="quotes-dlx-button-icon">
-									<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
-								</span>
-								<?php
-							endif;
-							?>
-						</button>
 						<?php
-						$facebook_button_enabled    = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
-						$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
-
+						if ( $tweet_button_enabled ) :
+							?>
+							<button class="<?php echo esc_attr( implode( ' ', $share_button_classes ) ); ?>" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
+								<?php
+								// Output Twitter text.
+								if ( in_array( $tweet_button_display, array( 'full', 'text' ), true ) ) :
+									?>
+									<span class="quotes-dlx-button-text">
+											<?php echo wp_kses_post( $share_button_text ); ?>
+									</span>
+									<?php
+								endif;
+								// Output Twitter icon.
+								if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
+									?>
+									<span class="quotes-dlx-button-icon">
+										<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+									</span>
+									<?php
+								endif;
+								?>
+							</button>
+							<?php
+						endif;
 						if ( $facebook_button_enabled ) {
 							$share_button_classes[] = 'qdlx-facebook-button';
 							?>

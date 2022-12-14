@@ -90,6 +90,9 @@
   position: relative;
   z-index: 2;
 }
+.quotes-dlx-block-theme-bubble-gum.quotes-dlx.quotes-dlx-has-no-tweet-button figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 68px;
+}
 .quotes-dlx-block-theme-bubble-gum .quotes-dlx-wrapper {
   position: relative;
   background: var(--qdlx-bubble-gum-primary, #E75480);

@@ -17,6 +17,7 @@ p ~ .quotes-dlx.quotes-dlx-container {
 
 .quotes-dlx-wrapper .quotes-dlx-button {
   text-transform: unset;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=quotes-dlx-themes.css.map*/

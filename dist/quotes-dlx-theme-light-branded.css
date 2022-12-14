@@ -137,7 +137,7 @@
   position: absolute;
   width: 1.2em;
   height: 1.2em;
-  top: calc(50% + 6px - 0.9em);
+  top: calc(50% - 0.6em);
   bottom: 0;
   right: 20px;
 }

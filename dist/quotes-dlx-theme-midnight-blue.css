@@ -60,6 +60,9 @@
 .quotes-dlx-block-theme-midnight-blue figure blockquote.quotes-dlx-text-wrapper {
   text-align: left;
 }
+.quotes-dlx-block-theme-midnight-blue.quotes-dlx.quotes-dlx-has-no-tweet-button .quotes-dlx-text-wrapper {
+  padding-bottom: 0;
+}
 .quotes-dlx-block-theme-midnight-blue .quotes-dlx-wrapper {
   position: relative;
   background: var(--qdlx-midnight-blue-primary, #00316e);
@@ -147,7 +150,7 @@
   position: absolute;
   width: 1.2em;
   height: 1.2em;
-  top: calc(50% + 6px - 0.9em);
+  top: calc(50% - 0.6em);
   bottom: 0;
   right: 20px;
 }

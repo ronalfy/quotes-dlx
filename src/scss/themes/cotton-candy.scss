@@ -171,7 +171,7 @@ $dark: #000;
 
 		.quotes-dlx-button {
 			position: relative;
-			background: var( --qdlx-cotton-candy-button-color, $button_background );
+			background: var( --qdlx-cotton-candy-button-primary-color, $button_background );
 			color: var( --qdlx-cotton-candy-button-primary-text-color, $button_text_color );
 			padding: 15px 25px;
 			border-radius: 4px;

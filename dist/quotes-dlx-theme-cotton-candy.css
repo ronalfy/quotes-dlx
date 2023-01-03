@@ -152,7 +152,7 @@
 }
 .quotes-dlx-block-theme-cotton-candy .quotes-dlx-wrapper .quotes-dlx-button {
   position: relative;
-  background: var(--qdlx-cotton-candy-button-color, #FFFFFF);
+  background: var(--qdlx-cotton-candy-button-primary-color, #FFFFFF);
   color: var(--qdlx-cotton-candy-button-primary-text-color, #8BC6FC);
   padding: 15px 25px;
   border-radius: 4px;

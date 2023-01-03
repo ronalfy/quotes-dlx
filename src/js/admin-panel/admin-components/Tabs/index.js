@@ -311,6 +311,7 @@ const AdminTabs = ( props ) => {
 		}
 	};
 
+	console.log( quotes_dlx_admin.should_disable_licensing );
 	return (
 		<div className="qdlx-admin-container__wrap" id="qdlx-admin-container">
 			<nav className="qdlx-admin__tabs--nav">
@@ -370,17 +371,21 @@ const AdminTabs = ( props ) => {
 						isActive={ isActive }
 						dirtyCount={ 0 }
 					/>
-					<TabItem
-						icon={ KeyIcon }
-						slug="licenses"
-						description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
-						label={ __( 'License', 'quotes-dlx' ) }
-						tabClicked={ ( tab ) => {
-							onTabClick( tab );
-						} }
-						isActive={ isActive }
-						dirtyCount={ licensesDirtyCount }
-					/>
+					{ ! quotes_dlx_admin.should_disable_licensing && (
+						<>
+							<TabItem
+								icon={ KeyIcon }
+								slug="licenses"
+								description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
+								label={ __( 'License', 'quotes-dlx' ) }
+								tabClicked={ ( tab ) => {
+									onTabClick( tab );
+								} }
+								isActive={ isActive }
+								dirtyCount={ licensesDirtyCount }
+							/>
+						</>
+					) }
 					<TabItem
 						icon={ FlaskIcon }
 						slug="advanced"
@@ -436,11 +441,15 @@ const AdminTabs = ( props ) => {
 								exact
 								element={ getAdminSupport }
 							/>
-							<Route
-								path="/licenses"
-								exact
-								element={ getAdminLicense }
-							/>
+							{ ! quotes_dlx_admin.should_disable_licensing && (
+								<>
+									<Route
+										path="/licenses"
+										exact
+										element={ getAdminLicense }
+									/>
+								</>
+							) }
 							<Route path="/" exact element={ getAdminHome } />
 							<Route path="*" element={ <Navigate to="/" /> } />
 						</Routes>

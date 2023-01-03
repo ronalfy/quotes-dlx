@@ -92,21 +92,23 @@ class QuotesDLX {
 	 */
 	public function init() {
 
-		// Setup EDD licensing.
-		$license     = \MediaRonLLC\QuotesDLX\Options_License::get_options();
-		$license_key = $license['license_key'] ?? '';
-		$beta        = (bool) ( $license['beta'] ?? false );
-		$edd_updater = new \MediaRonLLC\QuotesDLX\Admin\Plugin_Updater(
-			'https://dlxplugins.com',
-			__FILE__,
-			array(
-				'version' => QUOTES_DLX_VERSION,
-				'license' => $license_key,
-				'item_id' => 676,
-				'author'  => 'DLX Plugins',
-				'beta'    => $beta,
-			)
-		);
+		if ( ! Functions::should_disable_licensing() ) {
+			// Setup EDD licensing.
+			$license     = \MediaRonLLC\QuotesDLX\Options_License::get_options();
+			$license_key = $license['license_key'] ?? '';
+			$beta        = (bool) ( $license['beta'] ?? false );
+			$edd_updater = new \MediaRonLLC\QuotesDLX\Admin\Plugin_Updater(
+				'https://dlxplugins.com',
+				__FILE__,
+				array(
+					'version' => QUOTES_DLX_VERSION,
+					'license' => $license_key,
+					'item_id' => 676,
+					'author'  => 'DLX Plugins',
+					'beta'    => $beta,
+				)
+			);
+		}
 	}
 }
 

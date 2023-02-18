@@ -1,1 +1,300 @@
-button.button-reset,button.button-reset:focus,button.button-reset:hover{background:none;color:inherit;border:none;padding:0;cursor:pointer;outline:inherit;text-transform:unset}button.button-reset.show-cursor{cursor:pointer}.button-reset button,.button-reset:focus button,.button-reset:hover button{background:none;color:inherit;border:none;padding:0;cursor:pointer;outline:inherit;text-transform:unset}.quotes-dlx-meatball-icon *,.quotes-dlx-meatball-icon:before,.quotes-dlx-meatball-icon:after,.quotes-dlx-meatball-icon span{pointer-events:none}.quotes-dlx-meatball-content ul{overflow:hidden}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item{margin:0;padding:0;border-bottom:1px solid rgba(0,0,0,0)}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child{border-bottom:0}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset{display:flex;width:100%;padding:10px 20px;align-items:center;font-size:14px;color:#6c757d;transition:all .3s ease-in-out;text-transform:unset;border:0;border-radius:0;margin:0}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use{fill:#6c757d;transition:all .3s ease-in-out}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover{background:#343a40;color:#fff;transition:all .3s ease-in-out}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use{fill:#fff;transition:all .3s ease-in-out}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset .quotes-dlx-meatball-menu-icon{display:inline-flex;margin-right:8px}.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset .quotes-dlx-meatball-menu-icon svg{max-width:16px;height:auto;transition:all .3s ease-in-out}.quotes-dlx .quotes-dlx-wrapper{padding:1.875em;margin:0}.quotes-dlx-container{padding:1.2em 0}p~.quotes-dlx.quotes-dlx-container{padding-top:0}.quotes-dlx-wrapper .quotes-dlx-button{text-transform:unset;cursor:pointer}:root{--quotes-dlx--preset--notice-warning-text-color: #664d03;--quotes-dlx--preset--notice-warning-icon-color: #664d03;--quotes-dlx--preset--notice-informational-text-color: #0d6efd;--quotes-dlx--preset--notice-informational-icon-color: #084298}.quotes-dlx-popover .components-button.is-active{color:var(--wp-admin-theme-color)}.components-dropdown-menu__menu .components-dropdown-menu__menu-item .selected.quotes-dlx{border-color:#fff}.components-quotes-dlx-units-control-header__units{display:flex;justify-content:space-between;margin-bottom:5px;align-items:center}.components-quotes-dlx-control__units .components-quotes-dlx-control-buttons__units button.components-button{background:#fff;box-shadow:none !important;color:#929da7;font-size:10px;padding:0 5px;position:relative;text-align:center;text-shadow:none;border:0;border-radius:0 !important;line-height:20px;padding:0 5px;height:auto}.components-quotes-dlx-control__units .components-quotes-dlx-control-buttons__units button.components-button.is-primary{background:#fff !important;color:#000 !important;cursor:default;z-index:1;font-weight:bold}.quotes-dlx-sidebar-button-options .components-base-control__label{max-width:100%}.quotes-dlx-sidebar-button-options .components-radio-control__option{margin-bottom:8px}.quotes-dlx-sidebar-button-options .components-radio-control__option:last-child{margin-bottom:0}@keyframes quotes-dlx-line-count-move{0%{background-position:0 0}100%{background-position:20px 20px}}.quotes-dlx-line-count{display:flex;align-items:center;position:relative;border:1px solid #ddd;padding:4px 5px;width:100%;border-radius:15px;margin-top:15px;margin-bottom:15px;vertical-align:middle}.quotes-dlx-line-count .quotes-dlx-line-count-progress{position:relative;display:flex;justify-content:flex-end;align-items:center;width:0%;border-radius:10px;background-image:linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);background-size:20px 20px;animation:quotes-dlx-line-count-move 5s linear infinite}.quotes-dlx-line-count .quotes-dlx-line-count-progress.quotes-dlx-line-count-min-chars{display:flex;justify-content:center;text-align:center;overflow:visible;padding-left:5px;padding-right:5px;min-width:115px}.quotes-dlx-line-count .quotes-dlx-line-count-progress.quotes-dlx-line-count-min-chars .quotes-dlx-line-count-characters{margin:0;margin:4px}.quotes-dlx-line-count .quotes-dlx-line-count-characters{display:inline-block;color:#2b2926;font-size:8px;margin:5px 10px 5px 0;padding:0px 8px;background:rgba(255,255,255,.8);border-radius:5px;min-width:45px}.quotes-dlx-tabs{background-color:#fff;padding:25px;border-radius:5px;border:1px solid #e0e0e0}.quotes-dlx-tabs .components-tab-panel__tabs{border-bottom:1px solid #e0e0e0}.quotes-dlx-tabs .quotes-dlx-tab-info{position:relative;padding-right:25px}.quotes-dlx-tabs .quotes-dlx-tab-info:after{display:block;content:"";font-family:"Dashicons";position:absolute;font-size:15px;width:20px;height:20px;color:#1e1e1e;visibility:visible;top:calc(50% - 8px);right:5px}.quotes-dlx-tabs .quotes-dlx-tab-info:hover:after{color:var(--wp-admin-theme-color)}.quotes-dlx-tabs .components-tab-panel__tabs-item.active-tab{box-shadow:inset 0 0 0 var(--wp-admin-border-width-focus) rgba(0,0,0,0),inset 0 -4px 0 0 var(--wp-admin-theme-color)}.quotes-dlx-tabs .components-tab-panel__tabs-item:focus{box-shadow:inset 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color),inset 0 -4px 0 0 var(--wp-admin-theme-color)}.quotes-dlx-hashtag-fields .components-form-token-field__token{display:inline-flex}.quotes-dlx-hashtag-fields .components-form-token-field__token button.components-button.quotes-dlx-icon{padding:0}body .editor-styles-wrapper .quotes-dlx-notice{margin:15px 0;color:var(--quotes-dlx--preset--notice-warning-text-color);text-align:center;padding:20px 15px}body .editor-styles-wrapper .quotes-dlx-notice .quotes-dlx-notice-icon{text-align:center}body .editor-styles-wrapper .quotes-dlx-notice h2{font-size:20px;font-weight:500;margin-bottom:15px;color:var(--quotes-dlx--preset--notice-warning-text-color)}body .editor-styles-wrapper .quotes-dlx-notice p,body .editor-styles-wrapper .quotes-dlx-notice div{color:var(--quotes-dlx--preset--notice-warning-text-color);font-size:15px}body .editor-styles-wrapper .quotes-dlx-notice p{margin-bottom:8px}.quotes-dlx-hashtag-fields .components-form-token-field__token{display:flex;align-items:center;background:#ddd}.quotes-dlx.alignfull{margin:0 auto}
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/block-editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************/
+button.button-reset, button.button-reset:focus, button.button-reset:hover {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+button.button-reset.show-cursor {
+  cursor: pointer;
+}
+
+.button-reset button,
+.button-reset:focus button,
+.button-reset:hover button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+  text-transform: unset;
+}
+
+.quotes-dlx-meatball-icon *, .quotes-dlx-meatball-icon:before, .quotes-dlx-meatball-icon:after,
+.quotes-dlx-meatball-icon span {
+  pointer-events: none;
+}
+
+.quotes-dlx-meatball-content {
+  /* Hide any overflow for rounded corners */
+}
+.quotes-dlx-meatball-content ul {
+  overflow: hidden;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item:last-child {
+  border-bottom: 0;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
+  display: flex;
+  width: 100%;
+  padding: 10px 20px;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+  transition: all 0.3s ease-in-out;
+  text-transform: unset;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg path,
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset svg use {
+  fill: #6c757d;
+  transition: all 0.3s ease-in-out;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
+  background: #343a40;
+  color: #FFF;
+  transition: all 0.3s ease-in-out;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
+  fill: #FFF;
+  transition: all 0.3s ease-in-out;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset .quotes-dlx-meatball-menu-icon {
+  display: inline-flex;
+  margin-right: 8px;
+}
+.quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset .quotes-dlx-meatball-menu-icon svg {
+  max-width: 16px;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.quotes-dlx .quotes-dlx-wrapper {
+  padding: 1.875em;
+  margin: 0;
+}
+
+/* Top/Bottom Padding */
+.quotes-dlx-container {
+  padding: 1.2em 0;
+}
+
+p ~ .quotes-dlx.quotes-dlx-container {
+  padding-top: 0;
+}
+
+.quotes-dlx-wrapper .quotes-dlx-button {
+  text-transform: unset;
+  cursor: pointer;
+}
+
+:root {
+  --quotes-dlx--preset--notice-warning-text-color: #664d03;
+  --quotes-dlx--preset--notice-warning-icon-color: #664d03;
+  --quotes-dlx--preset--notice-informational-text-color: #0d6efd;
+  --quotes-dlx--preset--notice-informational-icon-color: #084298;
+}
+
+/* For SVGs in theme menu dropdown */
+.quotes-dlx-popover .components-button.is-active {
+  color: var(--wp-admin-theme-color);
+}
+
+.components-dropdown-menu__menu .components-dropdown-menu__menu-item .selected.quotes-dlx {
+  border-color: #FFF;
+}
+
+/* Unit Picker Component - Forked from @GenerateBlocks */
+.components-quotes-dlx-units-control-header__units {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.components-quotes-dlx-control__units .components-quotes-dlx-control-buttons__units button.components-button {
+  background: #fff;
+  box-shadow: none !important;
+  color: #929da7;
+  font-size: 10px;
+  padding: 0 5px;
+  position: relative;
+  text-align: center;
+  text-shadow: none;
+  border: 0;
+  border-radius: 0 !important;
+  line-height: 20px;
+  padding: 0 5px;
+  height: auto;
+}
+.components-quotes-dlx-control__units .components-quotes-dlx-control-buttons__units button.components-button.is-primary {
+  background: #fff !important;
+  color: #000 !important;
+  cursor: default;
+  z-index: 1;
+  font-weight: bold;
+}
+
+/* Click to Tweet button options */
+.quotes-dlx-sidebar-button-options .components-base-control__label {
+  max-width: 100%;
+}
+.quotes-dlx-sidebar-button-options .components-radio-control__option {
+  margin-bottom: 8px;
+}
+.quotes-dlx-sidebar-button-options .components-radio-control__option:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes quotes-dlx-line-count-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+.quotes-dlx-line-count {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid #DDD;
+  padding: 4px 5px;
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+}
+.quotes-dlx-line-count .quotes-dlx-line-count-progress {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 0%;
+  border-radius: 10px;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+  animation: quotes-dlx-line-count-move 5s linear infinite;
+}
+.quotes-dlx-line-count .quotes-dlx-line-count-progress.quotes-dlx-line-count-min-chars {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  overflow: visible;
+  padding-left: 5px;
+  padding-right: 5px;
+  min-width: 115px;
+}
+.quotes-dlx-line-count .quotes-dlx-line-count-progress.quotes-dlx-line-count-min-chars .quotes-dlx-line-count-characters {
+  margin: 0;
+  margin: 4px;
+}
+.quotes-dlx-line-count .quotes-dlx-line-count-characters {
+  display: inline-block;
+  color: #2b2926;
+  font-size: 8px;
+  margin: 5px 10px 5px 0;
+  padding: 0px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  min-width: 45px;
+}
+
+/* Tabs */
+.quotes-dlx-tabs {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  /* Add Info icon to tab. */
+}
+.quotes-dlx-tabs .components-tab-panel__tabs {
+  border-bottom: 1px solid #e0e0e0;
+}
+.quotes-dlx-tabs .quotes-dlx-tab-info {
+  position: relative;
+  padding-right: 25px;
+}
+.quotes-dlx-tabs .quotes-dlx-tab-info:after {
+  display: block;
+  content: "\f14c";
+  font-family: "Dashicons";
+  position: absolute;
+  font-size: 15px;
+  width: 20px;
+  height: 20px;
+  color: #1e1e1e;
+  visibility: visible;
+  top: calc(50% - 8px);
+  right: 5px;
+}
+.quotes-dlx-tabs .quotes-dlx-tab-info:hover:after {
+  color: var(--wp-admin-theme-color);
+}
+.quotes-dlx-tabs .components-tab-panel__tabs-item.active-tab {
+  box-shadow: inset 0 0 0 var(--wp-admin-border-width-focus) transparent, inset 0 -4px 0 0 var(--wp-admin-theme-color);
+}
+.quotes-dlx-tabs .components-tab-panel__tabs-item:focus {
+  box-shadow: inset 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color), inset 0 -4px 0 0 var(--wp-admin-theme-color);
+}
+
+/* Hashtags in CTT Editor */
+.quotes-dlx-hashtag-fields .components-form-token-field__token {
+  display: inline-flex;
+}
+.quotes-dlx-hashtag-fields .components-form-token-field__token button.components-button.quotes-dlx-icon {
+  padding: 0;
+}
+
+/* Notices in CTT Editor */
+body .editor-styles-wrapper .quotes-dlx-notice {
+  margin: 15px 0;
+  color: var(--quotes-dlx--preset--notice-warning-text-color);
+  text-align: center;
+  padding: 20px 15px;
+}
+body .editor-styles-wrapper .quotes-dlx-notice .quotes-dlx-notice-icon {
+  text-align: center;
+}
+body .editor-styles-wrapper .quotes-dlx-notice h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: var(--quotes-dlx--preset--notice-warning-text-color);
+}
+body .editor-styles-wrapper .quotes-dlx-notice p, body .editor-styles-wrapper .quotes-dlx-notice div {
+  color: var(--quotes-dlx--preset--notice-warning-text-color);
+  font-size: 15px;
+}
+body .editor-styles-wrapper .quotes-dlx-notice p {
+  margin-bottom: 8px;
+}
+
+/* Hashtags Section */
+.quotes-dlx-hashtag-fields .components-form-token-field__token {
+  display: flex;
+  align-items: center;
+  background: rgb(221, 221, 221);
+}
+
+/* QuotesDLX Full-width */
+.quotes-dlx.alignfull {
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

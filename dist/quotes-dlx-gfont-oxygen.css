@@ -1,1 +1,13 @@
-@font-face{font-family:"Oxygen";font-style:normal;font-weight:400;src:url(fonts/oxygen-v15-latin-regular.eot);src:local(""),url(fonts/oxygen-v15-latin-regular.eot?#iefix) format("embedded-opentype"),url(fonts/oxygen-v15-latin-regular.woff2) format("woff2"),url(fonts/oxygen-v15-latin-regular.woff) format("woff"),url(fonts/oxygen-v15-latin-regular.ttf) format("truetype"),url(fonts/oxygen-v15-latin-regular.svg#Oxygen) format("svg")}
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/fonts/oxygen.scss ***!
+  \************************************************************************************************************************************************************************************************************************/
+/* oxygen-regular - latin */
+@font-face {
+  font-family: "Oxygen";
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/oxygen-v15-latin-regular.eot); /* IE9 Compat Modes */
+  src: local(""), url(fonts/oxygen-v15-latin-regular.eot?#iefix) format("embedded-opentype"), url(fonts/oxygen-v15-latin-regular.woff2) format("woff2"), url(fonts/oxygen-v15-latin-regular.woff) format("woff"), url(fonts/oxygen-v15-latin-regular.ttf) format("truetype"), url(fonts/oxygen-v15-latin-regular.svg#Oxygen) format("svg"); /* Legacy iOS */
+}
+
+/*# sourceMappingURL=quotes-dlx-gfont-oxygen.css.map*/

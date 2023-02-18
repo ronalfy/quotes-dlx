@@ -1,6 +1,6 @@
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 import { create, toHTMLString } from '@wordpress/rich-text';
-import metadata from '../../../../php/blocks/tweet-quotes/block.json';
+import metadata from './block.json';
 import Edit from './edit';
 import QuotesIcon from '../../components/icons/QuotesIcon';
 

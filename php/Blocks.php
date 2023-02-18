@@ -31,7 +31,7 @@ class Blocks {
 	public function init() {
 
 		register_block_type(
-			Functions::get_plugin_dir( 'php/blocks/tweet-quotes/block.json' ),
+			Functions::get_plugin_dir( 'build/js/blocks/tweet-quotes/block.json' ),
 			array(
 				'render_callback' => array( $this, 'frontend' ),
 			)

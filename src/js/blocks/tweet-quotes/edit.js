@@ -19,6 +19,7 @@ import AlignmentGroup from '../../components/alignment';
 import CircularCount from '../../components/CircularCount';
 import LineCount from '../../components/LineCount';
 import MeatballMenu from '../../components/MeatballMenu';
+import ColorPicker from '../../components/ColorPicker';
 
 import { useEffect, useState, createRef } from '@wordpress/element';
 
@@ -66,6 +67,8 @@ const TweetQuotes = ( props ) => {
 	const [ tweetPermalinkCharLength, setTweetPermalinkCharLength ] = useState( 0 );
 	const [ selectedTab, setSelectedTab ] = useState( 'appearance' );
 	const [ urlShortener, setUrlShortener ] = useState( 'default' );
+	const [ themeColors, setThemeColors ] = useState( [] );
+	const [ selectedTheme, setSelectedTheme ] = useState( '' );
 
 	// Shortcuts.
 	const { attributes, setAttributes, isSelected } = props;
@@ -123,6 +126,8 @@ const TweetQuotes = ( props ) => {
 		defaultsApplied,
 		transforming,
 		icon_appearance,
+		enable_custom_theme_colors,
+		theme_colors,
 	} = attributes;
 
 	useEffect( () => {
@@ -396,6 +401,79 @@ const TweetQuotes = ( props ) => {
 		);
 	};
 
+	const getColors = () => {
+		const currentThemes = tweet_quotes_block_vars.themes;
+		// Check if theme slug exists in themes object.
+		if ( currentThemes.hasOwnProperty( template ) ) {
+			const themeDefaultColors = themes[ template ].colors;
+			const savedThemeColors = themes[ template ].saved_colors;
+
+			// Merge saved theme colors with defaults if it exists.
+			const mergedColors = {};
+			if ( themeDefaultColors ) {
+				Object.values( themeDefaultColors ).forEach(
+					( colorObject, index ) => {
+						mergedColors[ colorObject.slug ] = {
+							name: colorObject.name,
+							slug: colorObject.slug,
+							color: colorObject.color,
+						};
+					}
+				);
+			}
+			if ( savedThemeColors ) {
+				Object.values( savedThemeColors ).forEach(
+					( colorObject, index ) => {
+						mergedColors[ colorObject.slug ] = {
+							name: colorObject.name,
+							slug: colorObject.slug,
+							color: colorObject.color,
+						};
+					}
+				);
+			}
+			if ( theme_colors ) {
+				Object.values( theme_colors ).forEach(
+					( colorObject, index ) => {
+						mergedColors[ colorObject.slug ] = {
+							name: colorObject.name,
+							slug: colorObject.slug,
+							color: colorObject.color,
+						};
+					}
+				);
+			}
+
+			// Loop through merged colors and output color picker component.
+			return Object.values( mergedColors ).map(
+				( colorObject, index ) => {
+					return (
+						<ColorPicker
+							defaultColor={ colorObject.color }
+							defaultColors={ themeDefaultColors }
+							value={ colorObject.color }
+							label={ colorObject.name }
+							slug={ colorObject.slug }
+							onChange={ ( valueSlug, valueColorHex ) => {
+								const newThemeColors = { ...theme_colors };
+								newThemeColors[ colorObject.slug ] = {
+									name: colorObject.name,
+									slug: colorObject.slug,
+									color: valueColorHex,
+								};
+								setAttributes( {
+									theme_colors: newThemeColors,
+								} );
+								setThemeColors( newThemeColors );
+							} }
+							key={ index }
+						/>
+					);
+				}
+			);
+		}
+	};
+
 	const inspectorControls = (
 		<>
 			<PanelBody initialOpen={ true } title={ __( 'Characters', 'quotes-dlx' ) }>
@@ -654,6 +732,24 @@ const TweetQuotes = ( props ) => {
 					</>
 				) }
 			</PanelBody>
+			<PanelBody
+				initialOpen={ false }
+				title={ __( 'Theme Colors', 'quotes-dlx' ) }
+			>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Enable Custom Theme Colors', 'quotes-dlx' ) }
+						checked={ enable_custom_theme_colors }
+						onChange={ ( value ) => {
+							setAttributes( {
+								enable_custom_theme_colors: value,
+							} );
+						} }
+						help={ __( 'Enable custom theme colors.', 'quotes-dlx' ) }
+					/>
+				</PanelRow>
+				{ getColors() }
+			</PanelBody>
 		</>
 	);
 
@@ -661,7 +757,7 @@ const TweetQuotes = ( props ) => {
 	// There's a side-effect here if a theme is deleted. Need to use useEffect to
 	// set default theme. This causes more issues, so solution is to set default on PHP side (front-end).
 	let toolbarThemes = [];
-	themes.forEach( ( theme ) => {
+	Object.values( themes ).forEach( ( theme ) => {
 		toolbarThemes.push( {
 			title: theme.name,
 			isActive: template === theme.slug,
@@ -678,7 +774,9 @@ const TweetQuotes = ( props ) => {
 			onClick: () => {
 				setAttributes( {
 					template: theme.slug,
+					theme_colors: {},
 				} );
+				setSelectedTheme( theme.slug );
 			},
 		} );
 	} );
@@ -820,6 +918,7 @@ const TweetQuotes = ( props ) => {
 			<InspectorControls>{ inspectorControls }</InspectorControls>
 			{ blockToolbar }
 			<div
+				id={ uniqueId + 'block' }
 				className={ classnames( 'quotes-dlx', {
 					[ `quotes-dlx-block-theme-${ template }` ]: true,
 					'quotes-dlx-context-menu-disabled': ! enable_contextual_menu,
@@ -1280,7 +1379,7 @@ const TweetQuotes = ( props ) => {
 	} );
 
 	let stylesheet = false;
-	themes.forEach( ( themeObject ) => {
+	Object.values( themes ).forEach( ( themeObject ) => {
 		if ( themeObject.slug === template ) {
 			stylesheet = themeObject.stylesheet;
 		}
@@ -1293,13 +1392,25 @@ const TweetQuotes = ( props ) => {
 	 */
 	const getFontStylesheets = () => {
 		const stylesheets = tweet_quotes_block_vars.themes_stylesheets[ template ];
-		if ( undefined === stylesheets ) {
+		if ( undefined === stylesheets || ! enable_custom_theme_colors ) {
 			return null;
 		}
+		let cssVars = '';
+		Object.values( theme_colors ).forEach( ( colorData, slug ) => {
+			cssVars += `
+				--qdlx-${ template }-${ colorData.slug }: ${ colorData.color };
+			`;
+		} );
 		return (
 			<>
 				<link rel="stylesheet" href={ stylesheets.primary_font_stylesheet } />
 				<link rel="stylesheet" href={ stylesheets.secondary_font_stylesheet } />
+				
+		<style>
+			{ `
+				#${ uniqueId }block { ${ cssVars } }`
+			}
+		</style>
 			</>
 		);
 	};

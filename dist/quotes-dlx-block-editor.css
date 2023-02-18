@@ -297,4 +297,115 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
   margin: 0 auto;
 }
 
+/* Color Component (forked from @GenerateBlocks) */
+.qdlx-component-color-picker-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.qdlx-component-color-picker-wrapper {
+  text-align: left;
+  margin-bottom: 16px;
+  margin-top: 2px;
+  width: 100%;
+}
+.qdlx-component-color-picker-wrapper > .components-base-control__field,
+.qdlx-admin__tabs--content-inner .components-base-control.qdlx-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: grid;
+  grid-template-columns: 175px 30px;
+  column-gap: 15px;
+  margin: 0 auto;
+  justify-content: space-between;
+  text-align: left;
+  margin-bottom: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+.qdlx-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper,
+.qdlx-admin__tabs--content-inner .components-base-control.qdlx-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.qdlx-component-color-picker-wrapper .qdlx-color-component-label,
+.qdlx-admin__tabs--content-inner .components-base-control.qdlx-component-color-picker-wrapper .qdlx-color-component-label {
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.components-popover.qdlx-component-color-picker .qdlx-component-color-picker-palette {
+  padding: 0 16px;
+}
+.components-popover.qdlx-component-color-picker .qdlx-component-color-picker-palette button.components-circular-option-picker__option {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.components-popover.qdlx-component-color-picker .qdlx-component-color-picker-palette .components-circular-option-picker__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.components-popover.qdlx-component-color-picker .qdlx-component-color-picker-palette .components-circular-option-picker__option-wrapper {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  vertical-align: top;
+  transition: 100ms transform ease;
+}
+.components-popover.qdlx-component-color-picker .components-base-control__field,
+.components-popover.qdlx-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.components-popover.qdlx-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.components-popover.qdlx-component-color-picker .components-color-picker__inputs-toggle {
+  display: none;
+}
+.components-popover.qdlx-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.components-popover.qdlx-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 300px;
+}
+.components-popover.qdlx-component-color-picker .components-color-picker__inputs-fields {
+  margin-right: 0;
+}
+.components-popover.qdlx-component-color-picker .components-color-clear-color {
+  text-align: right;
+  padding: 0 16px;
+  color: var(--quotes-dlx-admin--color-dark);
+}
+
+.components-circular-option-picker__option.is-pressed {
+  box-shadow: inset 0 0 0 4px !important;
+}
+
+.qdlx-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.qdlx-component-color-opacity svg {
+  width: 28px;
+  height: 28px;
+}
+.qdlx-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+
+.qdlx-component-color-picker .components-popover__content {
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  width: 100% !important;
+  max-width: 250px !important;
+}
+
+.qdlx-component-color-picker .components-circular-option-picker__option-wrapper {
+  position: relative;
+}
+.qdlx-component-color-picker .components-circular-option-picker__option-wrapper:hover {
+  transform: scale(1.3);
+}
+
 /*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

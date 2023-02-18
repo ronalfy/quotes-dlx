@@ -21,6 +21,10 @@
   "version": "1.0.0",
   "textdomain": "quotes-dlx",
   "attributes": {
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    },
     "show_copy": {
       "type": "boolean",
       "default": true
@@ -209,9 +213,13 @@
       "type": "boolean",
       "default": false
     },
-    "themeColors": {
-      "type": "array",
-      "default": []
+    "theme_colors": {
+      "type": "object",
+      "default": {}
+    },
+    "enable_custom_theme_colors": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {

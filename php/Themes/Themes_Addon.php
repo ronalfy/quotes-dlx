@@ -9,7 +9,7 @@
 
 namespace MediaRonLLC\QuotesDLX\Themes;
 
-use MediaRonLLC\QuotesDLX\Functions as Functions;
+use MediaRonLLC\QuotesDLX\Options_Theme as Options;
 /**
  * Handles tasks to create new themes.
  */
@@ -165,7 +165,10 @@ abstract class Themes_Addon {
 
 		$return = array();
 		foreach ( $instances as $instance ) {
-			$theme_data = array(
+			// Get saved Colors.
+			$options      = Options::get_options();
+			$saved_colors = $options[ $instance->get_slug() ]['colors'] ?? [];
+			$theme_data   = array(
 				'name'              => $instance->get_name(),
 				'slug'              => $instance->get_slug(),
 				'gradient'          => $instance->get_preview_gradient(),
@@ -180,6 +183,7 @@ abstract class Themes_Addon {
 				'image_width'       => $instance->get_image_width(),
 				'image_height'      => $instance->get_image_height(),
 				'colors'            => $instance->get_colors(),
+				'saved_colors'      => $saved_colors,
 			);
 			// Short circuit if template-specific data is requested.
 			if ( $template === $instance->get_slug() ) {
@@ -187,7 +191,7 @@ abstract class Themes_Addon {
 			}
 
 			// No short circuit. Get all theme data.
-			$return[] = $theme_data;
+			$return[ $instance->get_slug() ] = $theme_data;
 		}
 
 		// Return false if no template is found.

@@ -19,6 +19,7 @@ import {
 } from '@fortawesome/pro-solid-svg-icons';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
+
 const AdminHome = () => {
 	const { defaultTheme, setCurrentTheme } = useContext( TabsContext );
 
@@ -34,7 +35,7 @@ const AdminHome = () => {
 		if ( '' !== defaultTheme ) {
 			selectedTemplate = defaultTheme;
 		}
-		const currentTheme = themes.find( ( { slug } ) => slug === selectedTemplate );
+		const currentTheme = Object.values( themes ).find( ( { slug } ) => slug === selectedTemplate );
 		if ( null === currentTheme || undefined === currentTheme ) {
 			return (
 				<>

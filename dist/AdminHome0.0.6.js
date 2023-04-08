@@ -152,7 +152,7 @@ var AdminHome = function AdminHome() {
       selectedTemplate = defaultTheme;
     }
 
-    var currentTheme = themes.find(function (_ref) {
+    var currentTheme = Object.values(themes).find(function (_ref) {
       var slug = _ref.slug;
       return slug === selectedTemplate;
     });

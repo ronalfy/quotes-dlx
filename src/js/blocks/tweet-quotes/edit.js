@@ -21,7 +21,7 @@ import LineCount from '../../components/LineCount';
 import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
 
-import { useEffect, useState, createRef, useRef } from '@wordpress/element';
+import { useEffect, useState, createRef, useRef, useContext } from '@wordpress/element';
 
 import { useSelect } from '@wordpress/data';
 
@@ -55,12 +55,15 @@ import {
 } from '@wordpress/block-editor';
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
+import TextContentContext from '../context/index';
 
 const TweetQuotes = ( props ) => {
 	const manualUrlInput = createRef( null );
 	const shareTextInput = createRef( null );
 	const maximumWidthInput = createRef( null );
 	const innerBlocksRef = useRef( null );
+
+	const { shareText, setShareText } = useContext( TextContentContext );
 
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
@@ -76,12 +79,12 @@ const TweetQuotes = ( props ) => {
 	// Set up Inner Blocks.
 	const innerBlockProps = useInnerBlocksProps(
 		{
-			className: 'has-click-to-share-text has-click-to-share__share-text',
+			className: 'quotes-dlx-share-blocks quotes-dlx-share-text',
 			ref: innerBlocksRef,
 		},
 		{
-			allowedBlocks: [ 'core/paragraph' ],
-			template: [ [ 'core/paragraph', { placeholder: '' } ] ],
+			allowedBlocks: [ 'mediaron/quotes-dlx-blockquote' ],
+			template: [ [ 'mediaron/quotes-dlx-blockquote', { placeholder: '' } ] ],
 		}
 	);
 
@@ -1430,4 +1433,17 @@ const TweetQuotes = ( props ) => {
 	}
 };
 
-export default TweetQuotes;
+const EditContext = ( props ) => {
+	const [ shareText, setShareText ] = useState( props.attributes.shareText );
+	return (
+		<TextContentContext.Provider
+			value={ {
+				shareText, setShareText,
+			} }
+		>
+			<TweetQuotes { ...props } />
+		</TextContentContext.Provider>
+	);
+};
+
+export default EditContext;

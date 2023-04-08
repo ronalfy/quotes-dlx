@@ -6,8 +6,8 @@
   font-family: "Spinnaker";
   font-style: normal;
   font-weight: 400;
-  src: url("../../fonts/spinnaker/spinnaker-v17-latin-regular.eot"); /* IE9 Compat Modes */
-  src: local(""), url("../../fonts/spinnaker/spinnaker-v17-latin-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/spinnaker/spinnaker-v17-latin-regular.woff2") format("woff2"), url("../../fonts/spinnaker/spinnaker-v17-latin-regular.woff") format("woff"), url("../../fonts/spinnaker/spinnaker-v17-latin-regular.ttf") format("truetype"), url("../../fonts/spinnaker/spinnaker-v17-latin-regular.svg#Spinnaker") format("svg"); /* Legacy iOS */
+  src: url(fonts/spinnaker-v17-latin-regular.eot); /* IE9 Compat Modes */
+  src: local(""), url(fonts/spinnaker-v17-latin-regular.eot?#iefix) format("embedded-opentype"), url(fonts/spinnaker-v17-latin-regular.woff2) format("woff2"), url(fonts/spinnaker-v17-latin-regular.woff) format("woff"), url(fonts/spinnaker-v17-latin-regular.ttf) format("truetype"), url(fonts/spinnaker-v17-latin-regular.svg#Spinnaker) format("svg"); /* Legacy iOS */
 }
 
 /*# sourceMappingURL=quotes-dlx-gfont-spinnaker.css.map*/

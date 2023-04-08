@@ -37,6 +37,13 @@ class Blocks {
 			)
 		);
 
+		register_block_type(
+			Functions::get_plugin_dir( 'build/js/blocks/quotes-dlx-blockquote/block.json' ),
+			array(
+				'render_callback' => array( $this, 'frontend_blockquote_block' ),
+			)
+		);
+
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
 
@@ -611,11 +618,8 @@ class Blocks {
 			<div class="quotes-dlx-wrapper">
 				<div class="quotes-dlx-content-wrapper">
 					<figure>
-						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
-						<?php
-							$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
-							echo wp_kses_post( nl2br( $tweet_text_rich ) );
-						?>
+						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper quotes-dlx-share-blocks">
+							<?php echo wp_kses_post( $content ); ?>
 						</blockquote>
 					</figure>
 					<?php
@@ -876,6 +880,16 @@ class Blocks {
 	}
 
 	/**
+	 * Output the blockquote block content.
+	 *
+	 * @param array $attributes Array of block attributes.
+	 * @param string $content InnerBlock content.
+	 */
+	public function frontend_blockquote_block( $attributes, $content ) {
+		return $content;
+	}
+
+	/**
 	 * Get the text for tweeting/copying.
 	 *
 	 * @param array $attributes Block attributes.
@@ -1060,7 +1074,7 @@ class Blocks {
 
 		wp_register_script(
 			'quotes-dlx-block',
-			Functions::get_plugin_url( 'build/quotes-dlx.js' ),
+			Functions::get_plugin_url( 'build/index.js' ),
 			array(),
 			Functions::get_plugin_version(),
 			true

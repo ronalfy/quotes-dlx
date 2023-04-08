@@ -6,8 +6,8 @@
   font-family: "Oxygen";
   font-style: normal;
   font-weight: 400;
-  src: url("../../fonts/oxygen/oxygen-v15-latin-regular.eot"); /* IE9 Compat Modes */
-  src: local(""), url("../../fonts/oxygen/oxygen-v15-latin-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/oxygen/oxygen-v15-latin-regular.woff2") format("woff2"), url("../../fonts/oxygen/oxygen-v15-latin-regular.woff") format("woff"), url("../../fonts/oxygen/oxygen-v15-latin-regular.ttf") format("truetype"), url("../../fonts/oxygen/oxygen-v15-latin-regular.svg#Oxygen") format("svg"); /* Legacy iOS */
+  src: url(fonts/oxygen-v15-latin-regular.eot); /* IE9 Compat Modes */
+  src: local(""), url(fonts/oxygen-v15-latin-regular.eot?#iefix) format("embedded-opentype"), url(fonts/oxygen-v15-latin-regular.woff2) format("woff2"), url(fonts/oxygen-v15-latin-regular.woff) format("woff"), url(fonts/oxygen-v15-latin-regular.ttf) format("truetype"), url(fonts/oxygen-v15-latin-regular.svg#Oxygen) format("svg"); /* Legacy iOS */
 }
 
 /*# sourceMappingURL=quotes-dlx-gfont-oxygen.css.map*/

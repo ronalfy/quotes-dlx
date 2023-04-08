@@ -97,7 +97,21 @@
   left: -32px;
   z-index: 2;
 }
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-share-blockquote-items {
+  padding: 0;
+  margin: 0;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks p {
+  font-family: var(--qdlx-dark-matter-primary-font-family, var(--qdlx-primary-font-family, inherit));
+  font-weight: 400;
+  font-size: 1.5em;
+  line-height: var(--qdlx-dark-matter-line-height-mobile, 1.3);
+  color: var(--qdlx-dark-matter-text-color, #FFF);
+  text-align: left;
+  margin: 0 0 0.2em 0;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
   font-family: var(--qdlx-dark-matter-primary-font-family, var(--qdlx-primary-font-family, inherit));
   font-weight: 400;
   font-size: 1.5em;
@@ -113,13 +127,15 @@
   text-align: left;
 }
 @media (min-width: 768px) {
-  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
     font-size: 1.35em;
     line-height: var(--qdlx-dark-matter-line-height-tablet, 1.35);
   }
 }
 @media (min-width: 1024px) {
-  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper,
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
     font-size: 1.5em;
     line-height: var(--qdlx-dark-matter-line-height-desktop, 1.65);
   }
@@ -247,6 +263,7 @@
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-menu {
   top: 15px;
   right: 35px;
+  position: absolute;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-meatball-content {
   position: relative;

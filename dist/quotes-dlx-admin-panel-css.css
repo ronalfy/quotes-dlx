@@ -220,7 +220,7 @@ button.button-reset.show-cursor {
 }
 .quotes-dlx-plugin header {
   background: var(--quotes-dlx-admin--color-background);
-  background-image: url(fonts/admin-background.jpg);
+  background-image: url("../../images/admin-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   text-align: right;

@@ -839,7 +839,8 @@ var TweetQuotes = function TweetQuotes(props) {
 
   var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
   var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
-  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null); // State.
+  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
+  var innerBlocksRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useRef)(null); // State.
 
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -884,8 +885,18 @@ var TweetQuotes = function TweetQuotes(props) {
   var _useState17 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(''),
       _useState18 = _slicedToArray(_useState17, 2),
       selectedTheme = _useState18[0],
-      setSelectedTheme = _useState18[1]; // Shortcuts.
+      setSelectedTheme = _useState18[1]; // Set up Inner Blocks.
 
+
+  var innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.useInnerBlocksProps)({
+    className: 'has-click-to-share-text has-click-to-share__share-text',
+    ref: innerBlocksRef
+  }, {
+    allowedBlocks: ['core/paragraph'],
+    template: [['core/paragraph', {
+      placeholder: ''
+    }]]
+  }); // Shortcuts.
 
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
@@ -1583,20 +1594,7 @@ var TweetQuotes = function TweetQuotes(props) {
         className: "quotes-dlx-wrapper"
       }, /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-content-wrapper"
-      }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.RichText, {
-        tagName: "blockquote",
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Add text to share', 'quotes-dlx'),
-        value: share_text,
-        preserveWhiteSpace: true,
-        className: "quotes-dlx-text quotes-dlx-text-wrapper",
-        allowedFormats: ['core/bold', 'core/italic', 'core/text-color', 'core/subscript', 'core/superscript', 'core/strikethrough', 'core/link'],
-        onChange: function onChange(value) {
-          setAttributes({
-            share_text: value
-          });
-        },
-        ref: shareTextInput
-      })), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
+      }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("div", innerBlockProps)), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
       /*#__PURE__*/
       // eslint-disable-next-line react/jsx-indent
       React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({

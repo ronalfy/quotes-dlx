@@ -21,7 +21,7 @@ import LineCount from '../../components/LineCount';
 import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
 
-import { useEffect, useState, createRef } from '@wordpress/element';
+import { useEffect, useState, createRef, useRef } from '@wordpress/element';
 
 import { useSelect } from '@wordpress/data';
 
@@ -51,6 +51,7 @@ import {
 	RichText,
 	BlockControls,
 	useBlockProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
@@ -59,6 +60,8 @@ const TweetQuotes = ( props ) => {
 	const manualUrlInput = createRef( null );
 	const shareTextInput = createRef( null );
 	const maximumWidthInput = createRef( null );
+	const innerBlocksRef = useRef( null );
+
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
 	const [ tweetHashtagCharLength, setTweetHashtagCharLength ] = useState( 0 );
@@ -69,6 +72,18 @@ const TweetQuotes = ( props ) => {
 	const [ urlShortener, setUrlShortener ] = useState( 'default' );
 	const [ themeColors, setThemeColors ] = useState( [] );
 	const [ selectedTheme, setSelectedTheme ] = useState( '' );
+
+	// Set up Inner Blocks.
+	const innerBlockProps = useInnerBlocksProps(
+		{
+			className: 'has-click-to-share-text has-click-to-share__share-text',
+			ref: innerBlocksRef,
+		},
+		{
+			allowedBlocks: [ 'core/paragraph' ],
+			template: [ [ 'core/paragraph', { placeholder: '' } ] ],
+		}
+	);
 
 	// Shortcuts.
 	const { attributes, setAttributes, isSelected } = props;
@@ -958,26 +973,7 @@ const TweetQuotes = ( props ) => {
 											<div className="quotes-dlx-content-wrapper">
 												<>
 													<figure>
-														<RichText
-															tagName="blockquote"
-															placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
-															value={ share_text }
-															preserveWhiteSpace={ true }
-															className="quotes-dlx-text quotes-dlx-text-wrapper"
-															allowedFormats={ [
-																'core/bold',
-																'core/italic',
-																'core/text-color',
-																'core/subscript',
-																'core/superscript',
-																'core/strikethrough',
-																'core/link',
-															] }
-															onChange={ ( value ) => {
-																setAttributes( { share_text: value } );
-															} }
-															ref={ shareTextInput }
-														/>
+														<div { ...innerBlockProps } />
 													</figure>
 													{ getClickToShareButton() }
 													{ enable_contextual_menu &&

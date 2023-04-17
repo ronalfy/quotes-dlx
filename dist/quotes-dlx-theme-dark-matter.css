@@ -12,6 +12,9 @@
   font-size: var(--qdlx-dark-matter-font-size-mobile, 14px);
   /* If these are set, we're in a preview */
   /* Meatball Menu */
+  /**
+   * Citation Styles.
+   */
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter {

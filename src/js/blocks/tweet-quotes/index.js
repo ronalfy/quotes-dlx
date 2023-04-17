@@ -1,4 +1,4 @@
-import { registerBlockType, createBlock } from '@wordpress/blocks';
+import { registerBlockType, createBlock, rawHandler } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { create, toHTMLString } from '@wordpress/rich-text';
 import metadata from './block.json';
@@ -22,20 +22,22 @@ registerBlockType( metadata, {
 						twitterUsername = '';
 					}
 
+					// Map QuotesDLX attributes to Better Click to Tweet attributes.
 					const bcttAttributes = {
-						share_text: tweet,
 						share_button_text: prompt,
 						twitter_username: twitterUsername,
 						enable_links_in_tweet: url,
 						has_anchor: url,
 						transforming: true,
 					};
+					// Convert tweet string to inner blocks.
+					const shareTextInnerBlocks = rawHandler( { HTML: tweet } );
 
 					if ( url && '' !== urlcustom ) {
 						bcttAttributes.permalink = urlcustom;
 						bcttAttributes.url_shortening_service = 'manual';
 					}
-					return createBlock( 'mediaron/quotes-dlx', bcttAttributes );
+					return createBlock( 'mediaron/quotes-dlx', bcttAttributes, shareTextInnerBlocks );
 				},
 			},
 			{

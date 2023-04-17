@@ -76,6 +76,10 @@
     "authorUrlNewTab": {
       "type": "boolean",
       "default": true
+    },
+    "appearance": {
+      "type": "string",
+      "default": "citation-rounded"
     }
   },
   "example": {

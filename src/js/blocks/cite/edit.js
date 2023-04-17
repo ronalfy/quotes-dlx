@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
@@ -22,7 +23,13 @@ import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
 import { rawHandler } from '@wordpress/blocks';
 
-import { useContext, useState, useEffect, useRef, useCallback } from '@wordpress/element';
+import {
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useCallback,
+} from '@wordpress/element';
 
 import { useDispatch, useSelect } from '@wordpress/data';
 
@@ -51,6 +58,8 @@ import {
 	Card,
 	CardHeader,
 	CardBody,
+	CardFooter,
+	SelectControl,
 } from '@wordpress/components';
 
 import {
@@ -63,11 +72,12 @@ import {
 } from '@wordpress/block-editor';
 import TextContentContext from '../context/index';
 import imageUploaderWithCropping from '../../utils/CropHelper';
-
+const HtmlToReactParser = require( 'html-to-react' ).Parser;
 const Cite = ( props ) => {
-	const { shareText, setShareText, oldShareText, setOldShareText } = useContext( TextContentContext );
+	const { shareText, setShareText, oldShareText, setOldShareText } =
+		useContext( TextContentContext );
 
-	const [ isPreview, setIsPreview ] = useState( false );
+	const [ isPreview, setIsPreview ] = useState( true );
 
 	const authorImg = useRef( null );
 
@@ -88,10 +98,9 @@ const Cite = ( props ) => {
 		showCitation,
 		authorUrlNoFollow,
 		authorUrlNewTab,
+		appearance,
 	} = attributes;
 
-	const {
-	} = attributes;
 
 	/**
 	 * Callback for when the user selects an image.
@@ -105,6 +114,38 @@ const Cite = ( props ) => {
 
 	const inspectorControls = (
 		<>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Display Settings', 'quotes-dlx' ) }
+			>
+				<SelectControl
+					label={ __( 'Citation Style', 'quotes-dlx' ) }
+					value={ appearance }
+					options={ [
+						{
+							label: __( 'Rounded', 'quotes-dlx' ),
+							value: 'citation-rounded',
+						},
+						{
+							label: __( 'Squared', 'quotes-dlx' ),
+							value: 'citation-squared',
+						},
+						{
+							label: __( 'Centered', 'quotes-dlx' ),
+							value: 'citation-centered',
+						},
+						{
+							label: __( 'Large', 'quotes-dlx' ),
+							value: 'citation-large',
+						},
+					] }
+					onChange={ ( value ) => {
+						setAttributes( {
+							appearance: value,
+						} );
+					} }
+				/>
+			</PanelBody>
 			<PanelBody
 				initialOpen={ true }
 				title={ __( 'Citation Settings', 'quotes-dlx' ) }
@@ -130,7 +171,10 @@ const Cite = ( props ) => {
 								showAuthorImage: value,
 							} );
 						} }
-						help={ __( 'Show or hide the main citation author image.', 'quotes-dlx' ) }
+						help={ __(
+							'Show or hide the main citation author image.',
+							'quotes-dlx'
+						) }
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -142,7 +186,10 @@ const Cite = ( props ) => {
 								showAuthorName: value,
 							} );
 						} }
-						help={ __( 'Show or hide the main citation author name.', 'quotes-dlx' ) }
+						help={ __(
+							'Show or hide the main citation author name.',
+							'quotes-dlx'
+						) }
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -154,7 +201,10 @@ const Cite = ( props ) => {
 								showAuthorTitle: value,
 							} );
 						} }
-						help={ __( 'Show or hide the main citation author title.', 'quotes-dlx' ) }
+						help={ __(
+							'Show or hide the main citation author title.',
+							'quotes-dlx'
+						) }
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -166,7 +216,10 @@ const Cite = ( props ) => {
 								showAuthorUrl: value,
 							} );
 						} }
-						help={ __( 'Allow the author URL to be used in the citation.', 'quotes-dlx' ) }
+						help={ __(
+							'Allow the author URL to be used in the citation.',
+							'quotes-dlx'
+						) }
 					/>
 				</PanelRow>
 				{ showAuthorUrl && (
@@ -209,7 +262,9 @@ const Cite = ( props ) => {
 						<ToolbarButton
 							icon="edit"
 							label={ __( 'Edit Citation', 'quotes-dlx' ) }
-							onClick={ () => { } }
+							onClick={ () => {
+								setIsPreview( false );
+							} }
 						>
 							{ __( 'Edit', 'quotes-dlx' ) }
 						</ToolbarButton>
@@ -218,7 +273,9 @@ const Cite = ( props ) => {
 						<ToolbarButton
 							icon="visibility"
 							label={ __( 'Preview', 'quotes-dlx' ) }
-							onClick={ () => { } }
+							onClick={ () => {
+								setIsPreview( true );
+							} }
 						>
 							{ __( 'Preview', 'quotes-dlx' ) }
 						</ToolbarButton>
@@ -228,20 +285,16 @@ const Cite = ( props ) => {
 		</BlockControls>
 	);
 
-	const block = (
+	const blockEdit = (
 		<>
 			<Card>
-				<CardHeader>
-					{ __( 'Citation', 'quotes-dlx' ) }
-				</CardHeader>
-				<CardBody
-					isShady={ true }
-					isScrollable={ true }
-				>
+				<CardHeader>{ __( 'Citation', 'quotes-dlx' ) }</CardHeader>
+				<CardBody isShady={ true } isScrollable={ true }>
 					<PanelRow className="quotes-dlx-cite-panel-rich-text">
 						<RichText
 							tagName="div"
 							className="quotes-dlx-cite-richtext"
+							disableLineBreaks={ true }
 							placeholder={ __( 'Enter a citation', 'quotes-dlx' ) }
 							value={ citation }
 							onChange={ ( value ) => setAttributes( { citation: value } ) }
@@ -269,14 +322,22 @@ const Cite = ( props ) => {
 								label={ __( 'Author Title', 'quotes-dlx' ) }
 								value={ authorTitle }
 								onChange={ ( value ) => setAttributes( { authorTitle: value } ) }
-								placeholder={ __( 'Enter an author title such as a job title', 'quotes-dlx' ) }
+								placeholder={ __(
+									'Enter an author title such as a job title',
+									'quotes-dlx'
+								) }
 							/>
 						</section>
 						<section className="quotes-dlx-cite-panel-row-grid-image-fields">
 							{ '' !== citeImageUrl && (
 								<>
 									<div className="quotes-dlx-cite-image-card-preview">
-										<img src={ citeImageUrl } alt={ __( 'Citation Image', 'quotes-dlx' ) } width={ 150 } height={ 150 } />
+										<img
+											src={ citeImageUrl }
+											alt={ __( 'Citation Image', 'quotes-dlx' ) }
+											width={ 150 }
+											height={ 150 }
+										/>
 									</div>
 								</>
 							) }
@@ -295,21 +356,135 @@ const Cite = ( props ) => {
 						</section>
 					</PanelRow>
 				</CardBody>
+				<CardFooter>
+					<Button
+						variant="secondary"
+						icon="visibility"
+						iconPosition="right"
+						onClick={ () => {
+							setIsPreview( true );
+						} }
+					>
+						{ __( 'Preview', 'quotes-dlx' ) }
+					</Button>
+				</CardFooter>
 			</Card>
 		</>
 	);
 
+	const getCitationImage = () => {
+		const image = (
+			<img
+				src={ citeImageUrl }
+				alt={ __( 'Citation Image', 'quotes-dlx' ) }
+				width={ 75 }
+				height={ 75 }
+			/>
+		);
+		if ( '' !== authorUrl && showAuthorUrl ) {
+			const noFollow = authorUrlNoFollow ? 'nofollow' : '';
+			return (
+				<a
+					href={ authorUrl }
+					target={ authorUrlNewTab ? '_blank' : '_self' }
+					rel={ `${ noFollow } noopener noreferrer` }
+					noFollow={ authorUrlNoFollow ? 'no-follow' : 'none' }
+					onClick={ ( event ) => {
+						event.preventDefault();
+					} }
+				>
+					{ image }
+				</a>
+			);
+		}
+		return image;
+	};
+
+	const getCitationAuthor = () => {
+		if ( ! showAuthorName || '' === author ) {
+			return null;
+		}
+		let anchor = null;
+		if ( '' !== authorUrl && showAuthorUrl ) {
+			const noFollow = authorUrlNoFollow ? 'nofollow' : '';
+			anchor = (
+				<a
+					href={ authorUrl }
+					target={ authorUrlNewTab ? '_blank' : '_self' }
+					rel={ `${ noFollow } noopener noreferrer` }
+					noFollow={ authorUrlNoFollow ? 'no-follow' : 'none' }
+					onClick={ ( event ) => {
+						event.preventDefault();
+					} }
+				>
+					{ author }
+				</a>
+			);
+		}
+		return (
+			<div className="quotes-dlx-cite-author">
+				{ anchor ? anchor : author }
+			</div>
+		);
+	};
+
+	const getCitationAuthorTitle = () => {
+		if ( ! showAuthorTitle || '' === authorTitle ) {
+			return null;
+		}
+		return (
+			<div className="quotes-dlx-cite-author-title">
+				{ authorTitle }
+			</div>
+		);
+	};
+
+	const getCitation = () => {
+		if ( ! showCitation || '' === citation ) {
+			return null;
+		}
+		const htmlToReactParser = new HtmlToReactParser();
+		return (
+			<div className="quotes-dlx-cite-author-citation">
+				{ htmlToReactParser.parse(
+					toHTMLString( {
+					// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+						value: create( {
+							html: citation,
+							preserveWhiteSpace: false,
+						} ),
+					} )
+				) }
+			</div>
+		);
+	};
+
+	const blockPreview = (
+		<>
+			<div className="quotes-dlx-cite-wrapper">
+				{ '' !== citeImageUrl && (
+					<div className="quotes-dlx-cite-image">{ getCitationImage() }</div>
+				) }
+				<div className="quotes-dlx-cite-author-info">
+					{ getCitationAuthor() }
+					{ getCitationAuthorTitle() }
+				</div>
+				{ getCitation() }
+			</div>
+		</>
+	);
+
 	const blockProps = useBlockProps( {
-		className: `quotes-dlx-cite`,
+		className: `quotes-dlx-cite is-style-${ appearance }`,
 	} );
 
 	return (
 		<>
-			<InspectorControls>
-				{ inspectorControls }
-			</InspectorControls>
+			<InspectorControls>{ inspectorControls }</InspectorControls>
 			{ blockToolbar }
-			<figcaption { ...blockProps }>{ block }</figcaption>
+			<figcaption { ...blockProps }>
+				{ isPreview ? blockPreview : blockEdit }
+			</figcaption>
 		</>
 	);
 };

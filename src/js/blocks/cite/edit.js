@@ -131,10 +131,6 @@ const Cite = ( props ) => {
 							value: 'citation-squared',
 						},
 						{
-							label: __( 'Centered', 'quotes-dlx' ),
-							value: 'citation-centered',
-						},
-						{
 							label: __( 'Large', 'quotes-dlx' ),
 							value: 'citation-large',
 						},

@@ -78,7 +78,7 @@
 	},
 	"supports": {
 		"anchor": false,
-		"align": false,
+		"align": ["left", "center", "right"],
 		"className": true
 	},
 	"editorScript": "quotes-dlx-block",

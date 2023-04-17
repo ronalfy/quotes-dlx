@@ -38,6 +38,13 @@ class Blocks {
 		);
 
 		register_block_type(
+			Functions::get_plugin_dir( 'build/js/blocks/cite/block.json' ),
+			array(
+				'render_callback' => array( $this, 'frontend_cite_block' ),
+			)
+		);
+
+		register_block_type(
 			Functions::get_plugin_dir( 'build/js/blocks/quotes-dlx-blockquote/block.json' ),
 			array(
 				'render_callback' => array( $this, 'frontend_blockquote_block' ),
@@ -882,11 +889,21 @@ class Blocks {
 	/**
 	 * Output the blockquote block content.
 	 *
-	 * @param array $attributes Array of block attributes.
+	 * @param array  $attributes Array of block attributes.
 	 * @param string $content InnerBlock content.
 	 */
 	public function frontend_blockquote_block( $attributes, $content ) {
 		return $content;
+	}
+
+	/**
+	 * Output the cite block content.
+	 *
+	 * @param array  $attributes Array of block attributes.
+	 * @param string $content InnerBlock content.
+	 */
+	public function frontend_cite_block( $attributes, $content ) {
+		return 'hello';
 	}
 
 	/**
@@ -1066,7 +1083,7 @@ class Blocks {
 		);
 		wp_register_style(
 			'quotes-dlx-block-editor-styles',
-			Functions::get_plugin_url( 'build/quotes-dlx.css' ),
+			Functions::get_plugin_url( 'build/index.css' ),
 			array( 'quotes-dlx-block-editor' ),
 			Functions::get_plugin_version(),
 			'all'

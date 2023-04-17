@@ -63,7 +63,7 @@ const TweetQuotes = ( props ) => {
 	const maximumWidthInput = createRef( null );
 	const innerBlocksRef = useRef( null );
 
-	const { shareText, setShareText } = useContext( TextContentContext );
+	const { shareText, setShareText, oldShareText, setOldShareText } = useContext( TextContentContext );
 
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
@@ -149,11 +149,19 @@ const TweetQuotes = ( props ) => {
 	} = attributes;
 
 	useEffect( () => {
+		// If share_text.
+		if ( share_text !== '' && oldShareText === '' ) {
+			setAttributes( { share_text: shareText } );
+		}
+	}, [ oldShareText ] );
+
+	useEffect( () => {
+		console.log( 'testing' );
 		countCharacters();
 		countInfoCharacters();
 	}, [
 		twitter_username,
-		share_text,
+		shareText,
 		share_text_override,
 		hashtags,
 		share_text_override_enabled,
@@ -271,7 +279,7 @@ const TweetQuotes = ( props ) => {
 		if ( share_text_override_enabled ) {
 			tweetContent += share_text_override;
 		} else {
-			tweetContent += share_text;
+			tweetContent += shareText;
 		}
 		if ( tweetContent !== '' ) {
 			tweetContent += '\r\n';
@@ -325,7 +333,7 @@ const TweetQuotes = ( props ) => {
 		if ( share_text_override_enabled ) {
 			tweetContent += share_text_override;
 		} else {
-			tweetContent += share_text;
+			tweetContent += shareText;
 		}
 		if ( tweetContent !== '' ) {
 			tweetContent += '\r\n';
@@ -897,7 +905,7 @@ const TweetQuotes = ( props ) => {
 										toHTMLString( {
 										// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
 											value: create( {
-												html: share_text,
+												html: shareText,
 												preserveWhiteSpace: true,
 											} ),
 											multilineTag: 'p',
@@ -1434,11 +1442,12 @@ const TweetQuotes = ( props ) => {
 };
 
 const EditContext = ( props ) => {
-	const [ shareText, setShareText ] = useState( props.attributes.shareText );
+	const [ oldShareText, setOldShareText ] = useState( props.attributes.share_text );
+	const [ shareText, setShareText ] = useState( '' );
 	return (
 		<TextContentContext.Provider
 			value={ {
-				shareText, setShareText,
+				shareText, setShareText, oldShareText, setOldShareText,
 			} }
 		>
 			<TweetQuotes { ...props } />

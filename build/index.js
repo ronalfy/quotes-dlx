@@ -739,26 +739,10 @@ var unitlessKeys = {
 
 /***/ }),
 
-/***/ "./src/js/blocks/context/index.js":
-/*!****************************************!*\
-  !*** ./src/js/blocks/context/index.js ***!
-  \****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-var TextContentContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext();
-/* harmony default export */ __webpack_exports__["default"] = (TextContentContext);
-
-/***/ }),
-
-/***/ "./src/js/blocks/quotes-dlx-blockquote/edit.js":
-/*!*****************************************************!*\
-  !*** ./src/js/blocks/quotes-dlx-blockquote/edit.js ***!
-  \*****************************************************/
+/***/ "./src/js/blocks/cite/edit.js":
+/*!************************************!*\
+  !*** ./src/js/blocks/cite/edit.js ***!
+  \************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -779,23 +763,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
 /* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
 /* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable no-undef */
 
@@ -830,10 +830,229 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 
 
 
+
+
+
+var Cite = function Cite(props) {
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"]),
+      shareText = _useContext.shareText,
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText;
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isEditing = _useState2[0],
+      setIsEditing = _useState2[1];
+
+  var authorImg = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useRef)(null); // Shortcuts.
+
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected;
+  var author = attributes.author,
+      authorUrl = attributes.authorUrl,
+      authorTitle = attributes.authorTitle,
+      citation = attributes.citation;
+
+  _objectDestructuringEmpty(attributes);
+
+  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.BlockControls, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Toolbar, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarButton, {
+    icon: "edit",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Edit Citation', 'quotes-dlx'),
+    onClick: function onClick() {}
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Edit', 'quotes-dlx'))));
+  var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.CardBody, {
+    isShady: true,
+    isScrollable: true
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.RichText, {
+    tagName: "div",
+    className: "quotes-dlx-cite-richtext",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter a citation', 'quotes-dlx'),
+    value: citation,
+    onChange: function onChange(value) {
+      return setAttributes({
+        citation: value
+      });
+    },
+    allowedFormats: ['core/bold', 'core/italic', 'core/link']
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author', 'quotes-dlx'),
+    value: author,
+    onChange: function onChange(value) {
+      return setAttributes({
+        author: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author name', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author URL', 'quotes-dlx'),
+    value: authorUrl,
+    onChange: function onChange(value) {
+      return setAttributes({
+        authorUrl: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author URL', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author Title', 'quotes-dlx'),
+    value: authorTitle,
+    onChange: function onChange(value) {
+      return setAttributes({
+        authorTitle: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author title such as a job title', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement("img", {
+    src: "",
+    alt: "",
+    ref: authorImg
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+    variant: "secondary",
+    isSmall: true,
+    isPrimary: true,
+    onClick: function onClick() {
+      (0,_utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__["default"])(authorImg);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Upload image', 'quotes-dlx'))))));
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
+    className: "quotes-dlx-cite"
+  });
+  return /*#__PURE__*/React.createElement(React.Fragment, null, blockToolbar, /*#__PURE__*/React.createElement("figcaption", blockProps, block));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Cite);
+
+/***/ }),
+
+/***/ "./src/js/blocks/cite/index.js":
+/*!*************************************!*\
+  !*** ./src/js/blocks/cite/index.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/js/blocks/cite/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/cite/edit.js");
+/* harmony import */ var _components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/QuotesIcon */ "./src/js/components/icons/QuotesIcon.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  save: function save() {
+    return null;
+  },
+  icon: /*#__PURE__*/React.createElement(_components_icons_QuotesIcon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    fill: "#9932cc"
+  })
+});
+
+/***/ }),
+
+/***/ "./src/js/blocks/context/index.js":
+/*!****************************************!*\
+  !*** ./src/js/blocks/context/index.js ***!
+  \****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var TextContentContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext();
+/* harmony default export */ __webpack_exports__["default"] = (TextContentContext);
+
+/***/ }),
+
+/***/ "./src/js/blocks/quotes-dlx-blockquote/edit.js":
+/*!*****************************************************!*\
+  !*** ./src/js/blocks/quotes-dlx-blockquote/edit.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+/* eslint-disable no-undef */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable camelcase */
+
+
+
+
+
+
+
 var Blockquote = function Blockquote(props) {
-  // Set up Inner Blocks.
-  var innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.useInnerBlocksProps)({
-    className: 'quotes-dlx-share-blockquote-items'
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      shareText = _useContext.shareText,
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText;
+
+  var shareTextInnerBlocksRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+
+  var _useDispatch = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.store),
+      replaceInnerBlocks = _useDispatch.replaceInnerBlocks;
+
+  var childBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(function (select) {
+    return select('core/block-editor').getBlocks(props.clientId);
+  });
+  /**
+   * useEffect for porting over old share text.
+   */
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (oldShareText !== '') {
+      var richTextConvertedToBlocks = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.rawHandler)({
+        HTML: oldShareText
+      });
+      replaceInnerBlocks(props.clientId, richTextConvertedToBlocks);
+      setOldShareText('');
+    }
+  }, [oldShareText]);
+  /**
+   * Convert inner blocks to string.
+   */
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (shareTextInnerBlocksRef.current) {
+      var innerBlocks = shareTextInnerBlocksRef.current.querySelectorAll('.wp-block-paragraph');
+      var innerBlocksString = ''; // Convert inner blocks to string in string format with new line characters.
+
+      innerBlocks.forEach(function (block) {
+        innerBlocksString += block.innerText + '';
+      });
+      setShareText(innerBlocksString);
+    }
+  }, [childBlocks, shareTextInnerBlocksRef]); // Set up Inner Blocks.
+
+  var innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)({
+    className: 'quotes-dlx-share-blockquote-items',
+    ref: shareTextInnerBlocksRef
   }, {
     allowedBlocks: ['core/paragraph'],
     template: [['core/paragraph', {
@@ -841,14 +1060,12 @@ var Blockquote = function Blockquote(props) {
     }]]
   }); // Shortcuts.
 
-  var attributes = props.attributes,
-      setAttributes = props.setAttributes,
-      isSelected = props.isSelected;
+  var attributes = props.attributes;
 
   _objectDestructuringEmpty(attributes);
 
   var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("blockquote", innerBlockProps));
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.useBlockProps)({
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: "quotes-dlx-blockquote"
   });
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", blockProps, block));
@@ -998,7 +1215,9 @@ var TweetQuotes = function TweetQuotes(props) {
 
   var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_23__["default"]),
       shareText = _useContext.shareText,
-      setShareText = _useContext.setShareText; // State.
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText; // State.
 
 
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
@@ -1112,9 +1331,18 @@ var TweetQuotes = function TweetQuotes(props) {
       enable_custom_theme_colors = attributes.enable_custom_theme_colors,
       theme_colors = attributes.theme_colors;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+    // If share_text.
+    if (share_text !== '' && oldShareText === '') {
+      setAttributes({
+        share_text: shareText
+      });
+    }
+  }, [oldShareText]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+    console.log('testing');
     countCharacters();
     countInfoCharacters();
-  }, [twitter_username, share_text, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
+  }, [twitter_username, shareText, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
     setAttributes({
       uniqueId: generatedUniqueId,
@@ -1217,7 +1445,7 @@ var TweetQuotes = function TweetQuotes(props) {
     if (share_text_override_enabled) {
       tweetContent += share_text_override;
     } else {
-      tweetContent += share_text;
+      tweetContent += shareText;
     }
 
     if (tweetContent !== '') {
@@ -1272,7 +1500,7 @@ var TweetQuotes = function TweetQuotes(props) {
     if (share_text_override_enabled) {
       tweetContent += share_text_override;
     } else {
-      tweetContent += share_text;
+      tweetContent += shareText;
     }
 
     if (tweetContent !== '') {
@@ -1710,7 +1938,7 @@ var TweetQuotes = function TweetQuotes(props) {
   }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__.toHTMLString)({
     // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
     value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__.create)({
-      html: share_text,
+      html: shareText,
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
@@ -2033,15 +2261,22 @@ var TweetQuotes = function TweetQuotes(props) {
 };
 
 var EditContext = function EditContext(props) {
-  var _useState19 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(props.attributes.shareText),
+  var _useState19 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(props.attributes.share_text),
       _useState20 = _slicedToArray(_useState19, 2),
-      shareText = _useState20[0],
-      setShareText = _useState20[1];
+      oldShareText = _useState20[0],
+      setOldShareText = _useState20[1];
+
+  var _useState21 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(''),
+      _useState22 = _slicedToArray(_useState21, 2),
+      shareText = _useState22[0],
+      setShareText = _useState22[1];
 
   return /*#__PURE__*/React.createElement(_context_index__WEBPACK_IMPORTED_MODULE_23__["default"].Provider, {
     value: {
       shareText: shareText,
-      setShareText: setShareText
+      setShareText: setShareText,
+      oldShareText: oldShareText,
+      setOldShareText: setOldShareText
     }
   }, /*#__PURE__*/React.createElement(TweetQuotes, props));
 };
@@ -3596,6 +3831,270 @@ var UnitChooser = function UnitChooser(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UnitChooser);
+
+/***/ }),
+
+/***/ "./src/js/utils/CropHelper.js":
+/*!************************************!*\
+  !*** ./src/js/utils/CropHelper.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
+var _this = undefined;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * Initiates the uploader used in constious sections of the site.
+ */
+
+
+
+var getCropSettings = function getCropSettings() {
+  var overrides = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  // Set the settings for the media uploader and cropper.
+  var settings = {
+    id: '',
+    attachmentId: 0,
+    aspectRatio: '1:1',
+    suggestedWidth: '500',
+    suggestedHeight: '500',
+    nonce: '',
+    postId: 0,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image', 'quotes-dlx'),
+    buttonLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Image', 'quotes-dlx'),
+    main: _this
+  };
+  settings = _objectSpread(_objectSpread({}, settings), overrides);
+  var settingsHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+  var settingFilterValues = {};
+  /**
+   * Filter the settings for the media uploader.
+   *
+   * @param {Object} settings The settings for the media uploader.
+   * @param {Object} options  The options passed to the media uploader.
+   */
+
+  settingFilterValues = settingsHook.applyFilters('qdlxMediaSettings', settings); // Merge setting and filter values.
+
+  settings = Object.assign(settings, settingFilterValues);
+  return settings;
+};
+
+var getCropControl = function getCropControl() {
+  var overrides = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var settings = getCropSettings(overrides);
+  var cropControl = {
+    id: 'control-id',
+    params: {
+      flex_width: false,
+      // set to true if the width of the cropped image can be different to the width defined here
+      flex_height: false,
+      // set to true if the height of the cropped image can be different to the height defined here
+      width: settings.suggestedWidth,
+      // set the desired width of the destination image here
+      height: settings.suggestedHeight // set the desired height of the destination image here
+
+    }
+  };
+  return cropControl;
+};
+/**
+ * Retrieve crop options for an attachment.
+ *
+ * @param {Object} attachment Attachment image object.
+ * @param {Object} controller Media controller object.
+ * @return {Object} Cropping options.
+ */
+
+
+var cropOptions = function cropOptions(attachment, controller) {
+  var settings = getCropSettings();
+  var control = controller.get('control');
+  var realWidth = attachment.get('width');
+  var realHeight = attachment.get('height');
+  var xInit = parseInt(control.params.width, 10);
+  var yInit = parseInt(control.params.height, 10);
+  var ratio = xInit / yInit;
+  var ratioReal = realWidth / realHeight; // Determine if user can skip crop.
+
+  var canSkipCrop = false; // If ratios match, can skip crop.
+
+  if (ratio === ratioReal) {
+    canSkipCrop = true;
+  }
+
+  controller.set('canSkipCrop', canSkipCrop);
+  var xImg = xInit;
+  var yImg = yInit;
+
+  if (realWidth / realHeight > ratio) {
+    if (yImg > realHeight) {
+      yImg = realHeight;
+    }
+
+    yInit = yImg;
+    xInit = yInit * ratio;
+  } else {
+    if (xImg > realWidth) {
+      xImg = realWidth;
+    }
+
+    xInit = xImg;
+    yInit = xInit / ratio;
+  }
+
+  var x1 = (realWidth - xInit) / 2;
+  var y1 = (realHeight - yInit) / 2;
+
+  if (x1 === 0) {
+    if (ratio > 0) {
+      x1 = y1 * ratio;
+    } else {
+      x1 = y1 / ratio;
+    }
+  }
+
+  if (y1 === 0) {
+    if (ratio > 0) {
+      y1 = x1 * ratio;
+    } else {
+      y1 = x1 / ratio;
+    }
+  }
+
+  var cropWidthX2 = 0;
+  var cropHeightY2 = 0;
+
+  if (xInit + x1 > realWidth) {
+    cropWidthX2 = xInit - 1;
+  } else {
+    cropWidthX2 = xInit + x1;
+  }
+
+  if (yInit + y1 > realHeight) {
+    cropHeightY2 = yInit - 1;
+  } else {
+    cropHeightY2 = yInit + y1;
+  }
+
+  var imgSelectOptions = {
+    handles: true,
+    keys: true,
+    instance: true,
+    persistent: true,
+    imageWidth: realWidth,
+    imageHeight: realHeight,
+    x1: x1,
+    y1: y1,
+    x2: cropWidthX2,
+    y2: cropHeightY2,
+    aspectRatio: settings.aspectRatio
+  };
+  return imgSelectOptions;
+};
+/**
+ * Create a new media uploader with cropping.
+ * @param {Object} imageRef The image reference.
+ **/
+
+
+var imageUploaderWithCropping = function imageUploaderWithCropping(imageRef) {
+  var settings = getCropSettings();
+  var cropControl = getCropControl();
+  var uploader = wp.media({
+    states: [new wp.media.controller.Library({
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Set Author Avatar', 'quotes-dlx'),
+      library: wp.media.query({
+        type: 'image'
+      }),
+      multiple: false,
+      date: false,
+      priority: 20,
+      suggestedWidth: settings.suggestedWidth,
+      suggestedHeight: settings.suggestedHeight
+    }), new wp.media.controller.CustomizeImageCropper({
+      control: cropControl,
+      imgSelectOptions: cropOptions
+    })]
+  }); // Set the toolbar.
+
+  uploader.on('toolbar:create', function (toolbar) {
+    var options = {};
+    options.items = {};
+    options.items.select = {
+      text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Save Image', 'quotes-dlx'),
+      style: 'primary',
+      click: wp.media.view.Toolbar.Select.prototype.clickSelect,
+      requires: {
+        selection: true
+      },
+      event: 'select',
+      reset: false,
+      close: false,
+      state: false,
+      syncSelection: true
+    };
+    this.createSelectToolbar(toolbar, options);
+  }, uploader); //For when the Add Profile Image is clicked
+
+  var originalAttachmentId = 0;
+  uploader.on('select', function () {
+    // Get avatar attributes.
+    var attachment = uploader.state().get('selection').first().toJSON(); // Get original attachment ID.
+
+    originalAttachmentId = attachment.id; // Calculate ratio.
+
+    var ratio = attachment.width / attachment.height;
+    var desiredRatio = cropControl.params.width / cropControl.params.height;
+
+    if (ratio === desiredRatio) {
+      var selection = uploader.state().get('selection').single();
+      var selectionHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+      selectionHook.doAction('qdlxMediaCiteOnSelect', selection);
+      uploader.close();
+    } else {
+      uploader.setState('cropper');
+    }
+  }); //When the remove buttons is clicked
+
+  uploader.on('remove', function () {
+    console.log('remove');
+  }); //For when the window is closed (update the thumbnail)
+
+  uploader.on('escape', function () {
+    console.log('escape');
+  }); // When image is cropped.
+
+  uploader.on('cropped', function (croppedImage) {
+    var croppedImageHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+    croppedImageHook.doAction('qdlxMediaCiteOnCrop', croppedImage);
+    imageRef.current.src = croppedImage.url;
+  }); // When image cropping is skipped.
+
+  uploader.on('skippedcrop', function (selection) {
+    var croppedImageHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.createHooks)();
+    croppedImageHook.doAction('qdlxMediaCiteOnSkipCrop', selection);
+  });
+  uploader.on('open', function () {// Set attached image upon media library opened.
+    // const attachment = wp.media.attachment( settings.attachmentId );
+    // const selection = uploader.state( 'library' ).get( 'selection' );
+    // selection.add( attachment );
+  });
+  uploader.open();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (imageUploaderWithCropping);
 
 /***/ }),
 
@@ -14279,6 +14778,17 @@ module.exports = JSON.parse('{"amp":"&","apos":"\'","gt":">","lt":"<","quot":"\\
 
 /***/ }),
 
+/***/ "./src/js/blocks/cite/block.json":
+/*!***************************************!*\
+  !*** ./src/js/blocks/cite/block.json ***!
+  \***************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Cite Block","apiVersion":2,"name":"mediaron/quotes-dlx-cite","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","cite","caption"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"citeImageId":{"type":"string","default":"0"},"citeImageUrl":{"type":"string","default":""},"author":{"type":"string","default":""},"authorUrl":{"type":"string","default":""},"authorTitle":{"type":"string","default":""},"citation":{"type":"string","default":""}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+
+/***/ }),
+
 /***/ "./src/js/blocks/quotes-dlx-blockquote/block.json":
 /*!********************************************************!*\
   !*** ./src/js/blocks/quotes-dlx-blockquote/block.json ***!
@@ -14286,7 +14796,7 @@ module.exports = JSON.parse('{"amp":"&","apos":"\'","gt":">","lt":"<","quot":"\\
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Blockquote","apiVersion":2,"name":"mediaron/quotes-dlx-blockquote","category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false},"theme_colors":{"type":"object","default":{}},"enable_custom_theme_colors":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Blockquote","apiVersion":2,"name":"mediaron/quotes-dlx-blockquote","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false},"theme_colors":{"type":"object","default":{}},"enable_custom_theme_colors":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ }),
 
@@ -14413,7 +14923,9 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_blocks_quotes_dlx_blockquote_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/blocks/quotes-dlx-blockquote/index */ "./src/js/blocks/quotes-dlx-blockquote/index.js");
-/* harmony import */ var _js_blocks_tweet_quotes_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/blocks/tweet-quotes/index */ "./src/js/blocks/tweet-quotes/index.js");
+/* harmony import */ var _js_blocks_cite_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/blocks/cite/index */ "./src/js/blocks/cite/index.js");
+/* harmony import */ var _js_blocks_tweet_quotes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/blocks/tweet-quotes/index */ "./src/js/blocks/tweet-quotes/index.js");
+
 
 
 }();

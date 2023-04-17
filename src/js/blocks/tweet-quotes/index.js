@@ -45,7 +45,7 @@ registerBlockType( metadata, {
 				blocks: [ 'core/pullquote' ],
 				transform: ( { value } ) => {
 					return createBlock( 'mediaron/quotes-dlx', {
-						share_text: value,
+						share_text: rawHandler( { HTML: value } ),
 					} );
 				},
 			},

@@ -149,7 +149,7 @@ const cropOptions = ( attachment, controller ) => {
  * Create a new media uploader with cropping.
  * @param {Object} imageRef The image reference.
  **/
-const imageUploaderWithCropping = ( imageRef ) => {
+const imageUploaderWithCropping = ( imageSelectCallback ) => {
 	const settings = getCropSettings();
 	const cropControl = getCropControl();
 	const uploader = wp.media( {
@@ -208,6 +208,7 @@ const imageUploaderWithCropping = ( imageRef ) => {
 			const selection = uploader.state().get( 'selection' ).single();
 			const selectionHook = createHooks();
 			selectionHook.doAction( 'qdlxMediaCiteOnSelect', selection );
+			imageSelectCallback( selection.attributes );
 			uploader.close();
 		} else {
 			uploader.setState( 'cropper' );
@@ -227,13 +228,14 @@ const imageUploaderWithCropping = ( imageRef ) => {
 	uploader.on( 'cropped', function( croppedImage ) {
 		const croppedImageHook = createHooks();
 		croppedImageHook.doAction( 'qdlxMediaCiteOnCrop', croppedImage );
-		imageRef.current.src = croppedImage.url;
+		imageSelectCallback( croppedImage );
 	} );
 
 	// When image cropping is skipped.
 	uploader.on( 'skippedcrop', function( selection ) {
 		const croppedImageHook = createHooks();
 		croppedImageHook.doAction( 'qdlxMediaCiteOnSkipCrop', selection );
+		imageSelectCallback( selection.attributes );
 	} );
 
 	uploader.on( 'open', function() {

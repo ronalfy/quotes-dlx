@@ -357,3 +357,36 @@ body .editor-styles-wrapper {
 		transform: scale(1.3);
 	}
 }
+
+/**
+ * Citation Block Styles
+ */
+.quotes-dlx-cite-panel-row-grid {
+	display: grid;
+	grid-template-columns: 7.5fr 2.5fr;
+	column-gap: 25px;
+	align-items: start;
+
+	.quotes-dlx-cite-text-control {
+		margin-bottom: 0.8em;
+		label {
+			margin-bottom: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+.quotes-dlx-cite-panel-rich-text {
+	padding-bottom: 0.8em;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 0.8em;
+}
+.quotes-dlx-cite-image-card-preview {
+	img {
+		width: 200px;
+		height: auto;
+	}
+	margin-bottom: 0.8em;
+}

@@ -592,9 +592,6 @@ $accent-color: #FFF;
 		font-size: 16px;
 		color: var( --qdlx-dark-matter-button-primary-text-color, $white );
 		font-family: var(--qdlx-dark-matter-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
-		border: 1px solid var(--qdlx-dark-matter-light, $white);
-		border-left: 0;
-		border-right: 0;
 		padding: 1.3em 0;
 		.quotes-dlx-cite-image-wrapper {
 			display: grid;

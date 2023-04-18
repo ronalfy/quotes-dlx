@@ -428,7 +428,6 @@ const Cite = ( props ) => {
 					href={ authorUrl }
 					target={ authorUrlNewTab ? '_blank' : '_self' }
 					rel={ `${ noFollow } noopener noreferrer` }
-					noFollow={ authorUrlNoFollow ? 'no-follow' : 'none' }
 					onClick={ ( event ) => {
 						event.preventDefault();
 					} }
@@ -509,9 +508,9 @@ const Cite = ( props ) => {
 					<div className="quotes-dlx-cite-author-info">
 						{ getCitationAuthor() }
 						{ getCitationAuthorTitle() }
+						{ getCitation() }
 					</div>
 				</div>
-				{ getCitation() }
 			</div>
 		</>
 	);

@@ -1109,7 +1109,6 @@ var Cite = function Cite(props) {
         href: authorUrl,
         target: authorUrlNewTab ? '_blank' : '_self',
         rel: "".concat(noFollow, " noopener noreferrer"),
-        noFollow: authorUrlNoFollow ? 'no-follow' : 'none',
         onClick: function onClick(event) {
           event.preventDefault();
         }
@@ -1179,7 +1178,7 @@ var Cite = function Cite(props) {
     className: "quotes-dlx-cite-image"
   }, getCitationImage()), /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-cite-author-info"
-  }, getCitationAuthor(), getCitationAuthorTitle())), getCitation()));
+  }, getCitationAuthor(), getCitationAuthorTitle(), getCitation()))));
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-cite is-style-".concat(imageAppearance, " is-layout-").concat(appearance, " is-alignment-").concat(alignment, " citation-image-alignment-").concat(citationImageAlignment), {
       'has-no-citation-image': '' === citeImageUrl || !showAuthorImage

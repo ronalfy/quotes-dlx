@@ -565,15 +565,9 @@
   grid-template-columns: 75px auto;
   justify-content: center;
 }
-.quotes-dlx-block-theme-dark-matter figcaption.quotes-dlx-cite.is-alignment-center .quotes-dlx-cite-author-citation {
-  text-align: center;
-}
 .quotes-dlx-block-theme-dark-matter figcaption.quotes-dlx-cite.is-alignment-right .quotes-dlx-cite-image-wrapper {
   grid-template-columns: 75px auto;
   justify-content: right;
-}
-.quotes-dlx-block-theme-dark-matter figcaption.quotes-dlx-cite.is-alignment-right .quotes-dlx-cite-author-citation {
-  text-align: right;
 }
 .quotes-dlx-block-theme-dark-matter figcaption.quotes-dlx-cite.has-no-citation-image .quotes-dlx-cite-image-wrapper {
   display: block;

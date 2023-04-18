@@ -51,6 +51,13 @@ class Blocks {
 			)
 		);
 
+		register_block_type(
+			Functions::get_plugin_dir( 'build/js/blocks/social-bar/block.json' ),
+			array(
+				'render_callback' => array( $this, 'frontend_cite_block' ),
+			)
+		);
+
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
 
@@ -1382,7 +1389,7 @@ class Blocks {
 			<symbol aria-hidden="true" data-prefix="fab" data-icon="telegram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="quotes-dlx-telegram-icon">
 				<path fill="currentColor" d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"></path>
 			</symbol>
-			<symbol aria-hidden="true" data-prefix="fab" data-icon="tumblr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="quotes-dlx-tumblr"><path fill="currentColor" d="M309.8 480.3c-13.6 14.5-50 31.7-97.4 31.7-120.8 0-147-88.8-147-140.6v-144H17.9c-5.5 0-10-4.5-10-10v-68c0-7.2 4.5-13.6 11.3-16 62-21.8 81.5-76 84.3-117.1.8-11 6.5-16.3 16.1-16.3h70.9c5.5 0 10 4.5 10 10v115.2h83c5.5 0 10 4.4 10 9.9v81.7c0 5.5-4.5 10-10 10h-83.4V360c0 34.2 23.7 53.6 68 35.8 4.8-1.9 9-3.2 12.7-2.2 3.5.9 5.8 3.4 7.4 7.9l22 64.3c1.8 5 3.3 10.6-.4 14.5z"></path></symbol>
+			<symbol aria-hidden="true" data-prefix="fab" data-icon="tumblr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="quotes-dlx-tumblr-icon"><path fill="currentColor" d="M309.8 480.3c-13.6 14.5-50 31.7-97.4 31.7-120.8 0-147-88.8-147-140.6v-144H17.9c-5.5 0-10-4.5-10-10v-68c0-7.2 4.5-13.6 11.3-16 62-21.8 81.5-76 84.3-117.1.8-11 6.5-16.3 16.1-16.3h70.9c5.5 0 10 4.5 10 10v115.2h83c5.5 0 10 4.4 10 9.9v81.7c0 5.5-4.5 10-10 10h-83.4V360c0 34.2 23.7 53.6 68 35.8 4.8-1.9 9-3.2 12.7-2.2 3.5.9 5.8 3.4 7.4 7.9l22 64.3c1.8 5 3.3 10.6-.4 14.5z"></path></symbol>
 			<symbol aria-hidden="true" data-prefix="fab" data-icon="share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-webshare-icon"><path fill="currentColor" d="M512 208L320 384H288V288H208c-61.9 0-112 50.1-112 112c0 48 32 80 32 80s-128-48-128-176c0-97.2 78.8-176 176-176H288V32h32L512 208z"/></svg></symbol>
 		</svg>
 		<?php

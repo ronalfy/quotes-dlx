@@ -83,7 +83,7 @@ const TweetQuotes = ( props ) => {
 			ref: innerBlocksRef,
 		},
 		{
-			allowedBlocks: [ 'mediaron/quotes-dlx-blockquote' ],
+			allowedBlocks: [ 'mediaron/quotes-dlx-blockquote', 'mediaron/quotes-dlx-cite', 'mediaron/quotes-dlx-social-bar' ],
 			template: [ [ 'mediaron/quotes-dlx-blockquote', { placeholder: '' } ] ],
 		}
 	);

@@ -749,40 +749,19 @@ var unitlessKeys = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
-/* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
-/* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
-/* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
-/* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
-/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
-/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
-/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
-/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
-/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
-/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
-/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
-/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__);
-/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
-/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -816,41 +795,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
 
 var Cite = function Cite(props) {
-  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"]),
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_7__["default"]),
       shareText = _useContext.shareText,
       setShareText = _useContext.setShareText,
       oldShareText = _useContext.oldShareText,
       setOldShareText = _useContext.setOldShareText;
 
-  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(props.attributes.isPreviewMode),
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(props.attributes.isPreviewMode),
       _useState2 = _slicedToArray(_useState, 2),
       isPreview = _useState2[0],
       setIsPreview = _useState2[1]; // Shortcuts.
 
 
   var attributes = props.attributes,
-      setAttributes = props.setAttributes,
-      isSelected = props.isSelected;
+      setAttributes = props.setAttributes;
   var author = attributes.author,
       authorUrl = attributes.authorUrl,
       authorTitle = attributes.authorTitle,
@@ -872,23 +833,23 @@ var Cite = function Cite(props) {
    * Callback for when the user selects an image.
    */
 
-  var citeImageSelected = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useCallback)(function (image) {
+  var citeImageSelected = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useCallback)(function (image) {
     setAttributes({
       citeImageId: image.id,
       citeImageUrl: image.url
     });
   }, []);
-  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Display Settings', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Image Appearance', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Display Settings', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image Appearance', 'quotes-dlx'),
     value: imageAppearance,
     options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Rounded', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Rounded', 'quotes-dlx'),
       value: 'citation-rounded'
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Squared', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Squared', 'quotes-dlx'),
       value: 'citation-squared'
     }],
     onChange: function onChange(value) {
@@ -896,14 +857,14 @@ var Cite = function Cite(props) {
         imageAppearance: value
       });
     }
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation Appearance', 'quotes-dlx'),
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation Appearance', 'quotes-dlx'),
     value: appearance,
     options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Default', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Default', 'quotes-dlx'),
       value: 'appearance-default'
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Large', 'quotes-dlx'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Large', 'quotes-dlx'),
       value: 'appearance-large'
     }],
     onChange: function onChange(value) {
@@ -911,16 +872,16 @@ var Cite = function Cite(props) {
         appearance: value
       });
     }
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation Alignment', 'quotes-dlx'),
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation Alignment', 'quotes-dlx'),
     alignment: alignment,
     onClick: function onClick(value) {
       setAttributes({
         alignment: value
       });
     }
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Image Alignment', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image Alignment', 'quotes-dlx'),
     alignment: citationImageAlignment,
     centerOn: false,
     onClick: function onClick(value) {
@@ -928,102 +889,102 @@ var Cite = function Cite(props) {
         citationImageAlignment: value
       });
     }
-  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
+  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation Settings', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show the Citation', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation Settings', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the Citation', 'quotes-dlx'),
     checked: showCitation,
     onChange: function onChange(value) {
       setAttributes({
         showCitation: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the main citation.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show the Author Image', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show or hide the main citation.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the Author Image', 'quotes-dlx'),
     checked: showAuthorImage,
     onChange: function onChange(value) {
       setAttributes({
         showAuthorImage: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the main citation author image.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show the Author Name', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show or hide the main citation author image.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the Author Name', 'quotes-dlx'),
     checked: showAuthorName,
     onChange: function onChange(value) {
       setAttributes({
         showAuthorName: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the main citation author name.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show the Author Title', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show or hide the main citation author name.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the Author Title', 'quotes-dlx'),
     checked: showAuthorTitle,
     onChange: function onChange(value) {
       setAttributes({
         showAuthorTitle: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the main citation author title.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show the Author URL', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show or hide the main citation author title.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the Author URL', 'quotes-dlx'),
     checked: showAuthorUrl,
     onChange: function onChange(value) {
       setAttributes({
         showAuthorUrl: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Allow the author URL to be used in the citation.', 'quotes-dlx')
-  })), showAuthorUrl && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Open Author URL in New Tab', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Allow the author URL to be used in the citation.', 'quotes-dlx')
+  })), showAuthorUrl && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Open Author URL in New Tab', 'quotes-dlx'),
     checked: authorUrlNewTab,
     onChange: function onChange(value) {
       setAttributes({
         authorUrlNewTab: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Open the author URL in a new tab.', 'quotes-dlx')
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Add nofollow to Author URL', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Open the author URL in a new tab.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add nofollow to Author URL', 'quotes-dlx'),
     checked: authorUrlNoFollow,
     onChange: function onChange(value) {
       setAttributes({
         authorUrlNoFollow: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Add nofollow to the author URL.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add nofollow to the author URL.', 'quotes-dlx')
   })))));
-  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.BlockControls, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Toolbar, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarGroup, null, isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarButton, {
+  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.BlockControls, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Toolbar, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarGroup, null, isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarButton, {
     icon: "edit",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Edit Citation', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Edit Citation', 'quotes-dlx'),
     onClick: function onClick() {
       setAttributes({
         isPreviewMode: false
       });
       setIsPreview(false);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Edit', 'quotes-dlx')), !isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarButton, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Edit', 'quotes-dlx')), !isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarButton, {
     icon: "visibility",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Preview', 'quotes-dlx'),
     onClick: function onClick() {
       setAttributes({
         isPreviewMode: true
       });
       setIsPreview(true);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview', 'quotes-dlx')))));
-  var blockEdit = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.CardBody, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Preview', 'quotes-dlx')))));
+  var blockEdit = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.CardBody, {
     isShady: true,
     isScrollable: true
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, {
     className: "quotes-dlx-cite-panel-rich-text"
-  }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.RichText, {
+  }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.RichText, {
     tagName: "div",
     className: "quotes-dlx-cite-richtext",
     disableLineBreaks: true,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter a citation', 'quotes-dlx'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter a citation', 'quotes-dlx'),
     value: citation,
     onChange: function onChange(value) {
       return setAttributes({
@@ -1031,59 +992,59 @@ var Cite = function Cite(props) {
       });
     },
     allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, {
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, {
     className: "quotes-dlx-cite-panel-row-grid"
   }, /*#__PURE__*/React.createElement("section", {
     className: "quotes-dlx-cite-panel-row-grid-text-fields"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     className: "quotes-dlx-cite-text-control",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Author', 'quotes-dlx'),
     value: author,
     onChange: function onChange(value) {
       return setAttributes({
         author: value
       });
     },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author name', 'quotes-dlx')
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter an author name', 'quotes-dlx')
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     className: "quotes-dlx-cite-text-control",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author URL', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Author URL', 'quotes-dlx'),
     value: authorUrl,
     onChange: function onChange(value) {
       return setAttributes({
         authorUrl: value
       });
     },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author URL', 'quotes-dlx')
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter an author URL', 'quotes-dlx')
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     className: "quotes-dlx-cite-text-control",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Author Title', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Author Title', 'quotes-dlx'),
     value: authorTitle,
     onChange: function onChange(value) {
       return setAttributes({
         authorTitle: value
       });
     },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter an author title such as a job title', 'quotes-dlx')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Enter an author title such as a job title', 'quotes-dlx')
   })), /*#__PURE__*/React.createElement("section", {
     className: "quotes-dlx-cite-panel-row-grid-image-fields"
   }, '' !== citeImageUrl && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-cite-image-card-preview"
   }, /*#__PURE__*/React.createElement("img", {
     src: citeImageUrl,
-    alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation Image', 'quotes-dlx'),
+    alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation Image', 'quotes-dlx'),
     width: 150,
     height: 150
   }))), /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-cite-image-card-button"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
     variant: "secondary",
     icon: "format-image",
     iconPosition: "right",
     onClick: function onClick() {
-      (0,_utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__["default"])(citeImageSelected);
+      (0,_utils_CropHelper__WEBPACK_IMPORTED_MODULE_8__["default"])(citeImageSelected);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Upload Citation Image', 'quotes-dlx')))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.CardFooter, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Upload Citation Image', 'quotes-dlx')))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.CardFooter, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
     variant: "secondary",
     icon: "visibility",
     iconPosition: "right",
@@ -1093,12 +1054,12 @@ var Cite = function Cite(props) {
       });
       setIsPreview(true);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview', 'quotes-dlx')))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Preview', 'quotes-dlx')))));
 
   var getCitationImage = function getCitationImage() {
     var image = /*#__PURE__*/React.createElement("img", {
       src: citeImageUrl,
-      alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Citation Image', 'quotes-dlx'),
+      alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Citation Image', 'quotes-dlx'),
       width: 75,
       height: 75
     });
@@ -1131,7 +1092,6 @@ var Cite = function Cite(props) {
         href: authorUrl,
         target: authorUrlNewTab ? '_blank' : '_self',
         rel: "".concat(noFollow, " noopener noreferrer"),
-        noFollow: authorUrlNoFollow ? 'no-follow' : 'none',
         onClick: function onClick(event) {
           event.preventDefault();
         }
@@ -1161,9 +1121,9 @@ var Cite = function Cite(props) {
     var htmlToReactParser = new HtmlToReactParser();
     return /*#__PURE__*/React.createElement("div", {
       className: "quotes-dlx-cite-author-citation"
-    }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__.toHTMLString)({
+    }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.toHTMLString)({
       // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
-      value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__.create)({
+      value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.create)({
         html: citation,
         preserveWhiteSpace: false
       })
@@ -1179,12 +1139,12 @@ var Cite = function Cite(props) {
   }, getCitationImage()), /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-cite-author-info"
   }, getCitationAuthor(), getCitationAuthorTitle(), getCitation()))));
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-cite is-style-".concat(imageAppearance, " is-layout-").concat(appearance, " is-alignment-").concat(alignment, " citation-image-alignment-").concat(citationImageAlignment), {
       'has-no-citation-image': '' === citeImageUrl || !showAuthorImage
     })
   });
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("figcaption", blockProps, isPreview ? blockPreview : blockEdit));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("figcaption", blockProps, isPreview ? blockPreview : blockEdit));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Cite);
@@ -1391,6 +1351,235 @@ var Icon = function Icon() {
 
 /***/ }),
 
+/***/ "./src/js/blocks/social-bar/edit.js":
+/*!******************************************!*\
+  !*** ./src/js/blocks/social-bar/edit.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
+/* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
+/* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
+/* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
+/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
+/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
+/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
+/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
+/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable react/jsx-no-target-blank */
+
+/* eslint-disable no-undef */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable camelcase */
+
+/**
+ * External dependencies
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
+
+var SocialBar = function SocialBar(props) {
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"]),
+      shareText = _useContext.shareText,
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText;
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(props.attributes.isPreviewMode),
+      _useState2 = _slicedToArray(_useState, 2),
+      isPreview = _useState2[0],
+      setIsPreview = _useState2[1]; // Shortcuts.
+
+
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected;
+  var showTwitter = attributes.showTwitter,
+      showFacebook = attributes.showFacebook,
+      showLinkedin = attributes.showLinkedin,
+      showReddit = attributes.showReddit,
+      showTumblr = attributes.showTumblr,
+      showEmail = attributes.showEmail,
+      showWhatsapp = attributes.showWhatsapp,
+      showTelegram = attributes.showTelegram,
+      showCopy = attributes.showCopy,
+      showWebAPI = attributes.showWebAPI;
+
+  var getSocialNetworks = function getSocialNetworks() {
+    var socialNetworks = [];
+
+    if (showTwitter) {
+      socialNetworks.push('twitter');
+    }
+
+    if (showFacebook) {
+      socialNetworks.push('facebook');
+    }
+
+    if (showLinkedin) {
+      socialNetworks.push('linkedin');
+    }
+
+    if (showReddit) {
+      socialNetworks.push('reddit');
+    }
+
+    if (showTumblr) {
+      socialNetworks.push('tumblr');
+    }
+
+    if (showEmail) {
+      socialNetworks.push('email');
+    }
+
+    if (showWhatsapp) {
+      socialNetworks.push('whatsapp');
+    }
+
+    if (showTelegram) {
+      socialNetworks.push('telegram');
+    }
+
+    if (showCopy) {
+      socialNetworks.push('copy');
+    }
+
+    if (showWebAPI) {
+      socialNetworks.push('webshare-icon');
+    } // Map social networks to SVGs.
+
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("ul", null, socialNetworks.map(function (socialNetwork, index) {
+      return /*#__PURE__*/React.createElement("li", {
+        key: index
+      }, /*#__PURE__*/React.createElement("svg", {
+        className: "qdlx-svg-icon",
+        rel: "nofollow"
+      }, /*#__PURE__*/React.createElement("use", {
+        xlinkHref: "#quotes-dlx-".concat(socialNetwork, "-icon")
+      })));
+    })));
+  };
+
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null);
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-social-bar", {})
+  });
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, inspectorControls), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, getSocialNetworks())));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SocialBar);
+
+/***/ }),
+
+/***/ "./src/js/blocks/social-bar/index.js":
+/*!*******************************************!*\
+  !*** ./src/js/blocks/social-bar/index.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/js/blocks/social-bar/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/social-bar/edit.js");
+
+
+
+
+var Icon = function Icon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    xmlSpace: "preserve",
+    viewBox: "0 0 512 512",
+    width: "24",
+    height: "24"
+  }, /*#__PURE__*/React.createElement("path", {
+    fill: "currentColor",
+    d: "M406 332c-29.641 0-55.761 14.581-72.167 36.755L191.99 296.124c2.355-8.027 4.01-16.346 4.01-25.124 0-11.906-2.441-23.225-6.658-33.636l148.445-89.328C354.307 167.424 378.589 180 406 180c49.629 0 90-40.371 90-90S455.629 0 406 0s-90 40.371-90 90c0 11.437 2.355 22.286 6.262 32.358l-148.887 89.59C156.869 193.136 132.937 181 106 181c-49.629 0-90 40.371-90 90s40.371 90 90 90c30.13 0 56.691-15.009 73.035-37.806l141.376 72.395C317.807 403.995 316 412.75 316 422c0 49.629 40.371 90 90 90s90-40.371 90-90-40.371-90-90-90z"
+  }));
+};
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: function save() {
+    return null;
+  },
+  icon: Icon
+});
+
+/***/ }),
+
 /***/ "./src/js/blocks/tweet-quotes/edit.js":
 /*!********************************************!*\
   !*** ./src/js/blocks/tweet-quotes/edit.js ***!
@@ -1554,7 +1743,7 @@ var TweetQuotes = function TweetQuotes(props) {
     className: 'quotes-dlx-share-blocks quotes-dlx-share-text',
     ref: innerBlocksRef
   }, {
-    allowedBlocks: ['mediaron/quotes-dlx-blockquote'],
+    allowedBlocks: ['mediaron/quotes-dlx-blockquote', 'mediaron/quotes-dlx-cite', 'mediaron/quotes-dlx-social-bar'],
     template: [['mediaron/quotes-dlx-blockquote', {
       placeholder: ''
     }]]
@@ -15092,6 +15281,17 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 
 /***/ }),
 
+/***/ "./src/js/blocks/social-bar/block.json":
+/*!*********************************************!*\
+  !*** ./src/js/blocks/social-bar/block.json ***!
+  \*********************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Social Bar Block","apiVersion":2,"name":"mediaron/quotes-dlx-social-bar","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","quote","caption"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"showTwitter":{"type":"boolean","default":true},"showFacebook":{"type":"boolean","default":true},"showLinkedin":{"type":"boolean","default":true},"showTelegram":{"type":"boolean","default":true},"showWhatsApp":{"type":"boolean","default":true},"showTumblr":{"type":"boolean","default":true},"showCopy":{"type":"boolean","default":true},"showEmail":{"type":"boolean","default":true},"showReddit":{"type":"boolean","default":true},"showWebAPI":{"type":"boolean","default":true}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+
+/***/ }),
+
 /***/ "./src/js/blocks/tweet-quotes/block.json":
 /*!***********************************************!*\
   !*** ./src/js/blocks/tweet-quotes/block.json ***!
@@ -15216,7 +15416,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_blocks_quotes_dlx_blockquote_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/blocks/quotes-dlx-blockquote/index */ "./src/js/blocks/quotes-dlx-blockquote/index.js");
 /* harmony import */ var _js_blocks_cite_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/blocks/cite/index */ "./src/js/blocks/cite/index.js");
-/* harmony import */ var _js_blocks_tweet_quotes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/blocks/tweet-quotes/index */ "./src/js/blocks/tweet-quotes/index.js");
+/* harmony import */ var _js_blocks_social_bar_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/blocks/social-bar/index */ "./src/js/blocks/social-bar/index.js");
+/* harmony import */ var _js_blocks_tweet_quotes_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/blocks/tweet-quotes/index */ "./src/js/blocks/tweet-quotes/index.js");
+
 
 
 

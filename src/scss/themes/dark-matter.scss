@@ -588,5 +588,97 @@ $accent-color: #FFF;
 	/**
 	 * Citation Styles.
 	 */
+	 figcaption.quotes-dlx-cite {
+		font-size: 16px;
+		color: var( --qdlx-dark-matter-button-primary-text-color, $white );
+		font-family: var(--qdlx-dark-matter-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
+		border: 1px solid var(--qdlx-dark-matter-light, $white);
+		border-left: 0;
+		border-right: 0;
+		padding: 1.3em 0;
+		.quotes-dlx-cite-image-wrapper {
+			display: grid;
+			grid-template-columns: 	75px 1fr;
+			grid-gap: 20px;
+			align-items: center;
+			margin-bottom: 8px;
+		}
+		&.citation-image-alignment-right {
+			.quotes-dlx-cite-image-wrapper {
+				display: flex;
+				grid-gap: unset;
+				/* reverse grid */
+				.quotes-dlx-cite-image {
+					margin-left: 20px;
+					order: 2;
+				}
+			}
+		}
+		a {
+			color: var( --qdlx-dark-matter-secondary, $orange );
+			text-transform: none;
+			padding-bottom: 2px;
+			border-bottom: 2px solid transparent;
+			transition: all .35s ease-in-out;
+
+			&:hover {
+				transition: all 0.35s ease-in-out;
+				border-bottom: 2px solid var( --qdlx-dark-matter-secondary, $orange );
+			}
+		}
+		
+		&.is-style-citation-rounded {
+			img {
+				border: 1px solid var(--qdlx-dark-matter-light, $white);
+				padding: 2px;
+				border-radius: 100%;
+			}
+		}
+		&.is-style-citation-squared {
+			img {
+				border: 1px solid var(--qdlx-dark-matter-light, $white);
+				padding: 2px;
+				border-radius: 0;
+			}
+		}
+		&.is-layout-appearance-large {
+			font-size: 18px;
+			.quotes-dlx-cite-image-wrapper {
+				grid-template-columns: 125px 1fr;
+
+				img {
+					width: 125px;
+					height: 125px;
+				}
+			}
+			&.is-alignment-center .quotes-dlx-cite-image-wrapper,
+			&.is-alignment-right .quotes-dlx-cite-image-wrapper {
+				grid-template-columns: 125px auto;
+			}
+		}
+		&.is-alignment-center {
+			.quotes-dlx-cite-image-wrapper {
+				grid-template-columns: 75px auto;
+				justify-content: center;
+			}
+			.quotes-dlx-cite-author-citation {
+				text-align: center;
+			}
+		}
+		&.is-alignment-right {
+			.quotes-dlx-cite-image-wrapper {
+				grid-template-columns: 75px auto;
+				justify-content: right;
+			}
+			.quotes-dlx-cite-author-citation {
+				text-align: right;
+			}
+		}
+		&.has-no-citation-image {
+			.quotes-dlx-cite-image-wrapper {
+				display: block;
+			}
+		}
+	 }
 	 
 }

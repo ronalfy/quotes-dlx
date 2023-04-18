@@ -77,9 +77,7 @@ const Cite = ( props ) => {
 	const { shareText, setShareText, oldShareText, setOldShareText } =
 		useContext( TextContentContext );
 
-	const [ isPreview, setIsPreview ] = useState( true );
-
-	const authorImg = useRef( null );
+	const [ isPreview, setIsPreview ] = useState( props.attributes.isPreviewMode );
 
 	// Shortcuts.
 	const { attributes, setAttributes, isSelected } = props;
@@ -98,7 +96,10 @@ const Cite = ( props ) => {
 		showCitation,
 		authorUrlNoFollow,
 		authorUrlNewTab,
+		imageAppearance,
 		appearance,
+		alignment,
+		citationImageAlignment,
 	} = attributes;
 
 
@@ -119,8 +120,8 @@ const Cite = ( props ) => {
 				title={ __( 'Display Settings', 'quotes-dlx' ) }
 			>
 				<SelectControl
-					label={ __( 'Citation Style', 'quotes-dlx' ) }
-					value={ appearance }
+					label={ __( 'Image Appearance', 'quotes-dlx' ) }
+					value={ imageAppearance }
 					options={ [
 						{
 							label: __( 'Rounded', 'quotes-dlx' ),
@@ -130,9 +131,24 @@ const Cite = ( props ) => {
 							label: __( 'Squared', 'quotes-dlx' ),
 							value: 'citation-squared',
 						},
+					] }
+					onChange={ ( value ) => {
+						setAttributes( {
+							imageAppearance: value,
+						} );
+					} }
+				/>
+				<SelectControl
+					label={ __( 'Citation Appearance', 'quotes-dlx' ) }
+					value={ appearance }
+					options={ [
+						{
+							label: __( 'Default', 'quotes-dlx' ),
+							value: 'appearance-default',
+						},
 						{
 							label: __( 'Large', 'quotes-dlx' ),
-							value: 'citation-large',
+							value: 'appearance-large',
 						},
 					] }
 					onChange={ ( value ) => {
@@ -141,6 +157,25 @@ const Cite = ( props ) => {
 						} );
 					} }
 				/>
+				<PanelRow>
+					<AlignmentGroup
+						label={ __( 'Citation Alignment', 'quotes-dlx' ) }
+						alignment={ alignment }
+						onClick={ ( value ) => {
+							setAttributes( { alignment: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<AlignmentGroup
+						label={ __( 'Image Alignment', 'quotes-dlx' ) }
+						alignment={ citationImageAlignment }
+						centerOn={ false }
+						onClick={ ( value ) => {
+							setAttributes( { citationImageAlignment: value } );
+						} }
+					/>
+				</PanelRow>
 			</PanelBody>
 			<PanelBody
 				initialOpen={ true }
@@ -259,6 +294,9 @@ const Cite = ( props ) => {
 							icon="edit"
 							label={ __( 'Edit Citation', 'quotes-dlx' ) }
 							onClick={ () => {
+								setAttributes( {
+									isPreviewMode: false,
+								} );
 								setIsPreview( false );
 							} }
 						>
@@ -270,6 +308,9 @@ const Cite = ( props ) => {
 							icon="visibility"
 							label={ __( 'Preview', 'quotes-dlx' ) }
 							onClick={ () => {
+								setAttributes( {
+									isPreviewMode: true,
+								} );
 								setIsPreview( true );
 							} }
 						>
@@ -358,6 +399,9 @@ const Cite = ( props ) => {
 						icon="visibility"
 						iconPosition="right"
 						onClick={ () => {
+							setAttributes( {
+								isPreviewMode: true,
+							} );
 							setIsPreview( true );
 						} }
 					>
@@ -458,12 +502,14 @@ const Cite = ( props ) => {
 	const blockPreview = (
 		<>
 			<div className="quotes-dlx-cite-wrapper">
-				{ '' !== citeImageUrl && (
-					<div className="quotes-dlx-cite-image">{ getCitationImage() }</div>
-				) }
-				<div className="quotes-dlx-cite-author-info">
-					{ getCitationAuthor() }
-					{ getCitationAuthorTitle() }
+				<div className="quotes-dlx-cite-image-wrapper">
+					{ ( '' !== citeImageUrl && showAuthorImage ) && (
+						<div className="quotes-dlx-cite-image">{ getCitationImage() }</div>
+					) }
+					<div className="quotes-dlx-cite-author-info">
+						{ getCitationAuthor() }
+						{ getCitationAuthorTitle() }
+					</div>
 				</div>
 				{ getCitation() }
 			</div>
@@ -471,7 +517,12 @@ const Cite = ( props ) => {
 	);
 
 	const blockProps = useBlockProps( {
-		className: `quotes-dlx-cite is-style-${ appearance }`,
+		className: classnames(
+			`quotes-dlx-cite is-style-${ imageAppearance } is-layout-${ appearance } is-alignment-${ alignment } citation-image-alignment-${ citationImageAlignment }`,
+			{
+				'has-no-citation-image': '' === citeImageUrl || ! showAuthorImage,
+			}
+		),
 	} );
 
 	return (

@@ -67,9 +67,25 @@
 			"type": "boolean",
 			"default": true
 		},
-		"appearance": {
+		"imageAppearance": {
 			"type": "string",
 			"default": "citation-rounded"
+		},
+		"appearance": {
+			"type": "string",
+			"default": "default"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"citationImageAlignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"isPreviewMode": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"example": {
@@ -78,7 +94,7 @@
 	},
 	"supports": {
 		"anchor": false,
-		"align": ["left", "center", "right"],
+		"align": false,
 		"className": true
 	},
 	"editorScript": "quotes-dlx-block",

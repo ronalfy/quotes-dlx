@@ -354,6 +354,26 @@ const ClickToShare = ( props ) => {
 		return image;
 	};
 
+	const getReview = () => {
+		if ( ! showReview || '' === review ) {
+			return null;
+		}
+		const htmlToReactParser = new HtmlToReactParser();
+		return (
+			<div className="quotes-dlx-review-author-review">
+				{ htmlToReactParser.parse(
+					toHTMLString( {
+					// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+						value: create( {
+							html: review,
+							preserveWhiteSpace: false,
+						} ),
+					} )
+				) }
+			</div>
+		);
+	};
+
 	const blockEdit = (
 		<>
 			<Card>
@@ -481,6 +501,7 @@ const ClickToShare = ( props ) => {
 	const blockPreview = (
 		<>
 			<div className="quotes-dlx-review-wrapper">
+				{ getReview() }
 				<div className="quotes-dlx-review-image-wrapper">
 					{ ( '' !== reviewerImage && showReviewerImage ) && (
 						<div className="quotes-dlx-review-image">{ getReviewerImage() }</div>

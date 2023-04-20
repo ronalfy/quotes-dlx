@@ -1970,6 +1970,23 @@ var ClickToShare = function ClickToShare(props) {
     return image;
   };
 
+  var getReview = function getReview() {
+    if (!showReview || '' === review) {
+      return null;
+    }
+
+    var htmlToReactParser = new HtmlToReactParser();
+    return /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-review-author-review"
+    }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_21__.toHTMLString)({
+      // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
+      value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_21__.create)({
+        html: review,
+        preserveWhiteSpace: false
+      })
+    })));
+  };
+
   var blockEdit = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardBody, {
     isShady: true,
     isScrollable: true
@@ -2082,7 +2099,7 @@ var ClickToShare = function ClickToShare(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Preview', 'quotes-dlx')))));
   var blockPreview = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-review-wrapper"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, getReview(), /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-review-image-wrapper"
   }, '' !== reviewerImage && showReviewerImage && /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-review-image"

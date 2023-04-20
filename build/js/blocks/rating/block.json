@@ -1,0 +1,128 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "title": "QuotesDLX Rating",
+  "apiVersion": 2,
+  "name": "mediaron/quotes-dlx-rating",
+  "parent": [
+    "mediaron/quotes-dlx"
+  ],
+  "category": "text",
+  "icon": "<svg width='100%' height='100%' viewBox='0 0 4450 4450' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;''><g transform='matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)'><path fill='#9932cc' d='M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z'/><path d='M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z' style='fill:white;'/><path d='M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z' style='fill:white;'/></g></svg>",
+  "description": "Add a citation to your quote.",
+  "keywords": [
+    "click",
+    "tweet",
+    "twitter",
+    "share",
+    "social",
+    "rating"
+  ],
+  "version": "1.0.0",
+  "textdomain": "quotes-dlx",
+  "attributes": {
+    "uniqueId": {
+      "type": "string",
+      "default": ""
+    },
+    "starRating": {
+      "type": "number",
+      "default": 0
+    },
+    "ratingPercentage": {
+      "type": "number",
+      "default": 0
+    },
+    "ratingNumber": {
+      "type": "number",
+      "default": 10
+    },
+    "ratingMax": {
+      "type": "number",
+      "default": 10
+    },
+    "ratingType": {
+      "type": "string",
+      "default": "stars"
+    },
+    "review": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewer": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewerUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewerImage": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewerImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "reviewerTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewerCompany": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "isPreviewMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "showReviewerImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "showReviewerUrl": {
+      "type": "boolean",
+      "default": true
+    },
+    "reviewerUrlNoFollow": {
+      "type": "boolean",
+      "default": false
+    },
+    "reviewerUrlNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "showReviewerName": {
+      "type": "boolean",
+      "default": true
+    },
+    "showReviewerTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "showReviewerCompany": {
+      "type": "boolean",
+      "default": true
+    },
+    "showReview": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "className": true
+  },
+  "editorScript": "quotes-dlx-block",
+  "editorStyle": "quotes-dlx-block-editor-styles",
+  "style": "quotes-dlx-frontend",
+  "viewScript": "quotes-dlx-actions"
+}

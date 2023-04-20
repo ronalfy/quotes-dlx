@@ -15,6 +15,7 @@
   /**
    * Citation Styles.
    */
+  /* Social networks */
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter {
@@ -147,8 +148,10 @@
   display: flex;
   position: relative;
   background: var(--qdlx-dark-matter-primary, #2B2B2B);
-  padding: 45px 35px;
-  padding-top: 0;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+  align-items: center;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon {
   position: absolute;
@@ -571,6 +574,21 @@
 }
 .quotes-dlx-block-theme-dark-matter figcaption.quotes-dlx-cite.has-no-citation-image .quotes-dlx-cite-image-wrapper {
   display: block;
+}
+.quotes-dlx-block-theme-dark-matter ul.qdlx-social-networks li .qdlx-svg-icon {
+  background: var(--qdlx-dark-matter-button-primary-color, #cc7000);
+}
+.quotes-dlx-block-theme-dark-matter ul.qdlx-social-networks li .qdlx-svg-icon svg {
+  fill: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+  color: var(--qdlx-dark-matter-button-primary-text-color, #FFFFFF);
+}
+.quotes-dlx-block-theme-dark-matter ul.qdlx-social-networks li .qdlx-svg-icon:hover {
+  color: var(--qdlx-dark-matter-button-secondary-text-color, #cc7000);
+  background: var(--qdlx-dark-matter-button-secondary-color, #FFFFFF);
+}
+.quotes-dlx-block-theme-dark-matter ul.qdlx-social-networks li .qdlx-svg-icon:hover svg {
+  fill: var(--qdlx-dark-matter-button-primary-color, #cc7000);
+  color: var(--qdlx-dark-matter-button-primary-color, #cc7000);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-dark-matter.css.map*/

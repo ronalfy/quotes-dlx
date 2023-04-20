@@ -89,10 +89,12 @@ const SocialBar = ( props ) => {
 		showReddit,
 		showTumblr,
 		showEmail,
-		showWhatsapp,
+		showWhatsApp,
 		showTelegram,
 		showCopy,
 		showWebAPI,
+		iconAppearance,
+		alignment,
 	} = attributes;
 
 	const getSocialNetworks = () => {
@@ -112,29 +114,30 @@ const SocialBar = ( props ) => {
 		if ( showTumblr ) {
 			socialNetworks.push( 'tumblr' );
 		}
-		if ( showEmail ) {
-			socialNetworks.push( 'email' );
-		}
-		if ( showWhatsapp ) {
+		
+		if ( showWhatsApp ) {
 			socialNetworks.push( 'whatsapp' );
 		}
 		if ( showTelegram ) {
 			socialNetworks.push( 'telegram' );
 		}
+		if ( showEmail ) {
+			socialNetworks.push( 'email' );
+		}
 		if ( showCopy ) {
 			socialNetworks.push( 'copy' );
 		}
 		if ( showWebAPI ) {
-			socialNetworks.push( 'webshare-icon' );
+			socialNetworks.push( 'webshare' );
 		}
 		// Map social networks to SVGs.
 		return (
 			<>
-				<ul>
+				<ul className="qdlx-social-networks">
 					{ socialNetworks.map( ( socialNetwork, index ) => {
 						return (
 							<li key={ index }>
-								<svg className="qdlx-svg-icon" rel="nofollow"><use xlinkHref={ `#quotes-dlx-${ socialNetwork }-icon`}></use></svg>
+								<span className={ `qdlx-svg-icon qdlx-social-${ socialNetwork }` }rel="nofollow"><svg><use xlinkHref={ `#quotes-dlx-${ socialNetwork }-icon`}></use></svg></span>
 							</li>
 						);
 					} ) }
@@ -145,14 +148,141 @@ const SocialBar = ( props ) => {
 
 	const inspectorControls = (
 		<>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Display Settings', 'quotes-dlx' ) }
+			>
+				<SelectControl
+					label={ __( 'Icon Appearance', 'quotes-dlx' ) }
+					value={ iconAppearance }
+					options={ [
+						{
+							label: __( 'Rounded', 'quotes-dlx' ),
+							value: 'rounded',
+						},
+						{
+							label: __( 'Squared', 'quotes-dlx' ),
+							value: 'squared',
+						},
+					] }
+					onChange={ ( value ) => {
+						setAttributes( {
+							iconAppearance: value,
+						} );
+					} }
+				/>
+				<PanelRow>
+					<AlignmentGroup
+						label={ __( 'Social Bar Alignment', 'quotes-dlx' ) }
+						alignment={ alignment }
+						onClick={ ( value ) => {
+							setAttributes( { alignment: value } );
+						} }
+					/>
+				</PanelRow>
+			</PanelBody>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Available Social Networks', 'quotes-dlx' ) }
+			>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Twitter', 'quotes-dlx' ) }
+						checked={ showTwitter }
+						onChange={ ( value ) => {
+							setAttributes( { showTwitter: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Facebook', 'quotes-dlx' ) }
+						checked={ showFacebook }
+						onChange={ ( value ) => {
+							setAttributes( { showFacebook: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show LinkedIn', 'quotes-dlx' ) }
+						checked={ showLinkedin }
+						onChange={ ( value ) => {
+							setAttributes( { showLinkedin: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Reddit', 'quotes-dlx' ) }
+						checked={ showReddit }
+						onChange={ ( value ) => {
+							setAttributes( { showReddit: value } );
+						} }
+
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Tumblr', 'quotes-dlx' ) }
+						checked={ showTumblr }
+						onChange={ ( value ) => {
+							setAttributes( { showTumblr: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show WhatsApp', 'quotes-dlx' ) }
+						checked={ showWhatsApp }
+						onChange={ ( value ) => {
+							setAttributes( { showWhatsApp: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Telegram', 'quotes-dlx' ) }
+						checked={ showTelegram }
+						onChange={ ( value ) => {
+							setAttributes( { showTelegram: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Email', 'quotes-dlx' ) }
+						checked={ showEmail }
+						onChange={ ( value ) => {
+							setAttributes( { showEmail: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Copy', 'quotes-dlx' ) }
+						checked={ showCopy }
+						onChange={ ( value ) => {
+							setAttributes( { showCopy: value } );
+						} }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Show Web Share API', 'quotes-dlx' ) }
+						checked={ showWebAPI }
+						onChange={ ( value ) => {
+							setAttributes( { showWebAPI: value } );
+						} }
+					/>
+				</PanelRow>
+			</PanelBody>
 		</>
 	);
 
 	const blockProps = useBlockProps( {
 		className: classnames(
-			`quotes-dlx-social-bar`,
-			{
-			}
+			`quotes-dlx-social-bar qdlx-social-bar-${ iconAppearance } qdlx-social-bar-align-${ alignment }`
 		),
 	} );
 

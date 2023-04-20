@@ -35,19 +35,19 @@
     },
     "showLinkedin": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "showTelegram": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "showWhatsApp": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "showTumblr": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "showCopy": {
       "type": "boolean",
@@ -59,11 +59,19 @@
     },
     "showReddit": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "showWebAPI": {
       "type": "boolean",
       "default": true
+    },
+    "iconAppearance": {
+      "type": "string",
+      "default": "rounded"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
     }
   },
   "example": {

@@ -57,7 +57,8 @@ const Blockquote = ( props ) => {
 		},
 		{
 			allowedBlocks: [ 'core/paragraph' ],
-			template: [ [ 'core/paragraph', { placeholder: '' } ] ],
+			template: [ [ 'core/paragraph', { placeholder: __( 'Type or paste in your quote', 'quotes-dlx' ) } ] ],
+			renderAppender: false,
 		}
 	);
 

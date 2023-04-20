@@ -2,6 +2,7 @@
 @import './button-resets.scss';
 @import './meatball-menu.scss';
 @import './themes.scss';
+@import './social-media-colors.scss';
 
 
 :root {
@@ -389,4 +390,56 @@ body .editor-styles-wrapper {
 		height: auto;
 	}
 	margin-bottom: 0.8em;
+}
+
+/* Popover Modal */
+.qdlx-block-editor-modal {
+	.has-line-count-progress {
+		min-width: 95px;
+		width: 100%;
+	}
+	.has-line-count .has-line-count-characters {
+		min-width: 70px;
+	}
+}
+
+/* Block appender */
+.quotes-dlx-content-wrapper .block-list-appender {
+	width: 100%;
+	position: relative;
+}
+.quotes-dlx-content-wrapper .block-editor-inserter {
+	button {
+		display: block;
+		margin: 0 auto;
+		max-width: 85%;
+		background: #333;
+		color: #FFF;
+		border: 1px solid #fff;
+
+		svg {
+			fill: #fff;
+		}
+	}
+}
+
+/* Star Rating */
+.qdlx-block-star-rating {
+	.empty-icons {
+		.star-svg {
+			color: #CCC;
+			fill: #CCC;
+		}
+	}
+	.filled-icons {
+		.star-svg {
+			color: #ffb900;
+			fill: #ffb900;
+		}
+	}
+}
+.qdlx-ratings-options-row {
+	.components-range-control {
+		width: 100%;
+	}
 }

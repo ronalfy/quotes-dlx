@@ -12,6 +12,7 @@ import UnitChooser from '../../components/unit-picker';
 import TwitterIcon from '../../components/icons/twitter';
 import FacebookIcon from '../../components/icons/FacebookIcon';
 import PaintbrushIcon from '../../components/icons/paintbrush';
+import LinkIcon from '../../components/icons/LinkIcon';
 import PreviewIcon from '../../components/icons/Preview';
 import NewWindowIcon from '../../components/icons/NewWindow';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
@@ -23,7 +24,7 @@ import ColorPicker from '../../components/ColorPicker';
 
 import { useEffect, useState, createRef, useRef, useContext } from '@wordpress/element';
 
-import { useSelect } from '@wordpress/data';
+import { useSelect, select } from '@wordpress/data';
 
 import { createHooks } from '@wordpress/hooks';
 
@@ -36,6 +37,7 @@ import {
 	PanelBody,
 	PanelRow,
 	ToolbarGroup,
+	ToolbarButton,
 	ToggleControl,
 	TextControl,
 	TextareaControl,
@@ -44,11 +46,12 @@ import {
 	FormTokenField,
 	RadioControl,
 	Notice,
+	Modal,
 } from '@wordpress/components';
 
 import {
 	InspectorControls,
-	RichText,
+	InnerBlocks,
 	BlockControls,
 	useBlockProps,
 	useInnerBlocksProps,
@@ -63,6 +66,11 @@ const TweetQuotes = ( props ) => {
 	const maximumWidthInput = createRef( null );
 	const innerBlocksRef = useRef( null );
 
+	useEffect( () => {
+		const children = select( 'core/block-editor' ).getBlocksByClientId( props.clientId )[ 0 ].innerBlocks;
+		console.log( children );
+	}, [] );
+
 	const { shareText, setShareText, oldShareText, setOldShareText } = useContext( TextContentContext );
 
 	// State.
@@ -76,6 +84,10 @@ const TweetQuotes = ( props ) => {
 	const [ themeColors, setThemeColors ] = useState( [] );
 	const [ selectedTheme, setSelectedTheme ] = useState( '' );
 
+	// Twitter modal state.
+	const [ isTwitterModalOpen, setIsTwitterModalOpen ] = useState( false );
+	const [ isLinkModalOpen, setIsLinkModalOpen ] = useState( false );
+
 	// Set up Inner Blocks.
 	const innerBlockProps = useInnerBlocksProps(
 		{
@@ -84,12 +96,13 @@ const TweetQuotes = ( props ) => {
 		},
 		{
 			allowedBlocks: [ 'mediaron/quotes-dlx-blockquote', 'mediaron/quotes-dlx-cite', 'mediaron/quotes-dlx-social-bar' ],
-			template: [ [ 'mediaron/quotes-dlx-blockquote', { placeholder: '' } ] ],
+			template: [ [ 'mediaron/quotes-dlx-blockquote' ] ],
+			renderAppender: props.isSelected ? InnerBlocks.ButtonBlockAppender : false,
 		}
 	);
 
 	// Shortcuts.
-	const { attributes, setAttributes, isSelected } = props;
+	const { attributes, setAttributes, isSelected, clientId } = props;
 
 	const generatedUniqueId = useInstanceId(
 		TweetQuotes,
@@ -114,17 +127,9 @@ const TweetQuotes = ( props ) => {
 		share_text,
 		share_text_override,
 		share_text_override_enabled,
-		share_button_text,
-		facebook_share_button_text,
 		maximum_width,
 		maximum_width_unit,
 		tweet_button_enabled,
-		facebook_button_enabled,
-		tweet_button_alignment,
-		tweet_icon_alignment,
-		rtl,
-		tweet_button_display,
-		tweet_styles_disabled,
 		anchor,
 		has_anchor,
 		url_shortener,
@@ -143,7 +148,6 @@ const TweetQuotes = ( props ) => {
 		blockOnly,
 		defaultsApplied,
 		transforming,
-		icon_appearance,
 		enable_custom_theme_colors,
 		theme_colors,
 	} = attributes;
@@ -156,7 +160,6 @@ const TweetQuotes = ( props ) => {
 	}, [ oldShareText ] );
 
 	useEffect( () => {
-		console.log( 'testing' );
 		countCharacters();
 		countInfoCharacters();
 	}, [
@@ -172,7 +175,9 @@ const TweetQuotes = ( props ) => {
 	] );
 
 	useEffect( () => {
-		setAttributes( { uniqueId: generatedUniqueId, anchor: generatedUniqueId } );
+		if ( '' === uniqueId ) {
+			setAttributes( { uniqueId: generatedUniqueId + clientId, anchor: generatedUniqueId + clientId } );
+		}
 
 		// Check to see if defaults have been applied.
 		if ( ! defaultsApplied ) {
@@ -371,62 +376,6 @@ const TweetQuotes = ( props ) => {
 		return <LineCount chars={ tweetCharacterTotal } />;
 	};
 
-	const getClickToShareButton = () => {
-		if ( ! tweet_button_enabled && ! facebook_button_enabled ) {
-			return <></>;
-		}
-		const buttonClassNames = classnames( tweet_button_alignment, {
-			'quotes-dlx-button-wrapper': true,
-			'is-transparent-button': ( tweet_button_display === 'icon' && 'transparent' === icon_appearance ),
-		} );
-		return (
-			<div className={ buttonClassNames }>
-				{ tweet_button_enabled && (
-					<button
-						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-						onClick={ ( value ) => {} }
-					>
-						<>
-							{ ( tweet_button_display === 'full' ||
-								tweet_button_display === 'text' ) && (
-								<span className="quotes-dlx-button-text">
-									{ share_button_text }
-								</span>
-							) }
-							{ ( tweet_button_display === 'icon' ||
-								tweet_button_display === 'full' ) && (
-								<span className="quotes-dlx-button-icon">
-									<TwitterIcon />
-								</span>
-							) }
-						</>
-					</button>
-				) }
-				{ facebook_button_enabled && (
-					<button
-						className={ `quotes-dlx-button ${ tweet_button_display } quotes-dlx-button-icon-${ tweet_icon_alignment }` }
-						onClick={ ( value ) => {} }
-					>
-						<>
-							{ ( tweet_button_display === 'full' ||
-								tweet_button_display === 'text' ) && (
-								<span className="quotes-dlx-button-text">
-									{ facebook_share_button_text }
-								</span>
-							) }
-							{ ( tweet_button_display === 'icon' ||
-								tweet_button_display === 'full' ) && (
-								<span className="quotes-dlx-button-icon">
-									<FacebookIcon />
-								</span>
-							) }
-						</>
-					</button>
-				) }
-			</div>
-		);
-	};
-
 	const getColors = () => {
 		const currentThemes = tweet_quotes_block_vars.themes;
 		// Check if theme slug exists in themes object.
@@ -532,124 +481,6 @@ const TweetQuotes = ( props ) => {
 						ref={ maximumWidthInput }
 					/>
 				</>
-			</PanelBody>
-			<PanelBody
-				initialOpen={ true }
-				title={ __( 'Share Buttons', 'quotes-dlx' ) }
-			>
-				<PanelRow>
-					<ToggleControl
-						label={ __( 'Enable Twitter Share Button', 'quotes-dlx' ) }
-						checked={ tweet_button_enabled }
-						onChange={ ( value ) => {
-							setAttributes( {
-								tweet_button_enabled: value,
-							} );
-						} }
-						help={ __( 'Show or hide the Click to Tweet button.', 'quotes-dlx' ) }
-					/>
-				</PanelRow>
-				{ tweet_button_enabled && (
-					<PanelRow>
-						<TextControl
-							label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
-							help={ __( 'Enter the Click to Tweet button text.' ) }
-							value={ share_button_text }
-							onChange={ ( value ) => {
-								setAttributes( {
-									share_button_text: value,
-								} );
-							} }
-						/>
-					</PanelRow>
-				) }
-				<PanelRow>
-					<ToggleControl
-						label={ __( 'Enable Facebook Share Button', 'quotes-dlx' ) }
-						checked={ facebook_button_enabled }
-						onChange={ ( value ) => {
-							setAttributes( {
-								facebook_button_enabled: value,
-							} );
-						} }
-						help={ __( 'Show or hide the Share on Facebook button.', 'quotes-dlx' ) }
-					/>
-				</PanelRow>
-				{ facebook_button_enabled && (
-					<PanelRow>
-						<TextControl
-							label={ __( 'Facebook Button Text', 'quotes-dlx' ) }
-							help={ __( 'Enter the Facebook Button text' ) }
-							value={ facebook_share_button_text }
-							onChange={ ( value ) => {
-								setAttributes( {
-									facebook_share_button_text: value,
-								} );
-							} }
-						/>
-					</PanelRow>
-				) }
-				{ ( tweet_button_enabled || facebook_button_enabled ) && (
-					<>
-						<PanelRow>
-							<AlignmentGroup
-								label={ __( 'Button Alignment', 'quotes-dlx' ) }
-								alignment={ tweet_button_alignment }
-								onClick={ ( value ) => {
-									setAttributes( { tweet_button_alignment: value } );
-								} }
-							/>
-						</PanelRow>
-						{ tweet_button_display === 'full' && (
-							<PanelRow>
-								<AlignmentGroup
-									label={ __( 'Icon Alignment', 'quotes-dlx' ) }
-									alignment={ tweet_icon_alignment }
-									onClick={ ( value ) => {
-										setAttributes( { tweet_icon_alignment: value } );
-									} }
-									centerOn={ false }
-								/>
-							</PanelRow>
-						) }
-						<PanelRow className="quotes-dlx-sidebar-button-options">
-							<RadioControl
-								label={ __( 'Button Options', 'quotes-dlx' ) }
-								selected={ tweet_button_display }
-								options={ [
-									{ label: __( 'Text Only', 'quotes-dlx' ), value: 'text' },
-									{ label: __( 'Icon Only', 'quotes-dlx' ), value: 'icon' },
-									{
-										label: __( 'Text and Icon', 'quotes-dlx' ),
-										value: 'full',
-									},
-								] }
-								onChange={ ( value ) => {
-									setAttributes( {
-										tweet_button_display: value,
-									} );
-								} }
-							/>
-						</PanelRow>
-						{ 'icon' === tweet_button_display && (
-							<PanelRow className="quotes-dlx-sidebar-button-options">
-								<RadioControl
-									label={ __( 'Button Icon Appearance', 'quotes-dlx' ) }
-									selected={ icon_appearance }
-									options={ [
-										{ label: __( 'Button', 'quotes-dlx' ), value: 'button' },
-										{ label: __( 'Transparent', 'quotes-dlx' ), value: 'transparent' },
-									] }
-									onChange={ ( value ) => {
-										setAttributes( {
-											icon_appearance: value,
-										} );
-									} }
-								/>
-							</PanelRow>
-						) }
-					</>
-				) }
 			</PanelBody>
 			<PanelBody
 				initialOpen={ false }
@@ -836,6 +667,406 @@ const TweetQuotes = ( props ) => {
 		toolbarThemes
 	); // Allow others to add themes via React.
 
+	const getTweetModal = () => {
+		if ( ! isTwitterModalOpen ) {
+			return null;
+		}
+		return (
+			<Modal
+				title={ __( 'Twitter Settings', 'quotes-dlx' ) }
+				onRequestClose={ () => {
+					setIsTwitterModalOpen( false );
+				} }
+			>
+				<div className="qdlx-block-editor-modal">
+					{ getCharacterBar() }
+					<ToggleControl
+						label={ __( 'Customize Twitter Content', 'quotes-dlx' ) }
+						checked={ share_text_override_enabled }
+						onChange={ ( value ) => {
+							setAttributes( {
+								share_text_override_enabled: value,
+							} );
+						} }
+						help={ __(
+							'If your quote is too large for Twitter, you can create custom tweet content here.',
+							'quotes-dlx'
+						) }
+					/>
+					{ share_text_override_enabled && (
+						<TextareaControl
+							label={ __( 'Custom Tweet Content', 'quotes-dlx' ) }
+							help={ __(
+								'Enter your custom tweet content here if your quote is too long for Twitter'
+							) }
+							value={ share_text_override }
+							onChange={ ( value ) => {
+								setAttributes( {
+									share_text_override: value,
+								} );
+							} }
+						/>
+					) }
+					<FormTokenField
+						value={ hashtags }
+						placeholder={ __(
+							'Enter hashtags separated by commas.',
+							'quotes-dlx'
+						) }
+						className="quotes-dlx-hashtag-fields"
+						tokenizeOnSpace={ true }
+						label={ __( 'Hashtags', 'quotes-dlx' ) }
+						onChange={ ( tokens ) => {
+							const filteredTokens = [];
+							tokens.forEach( function( item, index ) {
+								const replacement = item.replace( '#', '' ); // Strip hashtag symbol.
+								const hashtag = twttr.txt.extractHashtags(
+									'#' + replacement
+								); // Add it back in for extraction.
+								// Check if array contains anything.
+								if ( typeof hashtag[ 0 ] !== 'undefined' ) {
+									filteredTokens.push( hashtag[ 0 ] );
+								}
+							} );
+							setAttributes( { hashtags: filteredTokens } );
+						} }
+					/>
+					<TextControl
+						label={ __( 'Tweet Credit (via)', 'quotes-dlx' ) }
+						help={ __(
+							'Enter the Twitter username you would like to credit. Leave empty for no credit.'
+						) }
+						value={ twitter_username }
+						onChange={ ( value ) => {
+							const replacement = value.replace( '@', '' ); // Strip @ symbol.
+							if ( value.length > 0 ) {
+								const usernames =
+														twttr.txt.extractMentions( replacement );
+								if ( typeof usernames[ 0 ] !== 'undefined' ) {
+									setAttributes( {
+										twitter_username: usernames[ 0 ].replace( '@', '' ),
+									} );
+									return;
+								}
+							}
+							setAttributes( {
+								twitter_username: replacement,
+							} );
+						} }
+					/>
+					<Button
+						variant="secondary"
+						onClick={ () => {
+							setIsTwitterModalOpen( false );
+						} }
+					>
+						{ __( 'Close', 'quotes-dlx' ) }
+					</Button>
+				</div>
+			</Modal>
+		);
+	};
+
+	const getLinkModalContent = () => {
+		if ( ! isLinkModalOpen ) {
+			return null;
+		}
+		return (
+			<Modal
+				title={ __( 'Link Settings', 'quotes-dlx' ) }
+				onRequestClose={ () => {
+					setIsLinkModalOpen( false );
+				} }
+			>
+				<div className="qdlx-block-editor-modal">
+					{ getCharacterBar() }
+					<ToggleControl
+						label={ __( 'Enable Link in the Content When Sharing', 'quotes-dlx' ) }
+						checked={ enable_links_in_tweet }
+						onChange={ ( value ) => {
+							setAttributes( {
+								enable_links_in_tweet: value,
+							} );
+						} }
+						help={ __(
+							'Disabling this will strip the link from the share text.',
+							'quotes-dlx'
+						) }
+					/>
+					{ enable_links_in_tweet && (
+						<>
+							<ToggleControl
+								label={ __( 'Enable Anchor', 'quotes-dlx' ) }
+								checked={ has_anchor }
+								onChange={ ( value ) => {
+									setAttributes( {
+										has_anchor: value,
+									} );
+								} }
+								help={ __(
+									'Enable anchors so users can link directly to the quote.',
+									'quotes-dlx'
+								) }
+							/>
+							{ has_anchor && (
+								<TextControl
+									label={ __( 'Anchor (ID)', 'quotes-dlx' ) }
+									help={ __(
+										'Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'
+									) }
+									value={ anchor }
+									onChange={ ( value ) => {
+										setAttributes( {
+											anchor: value,
+										} );
+									} }
+								/>
+							) }
+							<ToggleControl
+								label={ __( 'Enable URL Shortening', 'quotes-dlx' ) }
+								checked={ url_shortener }
+								onChange={ ( value ) => {
+									setAttributes( {
+										url_shortener: value,
+									} );
+								} }
+								help={ __(
+									'Enable the URL shortener for your share text.',
+									'quotes-dlx'
+								) }
+							/>
+							{ url_shortener && (
+								<>
+									<RadioControl
+										label={ __( 'Shortlink Service', 'quotes-dlx' ) }
+										selected={ url_shortening_service }
+										options={ [
+											{
+												label: __( 'Bitly', 'quotes-dlx' ),
+												value: 'bitly',
+											},
+											{
+												label: __( 'Jetpack', 'quotes-dlx' ),
+												value: 'jetpack',
+											},
+											{
+												label: __( 'Manual', 'quotes-dlx' ),
+												value: 'manual',
+											},
+										] }
+										onChange={ ( value ) => {
+											setAttributes( {
+												url_shortening_service: value,
+											} );
+											setUrlShortener( value );
+										} }
+									/>
+									{ url_shortening_service === 'bitly' &&
+										! tweet_quotes_block_vars.bitly_plugin_short_url && (
+										<Notice
+											className="quotes-dlx-notice quotes-dlx-notice-warning"
+											status="warning"
+											politeness="assertive"
+											isDismissible={ false }
+										>
+											<div className="quotes-dlx-notice-icon">
+												<CircularExclamationIcon
+													width={ 36 }
+													height={ 36 }
+													className="quotes-dlx-icon"
+													var="--quotes-dlx--preset--notice-warning-icon-color"
+												/>
+											</div>
+											<h2>
+												{ __(
+													'The Bitly short URL cannot be found.',
+													'quotes-dlx'
+												) }
+											</h2>
+											<p>
+												{ __(
+													'You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.',
+													'quotes-dlx'
+												) }
+											</p>
+										</Notice>
+									) }
+									{ url_shortening_service === 'bitly' &&
+										! tweet_quotes_block_vars.bitly_plugin_active && (
+										<Notice
+											className="quotes-dlx-notice quotes-dlx-notice-warning"
+											status="warning"
+											politeness="assertive"
+											isDismissible={ false }
+										>
+											<div className="quotes-dlx-notice-icon">
+												<CircularExclamationIcon
+													width={ 36 }
+													height={ 36 }
+													className="quotes-dlx-icon"
+													var="--quotes-dlx--preset--notice-warning-icon-color"
+												/>
+											</div>
+											<h2>
+												{ __(
+													'The official Bitly plugin is not installed.',
+													'quotes-dlx'
+												) }
+											</h2>
+											<p>
+												{ __(
+													'Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.',
+													'quotes-dlx'
+												) }
+											</p>
+											<div className="quotes-dlx-notice-button">
+												<Button
+													variant="link"
+													href="https://wordpress.org/plugins/wp-bitly/"
+													target="_blank"
+													icon={
+														<NewWindowIcon width={ 12 } height={ 12 } />
+													}
+													iconPosition="right"
+												>
+													{ __(
+														'Visit the Bitly plugin on WordPress.org',
+														'quotes-dlx'
+													) }
+												</Button>
+											</div>
+										</Notice>
+									) }
+									{ url_shortening_service === 'jetpack' &&
+										! tweet_quotes_block_vars.jetpack_plugin_short_url && (
+										<Notice
+											className="quotes-dlx-notice quotes-dlx-notice-warning"
+											status="warning"
+											politeness="assertive"
+											isDismissible={ false }
+										>
+											<div className="quotes-dlx-notice-icon">
+												<CircularExclamationIcon
+													width={ 36 }
+													height={ 36 }
+													className="quotes-dlx-icon"
+													var="--quotes-dlx--preset--notice-warning-icon-color"
+												/>
+											</div>
+											<h2>
+												{ __(
+													'A shortlink from Jetpack could not be found',
+													'quotes-dlx'
+												) }
+											</h2>
+											<p>
+												{ __(
+													'Please ensure that Jetpack is installed and that shortlinks are enabled.',
+													'quotes-dlx'
+												) }
+											</p>
+											<div className="quotes-dlx-notice-button">
+												<Button
+													variant="link"
+													href="https://jetpack.com/support/wp-me-shortlinks/"
+													target="_blank"
+													icon={
+														<NewWindowIcon width={ 12 } height={ 12 } />
+													}
+													iconPosition="right"
+												>
+													{ __(
+														'Visit the Jetpack Shortlink Documentation',
+														'quotes-dlx'
+													) }
+												</Button>
+											</div>
+										</Notice>
+									) }
+
+									{ url_shortening_service === 'jetpack' &&
+										! tweet_quotes_block_vars.jetpack_plugin_active && (
+										<Notice
+											className="quotes-dlx-notice quotes-dlx-notice-warning"
+											status="warning"
+											politeness="assertive"
+											isDismissible={ false }
+										>
+											<div className="quotes-dlx-notice-icon">
+												<CircularExclamationIcon
+													width={ 36 }
+													height={ 36 }
+													className="quotes-dlx-icon"
+													var="--quotes-dlx--preset--notice-warning-icon-color"
+												/>
+											</div>
+											<h2>
+												{ __(
+													'The official Jetpack plugin is not installed.',
+													'quotes-dlx'
+												) }
+											</h2>
+											<p>
+												{ __(
+													'Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.',
+													'quotes-dlx'
+												) }
+											</p>
+											<div className="quotes-dlx-notice-button">
+												<Button
+													variant="link"
+													href="https://wordpress.org/plugins/jetpack/"
+													target="_blank"
+													icon={
+														<NewWindowIcon width={ 12 } height={ 12 } />
+													}
+													iconPosition="right"
+												>
+													{ __(
+														'Visit the Jetpack plugin on WordPress.org',
+														'quotes-dlx'
+													) }
+												</Button>
+											</div>
+										</Notice>
+									) }
+								</>
+							) }
+							<TextControl
+								label={ __( 'Page URL', 'quotes-dlx' ) }
+								help={ __(
+									'This displays the permanent URL to this block.'
+								) }
+								placeholder={ manualPermalink }
+								value={ manualPermalink ?? '' }
+								onChange={ ( value ) => {
+									setAttributes( {
+										manualPermalink: value,
+										permalink: value,
+									} );
+								} }
+								disabled={
+									url_shortening_service !== 'manual'
+										? 'disabled'
+										: ''
+								}
+								ref={ manualUrlInput }
+							/>
+						</>
+					) }
+					<Button
+						variant="secondary"
+						onClick={ () => {
+							setIsLinkModalOpen( false );
+						} }
+					>
+						{ __( 'Close', 'quotes-dlx' ) }
+					</Button>
+				</div>
+			</Modal>
+		);
+	};
+
 	const blockToolbar = (
 		<BlockControls>
 			<>
@@ -862,6 +1093,29 @@ const TweetQuotes = ( props ) => {
 					} }
 					controls={ [ toolbarPreview ] }
 				/>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ TwitterIcon }
+						label={ __( 'Twitter Settings', 'quotes-dlx' ) }
+						onClick={ () => {
+							setIsTwitterModalOpen( ! isTwitterModalOpen );
+							setIsLinkModalOpen( false );
+						} }
+					/>
+				</ToolbarGroup>
+				{ getTweetModal() }
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ LinkIcon }
+						label={ __( 'Link Settings', 'quotes-dlx' ) }
+						onClick={ () => {
+							setIsTwitterModalOpen( false );
+							setIsLinkModalOpen( ! isLinkModalOpen );
+						} }
+					/>
+				</ToolbarGroup>
+				{ getLinkModalContent() }
+
 			</>
 		</BlockControls>
 	);
@@ -914,7 +1168,6 @@ const TweetQuotes = ( props ) => {
 								</div>
 							</blockquote>
 						</figure>
-						{ getClickToShareButton() }
 					</div>
 					{ enable_contextual_menu &&
 						! blockOnly &&
@@ -939,6 +1192,37 @@ const TweetQuotes = ( props ) => {
 		</>
 	);
 
+	const blockContent = (
+		<>
+			<div className="quotes-dlx-wrapper">
+				<div className="quotes-dlx-content-wrapper">
+					<>
+						<figure>
+							<div { ...innerBlockProps } />
+						</figure>
+						{ enable_contextual_menu &&
+							( enable_copy_text ||
+								enable_copy_tweet ||
+								enable_copy_link ||
+								enable_tweet_this ||
+								enable_email_text ||
+								enable_share_this ) && (
+							// eslint-disable-next-line react/jsx-indent
+							<>
+								{ isContextualMenuGlobal() && (
+									<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
+								) }
+								{ ! isContextualMenuGlobal() && (
+									<MeatballMenu id={ uniqueId } { ...attributes } />
+								) }
+							</>
+						) }
+					</>
+				</div>
+			</div>
+		</>
+	);
+
 	const block = (
 		<>
 			<InspectorControls>{ inspectorControls }</InspectorControls>
@@ -952,430 +1236,8 @@ const TweetQuotes = ( props ) => {
 				} ) }
 			>
 				<div className="quotes-dlx-tabs">
-					<TabPanel
-						activeClass="active-tab"
-						onSelect={ ( currentTab ) => {
-							setSelectedTab( currentTab );
-						} }
-						tabs={ [
-							{
-								title: __( 'Appearance', 'quotes-dlx' ),
-								name: 'appearance',
-								className: 'quotes-dlx-tab-appearance',
-							},
-							{
-								title: __( 'Tweet Settings', 'quotes-dlx' ),
-								name: 'settings',
-								className: 'quotes-dlx-tab-settings',
-							},
-							{
-								title: __( 'Link Settings', 'quotes-dlx' ),
-								name: 'link',
-								className: 'quotes-dlx-tab-link',
-							},
-						] }
-					>
-						{ ( tab ) => {
-							let tabContent;
-							if ( 'appearance' === tab.name ) {
-								tabContent = (
-									<>
-										<div className="quotes-dlx-wrapper">
-											<div className="quotes-dlx-content-wrapper">
-												<>
-													<figure>
-														<div { ...innerBlockProps } />
-													</figure>
-													{ getClickToShareButton() }
-													{ enable_contextual_menu &&
-														( enable_copy_text ||
-															enable_copy_tweet ||
-															enable_copy_link ||
-															enable_tweet_this ||
-															enable_email_text ||
-															enable_share_this ) && (
-														// eslint-disable-next-line react/jsx-indent
-														<>
-															{ isContextualMenuGlobal() && (
-																<MeatballMenu id={ uniqueId } { ...tweet_quotes_block_vars.contextual_menu_options } />
-															) }
-															{ ! isContextualMenuGlobal() && (
-																<MeatballMenu id={ uniqueId } { ...attributes } />
-															) }
-														</>
-													) }
-												</>
-											</div>
-										</div>
-									</>
-								);
-							} else if ( 'settings' === tab.name ) {
-								tabContent = (
-									<>
-										<ToggleControl
-											label={ __( 'Customize Twitter Content', 'quotes-dlx' ) }
-											checked={ share_text_override_enabled }
-											onChange={ ( value ) => {
-												setAttributes( {
-													share_text_override_enabled: value,
-												} );
-											} }
-											help={ __(
-												'If your quote is too large for Twitter, you can create custom tweet content here.',
-												'quotes-dlx'
-											) }
-										/>
-										{ share_text_override_enabled && (
-											<TextareaControl
-												label={ __( 'Custom Tweet Content', 'quotes-dlx' ) }
-												help={ __(
-													'Enter your custom tweet content here if your quote is too long for Twitter'
-												) }
-												value={ share_text_override }
-												onChange={ ( value ) => {
-													setAttributes( {
-														share_text_override: value,
-													} );
-												} }
-											/>
-										) }
-										<FormTokenField
-											value={ hashtags }
-											placeholder={ __(
-												'Enter hashtags separated by commas.',
-												'quotes-dlx'
-											) }
-											className="quotes-dlx-hashtag-fields"
-											tokenizeOnSpace={ true }
-											label={ __( 'Hashtags', 'quotes-dlx' ) }
-											onChange={ ( tokens ) => {
-												const filteredTokens = [];
-												tokens.forEach( function( item, index ) {
-													const replacement = item.replace( '#', '' ); // Strip hashtag symbol.
-													const hashtag = twttr.txt.extractHashtags(
-														'#' + replacement
-													); // Add it back in for extraction.
-													// Check if array contains anything.
-													if ( typeof hashtag[ 0 ] !== 'undefined' ) {
-														filteredTokens.push( hashtag[ 0 ] );
-													}
-												} );
-												setAttributes( { hashtags: filteredTokens } );
-											} }
-										/>
-										<TextControl
-											label={ __( 'Tweet Credit (via)', 'quotes-dlx' ) }
-											help={ __(
-												'Enter the Twitter username you would like to credit. Leave empty for no credit.'
-											) }
-											value={ twitter_username }
-											onChange={ ( value ) => {
-												const replacement = value.replace( '@', '' ); // Strip @ symbol.
-												if ( value.length > 0 ) {
-													const usernames =
-														twttr.txt.extractMentions( replacement );
-													if ( typeof usernames[ 0 ] !== 'undefined' ) {
-														setAttributes( {
-															twitter_username: usernames[ 0 ].replace( '@', '' ),
-														} );
-														return;
-													}
-												}
-												setAttributes( {
-													twitter_username: replacement,
-												} );
-											} }
-										/>
-									</>
-								);
-							} else if ( 'link' === tab.name ) {
-								tabContent = (
-									<>
-										<ToggleControl
-											label={ __( 'Enable Link in Tweet', 'quotes-dlx' ) }
-											checked={ enable_links_in_tweet }
-											onChange={ ( value ) => {
-												setAttributes( {
-													enable_links_in_tweet: value,
-												} );
-											} }
-											help={ __(
-												'Disabling this will strip the link from the Tweet.',
-												'quotes-dlx'
-											) }
-										/>
-										{ enable_links_in_tweet && (
-											<>
-												<ToggleControl
-													label={ __( 'Enable Anchor', 'quotes-dlx' ) }
-													checked={ has_anchor }
-													onChange={ ( value ) => {
-														setAttributes( {
-															has_anchor: value,
-														} );
-													} }
-													help={ __(
-														'Enable anchors so users can link directly to the quote.',
-														'quotes-dlx'
-													) }
-												/>
-												{ has_anchor && (
-													<TextControl
-														label={ __( 'Anchor (ID)', 'quotes-dlx' ) }
-														help={ __(
-															'Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'
-														) }
-														value={ anchor }
-														onChange={ ( value ) => {
-															setAttributes( {
-																anchor: value,
-															} );
-														} }
-													/>
-												) }
-												<ToggleControl
-													label={ __( 'Enable URL Shortening', 'quotes-dlx' ) }
-													checked={ url_shortener }
-													onChange={ ( value ) => {
-														setAttributes( {
-															url_shortener: value,
-														} );
-													} }
-													help={ __(
-														'Enable the URL shortener for your tweets.',
-														'quotes-dlx'
-													) }
-												/>
-												{ url_shortener && (
-													<>
-														<RadioControl
-															label={ __( 'Shortlink Service', 'quotes-dlx' ) }
-															selected={ url_shortening_service }
-															options={ [
-																{
-																	label: __( 'Bitly', 'quotes-dlx' ),
-																	value: 'bitly',
-																},
-																{
-																	label: __( 'Jetpack', 'quotes-dlx' ),
-																	value: 'jetpack',
-																},
-																{
-																	label: __( 'Manual', 'quotes-dlx' ),
-																	value: 'manual',
-																},
-															] }
-															onChange={ ( value ) => {
-																setAttributes( {
-																	url_shortening_service: value,
-																} );
-																setUrlShortener( value );
-															} }
-														/>
-														{ url_shortening_service === 'bitly' &&
-															! tweet_quotes_block_vars.bitly_plugin_short_url && (
-															<Notice
-																className="quotes-dlx-notice quotes-dlx-notice-warning"
-																status="warning"
-																politeness="assertive"
-																isDismissible={ false }
-															>
-																<div className="quotes-dlx-notice-icon">
-																	<CircularExclamationIcon
-																		width={ 36 }
-																		height={ 36 }
-																		className="quotes-dlx-icon"
-																		var="--quotes-dlx--preset--notice-warning-icon-color"
-																	/>
-																</div>
-																<h2>
-																	{ __(
-																		'The Bitly short URL cannot be found.',
-																		'quotes-dlx'
-																	) }
-																</h2>
-																<p>
-																	{ __(
-																		'You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.',
-																		'quotes-dlx'
-																	) }
-																</p>
-															</Notice>
-														) }
-														{ url_shortening_service === 'bitly' &&
-															! tweet_quotes_block_vars.bitly_plugin_active && (
-															<Notice
-																className="quotes-dlx-notice quotes-dlx-notice-warning"
-																status="warning"
-																politeness="assertive"
-																isDismissible={ false }
-															>
-																<div className="quotes-dlx-notice-icon">
-																	<CircularExclamationIcon
-																		width={ 36 }
-																		height={ 36 }
-																		className="quotes-dlx-icon"
-																		var="--quotes-dlx--preset--notice-warning-icon-color"
-																	/>
-																</div>
-																<h2>
-																	{ __(
-																		'The official Bitly plugin is not installed.',
-																		'quotes-dlx'
-																	) }
-																</h2>
-																<p>
-																	{ __(
-																		'Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.',
-																		'quotes-dlx'
-																	) }
-																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://wordpress.org/plugins/wp-bitly/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Bitly plugin on WordPress.org',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
-															</Notice>
-														) }
-														{ url_shortening_service === 'jetpack' &&
-															! tweet_quotes_block_vars.jetpack_plugin_short_url && (
-															<Notice
-																className="quotes-dlx-notice quotes-dlx-notice-warning"
-																status="warning"
-																politeness="assertive"
-																isDismissible={ false }
-															>
-																<div className="quotes-dlx-notice-icon">
-																	<CircularExclamationIcon
-																		width={ 36 }
-																		height={ 36 }
-																		className="quotes-dlx-icon"
-																		var="--quotes-dlx--preset--notice-warning-icon-color"
-																	/>
-																</div>
-																<h2>
-																	{ __(
-																		'A shortlink from Jetpack could not be found',
-																		'quotes-dlx'
-																	) }
-																</h2>
-																<p>
-																	{ __(
-																		'Please ensure that Jetpack is installed and that shortlinks are enabled.',
-																		'quotes-dlx'
-																	) }
-																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://jetpack.com/support/wp-me-shortlinks/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Jetpack Shortlink Documentation',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
-															</Notice>
-														) }
-
-														{ url_shortening_service === 'jetpack' &&
-															! tweet_quotes_block_vars.jetpack_plugin_active && (
-															<Notice
-																className="quotes-dlx-notice quotes-dlx-notice-warning"
-																status="warning"
-																politeness="assertive"
-																isDismissible={ false }
-															>
-																<div className="quotes-dlx-notice-icon">
-																	<CircularExclamationIcon
-																		width={ 36 }
-																		height={ 36 }
-																		className="quotes-dlx-icon"
-																		var="--quotes-dlx--preset--notice-warning-icon-color"
-																	/>
-																</div>
-																<h2>
-																	{ __(
-																		'The official Jetpack plugin is not installed.',
-																		'quotes-dlx'
-																	) }
-																</h2>
-																<p>
-																	{ __(
-																		'Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.',
-																		'quotes-dlx'
-																	) }
-																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://wordpress.org/plugins/jetpack/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Jetpack plugin on WordPress.org',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
-															</Notice>
-														) }
-													</>
-												) }
-												<TextControl
-													label={ __( 'Page URL', 'quotes-dlx' ) }
-													help={ __(
-														'This displays the permanent URL to this block.'
-													) }
-													placeholder={ manualPermalink }
-													value={ manualPermalink ?? '' }
-													onChange={ ( value ) => {
-														setAttributes( {
-															manualPermalink: value,
-															permalink: value,
-														} );
-													} }
-													disabled={
-														url_shortening_service !== 'manual'
-															? 'disabled'
-															: ''
-													}
-													ref={ manualUrlInput }
-												/>
-											</>
-										) }
-									</>
-								);
-							}
-							return (
-								<>
-									{ getCharacterBar() }
-									{ tabContent }
-								</>
-							);
-						} }
-					</TabPanel>
+					{ getCharacterBar() }
+					{ blockContent }
 				</div>
 			</div>
 		</>
@@ -1412,12 +1274,12 @@ const TweetQuotes = ( props ) => {
 			<>
 				<link rel="stylesheet" href={ stylesheets.primary_font_stylesheet } />
 				<link rel="stylesheet" href={ stylesheets.secondary_font_stylesheet } />
-				
-		<style>
-			{ `
+
+				<style>
+					{ `
 				#${ uniqueId }block { ${ cssVars } }`
-			}
-		</style>
+					}
+				</style>
 			</>
 		);
 	};

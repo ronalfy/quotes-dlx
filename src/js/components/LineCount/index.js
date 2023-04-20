@@ -84,7 +84,7 @@ const LineCount = ( props ) => {
 	};
 
 	return (
-		<div className="has-line-count">
+		<div className={ `has-line-count` }>
 			<span className={ getLineCountProgressClasses() } style={ lineStyle }><span className="has-line-count-characters">
 				{ getCharsLabel() }
 			</span></span>

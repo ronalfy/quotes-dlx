@@ -1191,6 +1191,298 @@ var Icon = function Icon() {
 
 /***/ }),
 
+/***/ "./src/js/blocks/click-to-share-buttons/edit.js":
+/*!******************************************************!*\
+  !*** ./src/js/blocks/click-to-share-buttons/edit.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
+/* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
+/* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
+/* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
+/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
+/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
+/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
+/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
+/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable react/jsx-no-target-blank */
+
+/* eslint-disable no-undef */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable camelcase */
+
+/**
+ * External dependencies
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
+
+var ClickToShare = function ClickToShare(props) {
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"]),
+      shareText = _useContext.shareText,
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText;
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(props.attributes.isPreviewMode),
+      _useState2 = _slicedToArray(_useState, 2),
+      isPreview = _useState2[0],
+      setIsPreview = _useState2[1]; // Shortcuts.
+
+
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected;
+  var tweet_icon_alignment = attributes.tweet_icon_alignment,
+      tweet_button_enabled = attributes.tweet_button_enabled,
+      facebook_button_enabled = attributes.facebook_button_enabled,
+      tweet_button_alignment = attributes.tweet_button_alignment,
+      tweet_button_display = attributes.tweet_button_display,
+      icon_appearance = attributes.icon_appearance,
+      facebook_share_button_text = attributes.facebook_share_button_text,
+      twitter_share_button_text = attributes.twitter_share_button_text;
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Share Buttons', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Twitter Share Button', 'quotes-dlx'),
+    checked: tweet_button_enabled,
+    onChange: function onChange(value) {
+      setAttributes({
+        tweet_button_enabled: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the Click to Tweet button.', 'quotes-dlx')
+  })), tweet_button_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Tweet Button Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter the Click to Tweet button text.'),
+    value: twitter_share_button_text,
+    onChange: function onChange(value) {
+      setAttributes({
+        twitter_share_button_text: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Facebook Share Button', 'quotes-dlx'),
+    checked: facebook_button_enabled,
+    onChange: function onChange(value) {
+      setAttributes({
+        facebook_button_enabled: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show or hide the Share on Facebook button.', 'quotes-dlx')
+  })), facebook_button_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Facebook Button Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter the Facebook Button text'),
+    value: facebook_share_button_text,
+    onChange: function onChange(value) {
+      setAttributes({
+        facebook_share_button_text: value
+      });
+    }
+  })), (tweet_button_enabled || facebook_button_enabled) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Button Alignment', 'quotes-dlx'),
+    alignment: tweet_button_alignment,
+    onClick: function onClick(value) {
+      setAttributes({
+        tweet_button_alignment: value
+      });
+    }
+  })), tweet_button_display === 'full' && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Icon Alignment', 'quotes-dlx'),
+    alignment: tweet_icon_alignment,
+    onClick: function onClick(value) {
+      setAttributes({
+        tweet_icon_alignment: value
+      });
+    },
+    centerOn: false
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, {
+    className: "quotes-dlx-sidebar-button-options"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.RadioControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Button Options', 'quotes-dlx'),
+    selected: tweet_button_display,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Text Only', 'quotes-dlx'),
+      value: 'text'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Icon Only', 'quotes-dlx'),
+      value: 'icon'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Text and Icon', 'quotes-dlx'),
+      value: 'full'
+    }],
+    onChange: function onChange(value) {
+      setAttributes({
+        tweet_button_display: value
+      });
+    }
+  })), 'icon' === tweet_button_display && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, {
+    className: "quotes-dlx-sidebar-button-options"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.RadioControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Button Icon Appearance', 'quotes-dlx'),
+    selected: icon_appearance,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Button', 'quotes-dlx'),
+      value: 'button'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Transparent', 'quotes-dlx'),
+      value: 'transparent'
+    }],
+    onChange: function onChange(value) {
+      setAttributes({
+        icon_appearance: value
+      });
+    }
+  })))));
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-click-to-share")
+  });
+
+  var getClickToShareButton = function getClickToShareButton() {
+    if (!tweet_button_enabled && !facebook_button_enabled) {
+      return /*#__PURE__*/React.createElement(React.Fragment, null);
+    }
+
+    var buttonClassNames = classnames__WEBPACK_IMPORTED_MODULE_0___default()(tweet_button_alignment, {
+      'quotes-dlx-button-wrapper': true,
+      'is-transparent-button': tweet_button_display === 'icon' && 'transparent' === icon_appearance
+    });
+    return /*#__PURE__*/React.createElement("div", {
+      className: buttonClassNames
+    }, tweet_button_enabled && /*#__PURE__*/React.createElement("button", {
+      className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
+      onClick: function onClick(value) {}
+    }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-text"
+    }, twitter_share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), facebook_button_enabled && /*#__PURE__*/React.createElement("button", {
+      className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
+      onClick: function onClick(value) {}
+    }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-text"
+    }, facebook_share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
+      className: "quotes-dlx-button-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
+  };
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, inspectorControls), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, getClickToShareButton())));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ClickToShare);
+
+/***/ }),
+
+/***/ "./src/js/blocks/click-to-share-buttons/index.js":
+/*!*******************************************************!*\
+  !*** ./src/js/blocks/click-to-share-buttons/index.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/js/blocks/click-to-share-buttons/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/click-to-share-buttons/edit.js");
+
+
+
+
+var Icon = function Icon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    xmlSpace: "preserve",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 510 510"
+  }, /*#__PURE__*/React.createElement("path", {
+    fill: "currentColor",
+    d: "M459 0H51C22.95 0 0 22.95 0 51v408c0 28.05 22.95 51 51 51h408c28.05 0 51-22.95 51-51V51c0-28.05-22.95-51-51-51zm-58.65 186.15c-2.55 117.3-76.5 198.9-188.7 204-45.9 2.55-79.05-12.75-109.65-30.6 33.15 5.101 76.5-7.649 99.45-28.05-33.15-2.55-53.55-20.4-63.75-48.45 10.2 2.55 20.4 0 28.05 0-30.6-10.2-51-28.05-53.55-68.85 7.65 5.1 17.85 7.65 28.05 7.65-22.95-12.75-38.25-61.2-20.4-91.8 33.15 35.7 73.95 66.3 140.25 71.4-17.85-71.4 79.051-109.65 117.301-61.2 17.85-2.55 30.6-10.2 43.35-15.3-5.1 17.85-15.3 28.05-28.05 38.25 12.75-2.55 25.5-5.1 35.7-10.2-2.551 12.75-15.301 22.95-28.051 33.15z"
+  }));
+};
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: function save() {
+    return null;
+  },
+  icon: Icon
+});
+
+/***/ }),
+
 /***/ "./src/js/blocks/context/index.js":
 /*!****************************************!*\
   !*** ./src/js/blocks/context/index.js ***!
@@ -1290,8 +1582,9 @@ var Blockquote = function Blockquote(props) {
   }, {
     allowedBlocks: ['core/paragraph'],
     template: [['core/paragraph', {
-      placeholder: ''
-    }]]
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Type or paste in your quote', 'quotes-dlx')
+    }]],
+    renderAppender: false
   }); // Shortcuts.
 
   var attributes = props.attributes;
@@ -1345,6 +1638,495 @@ var Icon = function Icon() {
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: function save() {
     return /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null);
+  },
+  icon: Icon
+});
+
+/***/ }),
+
+/***/ "./src/js/blocks/rating/edit.js":
+/*!**************************************!*\
+  !*** ./src/js/blocks/rating/edit.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_simple_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simple-star-rating */ "./node_modules/react-simple-star-rating/dist/index.js");
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
+/* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
+/* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
+/* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
+/* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
+/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
+/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
+/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
+/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _utils_CropHelper__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../utils/CropHelper */ "./src/js/utils/CropHelper.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable react/jsx-no-target-blank */
+
+/* eslint-disable no-undef */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable camelcase */
+
+/**
+ * External dependencies
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
+
+var ClickToShare = function ClickToShare(props) {
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_25__["default"]),
+      shareText = _useContext.shareText,
+      setShareText = _useContext.setShareText,
+      oldShareText = _useContext.oldShareText,
+      setOldShareText = _useContext.setOldShareText;
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useState)(props.attributes.isPreviewMode),
+      _useState2 = _slicedToArray(_useState, 2),
+      isPreview = _useState2[0],
+      setIsPreview = _useState2[1]; // Shortcuts.
+
+
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      isSelected = props.isSelected;
+  /*
+  "showReviewerName": {
+  		"type": "boolean",
+  		"default": true
+  	},
+  	"showReviewerTitle": {
+  		"type": "boolean",
+  		"default": true
+  	},
+  	"showReviewerCompany": {
+  		"type": "boolean",
+  		"default": true
+  	},
+  	"showReview": {
+  		"type": "boolean",
+  		"default": true
+  	}
+  	*/
+
+  var starRating = attributes.starRating,
+      ratingPercentage = attributes.ratingPercentage,
+      ratingNumber = attributes.ratingNumber,
+      ratingMax = attributes.ratingMax,
+      review = attributes.review,
+      reviewer = attributes.reviewer,
+      reviewerUrl = attributes.reviewerUrl,
+      reviewerImage = attributes.reviewerImage,
+      reviewerImageId = attributes.reviewerImageId,
+      reviewerTitle = attributes.reviewerTitle,
+      reviewerCompany = attributes.reviewerCompany,
+      reviewUrl = attributes.reviewUrl,
+      isPreviewMode = attributes.isPreviewMode,
+      showReviewerImage = attributes.showReviewerImage,
+      ratingType = attributes.ratingType,
+      showReviewerUrl = attributes.showReviewerUrl,
+      reviewerUrlNoFollow = attributes.reviewerUrlNoFollow,
+      reviewerUrlNewTab = attributes.reviewerUrlNewTab,
+      showReviewerName = attributes.showReviewerName,
+      showReviewerTitle = attributes.showReviewerTitle,
+      showReviewerCompany = attributes.showReviewerCompany,
+      showReview = attributes.showReview;
+  /**
+   * Callback for when the user selects an image.
+   */
+
+  var reviewImageSelected = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useCallback)(function (image) {
+    setAttributes({
+      reviewerImageId: image.id,
+      reviewerImage: image.url
+    });
+  }, []);
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelBody, {
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Review Settings', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Review', 'quotes-dlx'),
+    checked: showReview,
+    onChange: function onChange(value) {
+      setAttributes({
+        showCitation: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main review text.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Reviewer Image', 'quotes-dlx'),
+    checked: showReviewerImage,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewerImage: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main review author image.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Reviewer Name', 'quotes-dlx'),
+    checked: showReviewerName,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewerName: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main reviewer author name.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Reviewer Title', 'quotes-dlx'),
+    checked: showReviewerTitle,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewerTitle: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main reviewer author title.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Reviewer Company', 'quotes-dlx'),
+    checked: showReviewerCompany,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewerCompany: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main reviewer author company.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Reviewer URL', 'quotes-dlx'),
+    checked: showReviewerUrl,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewerUrl: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Allow the reviewer URL to be used in the rating.', 'quotes-dlx')
+  })), showReviewerUrl && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Open Reviewer URL in New Tab', 'quotes-dlx'),
+    checked: reviewerUrlNewTab,
+    onChange: function onChange(value) {
+      setAttributes({
+        reviewerUrlNewTab: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Add nofollow to Reviewer URL', 'quotes-dlx'),
+    checked: reviewerUrlNoFollow,
+    onChange: function onChange(value) {
+      setAttributes({
+        reviewerUrlNoFollow: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Add nofollow to the reviewer URL.', 'quotes-dlx')
+  })))));
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.useBlockProps)({
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-click-to-share")
+  });
+  /**
+   * Get the edit rating interface for the rating block.
+   *
+   * @return {Object} The rating interface.
+   */
+
+  var getRatingInterfaceEdit = function getRatingInterfaceEdit() {
+    if ('stars' === ratingType) {
+      return /*#__PURE__*/React.createElement(react_simple_star_rating__WEBPACK_IMPORTED_MODULE_1__.Rating, {
+        initialValue: starRating || 5,
+        onClick: function onClick(rating) {
+          setAttributes({
+            starRating: rating
+          });
+        },
+        allowFraction: true,
+        className: "qdlx-block-star-rating",
+        size: 18,
+        SVGstorkeWidth: 1.5
+      });
+    }
+
+    if ('percentage' === ratingType) {
+      return /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating', 'quotes-dlx'),
+        value: ratingPercentage,
+        onChange: function onChange(value) {
+          setAttributes({
+            ratingPercentage: value
+          });
+        },
+        min: 0,
+        max: 100,
+        step: 1
+      });
+    }
+
+    if ('number' === ratingType) {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating', 'quotes-dlx'),
+        type: "number",
+        value: ratingNumber,
+        onChange: function onChange(value) {
+          setAttributes({
+            ratingNumber: value
+          });
+        }
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating Max', 'quotes-dlx'),
+        type: "number",
+        value: ratingMax,
+        onChange: function onChange(value) {
+          setAttributes({
+            ratingMax: value
+          });
+        }
+      }));
+    }
+  };
+
+  var getReviewerImage = function getReviewerImage() {
+    var image = /*#__PURE__*/React.createElement("img", {
+      src: reviewerImage,
+      alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Review Image', 'quotes-dlx'),
+      width: 75,
+      height: 75
+    });
+
+    if ('' !== reviewerUrl && showReviewerUrl) {
+      var noFollow = reviewerUrlNoFollow ? 'nofollow' : '';
+      return /*#__PURE__*/React.createElement("a", {
+        href: reviewerUrl,
+        target: reviewerUrlNewTab ? '_blank' : '_self',
+        rel: "".concat(noFollow, " noopener noreferrer"),
+        onClick: function onClick(event) {
+          event.preventDefault();
+        }
+      }, image);
+    }
+
+    return image;
+  };
+
+  var blockEdit = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardBody, {
+    isShady: true,
+    isScrollable: true
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating Type', 'quotes-dlx'),
+    value: ratingType,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Stars', 'quotes-dlx'),
+      value: 'stars'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Percentage', 'quotes-dlx'),
+      value: 'percentage'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Number', 'quotes-dlx'),
+      value: 'number'
+    }],
+    onChange: function onChange(value) {
+      setAttributes({
+        ratingType: value
+      });
+    }
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, {
+    className: "qdlx-ratings-options-row"
+  }, getRatingInterfaceEdit()), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, {
+    className: "quotes-dlx-cite-panel-rich-text"
+  }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.RichText, {
+    tagName: "div",
+    className: "quotes-dlx-rating-richtext",
+    disableLineBreaks: true,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter a rating', 'quotes-dlx'),
+    value: review,
+    onChange: function onChange(value) {
+      return setAttributes({
+        review: value
+      });
+    },
+    tabIndex: "-1"
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, {
+    className: "quotes-dlx-cite-panel-row-grid"
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "quotes-dlx-cite-panel-row-grid-text-fields"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+    className: "quotes-dlx-cite-text-control",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Reviewer', 'quotes-dlx'),
+    value: reviewer,
+    onChange: function onChange(value) {
+      return setAttributes({
+        reviewer: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter a reviewer name', 'quotes-dlx')
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+    className: "quotes-dlx-cite-text-control",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Reviewer URL', 'quotes-dlx'),
+    value: reviewerUrl,
+    onChange: function onChange(value) {
+      return setAttributes({
+        reviewerUrl: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter the reviewer URL', 'quotes-dlx')
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+    className: "quotes-dlx-cite-text-control",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Reviewer Title', 'quotes-dlx'),
+    value: reviewerTitle,
+    onChange: function onChange(value) {
+      return setAttributes({
+        reviewerTitle: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter a reviewer title such as a job title', 'quotes-dlx')
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.TextControl, {
+    className: "quotes-dlx-cite-text-control",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Reviewer Company', 'quotes-dlx'),
+    value: reviewerCompany,
+    onChange: function onChange(value) {
+      return setAttributes({
+        reviewerCompany: value
+      });
+    },
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter the reviewer company name.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement("section", {
+    className: "quotes-dlx-cite-panel-row-grid-image-fields"
+  }, '' !== reviewerImage && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-cite-image-card-preview"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: reviewerImage,
+    alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating Image', 'quotes-dlx'),
+    width: 150,
+    height: 150
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-cite-image-card-button"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Button, {
+    variant: "secondary",
+    icon: "format-image",
+    iconPosition: "right",
+    onClick: function onClick() {
+      (0,_utils_CropHelper__WEBPACK_IMPORTED_MODULE_26__["default"])(reviewImageSelected);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Upload Review Image', 'quotes-dlx')))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardFooter, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Button, {
+    variant: "secondary",
+    icon: "visibility",
+    iconPosition: "right",
+    onClick: function onClick() {
+      setAttributes({
+        isPreviewMode: true
+      });
+      setIsPreview(true);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Preview', 'quotes-dlx')))));
+  var blockPreview = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-image-wrapper"
+  }, '' !== reviewerImage && showReviewerImage && /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-image"
+  }, getReviewerImage()), /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-author-info"
+  }, "test"))));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.InspectorControls, null, inspectorControls), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, isPreviewMode ? blockPreview : blockEdit)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ClickToShare);
+
+/***/ }),
+
+/***/ "./src/js/blocks/rating/index.js":
+/*!***************************************!*\
+  !*** ./src/js/blocks/rating/index.js ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/js/blocks/rating/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/js/blocks/rating/edit.js");
+
+
+
+
+var Icon = function Icon() {
+  return /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    xmlSpace: "preserve",
+    viewBox: "0 0 512.002 512.002"
+  }, /*#__PURE__*/React.createElement("path", {
+    fill: "currentColor",
+    d: "M511.267 197.258a14.995 14.995 0 0 0-12.107-10.209l-158.723-23.065-70.985-143.827a14.998 14.998 0 0 0-26.901 0l-70.988 143.827-158.72 23.065a14.998 14.998 0 0 0-8.312 25.585l114.848 111.954-27.108 158.083a14.999 14.999 0 0 0 21.763 15.812l141.967-74.638 141.961 74.637a15 15 0 0 0 21.766-15.813l-27.117-158.081 114.861-111.955a14.994 14.994 0 0 0 3.795-15.375z"
+  }));
+};
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: function save() {
+    return null;
   },
   icon: Icon
 });
@@ -1469,10 +2251,12 @@ var SocialBar = function SocialBar(props) {
       showReddit = attributes.showReddit,
       showTumblr = attributes.showTumblr,
       showEmail = attributes.showEmail,
-      showWhatsapp = attributes.showWhatsapp,
+      showWhatsApp = attributes.showWhatsApp,
       showTelegram = attributes.showTelegram,
       showCopy = attributes.showCopy,
-      showWebAPI = attributes.showWebAPI;
+      showWebAPI = attributes.showWebAPI,
+      iconAppearance = attributes.iconAppearance,
+      alignment = attributes.alignment;
 
   var getSocialNetworks = function getSocialNetworks() {
     var socialNetworks = [];
@@ -1497,11 +2281,7 @@ var SocialBar = function SocialBar(props) {
       socialNetworks.push('tumblr');
     }
 
-    if (showEmail) {
-      socialNetworks.push('email');
-    }
-
-    if (showWhatsapp) {
+    if (showWhatsApp) {
       socialNetworks.push('whatsapp');
     }
 
@@ -1509,30 +2289,145 @@ var SocialBar = function SocialBar(props) {
       socialNetworks.push('telegram');
     }
 
+    if (showEmail) {
+      socialNetworks.push('email');
+    }
+
     if (showCopy) {
       socialNetworks.push('copy');
     }
 
     if (showWebAPI) {
-      socialNetworks.push('webshare-icon');
+      socialNetworks.push('webshare');
     } // Map social networks to SVGs.
 
 
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("ul", null, socialNetworks.map(function (socialNetwork, index) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("ul", {
+      className: "qdlx-social-networks"
+    }, socialNetworks.map(function (socialNetwork, index) {
       return /*#__PURE__*/React.createElement("li", {
         key: index
-      }, /*#__PURE__*/React.createElement("svg", {
-        className: "qdlx-svg-icon",
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "qdlx-svg-icon qdlx-social-".concat(socialNetwork),
         rel: "nofollow"
-      }, /*#__PURE__*/React.createElement("use", {
+      }, /*#__PURE__*/React.createElement("svg", null, /*#__PURE__*/React.createElement("use", {
         xlinkHref: "#quotes-dlx-".concat(socialNetwork, "-icon")
-      })));
+      }))));
     })));
   };
 
-  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null);
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Display Settings', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Icon Appearance', 'quotes-dlx'),
+    value: iconAppearance,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Rounded', 'quotes-dlx'),
+      value: 'rounded'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Squared', 'quotes-dlx'),
+      value: 'squared'
+    }],
+    onChange: function onChange(value) {
+      setAttributes({
+        iconAppearance: value
+      });
+    }
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Social Bar Alignment', 'quotes-dlx'),
+    alignment: alignment,
+    onClick: function onClick(value) {
+      setAttributes({
+        alignment: value
+      });
+    }
+  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
+    initialOpen: true,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Available Social Networks', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Twitter', 'quotes-dlx'),
+    checked: showTwitter,
+    onChange: function onChange(value) {
+      setAttributes({
+        showTwitter: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Facebook', 'quotes-dlx'),
+    checked: showFacebook,
+    onChange: function onChange(value) {
+      setAttributes({
+        showFacebook: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show LinkedIn', 'quotes-dlx'),
+    checked: showLinkedin,
+    onChange: function onChange(value) {
+      setAttributes({
+        showLinkedin: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Reddit', 'quotes-dlx'),
+    checked: showReddit,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReddit: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Tumblr', 'quotes-dlx'),
+    checked: showTumblr,
+    onChange: function onChange(value) {
+      setAttributes({
+        showTumblr: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show WhatsApp', 'quotes-dlx'),
+    checked: showWhatsApp,
+    onChange: function onChange(value) {
+      setAttributes({
+        showWhatsApp: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Telegram', 'quotes-dlx'),
+    checked: showTelegram,
+    onChange: function onChange(value) {
+      setAttributes({
+        showTelegram: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Email', 'quotes-dlx'),
+    checked: showEmail,
+    onChange: function onChange(value) {
+      setAttributes({
+        showEmail: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Copy', 'quotes-dlx'),
+    checked: showCopy,
+    onChange: function onChange(value) {
+      setAttributes({
+        showCopy: value
+      });
+    }
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Show Web Share API', 'quotes-dlx'),
+    checked: showWebAPI,
+    onChange: function onChange(value) {
+      setAttributes({
+        showWebAPI: value
+      });
+    }
+  }))));
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-social-bar", {})
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-social-bar qdlx-social-bar-".concat(iconAppearance, " qdlx-social-bar-align-").concat(alignment))
   });
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, inspectorControls), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, getSocialNetworks())));
 };
@@ -1596,31 +2491,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
 /* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
 /* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
-/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
-/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
-/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
-/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
-/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
-/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
-/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
-/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__);
-/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
+/* harmony import */ var _components_icons_LinkIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/LinkIcon */ "./src/js/components/icons/LinkIcon.js");
+/* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
+/* harmony import */ var _components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/NewWindow */ "./src/js/components/icons/NewWindow.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_alignment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/alignment */ "./src/js/components/alignment/index.js");
+/* harmony import */ var _components_CircularCount__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/CircularCount */ "./src/js/components/CircularCount/index.js");
+/* harmony import */ var _components_LineCount__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/LineCount */ "./src/js/components/LineCount/index.js");
+/* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/ColorPicker */ "./src/js/components/ColorPicker/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
+/* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _context_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../context/index */ "./src/js/blocks/context/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -1674,6 +2570,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
 
 
@@ -1681,79 +2578,94 @@ var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_module
 var TweetQuotes = function TweetQuotes(props) {
   var _classnames, _classnames2;
 
-  var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
-  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
-  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRef)(null);
-  var innerBlocksRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useRef)(null);
+  var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.createRef)(null);
+  var shareTextInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.createRef)(null);
+  var maximumWidthInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.createRef)(null);
+  var innerBlocksRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useRef)(null);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
+    var children = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_17__.select)('core/block-editor').getBlocksByClientId(props.clientId)[0].innerBlocks;
+    console.log(children);
+  }, []);
 
-  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_23__["default"]),
+  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"]),
       shareText = _useContext.shareText,
       setShareText = _useContext.setShareText,
       oldShareText = _useContext.oldShareText,
       setOldShareText = _useContext.setOldShareText; // State.
 
 
-  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       tweetCharacterTotal = _useState2[0],
       setTweetCharacterTotal = _useState2[1];
 
-  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       tweetHashtagCharLength = _useState4[0],
       setTweetHashtagCharLength = _useState4[1];
 
-  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
+  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       tweetContentCharLength = _useState6[0],
       setTweetContentCharLength = _useState6[1];
 
-  var _useState7 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
+  var _useState7 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       tweetUsernameCharLength = _useState8[0],
       setTweetUsernameCharLength = _useState8[1];
 
-  var _useState9 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(0),
+  var _useState9 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
       tweetPermalinkCharLength = _useState10[0],
       setTweetPermalinkCharLength = _useState10[1];
 
-  var _useState11 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)('appearance'),
+  var _useState11 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)('appearance'),
       _useState12 = _slicedToArray(_useState11, 2),
       selectedTab = _useState12[0],
       setSelectedTab = _useState12[1];
 
-  var _useState13 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)('default'),
+  var _useState13 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)('default'),
       _useState14 = _slicedToArray(_useState13, 2),
       urlShortener = _useState14[0],
       setUrlShortener = _useState14[1];
 
-  var _useState15 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)([]),
+  var _useState15 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
       themeColors = _useState16[0],
       setThemeColors = _useState16[1];
 
-  var _useState17 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(''),
+  var _useState17 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(''),
       _useState18 = _slicedToArray(_useState17, 2),
       selectedTheme = _useState18[0],
-      setSelectedTheme = _useState18[1]; // Set up Inner Blocks.
+      setSelectedTheme = _useState18[1]; // Twitter modal state.
 
 
-  var innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.useInnerBlocksProps)({
+  var _useState19 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      isTwitterModalOpen = _useState20[0],
+      setIsTwitterModalOpen = _useState20[1];
+
+  var _useState21 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(false),
+      _useState22 = _slicedToArray(_useState21, 2),
+      isLinkModalOpen = _useState22[0],
+      setIsLinkModalOpen = _useState22[1]; // Set up Inner Blocks.
+
+
+  var innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useInnerBlocksProps)({
     className: 'quotes-dlx-share-blocks quotes-dlx-share-text',
     ref: innerBlocksRef
   }, {
     allowedBlocks: ['mediaron/quotes-dlx-blockquote', 'mediaron/quotes-dlx-cite', 'mediaron/quotes-dlx-social-bar'],
-    template: [['mediaron/quotes-dlx-blockquote', {
-      placeholder: ''
-    }]]
+    template: [['mediaron/quotes-dlx-blockquote']],
+    renderAppender: props.isSelected ? _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InnerBlocks.ButtonBlockAppender : false
   }); // Shortcuts.
 
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
-      isSelected = props.isSelected;
-  var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_20__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
-  var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_16__.useSelect)(function (select) {
+      isSelected = props.isSelected,
+      clientId = props.clientId;
+  var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_21__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
+  var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_17__.useSelect)(function (select) {
     // Useful functions: getCurrentPost, getCurrentPostId, getPermalink
     // Credit: https://ryanwelcher.com/2021/08/requesting-data-in-gutenberg-with-getentityrecords/
     return select('core/editor').getCurrentPost();
@@ -1771,17 +2683,9 @@ var TweetQuotes = function TweetQuotes(props) {
       share_text = attributes.share_text,
       share_text_override = attributes.share_text_override,
       share_text_override_enabled = attributes.share_text_override_enabled,
-      share_button_text = attributes.share_button_text,
-      facebook_share_button_text = attributes.facebook_share_button_text,
       maximum_width = attributes.maximum_width,
       maximum_width_unit = attributes.maximum_width_unit,
       tweet_button_enabled = attributes.tweet_button_enabled,
-      facebook_button_enabled = attributes.facebook_button_enabled,
-      tweet_button_alignment = attributes.tweet_button_alignment,
-      tweet_icon_alignment = attributes.tweet_icon_alignment,
-      rtl = attributes.rtl,
-      tweet_button_display = attributes.tweet_button_display,
-      tweet_styles_disabled = attributes.tweet_styles_disabled,
       anchor = attributes.anchor,
       has_anchor = attributes.has_anchor,
       url_shortener = attributes.url_shortener,
@@ -1800,10 +2704,9 @@ var TweetQuotes = function TweetQuotes(props) {
       blockOnly = attributes.blockOnly,
       defaultsApplied = attributes.defaultsApplied,
       transforming = attributes.transforming,
-      icon_appearance = attributes.icon_appearance,
       enable_custom_theme_colors = attributes.enable_custom_theme_colors,
       theme_colors = attributes.theme_colors;
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     // If share_text.
     if (share_text !== '' && oldShareText === '') {
       setAttributes({
@@ -1811,16 +2714,18 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     }
   }, [oldShareText]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
-    console.log('testing');
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     countCharacters();
     countInfoCharacters();
   }, [twitter_username, shareText, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
-    setAttributes({
-      uniqueId: generatedUniqueId,
-      anchor: generatedUniqueId
-    }); // Check to see if defaults have been applied.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
+    if ('' === uniqueId) {
+      setAttributes({
+        uniqueId: generatedUniqueId + clientId,
+        anchor: generatedUniqueId + clientId
+      });
+    } // Check to see if defaults have been applied.
+
 
     if (!defaultsApplied) {
       // Get original values before defaults applied.
@@ -1844,24 +2749,24 @@ var TweetQuotes = function TweetQuotes(props) {
       }
     }
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     if (url_shortener === 'manual') {
       manualUrlInput.current.focus();
     }
   }, [url_shortener]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     if (selectedTab === 'appearance' && shareTextInput.current !== null && isSelected) {// Todo - this is not working. It's nulling the sidebar.
       // shareTextInput.current.focus();
       // Note to self: not possible with component to focus on last character.
     }
   }, [isSelected, shareTextInput, selectedTab]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     if (manualUrlInput.current !== null && 'manual' === urlShortener && 'appearance' !== selectedTab) {
       manualUrlInput.current.focus();
       manualUrlInput.current.select();
     }
   }, [url_shortening_service]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(function () {
     var link = '' === permalink ? postObject.link : permalink;
     var manualLink = '' === manualPermalink ? postObject.link : permalink;
 
@@ -1959,7 +2864,7 @@ var TweetQuotes = function TweetQuotes(props) {
     var tweetContent = ''; // Add via.
 
     if (twitter_username.length > 0) {
-      tweetContent += (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Via', 'quotes-dlx') + ' ';
+      tweetContent += (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Via', 'quotes-dlx') + ' ';
       tweetContent += twitter_username;
     }
 
@@ -2009,37 +2914,9 @@ var TweetQuotes = function TweetQuotes(props) {
   };
 
   var getCharacterBar = function getCharacterBar() {
-    return /*#__PURE__*/React.createElement(_components_LineCount__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    return /*#__PURE__*/React.createElement(_components_LineCount__WEBPACK_IMPORTED_MODULE_13__["default"], {
       chars: tweetCharacterTotal
     });
-  };
-
-  var getClickToShareButton = function getClickToShareButton() {
-    if (!tweet_button_enabled && !facebook_button_enabled) {
-      return /*#__PURE__*/React.createElement(React.Fragment, null);
-    }
-
-    var buttonClassNames = classnames__WEBPACK_IMPORTED_MODULE_0___default()(tweet_button_alignment, {
-      'quotes-dlx-button-wrapper': true,
-      'is-transparent-button': tweet_button_display === 'icon' && 'transparent' === icon_appearance
-    });
-    return /*#__PURE__*/React.createElement("div", {
-      className: buttonClassNames
-    }, tweet_button_enabled && /*#__PURE__*/React.createElement("button", {
-      className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
-      onClick: function onClick(value) {}
-    }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
-      className: "quotes-dlx-button-text"
-    }, share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
-      className: "quotes-dlx-button-icon"
-    }, /*#__PURE__*/React.createElement(_components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), facebook_button_enabled && /*#__PURE__*/React.createElement("button", {
-      className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
-      onClick: function onClick(value) {}
-    }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
-      className: "quotes-dlx-button-text"
-    }, facebook_share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
-      className: "quotes-dlx-button-icon"
-    }, /*#__PURE__*/React.createElement(_components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
   };
 
   var getColors = function getColors() {
@@ -2083,7 +2960,7 @@ var TweetQuotes = function TweetQuotes(props) {
 
 
       return Object.values(mergedColors).map(function (colorObject, index) {
-        return /*#__PURE__*/React.createElement(_components_ColorPicker__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        return /*#__PURE__*/React.createElement(_components_ColorPicker__WEBPACK_IMPORTED_MODULE_15__["default"], {
           defaultColor: colorObject.color,
           defaultColors: themeDefaultColors,
           value: colorObject.color,
@@ -2108,16 +2985,16 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   };
 
-  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
+  var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Characters', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_components_CircularCount__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Characters', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_components_CircularCount__WEBPACK_IMPORTED_MODULE_12__["default"], {
     chars: tweetCharacterTotal
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Container Settings', 'quotes-dlx')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Container Settings', 'quotes-dlx')
   }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_unit_picker__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Maximum Width', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Maximum Width', 'quotes-dlx'),
     value: maximum_width_unit,
     units: ['px', '%', 'vw'],
     onClick: function onClick(value) {
@@ -2125,7 +3002,7 @@ var TweetQuotes = function TweetQuotes(props) {
         maximum_width_unit: value
       });
     }
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
     type: 'text',
     value: maximum_width,
     onChange: function onChange(value) {
@@ -2134,126 +3011,33 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     ref: maximumWidthInput
-  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
-    initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Share Buttons', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Twitter Share Button', 'quotes-dlx'),
-    checked: tweet_button_enabled,
-    onChange: function onChange(value) {
-      setAttributes({
-        tweet_button_enabled: value
-      });
-    },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Show or hide the Click to Tweet button.', 'quotes-dlx')
-  })), tweet_button_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Tweet Button Text', 'quotes-dlx'),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter the Click to Tweet button text.'),
-    value: share_button_text,
-    onChange: function onChange(value) {
-      setAttributes({
-        share_button_text: value
-      });
-    }
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Facebook Share Button', 'quotes-dlx'),
-    checked: facebook_button_enabled,
-    onChange: function onChange(value) {
-      setAttributes({
-        facebook_button_enabled: value
-      });
-    },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Show or hide the Share on Facebook button.', 'quotes-dlx')
-  })), facebook_button_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Facebook Button Text', 'quotes-dlx'),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter the Facebook Button text'),
-    value: facebook_share_button_text,
-    onChange: function onChange(value) {
-      setAttributes({
-        facebook_share_button_text: value
-      });
-    }
-  })), (tweet_button_enabled || facebook_button_enabled) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Button Alignment', 'quotes-dlx'),
-    alignment: tweet_button_alignment,
-    onClick: function onClick(value) {
-      setAttributes({
-        tweet_button_alignment: value
-      });
-    }
-  })), tweet_button_display === 'full' && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Icon Alignment', 'quotes-dlx'),
-    alignment: tweet_icon_alignment,
-    onClick: function onClick(value) {
-      setAttributes({
-        tweet_icon_alignment: value
-      });
-    },
-    centerOn: false
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, {
-    className: "quotes-dlx-sidebar-button-options"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.RadioControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Button Options', 'quotes-dlx'),
-    selected: tweet_button_display,
-    options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Text Only', 'quotes-dlx'),
-      value: 'text'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Icon Only', 'quotes-dlx'),
-      value: 'icon'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Text and Icon', 'quotes-dlx'),
-      value: 'full'
-    }],
-    onChange: function onChange(value) {
-      setAttributes({
-        tweet_button_display: value
-      });
-    }
-  })), 'icon' === tweet_button_display && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, {
-    className: "quotes-dlx-sidebar-button-options"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.RadioControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Button Icon Appearance', 'quotes-dlx'),
-    selected: icon_appearance,
-    options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Button', 'quotes-dlx'),
-      value: 'button'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Transparent', 'quotes-dlx'),
-      value: 'transparent'
-    }],
-    onChange: function onChange(value) {
-      setAttributes({
-        icon_appearance: value
-      });
-    }
-  })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
+  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
     initialOpen: false,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Contextual Menu', 'quotes-dlx')
-  }, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement("p", {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Contextual Menu', 'quotes-dlx')
+  }, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement("p", {
     className: "description"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('The contextual menu is enabled globally. You can disable the global options in the admin settings under Contextual Menu.', 'quotes-dlx'))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Menu', 'quotes-dlx'),
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('The contextual menu is enabled globally. You can disable the global options in the admin settings under Contextual Menu.', 'quotes-dlx'))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Menu', 'quotes-dlx'),
     checked: enable_contextual_menu,
     onChange: function onChange(value) {
       setAttributes({
         enable_contextual_menu: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Turn on the contextual menu.', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Turn on the contextual menu.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
-  })), enable_contextual_menu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Copy Text', 'quotes-dlx'),
+  })), enable_contextual_menu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Copy Text', 'quotes-dlx'),
     checked: enable_copy_text,
     onChange: function onChange(value) {
       setAttributes({
         enable_copy_text: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('This allows the copying of your full quote.', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('This allows the copying of your full quote.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Copy Tweet', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Copy Tweet', 'quotes-dlx'),
     checked: enable_copy_tweet,
     onChange: function onChange(value) {
       setAttributes({
@@ -2261,8 +3045,8 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     disabled: isContextualMenuGlobal()
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Copy Link', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Copy Link', 'quotes-dlx'),
     checked: enable_copy_link,
     onChange: function onChange(value) {
       setAttributes({
@@ -2270,18 +3054,18 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     disabled: isContextualMenuGlobal()
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Email Quote (Experimental)', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Email Quote (Experimental)', 'quotes-dlx'),
     checked: enable_email_text,
     onChange: function onChange(value) {
       setAttributes({
         enable_email_text: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('(Experimental) Enable email sharing of the quote.', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('(Experimental) Enable email sharing of the quote.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Tweet This', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Tweet This', 'quotes-dlx'),
     checked: enable_tweet_this,
     onChange: function onChange(value) {
       setAttributes({
@@ -2289,28 +3073,28 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     },
     disabled: isContextualMenuGlobal()
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Share This', 'quotes-dlx'),
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Share This', 'quotes-dlx'),
     checked: enable_share_this,
     onChange: function onChange(value) {
       setAttributes({
         enable_share_this: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Facebook sharing in the context menu.', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Facebook sharing in the context menu.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
-  })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
+  })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
     initialOpen: false,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Theme Colors', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Custom Theme Colors', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Theme Colors', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Custom Theme Colors', 'quotes-dlx'),
     checked: enable_custom_theme_colors,
     onChange: function onChange(value) {
       setAttributes({
         enable_custom_theme_colors: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable custom theme colors.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable custom theme colors.', 'quotes-dlx')
   })), getColors())); // Load themes and display them in a dropdown menu.
   // There's a side-effect here if a theme is deleted. Need to use useEffect to
   // set default theme. This causes more issues, so solution is to set default on PHP side (front-end).
@@ -2340,7 +3124,7 @@ var TweetQuotes = function TweetQuotes(props) {
     maxWidth: maximum_width + maximum_width_unit
   };
   var toolbarPreview = [{
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Preview On', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview On', 'quotes-dlx'),
     isActive: preview,
     onClick: function onClick() {
       setAttributes({
@@ -2348,7 +3132,7 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     }
   }, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Preview Off', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview Off', 'quotes-dlx'),
     isActive: !preview,
     onClick: function onClick() {
       setAttributes({
@@ -2357,48 +3141,313 @@ var TweetQuotes = function TweetQuotes(props) {
     }
   }]; // Start theme hooks. Find a way through PHP perhaps?
 
-  var toolbarThemeHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_17__.createHooks)();
+  var toolbarThemeHook = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_18__.createHooks)();
   toolbarThemes = toolbarThemeHook.applyFilters('has_ctt_react_themes', toolbarThemes); // Allow others to add themes via React.
 
-  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.BlockControls, null, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToolbarGroup, {
+  var getTweetModal = function getTweetModal() {
+    if (!isTwitterModalOpen) {
+      return null;
+    }
+
+    return /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Modal, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Twitter Settings', 'quotes-dlx'),
+      onRequestClose: function onRequestClose() {
+        setIsTwitterModalOpen(false);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "qdlx-block-editor-modal"
+    }, getCharacterBar(), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Customize Twitter Content', 'quotes-dlx'),
+      checked: share_text_override_enabled,
+      onChange: function onChange(value) {
+        setAttributes({
+          share_text_override_enabled: value
+        });
+      },
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('If your quote is too large for Twitter, you can create custom tweet content here.', 'quotes-dlx')
+    }), share_text_override_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextareaControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Custom Tweet Content', 'quotes-dlx'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter your custom tweet content here if your quote is too long for Twitter'),
+      value: share_text_override,
+      onChange: function onChange(value) {
+        setAttributes({
+          share_text_override: value
+        });
+      }
+    }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.FormTokenField, {
+      value: hashtags,
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
+      className: "quotes-dlx-hashtag-fields",
+      tokenizeOnSpace: true,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Hashtags', 'quotes-dlx'),
+      onChange: function onChange(tokens) {
+        var filteredTokens = [];
+        tokens.forEach(function (item, index) {
+          var replacement = item.replace('#', ''); // Strip hashtag symbol.
+
+          var hashtag = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractHashtags('#' + replacement); // Add it back in for extraction.
+          // Check if array contains anything.
+
+          if (typeof hashtag[0] !== 'undefined') {
+            filteredTokens.push(hashtag[0]);
+          }
+        });
+        setAttributes({
+          hashtags: filteredTokens
+        });
+      }
+    }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Tweet Credit (via)', 'quotes-dlx'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter the Twitter username you would like to credit. Leave empty for no credit.'),
+      value: twitter_username,
+      onChange: function onChange(value) {
+        var replacement = value.replace('@', ''); // Strip @ symbol.
+
+        if (value.length > 0) {
+          var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractMentions(replacement);
+
+          if (typeof usernames[0] !== 'undefined') {
+            setAttributes({
+              twitter_username: usernames[0].replace('@', '')
+            });
+            return;
+          }
+        }
+
+        setAttributes({
+          twitter_username: replacement
+        });
+      }
+    }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+      variant: "secondary",
+      onClick: function onClick() {
+        setIsTwitterModalOpen(false);
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Close', 'quotes-dlx'))));
+  };
+
+  var getLinkModalContent = function getLinkModalContent() {
+    if (!isLinkModalOpen) {
+      return null;
+    }
+
+    return /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Modal, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Link Settings', 'quotes-dlx'),
+      onRequestClose: function onRequestClose() {
+        setIsLinkModalOpen(false);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "qdlx-block-editor-modal"
+    }, getCharacterBar(), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Link in the Content When Sharing', 'quotes-dlx'),
+      checked: enable_links_in_tweet,
+      onChange: function onChange(value) {
+        setAttributes({
+          enable_links_in_tweet: value
+        });
+      },
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Disabling this will strip the link from the share text.', 'quotes-dlx')
+    }), enable_links_in_tweet && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable Anchor', 'quotes-dlx'),
+      checked: has_anchor,
+      onChange: function onChange(value) {
+        setAttributes({
+          has_anchor: value
+        });
+      },
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable anchors so users can link directly to the quote.', 'quotes-dlx')
+    }), has_anchor && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Anchor (ID)', 'quotes-dlx'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
+      value: anchor,
+      onChange: function onChange(value) {
+        setAttributes({
+          anchor: value
+        });
+      }
+    }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable URL Shortening', 'quotes-dlx'),
+      checked: url_shortener,
+      onChange: function onChange(value) {
+        setAttributes({
+          url_shortener: value
+        });
+      },
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Enable the URL shortener for your share text.', 'quotes-dlx')
+    }), url_shortener && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.RadioControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Shortlink Service', 'quotes-dlx'),
+      selected: url_shortening_service,
+      options: [{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Bitly', 'quotes-dlx'),
+        value: 'bitly'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Jetpack', 'quotes-dlx'),
+        value: 'jetpack'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Manual', 'quotes-dlx'),
+        value: 'manual'
+      }],
+      onChange: function onChange(value) {
+        setAttributes({
+          url_shortening_service: value
+        });
+        setUrlShortener(value);
+      }
+    }), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Notice, {
+      className: "quotes-dlx-notice quotes-dlx-notice-warning",
+      status: "warning",
+      politeness: "assertive",
+      isDismissible: false
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      width: 36,
+      height: 36,
+      className: "quotes-dlx-icon",
+      "var": "--quotes-dlx--preset--notice-warning-icon-color"
+    })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('The Bitly short URL cannot be found.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.', 'quotes-dlx'))), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Notice, {
+      className: "quotes-dlx-notice quotes-dlx-notice-warning",
+      status: "warning",
+      politeness: "assertive",
+      isDismissible: false
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      width: 36,
+      height: 36,
+      className: "quotes-dlx-icon",
+      "var": "--quotes-dlx--preset--notice-warning-icon-color"
+    })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('The official Bitly plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-button"
+    }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+      variant: "link",
+      href: "https://wordpress.org/plugins/wp-bitly/",
+      target: "_blank",
+      icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        width: 12,
+        height: 12
+      }),
+      iconPosition: "right"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Visit the Bitly plugin on WordPress.org', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Notice, {
+      className: "quotes-dlx-notice quotes-dlx-notice-warning",
+      status: "warning",
+      politeness: "assertive",
+      isDismissible: false
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      width: 36,
+      height: 36,
+      className: "quotes-dlx-icon",
+      "var": "--quotes-dlx--preset--notice-warning-icon-color"
+    })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('A shortlink from Jetpack could not be found', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Please ensure that Jetpack is installed and that shortlinks are enabled.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-button"
+    }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+      variant: "link",
+      href: "https://jetpack.com/support/wp-me-shortlinks/",
+      target: "_blank",
+      icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        width: 12,
+        height: 12
+      }),
+      iconPosition: "right"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Visit the Jetpack Shortlink Documentation', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Notice, {
+      className: "quotes-dlx-notice quotes-dlx-notice-warning",
+      status: "warning",
+      politeness: "assertive",
+      isDismissible: false
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-icon"
+    }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      width: 36,
+      height: 36,
+      className: "quotes-dlx-icon",
+      "var": "--quotes-dlx--preset--notice-warning-icon-color"
+    })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('The official Jetpack plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-notice-button"
+    }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+      variant: "link",
+      href: "https://wordpress.org/plugins/jetpack/",
+      target: "_blank",
+      icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        width: 12,
+        height: 12
+      }),
+      iconPosition: "right"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Visit the Jetpack plugin on WordPress.org', 'quotes-dlx'))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Page URL', 'quotes-dlx'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('This displays the permanent URL to this block.'),
+      placeholder: manualPermalink,
+      value: manualPermalink !== null && manualPermalink !== void 0 ? manualPermalink : '',
+      onChange: function onChange(value) {
+        setAttributes({
+          manualPermalink: value,
+          permalink: value
+        });
+      },
+      disabled: url_shortening_service !== 'manual' ? 'disabled' : '',
+      ref: manualUrlInput
+    })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
+      variant: "secondary",
+      onClick: function onClick() {
+        setIsLinkModalOpen(false);
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Close', 'quotes-dlx'))));
+  };
+
+  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.BlockControls, null, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarGroup, {
     icon: /*#__PURE__*/React.createElement(_components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__["default"], {
       width: 24,
       height: 24,
       fill: "#000000"
     }),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Select a Theme', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Select a Theme', 'quotes-dlx'),
     isCollapsed: true,
     popoverProps: {
       className: "quotes-dlx-popover ".concat(template)
     },
     controls: [toolbarThemes]
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToolbarGroup, {
-    icon: /*#__PURE__*/React.createElement(_components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarGroup, {
+    icon: /*#__PURE__*/React.createElement(_components_icons_Preview__WEBPACK_IMPORTED_MODULE_8__["default"], {
       width: 25,
       height: 25,
       opacity: preview ? 0.8 : 0.4,
       fill: "#000000"
     }),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Preview Mode', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview Mode', 'quotes-dlx'),
     isCollapsed: true,
     popoverProps: {
       className: "quotes-dlx-preview-popover ".concat(template)
     },
     controls: [toolbarPreview]
-  })));
-  var previewBlockInspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.PanelBody, {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarGroup, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarButton, {
+    icon: _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__["default"],
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Twitter Settings', 'quotes-dlx'),
+    onClick: function onClick() {
+      setIsTwitterModalOpen(!isTwitterModalOpen);
+      setIsLinkModalOpen(false);
+    }
+  })), getTweetModal(), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarGroup, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.ToolbarButton, {
+    icon: _components_icons_LinkIcon__WEBPACK_IMPORTED_MODULE_7__["default"],
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Link Settings', 'quotes-dlx'),
+    onClick: function onClick() {
+      setIsTwitterModalOpen(false);
+      setIsLinkModalOpen(!isLinkModalOpen);
+    }
+  })), getLinkModalContent()));
+  var previewBlockInspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.PanelBody, {
     initialOpen: true,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Preview Mode Active', 'quotes-dlx')
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Button, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Preview Mode Active', 'quotes-dlx')
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_22__.Button, {
     variant: "link",
     onClick: function onClick(e) {
       setAttributes({
         preview: false
       });
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_19__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
   var htmlToReactParser = new HtmlToReactParser();
-  var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
+  var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames = {}, _defineProperty(_classnames, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames))
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-wrapper"
@@ -2408,280 +3457,40 @@ var TweetQuotes = function TweetQuotes(props) {
     className: "quotes-dlx-text-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-text"
-  }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__.toHTMLString)({
+  }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__.toHTMLString)({
     // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
-    value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_19__.create)({
+    value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_20__.create)({
       html: shareText,
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
+  })))))), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
-  React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+  React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({
     id: uniqueId
-  }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
+  }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({
     id: uniqueId
   }, attributes))))));
-  var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
+  var blockContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-content-wrapper"
+  }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("div", innerBlockProps)), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
+  /*#__PURE__*/
+  // eslint-disable-next-line react/jsx-indent
+  React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({
+    id: uniqueId
+  }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({
+    id: uniqueId
+  }, attributes)))))));
+  var block = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", {
     id: uniqueId + 'block',
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', (_classnames2 = {}, _defineProperty(_classnames2, "quotes-dlx-block-theme-".concat(template), true), _defineProperty(_classnames2, 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), _defineProperty(_classnames2, 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled), _classnames2))
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-tabs"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TabPanel, {
-    activeClass: "active-tab",
-    onSelect: function onSelect(currentTab) {
-      setSelectedTab(currentTab);
-    },
-    tabs: [{
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Appearance', 'quotes-dlx'),
-      name: 'appearance',
-      className: 'quotes-dlx-tab-appearance'
-    }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Tweet Settings', 'quotes-dlx'),
-      name: 'settings',
-      className: 'quotes-dlx-tab-settings'
-    }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Link Settings', 'quotes-dlx'),
-      name: 'link',
-      className: 'quotes-dlx-tab-link'
-    }]
-  }, function (tab) {
-    var tabContent;
-
-    if ('appearance' === tab.name) {
-      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-wrapper"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-content-wrapper"
-      }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("div", innerBlockProps)), getClickToShareButton(), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
-      /*#__PURE__*/
-      // eslint-disable-next-line react/jsx-indent
-      React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
-        id: uniqueId
-      }, tweet_quotes_block_vars.contextual_menu_options)), !isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
-        id: uniqueId
-      }, attributes)))))));
-    } else if ('settings' === tab.name) {
-      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Customize Twitter Content', 'quotes-dlx'),
-        checked: share_text_override_enabled,
-        onChange: function onChange(value) {
-          setAttributes({
-            share_text_override_enabled: value
-          });
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('If your quote is too large for Twitter, you can create custom tweet content here.', 'quotes-dlx')
-      }), share_text_override_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextareaControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Custom Tweet Content', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter your custom tweet content here if your quote is too long for Twitter'),
-        value: share_text_override,
-        onChange: function onChange(value) {
-          setAttributes({
-            share_text_override: value
-          });
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.FormTokenField, {
-        value: hashtags,
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
-        className: "quotes-dlx-hashtag-fields",
-        tokenizeOnSpace: true,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Hashtags', 'quotes-dlx'),
-        onChange: function onChange(tokens) {
-          var filteredTokens = [];
-          tokens.forEach(function (item, index) {
-            var replacement = item.replace('#', ''); // Strip hashtag symbol.
-
-            var hashtag = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractHashtags('#' + replacement); // Add it back in for extraction.
-            // Check if array contains anything.
-
-            if (typeof hashtag[0] !== 'undefined') {
-              filteredTokens.push(hashtag[0]);
-            }
-          });
-          setAttributes({
-            hashtags: filteredTokens
-          });
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Tweet Credit (via)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter the Twitter username you would like to credit. Leave empty for no credit.'),
-        value: twitter_username,
-        onChange: function onChange(value) {
-          var replacement = value.replace('@', ''); // Strip @ symbol.
-
-          if (value.length > 0) {
-            var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_1__["default"].txt.extractMentions(replacement);
-
-            if (typeof usernames[0] !== 'undefined') {
-              setAttributes({
-                twitter_username: usernames[0].replace('@', '')
-              });
-              return;
-            }
-          }
-
-          setAttributes({
-            twitter_username: replacement
-          });
-        }
-      }));
-    } else if ('link' === tab.name) {
-      tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Link in Tweet', 'quotes-dlx'),
-        checked: enable_links_in_tweet,
-        onChange: function onChange(value) {
-          setAttributes({
-            enable_links_in_tweet: value
-          });
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Disabling this will strip the link from the Tweet.', 'quotes-dlx')
-      }), enable_links_in_tweet && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Anchor', 'quotes-dlx'),
-        checked: has_anchor,
-        onChange: function onChange(value) {
-          setAttributes({
-            has_anchor: value
-          });
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable anchors so users can link directly to the quote.', 'quotes-dlx')
-      }), has_anchor && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Anchor (ID)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
-        value: anchor,
-        onChange: function onChange(value) {
-          setAttributes({
-            anchor: value
-          });
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable URL Shortening', 'quotes-dlx'),
-        checked: url_shortener,
-        onChange: function onChange(value) {
-          setAttributes({
-            url_shortener: value
-          });
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable the URL shortener for your tweets.', 'quotes-dlx')
-      }), url_shortener && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.RadioControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Shortlink Service', 'quotes-dlx'),
-        selected: url_shortening_service,
-        options: [{
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Bitly', 'quotes-dlx'),
-          value: 'bitly'
-        }, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Jetpack', 'quotes-dlx'),
-          value: 'jetpack'
-        }, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Manual', 'quotes-dlx'),
-          value: 'manual'
-        }],
-        onChange: function onChange(value) {
-          setAttributes({
-            url_shortening_service: value
-          });
-          setUrlShortener(value);
-        }
-      }), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Notice, {
-        className: "quotes-dlx-notice quotes-dlx-notice-warning",
-        status: "warning",
-        politeness: "assertive",
-        isDismissible: false
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        width: 36,
-        height: 36,
-        className: "quotes-dlx-icon",
-        "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('The Bitly short URL cannot be found.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('You may need to regenerate a Bitly short URL for this post or reauthorize the Bitly plugin.', 'quotes-dlx'))), url_shortening_service === 'bitly' && !tweet_quotes_block_vars.bitly_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Notice, {
-        className: "quotes-dlx-notice quotes-dlx-notice-warning",
-        status: "warning",
-        politeness: "assertive",
-        isDismissible: false
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        width: 36,
-        height: 36,
-        className: "quotes-dlx-icon",
-        "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('The official Bitly plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Please install and activate the Bitly WordPress Plugin and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Button, {
-        variant: "link",
-        href: "https://wordpress.org/plugins/wp-bitly/",
-        target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          width: 12,
-          height: 12
-        }),
-        iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Visit the Bitly plugin on WordPress.org', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_short_url && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Notice, {
-        className: "quotes-dlx-notice quotes-dlx-notice-warning",
-        status: "warning",
-        politeness: "assertive",
-        isDismissible: false
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        width: 36,
-        height: 36,
-        className: "quotes-dlx-icon",
-        "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('A shortlink from Jetpack could not be found', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Please ensure that Jetpack is installed and that shortlinks are enabled.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Button, {
-        variant: "link",
-        href: "https://jetpack.com/support/wp-me-shortlinks/",
-        target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          width: 12,
-          height: 12
-        }),
-        iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Visit the Jetpack Shortlink Documentation', 'quotes-dlx')))), url_shortening_service === 'jetpack' && !tweet_quotes_block_vars.jetpack_plugin_active && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Notice, {
-        className: "quotes-dlx-notice quotes-dlx-notice-warning",
-        status: "warning",
-        politeness: "assertive",
-        isDismissible: false
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-icon"
-      }, /*#__PURE__*/React.createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        width: 36,
-        height: 36,
-        className: "quotes-dlx-icon",
-        "var": "--quotes-dlx--preset--notice-warning-icon-color"
-      })), /*#__PURE__*/React.createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('The official Jetpack plugin is not installed.', 'quotes-dlx')), /*#__PURE__*/React.createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Please install and activate the Jetpack WordPress Plugin, enable shortlinks, and revisit this section. Alternatively, you can paste your URL in using the Manual option.', 'quotes-dlx')), /*#__PURE__*/React.createElement("div", {
-        className: "quotes-dlx-notice-button"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.Button, {
-        variant: "link",
-        href: "https://wordpress.org/plugins/jetpack/",
-        target: "_blank",
-        icon: /*#__PURE__*/React.createElement(_components_icons_NewWindow__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          width: 12,
-          height: 12
-        }),
-        iconPosition: "right"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Visit the Jetpack plugin on WordPress.org', 'quotes-dlx'))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_21__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Page URL', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('This displays the permanent URL to this block.'),
-        placeholder: manualPermalink,
-        value: manualPermalink !== null && manualPermalink !== void 0 ? manualPermalink : '',
-        onChange: function onChange(value) {
-          setAttributes({
-            manualPermalink: value,
-            permalink: value
-          });
-        },
-        disabled: url_shortening_service !== 'manual' ? 'disabled' : '',
-        ref: manualUrlInput
-      })));
-    }
-
-    return /*#__PURE__*/React.createElement(React.Fragment, null, getCharacterBar(), tabContent);
-  }))));
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_22__.useBlockProps)({
+  }, getCharacterBar(), blockContent)));
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_23__.useBlockProps)({
     className: "quotes-dlx template-".concat(template)
   });
   var stylesheet = false;
@@ -2734,17 +3543,17 @@ var TweetQuotes = function TweetQuotes(props) {
 };
 
 var EditContext = function EditContext(props) {
-  var _useState19 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(props.attributes.share_text),
-      _useState20 = _slicedToArray(_useState19, 2),
-      oldShareText = _useState20[0],
-      setOldShareText = _useState20[1];
+  var _useState23 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(props.attributes.share_text),
+      _useState24 = _slicedToArray(_useState23, 2),
+      oldShareText = _useState24[0],
+      setOldShareText = _useState24[1];
 
-  var _useState21 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(''),
-      _useState22 = _slicedToArray(_useState21, 2),
-      shareText = _useState22[0],
-      setShareText = _useState22[1];
+  var _useState25 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(''),
+      _useState26 = _slicedToArray(_useState25, 2),
+      shareText = _useState26[0],
+      setShareText = _useState26[1];
 
-  return /*#__PURE__*/React.createElement(_context_index__WEBPACK_IMPORTED_MODULE_23__["default"].Provider, {
+  return /*#__PURE__*/React.createElement(_context_index__WEBPACK_IMPORTED_MODULE_24__["default"].Provider, {
     value: {
       shareText: shareText,
       setShareText: setShareText,
@@ -15008,6 +15817,1360 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-simple-star-rating/dist/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-simple-star-rating/dist/index.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", ({value:!0}));var e=__webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js"),t=__webpack_require__(/*! react */ "react"),o=function(){return o=Object.assign||function(e){for(var t,o=1,n=arguments.length;o<n;o++)for(var i in t=arguments[o])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},o.apply(this,arguments)};function n(e,t,o){if(o||2===arguments.length)for(var n,i=0,r=t.length;i<r;i++)!n&&i in t||(n||(n=Array.prototype.slice.call(t,0,i)),n[i]=t[i]);return e.concat(n||Array.prototype.slice.call(t))}function i(t){var n=t.size,i=void 0===n?25:n,r=t.SVGstrokeColor,l=void 0===r?"currentColor":r,a=t.SVGstorkeWidth,s=void 0===a?0:a,c=t.SVGclassName,d=void 0===c?"star-svg":c,u=t.SVGstyle;return e.jsx("svg",o({className:d,style:u,stroke:l,fill:"currentColor",strokeWidth:s,viewBox:"0 0 24 24",width:i,height:i,xmlns:"http://www.w3.org/2000/svg"},{children:e.jsx("path",{d:"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"})}))}function r(e,t){switch(t.type){case"PointerMove":return o(o({},e),{hoverValue:t.payload,hoverIndex:t.index});case"PointerLeave":return o(o({},e),{ratingValue:e.ratingValue,hoverIndex:0,hoverValue:null});case"MouseClick":return o(o({},e),{valueIndex:e.hoverIndex,ratingValue:t.payload});default:return e}}var l="style-module_starRatingWrap__q-lJC",a="style-module_simpleStarRating__nWUxf",s="style-module_fillIcons__6---A",c="style-module_emptyIcons__Bg-FZ",d="style-module_tooltip__tKc3i";function u(){return"undefined"!=typeof window&&window.matchMedia("(pointer: coarse)").matches||"ontouchstart"in window||"undefined"!=typeof navigator&&navigator.maxTouchPoints>0}!function(e,t){void 0===t&&(t={});var o=t.insertAt;if(e&&"undefined"!=typeof document){var n=document.head||document.getElementsByTagName("head")[0],i=document.createElement("style");i.type="text/css","top"===o&&n.firstChild?n.insertBefore(i,n.firstChild):n.appendChild(i),i.styleSheet?i.styleSheet.cssText=e:i.appendChild(document.createTextNode(e))}}(".style-module_starRatingWrap__q-lJC{display:inline-block;touch-action:none}.style-module_simpleStarRating__nWUxf{display:inline-block;overflow:hidden;position:relative;touch-action:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;vertical-align:middle;white-space:nowrap}.style-module_fillIcons__6---A{display:inline-block;overflow:hidden;position:absolute;top:0;white-space:nowrap}.style-module_emptyIcons__Bg-FZ{display:inline-block}.style-module_tooltip__tKc3i{background-color:#333;border-radius:5px;color:#fff;display:inline-block;padding:5px 15px;vertical-align:middle}"),exports.Rating=function(v){var p,f,h=v.onClick,y=v.onPointerMove,m=v.onPointerEnter,g=v.onPointerLeave,x=v.initialValue,_=void 0===x?0:x,C=v.iconsCount,w=void 0===C?5:C,V=v.size,k=void 0===V?40:V,S=v.readonly,b=void 0!==S&&S,M=v.rtl,G=void 0!==M&&M,I=v.customIcons,N=void 0===I?[]:I,j=v.allowFraction,P=void 0!==j&&j,A=v.style,L=v.className,R=void 0===L?"react-simple-star-rating":L,T=v.transition,W=void 0!==T&&T,z=v.allowHover,B=void 0===z||z,E=v.disableFillHover,F=void 0!==E&&E,q=v.fillIcon,O=void 0===q?null:q,H=v.fillColor,J=void 0===H?"#ffbc0b":H,K=v.fillColorArray,U=void 0===K?[]:K,Z=v.fillStyle,D=v.fillClassName,X=void 0===D?"filled-icons":D,Y=v.emptyIcon,Q=void 0===Y?null:Y,$=v.emptyColor,ee=void 0===$?"#cccccc":$,te=v.emptyStyle,oe=v.emptyClassName,ne=void 0===oe?"empty-icons":oe,ie=v.allowTitleTag,re=void 0===ie||ie,le=v.showTooltip,ae=void 0!==le&&le,se=v.tooltipDefaultText,ce=void 0===se?"Your Rate":se,de=v.tooltipArray,ue=void 0===de?[]:de,ve=v.tooltipStyle,pe=v.tooltipClassName,fe=void 0===pe?"react-simple-star-rating-tooltip":pe,he=v.SVGclassName,ye=void 0===he?"star-svg":he,me=v.titleSeparator,ge=void 0===me?"out of":me,xe=v.SVGstyle,_e=v.SVGstorkeWidth,Ce=void 0===_e?0:_e,we=v.SVGstrokeColor,Ve=void 0===we?"currentColor":we,ke=t.useReducer(r,{hoverIndex:0,valueIndex:0,ratingValue:_,hoverValue:null}),Se=ke[0],be=Se.ratingValue,Me=Se.hoverValue,Ge=Se.hoverIndex,Ie=Se.valueIndex,Ne=ke[1];t.useEffect((function(){_&&Ne({type:"MouseClick",payload:0})}),[_]);var je=t.useMemo((function(){return P?2*w:w}),[P,w]),Pe=t.useMemo((function(){return _>je?0:P||Math.floor(_)===_?Math.round(_/w*100):2*Math.ceil(_)*10}),[P,_,w,je]),Ae=t.useMemo((function(){return(P?2*_-1:_-1)||0}),[P,_]),Le=t.useCallback((function(e){return w%2!=0?e/2/10:e*w/100}),[w]),Re=function(e){for(var t=e.clientX,o=e.currentTarget.children[0].getBoundingClientRect(),n=o.left,i=o.right,r=o.width,l=G?i-t:t-n,a=je,s=Math.round(r/je),c=0;c<=je;c+=1)if(l<=s*c){a=0===c&&l<s?0:c;break}var d=a-1;a>0&&(Ne({type:"PointerMove",payload:100*a/je,index:d}),y&&Me&&y(Le(Me),d,e))},Te=function(e){Me&&(Ne({type:"MouseClick",payload:Me}),h&&h(Le(Me),Ge,e))},We=t.useMemo((function(){if(B){if(F){var e=be&&be||Pe;return Me&&Me>e?Me:e}return Me&&Me||be&&be||Pe}return be&&be||Pe}),[B,F,Me,be,Pe]);t.useEffect((function(){ue.length>je&&console.error("tooltipArray Array length is bigger then Icons Count length.")}),[ue.length,je]);var ze=t.useCallback((function(e){return Me&&e[Ge]||be&&e[Ie]||_&&e[Ae]}),[Me,Ge,be,Ie,_,Ae]),Be=t.useMemo((function(){return Me&&Le(Me)||be&&Le(be)||_&&Le(Pe)}),[Me,Le,be,_,Pe]);return e.jsxs("span",o({className:l,style:{direction:"".concat(G?"rtl":"ltr")}},{children:[e.jsxs("span",o({className:"".concat(a," ").concat(R),style:o({cursor:b?"":"pointer"},A),onPointerMove:b?void 0:Re,onPointerEnter:b?void 0:function(e){m&&m(e),u()&&Re(e)},onPointerLeave:b?void 0:function(e){u()&&Te(),Ne({type:"PointerLeave"}),g&&g(e)},onClick:b?void 0:Te,"aria-hidden":"true"},{children:[e.jsx("span",o({className:"".concat(c," ").concat(ne),style:o({color:ee},te)},{children:n([],Array(w),!0).map((function(o,n){var r;return e.jsx(t.Fragment,{children:(null===(r=N[n])||void 0===r?void 0:r.icon)||Q||e.jsx(i,{SVGclassName:ye,SVGstyle:xe,SVGstorkeWidth:Ce,SVGstrokeColor:Ve,size:k})},n)}))})),e.jsx("span",o({className:"".concat(s," ").concat(X),style:o((p={},p[G?"right":"left"]=0,p.color=ze(U)||J,p.transition=W?"width .2s ease, color .2s ease":"",p.width="".concat(We,"%"),p),Z),title:re?"".concat(Be," ").concat(ge," ").concat(w):void 0},{children:n([],Array(w),!0).map((function(o,n){var r;return e.jsx(t.Fragment,{children:(null===(r=N[n])||void 0===r?void 0:r.icon)||O||e.jsx(i,{SVGclassName:ye,SVGstyle:xe,SVGstorkeWidth:Ce,SVGstrokeColor:Ve,size:k})},n)}))}))]})),ae&&e.jsx("span",o({className:"".concat(d," ").concat(fe),style:o((f={},f[G?"marginRight":"marginLeft"]=20,f),ve)},{children:(ue.length>0?ze(ue):Be)||ce}))]}))};
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/react/cjs/react-jsx-runtime.development.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react/cjs/react-jsx-runtime.development.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * @license React
+ * react-jsx-runtime.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+var React = __webpack_require__(/*! react */ "react");
+
+// ATTENTION
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types.
+var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
+var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+var FAUX_ITERATOR_SYMBOL = '@@iterator';
+function getIteratorFn(maybeIterable) {
+  if (maybeIterable === null || typeof maybeIterable !== 'object') {
+    return null;
+  }
+
+  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+
+  if (typeof maybeIterator === 'function') {
+    return maybeIterator;
+  }
+
+  return null;
+}
+
+var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+function error(format) {
+  {
+    {
+      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        args[_key2 - 1] = arguments[_key2];
+      }
+
+      printWarning('error', format, args);
+    }
+  }
+}
+
+function printWarning(level, format, args) {
+  // When changing this logic, you might want to also
+  // update consoleWithStackDev.www.js as well.
+  {
+    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    var stack = ReactDebugCurrentFrame.getStackAddendum();
+
+    if (stack !== '') {
+      format += '%s';
+      args = args.concat([stack]);
+    } // eslint-disable-next-line react-internal/safe-string-coercion
+
+
+    var argsWithFormat = args.map(function (item) {
+      return String(item);
+    }); // Careful: RN currently depends on this prefix
+
+    argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
+    // breaks IE9: https://github.com/facebook/react/issues/13610
+    // eslint-disable-next-line react-internal/no-production-logging
+
+    Function.prototype.apply.call(console[level], console, argsWithFormat);
+  }
+}
+
+// -----------------------------------------------------------------------------
+
+var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableCacheElement = false;
+var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+// stuff. Intended to enable React core members to more easily debug scheduling
+// issues in DEV builds.
+
+var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+var REACT_MODULE_REFERENCE;
+
+{
+  REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+}
+
+function isValidElementType(type) {
+  if (typeof type === 'string' || typeof type === 'function') {
+    return true;
+  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+
+
+  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
+    return true;
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+    // types supported by any Flight configuration anywhere since
+    // we don't know which Flight build this will end up being used
+    // with.
+    type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function getWrappedName(outerType, innerType, wrapperName) {
+  var displayName = outerType.displayName;
+
+  if (displayName) {
+    return displayName;
+  }
+
+  var functionName = innerType.displayName || innerType.name || '';
+  return functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName;
+} // Keep in sync with react-reconciler/getComponentNameFromFiber
+
+
+function getContextName(type) {
+  return type.displayName || 'Context';
+} // Note that the reconciler package should generally prefer to use getComponentNameFromFiber() instead.
+
+
+function getComponentNameFromType(type) {
+  if (type == null) {
+    // Host root, text node or just invalid type.
+    return null;
+  }
+
+  {
+    if (typeof type.tag === 'number') {
+      error('Received an unexpected object in getComponentNameFromType(). ' + 'This is likely a bug in React. Please file an issue.');
+    }
+  }
+
+  if (typeof type === 'function') {
+    return type.displayName || type.name || null;
+  }
+
+  if (typeof type === 'string') {
+    return type;
+  }
+
+  switch (type) {
+    case REACT_FRAGMENT_TYPE:
+      return 'Fragment';
+
+    case REACT_PORTAL_TYPE:
+      return 'Portal';
+
+    case REACT_PROFILER_TYPE:
+      return 'Profiler';
+
+    case REACT_STRICT_MODE_TYPE:
+      return 'StrictMode';
+
+    case REACT_SUSPENSE_TYPE:
+      return 'Suspense';
+
+    case REACT_SUSPENSE_LIST_TYPE:
+      return 'SuspenseList';
+
+  }
+
+  if (typeof type === 'object') {
+    switch (type.$$typeof) {
+      case REACT_CONTEXT_TYPE:
+        var context = type;
+        return getContextName(context) + '.Consumer';
+
+      case REACT_PROVIDER_TYPE:
+        var provider = type;
+        return getContextName(provider._context) + '.Provider';
+
+      case REACT_FORWARD_REF_TYPE:
+        return getWrappedName(type, type.render, 'ForwardRef');
+
+      case REACT_MEMO_TYPE:
+        var outerName = type.displayName || null;
+
+        if (outerName !== null) {
+          return outerName;
+        }
+
+        return getComponentNameFromType(type.type) || 'Memo';
+
+      case REACT_LAZY_TYPE:
+        {
+          var lazyComponent = type;
+          var payload = lazyComponent._payload;
+          var init = lazyComponent._init;
+
+          try {
+            return getComponentNameFromType(init(payload));
+          } catch (x) {
+            return null;
+          }
+        }
+
+      // eslint-disable-next-line no-fallthrough
+    }
+  }
+
+  return null;
+}
+
+var assign = Object.assign;
+
+// Helpers to patch console.logs to avoid logging during side-effect free
+// replaying on render function. This currently only patches the object
+// lazily which won't cover if the log function was extracted eagerly.
+// We could also eagerly patch the method.
+var disabledDepth = 0;
+var prevLog;
+var prevInfo;
+var prevWarn;
+var prevError;
+var prevGroup;
+var prevGroupCollapsed;
+var prevGroupEnd;
+
+function disabledLog() {}
+
+disabledLog.__reactDisabledLog = true;
+function disableLogs() {
+  {
+    if (disabledDepth === 0) {
+      /* eslint-disable react-internal/no-production-logging */
+      prevLog = console.log;
+      prevInfo = console.info;
+      prevWarn = console.warn;
+      prevError = console.error;
+      prevGroup = console.group;
+      prevGroupCollapsed = console.groupCollapsed;
+      prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
+
+      var props = {
+        configurable: true,
+        enumerable: true,
+        value: disabledLog,
+        writable: true
+      }; // $FlowFixMe Flow thinks console is immutable.
+
+      Object.defineProperties(console, {
+        info: props,
+        log: props,
+        warn: props,
+        error: props,
+        group: props,
+        groupCollapsed: props,
+        groupEnd: props
+      });
+      /* eslint-enable react-internal/no-production-logging */
+    }
+
+    disabledDepth++;
+  }
+}
+function reenableLogs() {
+  {
+    disabledDepth--;
+
+    if (disabledDepth === 0) {
+      /* eslint-disable react-internal/no-production-logging */
+      var props = {
+        configurable: true,
+        enumerable: true,
+        writable: true
+      }; // $FlowFixMe Flow thinks console is immutable.
+
+      Object.defineProperties(console, {
+        log: assign({}, props, {
+          value: prevLog
+        }),
+        info: assign({}, props, {
+          value: prevInfo
+        }),
+        warn: assign({}, props, {
+          value: prevWarn
+        }),
+        error: assign({}, props, {
+          value: prevError
+        }),
+        group: assign({}, props, {
+          value: prevGroup
+        }),
+        groupCollapsed: assign({}, props, {
+          value: prevGroupCollapsed
+        }),
+        groupEnd: assign({}, props, {
+          value: prevGroupEnd
+        })
+      });
+      /* eslint-enable react-internal/no-production-logging */
+    }
+
+    if (disabledDepth < 0) {
+      error('disabledDepth fell below zero. ' + 'This is a bug in React. Please file an issue.');
+    }
+  }
+}
+
+var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+var prefix;
+function describeBuiltInComponentFrame(name, source, ownerFn) {
+  {
+    if (prefix === undefined) {
+      // Extract the VM specific prefix used by each line.
+      try {
+        throw Error();
+      } catch (x) {
+        var match = x.stack.trim().match(/\n( *(at )?)/);
+        prefix = match && match[1] || '';
+      }
+    } // We use the prefix to ensure our stacks line up with native stack frames.
+
+
+    return '\n' + prefix + name;
+  }
+}
+var reentry = false;
+var componentFrameCache;
+
+{
+  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+  componentFrameCache = new PossiblyWeakMap();
+}
+
+function describeNativeComponentFrame(fn, construct) {
+  // If something asked for a stack inside a fake render, it should get ignored.
+  if ( !fn || reentry) {
+    return '';
+  }
+
+  {
+    var frame = componentFrameCache.get(fn);
+
+    if (frame !== undefined) {
+      return frame;
+    }
+  }
+
+  var control;
+  reentry = true;
+  var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+
+  Error.prepareStackTrace = undefined;
+  var previousDispatcher;
+
+  {
+    previousDispatcher = ReactCurrentDispatcher.current; // Set the dispatcher in DEV because this might be call in the render function
+    // for warnings.
+
+    ReactCurrentDispatcher.current = null;
+    disableLogs();
+  }
+
+  try {
+    // This should throw.
+    if (construct) {
+      // Something should be setting the props in the constructor.
+      var Fake = function () {
+        throw Error();
+      }; // $FlowFixMe
+
+
+      Object.defineProperty(Fake.prototype, 'props', {
+        set: function () {
+          // We use a throwing setter instead of frozen or non-writable props
+          // because that won't throw in a non-strict mode function.
+          throw Error();
+        }
+      });
+
+      if (typeof Reflect === 'object' && Reflect.construct) {
+        // We construct a different control for this case to include any extra
+        // frames added by the construct call.
+        try {
+          Reflect.construct(Fake, []);
+        } catch (x) {
+          control = x;
+        }
+
+        Reflect.construct(fn, [], Fake);
+      } else {
+        try {
+          Fake.call();
+        } catch (x) {
+          control = x;
+        }
+
+        fn.call(Fake.prototype);
+      }
+    } else {
+      try {
+        throw Error();
+      } catch (x) {
+        control = x;
+      }
+
+      fn();
+    }
+  } catch (sample) {
+    // This is inlined manually because closure doesn't do it for us.
+    if (sample && control && typeof sample.stack === 'string') {
+      // This extracts the first frame from the sample that isn't also in the control.
+      // Skipping one frame that we assume is the frame that calls the two.
+      var sampleLines = sample.stack.split('\n');
+      var controlLines = control.stack.split('\n');
+      var s = sampleLines.length - 1;
+      var c = controlLines.length - 1;
+
+      while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+        // We expect at least one stack frame to be shared.
+        // Typically this will be the root most one. However, stack frames may be
+        // cut off due to maximum stack limits. In this case, one maybe cut off
+        // earlier than the other. We assume that the sample is longer or the same
+        // and there for cut off earlier. So we should find the root most frame in
+        // the sample somewhere in the control.
+        c--;
+      }
+
+      for (; s >= 1 && c >= 0; s--, c--) {
+        // Next we find the first one that isn't the same which should be the
+        // frame that called our sample function and the control.
+        if (sampleLines[s] !== controlLines[c]) {
+          // In V8, the first line is describing the message but other VMs don't.
+          // If we're about to return the first line, and the control is also on the same
+          // line, that's a pretty good indicator that our sample threw at same line as
+          // the control. I.e. before we entered the sample frame. So we ignore this result.
+          // This can happen if you passed a class to function component, or non-function.
+          if (s !== 1 || c !== 1) {
+            do {
+              s--;
+              c--; // We may still have similar intermediate frames from the construct call.
+              // The next one that isn't the same should be our match though.
+
+              if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
+                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
+                // but we have a user-provided "displayName"
+                // splice it in to make the stack more readable.
+
+
+                if (fn.displayName && _frame.includes('<anonymous>')) {
+                  _frame = _frame.replace('<anonymous>', fn.displayName);
+                }
+
+                {
+                  if (typeof fn === 'function') {
+                    componentFrameCache.set(fn, _frame);
+                  }
+                } // Return the line we found.
+
+
+                return _frame;
+              }
+            } while (s >= 1 && c >= 0);
+          }
+
+          break;
+        }
+      }
+    }
+  } finally {
+    reentry = false;
+
+    {
+      ReactCurrentDispatcher.current = previousDispatcher;
+      reenableLogs();
+    }
+
+    Error.prepareStackTrace = previousPrepareStackTrace;
+  } // Fallback to just using the name if we couldn't make it throw.
+
+
+  var name = fn ? fn.displayName || fn.name : '';
+  var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+
+  {
+    if (typeof fn === 'function') {
+      componentFrameCache.set(fn, syntheticFrame);
+    }
+  }
+
+  return syntheticFrame;
+}
+function describeFunctionComponentFrame(fn, source, ownerFn) {
+  {
+    return describeNativeComponentFrame(fn, false);
+  }
+}
+
+function shouldConstruct(Component) {
+  var prototype = Component.prototype;
+  return !!(prototype && prototype.isReactComponent);
+}
+
+function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+
+  if (type == null) {
+    return '';
+  }
+
+  if (typeof type === 'function') {
+    {
+      return describeNativeComponentFrame(type, shouldConstruct(type));
+    }
+  }
+
+  if (typeof type === 'string') {
+    return describeBuiltInComponentFrame(type);
+  }
+
+  switch (type) {
+    case REACT_SUSPENSE_TYPE:
+      return describeBuiltInComponentFrame('Suspense');
+
+    case REACT_SUSPENSE_LIST_TYPE:
+      return describeBuiltInComponentFrame('SuspenseList');
+  }
+
+  if (typeof type === 'object') {
+    switch (type.$$typeof) {
+      case REACT_FORWARD_REF_TYPE:
+        return describeFunctionComponentFrame(type.render);
+
+      case REACT_MEMO_TYPE:
+        // Memo may contain any component type so we recursively resolve it.
+        return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+
+      case REACT_LAZY_TYPE:
+        {
+          var lazyComponent = type;
+          var payload = lazyComponent._payload;
+          var init = lazyComponent._init;
+
+          try {
+            // Lazy may contain any component type so we recursively resolve it.
+            return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+          } catch (x) {}
+        }
+    }
+  }
+
+  return '';
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+var loggedTypeFailures = {};
+var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+
+function setCurrentlyValidatingElement(element) {
+  {
+    if (element) {
+      var owner = element._owner;
+      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      ReactDebugCurrentFrame.setExtraStackFrame(stack);
+    } else {
+      ReactDebugCurrentFrame.setExtraStackFrame(null);
+    }
+  }
+}
+
+function checkPropTypes(typeSpecs, values, location, componentName, element) {
+  {
+    // $FlowFixMe This is okay but Flow doesn't know it.
+    var has = Function.call.bind(hasOwnProperty);
+
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            // eslint-disable-next-line react-internal/prod-error-codes
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+
+          error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
+        } catch (ex) {
+          error$1 = ex;
+        }
+
+        if (error$1 && !(error$1 instanceof Error)) {
+          setCurrentlyValidatingElement(element);
+
+          error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
+
+          setCurrentlyValidatingElement(null);
+        }
+
+        if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error$1.message] = true;
+          setCurrentlyValidatingElement(element);
+
+          error('Failed %s type: %s', location, error$1.message);
+
+          setCurrentlyValidatingElement(null);
+        }
+      }
+    }
+  }
+}
+
+var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+
+function isArray(a) {
+  return isArrayImpl(a);
+}
+
+/*
+ * The `'' + value` pattern (used in in perf-sensitive code) throws for Symbol
+ * and Temporal.* types. See https://github.com/facebook/react/pull/22064.
+ *
+ * The functions in this module will throw an easier-to-understand,
+ * easier-to-debug exception with a clear errors message message explaining the
+ * problem. (Instead of a confusing exception thrown inside the implementation
+ * of the `value` object).
+ */
+// $FlowFixMe only called in DEV, so void return is not possible.
+function typeName(value) {
+  {
+    // toStringTag is needed for namespaced types like Temporal.Instant
+    var hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
+    var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
+    return type;
+  }
+} // $FlowFixMe only called in DEV, so void return is not possible.
+
+
+function willCoercionThrow(value) {
+  {
+    try {
+      testStringCoercion(value);
+      return false;
+    } catch (e) {
+      return true;
+    }
+  }
+}
+
+function testStringCoercion(value) {
+  // If you ended up here by following an exception call stack, here's what's
+  // happened: you supplied an object or symbol value to React (as a prop, key,
+  // DOM attribute, CSS property, string ref, etc.) and when React tried to
+  // coerce it to a string using `'' + value`, an exception was thrown.
+  //
+  // The most common types that will cause this exception are `Symbol` instances
+  // and Temporal objects like `Temporal.Instant`. But any object that has a
+  // `valueOf` or `[Symbol.toPrimitive]` method that throws will also cause this
+  // exception. (Library authors do this to prevent users from using built-in
+  // numeric operators like `+` or comparison operators like `>=` because custom
+  // methods are needed to perform accurate arithmetic or comparison.)
+  //
+  // To fix the problem, coerce this object or symbol value to a string before
+  // passing it to React. The most reliable way is usually `String(value)`.
+  //
+  // To find which value is throwing, check the browser or debugger console.
+  // Before this exception was thrown, there should be `console.error` output
+  // that shows the type (Symbol, Temporal.PlainDate, etc.) that caused the
+  // problem and how that type was used: key, atrribute, input value prop, etc.
+  // In most cases, this console output also shows the component and its
+  // ancestor components where the exception happened.
+  //
+  // eslint-disable-next-line react-internal/safe-string-coercion
+  return '' + value;
+}
+function checkKeyStringCoercion(value) {
+  {
+    if (willCoercionThrow(value)) {
+      error('The provided key is an unsupported type %s.' + ' This value must be coerced to a string before before using it here.', typeName(value));
+
+      return testStringCoercion(value); // throw (to help callers find troubleshooting comments)
+    }
+  }
+}
+
+var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+var RESERVED_PROPS = {
+  key: true,
+  ref: true,
+  __self: true,
+  __source: true
+};
+var specialPropKeyWarningShown;
+var specialPropRefWarningShown;
+var didWarnAboutStringRefs;
+
+{
+  didWarnAboutStringRefs = {};
+}
+
+function hasValidRef(config) {
+  {
+    if (hasOwnProperty.call(config, 'ref')) {
+      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
+
+      if (getter && getter.isReactWarning) {
+        return false;
+      }
+    }
+  }
+
+  return config.ref !== undefined;
+}
+
+function hasValidKey(config) {
+  {
+    if (hasOwnProperty.call(config, 'key')) {
+      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
+
+      if (getter && getter.isReactWarning) {
+        return false;
+      }
+    }
+  }
+
+  return config.key !== undefined;
+}
+
+function warnIfStringRefCannotBeAutoConverted(config, self) {
+  {
+    if (typeof config.ref === 'string' && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
+      var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
+
+      if (!didWarnAboutStringRefs[componentName]) {
+        error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
+
+        didWarnAboutStringRefs[componentName] = true;
+      }
+    }
+  }
+}
+
+function defineKeyPropWarningGetter(props, displayName) {
+  {
+    var warnAboutAccessingKey = function () {
+      if (!specialPropKeyWarningShown) {
+        specialPropKeyWarningShown = true;
+
+        error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+      }
+    };
+
+    warnAboutAccessingKey.isReactWarning = true;
+    Object.defineProperty(props, 'key', {
+      get: warnAboutAccessingKey,
+      configurable: true
+    });
+  }
+}
+
+function defineRefPropWarningGetter(props, displayName) {
+  {
+    var warnAboutAccessingRef = function () {
+      if (!specialPropRefWarningShown) {
+        specialPropRefWarningShown = true;
+
+        error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+      }
+    };
+
+    warnAboutAccessingRef.isReactWarning = true;
+    Object.defineProperty(props, 'ref', {
+      get: warnAboutAccessingRef,
+      configurable: true
+    });
+  }
+}
+/**
+ * Factory method to create a new React element. This no longer adheres to
+ * the class pattern, so do not use new to call it. Also, instanceof check
+ * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
+ * if something is a React Element.
+ *
+ * @param {*} type
+ * @param {*} props
+ * @param {*} key
+ * @param {string|object} ref
+ * @param {*} owner
+ * @param {*} self A *temporary* helper to detect places where `this` is
+ * different from the `owner` when React.createElement is called, so that we
+ * can warn. We want to get rid of owner and replace string `ref`s with arrow
+ * functions, and as long as `this` and owner are the same, there will be no
+ * change in behavior.
+ * @param {*} source An annotation object (added by a transpiler or otherwise)
+ * indicating filename, line number, and/or other information.
+ * @internal
+ */
+
+
+var ReactElement = function (type, key, ref, self, source, owner, props) {
+  var element = {
+    // This tag allows us to uniquely identify this as a React Element
+    $$typeof: REACT_ELEMENT_TYPE,
+    // Built-in properties that belong on the element
+    type: type,
+    key: key,
+    ref: ref,
+    props: props,
+    // Record the component responsible for creating this element.
+    _owner: owner
+  };
+
+  {
+    // The validation flag is currently mutative. We put it on
+    // an external backing store so that we can freeze the whole object.
+    // This can be replaced with a WeakMap once they are implemented in
+    // commonly used development environments.
+    element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
+    // the validation flag non-enumerable (where possible, which should
+    // include every environment we run tests in), so the test framework
+    // ignores it.
+
+    Object.defineProperty(element._store, 'validated', {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: false
+    }); // self and source are DEV only properties.
+
+    Object.defineProperty(element, '_self', {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: self
+    }); // Two elements created in two different places should be considered
+    // equal for testing purposes and therefore we hide it from enumeration.
+
+    Object.defineProperty(element, '_source', {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: source
+    });
+
+    if (Object.freeze) {
+      Object.freeze(element.props);
+      Object.freeze(element);
+    }
+  }
+
+  return element;
+};
+/**
+ * https://github.com/reactjs/rfcs/pull/107
+ * @param {*} type
+ * @param {object} props
+ * @param {string} key
+ */
+
+function jsxDEV(type, config, maybeKey, source, self) {
+  {
+    var propName; // Reserved names are extracted
+
+    var props = {};
+    var key = null;
+    var ref = null; // Currently, key can be spread in as a prop. This causes a potential
+    // issue if key is also explicitly declared (ie. <div {...props} key="Hi" />
+    // or <div key="Hi" {...props} /> ). We want to deprecate key spread,
+    // but as an intermediary step, we will use jsxDEV for everything except
+    // <div {...props} key="Hi" />, because we aren't currently able to tell if
+    // key is explicitly declared to be undefined or not.
+
+    if (maybeKey !== undefined) {
+      {
+        checkKeyStringCoercion(maybeKey);
+      }
+
+      key = '' + maybeKey;
+    }
+
+    if (hasValidKey(config)) {
+      {
+        checkKeyStringCoercion(config.key);
+      }
+
+      key = '' + config.key;
+    }
+
+    if (hasValidRef(config)) {
+      ref = config.ref;
+      warnIfStringRefCannotBeAutoConverted(config, self);
+    } // Remaining properties are added to a new props object
+
+
+    for (propName in config) {
+      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+        props[propName] = config[propName];
+      }
+    } // Resolve default props
+
+
+    if (type && type.defaultProps) {
+      var defaultProps = type.defaultProps;
+
+      for (propName in defaultProps) {
+        if (props[propName] === undefined) {
+          props[propName] = defaultProps[propName];
+        }
+      }
+    }
+
+    if (key || ref) {
+      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
+
+      if (key) {
+        defineKeyPropWarningGetter(props, displayName);
+      }
+
+      if (ref) {
+        defineRefPropWarningGetter(props, displayName);
+      }
+    }
+
+    return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+  }
+}
+
+var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+
+function setCurrentlyValidatingElement$1(element) {
+  {
+    if (element) {
+      var owner = element._owner;
+      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+    } else {
+      ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+    }
+  }
+}
+
+var propTypesMisspellWarningShown;
+
+{
+  propTypesMisspellWarningShown = false;
+}
+/**
+ * Verifies the object is a ReactElement.
+ * See https://reactjs.org/docs/react-api.html#isvalidelement
+ * @param {?object} object
+ * @return {boolean} True if `object` is a ReactElement.
+ * @final
+ */
+
+
+function isValidElement(object) {
+  {
+    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+  }
+}
+
+function getDeclarationErrorAddendum() {
+  {
+    if (ReactCurrentOwner$1.current) {
+      var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
+
+      if (name) {
+        return '\n\nCheck the render method of `' + name + '`.';
+      }
+    }
+
+    return '';
+  }
+}
+
+function getSourceInfoErrorAddendum(source) {
+  {
+    if (source !== undefined) {
+      var fileName = source.fileName.replace(/^.*[\\\/]/, '');
+      var lineNumber = source.lineNumber;
+      return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
+    }
+
+    return '';
+  }
+}
+/**
+ * Warn if there's no key explicitly set on dynamic arrays of children or
+ * object keys are not valid. This allows us to keep track of children between
+ * updates.
+ */
+
+
+var ownerHasKeyUseWarning = {};
+
+function getCurrentComponentErrorInfo(parentType) {
+  {
+    var info = getDeclarationErrorAddendum();
+
+    if (!info) {
+      var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
+
+      if (parentName) {
+        info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+      }
+    }
+
+    return info;
+  }
+}
+/**
+ * Warn if the element doesn't have an explicit key assigned to it.
+ * This element is in an array. The array could grow and shrink or be
+ * reordered. All children that haven't already been validated are required to
+ * have a "key" property assigned to it. Error statuses are cached so a warning
+ * will only be shown once.
+ *
+ * @internal
+ * @param {ReactElement} element Element that requires a key.
+ * @param {*} parentType element's parent's type.
+ */
+
+
+function validateExplicitKey(element, parentType) {
+  {
+    if (!element._store || element._store.validated || element.key != null) {
+      return;
+    }
+
+    element._store.validated = true;
+    var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+
+    if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
+      return;
+    }
+
+    ownerHasKeyUseWarning[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
+    // property, it may be the creator of the child that's responsible for
+    // assigning it a key.
+
+    var childOwner = '';
+
+    if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
+      // Give the component that originally created this child.
+      childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
+    }
+
+    setCurrentlyValidatingElement$1(element);
+
+    error('Each child in a list should have a unique "key" prop.' + '%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+
+    setCurrentlyValidatingElement$1(null);
+  }
+}
+/**
+ * Ensure that every element either is passed in a static location, in an
+ * array with an explicit keys property defined, or in an object literal
+ * with valid key property.
+ *
+ * @internal
+ * @param {ReactNode} node Statically passed child of any type.
+ * @param {*} parentType node's parent's type.
+ */
+
+
+function validateChildKeys(node, parentType) {
+  {
+    if (typeof node !== 'object') {
+      return;
+    }
+
+    if (isArray(node)) {
+      for (var i = 0; i < node.length; i++) {
+        var child = node[i];
+
+        if (isValidElement(child)) {
+          validateExplicitKey(child, parentType);
+        }
+      }
+    } else if (isValidElement(node)) {
+      // This element was passed in a valid location.
+      if (node._store) {
+        node._store.validated = true;
+      }
+    } else if (node) {
+      var iteratorFn = getIteratorFn(node);
+
+      if (typeof iteratorFn === 'function') {
+        // Entry iterators used to provide implicit keys,
+        // but now we print a separate warning for them later.
+        if (iteratorFn !== node.entries) {
+          var iterator = iteratorFn.call(node);
+          var step;
+
+          while (!(step = iterator.next()).done) {
+            if (isValidElement(step.value)) {
+              validateExplicitKey(step.value, parentType);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/**
+ * Given an element, validate that its props follow the propTypes definition,
+ * provided by the type.
+ *
+ * @param {ReactElement} element
+ */
+
+
+function validatePropTypes(element) {
+  {
+    var type = element.type;
+
+    if (type === null || type === undefined || typeof type === 'string') {
+      return;
+    }
+
+    var propTypes;
+
+    if (typeof type === 'function') {
+      propTypes = type.propTypes;
+    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+    // Inner props are checked in the reconciler.
+    type.$$typeof === REACT_MEMO_TYPE)) {
+      propTypes = type.propTypes;
+    } else {
+      return;
+    }
+
+    if (propTypes) {
+      // Intentionally inside to avoid triggering lazy initializers:
+      var name = getComponentNameFromType(type);
+      checkPropTypes(propTypes, element.props, 'prop', name, element);
+    } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
+      propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
+
+      var _name = getComponentNameFromType(type);
+
+      error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
+    }
+
+    if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
+      error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
+    }
+  }
+}
+/**
+ * Given a fragment, validate that it can only be provided with fragment props
+ * @param {ReactElement} fragment
+ */
+
+
+function validateFragmentProps(fragment) {
+  {
+    var keys = Object.keys(fragment.props);
+
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+
+      if (key !== 'children' && key !== 'key') {
+        setCurrentlyValidatingElement$1(fragment);
+
+        error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
+
+        setCurrentlyValidatingElement$1(null);
+        break;
+      }
+    }
+
+    if (fragment.ref !== null) {
+      setCurrentlyValidatingElement$1(fragment);
+
+      error('Invalid attribute `ref` supplied to `React.Fragment`.');
+
+      setCurrentlyValidatingElement$1(null);
+    }
+  }
+}
+
+function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
+  {
+    var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
+    // succeed and there will likely be errors in render.
+
+    if (!validType) {
+      var info = '';
+
+      if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
+        info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
+      }
+
+      var sourceInfo = getSourceInfoErrorAddendum(source);
+
+      if (sourceInfo) {
+        info += sourceInfo;
+      } else {
+        info += getDeclarationErrorAddendum();
+      }
+
+      var typeString;
+
+      if (type === null) {
+        typeString = 'null';
+      } else if (isArray(type)) {
+        typeString = 'array';
+      } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
+        typeString = "<" + (getComponentNameFromType(type.type) || 'Unknown') + " />";
+        info = ' Did you accidentally export a JSX literal instead of a component?';
+      } else {
+        typeString = typeof type;
+      }
+
+      error('React.jsx: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
+    }
+
+    var element = jsxDEV(type, props, key, source, self); // The result can be nullish if a mock or a custom function is used.
+    // TODO: Drop this when these are no longer allowed as the type argument.
+
+    if (element == null) {
+      return element;
+    } // Skip key warning if the type isn't valid since our key validation logic
+    // doesn't expect a non-string/function type and can throw confusing errors.
+    // We don't want exception behavior to differ between dev and prod.
+    // (Rendering will throw with a helpful message and as soon as the type is
+    // fixed, the key warnings will appear.)
+
+
+    if (validType) {
+      var children = props.children;
+
+      if (children !== undefined) {
+        if (isStaticChildren) {
+          if (isArray(children)) {
+            for (var i = 0; i < children.length; i++) {
+              validateChildKeys(children[i], type);
+            }
+
+            if (Object.freeze) {
+              Object.freeze(children);
+            }
+          } else {
+            error('React.jsx: Static children should always be an array. ' + 'You are likely explicitly calling React.jsxs or React.jsxDEV. ' + 'Use the Babel transform instead.');
+          }
+        } else {
+          validateChildKeys(children, type);
+        }
+      }
+    }
+
+    if (type === REACT_FRAGMENT_TYPE) {
+      validateFragmentProps(element);
+    } else {
+      validatePropTypes(element);
+    }
+
+    return element;
+  }
+} // These two functions exist to still get child warnings in dev
+// even with the prod transform. This means that jsxDEV is purely
+// opt-in behavior for better messages but that we won't stop
+// giving you warnings if you use production apis.
+
+function jsxWithValidationStatic(type, props, key) {
+  {
+    return jsxWithValidation(type, props, key, true);
+  }
+}
+function jsxWithValidationDynamic(type, props, key) {
+  {
+    return jsxWithValidation(type, props, key, false);
+  }
+}
+
+var jsx =  jsxWithValidationDynamic ; // we may want to special case jsxs internally to take advantage of static children.
+// for now we can ship identical prod functions
+
+var jsxs =  jsxWithValidationStatic ;
+
+exports.Fragment = REACT_FRAGMENT_TYPE;
+exports.jsx = jsx;
+exports.jsxs = jsxs;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react/jsx-runtime.js":
+/*!*******************************************!*\
+  !*** ./node_modules/react/jsx-runtime.js ***!
+  \*******************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-jsx-runtime.development.js */ "./node_modules/react/cjs/react-jsx-runtime.development.js");
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/shallowequal/index.js":
 /*!********************************************!*\
   !*** ./node_modules/shallowequal/index.js ***!
@@ -15270,6 +17433,17 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 
 /***/ }),
 
+/***/ "./src/js/blocks/click-to-share-buttons/block.json":
+/*!*********************************************************!*\
+  !*** ./src/js/blocks/click-to-share-buttons/block.json ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Click to Share Block","apiVersion":2,"name":"mediaron/quotes-dlx-click-to-share","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","quote"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"twitter_share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+
+/***/ }),
+
 /***/ "./src/js/blocks/quotes-dlx-blockquote/block.json":
 /*!********************************************************!*\
   !*** ./src/js/blocks/quotes-dlx-blockquote/block.json ***!
@@ -15277,7 +17451,18 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Blockquote","apiVersion":2,"name":"mediaron/quotes-dlx-blockquote","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false},"theme_colors":{"type":"object","default":{}},"enable_custom_theme_colors":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Blockquote","apiVersion":2,"name":"mediaron/quotes-dlx-blockquote","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{},"example":{},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+
+/***/ }),
+
+/***/ "./src/js/blocks/rating/block.json":
+/*!*****************************************!*\
+  !*** ./src/js/blocks/rating/block.json ***!
+  \*****************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Rating","apiVersion":2,"name":"mediaron/quotes-dlx-rating","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","rating"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"starRating":{"type":"number","default":0},"ratingPercentage":{"type":"number","default":0},"ratingNumber":{"type":"number","default":10},"ratingMax":{"type":"number","default":10},"ratingType":{"type":"string","default":"stars"},"review":{"type":"string","default":""},"reviewer":{"type":"string","default":""},"reviewerUrl":{"type":"string","default":""},"reviewerImage":{"type":"string","default":""},"reviewerImageId":{"type":"number","default":0},"reviewerTitle":{"type":"string","default":""},"reviewerCompany":{"type":"string","default":""},"reviewUrl":{"type":"string","default":""},"isPreviewMode":{"type":"boolean","default":false},"showReviewerImage":{"type":"boolean","default":true},"showReviewerUrl":{"type":"boolean","default":true},"reviewerUrlNoFollow":{"type":"boolean","default":false},"reviewerUrlNewTab":{"type":"boolean","default":false},"showReviewerName":{"type":"boolean","default":true},"showReviewerTitle":{"type":"boolean","default":true},"showReviewerCompany":{"type":"boolean","default":true},"showReview":{"type":"boolean","default":true}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ }),
 
@@ -15288,7 +17473,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Social Bar Block","apiVersion":2,"name":"mediaron/quotes-dlx-social-bar","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","quote","caption"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"showTwitter":{"type":"boolean","default":true},"showFacebook":{"type":"boolean","default":true},"showLinkedin":{"type":"boolean","default":true},"showTelegram":{"type":"boolean","default":true},"showWhatsApp":{"type":"boolean","default":true},"showTumblr":{"type":"boolean","default":true},"showCopy":{"type":"boolean","default":true},"showEmail":{"type":"boolean","default":true},"showReddit":{"type":"boolean","default":true},"showWebAPI":{"type":"boolean","default":true}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Social Bar Block","apiVersion":2,"name":"mediaron/quotes-dlx-social-bar","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","quote","caption"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"showTwitter":{"type":"boolean","default":true},"showFacebook":{"type":"boolean","default":true},"showLinkedin":{"type":"boolean","default":false},"showTelegram":{"type":"boolean","default":false},"showWhatsApp":{"type":"boolean","default":false},"showTumblr":{"type":"boolean","default":false},"showCopy":{"type":"boolean","default":true},"showEmail":{"type":"boolean","default":true},"showReddit":{"type":"boolean","default":false},"showWebAPI":{"type":"boolean","default":true},"iconAppearance":{"type":"string","default":"rounded"},"alignment":{"type":"string","default":"left"}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ }),
 
@@ -15418,6 +17603,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_blocks_cite_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/blocks/cite/index */ "./src/js/blocks/cite/index.js");
 /* harmony import */ var _js_blocks_social_bar_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/blocks/social-bar/index */ "./src/js/blocks/social-bar/index.js");
 /* harmony import */ var _js_blocks_tweet_quotes_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/blocks/tweet-quotes/index */ "./src/js/blocks/tweet-quotes/index.js");
+/* harmony import */ var _js_blocks_click_to_share_buttons_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/blocks/click-to-share-buttons/index */ "./src/js/blocks/click-to-share-buttons/index.js");
+/* harmony import */ var _js_blocks_rating_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/blocks/rating/index */ "./src/js/blocks/rating/index.js");
+
+
 
 
 

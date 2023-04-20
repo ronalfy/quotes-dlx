@@ -102,6 +102,174 @@ p ~ .quotes-dlx.quotes-dlx-container {
   cursor: pointer;
 }
 
+ul.qdlx-social-networks {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding: 15px 0;
+}
+ul.qdlx-social-networks li {
+  margin: 0;
+  padding: 0;
+  margin-right: 8px;
+}
+ul.qdlx-social-networks li:last-child {
+  margin-right: 0;
+}
+
+.qdlx-social-bar-align-left ul.qdlx-social-networks {
+  justify-content: flex-start;
+}
+
+.qdlx-social-bar-align-center ul.qdlx-social-networks {
+  justify-content: center;
+}
+
+.qdlx-social-bar-align-right ul.qdlx-social-networks {
+  justify-content: right;
+}
+
+.qdlx-svg-icon {
+  transition: all 0.4s ease-in-out;
+}
+
+ul.qdlx-social-networks li .qdlx-svg-icon {
+  cursor: pointer;
+  display: block;
+  padding: 14px;
+  width: 22px;
+  height: 22px;
+}
+ul.qdlx-social-networks li .qdlx-svg-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qdlx-social-bar-rounded .qdlx-svg-icon {
+  border-radius: 100%;
+}
+
+.qdlx-social-twitter {
+  color: #1DA1F2;
+}
+
+.qdlx-social-facebook {
+  color: #3c5a9e;
+}
+
+.qdlx-social-linkedin {
+  color: #0085AE;
+}
+
+.qdlx-social-ok {
+  color: #ee8208;
+}
+
+.qdlx-social-vk {
+  color: #2372f5;
+}
+
+.qdlx-social-pinterest {
+  color: #CC2127;
+}
+
+.qdlx-social-xing {
+  color: #be4bdb;
+}
+
+.qdlx-social-whatsapp {
+  color: #04e26a;
+}
+
+.qdlx-social-copy {
+  color: #222222;
+}
+
+.qdlx-social-email {
+  color: #0074a2;
+}
+
+.qdlx-social-tumblr {
+  color: #333;
+}
+
+.qdlx-social-reddit {
+  color: #FF4500;
+}
+
+.qdlx-social-telegram {
+  color: #278fd6;
+}
+
+.qdlx-social-signal {
+  color: #3a76f0;
+}
+
+.qdlx-social-webshare {
+  color: #f58f2f;
+}
+
+.qdlx-social-twitter:hover {
+  color: #00aced;
+}
+
+.qdlx-social-facebook:hover {
+  color: #1F3C83;
+}
+
+.qdlx-social-linkedin:hover {
+  color: #23a0c7;
+}
+
+.qdlx-social-ok:hover {
+  color: #dc7909;
+}
+
+.qdlx-social-vk:hover {
+  color: #256be0;
+}
+
+.qdlx-social-pinterest:hover {
+  color: #d93238;
+}
+
+.qdlx-social-copy:hover {
+  color: #000000;
+}
+
+.qdlx-social-email:hover {
+  color: #1388b7;
+}
+
+.qdlx-social-xing:hover {
+  color: #a53bc0;
+}
+
+.qdlx-social-whatsapp:hover {
+  color: #02b857;
+}
+
+.qdlx-social-tumblr:hover {
+  color: #000;
+}
+
+.qdlx-social-reddit:hover {
+  color: #eb4407;
+}
+
+.qdlx-social-telegram:hover {
+  color: #2587ca;
+}
+
+.qdlx-social-signal:hover {
+  color: #366ee1;
+}
+
+.qdlx-social-webshare:hover {
+  color: #e17713;
+}
+
 :root {
   --quotes-dlx--preset--notice-warning-text-color: #664d03;
   --quotes-dlx--preset--notice-warning-icon-color: #664d03;
@@ -439,6 +607,47 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
 .quotes-dlx-cite-image-card-preview img {
   width: 200px;
   height: auto;
+}
+
+/* Popover Modal */
+.qdlx-block-editor-modal .has-line-count-progress {
+  min-width: 95px;
+  width: 100%;
+}
+.qdlx-block-editor-modal .has-line-count .has-line-count-characters {
+  min-width: 70px;
+}
+
+/* Block appender */
+.quotes-dlx-content-wrapper .block-list-appender {
+  width: 100%;
+  position: relative;
+}
+
+.quotes-dlx-content-wrapper .block-editor-inserter button {
+  display: block;
+  margin: 0 auto;
+  max-width: 85%;
+  background: #333;
+  color: #FFF;
+  border: 1px solid #fff;
+}
+.quotes-dlx-content-wrapper .block-editor-inserter button svg {
+  fill: #fff;
+}
+
+/* Star Rating */
+.qdlx-block-star-rating .empty-icons .star-svg {
+  color: #CCC;
+  fill: #CCC;
+}
+.qdlx-block-star-rating .filled-icons .star-svg {
+  color: #ffb900;
+  fill: #ffb900;
+}
+
+.qdlx-ratings-options-row .components-range-control {
+  width: 100%;
 }
 
 /*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

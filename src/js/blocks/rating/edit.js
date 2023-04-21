@@ -127,6 +127,7 @@ const ClickToShare = ( props ) => {
 		showReviewerTitle,
 		showReviewerCompany,
 		showReview,
+		showReviewRating,
 	} = attributes;
 
 	/**
@@ -147,11 +148,23 @@ const ClickToShare = ( props ) => {
 			>
 				<PanelRow>
 					<ToggleControl
+						label={ __( 'Show the Review Rating', 'quotes-dlx' ) }
+						checked={ showReviewRating }
+						onChange={ ( value ) => {
+							setAttributes( {
+								showReviewRating: value,
+							} );
+						} }
+						help={ __( 'Show or hide the main review rating.', 'quotes-dlx' ) }
+					/>
+				</PanelRow>
+				<PanelRow>
+					<ToggleControl
 						label={ __( 'Show the Review', 'quotes-dlx' ) }
 						checked={ showReview }
 						onChange={ ( value ) => {
 							setAttributes( {
-								showCitation: value,
+								showReview: value,
 							} );
 						} }
 						help={ __( 'Show or hide the main review text.', 'quotes-dlx' ) }
@@ -374,6 +387,66 @@ const ClickToShare = ( props ) => {
 		);
 	};
 
+	const getReviewer = () => {
+		if ( ! showReviewerName || '' === showReviewerName ) {
+			return null;
+		}
+		return (
+			<div className="quotes-dlx-review-author">
+				{ reviewer }
+			</div>
+		);
+	};
+
+	const getRating = () => {
+		if ( ! showReviewRating ) {
+			return null;
+		}
+		if ( 'percentage' === ratingType ) {
+			return (
+				<div className="quotes-dlx-review-rating rating-percentage">
+					<span className="quotes-dlx-review-percentage-amount" style={ { width: ratingPercentage + '%' } }><span className="has-line-count-characters">
+						{ ratingPercentage }%
+					</span></span>
+				</div>
+			);
+		}
+		return (
+			<div className="quotes-dlx-review-rating rating-stars">
+				<StarRating
+					initialValue={ starRating }
+					allowFraction={ true }
+					className="qdlx-block-star-rating-preview"
+					size={ 24 }
+					SVGstorkeWidth={ 1.5 }
+					readonly={ true }
+				/>
+			</div>
+		);
+	};
+
+	const getReviewerTitle = () => {
+		if ( ! showReviewerTitle ) {
+			return null;
+		}
+		return (
+			<div className="quotes-dlx-review-title">
+				{ reviewerTitle }
+			</div>
+		);
+	};
+
+	const getReviewerCompany = () => {
+		if ( ! showReviewerCompany ) {
+			return null;
+		}
+		return (
+			<div className="quotes-dlx-review-company">
+				{ reviewerCompany }
+			</div>
+		);
+	};
+
 	const blockEdit = (
 		<>
 			<Card>
@@ -408,7 +481,7 @@ const ClickToShare = ( props ) => {
 							tagName="div"
 							className="quotes-dlx-rating-richtext"
 							disableLineBreaks={ true }
-							placeholder={ __( 'Enter a rating', 'quotes-dlx' ) }
+							placeholder={ __( 'Enter a review', 'quotes-dlx' ) }
 							value={ review }
 							onChange={ ( value ) => setAttributes( { review: value } ) }
 							tabIndex="-1"
@@ -498,17 +571,61 @@ const ClickToShare = ( props ) => {
 		</>
 	);
 
+	const blockToolbar = (
+		<BlockControls>
+			<Toolbar>
+				<ToolbarGroup>
+					{ isPreview && (
+						<ToolbarButton
+							icon="edit"
+							label={ __( 'Edit Citation', 'quotes-dlx' ) }
+							onClick={ () => {
+								setAttributes( {
+									isPreviewMode: false,
+								} );
+								setIsPreview( false );
+							} }
+						>
+							{ __( 'Edit', 'quotes-dlx' ) }
+						</ToolbarButton>
+					) }
+					{ ! isPreview && (
+						<ToolbarButton
+							icon="visibility"
+							label={ __( 'Preview', 'quotes-dlx' ) }
+							onClick={ () => {
+								setAttributes( {
+									isPreviewMode: true,
+								} );
+								setIsPreview( true );
+							} }
+						>
+							{ __( 'Preview', 'quotes-dlx' ) }
+						</ToolbarButton>
+					) }
+				</ToolbarGroup>
+			</Toolbar>
+		</BlockControls>
+	);
+
 	const blockPreview = (
 		<>
 			<div className="quotes-dlx-review-wrapper">
 				{ getReview() }
-				<div className="quotes-dlx-review-image-wrapper">
-					{ ( '' !== reviewerImage && showReviewerImage ) && (
-						<div className="quotes-dlx-review-image">{ getReviewerImage() }</div>
-					) }
-					<div className="quotes-dlx-review-author-info">
-						test
+				<div className="quotes-dlx-review-rating-wrapper">
+					<div className={ classnames( 'quotes-dlx-review-image-wrapper', { 'has-image': '' !== reviewerImage && showReviewerImage } ) }>
+						{ ( '' !== reviewerImage && showReviewerImage ) && (
+							<>
+								<div className="quotes-dlx-review-image">{ getReviewerImage() }</div>
+							</>
+						) }
+						<div className="quotes-dlx-review-author-wrapper">
+							{ getReviewer() }
+							{ getReviewerTitle() }
+							{ getReviewerCompany() }
+						</div>
 					</div>
+					{ getRating() }
 				</div>
 			</div>
 		</>
@@ -517,6 +634,7 @@ const ClickToShare = ( props ) => {
 	return (
 		<>
 			<InspectorControls>{ inspectorControls }</InspectorControls>
+			{ blockToolbar }
 			<div { ...blockProps }>
 				<>
 					{ isPreviewMode ? blockPreview : blockEdit }

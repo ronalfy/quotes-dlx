@@ -1798,7 +1798,8 @@ var ClickToShare = function ClickToShare(props) {
       showReviewerName = attributes.showReviewerName,
       showReviewerTitle = attributes.showReviewerTitle,
       showReviewerCompany = attributes.showReviewerCompany,
-      showReview = attributes.showReview;
+      showReview = attributes.showReview,
+      showReviewRating = attributes.showReviewRating;
   /**
    * Callback for when the user selects an image.
    */
@@ -1813,11 +1814,20 @@ var ClickToShare = function ClickToShare(props) {
     initialOpen: true,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Review Settings', 'quotes-dlx')
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Review Rating', 'quotes-dlx'),
+    checked: showReviewRating,
+    onChange: function onChange(value) {
+      setAttributes({
+        showReviewRating: value
+      });
+    },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main review rating.', 'quotes-dlx')
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show the Review', 'quotes-dlx'),
     checked: showReview,
     onChange: function onChange(value) {
       setAttributes({
-        showCitation: value
+        showReview: value
       });
     },
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Show or hide the main review text.', 'quotes-dlx')
@@ -1987,6 +1997,66 @@ var ClickToShare = function ClickToShare(props) {
     })));
   };
 
+  var getReviewer = function getReviewer() {
+    if (!showReviewerName || '' === showReviewerName) {
+      return null;
+    }
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-review-author"
+    }, reviewer);
+  };
+
+  var getRating = function getRating() {
+    if (!showReviewRating) {
+      return null;
+    }
+
+    if ('percentage' === ratingType) {
+      return /*#__PURE__*/React.createElement("div", {
+        className: "quotes-dlx-review-rating rating-percentage"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "quotes-dlx-review-percentage-amount",
+        style: {
+          width: ratingPercentage + '%'
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "has-line-count-characters"
+      }, ratingPercentage, "%")));
+    }
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-review-rating rating-stars"
+    }, /*#__PURE__*/React.createElement(react_simple_star_rating__WEBPACK_IMPORTED_MODULE_1__.Rating, {
+      initialValue: starRating,
+      allowFraction: true,
+      className: "qdlx-block-star-rating-preview",
+      size: 24,
+      SVGstorkeWidth: 1.5,
+      readonly: true
+    }));
+  };
+
+  var getReviewerTitle = function getReviewerTitle() {
+    if (!showReviewerTitle) {
+      return null;
+    }
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-review-title"
+    }, reviewerTitle);
+  };
+
+  var getReviewerCompany = function getReviewerCompany() {
+    if (!showReviewerCompany) {
+      return null;
+    }
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "quotes-dlx-review-company"
+    }, reviewerCompany);
+  };
+
   var blockEdit = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Card, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardHeader, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Rating', 'quotes-dlx')), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.CardBody, {
     isShady: true,
     isScrollable: true
@@ -2016,7 +2086,7 @@ var ClickToShare = function ClickToShare(props) {
     tagName: "div",
     className: "quotes-dlx-rating-richtext",
     disableLineBreaks: true,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter a rating', 'quotes-dlx'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Enter a review', 'quotes-dlx'),
     value: review,
     onChange: function onChange(value) {
       return setAttributes({
@@ -2097,16 +2167,39 @@ var ClickToShare = function ClickToShare(props) {
       setIsPreview(true);
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Preview', 'quotes-dlx')))));
+  var blockToolbar = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.BlockControls, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.Toolbar, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToolbarGroup, null, isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToolbarButton, {
+    icon: "edit",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Edit Citation', 'quotes-dlx'),
+    onClick: function onClick() {
+      setAttributes({
+        isPreviewMode: false
+      });
+      setIsPreview(false);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Edit', 'quotes-dlx')), !isPreview && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_23__.ToolbarButton, {
+    icon: "visibility",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Preview', 'quotes-dlx'),
+    onClick: function onClick() {
+      setAttributes({
+        isPreviewMode: true
+      });
+      setIsPreview(true);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_20__.__)('Preview', 'quotes-dlx')))));
   var blockPreview = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-review-wrapper"
   }, getReview(), /*#__PURE__*/React.createElement("div", {
-    className: "quotes-dlx-review-image-wrapper"
-  }, '' !== reviewerImage && showReviewerImage && /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-rating-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx-review-image-wrapper', {
+      'has-image': '' !== reviewerImage && showReviewerImage
+    })
+  }, '' !== reviewerImage && showReviewerImage && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-review-image"
-  }, getReviewerImage()), /*#__PURE__*/React.createElement("div", {
-    className: "quotes-dlx-review-author-info"
-  }, "test"))));
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.InspectorControls, null, inspectorControls), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, isPreviewMode ? blockPreview : blockEdit)));
+  }, getReviewerImage())), /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-review-author-wrapper"
+  }, getReviewer(), getReviewerTitle(), getReviewerCompany())), getRating())));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_24__.InspectorControls, null, inspectorControls), blockToolbar, /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(React.Fragment, null, isPreviewMode ? blockPreview : blockEdit)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ClickToShare);
@@ -17479,7 +17572,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Rating","apiVersion":2,"name":"mediaron/quotes-dlx-rating","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a citation to your quote.","keywords":["click","tweet","twitter","share","social","rating"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"starRating":{"type":"number","default":0},"ratingPercentage":{"type":"number","default":0},"ratingNumber":{"type":"number","default":10},"ratingMax":{"type":"number","default":10},"ratingType":{"type":"string","default":"stars"},"review":{"type":"string","default":""},"reviewer":{"type":"string","default":""},"reviewerUrl":{"type":"string","default":""},"reviewerImage":{"type":"string","default":""},"reviewerImageId":{"type":"number","default":0},"reviewerTitle":{"type":"string","default":""},"reviewerCompany":{"type":"string","default":""},"reviewUrl":{"type":"string","default":""},"isPreviewMode":{"type":"boolean","default":false},"showReviewerImage":{"type":"boolean","default":true},"showReviewerUrl":{"type":"boolean","default":true},"reviewerUrlNoFollow":{"type":"boolean","default":false},"reviewerUrlNewTab":{"type":"boolean","default":false},"showReviewerName":{"type":"boolean","default":true},"showReviewerTitle":{"type":"boolean","default":true},"showReviewerCompany":{"type":"boolean","default":true},"showReview":{"type":"boolean","default":true}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX Rating","apiVersion":2,"name":"mediaron/quotes-dlx-rating","parent":["mediaron/quotes-dlx"],"category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"Add a rating/review to your quote.","keywords":["click","tweet","twitter","share","social","rating"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"uniqueId":{"type":"string","default":""},"starRating":{"type":"number","default":0},"ratingPercentage":{"type":"number","default":0},"ratingNumber":{"type":"number","default":10},"ratingMax":{"type":"number","default":10},"ratingType":{"type":"string","default":"stars"},"review":{"type":"string","default":""},"reviewer":{"type":"string","default":""},"reviewerUrl":{"type":"string","default":""},"reviewerImage":{"type":"string","default":""},"reviewerImageId":{"type":"number","default":0},"reviewerTitle":{"type":"string","default":""},"reviewerCompany":{"type":"string","default":""},"reviewUrl":{"type":"string","default":""},"isPreviewMode":{"type":"boolean","default":false},"showReviewerImage":{"type":"boolean","default":true},"showReviewerUrl":{"type":"boolean","default":true},"reviewerUrlNoFollow":{"type":"boolean","default":false},"reviewerUrlNewTab":{"type":"boolean","default":false},"showReviewerName":{"type":"boolean","default":true},"showReviewerTitle":{"type":"boolean","default":true},"showReviewerCompany":{"type":"boolean","default":true},"showReview":{"type":"boolean","default":true},"showReviewRating":{"type":"boolean","default":true}},"example":{"attributes":{}},"supports":{"anchor":false,"align":false,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ }),
 

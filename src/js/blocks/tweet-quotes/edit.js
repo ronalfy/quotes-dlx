@@ -23,6 +23,7 @@ import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
 import useDeviceType from '../../hooks/useDeviceType';
 import MaxWidth from '../../components/MaxWidth';
+import fonts from '../../../fonts/fonts';
 import { getHierarchicalValueUnit, geHierarchicalPlaceholderValue } from '../../utils/HierarchicalHelpers';
 
 import { useEffect, useState, createRef, useRef, useContext } from '@wordpress/element';
@@ -63,6 +64,7 @@ import {
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
 import TextContentContext from '../context/index';
+import { SelectControl } from '../../../../node_modules/@wordpress/components/build/index';
 
 const TweetQuotes = ( props ) => {
 	const manualUrlInput = createRef( null );
@@ -156,6 +158,9 @@ const TweetQuotes = ( props ) => {
 		enable_custom_theme_colors,
 		theme_colors,
 		max_width,
+		primary_font_family,
+		secondary_font_family,
+		typography_sizes,
 	} = attributes;
 
 	useEffect( () => {
@@ -493,6 +498,32 @@ const TweetQuotes = ( props ) => {
 		return null;
 	};
 
+	const getFontFamilies = () => {
+		// Get font families in value label pair.
+		const families = [];
+
+		const adobeFonts = tweet_quotes_block_vars.adobe_fonts;
+
+		// Try to get adobe fonts. Push them to the top.
+		if ( tweet_quotes_block_vars.enable_adobe_fonts && false !== adobeFonts && undefined !== adobeFonts ) {
+			adobeFonts.forEach( ( font ) => {
+				families.push( {
+					label: font.name,
+					value: font.slug,
+				} );
+			} );
+		}
+
+		// Get the rest of the fonts.
+		for ( const [ key, fontfamily ] of Object.entries( fonts ) ) {
+			families.push( {
+				label: fontfamily.name,
+				value: fontfamily.slug,
+			} );
+		}
+		return families;
+	};
+
 	const inspectorControls = (
 		<>
 			<div
@@ -547,6 +578,31 @@ const TweetQuotes = ( props ) => {
 						} }
 					/>
 				</>
+			</PanelBody>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Font Families', 'quotes-dlx' ) }
+			>
+				<SelectControl
+					label={ __( 'Primary Font Family', 'quotes-dlx' ) }
+					value={ primary_font_family }
+					options={ getFontFamilies() }
+					onChange={ ( value ) => {
+						setAttributes( {
+							primary_font_family: value,
+						} );
+					} }
+				/>
+				<SelectControl
+					label={ __( 'Secondary Font Family', 'quotes-dlx' ) }
+					value={ secondary_font_family }
+					options={ getFontFamilies() }
+					onChange={ ( value ) => {
+						setAttributes( {
+							secondary_font_family: value,
+						} );
+					} }
+				/>
 			</PanelBody>
 			<PanelBody
 				initialOpen={ false }

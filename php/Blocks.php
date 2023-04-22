@@ -1168,6 +1168,8 @@ class Blocks {
 			'quotes-dlx-block',
 			'tweet_quotes_block_vars',
 			array(
+				'adobe_fonts'              => Options_Advanced::get_options( 'adobe_fonts' ),
+				'enable_adobe_fonts'       => (bool) Options_Advanced::get_options( 'enable_adobe_fonts' ),
 				'themes_stylesheets'       => $theme_stylesheets_localized,
 				'themes'                   => Themes::get_theme_data(),
 				'defaults'                 => $block_defaults,

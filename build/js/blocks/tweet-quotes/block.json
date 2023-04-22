@@ -237,6 +237,34 @@
     "enable_custom_theme_colors": {
       "type": "boolean",
       "default": false
+    },
+    "primary_font_family": {
+      "type": "string",
+      "default": "lato"
+    },
+    "secondary_font_family": {
+      "type": "string",
+      "default": "lato"
+    },
+    "typography_sizes": {
+      "type": "object",
+      "default": {
+        "mobile": {
+          "fontSize": "14",
+          "lineHeight": "1.2",
+          "buttonFontSize": "14"
+        },
+        "tablet": {
+          "fontSize": "16",
+          "lineHeight": "1.35",
+          "buttonFontSize": "15"
+        },
+        "desktop": {
+          "fontSize": "16",
+          "lineHeight": "1.65",
+          "buttonFontSize": "16"
+        }
+      }
     }
   },
   "example": {

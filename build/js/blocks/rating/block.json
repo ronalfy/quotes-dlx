@@ -33,12 +33,12 @@
       "default": 0
     },
     "ratingNumber": {
-      "type": "number",
-      "default": 10
+      "type": "string",
+      "default": "10"
     },
     "ratingMax": {
-      "type": "number",
-      "default": 10
+      "type": "string",
+      "default": "10"
     },
     "ratingType": {
       "type": "string",
@@ -73,6 +73,10 @@
       "default": ""
     },
     "reviewUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ratingLabel": {
       "type": "string",
       "default": ""
     },
@@ -115,6 +119,10 @@
     "showReviewRating": {
       "type": "boolean",
       "default": true
+    },
+    "showReviewRatingLabel": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {

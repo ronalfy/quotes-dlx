@@ -587,6 +587,7 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
 }
 .quotes-dlx-cite-panel-row-grid .quotes-dlx-cite-text-control {
   margin-bottom: 0.8em;
+  width: 100%;
 }
 .quotes-dlx-cite-panel-row-grid .quotes-dlx-cite-text-control label {
   margin-bottom: 0;
@@ -644,6 +645,27 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
 .qdlx-block-star-rating .filled-icons .star-svg {
   color: #ffb900;
   fill: #ffb900;
+}
+
+.quotes-dlx-cite-panel-rich-text {
+  display: block;
+}
+
+.wp-block-mediaron-quotes-dlx-rating .components-base-control__label {
+  display: block;
+  width: 100%;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 0;
+  margin-bottom: 8px;
+}
+.wp-block-mediaron-quotes-dlx-rating .components-text-control__input {
+  width: 100%;
+}
+.wp-block-mediaron-quotes-dlx-rating .components-panel__row.quotes-dlx-panel-row-block {
+  display: block;
+  width: 100%;
 }
 
 .qdlx-ratings-options-row .components-range-control {

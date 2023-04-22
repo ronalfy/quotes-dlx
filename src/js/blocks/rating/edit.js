@@ -84,26 +84,6 @@ const ClickToShare = ( props ) => {
 	// Shortcuts.
 	const { attributes, setAttributes, isSelected } = props;
 
-	
-
-	/*
-	"showReviewerName": {
-			"type": "boolean",
-			"default": true
-		},
-		"showReviewerTitle": {
-			"type": "boolean",
-			"default": true
-		},
-		"showReviewerCompany": {
-			"type": "boolean",
-			"default": true
-		},
-		"showReview": {
-			"type": "boolean",
-			"default": true
-		}
-		*/
 	const {
 		starRating,
 		ratingPercentage,
@@ -128,6 +108,8 @@ const ClickToShare = ( props ) => {
 		showReviewerCompany,
 		showReview,
 		showReviewRating,
+		ratingLabel,
+		showReviewRatingLabel,
 	} = attributes;
 
 	/**
@@ -144,7 +126,7 @@ const ClickToShare = ( props ) => {
 		<>
 			<PanelBody
 				initialOpen={ true }
-				title={ __( 'Review Settings', 'quotes-dlx' ) }
+				title={ __( 'Rating Settings', 'quotes-dlx' ) }
 			>
 				<PanelRow>
 					<ToggleControl
@@ -158,6 +140,62 @@ const ClickToShare = ( props ) => {
 						help={ __( 'Show or hide the main review rating.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
+				{ showReviewRating && (
+					<>
+						<SelectControl
+							label={ __( 'Rating Type', 'quotes-dlx' ) }
+							value={ ratingType }
+							options={ [
+								{
+									label: __( 'Stars', 'quotes-dlx' ),
+									value: 'stars',
+								},
+								{
+									label: __( 'Percentage', 'quotes-dlx' ),
+									value: 'percentage',
+								},
+								{
+									label: __( 'Number', 'quotes-dlx' ),
+									value: 'number',
+								},
+							] }
+							onChange={ ( value ) => {
+								setAttributes( { ratingType: value } );
+							} }
+						/>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Show the Rating Label', 'quotes-dlx' ) }
+								checked={ showReviewRatingLabel }
+								onChange={ ( value ) => {
+									setAttributes( {
+										showReviewRatingLabel: value,
+									} );
+								} }
+								help={ __( 'Show or hide the setting label.', 'quotes-dlx' ) }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<TextControl
+								label={ __( 'Rating Label', 'quotes-dlx' ) }
+								value={ ratingLabel }
+								onChange={ ( value ) => {
+									setAttributes( { ratingLabel: value } );
+								} }
+								help={ __(
+									'Enter a label for the rating. For example, "Overall Rating".', 'quotes-dlx' )
+								}
+							/>
+						</PanelRow>
+					</>
+				) }
+			</PanelBody>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Review Settings', 'quotes-dlx' ) }
+			>
+				
+				
 				<PanelRow>
 					<ToggleControl
 						label={ __( 'Show the Review', 'quotes-dlx' ) }
@@ -404,23 +442,63 @@ const ClickToShare = ( props ) => {
 		}
 		if ( 'percentage' === ratingType ) {
 			return (
-				<div className="quotes-dlx-review-rating rating-percentage">
-					<span className="quotes-dlx-review-percentage-amount" style={ { width: ratingPercentage + '%' } }><span className="has-line-count-characters">
-						{ ratingPercentage }%
-					</span></span>
+				<div className="quotes-dlx-review-rating-wrapper">
+					<div className="quotes-dlx-review-percentage-wrapper">
+						{ showReviewRatingLabel && (
+							<div className="quotes-dlx-review-percentage-label">
+								{ '' !== ratingLabel ? ratingLabel : __( 'Rating', 'quotes-dlx' ) }
+							</div>
+						) }
+						<div className="quotes-dlx-review-rating rating-percentage">
+							<span className="quotes-dlx-review-percentage-amount" style={ { width: ratingPercentage + '%' } }><span className="has-line-count-characters">
+								{ ratingPercentage }%
+							</span></span>
+						</div>
+					</div>
+				</div>
+			);
+		}
+		if ( 'number' === ratingType ) {
+			return (
+				<div className="quotes-dlx-review-rating-wrapper">
+					<div className="quotes-dlx-review-number-wrapper">
+						{ showReviewRatingLabel && (
+							<div className="quotes-dlx-review-percentage-label">
+								{ '' !== ratingLabel ? ratingLabel : __( 'Rating', 'quotes-dlx' ) }
+							</div>
+						) }
+						<div className="quotes-dlx-review-rating rating-number">
+							<span className="quotes-dlx-review-number-amount">
+								{ ratingNumber }
+							</span>
+							<span className="quotes-dlx-review-number-separator"> / </span>
+							<span className="quotes-dlx-review-number-max">
+								{ ratingMax }
+							</span>
+						</div>
+					</div>
 				</div>
 			);
 		}
 		return (
-			<div className="quotes-dlx-review-rating rating-stars">
-				<StarRating
-					initialValue={ starRating }
-					allowFraction={ true }
-					className="qdlx-block-star-rating-preview"
-					size={ 24 }
-					SVGstorkeWidth={ 1.5 }
-					readonly={ true }
-				/>
+			<div className="quotes-dlx-review-rating-wrapper">
+				<div className="quotes-dlx-review-star-rating-wrapper">
+					{ showReviewRatingLabel && (
+						<div className="quotes-dlx-review-percentage-label">
+							{ '' !== ratingLabel ? ratingLabel : __( 'Star Rating', 'quotes-dlx' ) }
+						</div>
+					) }
+					<div className="quotes-dlx-review-rating rating-stars">
+						<StarRating
+							initialValue={ starRating }
+							allowFraction={ true }
+							className="qdlx-block-star-rating-preview"
+							size={ 24 }
+							SVGstorkeWidth={ 1.5 }
+							readonly={ true }
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	};
@@ -473,19 +551,39 @@ const ClickToShare = ( props ) => {
 							setAttributes( { ratingType: value } );
 						} }
 					/>
+					<PanelRow className="quotes-dlx-panel-row-block">
+						<TextControl
+							label={ __( 'Rating Label', 'quotes-dlx' ) }
+							value={ ratingLabel }
+							onChange={ ( value ) => {
+								setAttributes( { ratingLabel: value } );
+							} }
+							className="quotes-dlx-cite-text-control"
+						/>
+					</PanelRow>
 					<PanelRow className="qdlx-ratings-options-row">
 						{ getRatingInterfaceEdit() }
 					</PanelRow>
 					<PanelRow className="quotes-dlx-cite-panel-rich-text">
-						<RichText
-							tagName="div"
-							className="quotes-dlx-rating-richtext"
-							disableLineBreaks={ true }
-							placeholder={ __( 'Enter a review', 'quotes-dlx' ) }
-							value={ review }
-							onChange={ ( value ) => setAttributes( { review: value } ) }
-							tabIndex="-1"
-						/>
+						<>
+							<label
+								htmlFor="quotes-dlx-rating-richtext"
+								className="components-base-control__label"
+							>
+								{ __( 'Enter the Review', 'quotes-dlx' ) }
+							</label>
+							<RichText
+								id="quotes-dlx-rating-richtext"
+								tagName="div"
+								className="quotes-dlx-rating-richtext"
+								disableLineBreaks={ true }
+								placeholder={ __( 'Enter a review', 'quotes-dlx' ) }
+								value={ review }
+								onChange={ ( value ) => setAttributes( { review: value } ) }
+								tabIndex="-1"
+							/>
+						</>
+						
 					</PanelRow>
 					<PanelRow className="quotes-dlx-cite-panel-row-grid">
 						<section className="quotes-dlx-cite-panel-row-grid-text-fields">

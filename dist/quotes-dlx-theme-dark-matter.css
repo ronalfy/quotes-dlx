@@ -645,8 +645,9 @@
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-rating-wrapper {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  flex-grow: 1;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-image-wrapper {
   display: flex;
@@ -668,6 +669,24 @@
   color: var(--qdlx-dark-matter-text-color, #FFF);
   font-style: inherit;
 }
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-percentage-wrapper {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 210px;
+  text-align: center;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-percentage-label {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  color: var(--qdlx-dark-matter-text-color, #FFF);
+  font-weight: 400;
+  font-style: inherit;
+  width: 100%;
+  margin-bottom: 8px;
+}
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-rating .empty-icons .star-svg {
   color: var(--qdlx-dark-matter-text-color, #FFF);
   fill: var(--qdlx-dark-matter-text-color, #FFF);
@@ -687,7 +706,7 @@
   margin-top: 0;
   vertical-align: middle;
   background-color: var(--qdlx-dark-matter-secondary, #cc7000);
-  max-width: 175px;
+  max-width: 210px;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-rating.rating-percentage .quotes-dlx-review-percentage-amount {
   display: flex;
@@ -707,6 +726,23 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   min-width: 45px;
+  text-align: center;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-rating.rating-number {
+  display: inline-block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: var(--qdlx-dark-matter-secondary, #cc7000);
+  color: var(--qdlx-dark-matter-text-color, #FFF);
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-star-rating-wrapper {
+  text-align: center;
+}
+.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-number-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   text-align: center;
 }
 

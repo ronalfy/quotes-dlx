@@ -742,8 +742,9 @@ $accent-color: #FFF;
 		.quotes-dlx-review-rating-wrapper {
 			margin-top: 20px;
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
+			flex-grow: 1;
 		}
 		.quotes-dlx-review-image-wrapper {
 			display: flex;
@@ -764,6 +765,24 @@ $accent-color: #FFF;
 			font-weight: 400;
 			color: var( --qdlx-dark-matter-text-color, $accent-color );
 			font-style: inherit;
+		}
+		.quotes-dlx-review-percentage-wrapper {
+			display: flex;
+			width: 100%;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			max-width: 210px;
+			text-align: center;
+		}
+		.quotes-dlx-review-percentage-label {
+			display: inline-block;
+			font-size: 1.1em;
+			line-height: 1.4em;
+			color: var( --qdlx-dark-matter-text-color, $accent-color );
+			font-weight: 400;
+			font-style: inherit;
+			width: 100%;
+			margin-bottom: 8px;
 		}
 		.quotes-dlx-review-rating {
 			.empty-icons {
@@ -789,7 +808,7 @@ $accent-color: #FFF;
 				margin-top: 0;
 				vertical-align: middle;
 				background-color: var( --qdlx-dark-matter-secondary, $orange );
-				max-width: 175px;
+				max-width: 210px;
 
 				.quotes-dlx-review-percentage-amount {
 					display: flex;
@@ -812,6 +831,23 @@ $accent-color: #FFF;
 					text-align: center;
 				}
 			}
+			&.rating-number {
+				display: inline-block;
+				padding: 10px 10px;
+				border-radius: 10px;
+				width: 100%;
+				background-color: var( --qdlx-dark-matter-secondary, $orange );
+				color: var( --qdlx-dark-matter-text-color, $accent-color );
+			}
+		}
+		.quotes-dlx-review-star-rating-wrapper {
+			text-align: center;
+		}
+		.quotes-dlx-review-number-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			text-align: center;
 		}
 	 }
 }

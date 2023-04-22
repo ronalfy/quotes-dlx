@@ -21,6 +21,8 @@ import CircularCount from '../../components/CircularCount';
 import LineCount from '../../components/LineCount';
 import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
+import useDeviceType from '../../hooks/useDeviceType';
+import MaxWidth from '../../components/MaxWidth';
 
 import { useEffect, useState, createRef, useRef, useContext } from '@wordpress/element';
 
@@ -65,6 +67,8 @@ const TweetQuotes = ( props ) => {
 	const shareTextInput = createRef( null );
 	const maximumWidthInput = createRef( null );
 	const innerBlocksRef = useRef( null );
+
+	const [ deviceType, setDeviceType ] = useDeviceType( 'Desktop' );
 
 	useEffect( () => {
 		const children = select( 'core/block-editor' ).getBlocksByClientId( props.clientId )[ 0 ].innerBlocks;
@@ -150,6 +154,7 @@ const TweetQuotes = ( props ) => {
 		transforming,
 		enable_custom_theme_colors,
 		theme_colors,
+		max_width,
 	} = attributes;
 
 	useEffect( () => {
@@ -459,26 +464,14 @@ const TweetQuotes = ( props ) => {
 				title={ __( 'Container Settings', 'quotes-dlx' ) }
 			>
 				<>
-					<UnitChooser
-						label={ __( 'Maximum Width', 'quotes-dlx' ) }
-						value={ maximum_width_unit }
-						units={ [ 'px', '%', 'vw' ] }
-						onClick={ ( value ) => {
+					<MaxWidth
+						values={ max_width }
+						screenSize={ deviceType }
+						onValuesChange={ ( newValues ) => {
 							setAttributes( {
-								maximum_width_unit: value,
+								max_width: newValues,
 							} );
 						} }
-					/>
-
-					<TextControl
-						type={ 'text' }
-						value={ maximum_width }
-						onChange={ ( value ) => {
-							setAttributes( {
-								maximum_width: value,
-							} );
-						} }
-						ref={ maximumWidthInput }
 					/>
 				</>
 			</PanelBody>

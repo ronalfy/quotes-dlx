@@ -62,6 +62,23 @@
 			"type": "string",
 			"default": ""
 		},
+		"max_width": {
+			"type": "object",
+			"default": {
+				"mobile": {
+					"width": "",
+					"unit": null
+				},
+				"tablet": {
+					"width": "",
+					"unit": null
+				},
+				"desktop": {
+					"width": "850",
+					"unit": "px"
+				}
+			}
+		},
 		"maximum_width": {
 			"type": "number",
 			"default": 850

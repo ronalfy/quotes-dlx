@@ -23,6 +23,7 @@ import MeatballMenu from '../../components/MeatballMenu';
 import ColorPicker from '../../components/ColorPicker';
 import useDeviceType from '../../hooks/useDeviceType';
 import MaxWidth from '../../components/MaxWidth';
+import { getHierarchicalValueUnit, geHierarchicalPlaceholderValue } from '../../utils/HierarchicalHelpers';
 
 import { useEffect, useState, createRef, useRef, useContext } from '@wordpress/element';
 
@@ -44,6 +45,7 @@ import {
 	TextControl,
 	TextareaControl,
 	Button,
+	ButtonGroup,
 	TabPanel,
 	FormTokenField,
 	RadioControl,
@@ -72,7 +74,6 @@ const TweetQuotes = ( props ) => {
 
 	useEffect( () => {
 		const children = select( 'core/block-editor' ).getBlocksByClientId( props.clientId )[ 0 ].innerBlocks;
-		console.log( children );
 	}, [] );
 
 	const { shareText, setShareText, oldShareText, setOldShareText } = useContext( TextContentContext );
@@ -207,6 +208,27 @@ const TweetQuotes = ( props ) => {
 					transforming: false,
 				} );
 			}
+		}
+
+		// Port maximum width to object.
+		if ( maximum_width !== -1 ) {
+			const maxWidth = {};
+			maxWidth.desktop = {
+				unit: maximum_width_unit,
+				width: maximum_width,
+			};
+			maxWidth.mobile = {
+				unit: null,
+				width: '',
+			};
+			maxWidth.tablet = {
+				unit: null,
+				width: '',
+			};
+			setAttributes( {
+				max_width: maxWidth,
+				maximum_width: -1,
+			} );
 		}
 	}, [] );
 
@@ -454,14 +476,65 @@ const TweetQuotes = ( props ) => {
 		}
 	};
 
+	/* For sticky responsive: forked from GenerateBlocks */
+	const panelHeader = document.querySelector(
+		'.edit-post-sidebar .edit-post-sidebar__panel-tabs'
+	);
+	const panelHeaderHeight = panelHeader ? panelHeader.offsetHeight : 0;
+
+	const getDeviceIcon = () => {
+		if ( deviceType === 'Desktop' ) {
+			return 'laptop';
+		} else if ( deviceType === 'Tablet' ) {
+			return 'tablet';
+		} else if ( deviceType === 'Mobile' ) {
+			return 'smartphone';
+		}
+		return null;
+	};
+
 	const inspectorControls = (
 		<>
+			<div
+				id="quotes-dlx-screensize-group"
+				className="quotes-dlx-screensize-variants"
+				style={ { top: panelHeaderHeight + 'px' } }
+			>
+				<ButtonGroup>
+					<Button
+						variant={ deviceType === 'Desktop' ? 'primary' : 'secondary' }
+						onClick={ ( e ) => {
+							setDeviceType( 'Desktop' );
+						} }
+						icon="laptop"
+						iconSize="14"
+						label={ __( 'Desktop', 'highlight-and-share' ) }
+					/>
+					<Button
+						variant={ deviceType === 'Tablet' ? 'primary' : 'secondary' }
+						onClick={ ( e ) => {
+							setDeviceType( 'Tablet' );
+						} }
+						icon="tablet"
+						label={ __( 'Tablet', 'highlight-and-share' ) }
+					/>
+					<Button
+						variant={ deviceType === 'Mobile' ? 'primary' : 'secondary' }
+						onClick={ ( e ) => {
+							setDeviceType( 'Mobile' );
+						} }
+						icon="smartphone"
+						label={ __( 'Mobile', 'highlight-and-share' ) }
+					/>
+				</ButtonGroup>
+			</div>
 			<PanelBody initialOpen={ true } title={ __( 'Characters', 'quotes-dlx' ) }>
 				<CircularCount chars={ tweetCharacterTotal } />
 			</PanelBody>
 			<PanelBody
 				initialOpen={ true }
 				title={ __( 'Container Settings', 'quotes-dlx' ) }
+				icon={ getDeviceIcon() }
 			>
 				<>
 					<MaxWidth
@@ -603,6 +676,8 @@ const TweetQuotes = ( props ) => {
 		</>
 	);
 
+	
+
 	// Load themes and display them in a dropdown menu.
 	// There's a side-effect here if a theme is deleted. Need to use useEffect to
 	// set default theme. This causes more issues, so solution is to set default on PHP side (front-end).
@@ -633,7 +708,7 @@ const TweetQuotes = ( props ) => {
 
 	// Calculate max width.
 	const maxWidthStyle = {
-		maxWidth: maximum_width + maximum_width_unit,
+		maxWidth: geHierarchicalPlaceholderValue( max_width, deviceType.toLowerCase(), max_width[ deviceType.toLowerCase() ].width ?? '', 'width' ) + getHierarchicalValueUnit( max_width, deviceType.toLowerCase(), max_width[ deviceType.toLowerCase() ].unit ?? null ),
 	};
 
 	const toolbarPreview = [

@@ -672,4 +672,17 @@ body .editor-styles-wrapper .quotes-dlx-notice p {
   width: 100%;
 }
 
+.quotes-dlx-screensize-variants {
+  padding: 0 8px;
+  position: sticky;
+  top: 0;
+  background: #FFF;
+  z-index: 10;
+}
+.quotes-dlx-screensize-variants .components-button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
 /*# sourceMappingURL=quotes-dlx-block-editor.css.map*/

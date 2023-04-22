@@ -34,6 +34,10 @@ export function geHierarchicalPlaceholderValue( props, screenSize, value, type )
 		return value;
 	}
 
+	if ( 'desktop' === screenSize ) {
+		return props.desktop[ type ];
+	}
+
 	return '0';
 }
 

@@ -18,7 +18,6 @@ import classNames from 'classnames';
 
 const MaxWidth = ( props ) => {
 	const [ screenSize, setScreenSize ] = useState( 'desktop' );
-console.log( props );
 	const getDefaultValues = () => {
 		return {
 			mobile: {

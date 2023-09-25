@@ -60,6 +60,7 @@ import {
 	BlockControls,
 	useBlockProps,
 	useInnerBlocksProps,
+	RichText,
 } from '@wordpress/block-editor';
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
@@ -77,8 +78,6 @@ const TweetQuotes = ( props ) => {
 	useEffect( () => {
 		const children = select( 'core/block-editor' ).getBlocksByClientId( props.clientId )[ 0 ].innerBlocks;
 	}, [] );
-
-	const { shareText, setShareText, oldShareText, setOldShareText } = useContext( TextContentContext );
 
 	// State.
 	const [ tweetCharacterTotal, setTweetCharacterTotal ] = useState( 0 );
@@ -164,18 +163,11 @@ const TweetQuotes = ( props ) => {
 	} = attributes;
 
 	useEffect( () => {
-		// If share_text.
-		if ( share_text !== '' && oldShareText === '' ) {
-			setAttributes( { share_text: shareText } );
-		}
-	}, [ oldShareText ] );
-
-	useEffect( () => {
 		countCharacters();
 		countInfoCharacters();
 	}, [
 		twitter_username,
-		shareText,
+		share_text,
 		share_text_override,
 		hashtags,
 		share_text_override_enabled,
@@ -316,7 +308,7 @@ const TweetQuotes = ( props ) => {
 		if ( share_text_override_enabled ) {
 			tweetContent += share_text_override;
 		} else {
-			tweetContent += shareText;
+			tweetContent += share_text;
 		}
 		if ( tweetContent !== '' ) {
 			tweetContent += '\r\n';
@@ -370,7 +362,7 @@ const TweetQuotes = ( props ) => {
 		if ( share_text_override_enabled ) {
 			tweetContent += share_text_override;
 		} else {
-			tweetContent += shareText;
+			tweetContent += share_text;
 		}
 		if ( tweetContent !== '' ) {
 			tweetContent += '\r\n';
@@ -731,8 +723,6 @@ const TweetQuotes = ( props ) => {
 			</PanelBody>
 		</>
 	);
-
-	
 
 	// Load themes and display them in a dropdown menu.
 	// There's a side-effect here if a theme is deleted. Need to use useEffect to
@@ -1283,7 +1273,7 @@ const TweetQuotes = ( props ) => {
 										toHTMLString( {
 										// Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
 											value: create( {
-												html: shareText,
+												html: share_text,
 												preserveWhiteSpace: true,
 											} ),
 											multilineTag: 'p',
@@ -1322,7 +1312,26 @@ const TweetQuotes = ( props ) => {
 				<div className="quotes-dlx-content-wrapper">
 					<>
 						<figure>
-							<div { ...innerBlockProps } />
+							<RichText
+								tagName="blockquote"
+								placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
+								value={ share_text }
+								preserveWhiteSpace={ true }
+								className="quotes-dlx-text quotes-dlx-text-wrapper"
+								allowedFormats={ [
+									'core/bold',
+									'core/italic',
+									'core/text-color',
+									'core/subscript',
+									'core/superscript',
+									'core/strikethrough',
+									'core/link',
+								] }
+								onChange={ ( value ) => {
+									setAttributes( { share_text: value } );
+								} }
+								ref={ shareTextInput }
+							/>
 						</figure>
 						{ enable_contextual_menu &&
 							( enable_copy_text ||
@@ -1427,18 +1436,4 @@ const TweetQuotes = ( props ) => {
 	}
 };
 
-const EditContext = ( props ) => {
-	const [ oldShareText, setOldShareText ] = useState( props.attributes.share_text );
-	const [ shareText, setShareText ] = useState( '' );
-	return (
-		<TextContentContext.Provider
-			value={ {
-				shareText, setShareText, oldShareText, setOldShareText,
-			} }
-		>
-			<TweetQuotes { ...props } />
-		</TextContentContext.Provider>
-	);
-};
-
-export default EditContext;
+export default TweetQuotes;

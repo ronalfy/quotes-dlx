@@ -68917,11 +68917,6 @@ var TweetQuotes = function TweetQuotes(props) {
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useEffect)(function () {
     var children = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_21__.select)('core/block-editor').getBlocksByClientId(props.clientId)[0].innerBlocks;
   }, []);
-  var _useContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useContext)(_context_index__WEBPACK_IMPORTED_MODULE_28__["default"]),
-    shareText = _useContext.shareText,
-    setShareText = _useContext.setShareText,
-    oldShareText = _useContext.oldShareText,
-    setOldShareText = _useContext.setOldShareText;
 
   // State.
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useState)(0),
@@ -69034,17 +69029,9 @@ var TweetQuotes = function TweetQuotes(props) {
     secondary_font_family = attributes.secondary_font_family,
     typography_sizes = attributes.typography_sizes;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useEffect)(function () {
-    // If share_text.
-    if (share_text !== '' && oldShareText === '') {
-      setAttributes({
-        share_text: shareText
-      });
-    }
-  }, [oldShareText]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useEffect)(function () {
     countCharacters();
     countInfoCharacters();
-  }, [twitter_username, shareText, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
+  }, [twitter_username, share_text, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useEffect)(function () {
     if ('' === uniqueId) {
       setAttributes({
@@ -69167,7 +69154,7 @@ var TweetQuotes = function TweetQuotes(props) {
     if (share_text_override_enabled) {
       tweetContent += share_text_override;
     } else {
-      tweetContent += shareText;
+      tweetContent += share_text;
     }
     if (tweetContent !== '') {
       tweetContent += '\r\n';
@@ -69214,7 +69201,7 @@ var TweetQuotes = function TweetQuotes(props) {
     if (share_text_override_enabled) {
       tweetContent += share_text_override;
     } else {
-      tweetContent += shareText;
+      tweetContent += share_text;
     }
     if (tweetContent !== '') {
       tweetContent += '\r\n';
@@ -69857,7 +69844,7 @@ var TweetQuotes = function TweetQuotes(props) {
   }, htmlToReactParser.parse((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_24__.toHTMLString)({
     // Stolen from: https://github.com/WordPress/gutenberg/pull/23562/files
     value: (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_24__.create)({
-      html: shareText,
+      html: share_text,
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
@@ -69873,7 +69860,20 @@ var TweetQuotes = function TweetQuotes(props) {
     className: "quotes-dlx-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-content-wrapper"
-  }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement("div", innerBlockProps)), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
+  }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_27__.RichText, {
+    tagName: "blockquote",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_23__.__)('Add text to share', 'quotes-dlx'),
+    value: share_text,
+    preserveWhiteSpace: true,
+    className: "quotes-dlx-text quotes-dlx-text-wrapper",
+    allowedFormats: ['core/bold', 'core/italic', 'core/text-color', 'core/subscript', 'core/superscript', 'core/strikethrough', 'core/link'],
+    onChange: function onChange(value) {
+      setAttributes({
+        share_text: value
+      });
+    },
+    ref: shareTextInput
+  })), enable_contextual_menu && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_email_text || enable_share_this) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
   React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({
@@ -69936,25 +69936,7 @@ var TweetQuotes = function TweetQuotes(props) {
     }), block));
   }
 };
-var EditContext = function EditContext(props) {
-  var _useState23 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useState)(props.attributes.share_text),
-    _useState24 = _slicedToArray(_useState23, 2),
-    oldShareText = _useState24[0],
-    setOldShareText = _useState24[1];
-  var _useState25 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_20__.useState)(''),
-    _useState26 = _slicedToArray(_useState25, 2),
-    shareText = _useState26[0],
-    setShareText = _useState26[1];
-  return /*#__PURE__*/React.createElement(_context_index__WEBPACK_IMPORTED_MODULE_28__["default"].Provider, {
-    value: {
-      shareText: shareText,
-      setShareText: setShareText,
-      oldShareText: oldShareText,
-      setOldShareText: setOldShareText
-    }
-  }, /*#__PURE__*/React.createElement(TweetQuotes, props));
-};
-/* harmony default export */ __webpack_exports__["default"] = (EditContext);
+/* harmony default export */ __webpack_exports__["default"] = (TweetQuotes);
 
 /***/ }),
 

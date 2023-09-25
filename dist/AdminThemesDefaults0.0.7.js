@@ -19,38 +19,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/notice/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 // eslint-disable-next-line no-unused-vars
 
  // ES6
 
 
 
-
-
 var Notice = function Notice(props) {
   var _classNames;
-
   var message = props.message,
-      status = props.status,
-      politeness = props.politeness,
-      icon = props.icon,
-      className = props.className,
-      inline = props.inline,
-      children = props.children,
-      animate = props.animate,
-      animationType = props.animationType;
+    status = props.status,
+    politeness = props.politeness,
+    icon = props.icon,
+    className = props.className,
+    inline = props.inline,
+    children = props.children,
+    animate = props.animate,
+    animationType = props.animationType;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__.speak)(message, politeness);
   }, [message, status, politeness]);
-
   var hasIcon = function hasIcon() {
     return icon !== null;
   };
-
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
       width: 16,
@@ -58,7 +54,6 @@ var Notice = function Notice(props) {
       fill: "#6c757d"
     });
   };
-
   var containerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'qdlx-admin__notice', (_classNames = {
     'qdlx-admin__notice--has-icon': hasIcon()
   }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _defineProperty(_classNames, "qdlx-admin__notice-animate", animate), _defineProperty(_classNames, "qdlx-admin__notice-animate--".concat(animationType), animate), _classNames));
@@ -74,7 +69,6 @@ var Notice = function Notice(props) {
     className: "qldx-admin__notice-message"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, message, " ", children, " "))));
 };
-
 Notice.defaultProps = {
   message: '',
   status: 'info',
@@ -86,7 +80,7 @@ Notice.defaultProps = {
   animationType: 'fadein'
 };
 Notice.propTypes = {
-  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string.isRequired),
+  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string).isRequired,
   status: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['info', 'warning', 'success', 'error']),
   politeness: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['assertive', 'polite']),
   icon: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
@@ -129,24 +123,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var photoswipe_dist_photoswipe_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! photoswipe/dist/photoswipe.css */ "./node_modules/photoswipe/dist/photoswipe.css");
 /* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
 /* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -169,13 +154,11 @@ var retrieveDefaults = function retrieveDefaults() {
     nonce: quotes_dlx_admin.options_retrieve_nonce
   });
 };
-
 var AdminDefaults = function AdminDefaults(props) {
   var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_4__.useAsyncResource)(retrieveDefaults, []),
-      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
-      defaults = _useAsyncResource2[0],
-      getDefaults = _useAsyncResource2[1];
-
+    _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+    defaults = _useAsyncResource2[0],
+    getDefaults = _useAsyncResource2[1];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load admin theme defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
@@ -188,73 +171,58 @@ var AdminDefaults = function AdminDefaults(props) {
     defaults: defaults
   }, props))));
 };
-
 var Interface = function Interface(props) {
   var localStorageKey = 'quotes_dlx_themes_defaults';
-
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_13__["default"]),
-      defaultTheme = _useContext.defaultTheme,
-      setDefaultTheme = _useContext.setDefaultTheme;
-
+    defaultTheme = _useContext.defaultTheme,
+    setDefaultTheme = _useContext.setDefaultTheme;
   var defaults = props.defaults;
   var response = defaults();
   var _response$data = response.data,
-      data = _response$data.data,
-      success = _response$data.success;
-
+    data = _response$data.data,
+    success = _response$data.success;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.template),
-      _useState2 = _slicedToArray(_useState, 2),
-      activeTheme = _useState2[0],
-      setActiveTheme = _useState2[1];
-
+    _useState2 = _slicedToArray(_useState, 2),
+    activeTheme = _useState2[0],
+    setActiveTheme = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState4 = _slicedToArray(_useState3, 2),
-      loading = _useState4[0],
-      setLoading = _useState4[1];
-
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      saving = _useState6[0],
-      setSaving = _useState6[1];
-
+    _useState6 = _slicedToArray(_useState5, 2),
+    saving = _useState6[0],
+    setSaving = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isSaved = _useState8[0],
-      setIsSaved = _useState8[1];
-
+    _useState8 = _slicedToArray(_useState7, 2),
+    isSaved = _useState8[0],
+    setIsSaved = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      resetting = _useState10[0],
-      setResetting = _useState10[1];
-
+    _useState10 = _slicedToArray(_useState9, 2),
+    resetting = _useState10[0],
+    setResetting = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      isReset = _useState12[0],
-      setIsReset = _useState12[1];
-
+    _useState12 = _slicedToArray(_useState11, 2),
+    isReset = _useState12[0],
+    setIsReset = _useState12[1];
   var template = data.template,
-      categories = data.categories;
+    categories = data.categories;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var maybeSavedTheme = localStorage.getItem(localStorageKey);
-
     if (null !== maybeSavedTheme) {
       var valuesToSave = JSON.parse(maybeSavedTheme);
-
-      for (var _i2 = 0, _Object$entries = Object.entries(valuesToSave); _i2 < _Object$entries.length; _i2++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
-            key = _Object$entries$_i[0],
-            value = _Object$entries$_i[1];
-
+      for (var _i = 0, _Object$entries = Object.entries(valuesToSave); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          key = _Object$entries$_i[0],
+          value = _Object$entries$_i[1];
         if ('template' === key) {
           setActiveTheme(value);
           setDefaultTheme(value);
         }
       }
     }
-
     setLoading(false);
   }, []);
-
   var getCategories = function getCategories() {
     return categories.map(function (cat, catIndex) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -263,23 +231,21 @@ var Interface = function Interface(props) {
       }, getThemes(cat));
     });
   };
-
   var getAuthor = function getAuthor(selectedTheme) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: selectedTheme.author_url
     }, selectedTheme.author_name);
   };
-
   var getButtonText = function getButtonText(themeSlug) {
     if (saving && activeTheme === themeSlug) {
       return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx');
     } else if (activeTheme === themeSlug) {
-      return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Theme', 'quotes-dlx'); // eslint-disable-next-line no-else-return
+      return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Theme', 'quotes-dlx');
+      // eslint-disable-next-line no-else-return
     } else {
       return (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select This Theme', 'quotes-dlx');
     }
   };
-
   var onThemeSelect = function onThemeSelect(themeSlug) {
     setSaving(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_6__["default"])('quotes_dlx_save_admin_options_defaults', {
@@ -290,7 +256,6 @@ var Interface = function Interface(props) {
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
-
       if (ajaxSuccess) {
         // Add local storage.
         localStorage.setItem(localStorageKey, JSON.stringify({
@@ -301,12 +266,14 @@ var Interface = function Interface(props) {
         setTimeout(function () {
           setIsSaved(false);
         }, 3000);
-      } else {// Error stuff.
+      } else {
+        // Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setSaving(false);
     });
   };
+
   /**
    * Get a preview link.
    *
@@ -314,18 +281,15 @@ var Interface = function Interface(props) {
    *
    * @return {string} The preview URL.
    */
-
-
   var getPreviewLink = function getPreviewLink(templateToPreview) {
     return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=").concat(encodeURIComponent(16), "&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent('16px'), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(templateToPreview), "&screen=", 'tablet');
   };
+
   /**
    * Get Fancybox iFrame content in an array of theme sources.
    *
    * @return {Array} The array of theme sources.
    */
-
-
   var getThemesFancyboxArray = function getThemesFancyboxArray() {
     var fancyThemesArray = [];
     categories.forEach(function (cat, catIndex) {
@@ -340,7 +304,6 @@ var Interface = function Interface(props) {
     });
     return fancyThemesArray;
   };
-
   var getThemes = function getThemes(category) {
     var fancyThemesOptions = getThemesFancyboxArray();
     return category.themes.map(function (theme, themeIndex) {
@@ -406,11 +369,9 @@ var Interface = function Interface(props) {
       }, getButtonText(theme.slug)))));
     });
   };
-
   if (loading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_8__["default"], null);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -431,7 +392,6 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__themes--wrapper"
   }, getCategories())))));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);
 
 /***/ }),
@@ -465,7 +425,6 @@ var CircularInfo = function CircularInfo(props) {
     d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"
   }));
 };
-
 CircularInfo.defaultProps = {
   width: 16,
   height: 16,
@@ -516,7 +475,6 @@ var Spinner = function Spinner(props) {
     }
   }));
 };
-
 Spinner.defaultProps = {
   width: 24,
   height: 24,
@@ -549,7 +507,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
 /* eslint-disable no-undef */
-
 /* eslint-disable camelcase */
 
 
@@ -561,17 +518,14 @@ function sendCommand(action, data, maybeAjaxUrl) {
     nonce: false,
     action: action
   };
-
   if ('undefined' === typeof data) {
     data = {};
   }
-
   for (var opt in default_data) {
     if (!data.hasOwnProperty(opt)) {
       data[opt] = default_data[opt];
     }
   }
-
   var options = {
     method: 'post',
     url: maybeAjaxUrl !== null && maybeAjaxUrl !== void 0 ? maybeAjaxUrl : ajaxurl,

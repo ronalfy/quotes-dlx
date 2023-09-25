@@ -363,6 +363,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 /**
  * @callback AddHook
  *
@@ -382,64 +383,55 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {AddHook} Function that adds a new hook.
  */
-
 function createAddHook(hooks, storeKey) {
-  return function addHook(hookName, namespace, callback) {
-    let priority = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
+  return function addHook(hookName, namespace, callback, priority = 10) {
     const hooksStore = hooks[storeKey];
-
     if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
       return;
     }
-
     if (!(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
       return;
     }
-
     if ('function' !== typeof callback) {
       // eslint-disable-next-line no-console
       console.error('The hook callback must be a function.');
       return;
-    } // Validate numeric priority
+    }
 
-
+    // Validate numeric priority
     if ('number' !== typeof priority) {
       // eslint-disable-next-line no-console
       console.error('If specified, the hook priority must be a number.');
       return;
     }
-
     const handler = {
       callback,
       priority,
       namespace
     };
-
     if (hooksStore[hookName]) {
       // Find the correct insert index of the new hook.
       const handlers = hooksStore[hookName].handlers;
+
       /** @type {number} */
-
       let i;
-
       for (i = handlers.length; i > 0; i--) {
         if (priority >= handlers[i - 1].priority) {
           break;
         }
       }
-
       if (i === handlers.length) {
         // If append, operate via direct assignment.
         handlers[i] = handler;
       } else {
         // Otherwise, insert before index via splice.
         handlers.splice(i, 0, handler);
-      } // We may also be currently executing this hook.  If the callback
+      }
+
+      // We may also be currently executing this hook.  If the callback
       // we're adding would come after the current callback, there's no
       // problem; otherwise we need to increase the execution index of
       // any other runs by 1 to account for the added element.
-
-
       hooksStore.__current.forEach(hookInfo => {
         if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
           hookInfo.currentIndex++;
@@ -452,13 +444,11 @@ function createAddHook(hooks, storeKey) {
         runs: 0
       };
     }
-
     if (hookName !== 'hookAdded') {
       hooks.doAction('hookAdded', hookName, namespace, callback, priority);
     }
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createAddHook);
 //# sourceMappingURL=createAddHook.js.map
 
@@ -487,13 +477,11 @@ __webpack_require__.r(__webpack_exports__);
  */
 function createCurrentHook(hooks, storeKey) {
   return function currentHook() {
-    var _hooksStore$__current, _hooksStore$__current2;
-
+    var _hooksStore$__current;
     const hooksStore = hooks[storeKey];
-    return (_hooksStore$__current = (_hooksStore$__current2 = hooksStore.__current[hooksStore.__current.length - 1]) === null || _hooksStore$__current2 === void 0 ? void 0 : _hooksStore$__current2.name) !== null && _hooksStore$__current !== void 0 ? _hooksStore$__current : null;
+    return (_hooksStore$__current = hooksStore.__current[hooksStore.__current.length - 1]?.name) !== null && _hooksStore$__current !== void 0 ? _hooksStore$__current : null;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCurrentHook);
 //# sourceMappingURL=createCurrentHook.js.map
 
@@ -515,6 +503,7 @@ __webpack_require__.r(__webpack_exports__);
  * Internal dependencies
  */
 
+
 /**
  * @callback DidHook
  *
@@ -534,19 +523,15 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {DidHook} Function that returns a hook's call count.
  */
-
 function createDidHook(hooks, storeKey) {
   return function didHook(hookName) {
     const hooksStore = hooks[storeKey];
-
     if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(hookName)) {
       return;
     }
-
     return hooksStore[hookName] && hooksStore[hookName].runs ? hooksStore[hookName].runs : 0;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDidHook);
 //# sourceMappingURL=createDidHook.js.map
 
@@ -585,17 +570,17 @@ __webpack_require__.r(__webpack_exports__);
  */
 function createDoingHook(hooks, storeKey) {
   return function doingHook(hookName) {
-    const hooksStore = hooks[storeKey]; // If the hookName was not passed, check for any current hook.
+    const hooksStore = hooks[storeKey];
 
+    // If the hookName was not passed, check for any current hook.
     if ('undefined' === typeof hookName) {
       return 'undefined' !== typeof hooksStore.__current[0];
-    } // Return the __current hook.
+    }
 
-
+    // Return the __current hook.
     return hooksStore.__current[0] ? hookName === hooksStore.__current[0].name : false;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createDoingHook);
 //# sourceMappingURL=createDoingHook.js.map
 
@@ -623,7 +608,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {boolean} Whether there are handlers that are attached to the given hook.
  */
-
 /**
  * Returns a function which, when invoked, will return whether any handlers are
  * attached to a particular hook.
@@ -636,16 +620,15 @@ __webpack_require__.r(__webpack_exports__);
  */
 function createHasHook(hooks, storeKey) {
   return function hasHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey]; // Use the namespace if provided.
+    const hooksStore = hooks[storeKey];
 
+    // Use the namespace if provided.
     if ('undefined' !== typeof namespace) {
       return hookName in hooksStore && hooksStore[hookName].handlers.some(hook => hook.namespace === namespace);
     }
-
     return hookName in hooksStore;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHasHook);
 //# sourceMappingURL=createHasHook.js.map
 
@@ -660,7 +643,7 @@ function createHasHook(hooks, storeKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_Hooks": () => (/* binding */ _Hooks),
+/* harmony export */   _Hooks: () => (/* binding */ _Hooks),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _createAddHook__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createAddHook */ "./node_modules/@wordpress/hooks/build-module/createAddHook.js");
@@ -680,6 +663,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /**
  * Internal class for constructing hooks. Use `createHooks()` function
  *
@@ -687,14 +671,13 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @private
  */
-
 class _Hooks {
   constructor() {
     /** @type {import('.').Store} actions */
     this.actions = Object.create(null);
     this.actions.__current = [];
-    /** @type {import('.').Store} filters */
 
+    /** @type {import('.').Store} filters */
     this.filters = Object.create(null);
     this.filters.__current = [];
     this.addAction = (0,_createAddHook__WEBPACK_IMPORTED_MODULE_0__["default"])(this, 'actions');
@@ -714,8 +697,8 @@ class _Hooks {
     this.didAction = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'actions');
     this.didFilter = (0,_createDidHook__WEBPACK_IMPORTED_MODULE_6__["default"])(this, 'filters');
   }
-
 }
+
 /** @typedef {_Hooks} Hooks */
 
 /**
@@ -723,11 +706,9 @@ class _Hooks {
  *
  * @return {Hooks} A Hooks instance.
  */
-
 function createHooks() {
   return new _Hooks();
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createHooks);
 //# sourceMappingURL=createHooks.js.map
 
@@ -749,6 +730,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies
  */
+
 
 
 /**
@@ -775,27 +757,21 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {RemoveHook} Function that removes hooks.
  */
-
-function createRemoveHook(hooks, storeKey) {
-  let removeAll = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+function createRemoveHook(hooks, storeKey, removeAll = false) {
   return function removeHook(hookName, namespace) {
     const hooksStore = hooks[storeKey];
-
     if (!(0,_validateHookName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(hookName)) {
       return;
     }
-
     if (!removeAll && !(0,_validateNamespace_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace)) {
       return;
-    } // Bail if no hooks exist by this name.
+    }
 
-
+    // Bail if no hooks exist by this name.
     if (!hooksStore[hookName]) {
       return 0;
     }
-
     let handlersRemoved = 0;
-
     if (removeAll) {
       handlersRemoved = hooksStore[hookName].handlers.length;
       hooksStore[hookName] = {
@@ -805,16 +781,15 @@ function createRemoveHook(hooks, storeKey) {
     } else {
       // Try to find the specified callback to remove.
       const handlers = hooksStore[hookName].handlers;
-
       for (let i = handlers.length - 1; i >= 0; i--) {
         if (handlers[i].namespace === namespace) {
           handlers.splice(i, 1);
-          handlersRemoved++; // This callback may also be part of a hook that is
+          handlersRemoved++;
+          // This callback may also be part of a hook that is
           // currently executing.  If the callback we're removing
           // comes after the current callback, there's no problem;
           // otherwise we need to decrease the execution index of any
           // other runs by 1 to account for the removed element.
-
           hooksStore.__current.forEach(hookInfo => {
             if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
               hookInfo.currentIndex--;
@@ -823,15 +798,12 @@ function createRemoveHook(hooks, storeKey) {
         }
       }
     }
-
     if (hookName !== 'hookRemoved') {
       hooks.doAction('hookRemoved', hookName, namespace);
     }
-
     return handlersRemoved;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRemoveHook);
 //# sourceMappingURL=createRemoveHook.js.map
 
@@ -858,64 +830,50 @@ __webpack_require__.r(__webpack_exports__);
  * @param {boolean}              [returnFirstArg=false] Whether each hook callback is expected to
  *                                                      return its first argument.
  *
- * @return {(hookName:string, ...args: unknown[]) => unknown} Function that runs hook callbacks.
+ * @return {(hookName:string, ...args: unknown[]) => undefined|unknown} Function that runs hook callbacks.
  */
-function createRunHook(hooks, storeKey) {
-  let returnFirstArg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  return function runHooks(hookName) {
+function createRunHook(hooks, storeKey, returnFirstArg = false) {
+  return function runHooks(hookName, ...args) {
     const hooksStore = hooks[storeKey];
-
     if (!hooksStore[hookName]) {
       hooksStore[hookName] = {
         handlers: [],
         runs: 0
       };
     }
-
     hooksStore[hookName].runs++;
-    const handlers = hooksStore[hookName].handlers; // The following code is stripped from production builds.
+    const handlers = hooksStore[hookName].handlers;
 
+    // The following code is stripped from production builds.
     if (true) {
       // Handle any 'all' hooks registered.
       if ('hookAdded' !== hookName && hooksStore.all) {
         handlers.push(...hooksStore.all.handlers);
       }
     }
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
     if (!handlers || !handlers.length) {
       return returnFirstArg ? args[0] : undefined;
     }
-
     const hookInfo = {
       name: hookName,
       currentIndex: 0
     };
-
     hooksStore.__current.push(hookInfo);
-
     while (hookInfo.currentIndex < handlers.length) {
       const handler = handlers[hookInfo.currentIndex];
       const result = handler.callback.apply(null, args);
-
       if (returnFirstArg) {
         args[0] = result;
       }
-
       hookInfo.currentIndex++;
     }
-
     hooksStore.__current.pop();
-
     if (returnFirstArg) {
       return args[0];
     }
+    return undefined;
   };
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createRunHook);
 //# sourceMappingURL=createRunHook.js.map
 
@@ -930,31 +888,32 @@ function createRunHook(hooks, storeKey) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "actions": () => (/* binding */ actions),
-/* harmony export */   "addAction": () => (/* binding */ addAction),
-/* harmony export */   "addFilter": () => (/* binding */ addFilter),
-/* harmony export */   "applyFilters": () => (/* binding */ applyFilters),
-/* harmony export */   "createHooks": () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "currentAction": () => (/* binding */ currentAction),
-/* harmony export */   "currentFilter": () => (/* binding */ currentFilter),
-/* harmony export */   "defaultHooks": () => (/* binding */ defaultHooks),
-/* harmony export */   "didAction": () => (/* binding */ didAction),
-/* harmony export */   "didFilter": () => (/* binding */ didFilter),
-/* harmony export */   "doAction": () => (/* binding */ doAction),
-/* harmony export */   "doingAction": () => (/* binding */ doingAction),
-/* harmony export */   "doingFilter": () => (/* binding */ doingFilter),
-/* harmony export */   "filters": () => (/* binding */ filters),
-/* harmony export */   "hasAction": () => (/* binding */ hasAction),
-/* harmony export */   "hasFilter": () => (/* binding */ hasFilter),
-/* harmony export */   "removeAction": () => (/* binding */ removeAction),
-/* harmony export */   "removeAllActions": () => (/* binding */ removeAllActions),
-/* harmony export */   "removeAllFilters": () => (/* binding */ removeAllFilters),
-/* harmony export */   "removeFilter": () => (/* binding */ removeFilter)
+/* harmony export */   actions: () => (/* binding */ actions),
+/* harmony export */   addAction: () => (/* binding */ addAction),
+/* harmony export */   addFilter: () => (/* binding */ addFilter),
+/* harmony export */   applyFilters: () => (/* binding */ applyFilters),
+/* harmony export */   createHooks: () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   currentAction: () => (/* binding */ currentAction),
+/* harmony export */   currentFilter: () => (/* binding */ currentFilter),
+/* harmony export */   defaultHooks: () => (/* binding */ defaultHooks),
+/* harmony export */   didAction: () => (/* binding */ didAction),
+/* harmony export */   didFilter: () => (/* binding */ didFilter),
+/* harmony export */   doAction: () => (/* binding */ doAction),
+/* harmony export */   doingAction: () => (/* binding */ doingAction),
+/* harmony export */   doingFilter: () => (/* binding */ doingFilter),
+/* harmony export */   filters: () => (/* binding */ filters),
+/* harmony export */   hasAction: () => (/* binding */ hasAction),
+/* harmony export */   hasFilter: () => (/* binding */ hasFilter),
+/* harmony export */   removeAction: () => (/* binding */ removeAction),
+/* harmony export */   removeAllActions: () => (/* binding */ removeAllActions),
+/* harmony export */   removeAllFilters: () => (/* binding */ removeAllFilters),
+/* harmony export */   removeFilter: () => (/* binding */ removeFilter)
 /* harmony export */ });
 /* harmony import */ var _createHooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createHooks */ "./node_modules/@wordpress/hooks/build-module/createHooks.js");
 /**
  * Internal dependencies
  */
+
 
 /** @typedef {(...args: any[])=>any} Callback */
 
@@ -1041,22 +1000,18 @@ function validateHookName(hookName) {
     console.error('The hook name must be a non-empty string.');
     return false;
   }
-
   if (/^__/.test(hookName)) {
     // eslint-disable-next-line no-console
     console.error('The hook name cannot begin with `__`.');
     return false;
   }
-
   if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
     // eslint-disable-next-line no-console
     console.error('The hook name can only contain numbers, letters, dashes, periods and underscores.');
     return false;
   }
-
   return true;
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateHookName);
 //# sourceMappingURL=validateHookName.js.map
 
@@ -1087,16 +1042,13 @@ function validateNamespace(namespace) {
     console.error('The namespace must be a non-empty string.');
     return false;
   }
-
   if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
     // eslint-disable-next-line no-console
     console.error('The namespace can only contain numbers, letters, dashes, periods, underscores and slashes.');
     return false;
   }
-
   return true;
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validateNamespace);
 //# sourceMappingURL=validateNamespace.js.map
 
@@ -1111,12 +1063,13 @@ function validateNamespace(namespace) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createI18n": () => (/* binding */ createI18n)
+/* harmony export */   createI18n: () => (/* binding */ createI18n)
 /* harmony export */ });
 /* harmony import */ var tannin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tannin */ "./node_modules/tannin/index.js");
 /**
  * External dependencies
  */
+
 
 /**
  * @typedef {Record<string,any>} LocaleData
@@ -1128,22 +1081,21 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @type {LocaleData}
  */
-
 const DEFAULT_LOCALE_DATA = {
   '': {
     /** @param {number} n */
     plural_forms(n) {
       return n === 1 ? 0 : 1;
     }
-
   }
 };
+
 /*
  * Regular expression that matches i18n hooks like `i18n.gettext`, `i18n.ngettext`,
  * `i18n.gettext_domain` or `i18n.ngettext_with_context` or `i18n.has_translation`.
  */
-
 const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
+
 /**
  * @typedef {(domain?: string) => LocaleData} GetLocaleData
  *
@@ -1152,7 +1104,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see http://messageformat.github.io/Jed/
  */
-
 /**
  * @typedef {(data?: LocaleData, domain?: string) => void} SetLocaleData
  *
@@ -1162,7 +1113,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see http://messageformat.github.io/Jed/
  */
-
 /**
  * @typedef {(data?: LocaleData, domain?: string) => void} AddLocaleData
  *
@@ -1172,7 +1122,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see http://messageformat.github.io/Jed/
  */
-
 /**
  * @typedef {(data?: LocaleData, domain?: string) => void} ResetLocaleData
  *
@@ -1181,22 +1130,17 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see http://messageformat.github.io/Jed/
  */
-
 /** @typedef {() => void} SubscribeCallback */
-
 /** @typedef {() => void} UnsubscribeCallback */
-
 /**
  * @typedef {(callback: SubscribeCallback) => UnsubscribeCallback} Subscribe
  *
  * Subscribes to changes of locale data
  */
-
 /**
  * @typedef {(domain?: string) => string} GetFilterDomain
  * Retrieve the domain to use when calling domain-specific filters.
  */
-
 /**
  * @typedef {(text: string, domain?: string) => string} __
  *
@@ -1204,7 +1148,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see https://developer.wordpress.org/reference/functions/__/
  */
-
 /**
  * @typedef {(text: string, context: string, domain?: string) => string} _x
  *
@@ -1212,7 +1155,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see https://developer.wordpress.org/reference/functions/_x/
  */
-
 /**
  * @typedef {(single: string, plural: string, number: number, domain?: string) => string} _n
  *
@@ -1221,7 +1163,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see https://developer.wordpress.org/reference/functions/_n/
  */
-
 /**
  * @typedef {(single: string, plural: string, number: number, context: string, domain?: string) => string} _nx
  *
@@ -1230,7 +1171,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @see https://developer.wordpress.org/reference/functions/_nx/
  */
-
 /**
  * @typedef {() => boolean} IsRtl
  *
@@ -1241,13 +1181,11 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  * language written RTL. The opposite of RTL, LTR (Left To Right) is used in other languages,
  * including English (`en`, `en-US`, `en-GB`, etc.), Spanish (`es`), and French (`fr`).
  */
-
 /**
  * @typedef {(single: string, context?: string, domain?: string) => boolean} HasTranslation
  *
  * Check if there is a translation for a given string in singular form.
  */
-
 /** @typedef {import('@wordpress/hooks').Hooks} Hooks */
 
 /**
@@ -1283,7 +1221,6 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @return {I18n} I18n instance.
  */
-
 const createI18n = (initialData, initialDomain, hooks) => {
   /**
    * The underlying instance of Tannin to which exported functions interface.
@@ -1292,87 +1229,80 @@ const createI18n = (initialData, initialDomain, hooks) => {
    */
   const tannin = new tannin__WEBPACK_IMPORTED_MODULE_0__["default"]({});
   const listeners = new Set();
-
   const notifyListeners = () => {
     listeners.forEach(listener => listener());
   };
+
   /**
    * Subscribe to changes of locale data.
    *
    * @param {SubscribeCallback} callback Subscription callback.
    * @return {UnsubscribeCallback} Unsubscribe callback.
    */
-
-
   const subscribe = callback => {
     listeners.add(callback);
     return () => listeners.delete(callback);
   };
+
   /** @type {GetLocaleData} */
+  const getLocaleData = (domain = 'default') => tannin.data[domain];
 
-
-  const getLocaleData = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return tannin.data[domain];
-  };
   /**
    * @param {LocaleData} [data]
    * @param {string}     [domain]
    */
-
-
-  const doSetLocaleData = function (data) {
-    var _tannin$data$domain;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
+  const doSetLocaleData = (data, domain = 'default') => {
+    tannin.data[domain] = {
+      ...tannin.data[domain],
       ...data
-    }; // Populate default domain configuration (supported locale date which omits
+    };
+
+    // Populate default domain configuration (supported locale date which omits
     // a plural forms expression).
+    tannin.data[domain][''] = {
+      ...DEFAULT_LOCALE_DATA[''],
+      ...tannin.data[domain]?.['']
+    };
 
-    tannin.data[domain][''] = { ...DEFAULT_LOCALE_DATA[''],
-      ...((_tannin$data$domain = tannin.data[domain]) === null || _tannin$data$domain === void 0 ? void 0 : _tannin$data$domain[''])
-    }; // Clean up cached plural forms functions cache as it might be updated.
-
+    // Clean up cached plural forms functions cache as it might be updated.
     delete tannin.pluralForms[domain];
   };
+
   /** @type {SetLocaleData} */
-
-
   const setLocaleData = (data, domain) => {
     doSetLocaleData(data, domain);
     notifyListeners();
   };
+
   /** @type {AddLocaleData} */
-
-
-  const addLocaleData = function (data) {
-    var _tannin$data$domain2;
-
-    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
-    tannin.data[domain] = { ...tannin.data[domain],
+  const addLocaleData = (data, domain = 'default') => {
+    tannin.data[domain] = {
+      ...tannin.data[domain],
       ...data,
       // Populate default domain configuration (supported locale date which omits
       // a plural forms expression).
-      '': { ...DEFAULT_LOCALE_DATA[''],
-        ...((_tannin$data$domain2 = tannin.data[domain]) === null || _tannin$data$domain2 === void 0 ? void 0 : _tannin$data$domain2['']),
-        ...(data === null || data === void 0 ? void 0 : data[''])
+      '': {
+        ...DEFAULT_LOCALE_DATA[''],
+        ...tannin.data[domain]?.[''],
+        ...data?.['']
       }
-    }; // Clean up cached plural forms functions cache as it might be updated.
+    };
 
+    // Clean up cached plural forms functions cache as it might be updated.
     delete tannin.pluralForms[domain];
     notifyListeners();
   };
+
   /** @type {ResetLocaleData} */
-
-
   const resetLocaleData = (data, domain) => {
     // Reset all current Tannin locale data.
-    tannin.data = {}; // Reset cached plural forms functions cache.
+    tannin.data = {};
 
+    // Reset cached plural forms functions cache.
     tannin.pluralForms = {};
     setLocaleData(data, domain);
   };
+
   /**
    * Wrapper for Tannin's `dcnpgettext`. Populates default locale data if not
    * otherwise previously assigned.
@@ -1388,38 +1318,24 @@ const createI18n = (initialData, initialDomain, hooks) => {
    *
    * @return {string} The translated string.
    */
-
-
-  const dcnpgettext = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    let context = arguments.length > 1 ? arguments[1] : undefined;
-    let single = arguments.length > 2 ? arguments[2] : undefined;
-    let plural = arguments.length > 3 ? arguments[3] : undefined;
-    let number = arguments.length > 4 ? arguments[4] : undefined;
-
+  const dcnpgettext = (domain = 'default', context, single, plural, number) => {
     if (!tannin.data[domain]) {
       // Use `doSetLocaleData` to set silently, without notifying listeners.
       doSetLocaleData(undefined, domain);
     }
-
     return tannin.dcnpgettext(domain, context, single, plural, number);
   };
+
   /** @type {GetFilterDomain} */
+  const getFilterDomain = (domain = 'default') => domain;
 
-
-  const getFilterDomain = function () {
-    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    return domain;
-  };
   /** @type {__} */
-
-
   const __ = (text, domain) => {
     let translation = dcnpgettext(domain, undefined, text);
-
     if (!hooks) {
       return translation;
     }
+
     /**
      * Filters text with its translation.
      *
@@ -1427,29 +1343,20 @@ const createI18n = (initialData, initialDomain, hooks) => {
      * @param {string} text        Text to translate.
      * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
      */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext', translation, text, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_' + getFilterDomain(domain), translation, text, domain)
+    translation = /** @type {string} */
+    /** @type {*} */hooks.applyFilters('i18n.gettext', translation, text, domain);
+    return (/** @type {string} */
+      /** @type {*} */hooks.applyFilters('i18n.gettext_' + getFilterDomain(domain), translation, text, domain)
     );
   };
+
   /** @type {_x} */
-
-
   const _x = (text, context, domain) => {
     let translation = dcnpgettext(domain, context, text);
-
     if (!hooks) {
       return translation;
     }
+
     /**
      * Filters text with its translation based on context information.
      *
@@ -1458,29 +1365,20 @@ const createI18n = (initialData, initialDomain, hooks) => {
      * @param {string} context     Context information for the translators.
      * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
      */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.gettext_with_context', translation, text, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.gettext_with_context_' + getFilterDomain(domain), translation, text, context, domain)
+    translation = /** @type {string} */
+    /** @type {*} */hooks.applyFilters('i18n.gettext_with_context', translation, text, context, domain);
+    return (/** @type {string} */
+      /** @type {*} */hooks.applyFilters('i18n.gettext_with_context_' + getFilterDomain(domain), translation, text, context, domain)
     );
   };
+
   /** @type {_n} */
-
-
   const _n = (single, plural, number, domain) => {
     let translation = dcnpgettext(domain, undefined, single, plural, number);
-
     if (!hooks) {
       return translation;
     }
+
     /**
      * Filters the singular or plural form of a string.
      *
@@ -1490,29 +1388,20 @@ const createI18n = (initialData, initialDomain, hooks) => {
      * @param {string} number      The number to compare against to use either the singular or plural form.
      * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
      */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext', translation, single, plural, number, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_' + getFilterDomain(domain), translation, single, plural, number, domain)
+    translation = /** @type {string} */
+    /** @type {*} */hooks.applyFilters('i18n.ngettext', translation, single, plural, number, domain);
+    return (/** @type {string} */
+      /** @type {*} */hooks.applyFilters('i18n.ngettext_' + getFilterDomain(domain), translation, single, plural, number, domain)
     );
   };
+
   /** @type {_nx} */
-
-
   const _nx = (single, plural, number, context, domain) => {
     let translation = dcnpgettext(domain, context, single, plural, number);
-
     if (!hooks) {
       return translation;
     }
+
     /**
      * Filters the singular or plural form of a string with gettext context.
      *
@@ -1523,35 +1412,22 @@ const createI18n = (initialData, initialDomain, hooks) => {
      * @param {string} context     Context information for the translators.
      * @param {string} domain      Text domain. Unique identifier for retrieving translated strings.
      */
-
-
-    translation =
-    /** @type {string} */
-
-    /** @type {*} */
-    hooks.applyFilters('i18n.ngettext_with_context', translation, single, plural, number, context, domain);
-    return (
-      /** @type {string} */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.ngettext_with_context_' + getFilterDomain(domain), translation, single, plural, number, context, domain)
+    translation = /** @type {string} */
+    /** @type {*} */hooks.applyFilters('i18n.ngettext_with_context', translation, single, plural, number, context, domain);
+    return (/** @type {string} */
+      /** @type {*} */hooks.applyFilters('i18n.ngettext_with_context_' + getFilterDomain(domain), translation, single, plural, number, context, domain)
     );
   };
+
   /** @type {IsRtl} */
-
-
   const isRTL = () => {
     return 'rtl' === _x('ltr', 'text direction');
   };
+
   /** @type {HasTranslation} */
-
-
   const hasTranslation = (single, context, domain) => {
-    var _tannin$data, _tannin$data2;
-
     const key = context ? context + '\u0004' + single : single;
-    let result = !!((_tannin$data = tannin.data) !== null && _tannin$data !== void 0 && (_tannin$data2 = _tannin$data[domain !== null && domain !== void 0 ? domain : 'default']) !== null && _tannin$data2 !== void 0 && _tannin$data2[key]);
-
+    let result = !!tannin.data?.[domain !== null && domain !== void 0 ? domain : 'default']?.[key];
     if (hooks) {
       /**
        * Filters the presence of a translation in the locale data.
@@ -1561,25 +1437,16 @@ const createI18n = (initialData, initialDomain, hooks) => {
        * @param {string}  context        Context information for the translators.
        * @param {string}  domain         Text domain. Unique identifier for retrieving translated strings.
        */
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation', result, single, context, domain);
-      result =
-      /** @type { boolean } */
-
-      /** @type {*} */
-      hooks.applyFilters('i18n.has_translation_' + getFilterDomain(domain), result, single, context, domain);
+      result = /** @type { boolean } */
+      /** @type {*} */hooks.applyFilters('i18n.has_translation', result, single, context, domain);
+      result = /** @type { boolean } */
+      /** @type {*} */hooks.applyFilters('i18n.has_translation_' + getFilterDomain(domain), result, single, context, domain);
     }
-
     return result;
   };
-
   if (initialData) {
     setLocaleData(initialData, initialDomain);
   }
-
   if (hooks) {
     /**
      * @param {string} hookName
@@ -1589,11 +1456,9 @@ const createI18n = (initialData, initialDomain, hooks) => {
         notifyListeners();
       }
     };
-
     hooks.addAction('hookAdded', 'core/i18n', onHookAddedOrRemoved);
     hooks.addAction('hookRemoved', 'core/i18n', onHookAddedOrRemoved);
   }
-
   return {
     getLocaleData,
     setLocaleData,
@@ -1621,17 +1486,17 @@ const createI18n = (initialData, initialDomain, hooks) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* binding */ __),
-/* harmony export */   "_n": () => (/* binding */ _n),
-/* harmony export */   "_nx": () => (/* binding */ _nx),
-/* harmony export */   "_x": () => (/* binding */ _x),
+/* harmony export */   __: () => (/* binding */ __),
+/* harmony export */   _n: () => (/* binding */ _n),
+/* harmony export */   _nx: () => (/* binding */ _nx),
+/* harmony export */   _x: () => (/* binding */ _x),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getLocaleData": () => (/* binding */ getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* binding */ hasTranslation),
-/* harmony export */   "isRTL": () => (/* binding */ isRTL),
-/* harmony export */   "resetLocaleData": () => (/* binding */ resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* binding */ setLocaleData),
-/* harmony export */   "subscribe": () => (/* binding */ subscribe)
+/* harmony export */   getLocaleData: () => (/* binding */ getLocaleData),
+/* harmony export */   hasTranslation: () => (/* binding */ hasTranslation),
+/* harmony export */   isRTL: () => (/* binding */ isRTL),
+/* harmony export */   resetLocaleData: () => (/* binding */ resetLocaleData),
+/* harmony export */   setLocaleData: () => (/* binding */ setLocaleData),
+/* harmony export */   subscribe: () => (/* binding */ subscribe)
 /* harmony export */ });
 /* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/i18n/build-module/create-i18n.js");
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "./node_modules/@wordpress/hooks/build-module/index.js");
@@ -1639,17 +1504,18 @@ __webpack_require__.r(__webpack_exports__);
  * Internal dependencies
  */
 
+
 /**
  * WordPress dependencies
  */
 
-
 const i18n = (0,_create_i18n__WEBPACK_IMPORTED_MODULE_0__.createI18n)(undefined, undefined, _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.defaultHooks);
+
 /**
  * Default, singleton instance of `I18n`.
  */
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (i18n);
+
 /*
  * Comments in this file are duplicated from ./i18n due to
  * https://github.com/WordPress/gutenberg/pull/20318#issuecomment-590837722
@@ -1669,8 +1535,8 @@ const i18n = (0,_create_i18n__WEBPACK_IMPORTED_MODULE_0__.createI18n)(undefined,
  * @param {string} [domain] Domain for which to get the data.
  * @return {LocaleData} Locale data.
  */
-
 const getLocaleData = i18n.getLocaleData.bind(i18n);
+
 /**
  * Merges locale data into the Tannin instance by domain. Accepts data in a
  * Jed-formatted JSON object shape.
@@ -1680,8 +1546,8 @@ const getLocaleData = i18n.getLocaleData.bind(i18n);
  * @param {LocaleData} [data]   Locale data configuration.
  * @param {string}     [domain] Domain for which configuration applies.
  */
-
 const setLocaleData = i18n.setLocaleData.bind(i18n);
+
 /**
  * Resets all current Tannin instance locale data and sets the specified
  * locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
@@ -1691,16 +1557,16 @@ const setLocaleData = i18n.setLocaleData.bind(i18n);
  * @param {LocaleData} [data]   Locale data configuration.
  * @param {string}     [domain] Domain for which configuration applies.
  */
-
 const resetLocaleData = i18n.resetLocaleData.bind(i18n);
+
 /**
  * Subscribes to changes of locale data
  *
  * @param {SubscribeCallback} callback Subscription callback
  * @return {UnsubscribeCallback} Unsubscribe callback
  */
-
 const subscribe = i18n.subscribe.bind(i18n);
+
 /**
  * Retrieve the translation of text.
  *
@@ -1711,8 +1577,8 @@ const subscribe = i18n.subscribe.bind(i18n);
  *
  * @return {string} Translated text.
  */
-
 const __ = i18n.__.bind(i18n);
+
 /**
  * Retrieve translated string with gettext context.
  *
@@ -1724,8 +1590,8 @@ const __ = i18n.__.bind(i18n);
  *
  * @return {string} Translated context string without pipe.
  */
-
 const _x = i18n._x.bind(i18n);
+
 /**
  * Translates and retrieves the singular or plural form based on the supplied
  * number.
@@ -1740,8 +1606,8 @@ const _x = i18n._x.bind(i18n);
  *
  * @return {string} The translated singular or plural form.
  */
-
 const _n = i18n._n.bind(i18n);
+
 /**
  * Translates and retrieves the singular or plural form based on the supplied
  * number, with gettext context.
@@ -1757,8 +1623,8 @@ const _n = i18n._n.bind(i18n);
  *
  * @return {string} The translated singular or plural form.
  */
-
 const _nx = i18n._nx.bind(i18n);
+
 /**
  * Check if current locale is RTL.
  *
@@ -1769,8 +1635,8 @@ const _nx = i18n._nx.bind(i18n);
  *
  * @return {boolean} Whether locale is RTL.
  */
-
 const isRTL = i18n.isRTL.bind(i18n);
+
 /**
  * Check if there is a translation for a given string (in singular form).
  *
@@ -1779,7 +1645,6 @@ const isRTL = i18n.isRTL.bind(i18n);
  * @param {string} [domain]  Domain to retrieve the translated text.
  * @return {boolean} Whether the translation exists or not.
  */
-
 const hasTranslation = i18n.hasTranslation.bind(i18n);
 //# sourceMappingURL=default-i18n.js.map
 
@@ -1794,19 +1659,19 @@ const hasTranslation = i18n.hasTranslation.bind(i18n);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "__": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.__),
-/* harmony export */   "_n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._n),
-/* harmony export */   "_nx": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._nx),
-/* harmony export */   "_x": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._x),
-/* harmony export */   "createI18n": () => (/* reexport safe */ _create_i18n__WEBPACK_IMPORTED_MODULE_1__.createI18n),
-/* harmony export */   "defaultI18n": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   "getLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.getLocaleData),
-/* harmony export */   "hasTranslation": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.hasTranslation),
-/* harmony export */   "isRTL": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.isRTL),
-/* harmony export */   "resetLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.resetLocaleData),
-/* harmony export */   "setLocaleData": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.setLocaleData),
-/* harmony export */   "sprintf": () => (/* reexport safe */ _sprintf__WEBPACK_IMPORTED_MODULE_0__.sprintf),
-/* harmony export */   "subscribe": () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.subscribe)
+/* harmony export */   __: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.__),
+/* harmony export */   _n: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._n),
+/* harmony export */   _nx: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._nx),
+/* harmony export */   _x: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__._x),
+/* harmony export */   createI18n: () => (/* reexport safe */ _create_i18n__WEBPACK_IMPORTED_MODULE_1__.createI18n),
+/* harmony export */   defaultI18n: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   getLocaleData: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.getLocaleData),
+/* harmony export */   hasTranslation: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.hasTranslation),
+/* harmony export */   isRTL: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.isRTL),
+/* harmony export */   resetLocaleData: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.resetLocaleData),
+/* harmony export */   setLocaleData: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.setLocaleData),
+/* harmony export */   sprintf: () => (/* reexport safe */ _sprintf__WEBPACK_IMPORTED_MODULE_0__.sprintf),
+/* harmony export */   subscribe: () => (/* reexport safe */ _default_i18n__WEBPACK_IMPORTED_MODULE_2__.subscribe)
 /* harmony export */ });
 /* harmony import */ var _sprintf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprintf */ "./node_modules/@wordpress/i18n/build-module/sprintf.js");
 /* harmony import */ var _create_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-i18n */ "./node_modules/@wordpress/i18n/build-module/create-i18n.js");
@@ -1827,15 +1692,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sprintf": () => (/* binding */ sprintf)
+/* harmony export */   sprintf: () => (/* binding */ sprintf)
 /* harmony export */ });
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! memize */ "./node_modules/memize/index.js");
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(memize__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! memize */ "./node_modules/@wordpress/i18n/node_modules/memize/dist/index.js");
 /* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sprintf-js */ "./node_modules/sprintf-js/src/sprintf.js");
 /* harmony import */ var sprintf_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sprintf_js__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * External dependencies
  */
+
 
 
 /**
@@ -1845,8 +1710,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @param {...*} args Arguments to pass to `console.error`
  */
-
-const logErrorOnce = memize__WEBPACK_IMPORTED_MODULE_0___default()(console.error); // eslint-disable-line no-console
+const logErrorOnce = (0,memize__WEBPACK_IMPORTED_MODULE_0__["default"])(console.error); // eslint-disable-line no-console
 
 /**
  * Returns a formatted string. If an error occurs in applying the format, the
@@ -1859,19 +1723,13 @@ const logErrorOnce = memize__WEBPACK_IMPORTED_MODULE_0___default()(console.error
  *
  * @return {string} The formatted string.
  */
-
-function sprintf(format) {
+function sprintf(format, ...args) {
   try {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
     return sprintf_js__WEBPACK_IMPORTED_MODULE_1___default().sprintf(format, ...args);
   } catch (error) {
     if (error instanceof Error) {
       logErrorOnce('sprintf error: \n\n' + error.toString());
     }
-
     return format;
   }
 }
@@ -1899,10 +1757,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
 /* harmony import */ var _components_MeatballMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/MeatballMenu */ "./src/js/components/MeatballMenu/index.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -1911,19 +1770,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var ThemePreview = function ThemePreview(props) {
   var _classNames;
-
   var activeTheme = props.activeTheme,
-      colors = props.colors,
-      stylesheet = props.stylesheet,
-      fontSize = props.fontSize,
-      lineHeight = props.lineHeight,
-      buttonFontSize = props.buttonFontSize,
-      colorsOnly = props.colorsOnly,
-      screen = props.screen,
-      primaryFontFamily = props.primaryFontFamily,
-      secondaryFontFamily = props.secondaryFontFamily,
-      fontsEnabled = props.fontsEnabled;
-
+    colors = props.colors,
+    stylesheet = props.stylesheet,
+    fontSize = props.fontSize,
+    lineHeight = props.lineHeight,
+    buttonFontSize = props.buttonFontSize,
+    colorsOnly = props.colorsOnly,
+    screen = props.screen,
+    primaryFontFamily = props.primaryFontFamily,
+    secondaryFontFamily = props.secondaryFontFamily,
+    fontsEnabled = props.fontsEnabled;
   var getColorStyleVars = function getColorStyleVars() {
     var styles = '';
     colors.map(function (color, index) {
@@ -1932,7 +1789,6 @@ var ThemePreview = function ThemePreview(props) {
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
-
   var getFontSize = function getFontSize() {
     var styles = '';
     styles += "--qdlx-".concat(activeTheme, "-font-size-").concat(screen, ": ").concat(fontSize, "px;");
@@ -1940,32 +1796,26 @@ var ThemePreview = function ThemePreview(props) {
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
-
   var getLineHeight = function getLineHeight() {
     var styles = '';
     styles += "--qdlx-".concat(activeTheme, "-line-height-").concat(screen, ": ").concat(lineHeight, ";");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
-
   var getFontFamilies = function getFontFamilies() {
     var styles = '';
-
     if (!fontsEnabled) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
     }
-
     styles += "--qdlx-primary-font-family: \"".concat(primaryFontFamily.replace(/\"/g, ''), "\";");
     styles += "--qdlx-secondary-font-family: \"".concat(secondaryFontFamily.replace(/\"/g, ''), "\";");
     styles = ":root { ".concat(styles, " }");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("style", null, styles);
   };
-
   var previewInlineStyles = {
     maxWidth: '1100px !important',
     margin: '0 auto'
   };
-
   switch (screen) {
     case 'mobile':
       previewInlineStyles = {
@@ -1973,14 +1823,12 @@ var ThemePreview = function ThemePreview(props) {
         margin: '0 auto'
       };
       break;
-
     case 'tablet':
       previewInlineStyles = {
         maxWidth: 'var(--qdlx-var-breakpoint-medium, 768px)',
         margin: '0 auto'
       };
       break;
-
     case 'desktop':
       previewInlineStyles = {
         maxWidth: 'var(--qdlx-var-breakpoint-large, 1024px)',
@@ -1988,7 +1836,6 @@ var ThemePreview = function ThemePreview(props) {
       };
       break;
   }
-
   if (colorsOnly) {
     previewInlineStyles = {
       maxWidth: '650px',
@@ -1996,7 +1843,6 @@ var ThemePreview = function ThemePreview(props) {
       marginBottom: '40px'
     };
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getColorStyleVars(), getFontFamilies(), !colorsOnly && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getFontSize(), getLineHeight()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("link", {
     rel: "stylesheet",
     href: stylesheet
@@ -2029,7 +1875,6 @@ var ThemePreview = function ThemePreview(props) {
     enable_tweet_this: true
   }))));
 };
-
 ThemePreview.defaultProps = {
   activeTheme: '',
   colors: [],
@@ -2044,17 +1889,17 @@ ThemePreview.defaultProps = {
   fontsEnabled: true
 };
 ThemePreview.propTypes = {
-  activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array.isRequired),
-  stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number.isRequired),
-  colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired),
-  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  primaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  secondaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string.isRequired),
-  fontsEnabled: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool.isRequired)
+  activeTheme: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  colors: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array).isRequired,
+  stylesheet: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  fontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  lineHeight: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number).isRequired,
+  colorsOnly: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool).isRequired,
+  buttonFontSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  screen: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  primaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  secondaryFontFamily: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string).isRequired,
+  fontsEnabled: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool).isRequired
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemePreview);
 
@@ -2096,21 +1941,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var MeatballMenu = function MeatballMenu(attributes) {
   var enable_copy_text = attributes.enable_copy_text,
-      enable_copy_tweet = attributes.enable_copy_tweet,
-      enable_copy_link = attributes.enable_copy_link,
-      enable_tweet_this = attributes.enable_tweet_this,
-      enable_share_this = attributes.enable_share_this,
-      enable_email_text = attributes.enable_email_text,
-      copy_text_label = attributes.copy_text_label,
-      copy_tweet_label = attributes.copy_tweet_label,
-      copy_link_label = attributes.copy_link_label,
-      tweet_this_label = attributes.tweet_this_label,
-      share_this_label = attributes.share_this_label,
-      email_text_label = attributes.email_text_label;
-
+    enable_copy_tweet = attributes.enable_copy_tweet,
+    enable_copy_link = attributes.enable_copy_link,
+    enable_tweet_this = attributes.enable_tweet_this,
+    enable_share_this = attributes.enable_share_this,
+    enable_email_text = attributes.enable_email_text,
+    copy_text_label = attributes.copy_text_label,
+    copy_tweet_label = attributes.copy_tweet_label,
+    copy_link_label = attributes.copy_link_label,
+    tweet_this_label = attributes.tweet_this_label,
+    share_this_label = attributes.share_this_label,
+    email_text_label = attributes.email_text_label;
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
       width: 16,
@@ -2118,7 +1961,6 @@ var MeatballMenu = function MeatballMenu(attributes) {
       fill: "#6c757d"
     });
   };
-
   var getButton = function getButton() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "quotes-dlx-meatball-menu"
@@ -2170,10 +2012,8 @@ var MeatballMenu = function MeatballMenu(attributes) {
       className: "quotes-dlx-meatball-icon"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null))))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getButton());
 };
-
 MeatballMenu.defaultProps = {
   enable_copy_text: true,
   enable_copy_link: true,
@@ -2189,18 +2029,18 @@ MeatballMenu.defaultProps = {
   share_this_label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This', 'quotes-dlx')
 };
 MeatballMenu.propTypes = {
-  enable_copy_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  enable_copy_link: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  enable_copy_tweet: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  enable_tweet_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  enable_share_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  enable_email_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
-  email_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
-  copy_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
-  copy_tweet_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
-  copy_link_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
-  tweet_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired),
-  share_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string.isRequired)
+  enable_copy_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  enable_copy_link: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  enable_copy_tweet: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  enable_tweet_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  enable_share_this: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  enable_email_text: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  email_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired,
+  copy_text_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired,
+  copy_tweet_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired,
+  copy_link_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired,
+  tweet_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired,
+  share_this_label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string).isRequired
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MeatballMenu);
 
@@ -2224,18 +2064,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/js/components/MeatballMenuItem/editor.scss");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -2243,14 +2076,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var MeatballMenuItem = function MeatballMenuItem(props) {
   var Icon = props.Icon,
-      text = props.text,
-      onClick = props.onClick;
-
+    text = props.text,
+    onClick = props.onClick;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      menuOpen = _useState2[0],
-      setMenuOpen = _useState2[1];
-
+    _useState2 = _slicedToArray(_useState, 2),
+    menuOpen = _useState2[0],
+    setMenuOpen = _useState2[1];
   var getMenuItem = function getMenuItem() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "quotes-dlx-meatball-menu-item"
@@ -2261,10 +2092,8 @@ var MeatballMenuItem = function MeatballMenuItem(props) {
       className: "quotes-dlx-meatball-menu-icon"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, null)), text)));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getMenuItem());
 };
-
 MeatballMenuItem.defaultProps = {
   text: '',
   Icon: '',
@@ -2306,7 +2135,6 @@ var AtIcon = function AtIcon(props) {
     d: "M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0s256 114.6 256 256v32c0 53-43 96-96 96-29.3 0-55.6-13.2-73.2-33.9-22.8 21-53.3 33.9-86.8 33.9-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1 5.7-5 13.1-8.1 21.3-8.1 17.7 0 32 14.3 32 32v112c0 17.7 14.3 32 32 32s32-14.3 32-32v-32c0-106-86-192-192-192zm64 192c0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64 64-28.7 64-64z"
   }));
 };
-
 AtIcon.defaultProps = {
   width: 16,
   height: 16,
@@ -2338,7 +2166,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var CopyIcon = function CopyIcon(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2350,7 +2177,6 @@ var CopyIcon = function CopyIcon(props) {
     d: "M384 96V0H272c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48V128h-95.1c-18.5 0-32.9-14.4-32.9-32zm32-96v96h96L416 0zM192 352V128H48c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48v-48h-32c-35.3 0-64-28.7-64-64z"
   }));
 };
-
 CopyIcon.defaultProps = {
   width: 24,
   height: 24,
@@ -2382,7 +2208,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var FacebookIcon = function FacebookIcon(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2394,7 +2219,6 @@ var FacebookIcon = function FacebookIcon(props) {
     d: "M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
   }));
 };
-
 FacebookIcon.defaultProps = {
   width: 24,
   height: 24,
@@ -2426,7 +2250,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var LinkIcon = function LinkIcon(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2438,7 +2261,6 @@ var LinkIcon = function LinkIcon(props) {
     d: "M172.5 131.1c55.6-55.59 148-55.59 203.6 0 50 50 57.4 129.7 16.3 187.2l-1.1 1.6c-10.3 14.3-30.3 17.7-44.6 7.4-14.4-10.3-17.8-30.3-7.5-44.6l1.1-1.6c22.9-32.1 19.3-76-8.6-103.9-31.4-31.4-82.5-31.4-114 0L105.5 289.5c-31.51 30.6-31.51 82.5 0 114 27.8 27.9 71.8 31.5 103.8 8.6l1.6-2c14.4-9.4 34.4-6.1 44.6 8.3 10.3 14.4 7 34.4-7.4 44.7l-1.6 1.1c-58.4 41.1-136.3 34.5-186.29-15.4-56.469-56.5-56.469-148.1 0-204.5L172.5 131.1zm295 248.9c-56.5 56.5-148 56.5-204.5 0-50-50-56.5-128.8-15.4-186.3l1.1-1.6c9.4-14.3 29.4-17.7 44.6-7.4 14.4 9.4 17.8 29.4 7.5 44.6l-1.1 1.6c-22.9 31.2-19.3 76 8.6 103.9 31.4 31.4 82.5 31.4 114 0l112.2-112.3c31.5-31.5 31.5-83.4 0-114-27.8-27.87-71.8-31.51-103.8-8.6l-1.6 1.1c-14.4 10.3-34.4 6.1-44.6-7.42-10.3-14.38-7-34.37 7.4-44.64l1.6-1.12C451 6.731 529.8 13.25 579.8 63.24c56.5 56.46 56.5 148.06 0 204.46L467.5 380z"
   }));
 };
-
 LinkIcon.defaultProps = {
   width: 24,
   height: 24,
@@ -2470,7 +2292,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var QuoteIcon = function QuoteIcon(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -2482,7 +2303,6 @@ var QuoteIcon = function QuoteIcon(props) {
     d: "M96 224c-11.28 0-21.95 2.3-32 5.9V224c0-35.3 28.7-64 64-64 17.67 0 32-14.33 32-32s-14.3-32-32-32C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96-43-96-96-96zm256 0c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64 17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96-43-96-96-96z"
   }));
 };
-
 QuoteIcon.defaultProps = {
   width: 24,
   height: 24,
@@ -2514,7 +2334,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var TwitterIcon = function TwitterIcon(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     "aria-hidden": "true",
@@ -2530,7 +2349,6 @@ var TwitterIcon = function TwitterIcon(props) {
     d: "M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
   }));
 };
-
 TwitterIcon.defaultProps = {
   width: 24,
   height: 24,
@@ -2552,9 +2370,9 @@ TwitterIcon.propTypes = {
 /***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
 */
 /* global define */
 
@@ -2562,6 +2380,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	'use strict';
 
 	var hasOwn = {}.hasOwnProperty;
+	var nativeCodeString = '[native code]';
 
 	function classNames() {
 		var classes = [];
@@ -2582,14 +2401,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 					}
 				}
 			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
+				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
 					classes.push(arg.toString());
+					continue;
+				}
+
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
 				}
 			}
 		}
@@ -2608,177 +2428,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
 }());
-
-
-/***/ }),
-
-/***/ "./node_modules/memize/index.js":
-/*!**************************************!*\
-  !*** ./node_modules/memize/index.js ***!
-  \**************************************/
-/***/ ((module) => {
-
-/**
- * Memize options object.
- *
- * @typedef MemizeOptions
- *
- * @property {number} [maxSize] Maximum size of the cache.
- */
-
-/**
- * Internal cache entry.
- *
- * @typedef MemizeCacheNode
- *
- * @property {?MemizeCacheNode|undefined} [prev] Previous node.
- * @property {?MemizeCacheNode|undefined} [next] Next node.
- * @property {Array<*>}                   args   Function arguments for cache
- *                                               entry.
- * @property {*}                          val    Function result.
- */
-
-/**
- * Properties of the enhanced function for controlling cache.
- *
- * @typedef MemizeMemoizedFunction
- *
- * @property {()=>void} clear Clear the cache.
- */
-
-/**
- * Accepts a function to be memoized, and returns a new memoized function, with
- * optional options.
- *
- * @template {Function} F
- *
- * @param {F}             fn        Function to memoize.
- * @param {MemizeOptions} [options] Options object.
- *
- * @return {F & MemizeMemoizedFunction} Memoized function.
- */
-function memize( fn, options ) {
-	var size = 0;
-
-	/** @type {?MemizeCacheNode|undefined} */
-	var head;
-
-	/** @type {?MemizeCacheNode|undefined} */
-	var tail;
-
-	options = options || {};
-
-	function memoized( /* ...args */ ) {
-		var node = head,
-			len = arguments.length,
-			args, i;
-
-		searchCache: while ( node ) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
-			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
-			// function which could incur an arguments leaking deoptimization.
-
-			// Check whether node arguments match arguments length
-			if ( node.args.length !== arguments.length ) {
-				node = node.next;
-				continue;
-			}
-
-			// Check whether node arguments match arguments values
-			for ( i = 0; i < len; i++ ) {
-				if ( node.args[ i ] !== arguments[ i ] ) {
-					node = node.next;
-					continue searchCache;
-				}
-			}
-
-			// At this point we can assume we've found a match
-
-			// Surface matched node to head if not already
-			if ( node !== head ) {
-				// As tail, shift to previous. Must only shift if not also
-				// head, since if both head and tail, there is no previous.
-				if ( node === tail ) {
-					tail = node.prev;
-				}
-
-				// Adjust siblings to point to each other. If node was tail,
-				// this also handles new tail's empty `next` assignment.
-				/** @type {MemizeCacheNode} */ ( node.prev ).next = node.next;
-				if ( node.next ) {
-					node.next.prev = node.prev;
-				}
-
-				node.next = head;
-				node.prev = null;
-				/** @type {MemizeCacheNode} */ ( head ).prev = node;
-				head = node;
-			}
-
-			// Return immediately
-			return node.val;
-		}
-
-		// No cached value found. Continue to insertion phase:
-
-		// Create a copy of arguments (avoid leaking deoptimization)
-		args = new Array( len );
-		for ( i = 0; i < len; i++ ) {
-			args[ i ] = arguments[ i ];
-		}
-
-		node = {
-			args: args,
-
-			// Generate the result from original function
-			val: fn.apply( null, args ),
-		};
-
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
-
-		// Shift existing head down list
-		if ( head ) {
-			head.prev = node;
-			node.next = head;
-		} else {
-			// If no head, follows that there's no tail (at initial or reset)
-			tail = node;
-		}
-
-		// Trim tail if we're reached max size and are pending cache insertion
-		if ( size === /** @type {MemizeOptions} */ ( options ).maxSize ) {
-			tail = /** @type {MemizeCacheNode} */ ( tail ).prev;
-			/** @type {MemizeCacheNode} */ ( tail ).next = null;
-		} else {
-			size++;
-		}
-
-		head = node;
-
-		return node.val;
-	}
-
-	memoized.clear = function() {
-		head = null;
-		tail = null;
-		size = 0;
-	};
-
-	if ( false ) {}
-
-	// Ignore reason: There's not a clear solution to create an intersection of
-	// the function with additional properties, where the goal is to retain the
-	// function signature of the incoming argument and add control properties
-	// on the return value.
-
-	// @ts-ignore
-	return memoized;
-}
-
-module.exports = memize;
 
 
 /***/ }),
@@ -3040,7 +2689,7 @@ module.exports = checkPropTypes;
 
 
 
-var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
 var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
 var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
@@ -3659,7 +3308,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
  */
 
 if (true) {
-  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
 
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
@@ -3704,6 +3353,214 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 /***/ }),
 
+/***/ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+// (unstable) APIs that have been removed. Can we remove the symbols?
+
+var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+function isValidElementType(type) {
+  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_ASYNC_MODE_TYPE:
+          case REACT_CONCURRENT_MODE_TYPE:
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+} // AsyncMode is deprecated along with isAsyncMode
+
+var AsyncMode = REACT_ASYNC_MODE_TYPE;
+var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+    }
+  }
+
+  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+}
+function isConcurrentMode(object) {
+  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+
+exports.AsyncMode = AsyncMode;
+exports.ConcurrentMode = ConcurrentMode;
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/node_modules/react-is/index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/prop-types/node_modules/react-is/index.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js");
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-dom/cjs/react-dom.development.js":
 /*!*************************************************************!*\
   !*** ./node_modules/react-dom/cjs/react-dom.development.js ***!
@@ -3737,7 +3594,7 @@ if (
   __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
 }
           var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var Scheduler = __webpack_require__(/*! scheduler */ "./node_modules/react-dom/node_modules/scheduler/index.js");
+var Scheduler = __webpack_require__(/*! scheduler */ "./node_modules/scheduler/index.js");
 
 var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
@@ -33655,875 +33512,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-dom/node_modules/scheduler/cjs/scheduler.development.js":
-/*!************************************************************************************!*\
-  !*** ./node_modules/react-dom/node_modules/scheduler/cjs/scheduler.development.js ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-/**
- * @license React
- * scheduler.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-if (true) {
-  (function() {
-
-          'use strict';
-
-/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-if (
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===
-    'function'
-) {
-  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-}
-          var enableSchedulerDebugging = false;
-var enableProfiling = false;
-var frameYieldMs = 5;
-
-function push(heap, node) {
-  var index = heap.length;
-  heap.push(node);
-  siftUp(heap, node, index);
-}
-function peek(heap) {
-  return heap.length === 0 ? null : heap[0];
-}
-function pop(heap) {
-  if (heap.length === 0) {
-    return null;
-  }
-
-  var first = heap[0];
-  var last = heap.pop();
-
-  if (last !== first) {
-    heap[0] = last;
-    siftDown(heap, last, 0);
-  }
-
-  return first;
-}
-
-function siftUp(heap, node, i) {
-  var index = i;
-
-  while (index > 0) {
-    var parentIndex = index - 1 >>> 1;
-    var parent = heap[parentIndex];
-
-    if (compare(parent, node) > 0) {
-      // The parent is larger. Swap positions.
-      heap[parentIndex] = node;
-      heap[index] = parent;
-      index = parentIndex;
-    } else {
-      // The parent is smaller. Exit.
-      return;
-    }
-  }
-}
-
-function siftDown(heap, node, i) {
-  var index = i;
-  var length = heap.length;
-  var halfLength = length >>> 1;
-
-  while (index < halfLength) {
-    var leftIndex = (index + 1) * 2 - 1;
-    var left = heap[leftIndex];
-    var rightIndex = leftIndex + 1;
-    var right = heap[rightIndex]; // If the left or right node is smaller, swap with the smaller of those.
-
-    if (compare(left, node) < 0) {
-      if (rightIndex < length && compare(right, left) < 0) {
-        heap[index] = right;
-        heap[rightIndex] = node;
-        index = rightIndex;
-      } else {
-        heap[index] = left;
-        heap[leftIndex] = node;
-        index = leftIndex;
-      }
-    } else if (rightIndex < length && compare(right, node) < 0) {
-      heap[index] = right;
-      heap[rightIndex] = node;
-      index = rightIndex;
-    } else {
-      // Neither child is smaller. Exit.
-      return;
-    }
-  }
-}
-
-function compare(a, b) {
-  // Compare sort index first, then task id.
-  var diff = a.sortIndex - b.sortIndex;
-  return diff !== 0 ? diff : a.id - b.id;
-}
-
-// TODO: Use symbols?
-var ImmediatePriority = 1;
-var UserBlockingPriority = 2;
-var NormalPriority = 3;
-var LowPriority = 4;
-var IdlePriority = 5;
-
-function markTaskErrored(task, ms) {
-}
-
-/* eslint-disable no-var */
-
-var hasPerformanceNow = typeof performance === 'object' && typeof performance.now === 'function';
-
-if (hasPerformanceNow) {
-  var localPerformance = performance;
-
-  exports.unstable_now = function () {
-    return localPerformance.now();
-  };
-} else {
-  var localDate = Date;
-  var initialTime = localDate.now();
-
-  exports.unstable_now = function () {
-    return localDate.now() - initialTime;
-  };
-} // Max 31 bit integer. The max integer size in V8 for 32-bit systems.
-// Math.pow(2, 30) - 1
-// 0b111111111111111111111111111111
-
-
-var maxSigned31BitInt = 1073741823; // Times out immediately
-
-var IMMEDIATE_PRIORITY_TIMEOUT = -1; // Eventually times out
-
-var USER_BLOCKING_PRIORITY_TIMEOUT = 250;
-var NORMAL_PRIORITY_TIMEOUT = 5000;
-var LOW_PRIORITY_TIMEOUT = 10000; // Never times out
-
-var IDLE_PRIORITY_TIMEOUT = maxSigned31BitInt; // Tasks are stored on a min heap
-
-var taskQueue = [];
-var timerQueue = []; // Incrementing id counter. Used to maintain insertion order.
-
-var taskIdCounter = 1; // Pausing the scheduler is useful for debugging.
-var currentTask = null;
-var currentPriorityLevel = NormalPriority; // This is set while performing work, to prevent re-entrance.
-
-var isPerformingWork = false;
-var isHostCallbackScheduled = false;
-var isHostTimeoutScheduled = false; // Capture local references to native APIs, in case a polyfill overrides them.
-
-var localSetTimeout = typeof setTimeout === 'function' ? setTimeout : null;
-var localClearTimeout = typeof clearTimeout === 'function' ? clearTimeout : null;
-var localSetImmediate = typeof setImmediate !== 'undefined' ? setImmediate : null; // IE and Node.js + jsdom
-
-var isInputPending = typeof navigator !== 'undefined' && navigator.scheduling !== undefined && navigator.scheduling.isInputPending !== undefined ? navigator.scheduling.isInputPending.bind(navigator.scheduling) : null;
-
-function advanceTimers(currentTime) {
-  // Check for tasks that are no longer delayed and add them to the queue.
-  var timer = peek(timerQueue);
-
-  while (timer !== null) {
-    if (timer.callback === null) {
-      // Timer was cancelled.
-      pop(timerQueue);
-    } else if (timer.startTime <= currentTime) {
-      // Timer fired. Transfer to the task queue.
-      pop(timerQueue);
-      timer.sortIndex = timer.expirationTime;
-      push(taskQueue, timer);
-    } else {
-      // Remaining timers are pending.
-      return;
-    }
-
-    timer = peek(timerQueue);
-  }
-}
-
-function handleTimeout(currentTime) {
-  isHostTimeoutScheduled = false;
-  advanceTimers(currentTime);
-
-  if (!isHostCallbackScheduled) {
-    if (peek(taskQueue) !== null) {
-      isHostCallbackScheduled = true;
-      requestHostCallback(flushWork);
-    } else {
-      var firstTimer = peek(timerQueue);
-
-      if (firstTimer !== null) {
-        requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
-      }
-    }
-  }
-}
-
-function flushWork(hasTimeRemaining, initialTime) {
-
-
-  isHostCallbackScheduled = false;
-
-  if (isHostTimeoutScheduled) {
-    // We scheduled a timeout but it's no longer needed. Cancel it.
-    isHostTimeoutScheduled = false;
-    cancelHostTimeout();
-  }
-
-  isPerformingWork = true;
-  var previousPriorityLevel = currentPriorityLevel;
-
-  try {
-    if (enableProfiling) {
-      try {
-        return workLoop(hasTimeRemaining, initialTime);
-      } catch (error) {
-        if (currentTask !== null) {
-          var currentTime = exports.unstable_now();
-          markTaskErrored(currentTask, currentTime);
-          currentTask.isQueued = false;
-        }
-
-        throw error;
-      }
-    } else {
-      // No catch in prod code path.
-      return workLoop(hasTimeRemaining, initialTime);
-    }
-  } finally {
-    currentTask = null;
-    currentPriorityLevel = previousPriorityLevel;
-    isPerformingWork = false;
-  }
-}
-
-function workLoop(hasTimeRemaining, initialTime) {
-  var currentTime = initialTime;
-  advanceTimers(currentTime);
-  currentTask = peek(taskQueue);
-
-  while (currentTask !== null && !(enableSchedulerDebugging )) {
-    if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
-      // This currentTask hasn't expired, and we've reached the deadline.
-      break;
-    }
-
-    var callback = currentTask.callback;
-
-    if (typeof callback === 'function') {
-      currentTask.callback = null;
-      currentPriorityLevel = currentTask.priorityLevel;
-      var didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
-
-      var continuationCallback = callback(didUserCallbackTimeout);
-      currentTime = exports.unstable_now();
-
-      if (typeof continuationCallback === 'function') {
-        currentTask.callback = continuationCallback;
-      } else {
-
-        if (currentTask === peek(taskQueue)) {
-          pop(taskQueue);
-        }
-      }
-
-      advanceTimers(currentTime);
-    } else {
-      pop(taskQueue);
-    }
-
-    currentTask = peek(taskQueue);
-  } // Return whether there's additional work
-
-
-  if (currentTask !== null) {
-    return true;
-  } else {
-    var firstTimer = peek(timerQueue);
-
-    if (firstTimer !== null) {
-      requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
-    }
-
-    return false;
-  }
-}
-
-function unstable_runWithPriority(priorityLevel, eventHandler) {
-  switch (priorityLevel) {
-    case ImmediatePriority:
-    case UserBlockingPriority:
-    case NormalPriority:
-    case LowPriority:
-    case IdlePriority:
-      break;
-
-    default:
-      priorityLevel = NormalPriority;
-  }
-
-  var previousPriorityLevel = currentPriorityLevel;
-  currentPriorityLevel = priorityLevel;
-
-  try {
-    return eventHandler();
-  } finally {
-    currentPriorityLevel = previousPriorityLevel;
-  }
-}
-
-function unstable_next(eventHandler) {
-  var priorityLevel;
-
-  switch (currentPriorityLevel) {
-    case ImmediatePriority:
-    case UserBlockingPriority:
-    case NormalPriority:
-      // Shift down to normal priority
-      priorityLevel = NormalPriority;
-      break;
-
-    default:
-      // Anything lower than normal priority should remain at the current level.
-      priorityLevel = currentPriorityLevel;
-      break;
-  }
-
-  var previousPriorityLevel = currentPriorityLevel;
-  currentPriorityLevel = priorityLevel;
-
-  try {
-    return eventHandler();
-  } finally {
-    currentPriorityLevel = previousPriorityLevel;
-  }
-}
-
-function unstable_wrapCallback(callback) {
-  var parentPriorityLevel = currentPriorityLevel;
-  return function () {
-    // This is a fork of runWithPriority, inlined for performance.
-    var previousPriorityLevel = currentPriorityLevel;
-    currentPriorityLevel = parentPriorityLevel;
-
-    try {
-      return callback.apply(this, arguments);
-    } finally {
-      currentPriorityLevel = previousPriorityLevel;
-    }
-  };
-}
-
-function unstable_scheduleCallback(priorityLevel, callback, options) {
-  var currentTime = exports.unstable_now();
-  var startTime;
-
-  if (typeof options === 'object' && options !== null) {
-    var delay = options.delay;
-
-    if (typeof delay === 'number' && delay > 0) {
-      startTime = currentTime + delay;
-    } else {
-      startTime = currentTime;
-    }
-  } else {
-    startTime = currentTime;
-  }
-
-  var timeout;
-
-  switch (priorityLevel) {
-    case ImmediatePriority:
-      timeout = IMMEDIATE_PRIORITY_TIMEOUT;
-      break;
-
-    case UserBlockingPriority:
-      timeout = USER_BLOCKING_PRIORITY_TIMEOUT;
-      break;
-
-    case IdlePriority:
-      timeout = IDLE_PRIORITY_TIMEOUT;
-      break;
-
-    case LowPriority:
-      timeout = LOW_PRIORITY_TIMEOUT;
-      break;
-
-    case NormalPriority:
-    default:
-      timeout = NORMAL_PRIORITY_TIMEOUT;
-      break;
-  }
-
-  var expirationTime = startTime + timeout;
-  var newTask = {
-    id: taskIdCounter++,
-    callback: callback,
-    priorityLevel: priorityLevel,
-    startTime: startTime,
-    expirationTime: expirationTime,
-    sortIndex: -1
-  };
-
-  if (startTime > currentTime) {
-    // This is a delayed task.
-    newTask.sortIndex = startTime;
-    push(timerQueue, newTask);
-
-    if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
-      // All tasks are delayed, and this is the task with the earliest delay.
-      if (isHostTimeoutScheduled) {
-        // Cancel an existing timeout.
-        cancelHostTimeout();
-      } else {
-        isHostTimeoutScheduled = true;
-      } // Schedule a timeout.
-
-
-      requestHostTimeout(handleTimeout, startTime - currentTime);
-    }
-  } else {
-    newTask.sortIndex = expirationTime;
-    push(taskQueue, newTask);
-    // wait until the next time we yield.
-
-
-    if (!isHostCallbackScheduled && !isPerformingWork) {
-      isHostCallbackScheduled = true;
-      requestHostCallback(flushWork);
-    }
-  }
-
-  return newTask;
-}
-
-function unstable_pauseExecution() {
-}
-
-function unstable_continueExecution() {
-
-  if (!isHostCallbackScheduled && !isPerformingWork) {
-    isHostCallbackScheduled = true;
-    requestHostCallback(flushWork);
-  }
-}
-
-function unstable_getFirstCallbackNode() {
-  return peek(taskQueue);
-}
-
-function unstable_cancelCallback(task) {
-  // remove from the queue because you can't remove arbitrary nodes from an
-  // array based heap, only the first one.)
-
-
-  task.callback = null;
-}
-
-function unstable_getCurrentPriorityLevel() {
-  return currentPriorityLevel;
-}
-
-var isMessageLoopRunning = false;
-var scheduledHostCallback = null;
-var taskTimeoutID = -1; // Scheduler periodically yields in case there is other work on the main
-// thread, like user events. By default, it yields multiple times per frame.
-// It does not attempt to align with frame boundaries, since most tasks don't
-// need to be frame aligned; for those that do, use requestAnimationFrame.
-
-var frameInterval = frameYieldMs;
-var startTime = -1;
-
-function shouldYieldToHost() {
-  var timeElapsed = exports.unstable_now() - startTime;
-
-  if (timeElapsed < frameInterval) {
-    // The main thread has only been blocked for a really short amount of time;
-    // smaller than a single frame. Don't yield yet.
-    return false;
-  } // The main thread has been blocked for a non-negligible amount of time. We
-
-
-  return true;
-}
-
-function requestPaint() {
-
-}
-
-function forceFrameRate(fps) {
-  if (fps < 0 || fps > 125) {
-    // Using console['error'] to evade Babel and ESLint
-    console['error']('forceFrameRate takes a positive int between 0 and 125, ' + 'forcing frame rates higher than 125 fps is not supported');
-    return;
-  }
-
-  if (fps > 0) {
-    frameInterval = Math.floor(1000 / fps);
-  } else {
-    // reset the framerate
-    frameInterval = frameYieldMs;
-  }
-}
-
-var performWorkUntilDeadline = function () {
-  if (scheduledHostCallback !== null) {
-    var currentTime = exports.unstable_now(); // Keep track of the start time so we can measure how long the main thread
-    // has been blocked.
-
-    startTime = currentTime;
-    var hasTimeRemaining = true; // If a scheduler task throws, exit the current browser task so the
-    // error can be observed.
-    //
-    // Intentionally not using a try-catch, since that makes some debugging
-    // techniques harder. Instead, if `scheduledHostCallback` errors, then
-    // `hasMoreWork` will remain true, and we'll continue the work loop.
-
-    var hasMoreWork = true;
-
-    try {
-      hasMoreWork = scheduledHostCallback(hasTimeRemaining, currentTime);
-    } finally {
-      if (hasMoreWork) {
-        // If there's more work, schedule the next message event at the end
-        // of the preceding one.
-        schedulePerformWorkUntilDeadline();
-      } else {
-        isMessageLoopRunning = false;
-        scheduledHostCallback = null;
-      }
-    }
-  } else {
-    isMessageLoopRunning = false;
-  } // Yielding to the browser will give it a chance to paint, so we can
-};
-
-var schedulePerformWorkUntilDeadline;
-
-if (typeof localSetImmediate === 'function') {
-  // Node.js and old IE.
-  // There's a few reasons for why we prefer setImmediate.
-  //
-  // Unlike MessageChannel, it doesn't prevent a Node.js process from exiting.
-  // (Even though this is a DOM fork of the Scheduler, you could get here
-  // with a mix of Node.js 15+, which has a MessageChannel, and jsdom.)
-  // https://github.com/facebook/react/issues/20756
-  //
-  // But also, it runs earlier which is the semantic we want.
-  // If other browsers ever implement it, it's better to use it.
-  // Although both of these would be inferior to native scheduling.
-  schedulePerformWorkUntilDeadline = function () {
-    localSetImmediate(performWorkUntilDeadline);
-  };
-} else if (typeof MessageChannel !== 'undefined') {
-  // DOM and Worker environments.
-  // We prefer MessageChannel because of the 4ms setTimeout clamping.
-  var channel = new MessageChannel();
-  var port = channel.port2;
-  channel.port1.onmessage = performWorkUntilDeadline;
-
-  schedulePerformWorkUntilDeadline = function () {
-    port.postMessage(null);
-  };
-} else {
-  // We should only fallback here in non-browser environments.
-  schedulePerformWorkUntilDeadline = function () {
-    localSetTimeout(performWorkUntilDeadline, 0);
-  };
-}
-
-function requestHostCallback(callback) {
-  scheduledHostCallback = callback;
-
-  if (!isMessageLoopRunning) {
-    isMessageLoopRunning = true;
-    schedulePerformWorkUntilDeadline();
-  }
-}
-
-function requestHostTimeout(callback, ms) {
-  taskTimeoutID = localSetTimeout(function () {
-    callback(exports.unstable_now());
-  }, ms);
-}
-
-function cancelHostTimeout() {
-  localClearTimeout(taskTimeoutID);
-  taskTimeoutID = -1;
-}
-
-var unstable_requestPaint = requestPaint;
-var unstable_Profiling =  null;
-
-exports.unstable_IdlePriority = IdlePriority;
-exports.unstable_ImmediatePriority = ImmediatePriority;
-exports.unstable_LowPriority = LowPriority;
-exports.unstable_NormalPriority = NormalPriority;
-exports.unstable_Profiling = unstable_Profiling;
-exports.unstable_UserBlockingPriority = UserBlockingPriority;
-exports.unstable_cancelCallback = unstable_cancelCallback;
-exports.unstable_continueExecution = unstable_continueExecution;
-exports.unstable_forceFrameRate = forceFrameRate;
-exports.unstable_getCurrentPriorityLevel = unstable_getCurrentPriorityLevel;
-exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
-exports.unstable_next = unstable_next;
-exports.unstable_pauseExecution = unstable_pauseExecution;
-exports.unstable_requestPaint = unstable_requestPaint;
-exports.unstable_runWithPriority = unstable_runWithPriority;
-exports.unstable_scheduleCallback = unstable_scheduleCallback;
-exports.unstable_shouldYield = shouldYieldToHost;
-exports.unstable_wrapCallback = unstable_wrapCallback;
-          /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-if (
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
-  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===
-    'function'
-) {
-  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
-}
-        
-  })();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/react-dom/node_modules/scheduler/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/react-dom/node_modules/scheduler/index.js ***!
-  \****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/scheduler.development.js */ "./node_modules/react-dom/node_modules/scheduler/cjs/scheduler.development.js");
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/react-is/cjs/react-is.development.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-/** @license React v16.13.1
- * react-is.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-
-
-if (true) {
-  (function() {
-'use strict';
-
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-// (unstable) APIs that have been removed. Can we remove the symbols?
-
-var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
-
-function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-}
-
-function typeOf(object) {
-  if (typeof object === 'object' && object !== null) {
-    var $$typeof = object.$$typeof;
-
-    switch ($$typeof) {
-      case REACT_ELEMENT_TYPE:
-        var type = object.type;
-
-        switch (type) {
-          case REACT_ASYNC_MODE_TYPE:
-          case REACT_CONCURRENT_MODE_TYPE:
-          case REACT_FRAGMENT_TYPE:
-          case REACT_PROFILER_TYPE:
-          case REACT_STRICT_MODE_TYPE:
-          case REACT_SUSPENSE_TYPE:
-            return type;
-
-          default:
-            var $$typeofType = type && type.$$typeof;
-
-            switch ($$typeofType) {
-              case REACT_CONTEXT_TYPE:
-              case REACT_FORWARD_REF_TYPE:
-              case REACT_LAZY_TYPE:
-              case REACT_MEMO_TYPE:
-              case REACT_PROVIDER_TYPE:
-                return $$typeofType;
-
-              default:
-                return $$typeof;
-            }
-
-        }
-
-      case REACT_PORTAL_TYPE:
-        return $$typeof;
-    }
-  }
-
-  return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
-
-var AsyncMode = REACT_ASYNC_MODE_TYPE;
-var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-var ContextConsumer = REACT_CONTEXT_TYPE;
-var ContextProvider = REACT_PROVIDER_TYPE;
-var Element = REACT_ELEMENT_TYPE;
-var ForwardRef = REACT_FORWARD_REF_TYPE;
-var Fragment = REACT_FRAGMENT_TYPE;
-var Lazy = REACT_LAZY_TYPE;
-var Memo = REACT_MEMO_TYPE;
-var Portal = REACT_PORTAL_TYPE;
-var Profiler = REACT_PROFILER_TYPE;
-var StrictMode = REACT_STRICT_MODE_TYPE;
-var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
-
-function isAsyncMode(object) {
-  {
-    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-
-      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
-    }
-  }
-
-  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-}
-function isConcurrentMode(object) {
-  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-}
-function isContextConsumer(object) {
-  return typeOf(object) === REACT_CONTEXT_TYPE;
-}
-function isContextProvider(object) {
-  return typeOf(object) === REACT_PROVIDER_TYPE;
-}
-function isElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-function isForwardRef(object) {
-  return typeOf(object) === REACT_FORWARD_REF_TYPE;
-}
-function isFragment(object) {
-  return typeOf(object) === REACT_FRAGMENT_TYPE;
-}
-function isLazy(object) {
-  return typeOf(object) === REACT_LAZY_TYPE;
-}
-function isMemo(object) {
-  return typeOf(object) === REACT_MEMO_TYPE;
-}
-function isPortal(object) {
-  return typeOf(object) === REACT_PORTAL_TYPE;
-}
-function isProfiler(object) {
-  return typeOf(object) === REACT_PROFILER_TYPE;
-}
-function isStrictMode(object) {
-  return typeOf(object) === REACT_STRICT_MODE_TYPE;
-}
-function isSuspense(object) {
-  return typeOf(object) === REACT_SUSPENSE_TYPE;
-}
-
-exports.AsyncMode = AsyncMode;
-exports.ConcurrentMode = ConcurrentMode;
-exports.ContextConsumer = ContextConsumer;
-exports.ContextProvider = ContextProvider;
-exports.Element = Element;
-exports.ForwardRef = ForwardRef;
-exports.Fragment = Fragment;
-exports.Lazy = Lazy;
-exports.Memo = Memo;
-exports.Portal = Portal;
-exports.Profiler = Profiler;
-exports.StrictMode = StrictMode;
-exports.Suspense = Suspense;
-exports.isAsyncMode = isAsyncMode;
-exports.isConcurrentMode = isConcurrentMode;
-exports.isContextConsumer = isContextConsumer;
-exports.isContextProvider = isContextProvider;
-exports.isElement = isElement;
-exports.isForwardRef = isForwardRef;
-exports.isFragment = isFragment;
-exports.isLazy = isLazy;
-exports.isMemo = isMemo;
-exports.isPortal = isPortal;
-exports.isProfiler = isProfiler;
-exports.isStrictMode = isStrictMode;
-exports.isSuspense = isSuspense;
-exports.isValidElementType = isValidElementType;
-exports.typeOf = typeOf;
-  })();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/react-is/index.js":
-/*!****************************************!*\
-  !*** ./node_modules/react-is/index.js ***!
-  \****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-is/cjs/react-is.development.js");
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/react/cjs/react.development.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
@@ -37291,6 +36279,667 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/scheduler/cjs/scheduler.development.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/scheduler/cjs/scheduler.development.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/**
+ * @license React
+ * scheduler.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+
+          'use strict';
+
+/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+if (
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===
+    'function'
+) {
+  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
+}
+          var enableSchedulerDebugging = false;
+var enableProfiling = false;
+var frameYieldMs = 5;
+
+function push(heap, node) {
+  var index = heap.length;
+  heap.push(node);
+  siftUp(heap, node, index);
+}
+function peek(heap) {
+  return heap.length === 0 ? null : heap[0];
+}
+function pop(heap) {
+  if (heap.length === 0) {
+    return null;
+  }
+
+  var first = heap[0];
+  var last = heap.pop();
+
+  if (last !== first) {
+    heap[0] = last;
+    siftDown(heap, last, 0);
+  }
+
+  return first;
+}
+
+function siftUp(heap, node, i) {
+  var index = i;
+
+  while (index > 0) {
+    var parentIndex = index - 1 >>> 1;
+    var parent = heap[parentIndex];
+
+    if (compare(parent, node) > 0) {
+      // The parent is larger. Swap positions.
+      heap[parentIndex] = node;
+      heap[index] = parent;
+      index = parentIndex;
+    } else {
+      // The parent is smaller. Exit.
+      return;
+    }
+  }
+}
+
+function siftDown(heap, node, i) {
+  var index = i;
+  var length = heap.length;
+  var halfLength = length >>> 1;
+
+  while (index < halfLength) {
+    var leftIndex = (index + 1) * 2 - 1;
+    var left = heap[leftIndex];
+    var rightIndex = leftIndex + 1;
+    var right = heap[rightIndex]; // If the left or right node is smaller, swap with the smaller of those.
+
+    if (compare(left, node) < 0) {
+      if (rightIndex < length && compare(right, left) < 0) {
+        heap[index] = right;
+        heap[rightIndex] = node;
+        index = rightIndex;
+      } else {
+        heap[index] = left;
+        heap[leftIndex] = node;
+        index = leftIndex;
+      }
+    } else if (rightIndex < length && compare(right, node) < 0) {
+      heap[index] = right;
+      heap[rightIndex] = node;
+      index = rightIndex;
+    } else {
+      // Neither child is smaller. Exit.
+      return;
+    }
+  }
+}
+
+function compare(a, b) {
+  // Compare sort index first, then task id.
+  var diff = a.sortIndex - b.sortIndex;
+  return diff !== 0 ? diff : a.id - b.id;
+}
+
+// TODO: Use symbols?
+var ImmediatePriority = 1;
+var UserBlockingPriority = 2;
+var NormalPriority = 3;
+var LowPriority = 4;
+var IdlePriority = 5;
+
+function markTaskErrored(task, ms) {
+}
+
+/* eslint-disable no-var */
+
+var hasPerformanceNow = typeof performance === 'object' && typeof performance.now === 'function';
+
+if (hasPerformanceNow) {
+  var localPerformance = performance;
+
+  exports.unstable_now = function () {
+    return localPerformance.now();
+  };
+} else {
+  var localDate = Date;
+  var initialTime = localDate.now();
+
+  exports.unstable_now = function () {
+    return localDate.now() - initialTime;
+  };
+} // Max 31 bit integer. The max integer size in V8 for 32-bit systems.
+// Math.pow(2, 30) - 1
+// 0b111111111111111111111111111111
+
+
+var maxSigned31BitInt = 1073741823; // Times out immediately
+
+var IMMEDIATE_PRIORITY_TIMEOUT = -1; // Eventually times out
+
+var USER_BLOCKING_PRIORITY_TIMEOUT = 250;
+var NORMAL_PRIORITY_TIMEOUT = 5000;
+var LOW_PRIORITY_TIMEOUT = 10000; // Never times out
+
+var IDLE_PRIORITY_TIMEOUT = maxSigned31BitInt; // Tasks are stored on a min heap
+
+var taskQueue = [];
+var timerQueue = []; // Incrementing id counter. Used to maintain insertion order.
+
+var taskIdCounter = 1; // Pausing the scheduler is useful for debugging.
+var currentTask = null;
+var currentPriorityLevel = NormalPriority; // This is set while performing work, to prevent re-entrance.
+
+var isPerformingWork = false;
+var isHostCallbackScheduled = false;
+var isHostTimeoutScheduled = false; // Capture local references to native APIs, in case a polyfill overrides them.
+
+var localSetTimeout = typeof setTimeout === 'function' ? setTimeout : null;
+var localClearTimeout = typeof clearTimeout === 'function' ? clearTimeout : null;
+var localSetImmediate = typeof setImmediate !== 'undefined' ? setImmediate : null; // IE and Node.js + jsdom
+
+var isInputPending = typeof navigator !== 'undefined' && navigator.scheduling !== undefined && navigator.scheduling.isInputPending !== undefined ? navigator.scheduling.isInputPending.bind(navigator.scheduling) : null;
+
+function advanceTimers(currentTime) {
+  // Check for tasks that are no longer delayed and add them to the queue.
+  var timer = peek(timerQueue);
+
+  while (timer !== null) {
+    if (timer.callback === null) {
+      // Timer was cancelled.
+      pop(timerQueue);
+    } else if (timer.startTime <= currentTime) {
+      // Timer fired. Transfer to the task queue.
+      pop(timerQueue);
+      timer.sortIndex = timer.expirationTime;
+      push(taskQueue, timer);
+    } else {
+      // Remaining timers are pending.
+      return;
+    }
+
+    timer = peek(timerQueue);
+  }
+}
+
+function handleTimeout(currentTime) {
+  isHostTimeoutScheduled = false;
+  advanceTimers(currentTime);
+
+  if (!isHostCallbackScheduled) {
+    if (peek(taskQueue) !== null) {
+      isHostCallbackScheduled = true;
+      requestHostCallback(flushWork);
+    } else {
+      var firstTimer = peek(timerQueue);
+
+      if (firstTimer !== null) {
+        requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+      }
+    }
+  }
+}
+
+function flushWork(hasTimeRemaining, initialTime) {
+
+
+  isHostCallbackScheduled = false;
+
+  if (isHostTimeoutScheduled) {
+    // We scheduled a timeout but it's no longer needed. Cancel it.
+    isHostTimeoutScheduled = false;
+    cancelHostTimeout();
+  }
+
+  isPerformingWork = true;
+  var previousPriorityLevel = currentPriorityLevel;
+
+  try {
+    if (enableProfiling) {
+      try {
+        return workLoop(hasTimeRemaining, initialTime);
+      } catch (error) {
+        if (currentTask !== null) {
+          var currentTime = exports.unstable_now();
+          markTaskErrored(currentTask, currentTime);
+          currentTask.isQueued = false;
+        }
+
+        throw error;
+      }
+    } else {
+      // No catch in prod code path.
+      return workLoop(hasTimeRemaining, initialTime);
+    }
+  } finally {
+    currentTask = null;
+    currentPriorityLevel = previousPriorityLevel;
+    isPerformingWork = false;
+  }
+}
+
+function workLoop(hasTimeRemaining, initialTime) {
+  var currentTime = initialTime;
+  advanceTimers(currentTime);
+  currentTask = peek(taskQueue);
+
+  while (currentTask !== null && !(enableSchedulerDebugging )) {
+    if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
+      // This currentTask hasn't expired, and we've reached the deadline.
+      break;
+    }
+
+    var callback = currentTask.callback;
+
+    if (typeof callback === 'function') {
+      currentTask.callback = null;
+      currentPriorityLevel = currentTask.priorityLevel;
+      var didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
+
+      var continuationCallback = callback(didUserCallbackTimeout);
+      currentTime = exports.unstable_now();
+
+      if (typeof continuationCallback === 'function') {
+        currentTask.callback = continuationCallback;
+      } else {
+
+        if (currentTask === peek(taskQueue)) {
+          pop(taskQueue);
+        }
+      }
+
+      advanceTimers(currentTime);
+    } else {
+      pop(taskQueue);
+    }
+
+    currentTask = peek(taskQueue);
+  } // Return whether there's additional work
+
+
+  if (currentTask !== null) {
+    return true;
+  } else {
+    var firstTimer = peek(timerQueue);
+
+    if (firstTimer !== null) {
+      requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+    }
+
+    return false;
+  }
+}
+
+function unstable_runWithPriority(priorityLevel, eventHandler) {
+  switch (priorityLevel) {
+    case ImmediatePriority:
+    case UserBlockingPriority:
+    case NormalPriority:
+    case LowPriority:
+    case IdlePriority:
+      break;
+
+    default:
+      priorityLevel = NormalPriority;
+  }
+
+  var previousPriorityLevel = currentPriorityLevel;
+  currentPriorityLevel = priorityLevel;
+
+  try {
+    return eventHandler();
+  } finally {
+    currentPriorityLevel = previousPriorityLevel;
+  }
+}
+
+function unstable_next(eventHandler) {
+  var priorityLevel;
+
+  switch (currentPriorityLevel) {
+    case ImmediatePriority:
+    case UserBlockingPriority:
+    case NormalPriority:
+      // Shift down to normal priority
+      priorityLevel = NormalPriority;
+      break;
+
+    default:
+      // Anything lower than normal priority should remain at the current level.
+      priorityLevel = currentPriorityLevel;
+      break;
+  }
+
+  var previousPriorityLevel = currentPriorityLevel;
+  currentPriorityLevel = priorityLevel;
+
+  try {
+    return eventHandler();
+  } finally {
+    currentPriorityLevel = previousPriorityLevel;
+  }
+}
+
+function unstable_wrapCallback(callback) {
+  var parentPriorityLevel = currentPriorityLevel;
+  return function () {
+    // This is a fork of runWithPriority, inlined for performance.
+    var previousPriorityLevel = currentPriorityLevel;
+    currentPriorityLevel = parentPriorityLevel;
+
+    try {
+      return callback.apply(this, arguments);
+    } finally {
+      currentPriorityLevel = previousPriorityLevel;
+    }
+  };
+}
+
+function unstable_scheduleCallback(priorityLevel, callback, options) {
+  var currentTime = exports.unstable_now();
+  var startTime;
+
+  if (typeof options === 'object' && options !== null) {
+    var delay = options.delay;
+
+    if (typeof delay === 'number' && delay > 0) {
+      startTime = currentTime + delay;
+    } else {
+      startTime = currentTime;
+    }
+  } else {
+    startTime = currentTime;
+  }
+
+  var timeout;
+
+  switch (priorityLevel) {
+    case ImmediatePriority:
+      timeout = IMMEDIATE_PRIORITY_TIMEOUT;
+      break;
+
+    case UserBlockingPriority:
+      timeout = USER_BLOCKING_PRIORITY_TIMEOUT;
+      break;
+
+    case IdlePriority:
+      timeout = IDLE_PRIORITY_TIMEOUT;
+      break;
+
+    case LowPriority:
+      timeout = LOW_PRIORITY_TIMEOUT;
+      break;
+
+    case NormalPriority:
+    default:
+      timeout = NORMAL_PRIORITY_TIMEOUT;
+      break;
+  }
+
+  var expirationTime = startTime + timeout;
+  var newTask = {
+    id: taskIdCounter++,
+    callback: callback,
+    priorityLevel: priorityLevel,
+    startTime: startTime,
+    expirationTime: expirationTime,
+    sortIndex: -1
+  };
+
+  if (startTime > currentTime) {
+    // This is a delayed task.
+    newTask.sortIndex = startTime;
+    push(timerQueue, newTask);
+
+    if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
+      // All tasks are delayed, and this is the task with the earliest delay.
+      if (isHostTimeoutScheduled) {
+        // Cancel an existing timeout.
+        cancelHostTimeout();
+      } else {
+        isHostTimeoutScheduled = true;
+      } // Schedule a timeout.
+
+
+      requestHostTimeout(handleTimeout, startTime - currentTime);
+    }
+  } else {
+    newTask.sortIndex = expirationTime;
+    push(taskQueue, newTask);
+    // wait until the next time we yield.
+
+
+    if (!isHostCallbackScheduled && !isPerformingWork) {
+      isHostCallbackScheduled = true;
+      requestHostCallback(flushWork);
+    }
+  }
+
+  return newTask;
+}
+
+function unstable_pauseExecution() {
+}
+
+function unstable_continueExecution() {
+
+  if (!isHostCallbackScheduled && !isPerformingWork) {
+    isHostCallbackScheduled = true;
+    requestHostCallback(flushWork);
+  }
+}
+
+function unstable_getFirstCallbackNode() {
+  return peek(taskQueue);
+}
+
+function unstable_cancelCallback(task) {
+  // remove from the queue because you can't remove arbitrary nodes from an
+  // array based heap, only the first one.)
+
+
+  task.callback = null;
+}
+
+function unstable_getCurrentPriorityLevel() {
+  return currentPriorityLevel;
+}
+
+var isMessageLoopRunning = false;
+var scheduledHostCallback = null;
+var taskTimeoutID = -1; // Scheduler periodically yields in case there is other work on the main
+// thread, like user events. By default, it yields multiple times per frame.
+// It does not attempt to align with frame boundaries, since most tasks don't
+// need to be frame aligned; for those that do, use requestAnimationFrame.
+
+var frameInterval = frameYieldMs;
+var startTime = -1;
+
+function shouldYieldToHost() {
+  var timeElapsed = exports.unstable_now() - startTime;
+
+  if (timeElapsed < frameInterval) {
+    // The main thread has only been blocked for a really short amount of time;
+    // smaller than a single frame. Don't yield yet.
+    return false;
+  } // The main thread has been blocked for a non-negligible amount of time. We
+
+
+  return true;
+}
+
+function requestPaint() {
+
+}
+
+function forceFrameRate(fps) {
+  if (fps < 0 || fps > 125) {
+    // Using console['error'] to evade Babel and ESLint
+    console['error']('forceFrameRate takes a positive int between 0 and 125, ' + 'forcing frame rates higher than 125 fps is not supported');
+    return;
+  }
+
+  if (fps > 0) {
+    frameInterval = Math.floor(1000 / fps);
+  } else {
+    // reset the framerate
+    frameInterval = frameYieldMs;
+  }
+}
+
+var performWorkUntilDeadline = function () {
+  if (scheduledHostCallback !== null) {
+    var currentTime = exports.unstable_now(); // Keep track of the start time so we can measure how long the main thread
+    // has been blocked.
+
+    startTime = currentTime;
+    var hasTimeRemaining = true; // If a scheduler task throws, exit the current browser task so the
+    // error can be observed.
+    //
+    // Intentionally not using a try-catch, since that makes some debugging
+    // techniques harder. Instead, if `scheduledHostCallback` errors, then
+    // `hasMoreWork` will remain true, and we'll continue the work loop.
+
+    var hasMoreWork = true;
+
+    try {
+      hasMoreWork = scheduledHostCallback(hasTimeRemaining, currentTime);
+    } finally {
+      if (hasMoreWork) {
+        // If there's more work, schedule the next message event at the end
+        // of the preceding one.
+        schedulePerformWorkUntilDeadline();
+      } else {
+        isMessageLoopRunning = false;
+        scheduledHostCallback = null;
+      }
+    }
+  } else {
+    isMessageLoopRunning = false;
+  } // Yielding to the browser will give it a chance to paint, so we can
+};
+
+var schedulePerformWorkUntilDeadline;
+
+if (typeof localSetImmediate === 'function') {
+  // Node.js and old IE.
+  // There's a few reasons for why we prefer setImmediate.
+  //
+  // Unlike MessageChannel, it doesn't prevent a Node.js process from exiting.
+  // (Even though this is a DOM fork of the Scheduler, you could get here
+  // with a mix of Node.js 15+, which has a MessageChannel, and jsdom.)
+  // https://github.com/facebook/react/issues/20756
+  //
+  // But also, it runs earlier which is the semantic we want.
+  // If other browsers ever implement it, it's better to use it.
+  // Although both of these would be inferior to native scheduling.
+  schedulePerformWorkUntilDeadline = function () {
+    localSetImmediate(performWorkUntilDeadline);
+  };
+} else if (typeof MessageChannel !== 'undefined') {
+  // DOM and Worker environments.
+  // We prefer MessageChannel because of the 4ms setTimeout clamping.
+  var channel = new MessageChannel();
+  var port = channel.port2;
+  channel.port1.onmessage = performWorkUntilDeadline;
+
+  schedulePerformWorkUntilDeadline = function () {
+    port.postMessage(null);
+  };
+} else {
+  // We should only fallback here in non-browser environments.
+  schedulePerformWorkUntilDeadline = function () {
+    localSetTimeout(performWorkUntilDeadline, 0);
+  };
+}
+
+function requestHostCallback(callback) {
+  scheduledHostCallback = callback;
+
+  if (!isMessageLoopRunning) {
+    isMessageLoopRunning = true;
+    schedulePerformWorkUntilDeadline();
+  }
+}
+
+function requestHostTimeout(callback, ms) {
+  taskTimeoutID = localSetTimeout(function () {
+    callback(exports.unstable_now());
+  }, ms);
+}
+
+function cancelHostTimeout() {
+  localClearTimeout(taskTimeoutID);
+  taskTimeoutID = -1;
+}
+
+var unstable_requestPaint = requestPaint;
+var unstable_Profiling =  null;
+
+exports.unstable_IdlePriority = IdlePriority;
+exports.unstable_ImmediatePriority = ImmediatePriority;
+exports.unstable_LowPriority = LowPriority;
+exports.unstable_NormalPriority = NormalPriority;
+exports.unstable_Profiling = unstable_Profiling;
+exports.unstable_UserBlockingPriority = UserBlockingPriority;
+exports.unstable_cancelCallback = unstable_cancelCallback;
+exports.unstable_continueExecution = unstable_continueExecution;
+exports.unstable_forceFrameRate = forceFrameRate;
+exports.unstable_getCurrentPriorityLevel = unstable_getCurrentPriorityLevel;
+exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
+exports.unstable_next = unstable_next;
+exports.unstable_pauseExecution = unstable_pauseExecution;
+exports.unstable_requestPaint = unstable_requestPaint;
+exports.unstable_runWithPriority = unstable_runWithPriority;
+exports.unstable_scheduleCallback = unstable_scheduleCallback;
+exports.unstable_shouldYield = shouldYieldToHost;
+exports.unstable_wrapCallback = unstable_wrapCallback;
+          /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+if (
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===
+    'function'
+) {
+  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
+}
+        
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/scheduler/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/scheduler/index.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/scheduler.development.js */ "./node_modules/scheduler/cjs/scheduler.development.js");
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/sprintf-js/src/sprintf.js":
 /*!************************************************!*\
   !*** ./node_modules/sprintf-js/src/sprintf.js ***!
@@ -37760,6 +37409,181 @@ Tannin.prototype.dcnpgettext = function( domain, context, singular, plural, n ) 
 };
 
 
+/***/ }),
+
+/***/ "./node_modules/@wordpress/i18n/node_modules/memize/dist/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@wordpress/i18n/node_modules/memize/dist/index.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ memize)
+/* harmony export */ });
+/**
+ * Memize options object.
+ *
+ * @typedef MemizeOptions
+ *
+ * @property {number} [maxSize] Maximum size of the cache.
+ */
+
+/**
+ * Internal cache entry.
+ *
+ * @typedef MemizeCacheNode
+ *
+ * @property {?MemizeCacheNode|undefined} [prev] Previous node.
+ * @property {?MemizeCacheNode|undefined} [next] Next node.
+ * @property {Array<*>}                   args   Function arguments for cache
+ *                                               entry.
+ * @property {*}                          val    Function result.
+ */
+
+/**
+ * Properties of the enhanced function for controlling cache.
+ *
+ * @typedef MemizeMemoizedFunction
+ *
+ * @property {()=>void} clear Clear the cache.
+ */
+
+/**
+ * Accepts a function to be memoized, and returns a new memoized function, with
+ * optional options.
+ *
+ * @template {(...args: any[]) => any} F
+ *
+ * @param {F}             fn        Function to memoize.
+ * @param {MemizeOptions} [options] Options object.
+ *
+ * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
+ */
+function memize(fn, options) {
+	var size = 0;
+
+	/** @type {?MemizeCacheNode|undefined} */
+	var head;
+
+	/** @type {?MemizeCacheNode|undefined} */
+	var tail;
+
+	options = options || {};
+
+	function memoized(/* ...args */) {
+		var node = head,
+			len = arguments.length,
+			args,
+			i;
+
+		searchCache: while (node) {
+			// Perform a shallow equality test to confirm that whether the node
+			// under test is a candidate for the arguments passed. Two arrays
+			// are shallowly equal if their length matches and each entry is
+			// strictly equal between the two sets. Avoid abstracting to a
+			// function which could incur an arguments leaking deoptimization.
+
+			// Check whether node arguments match arguments length
+			if (node.args.length !== arguments.length) {
+				node = node.next;
+				continue;
+			}
+
+			// Check whether node arguments match arguments values
+			for (i = 0; i < len; i++) {
+				if (node.args[i] !== arguments[i]) {
+					node = node.next;
+					continue searchCache;
+				}
+			}
+
+			// At this point we can assume we've found a match
+
+			// Surface matched node to head if not already
+			if (node !== head) {
+				// As tail, shift to previous. Must only shift if not also
+				// head, since if both head and tail, there is no previous.
+				if (node === tail) {
+					tail = node.prev;
+				}
+
+				// Adjust siblings to point to each other. If node was tail,
+				// this also handles new tail's empty `next` assignment.
+				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
+				if (node.next) {
+					node.next.prev = node.prev;
+				}
+
+				node.next = head;
+				node.prev = null;
+				/** @type {MemizeCacheNode} */ (head).prev = node;
+				head = node;
+			}
+
+			// Return immediately
+			return node.val;
+		}
+
+		// No cached value found. Continue to insertion phase:
+
+		// Create a copy of arguments (avoid leaking deoptimization)
+		args = new Array(len);
+		for (i = 0; i < len; i++) {
+			args[i] = arguments[i];
+		}
+
+		node = {
+			args: args,
+
+			// Generate the result from original function
+			val: fn.apply(null, args),
+		};
+
+		// Don't need to check whether node is already head, since it would
+		// have been returned above already if it was
+
+		// Shift existing head down list
+		if (head) {
+			head.prev = node;
+			node.next = head;
+		} else {
+			// If no head, follows that there's no tail (at initial or reset)
+			tail = node;
+		}
+
+		// Trim tail if we're reached max size and are pending cache insertion
+		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
+			tail = /** @type {MemizeCacheNode} */ (tail).prev;
+			/** @type {MemizeCacheNode} */ (tail).next = null;
+		} else {
+			size++;
+		}
+
+		head = node;
+
+		return node.val;
+	}
+
+	memoized.clear = function () {
+		head = null;
+		tail = null;
+		size = 0;
+	};
+
+	// Ignore reason: There's not a clear solution to create an intersection of
+	// the function with additional properties, where the goal is to retain the
+	// function signature of the incoming argument and add control properties
+	// on the return value.
+
+	// @ts-ignore
+	return memoized;
+}
+
+
+
+
 /***/ })
 
 /******/ 	});
@@ -37861,7 +37685,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var Preview = function Preview() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ThemePreview_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
     activeTheme: qdlx_theme_preview.theme,
@@ -37875,7 +37698,6 @@ var Preview = function Preview() {
     secondaryFontFamily: qdlx_theme_preview.secondary_font_family
   }));
 };
-
 var container = document.getElementById('qdlx-theme-preview');
 var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(container);
 root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Preview, null)));

@@ -35,22 +35,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
 /* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
 /* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -72,13 +64,11 @@ var retrieveDefaults = function retrieveDefaults() {
     nonce: quotes_dlx_admin.options_retrieve_nonce
   });
 };
-
 var AdminDefaults = function AdminDefaults(props) {
   var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_2__.useAsyncResource)(retrieveDefaults, []),
-      _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
-      defaults = _useAsyncResource2[0],
-      getDefaults = _useAsyncResource2[1];
-
+    _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+    defaults = _useAsyncResource2[0],
+    getDefaults = _useAsyncResource2[1];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_13__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load admin defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
@@ -91,101 +81,83 @@ var AdminDefaults = function AdminDefaults(props) {
     defaults: defaults
   }, props))));
 };
-
 var Interface = function Interface(props) {
   var _errors$twitterUserna, _errors$shareButtonTe2, _errors$anchorPrefix3, _errors$anchorPrefix4, _errors$maximumWidth3, _errors$maximumWidth4;
-
   var localStorageKey = 'quotes_dlx_form_defaults';
-
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_11__["default"]),
-      blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
-      setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount;
-
+    blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
+    setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount;
   var defaults = props.defaults;
   var response = defaults();
   var _response$data = response.data,
-      data = _response$data.data,
-      success = _response$data.success;
-
+    data = _response$data.data,
+    success = _response$data.success;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_enabled),
-      _useState2 = _slicedToArray(_useState, 2),
-      showButtonOptions = _useState2[0],
-      setShowButtonOptions = _useState2[1];
-
+    _useState2 = _slicedToArray(_useState, 2),
+    showButtonOptions = _useState2[0],
+    setShowButtonOptions = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_display),
-      _useState4 = _slicedToArray(_useState3, 2),
-      buttonDisplay = _useState4[0],
-      setButtonDisplay = _useState4[1];
-
+    _useState4 = _slicedToArray(_useState3, 2),
+    buttonDisplay = _useState4[0],
+    setButtonDisplay = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_enabled),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isTwitterButtonEnabled = _useState6[0],
-      setIsTwitterButtonEnabled = _useState6[1];
-
+    _useState6 = _slicedToArray(_useState5, 2),
+    isTwitterButtonEnabled = _useState6[0],
+    setIsTwitterButtonEnabled = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.facebook_button_enabled),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isFacebookButtonEnabled = _useState8[0],
-      setIsFacebookButtonEnabled = _useState8[1];
-
+    _useState8 = _slicedToArray(_useState7, 2),
+    isFacebookButtonEnabled = _useState8[0],
+    setIsFacebookButtonEnabled = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.has_anchor),
-      _useState10 = _slicedToArray(_useState9, 2),
-      anchorDisplay = _useState10[0],
-      setAnchorDisplay = _useState10[1];
-
+    _useState10 = _slicedToArray(_useState9, 2),
+    anchorDisplay = _useState10[0],
+    setAnchorDisplay = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.enable_links_in_tweet),
-      _useState12 = _slicedToArray(_useState11, 2),
-      enableLinks = _useState12[0],
-      setEnableLinks = _useState12[1];
-
+    _useState12 = _slicedToArray(_useState11, 2),
+    enableLinks = _useState12[0],
+    setEnableLinks = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.url_shortener),
-      _useState14 = _slicedToArray(_useState13, 2),
-      enableUrlShortener = _useState14[0],
-      setEnableUrlShortener = _useState14[1];
-
+    _useState14 = _slicedToArray(_useState13, 2),
+    enableUrlShortener = _useState14[0],
+    setEnableUrlShortener = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState16 = _slicedToArray(_useState15, 2),
-      loading = _useState16[0],
-      setLoading = _useState16[1];
-
+    _useState16 = _slicedToArray(_useState15, 2),
+    loading = _useState16[0],
+    setLoading = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState18 = _slicedToArray(_useState17, 2),
-      saving = _useState18[0],
-      setSaving = _useState18[1];
-
+    _useState18 = _slicedToArray(_useState17, 2),
+    saving = _useState18[0],
+    setSaving = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState20 = _slicedToArray(_useState19, 2),
-      isSaved = _useState20[0],
-      setIsSaved = _useState20[1];
-
+    _useState20 = _slicedToArray(_useState19, 2),
+    isSaved = _useState20[0],
+    setIsSaved = _useState20[1];
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState22 = _slicedToArray(_useState21, 2),
-      resetting = _useState22[0],
-      setResetting = _useState22[1];
-
+    _useState22 = _slicedToArray(_useState21, 2),
+    resetting = _useState22[0],
+    setResetting = _useState22[1];
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState24 = _slicedToArray(_useState23, 2),
-      isReset = _useState24[0],
-      setIsReset = _useState24[1];
-
+    _useState24 = _slicedToArray(_useState23, 2),
+    isReset = _useState24[0],
+    setIsReset = _useState24[1];
   var maximum_width = data.maximum_width,
-      maximum_width_unit = data.maximum_width_unit,
-      twitter_username = data.twitter_username,
-      hashtags = data.hashtags,
-      align = data.align,
-      tweet_button_enabled = data.tweet_button_enabled,
-      share_button_text = data.share_button_text,
-      tweet_button_alignment = data.tweet_button_alignment,
-      tweet_icon_alignment = data.tweet_icon_alignment,
-      tweet_button_display = data.tweet_button_display,
-      has_anchor = data.has_anchor,
-      anchor_prefix = data.anchor_prefix,
-      enable_links_in_tweet = data.enable_links_in_tweet,
-      url_shortening_service = data.url_shortening_service,
-      url_shortener = data.url_shortener,
-      facebook_button_enabled = data.facebook_button_enabled,
-      icon_appearance = data.icon_appearance,
-      facebook_share_button_text = data.facebook_share_button_text;
-
+    maximum_width_unit = data.maximum_width_unit,
+    twitter_username = data.twitter_username,
+    hashtags = data.hashtags,
+    align = data.align,
+    tweet_button_enabled = data.tweet_button_enabled,
+    share_button_text = data.share_button_text,
+    tweet_button_alignment = data.tweet_button_alignment,
+    tweet_icon_alignment = data.tweet_icon_alignment,
+    tweet_button_display = data.tweet_button_display,
+    has_anchor = data.has_anchor,
+    anchor_prefix = data.anchor_prefix,
+    enable_links_in_tweet = data.enable_links_in_tweet,
+    url_shortening_service = data.url_shortening_service,
+    url_shortener = data.url_shortener,
+    facebook_button_enabled = data.facebook_button_enabled,
+    icon_appearance = data.icon_appearance,
+    facebook_share_button_text = data.facebook_share_button_text;
   var getDefaultValues = function getDefaultValues() {
     return {
       maximumWidth: maximum_width,
@@ -208,47 +180,43 @@ var Interface = function Interface(props) {
       iconAppearance: icon_appearance
     };
   };
-
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useForm)({
-    defaultValues: getDefaultValues()
-  }),
-      register = _useForm.register,
-      control = _useForm.control,
-      handleSubmit = _useForm.handleSubmit,
-      setValue = _useForm.setValue,
-      getValues = _useForm.getValues,
-      reset = _useForm.reset;
-
+      defaultValues: getDefaultValues()
+    }),
+    register = _useForm.register,
+    control = _useForm.control,
+    handleSubmit = _useForm.handleSubmit,
+    setValue = _useForm.setValue,
+    getValues = _useForm.getValues,
+    reset = _useForm.reset;
   var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useWatch)({
     control: control
   });
-
   var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_14__.useFormState)({
-    control: control
-  }),
-      errors = _useFormState.errors,
-      isDirty = _useFormState.isDirty,
-      dirtyFields = _useFormState.dirtyFields,
-      touchedFields = _useFormState.touchedFields;
-
+      control: control
+    }),
+    errors = _useFormState.errors,
+    isDirty = _useFormState.isDirty,
+    dirtyFields = _useFormState.dirtyFields,
+    touchedFields = _useFormState.touchedFields;
   var onSubmit = function onSubmit(formData) {
-    setSaving(true); // Populate possible empty hashtags.
+    setSaving(true);
 
+    // Populate possible empty hashtags.
     if (formData.hashtags.length === 0) {
       formData.hashtags = null;
     }
-
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_admin_options_defaults', {
       nonce: quotes_dlx_admin.options_save_nonce,
       form_data: formData
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
-
       if (ajaxSuccess) {
         // Reset count.
-        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+        setBlockDefaultsDirtyCount(0);
 
+        // Clear form dirty.
         reset(ajaxData);
         localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
         localStorage.removeItem(localStorageKey + '_dirty_fields');
@@ -256,13 +224,13 @@ var Interface = function Interface(props) {
         setTimeout(function () {
           setIsSaved(false);
         }, 3000);
-      } else {// Error stuff.
+      } else {
+        // Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setSaving(false);
     });
   };
-
   var handleReset = function handleReset(e) {
     setResetting(true);
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_admin_options_defaults', {
@@ -270,15 +238,16 @@ var Interface = function Interface(props) {
     }).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
-
       if (ajaxSuccess) {
         // Reset local storage.
-        setBlockDefaultsDirtyCount(0); // Clear form dirty.
+        setBlockDefaultsDirtyCount(0);
 
+        // Clear form dirty.
         reset(ajaxData);
         localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
-        localStorage.removeItem(localStorageKey + '_dirty_fields'); // Reset toggles.
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
 
+        // Reset toggles.
         setShowButtonOptions(ajaxData.tweetButtonEnabled);
         setEnableLinks(ajaxData.enableLinksInTweet);
         setEnableUrlShortener(ajaxData.urlShortener);
@@ -288,39 +257,38 @@ var Interface = function Interface(props) {
         setTimeout(function () {
           setIsReset(false);
         }, 3000);
-      } else {// Error stuff.
+      } else {
+        // Error stuff.
       }
     })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
       setResetting(false);
     });
   };
-
   var hasErrors = function hasErrors() {
     return Object.keys(errors).length > 0;
   };
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // Get saved local storage JSON strings.
     var maybeSavedFormFields = localStorage.getItem(localStorageKey);
     var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
-
     if (null !== maybeSavedFormFields) {
       // Parse saved JSON string into JSON object.
-      var savedFormFields = JSON.parse(maybeSavedFormFields); // If saved form fields, proceed with setting fields.
+      var savedFormFields = JSON.parse(maybeSavedFormFields);
 
+      // If saved form fields, proceed with setting fields.
       if (Object.keys(savedFormFields.length > 0)) {
-        var savedDirtyFields = {}; // Get any dirty fields.
+        var savedDirtyFields = {};
 
+        // Get any dirty fields.
         if (null !== maybeDirtyFields) {
           savedDirtyFields = JSON.parse(maybeDirtyFields);
         }
-
-        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
-          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
-              key = _Object$entries$_i[0],
-              value = _Object$entries$_i[1];
-
+        for (var _i = 0, _Object$entries = Object.entries(savedFormFields); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
           // If key is in saved dirty fields, set dirty.
+
           if (savedDirtyFields.hasOwnProperty(key)) {
             // Key is dirty, so set dirty.
             setValue(key, value, {
@@ -337,45 +305,40 @@ var Interface = function Interface(props) {
         }
       }
     }
-
     setLoading(false);
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (saving || resetting || loading) {
       return;
     }
-
     if (isDirty || blockDefaultsDirtyCount > 0) {
       // Get current dirty fields.
-      setBlockDefaultsDirtyCount(Object.keys(dirtyFields).length); // Save form values to local storage.
+      setBlockDefaultsDirtyCount(Object.keys(dirtyFields).length);
 
+      // Save form values to local storage.
       localStorage.setItem(localStorageKey, JSON.stringify(formValues));
       localStorage.setItem(localStorageKey + '_dirty_fields', JSON.stringify(dirtyFields));
     }
-
     setLoading(false);
-  }, [formValues]); // Get URL Shortening services (i.e., bitly, jetpack).
+  }, [formValues]);
 
+  // Get URL Shortening services (i.e., bitly, jetpack).
   var linkShortenerServices = [];
-
   if (quotes_dlx_admin.bitly_plugin_active) {
     linkShortenerServices.push({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bitly', 'quotes-dlx'),
       value: 'bitly'
     });
   }
-
   if (quotes_dlx_admin.jetpack_plugin_active) {
     linkShortenerServices.push({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Jetpack', 'quotes-dlx'),
       value: 'jetpack'
     });
   }
-
   if (loading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], null);
   }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -407,14 +370,13 @@ var Interface = function Interface(props) {
         if (value.length === 0) {
           return true;
         }
-
         return _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.isValidUsername('@' + value);
       }
     },
     render: function render(_ref) {
       var _ref$field = _ref.field,
-          _onChange = _ref$field.onChange,
-          value = _ref$field.value;
+        _onChange = _ref$field.onChange,
+        value = _ref$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Credit', 'quotes-dlx'),
         className: "qdlx-admin__text-control",
@@ -423,22 +385,18 @@ var Interface = function Interface(props) {
         value: value,
         onChange: function onChange(currentValue) {
           var twitterUsername = '';
-
           if (currentValue.length > 0) {
             var replacement = currentValue.replace('@', ''); // Strip @ symbol.
-
             if (currentValue.length > 0) {
               var usernames = _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.extractMentions('@' + replacement);
-
               if (typeof usernames[0] !== 'undefined') {
                 twitterUsername = usernames[0];
               } else {
                 twitterUsername = replacement;
               }
             }
-          } // onChange's arg will send value into hook form
-
-
+          }
+          // onChange's arg will send value into hook form
           _onChange(twitterUsername);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Leave this blank to have no default Twitter credit', 'quotes-dlx')
@@ -455,8 +413,8 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref2) {
       var _ref2$field = _ref2.field,
-          _onChange2 = _ref2$field.onChange,
-          value = _ref2$field.value;
+        _onChange2 = _ref2$field.onChange,
+        value = _ref2$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__["default"], {
         value: value,
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter hashtags separated by commas.', 'quotes-dlx'),
@@ -467,15 +425,12 @@ var Interface = function Interface(props) {
           var filteredTokens = [];
           tokens.forEach(function (item, index) {
             var replacement = item.replace('#', ''); // Strip hashtag symbol.
-
             var hashtag = _validation_twitter__WEBPACK_IMPORTED_MODULE_9__["default"].txt.extractHashtags('#' + replacement); // Add it back in for extraction.
             // Check if array contains anything.
-
             if (typeof hashtag[0] !== 'undefined') {
               filteredTokens.push(hashtag[0]);
             }
           });
-
           _onChange2(filteredTokens);
         }
       });
@@ -487,15 +442,14 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref3) {
       var _ref3$field = _ref3.field,
-          _onChange3 = _ref3$field.onChange,
-          value = _ref3$field.value;
+        _onChange3 = _ref3$field.onChange,
+        value = _ref3$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Click to Tweet Button', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: value,
         onChange: function onChange(boolValue) {
           setIsTwitterButtonEnabled(boolValue);
-
           _onChange3(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or Disable the Click to Tweet button. This is useful if you want to hide the button and use the block for just quotes.', 'quotes-dlx')
@@ -509,7 +463,6 @@ var Interface = function Interface(props) {
     },
     render: function render(_ref4) {
       var _errors$shareButtonTe;
-
       var field = _ref4.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click to Tweet Text', 'quotes-dlx'),
@@ -532,15 +485,14 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref5) {
       var _ref5$field = _ref5.field,
-          _onChange4 = _ref5$field.onChange,
-          value = _ref5$field.value;
+        _onChange4 = _ref5$field.onChange,
+        value = _ref5$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Share on Facebook Button', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: isFacebookButtonEnabled,
         onChange: function onChange(boolValue) {
           setIsFacebookButtonEnabled(boolValue);
-
           _onChange4(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or Disable the Share on Facebook button. If enabled, this will allow your users to share the quote on Facebook.', 'quotes-dlx')
@@ -554,7 +506,6 @@ var Interface = function Interface(props) {
     },
     render: function render(_ref6) {
       var _errors$facebookButto;
-
       var field = _ref6.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Facebook Button Text', 'quotes-dlx'),
@@ -571,15 +522,14 @@ var Interface = function Interface(props) {
     name: "tweetButtonDisplay",
     render: function render(_ref7) {
       var _ref7$field = _ref7.field,
-          _onChange5 = _ref7$field.onChange,
-          value = _ref7$field.value;
+        _onChange5 = _ref7$field.onChange,
+        value = _ref7$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Display', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose to show just text, just an icon, or both.', 'quotes-dlx'),
         selected: value,
         onChange: function onChange(newValue) {
           setButtonDisplay(newValue);
-
           _onChange5(newValue);
         },
         options: [{
@@ -599,8 +549,8 @@ var Interface = function Interface(props) {
     name: "iconAppearance",
     render: function render(_ref8) {
       var _ref8$field = _ref8.field,
-          _onChange6 = _ref8$field.onChange,
-          value = _ref8$field.value;
+        _onChange6 = _ref8$field.onChange,
+        value = _ref8$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Appearance', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display the icons as buttons or choose transparent for no button appearance.', 'quotes-dlx'),
@@ -622,8 +572,8 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref9) {
       var _ref9$field = _ref9.field,
-          onClick = _ref9$field.onClick,
-          value = _ref9$field.value;
+        onClick = _ref9$field.onClick,
+        value = _ref9$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Button Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
@@ -677,8 +627,8 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref10) {
       var _ref10$field = _ref10.field,
-          onClick = _ref10$field.onClick,
-          value = _ref10$field.value;
+        onClick = _ref10$field.onClick,
+        value = _ref10$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tweet Icon Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
@@ -726,15 +676,14 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref11) {
       var _ref11$field = _ref11.field,
-          _onChange7 = _ref11$field.onChange,
-          value = _ref11$field.value;
+        _onChange7 = _ref11$field.onChange,
+        value = _ref11$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Links in the Tweet', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: value,
         onChange: function onChange(boolValue) {
           setEnableLinks(boolValue);
-
           _onChange7(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('You can disable all links from showing in the Tweets', 'quotes-dlx')
@@ -745,15 +694,14 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref12) {
       var _ref12$field = _ref12.field,
-          _onChange8 = _ref12$field.onChange,
-          value = _ref12$field.value;
+        _onChange8 = _ref12$field.onChange,
+        value = _ref12$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Anchors', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: value,
         onChange: function onChange(boolValue) {
           setAnchorDisplay(boolValue);
-
           _onChange8(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchors are appended to the end of a URL.', 'quotes-dlx')
@@ -768,7 +716,6 @@ var Interface = function Interface(props) {
     },
     render: function render(_ref13) {
       var _errors$anchorPrefix, _errors$anchorPrefix2;
-
       var field = _ref13.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anchor Prefix', 'quotes-dlx'),
@@ -797,15 +744,14 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref14) {
       var _ref14$field = _ref14.field,
-          _onChange9 = _ref14$field.onChange,
-          value = _ref14$field.value;
+        _onChange9 = _ref14$field.onChange,
+        value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable URL Shortener', 'quotes-dlx'),
         className: "qdlx-admin__toggle-control",
         checked: value,
         onChange: function onChange(boolValue) {
           setEnableUrlShortener(boolValue);
-
           _onChange9(boolValue);
         },
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A URL shortener shortens your link so you can have more characters in your Tweet.', 'quotes-dlx')
@@ -832,8 +778,8 @@ var Interface = function Interface(props) {
     name: "urlShorteningService",
     render: function render(_ref15) {
       var _ref15$field = _ref15.field,
-          _onChange10 = _ref15$field.onChange,
-          value = _ref15$field.value;
+        _onChange10 = _ref15$field.onChange,
+        value = _ref15$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('URL Shortening Service', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a URL shortening service. Select none for no link shortener.', 'quotes-dlx'),
@@ -855,7 +801,6 @@ var Interface = function Interface(props) {
     },
     render: function render(_ref16) {
       var _errors$maximumWidth, _errors$maximumWidth2;
-
       var field = _ref16.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Maximum Width', 'quotes-dlx'),
@@ -884,8 +829,8 @@ var Interface = function Interface(props) {
     name: "maximumWidthUnit",
     render: function render(_ref17) {
       var _ref17$field = _ref17.field,
-          onChange = _ref17$field.onChange,
-          value = _ref17$field.value;
+        onChange = _ref17$field.onChange,
+        value = _ref17$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_18__["default"], {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Maximum Width Unit', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a unit for the max-width.', 'quotes-dlx'),
@@ -908,8 +853,8 @@ var Interface = function Interface(props) {
     control: control,
     render: function render(_ref18) {
       var _ref18$field = _ref18.field,
-          onClick = _ref18$field.onClick,
-          value = _ref18$field.value;
+        onClick = _ref18$field.onClick,
+        value = _ref18$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_19__["default"], {
         className: "qdlx-admin__button-group--align"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default block alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__["default"], {
@@ -1036,7 +981,6 @@ var Interface = function Interface(props) {
     politeness: "assertive"
   }))))));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);
 
 /***/ })

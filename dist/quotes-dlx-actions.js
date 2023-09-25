@@ -10,7 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Carousel": () => (/* binding */ Carousel)
+/* harmony export */   Carousel: () => (/* binding */ Carousel)
 /* harmony export */ });
 /* harmony import */ var _shared_Base_Base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/Base/Base.js */ "./node_modules/@fancyapps/ui/src/shared/Base/Base.js");
 /* harmony import */ var _Panzoom_Panzoom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Panzoom/Panzoom.js */ "./node_modules/@fancyapps/ui/src/Panzoom/Panzoom.js");
@@ -995,7 +995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Dots": () => (/* binding */ Dots)
+/* harmony export */   Dots: () => (/* binding */ Dots)
 /* harmony export */ });
 const defaults = {
   // The minimum number of slides to display dots
@@ -1189,7 +1189,7 @@ class Dots {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Navigation": () => (/* binding */ Navigation)
+/* harmony export */   Navigation: () => (/* binding */ Navigation)
 /* harmony export */ });
 const defaults = {
   prevTpl: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M15 3l-9 9 9 9"/></svg>',
@@ -1354,7 +1354,7 @@ Navigation.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Sync": () => (/* binding */ Sync)
+/* harmony export */   Sync: () => (/* binding */ Sync)
 /* harmony export */ });
 const defaults = {
   friction: 0.92,
@@ -1523,7 +1523,7 @@ Sync.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Plugins": () => (/* binding */ Plugins)
+/* harmony export */   Plugins: () => (/* binding */ Plugins)
 /* harmony export */ });
 /* harmony import */ var _Navigation_Navigation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navigation/Navigation.js */ "./node_modules/@fancyapps/ui/src/Carousel/plugins/Navigation/Navigation.js");
 /* harmony import */ var _Dots_Dots_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dots/Dots.js */ "./node_modules/@fancyapps/ui/src/Carousel/plugins/Dots/Dots.js");
@@ -1545,7 +1545,7 @@ const Plugins = { Navigation: _Navigation_Navigation_js__WEBPACK_IMPORTED_MODULE
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Fancybox": () => (/* binding */ Fancybox)
+/* harmony export */   Fancybox: () => (/* binding */ Fancybox)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 /* harmony import */ var _shared_utils_canUseDOM_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/utils/canUseDOM.js */ "./node_modules/@fancyapps/ui/src/shared/utils/canUseDOM.js");
@@ -3226,7 +3226,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Hash": () => (/* binding */ Hash)
+/* harmony export */   Hash: () => (/* binding */ Hash)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_canUseDOM_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/utils/canUseDOM.js */ "./node_modules/@fancyapps/ui/src/shared/utils/canUseDOM.js");
 
@@ -3493,7 +3493,7 @@ class Hash {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Html": () => (/* binding */ Html)
+/* harmony export */   Html: () => (/* binding */ Html)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 
@@ -4279,7 +4279,7 @@ Html.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Image": () => (/* binding */ Image)
+/* harmony export */   Image: () => (/* binding */ Image)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 /* harmony import */ var _Panzoom_Panzoom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Panzoom/Panzoom.js */ "./node_modules/@fancyapps/ui/src/Panzoom/Panzoom.js");
@@ -4992,7 +4992,7 @@ Image.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ScrollLock": () => (/* binding */ ScrollLock)
+/* harmony export */   ScrollLock: () => (/* binding */ ScrollLock)
 /* harmony export */ });
 /* harmony import */ var _src_shared_utils_isScrollable_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/shared/utils/isScrollable.js */ "./node_modules/@fancyapps/ui/src/shared/utils/isScrollable.js");
 
@@ -5167,7 +5167,7 @@ class ScrollLock {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Thumbs": () => (/* binding */ Thumbs)
+/* harmony export */   Thumbs: () => (/* binding */ Thumbs)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 /* harmony import */ var _Carousel_Carousel_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Carousel/Carousel.js */ "./node_modules/@fancyapps/ui/src/Carousel/Carousel.js");
@@ -5408,7 +5408,7 @@ Thumbs.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Toolbar": () => (/* binding */ Toolbar)
+/* harmony export */   Toolbar: () => (/* binding */ Toolbar)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_isPlainObject_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../shared/utils/isPlainObject.js */ "./node_modules/@fancyapps/ui/src/shared/utils/isPlainObject.js");
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
@@ -5958,7 +5958,7 @@ Toolbar.defaults = defaults;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Plugins": () => (/* binding */ Plugins)
+/* harmony export */   Plugins: () => (/* binding */ Plugins)
 /* harmony export */ });
 /* harmony import */ var _ScrollLock_ScrollLock_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ScrollLock/ScrollLock.js */ "./node_modules/@fancyapps/ui/src/Fancybox/plugins/ScrollLock/ScrollLock.js");
 /* harmony import */ var _Thumbs_Thumbs_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Thumbs/Thumbs.js */ "./node_modules/@fancyapps/ui/src/Fancybox/plugins/Thumbs/Thumbs.js");
@@ -5993,7 +5993,7 @@ const Plugins = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Panzoom": () => (/* binding */ Panzoom)
+/* harmony export */   Panzoom: () => (/* binding */ Panzoom)
 /* harmony export */ });
 /* harmony import */ var _shared_utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 /* harmony import */ var _shared_utils_round_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/utils/round.js */ "./node_modules/@fancyapps/ui/src/shared/utils/round.js");
@@ -7260,7 +7260,7 @@ Panzoom.Plugins = _plugins_index_js__WEBPACK_IMPORTED_MODULE_8__.Plugins;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Plugins": () => (/* binding */ Plugins)
+/* harmony export */   Plugins: () => (/* binding */ Plugins)
 /* harmony export */ });
 const Plugins = {};
 
@@ -7275,7 +7275,7 @@ const Plugins = {};
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Base": () => (/* binding */ Base)
+/* harmony export */   Base: () => (/* binding */ Base)
 /* harmony export */ });
 /* harmony import */ var _utils_extend_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/extend.js */ "./node_modules/@fancyapps/ui/src/shared/utils/extend.js");
 /* harmony import */ var _utils_resolve_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/resolve.js */ "./node_modules/@fancyapps/ui/src/shared/utils/resolve.js");
@@ -7546,7 +7546,7 @@ class Base {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Fullscreen": () => (/* binding */ Fullscreen)
+/* harmony export */   Fullscreen: () => (/* binding */ Fullscreen)
 /* harmony export */ });
 const Fullscreen = {
   pageXOffset: 0,
@@ -7593,9 +7593,9 @@ const Fullscreen = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PointerTracker": () => (/* binding */ PointerTracker),
-/* harmony export */   "getDistance": () => (/* binding */ getDistance),
-/* harmony export */   "getMidpoint": () => (/* binding */ getMidpoint)
+/* harmony export */   PointerTracker: () => (/* binding */ PointerTracker),
+/* harmony export */   getDistance: () => (/* binding */ getDistance),
+/* harmony export */   getMidpoint: () => (/* binding */ getMidpoint)
 /* harmony export */ });
 class Pointer {
   constructor(nativePointer) {
@@ -7766,7 +7766,7 @@ class PointerTracker {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ResizeObserver": () => (/* binding */ ResizeObserver)
+/* harmony export */   ResizeObserver: () => (/* binding */ ResizeObserver)
 /* harmony export */ });
 /**
  * ResizeObserver Polyfill
@@ -7842,7 +7842,7 @@ const ResizeObserver =
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Slideshow": () => (/* binding */ Slideshow)
+/* harmony export */   Slideshow: () => (/* binding */ Slideshow)
 /* harmony export */ });
 class Slideshow {
   constructor(fancybox) {
@@ -7954,7 +7954,7 @@ class Slideshow {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "canUseDOM": () => (/* binding */ canUseDOM)
+/* harmony export */   canUseDOM: () => (/* binding */ canUseDOM)
 /* harmony export */ });
 /**
  * Detect if rendering from the client or the server
@@ -7972,7 +7972,7 @@ const canUseDOM = !!(typeof window !== "undefined" && window.document && window.
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "extend": () => (/* binding */ extend)
+/* harmony export */   extend: () => (/* binding */ extend)
 /* harmony export */ });
 /* harmony import */ var _isPlainObject_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isPlainObject.js */ "./node_modules/@fancyapps/ui/src/shared/utils/isPlainObject.js");
 
@@ -8031,9 +8031,9 @@ const extend = (...args) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "calculateAspectRatioFit": () => (/* binding */ calculateAspectRatioFit),
-/* harmony export */   "getFullHeight": () => (/* binding */ getFullHeight),
-/* harmony export */   "getFullWidth": () => (/* binding */ getFullWidth)
+/* harmony export */   calculateAspectRatioFit: () => (/* binding */ calculateAspectRatioFit),
+/* harmony export */   getFullHeight: () => (/* binding */ getFullHeight),
+/* harmony export */   getFullWidth: () => (/* binding */ getFullWidth)
 /* harmony export */ });
 /**
  * Get actual width of the element, regardless of how much of content is currently visible
@@ -8088,7 +8088,7 @@ const calculateAspectRatioFit = (srcWidth, srcHeight, maxWidth, maxHeight) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getTextNodeFromPoint": () => (/* binding */ getTextNodeFromPoint)
+/* harmony export */   getTextNodeFromPoint: () => (/* binding */ getTextNodeFromPoint)
 /* harmony export */ });
 /**
  * Get element child node at the given coordinates
@@ -8131,7 +8131,7 @@ const getTextNodeFromPoint = (element, x, y) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isPlainObject": () => (/* binding */ isPlainObject)
+/* harmony export */   isPlainObject: () => (/* binding */ isPlainObject)
 /* harmony export */ });
 /**
  * Check to see if an object is a plain object (created using "{}" or "new Object").
@@ -8162,8 +8162,8 @@ const isPlainObject = (obj) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hasScrollbars": () => (/* binding */ hasScrollbars),
-/* harmony export */   "isScrollable": () => (/* binding */ isScrollable)
+/* harmony export */   hasScrollbars: () => (/* binding */ hasScrollbars),
+/* harmony export */   isScrollable: () => (/* binding */ isScrollable)
 /* harmony export */ });
 /**
  * Check if  element has scrollable content
@@ -8211,7 +8211,7 @@ const isScrollable = function (node) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "resolve": () => (/* binding */ resolve)
+/* harmony export */   resolve: () => (/* binding */ resolve)
 /* harmony export */ });
 /**
  * Access nested JavaScript objects by string path.
@@ -8237,7 +8237,7 @@ const resolve = function (path, obj) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "round": () => (/* binding */ round)
+/* harmony export */   round: () => (/* binding */ round)
 /* harmony export */ });
 /**
  * Round half up; to be more specific and to ensure things like 1.005 round correctly
@@ -8262,8 +8262,8 @@ const round = (value, precision = 10000) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "FOCUSABLE_ELEMENTS": () => (/* binding */ FOCUSABLE_ELEMENTS),
-/* harmony export */   "setFocusOn": () => (/* binding */ setFocusOn)
+/* harmony export */   FOCUSABLE_ELEMENTS: () => (/* binding */ FOCUSABLE_ELEMENTS),
+/* harmony export */   setFocusOn: () => (/* binding */ setFocusOn)
 /* harmony export */ });
 /* harmony import */ var _canUseDOM_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./canUseDOM.js */ "./node_modules/@fancyapps/ui/src/shared/utils/canUseDOM.js");
 
@@ -8338,7 +8338,7 @@ const setFocusOn = (node) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "throttle": () => (/* binding */ throttle)
+/* harmony export */   throttle: () => (/* binding */ throttle)
 /* harmony export */ });
 /**
  * Throttling enforces a maximum number of times a function can be called over time
@@ -8429,89 +8429,81 @@ var __webpack_exports__ = {};
   \*****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fancyapps/ui/src/Fancybox/Fancybox */ "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* eslint-disable no-undef */
-
 /**
  * Main QuotesDLX front-end JS.
  */
 
 
 (function () {
-  var __ = wp.i18n.__; // Gather all wrappers.
+  var __ = wp.i18n.__;
 
+  // Gather all wrappers.
   var wrappers = document.querySelectorAll('.quotes-dlx-wrapper');
   wrappers.forEach(function (wrapper) {
     // Click to copy quote.
     var copyQuoteWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-copy-quote');
-
     if (null !== copyQuoteWrapper) {
       copyQuoteWrapper.querySelector('button').addEventListener('click', function (e) {
         copyQuoteCallback(e, copyQuoteWrapper, wrapper);
       });
-    } // Click to copy Tweet.
+    }
 
-
+    // Click to copy Tweet.
     var copyTweetWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-copy-tweet');
-
     if (null !== copyTweetWrapper) {
       copyTweetWrapper.querySelector('button').addEventListener('click', function (e) {
         copyTweetCallback(e, copyTweetWrapper, wrapper);
       });
-    } // Click to copy link.
+    }
 
-
+    // Click to copy link.
     var copyLinkWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-copy-link');
-
     if (null !== copyLinkWrapper) {
       copyLinkWrapper.querySelector('button').addEventListener('click', function (e) {
         copyLinkCallback(e, copyLinkWrapper, wrapper);
       });
-    } // Click to Tweet.
+    }
 
-
+    // Click to Tweet.
     var dlxTweetButton = wrapper.querySelector('button.quotes-dlx-button');
-
     if (null !== dlxTweetButton) {
       dlxTweetButton.addEventListener('click', function (e) {
         tweet(e);
       });
     }
-
     var tweetButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-tweet-this > button');
-
     if (null !== tweetButtonWrapper) {
       tweetButtonWrapper.addEventListener('click', function (e) {
         tweet(e);
       });
-    } // Click to Tweet.
+    }
 
-
+    // Click to Tweet.
     var dlxFacebookButton = wrapper.querySelector('button.qdlx-facebook-button');
-
     if (null !== dlxFacebookButton) {
       dlxFacebookButton.addEventListener('click', function (e) {
         facebook(e);
       });
     }
-
     var facebookButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-share-facebook > button');
-
     if (null !== facebookButtonWrapper) {
       facebookButtonWrapper.addEventListener('click', function (e) {
         facebook(e);
       });
     }
-
     var emailButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-email-link > button');
-
     if (null !== emailButtonWrapper) {
       emailButtonWrapper.addEventListener('click', function (e) {
         fancyboxEmail(e);
       });
     }
   });
+
   /**
    * Do some behavior when the Copy Quote button is clicked.
    *
@@ -8519,18 +8511,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * @param {element} listItemElement Wrapper Element.
    * @param {element} parentElement   Wrapper Element.
    */
-
   var copyQuoteCallback = function copyQuoteCallback(event, listItemElement, parentElement) {
     var text = listItemElement.getAttribute('data-text-full');
     var copyBlog = new Blob([text], {
       type: 'text/plain'
     });
     var data = [new ClipboardItem(_defineProperty({}, copyBlog.type, copyBlog))];
-
     var successMessage = __('The Quote has been copied to your clipboard.', 'quotes-dlx');
-
     var failMessage = __('The Quote text could not be copied.', 'quotes-dlx');
-
     copyText(data, successMessage, failMessage, listItemElement, parentElement, copyQuoteCallback);
   };
   /**
@@ -8540,19 +8528,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * @param {element} listItemElement Wrapper Element.
    * @param {element} parentElement   Wrapper Element.
    */
-
-
   var copyTweetCallback = function copyTweetCallback(event, listItemElement, parentElement) {
     var text = listItemElement.querySelector('.quotes-dlx-copy-tweet-textarea textarea').textContent.trim();
     var copyBlog = new Blob([text], {
       type: 'text/plain'
     });
     var data = [new ClipboardItem(_defineProperty({}, copyBlog.type, copyBlog))];
-
     var successMessage = __('The Tweet has been copied to your clipboard.', 'quotes-dlx');
-
     var failMessage = __('The Tweet text could not be copied.', 'quotes-dlx');
-
     copyText(data, successMessage, failMessage, listItemElement, parentElement, copyTweetCallback);
   };
   /**
@@ -8562,21 +8545,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * @param {element} listItemElement Wrapper Element.
    * @param {element} parentElement   Wrapper Element.
    */
-
-
   var copyLinkCallback = function copyLinkCallback(event, listItemElement, parentElement) {
     var text = listItemElement.getAttribute('data-url');
     var copyBlog = new Blob([text], {
       type: 'text/plain'
     });
     var data = [new ClipboardItem(_defineProperty({}, copyBlog.type, copyBlog))];
-
     var successMessage = __('The Link to this Quote has been copied to your clipboard.', 'quotes-dlx');
-
     var failMessage = __('The Link could not be copied.', 'quotes-dlx');
-
     copyText(data, successMessage, failMessage, listItemElement, parentElement, copyQuoteCallback);
   };
+
   /**
    * Copy text to clipboard.
    *
@@ -8587,13 +8566,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * @param {element}       parentElement   Parent element (wrapper).
    * @param {Function}      callback        Callback function.
    */
-
-
   var copyText = function copyText(data, successMessage, failMessage, listItemElement, parentElement, callback) {
     navigator.clipboard.write(data).then(function () {
       // Change the styling of the LI.
-      var copyDiv = document.createElement('div'); // Get a copy of the button.
+      var copyDiv = document.createElement('div');
 
+      // Get a copy of the button.
       var buttonClone = listItemElement.querySelector('button').cloneNode(true);
       copyDiv.style.cssText = 'background-color: green; color: #FFF; text-align: center; padding: 10px 20px;';
       copyDiv.textContent = __('Copied!', 'quotes-dlx');
@@ -8609,80 +8587,69 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       wp.a11y.speak(failMessage, 'assertive');
     });
   };
-
   var tweet = function tweet(e) {
     var tweetButton = e.target;
-    var element = e.target.nodeName.toLowerCase(); // Check element type.
+    var element = e.target.nodeName.toLowerCase();
 
+    // Check element type.
     if ('span' === element) {
       tweetButton = tweetButton.parentElement;
     }
-
     if ('use' === element) {
       tweetButton = tweetButton.parentElement.parentElement.parentElement;
     }
-
     var hashtags = tweetButton.getAttribute('data-hashtags');
     var tweetText = tweetButton.getAttribute('data-tweet');
     var username = tweetButton.getAttribute('data-username');
     var permalink = tweetButton.getAttribute('data-url');
     var newTweet = '';
-
     if (username !== '' && username !== null) {
       newTweet += '&via=' + username;
     }
-
     if (permalink !== '' && permalink !== null) {
       newTweet += '&url=' + permalink.trim();
     }
-
     if (hashtags !== '' && hashtags !== null) {
       newTweet += '&hashtags=' + hashtags;
     }
-
     if (tweetText !== '' && tweetText !== null) {
       newTweet += '&text=' + tweetText + "\n\r";
     }
-
     if (newTweet !== '') {
       newTweet = 'https://twitter.com/intent/tweet?' + newTweet;
-    } // Replace case if first item has an ampsersand.
+    }
 
-
+    // Replace case if first item has an ampsersand.
     newTweet = newTweet.replace('?&', '?');
     window.open(newTweet, '_blank');
   };
-
   var facebook = function facebook(e) {
     var facebookButton = e.target;
-    var element = e.target.nodeName.toLowerCase(); // Check element type.
+    var element = e.target.nodeName.toLowerCase();
 
+    // Check element type.
     if ('span' === element) {
       facebookButton = facebookButton.parentElement;
     }
-
     if ('use' === element) {
       facebookButton = facebookButton.parentElement.parentElement.parentElement;
     }
-
     var permalink = facebookButton.getAttribute('data-url');
     var fbShare = "https://www.facebook.com/sharer/sharer.php?&u=".concat(permalink);
     fbShare = fbShare.replace('?&', '?');
     window.open(fbShare, '_blank');
   };
-
   var fancyboxEmail = function fancyboxEmail(e) {
     var fancyboxEmailButton = e.target;
-    var element = e.target.nodeName.toLowerCase(); // Check element type.
+    var element = e.target.nodeName.toLowerCase();
 
+    // Check element type.
     if ('span' === element) {
       fancyboxEmailButton = fancyboxEmailButton.parentElement;
     }
-
     if ('use' === element) {
       fancyboxEmailButton = fancyboxEmailButton.parentElement.parentElement.parentElement;
     }
-
     var ajaxUrl = fancyboxEmailButton.getAttribute('data-ajax-url');
     window.qdlxfancy = _fancyapps_ui_src_Fancybox_Fancybox__WEBPACK_IMPORTED_MODULE_0__.Fancybox.show([{
       src: ajaxUrl,

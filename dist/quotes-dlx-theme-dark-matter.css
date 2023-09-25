@@ -135,14 +135,14 @@
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper,
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
     font-size: 1.35em;
     line-height: var(--qdlx-dark-matter-line-height-tablet, 1.35);
   }
 }
 @media (min-width: 1024px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper,
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure .quotes-dlx-share-blocks {
     font-size: 1.5em;
     line-height: var(--qdlx-dark-matter-line-height-desktop, 1.65);
   }
@@ -609,14 +609,14 @@
 }
 @media (min-width: 768px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author-review,
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author {
     font-size: 1.35em;
     line-height: var(--qdlx-dark-matter-line-height-tablet, 1.35);
   }
 }
 @media (min-width: 1024px) {
   .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author-review,
-.quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author {
+  .quotes-dlx-block-theme-dark-matter .quotes-dlx-review-wrapper .quotes-dlx-review-author {
     font-size: 1.5em;
     line-height: var(--qdlx-dark-matter-line-height-desktop, 1.65);
   }

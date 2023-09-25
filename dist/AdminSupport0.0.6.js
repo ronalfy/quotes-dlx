@@ -16,10 +16,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "./node_modules/@wordpress/components/build-module/button/index.js");
-/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.mjs");
 /* harmony import */ var _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/icons/CircularQuestion */ "./src/js/components/icons/CircularQuestion.js");
 /* eslint-disable no-unused-vars */
-
 
 
 
@@ -106,7 +105,6 @@ var AdminSupport = function AdminSupport() {
     href: "https://dlxplugins.com/support/"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Get Personalized Support', 'quotes-dlx')))))));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminSupport);
 
 /***/ })

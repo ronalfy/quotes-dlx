@@ -651,7 +651,7 @@ class Blocks {
 								if ( in_array( $tweet_button_display, array( 'full', 'icon' ), true ) ) :
 									?>
 									<span class="quotes-dlx-button-icon">
-										<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+										<svg width="24" height="24"><use xlink:href="#quotes-dlx-x-icon"></use></svg>
 									</span>
 									<?php
 								endif;
@@ -808,7 +808,7 @@ class Blocks {
 								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-tweet-this">
 									<button class="button-reset" data-hashtags="<?php echo esc_attr( urlencode( $hashtags ) ); ?>" data-username="<?php echo esc_attr( str_replace( '@', '', $twitter_username ) ); ?>" data-tweet="<?php echo esc_attr( urlencode( $this->get_tweet_text( $attributes ) . "\n\r" ) ); ?>" data-url="<?php echo esc_attr( urlencode( $permalink ? $permalink : '' ) ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
-											<svg width="24" height="24"><use xlink:href="#quotes-dlx-twitter-icon"></use></svg>
+											<svg width="24" height="24"><use xlink:href="#quotes-dlx-x-icon"></use></svg>
 										</span>
 										<?php echo esc_html( $tweet_this_label ); ?>
 									</button>
@@ -1057,12 +1057,12 @@ class Blocks {
 			Functions::get_plugin_version(),
 			'all'
 		);
-
+		$deps = require_once Functions::get_plugin_dir( 'build/quotes-dlx.asset.php' );
 		wp_register_script(
 			'quotes-dlx-block',
 			Functions::get_plugin_url( 'build/quotes-dlx.js' ),
-			array(),
-			Functions::get_plugin_version(),
+			$deps['dependencies'],
+			$deps['version'],
 			true
 		);
 
@@ -1301,8 +1301,8 @@ class Blocks {
 		}
 		?>
 		<svg width="0" height="0" class="hidden" style="display: none;">
-			<symbol aria-hidden="true" data-prefix="fas" data-icon="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-twitter-icon">
-				<path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/>
+			<symbol aria-hidden="true" data-prefix="fas" data-icon="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-x-icon">
+				<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
 			</symbol>
 			<symbol aria-hidden="true" data-prefix="fas" data-icon="copy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="quotes-dlx-copy-icon">
 				<path d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"/>

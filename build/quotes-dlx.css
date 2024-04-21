@@ -104,6 +104,7 @@
 .has-line-count .has-line-count-progress.has-line-count-min-chars .has-line-count-characters {
   margin: 0;
   margin: 4px;
+  line-height: 1.4;
 }
 .has-line-count .has-line-count-characters {
   display: inline-block;
@@ -114,6 +115,7 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   min-width: 45px;
+  line-height: 1.4;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/js/components/MeatballMenuItem/editor.scss ***!

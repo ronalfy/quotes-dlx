@@ -767,7 +767,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
 /* harmony import */ var _components_icons_Circle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/icons/Circle */ "./src/js/components/icons/Circle.js");
 /* harmony import */ var _components_unit_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/unit-picker */ "./src/js/components/unit-picker/index.js");
-/* harmony import */ var _components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/twitter */ "./src/js/components/icons/twitter.js");
+/* harmony import */ var _components_icons_x__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/x */ "./src/js/components/icons/x.js");
 /* harmony import */ var _components_icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
 /* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
 /* harmony import */ var _components_icons_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Preview */ "./src/js/components/icons/Preview.js");
@@ -1120,7 +1120,7 @@ var TweetQuotes = function TweetQuotes(props) {
       className: "quotes-dlx-button-text"
     }, share_button_text), (tweet_button_display === 'icon' || tweet_button_display === 'full') && /*#__PURE__*/React.createElement("span", {
       className: "quotes-dlx-button-icon"
-    }, /*#__PURE__*/React.createElement(_components_icons_twitter__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), facebook_button_enabled && /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement(_components_icons_x__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), facebook_button_enabled && /*#__PURE__*/React.createElement("button", {
       className: "quotes-dlx-button ".concat(tweet_button_display, " quotes-dlx-button-icon-").concat(tweet_icon_alignment),
       onClick: function onClick(value) {}
     }, /*#__PURE__*/React.createElement(React.Fragment, null, (tweet_button_display === 'full' || tweet_button_display === 'text') && /*#__PURE__*/React.createElement("span", {
@@ -1159,17 +1159,17 @@ var TweetQuotes = function TweetQuotes(props) {
     initialOpen: true,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Share Buttons', 'quotes-dlx')
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Twitter Share Button', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable X Share Button', 'quotes-dlx'),
     checked: tweet_button_enabled,
     onChange: function onChange(value) {
       setAttributes({
         tweet_button_enabled: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Show or hide the Click to Tweet button.', 'quotes-dlx')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Show or hide the Click to Post button.', 'quotes-dlx')
   })), tweet_button_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Button Text', 'quotes-dlx'),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Click to Tweet button text.'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('X Button Text', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Click to Post button text.'),
     value: share_button_text,
     onChange: function onChange(value) {
       setAttributes({
@@ -1274,7 +1274,7 @@ var TweetQuotes = function TweetQuotes(props) {
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('This allows the copying of your full quote.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Tweet', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Copy Post', 'quotes-dlx'),
     checked: enable_copy_tweet,
     onChange: function onChange(value) {
       setAttributes({
@@ -1302,13 +1302,14 @@ var TweetQuotes = function TweetQuotes(props) {
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('(Experimental) Enable email sharing of the quote.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Tweet This', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Post This', 'quotes-dlx'),
     checked: enable_tweet_this,
     onChange: function onChange(value) {
       setAttributes({
         enable_tweet_this: value
       });
     },
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable X sharing in the context menu.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Share This', 'quotes-dlx'),
@@ -1447,7 +1448,7 @@ var TweetQuotes = function TweetQuotes(props) {
       name: 'appearance',
       className: 'quotes-dlx-tab-appearance'
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Settings', 'quotes-dlx'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('X Settings', 'quotes-dlx'),
       name: 'settings',
       className: 'quotes-dlx-tab-settings'
     }, {
@@ -1485,17 +1486,17 @@ var TweetQuotes = function TweetQuotes(props) {
       }, attributes)))))));
     } else if ('settings' === tab.name) {
       tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Customize Twitter Content', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Customize X Content', 'quotes-dlx'),
         checked: share_text_override_enabled,
         onChange: function onChange(value) {
           setAttributes({
             share_text_override_enabled: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('If your quote is too large for Twitter, you can create custom tweet content here.', 'quotes-dlx')
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('If your quote is too large for X, you can create custom post content here.', 'quotes-dlx')
       }), share_text_override_enabled && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextareaControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Custom Tweet Content', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter your custom tweet content here if your quote is too long for Twitter'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Custom X Content', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter your custom X content here if your quote is too long for posting.'),
         value: share_text_override,
         onChange: function onChange(value) {
           setAttributes({
@@ -1524,8 +1525,8 @@ var TweetQuotes = function TweetQuotes(props) {
           });
         }
       }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Tweet Credit (via)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the Twitter username you would like to credit. Leave empty for no credit.'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('X Credit (via)', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter the X username you would like to credit. Leave empty for no credit.'),
         value: twitter_username,
         onChange: function onChange(value) {
           var replacement = value.replace('@', ''); // Strip @ symbol.
@@ -1545,14 +1546,14 @@ var TweetQuotes = function TweetQuotes(props) {
       }));
     } else if ('link' === tab.name) {
       tabContent = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Link in Tweet', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Link in X Post', 'quotes-dlx'),
         checked: enable_links_in_tweet,
         onChange: function onChange(value) {
           setAttributes({
             enable_links_in_tweet: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Disabling this will strip the link from the Tweet.', 'quotes-dlx')
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Disabling this will strip the link from the Post.', 'quotes-dlx')
       }), enable_links_in_tweet && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable Anchor', 'quotes-dlx'),
         checked: has_anchor,
@@ -1564,7 +1565,7 @@ var TweetQuotes = function TweetQuotes(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable anchors so users can link directly to the quote.', 'quotes-dlx')
       }), has_anchor && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Anchor (ID)', 'quotes-dlx'),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enter a unique anchor for the post container so that you can directly link to it. Do not use the hashtag (#) symbol.'),
         value: anchor,
         onChange: function onChange(value) {
           setAttributes({
@@ -1579,7 +1580,7 @@ var TweetQuotes = function TweetQuotes(props) {
             url_shortener: value
           });
         },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable the URL shortener for your tweets.', 'quotes-dlx')
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Enable the URL shortener for your posts.', 'quotes-dlx')
       }), url_shortener && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.RadioControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_17__.__)('Shortlink Service', 'quotes-dlx'),
         selected: url_shortening_service,
@@ -2009,7 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _icons_QuoteIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icons/QuoteIcon */ "./src/js/components/icons/QuoteIcon.js");
 /* harmony import */ var _icons_CopyIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/CopyIcon */ "./src/js/components/icons/CopyIcon.js");
 /* harmony import */ var _icons_LinkIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../icons/LinkIcon */ "./src/js/components/icons/LinkIcon.js");
-/* harmony import */ var _icons_twitter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons/twitter */ "./src/js/components/icons/twitter.js");
+/* harmony import */ var _icons_x__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons/x */ "./src/js/components/icons/x.js");
 /* harmony import */ var _icons_FacebookIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../icons/FacebookIcon */ "./src/js/components/icons/FacebookIcon.js");
 /* harmony import */ var _icons_AtIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../icons/AtIcon */ "./src/js/components/icons/AtIcon.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/js/components/MeatballMenu/editor.scss");
@@ -2025,21 +2026,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var MeatballMenu = function MeatballMenu(attributes) {
   var enable_copy_text = attributes.enable_copy_text,
-      enable_copy_tweet = attributes.enable_copy_tweet,
-      enable_copy_link = attributes.enable_copy_link,
-      enable_tweet_this = attributes.enable_tweet_this,
-      enable_share_this = attributes.enable_share_this,
-      enable_email_text = attributes.enable_email_text,
-      copy_text_label = attributes.copy_text_label,
-      copy_tweet_label = attributes.copy_tweet_label,
-      copy_link_label = attributes.copy_link_label,
-      tweet_this_label = attributes.tweet_this_label,
-      share_this_label = attributes.share_this_label,
-      email_text_label = attributes.email_text_label;
-
+    enable_copy_tweet = attributes.enable_copy_tweet,
+    enable_copy_link = attributes.enable_copy_link,
+    enable_tweet_this = attributes.enable_tweet_this,
+    enable_share_this = attributes.enable_share_this,
+    enable_email_text = attributes.enable_email_text,
+    copy_text_label = attributes.copy_text_label,
+    copy_tweet_label = attributes.copy_tweet_label,
+    copy_link_label = attributes.copy_link_label,
+    tweet_this_label = attributes.tweet_this_label,
+    share_this_label = attributes.share_this_label,
+    email_text_label = attributes.email_text_label;
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
       width: 16,
@@ -2047,7 +2046,6 @@ var MeatballMenu = function MeatballMenu(attributes) {
       fill: "#6c757d"
     });
   };
-
   var getButton = function getButton() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "quotes-dlx-meatball-menu"
@@ -2082,7 +2080,7 @@ var MeatballMenu = function MeatballMenu(attributes) {
       onClick: function onClick(e) {}
     }), enable_tweet_this && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MeatballMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       Icon: function Icon() {
-        return getIcon(_icons_twitter__WEBPACK_IMPORTED_MODULE_6__["default"]);
+        return getIcon(_icons_x__WEBPACK_IMPORTED_MODULE_6__["default"]);
       },
       text: tweet_this_label,
       onClick: function onClick(e) {}
@@ -2099,10 +2097,8 @@ var MeatballMenu = function MeatballMenu(attributes) {
       className: "quotes-dlx-meatball-icon"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null))))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getButton());
 };
-
 MeatballMenu.defaultProps = {
   enable_copy_text: true,
   enable_copy_link: true,
@@ -2800,10 +2796,10 @@ var PaintbrushIcon = function PaintbrushIcon(props) {
 
 /***/ }),
 
-/***/ "./src/js/components/icons/twitter.js":
-/*!********************************************!*\
-  !*** ./src/js/components/icons/twitter.js ***!
-  \********************************************/
+/***/ "./src/js/components/icons/x.js":
+/*!**************************************!*\
+  !*** ./src/js/components/icons/x.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2811,40 +2807,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);
 
-
-
-var TwitterIcon = function TwitterIcon(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    "aria-hidden": "true",
-    "data-prefix": "fab",
-    "data-icon": "twitter",
-    className: "prefix__svg-inline--fa prefix__fa-twitter prefix__fa-w-16",
+var XIcon = function XIcon(props) {
+  return /*#__PURE__*/React.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 512 512",
     width: props.width,
     height: props.height
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    fill: props.fill,
-    d: "M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+  }, /*#__PURE__*/React.createElement("path", {
+    fill: "currentColor",
+    d: "M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"
   }));
 };
-
-TwitterIcon.defaultProps = {
+XIcon.defaultProps = {
   width: 24,
   height: 24,
   fill: '#FFFFFF'
 };
-TwitterIcon.propTypes = {
-  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
-  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
-  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+XIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().string)
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TwitterIcon);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (XIcon);
 
 /***/ }),
 

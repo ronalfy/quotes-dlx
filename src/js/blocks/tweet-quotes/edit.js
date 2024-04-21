@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import twttr from '../../validation/twitter';
 import IconCircle from '../../components/icons/Circle';
 import UnitChooser from '../../components/unit-picker';
-import TwitterIcon from '../../components/icons/twitter';
+import XIcon from '../../components/icons/x';
 import FacebookIcon from '../../components/icons/FacebookIcon';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import PreviewIcon from '../../components/icons/Preview';
@@ -365,7 +365,7 @@ const TweetQuotes = ( props ) => {
 							{ ( tweet_button_display === 'icon' ||
 								tweet_button_display === 'full' ) && (
 								<span className="quotes-dlx-button-icon">
-									<TwitterIcon />
+									<XIcon />
 								</span>
 							) }
 						</>
@@ -435,21 +435,21 @@ const TweetQuotes = ( props ) => {
 			>
 				<PanelRow>
 					<ToggleControl
-						label={ __( 'Enable Twitter Share Button', 'quotes-dlx' ) }
+						label={ __( 'Enable X Share Button', 'quotes-dlx' ) }
 						checked={ tweet_button_enabled }
 						onChange={ ( value ) => {
 							setAttributes( {
 								tweet_button_enabled: value,
 							} );
 						} }
-						help={ __( 'Show or hide the Click to Tweet button.', 'quotes-dlx' ) }
+						help={ __( 'Show or hide the Click to Post button.', 'quotes-dlx' ) }
 					/>
 				</PanelRow>
 				{ tweet_button_enabled && (
 					<PanelRow>
 						<TextControl
-							label={ __( 'Tweet Button Text', 'quotes-dlx' ) }
-							help={ __( 'Enter the Click to Tweet button text.' ) }
+							label={ __( 'X Button Text', 'quotes-dlx' ) }
+							help={ __( 'Enter the Click to Post button text.' ) }
 							value={ share_button_text }
 							onChange={ ( value ) => {
 								setAttributes( {
@@ -591,7 +591,7 @@ const TweetQuotes = ( props ) => {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
-								label={ __( 'Enable Copy Tweet', 'quotes-dlx' ) }
+								label={ __( 'Enable Copy Post', 'quotes-dlx' ) }
 								checked={ enable_copy_tweet }
 								onChange={ ( value ) => {
 									setAttributes( {
@@ -628,13 +628,14 @@ const TweetQuotes = ( props ) => {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
-								label={ __( 'Enable Tweet This', 'quotes-dlx' ) }
+								label={ __( 'Enable Post This', 'quotes-dlx' ) }
 								checked={ enable_tweet_this }
 								onChange={ ( value ) => {
 									setAttributes( {
 										enable_tweet_this: value,
 									} );
 								} }
+								help={ __( 'Enable X sharing in the context menu.', 'quotes-dlx' ) }
 								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>
@@ -839,7 +840,7 @@ const TweetQuotes = ( props ) => {
 								className: 'quotes-dlx-tab-appearance',
 							},
 							{
-								title: __( 'Tweet Settings', 'quotes-dlx' ),
+								title: __( 'X Settings', 'quotes-dlx' ),
 								name: 'settings',
 								className: 'quotes-dlx-tab-settings',
 							},
@@ -907,7 +908,7 @@ const TweetQuotes = ( props ) => {
 								tabContent = (
 									<>
 										<ToggleControl
-											label={ __( 'Customize Twitter Content', 'quotes-dlx' ) }
+											label={ __( 'Customize X Content', 'quotes-dlx' ) }
 											checked={ share_text_override_enabled }
 											onChange={ ( value ) => {
 												setAttributes( {
@@ -915,15 +916,15 @@ const TweetQuotes = ( props ) => {
 												} );
 											} }
 											help={ __(
-												'If your quote is too large for Twitter, you can create custom tweet content here.',
+												'If your quote is too large for X, you can create custom post content here.',
 												'quotes-dlx'
 											) }
 										/>
 										{ share_text_override_enabled && (
 											<TextareaControl
-												label={ __( 'Custom Tweet Content', 'quotes-dlx' ) }
+												label={ __( 'Custom X Content', 'quotes-dlx' ) }
 												help={ __(
-													'Enter your custom tweet content here if your quote is too long for Twitter'
+													'Enter your custom X content here if your quote is too long for posting.'
 												) }
 												value={ share_text_override }
 												onChange={ ( value ) => {
@@ -959,9 +960,9 @@ const TweetQuotes = ( props ) => {
 											} }
 										/>
 										<TextControl
-											label={ __( 'Tweet Credit (via)', 'quotes-dlx' ) }
+											label={ __( 'X Credit (via)', 'quotes-dlx' ) }
 											help={ __(
-												'Enter the Twitter username you would like to credit. Leave empty for no credit.'
+												'Enter the X username you would like to credit. Leave empty for no credit.'
 											) }
 											value={ twitter_username }
 											onChange={ ( value ) => {
@@ -987,7 +988,7 @@ const TweetQuotes = ( props ) => {
 								tabContent = (
 									<>
 										<ToggleControl
-											label={ __( 'Enable Link in Tweet', 'quotes-dlx' ) }
+											label={ __( 'Enable Link in X Post', 'quotes-dlx' ) }
 											checked={ enable_links_in_tweet }
 											onChange={ ( value ) => {
 												setAttributes( {
@@ -995,7 +996,7 @@ const TweetQuotes = ( props ) => {
 												} );
 											} }
 											help={ __(
-												'Disabling this will strip the link from the Tweet.',
+												'Disabling this will strip the link from the Post.',
 												'quotes-dlx'
 											) }
 										/>
@@ -1018,7 +1019,7 @@ const TweetQuotes = ( props ) => {
 													<TextControl
 														label={ __( 'Anchor (ID)', 'quotes-dlx' ) }
 														help={ __(
-															'Enter a unique anchor for the tweet container so that you can directly link to it. Do not use the hashtag (#) symbol.'
+															'Enter a unique anchor for the post container so that you can directly link to it. Do not use the hashtag (#) symbol.'
 														) }
 														value={ anchor }
 														onChange={ ( value ) => {
@@ -1037,7 +1038,7 @@ const TweetQuotes = ( props ) => {
 														} );
 													} }
 													help={ __(
-														'Enable the URL shortener for your tweets.',
+														'Enable the URL shortener for your posts.',
 														'quotes-dlx'
 													) }
 												/>

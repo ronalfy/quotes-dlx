@@ -54,6 +54,9 @@ import {
 
 const HtmlToReactParser = require( 'html-to-react' ).Parser;
 
+// For storing unique IDs.
+const uniqueIds = [];
+
 const TweetQuotes = ( props ) => {
 	const manualUrlInput = createRef( null );
 	const shareTextInput = createRef( null );
@@ -68,12 +71,20 @@ const TweetQuotes = ( props ) => {
 	const [ urlShortener, setUrlShortener ] = useState( 'default' );
 
 	// Shortcuts.
-	const { attributes, setAttributes, isSelected } = props;
+	const { attributes, setAttributes, isSelected, clientId } = props;
 
-	const generatedUniqueId = useInstanceId(
-		TweetQuotes,
-		attributes.anchor_prefix
-	);
+	/**
+	 * Get a unique ID for the block for inline styling if necessary.
+	 */
+	useEffect( () => {
+		if ( ( null === uniqueId || '' === uniqueId ) || uniqueIds.includes( uniqueId ) ) {
+			const newUniqueId = attributes.anchor_prefix + '_' + clientId.substr( 2, 9 ).replace( '-', '' );
+			setAttributes( { uniqueId: newUniqueId, anchor: newUniqueId } );
+			uniqueIds.push( newUniqueId );
+		} else {
+			uniqueIds.push( uniqueId );
+		}
+	}, [] );
 
 	const postObject = useSelect( ( select ) => {
 		// Useful functions: getCurrentPost, getCurrentPostId, getPermalink
@@ -141,8 +152,6 @@ const TweetQuotes = ( props ) => {
 	] );
 
 	useEffect( () => {
-		setAttributes( { uniqueId: generatedUniqueId, anchor: generatedUniqueId } );
-
 		// Check to see if defaults have been applied.
 		if ( ! defaultsApplied ) {
 			// Get original values before defaults applied.

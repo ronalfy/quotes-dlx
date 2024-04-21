@@ -833,6 +833,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var HtmlToReactParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
+
+// For storing unique IDs.
+var uniqueIds = [];
 var TweetQuotes = function TweetQuotes(props) {
   var _classnames, _classnames2;
   var manualUrlInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.createRef)(null);
@@ -871,8 +874,24 @@ var TweetQuotes = function TweetQuotes(props) {
   // Shortcuts.
   var attributes = props.attributes,
     setAttributes = props.setAttributes,
-    isSelected = props.isSelected;
-  var generatedUniqueId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_19__.useInstanceId)(TweetQuotes, attributes.anchor_prefix);
+    isSelected = props.isSelected,
+    clientId = props.clientId;
+
+  /**
+   * Get a unique ID for the block for inline styling if necessary.
+   */
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
+    if (null === uniqueId || '' === uniqueId || uniqueIds.includes(uniqueId)) {
+      var newUniqueId = attributes.anchor_prefix + '_' + clientId.substr(2, 9).replace('-', '');
+      setAttributes({
+        uniqueId: newUniqueId,
+        anchor: newUniqueId
+      });
+      uniqueIds.push(newUniqueId);
+    } else {
+      uniqueIds.push(uniqueId);
+    }
+  }, []);
   var postObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_15__.useSelect)(function (select) {
     // Useful functions: getCurrentPost, getCurrentPostId, getPermalink
     // Credit: https://ryanwelcher.com/2021/08/requesting-data-in-gutenberg-with-getentityrecords/
@@ -927,11 +946,6 @@ var TweetQuotes = function TweetQuotes(props) {
     countInfoCharacters();
   }, [twitter_username, share_text, share_text_override, hashtags, share_text_override_enabled, enable_links_in_tweet, permalink, anchor, has_anchor]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_14__.useEffect)(function () {
-    setAttributes({
-      uniqueId: generatedUniqueId,
-      anchor: generatedUniqueId
-    });
-
     // Check to see if defaults have been applied.
     if (!defaultsApplied) {
       // Get original values before defaults applied.

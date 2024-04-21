@@ -1034,7 +1034,6 @@ class Blocks {
 				true
 			);
 		}
-
 	}
 
 	/**

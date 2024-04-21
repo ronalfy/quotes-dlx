@@ -59,9 +59,9 @@ class Options_Menu extends Options_Abstract {
 			'enable_share_this'             => false,
 			'email_text_label'              => __( 'Email Quote', 'quotes-dlx' ),
 			'copy_text_label'               => __( 'Copy Quote', 'quotes-dlx' ),
-			'copy_tweet_label'              => __( 'Copy Tweet', 'quotes-dlx' ),
+			'copy_tweet_label'              => __( 'Copy X Post', 'quotes-dlx' ),
 			'copy_link_label'               => __( 'Copy Link', 'quotes-dlx' ),
-			'tweet_this_label'              => __( 'Tweet This', 'quotes-dlx' ),
+			'tweet_this_label'              => __( 'Post This', 'quotes-dlx' ),
 			'share_this_label'              => __( 'Share This', 'quotes-dlx' ),
 		);
 

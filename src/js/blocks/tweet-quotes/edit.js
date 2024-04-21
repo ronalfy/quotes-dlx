@@ -936,11 +936,12 @@ const TweetQuotes = ( props ) => {
 										<FormTokenField
 											value={ hashtags }
 											placeholder={ __(
-												'Enter hashtags separated by commas.',
+												'hashtag1, hashtag2, hashtah 3.',
 												'quotes-dlx'
 											) }
 											className="quotes-dlx-hashtag-fields"
 											tokenizeOnSpace={ true }
+											tokenizeOnBlur={ true }
 											label={ __( 'Hashtags', 'quotes-dlx' ) }
 											onChange={ ( tokens ) => {
 												const filteredTokens = [];

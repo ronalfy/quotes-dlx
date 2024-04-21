@@ -315,7 +315,7 @@ const Interface = ( props ) => {
 							<table className="form-table" role="presentation">
 								<tbody>
 									<tr>
-										<th scope="row">{ __( 'Tweet Defaults', 'quotes-dlx' ) }</th>
+										<th scope="row">{ __( 'X Social Defaults', 'quotes-dlx' ) }</th>
 										<td>
 											<Controller
 												name="twitterUsername"
@@ -330,10 +330,10 @@ const Interface = ( props ) => {
 												} }
 												render={ ( { field: { onChange, value } } ) => (
 													<TextControl
-														label={ __( 'Tweet Credit', 'quotes-dlx' ) }
+														label={ __( 'X (formerly Twitter) Credit', 'quotes-dlx' ) }
 														className="qdlx-admin__text-control"
 														register="tweet_credit"
-														placeholder="TwitterUsername"
+														placeholder="YourUsername"
 														value={ value }
 														onChange={ ( currentValue ) => {
 															let twitterUsername = '';
@@ -357,7 +357,7 @@ const Interface = ( props ) => {
 															onChange( twitterUsername );
 														} }
 														help={ __(
-															'Leave this blank to have no default Twitter credit',
+															'Leave this blank to have no default X credit',
 															'quotes-dlx'
 														) }
 													/>
@@ -365,7 +365,7 @@ const Interface = ( props ) => {
 											/>
 											{ 'validate' === errors.twitterUsername?.type && (
 												<Notice
-													message={ __( 'The Twitter Username is Invalid.' ) }
+													message={ __( 'The X Username is Invalid.' ) }
 													status="error"
 													politeness="assertive"
 													inline={ true }
@@ -379,11 +379,12 @@ const Interface = ( props ) => {
 													<FormTokenField
 														value={ value }
 														placeholder={ __(
-															'Enter hashtags separated by commas.',
+															'hashtag1, hashtag2, hashtag3',
 															'quotes-dlx'
 														) }
 														className="quotes-dlx-hashtag-fields"
 														tokenizeOnSpace={ true }
+														tokenizeOnBlur={ true }
 														label={ __( 'Hashtags', 'quotes-dlx' ) }
 														onChange={ ( tokens ) => {
 															const filteredTokens = [];
@@ -413,7 +414,7 @@ const Interface = ( props ) => {
 												render={ ( { field: { onChange, value } } ) => (
 													<ToggleControl
 														label={ __(
-															'Enable Click to Tweet Button',
+															'Enable Click to Post Button',
 															'quotes-dlx'
 														) }
 														className="qdlx-admin__toggle-control"
@@ -423,7 +424,7 @@ const Interface = ( props ) => {
 															onChange( boolValue );
 														} }
 														help={ __(
-															'Enable or Disable the Click to Tweet button. This is useful if you want to hide the button and use the block for just quotes.',
+															'Enable or Disable the Click to Post (formerly Tweet) button. This is useful if you want to hide the button and use the block for just quotes.',
 															'quotes-dlx'
 														) }
 													/>
@@ -438,7 +439,7 @@ const Interface = ( props ) => {
 														render={ ( { field } ) => (
 															<TextControl
 																{ ...field }
-																label={ __( 'Click to Tweet Text', 'quotes-dlx' ) }
+																label={ __( 'Click to Post Text', 'quotes-dlx' ) }
 																className={ classNames(
 																	'qdlx-admin__text-control',
 																	{
@@ -450,7 +451,7 @@ const Interface = ( props ) => {
 																) }
 																aria-required="true"
 																help={ __(
-																	'This text will be the text displayed for the Click to Tweet button',
+																	'This text will be the text displayed for the Click to Post button',
 																	'quotes-dlx'
 																) }
 															/>
@@ -657,7 +658,7 @@ const Interface = ( props ) => {
 															render={ ( { field: { onClick, value } } ) => (
 																<ButtonGroup className="qdlx-admin__button-group--align">
 																	<label>
-																		{ __( 'Tweet Icon Alignment', 'quotes-dlx' ) }
+																		{ __( 'X Icon Alignment', 'quotes-dlx' ) }
 																	</label>
 																	<Button
 																		variant="primary"
@@ -721,7 +722,7 @@ const Interface = ( props ) => {
 												render={ ( { field: { onChange, value } } ) => (
 													<ToggleControl
 														label={ __(
-															'Enable Links in the Tweet',
+															'Enable Links in the Post',
 															'quotes-dlx'
 														) }
 														className="qdlx-admin__toggle-control"
@@ -731,7 +732,7 @@ const Interface = ( props ) => {
 															onChange( boolValue );
 														} }
 														help={ __(
-															'You can disable all links from showing in the Tweets',
+															'You can disable all links from showing in the posts to X',
 															'quotes-dlx'
 														) }
 													/>
@@ -824,7 +825,7 @@ const Interface = ( props ) => {
 																	onChange( boolValue );
 																} }
 																help={ __(
-																	'A URL shortener shortens your link so you can have more characters in your Tweet.',
+																	'A URL shortener shortens your link so you can have more characters in your Post.',
 																	'quotes-dlx'
 																) }
 															/>

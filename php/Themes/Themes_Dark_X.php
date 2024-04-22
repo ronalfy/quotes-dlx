@@ -89,7 +89,7 @@ class Themes_Dark_X extends Themes_Addon {
 	 *
 	 * @var string $preview_color The theme preview color hexcode or gradient color.
 	 */
-	protected static $preview_gradient = 'linear-gradient(90deg, rgba(231,84,128,1) 14%, rgba(251,232,239,1) 85%);';
+	protected static $preview_gradient = 'linear-gradient(90deg, rgba(0,0,0,1) 14%, rgba(255,255,255,1) 85%);';
 
 	/**
 	 * Preview URL image for theme.

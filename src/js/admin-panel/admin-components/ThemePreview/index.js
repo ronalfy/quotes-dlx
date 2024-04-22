@@ -3,7 +3,7 @@ import React, { useEffect, useState, Suspense, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import TwitterIcon from '../../../components/icons/twitter';
+import XIcon from '../../../components/icons/x';
 import MeatballMenu from '../../../components/MeatballMenu';
 
 const ThemePreview = ( props ) => {
@@ -128,7 +128,7 @@ const ThemePreview = ( props ) => {
 										{ __( 'Click to Tweet', 'quotes-dlx' ) }
 									</span>
 									<span className="quotes-dlx-button-icon">
-										<TwitterIcon />
+										<XIcon />
 									</span>
 								</>
 							</button>

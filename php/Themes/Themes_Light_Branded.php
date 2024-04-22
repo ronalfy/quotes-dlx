@@ -146,7 +146,7 @@ class Themes_Light_Branded extends Themes_Addon {
 	 * Get the name of the theme.
 	 */
 	protected static function get_name() {
-		return _x( 'Light Branded', 'A light theme with a touch of Twitter branding.', 'quotes-dlx' );
+		return _x( 'Light Branded', 'A light theme with a touch of old school Twitter branding.', 'quotes-dlx' );
 	}
 
 	/**
@@ -208,7 +208,7 @@ class Themes_Light_Branded extends Themes_Addon {
 	 * @return string Theme description.
 	 */
 	protected static function get_description() {
-		self::$theme_description = __( 'A touch of Twitter branding for a light and dark background.', 'quotes-dlx' );
+		self::$theme_description = __( 'A touch of old school Twitter branding for a light and dark background.', 'quotes-dlx' );
 		return self::$theme_description;
 	}
 

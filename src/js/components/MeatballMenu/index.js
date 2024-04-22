@@ -6,7 +6,7 @@ import MeatballMenuItem from '../MeatballMenuItem';
 import QuoteIcon from '../icons/QuoteIcon';
 import CopyIcon from '../icons/CopyIcon';
 import LinkIcon from '../icons/LinkIcon';
-import TwitterIcon from '../icons/twitter';
+import XIcon from '../icons/x';
 import FacebookIcon from '../icons/FacebookIcon';
 import AtIcon from '../icons/AtIcon';
 import './editor.scss';
@@ -86,7 +86,7 @@ const MeatballMenu = ( attributes ) => {
 								{ enable_tweet_this && (
 									<MeatballMenuItem
 										Icon={ () => {
-											return getIcon( TwitterIcon );
+											return getIcon( XIcon );
 										} }
 										text={ tweet_this_label }
 										onClick={ ( e ) => {} }

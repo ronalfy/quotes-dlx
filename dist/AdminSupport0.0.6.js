@@ -28,7 +28,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var AdminSupport = function AdminSupport() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__support-wrapper"
@@ -106,7 +105,6 @@ var AdminSupport = function AdminSupport() {
     href: "https://dlxplugins.com/support/"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Get Personalized Support', 'quotes-dlx')))))));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminSupport);
 
 /***/ })

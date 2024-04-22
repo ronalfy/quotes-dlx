@@ -1607,7 +1607,7 @@ button.button-reset.show-cursor {
 .ptam-component-color-picker {
   margin-left: -5px;
   margin-top: 0;
-  z-index: 1;
+  z-index: 1000;
   position: relative;
 }
 .ptam-component-color-picker .components-base-control {

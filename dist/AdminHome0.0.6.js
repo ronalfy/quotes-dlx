@@ -20,37 +20,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // eslint-disable-next-line no-unused-vars
 
  // ES6
 
 
 
-
-
 var Notice = function Notice(props) {
   var _classNames;
-
   var message = props.message,
-      status = props.status,
-      politeness = props.politeness,
-      icon = props.icon,
-      className = props.className,
-      inline = props.inline,
-      children = props.children,
-      animate = props.animate,
-      animationType = props.animationType;
+    status = props.status,
+    politeness = props.politeness,
+    icon = props.icon,
+    className = props.className,
+    inline = props.inline,
+    children = props.children,
+    animate = props.animate,
+    animationType = props.animationType;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__.speak)(message, politeness);
   }, [message, status, politeness]);
-
   var hasIcon = function hasIcon() {
     return icon !== null;
   };
-
   var getIcon = function getIcon(Icon) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
       width: 16,
@@ -58,7 +51,6 @@ var Notice = function Notice(props) {
       fill: "#6c757d"
     });
   };
-
   var containerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'qdlx-admin__notice', (_classNames = {
     'qdlx-admin__notice--has-icon': hasIcon()
   }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _defineProperty(_classNames, "qdlx-admin__notice-animate", animate), _defineProperty(_classNames, "qdlx-admin__notice-animate--".concat(animationType), animate), _classNames));
@@ -74,7 +66,6 @@ var Notice = function Notice(props) {
     className: "qldx-admin__notice-message"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, message, " ", children, " "))));
 };
-
 Notice.defaultProps = {
   message: '',
   status: 'info',
@@ -86,7 +77,7 @@ Notice.defaultProps = {
   animationType: 'fadein'
 };
 Notice.propTypes = {
-  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string.isRequired),
+  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string).isRequired,
   status: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['info', 'warning', 'success', 'error']),
   politeness: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['assertive', 'polite']),
   icon: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
@@ -119,9 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.es.js");
 /* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-
 /* eslint-disable no-unused-vars */
 
 
@@ -132,31 +121,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _quotes_dlx_admin = quotes_dlx_admin,
-    defaults = _quotes_dlx_admin.defaults,
-    themes = _quotes_dlx_admin.themes;
-
+  defaults = _quotes_dlx_admin.defaults,
+  themes = _quotes_dlx_admin.themes;
 var AdminHome = function AdminHome() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_6__["default"]),
-      defaultTheme = _useContext.defaultTheme,
-      setCurrentTheme = _useContext.setCurrentTheme;
-
+    defaultTheme = _useContext.defaultTheme,
+    setCurrentTheme = _useContext.setCurrentTheme;
   var getPreviewLink = function getPreviewLink(selectedTemplate) {
     return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(selectedTemplate, "&screen=desktop");
   };
-
   var outputCurrentTheme = function outputCurrentTheme() {
     // Get default theme from options or override with context.
     var selectedTemplate = defaults.template;
-
     if ('' !== defaultTheme) {
       selectedTemplate = defaultTheme;
     }
-
     var currentTheme = themes.find(function (_ref) {
       var slug = _ref.slug;
       return slug === selectedTemplate;
     });
-
     if (null === currentTheme || undefined === currentTheme) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "qdlx-admin__tabs--content-wrap"
@@ -170,7 +153,6 @@ var AdminHome = function AdminHome() {
         politeness: "polite"
       })))));
     }
-
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin__tabs--content-wrap"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -213,7 +195,6 @@ var AdminHome = function AdminHome() {
       href: "#/themes"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Change the Default Theme', 'quotes-dlx'))))));
   };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--home-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -341,7 +322,6 @@ var AdminHome = function AdminHome() {
     href: "https://docs.dlxplugins.com/developers/changelog"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Read the Changelog', 'quotes-dlx')))))))));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminHome);
 
 /***/ })

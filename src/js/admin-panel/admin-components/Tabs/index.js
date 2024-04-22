@@ -22,7 +22,7 @@ const AdminHome = lazy( () =>
 	import( /* webpackChunkName: "AdminHome0.0.6" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults0.0.7" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.8" */ '../../views/AdminDefaults' )
 );
 
 const AdminAdvanced = lazy( () =>
@@ -311,7 +311,6 @@ const AdminTabs = ( props ) => {
 		}
 	};
 
-	console.log( quotes_dlx_admin.should_disable_licensing );
 	return (
 		<div className="qdlx-admin-container__wrap" id="qdlx-admin-container">
 			<nav className="qdlx-admin__tabs--nav">

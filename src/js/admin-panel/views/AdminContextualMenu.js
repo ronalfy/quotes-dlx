@@ -352,21 +352,21 @@ const Interface = ( props ) => {
 												</td>
 											</tr>
 											<tr>
-												<th scope="row">{ __( 'Copy Tweet', 'quotes-dlx' ) }</th>
+												<th scope="row">{ __( 'Copy Post', 'quotes-dlx' ) }</th>
 												<td>
 													<Controller
 														name="enableCopyTweet"
 														control={ control }
 														render={ ( { field: { onChange, value } } ) => (
 															<ToggleControl
-																label={ __( 'Enable Copy Tweet', 'quotes-dlx' ) }
+																label={ __( 'Enable Copy Post', 'quotes-dlx' ) }
 																className="qdlx-admin__toggle-control"
 																checked={ value }
 																onChange={ ( boolValue ) => {
 																	onChange( boolValue );
 																} }
 																help={ __(
-																	'Enable the copying of the tweet to be used elsewhere.',
+																	'Enable the copying of the X post to be used elsewhere.',
 																	'quotes-dlx'
 																) }
 																disabled={ saving || resetting }
@@ -382,7 +382,7 @@ const Interface = ( props ) => {
 																render={ ( { field } ) => (
 																	<TextControl
 																		{ ...field }
-																		label={ __( 'Copy Tweet Label', 'quotes-dlx' ) }
+																		label={ __( 'Copy Post Label', 'quotes-dlx' ) }
 																		className={ classNames(
 																			'qdlx-admin__text-control',
 																			{
@@ -468,21 +468,21 @@ const Interface = ( props ) => {
 												</td>
 											</tr>
 											<tr>
-												<th scope="row">{ __( 'Tweet This', 'quotes-dlx' ) }</th>
+												<th scope="row">{ __( 'Post This', 'quotes-dlx' ) }</th>
 												<td>
 													<Controller
 														name="enableTweetThis"
 														control={ control }
 														render={ ( { field: { onChange, value } } ) => (
 															<ToggleControl
-																label={ __( 'Enable Tweet This Button', 'quotes-dlx' ) }
+																label={ __( 'Enable Post This Button', 'quotes-dlx' ) }
 																className="qdlx-admin__toggle-control"
 																checked={ value }
 																onChange={ ( boolValue ) => {
 																	onChange( boolValue );
 																} }
 																help={ __(
-																	'A Tweet This option will show at the bottom of the menu with this selected.',
+																	'A Post This (formerly Tweet) option will show at the bottom of the menu with this selected.',
 																	'quotes-dlx'
 																) }
 																disabled={ saving || resetting }
@@ -498,7 +498,7 @@ const Interface = ( props ) => {
 																render={ ( { field } ) => (
 																	<TextControl
 																		{ ...field }
-																		label={ __( 'Tweet This Label', 'quotes-dlx' ) }
+																		label={ __( 'Post This Label', 'quotes-dlx' ) }
 																		className={ classNames(
 																			'qdlx-admin__text-control',
 																			{

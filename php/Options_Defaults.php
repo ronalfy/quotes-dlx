@@ -54,7 +54,7 @@ class Options_Defaults extends Options_Abstract {
 			'twitter_username'           => '',
 			'hashtags'                   => array(),
 			'align'                      => 'center',
-			'share_button_text'          => __( 'Click to Tweet', 'quotes-dlx' ),
+			'share_button_text'          => __( 'Click to Post', 'quotes-dlx' ),
 			'tweet_button_alignment'     => 'right',
 			'tweet_icon_alignment'       => 'right',
 			'tweet_button_display'       => 'full',

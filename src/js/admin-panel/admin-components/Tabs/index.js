@@ -43,7 +43,7 @@ const AdminThemesDefaults = lazy( () =>
 
 const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeOptions0.0.8" */ '../../views/AdminThemeOptions'
+		/* webpackChunkName: "AdminThemeOptions0.0.9" */ '../../views/AdminThemeOptions'
 	)
 );
 

@@ -54,11 +54,12 @@ class Register_Menu {
 		if ( 'settings_page_quotes-dlx' !== $hook ) {
 			return;
 		}
+		$deps = require_once Functions::get_plugin_dir( 'dist/quotes-dlx-admin-panel.asset.php' );
 		wp_enqueue_script(
 			'quotes-dlx-admin-js',
 			Functions::get_plugin_url( 'dist/quotes-dlx-admin-panel.js' ),
-			array(),
-			Functions::get_plugin_version(),
+			$deps['dependencies'],
+			$deps['version'],
 			true
 		);
 

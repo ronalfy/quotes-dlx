@@ -3,7 +3,7 @@
  * Plugin Name:       QuotesDLX
  * Plugin URI:        https://mediaron.com/plugins/quotes-dlx/
  * Description:       The quickest way to insert quotes into your WordPress site.
- * Version:           2.3.0
+ * Version:           2.3.1
  * Requires at least: 5.9
  * Requires PHP:      7.2
  * Author:            DLX Plugins
@@ -18,7 +18,7 @@
 
 namespace MediaRonLLC\QuotesDLX;
 
-define( 'QUOTES_DLX_VERSION', '2.3.0' );
+define( 'QUOTES_DLX_VERSION', '2.3.1' );
 define( 'QUOTES_DLX_FILE', __FILE__ );
 
 // Support for site-level autoloading.

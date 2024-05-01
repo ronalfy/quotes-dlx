@@ -59,6 +59,9 @@
 .quotes-dlx-block-theme-dark-matter.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
 }
+.quotes-dlx-block-theme-dark-matter.quotes-dlx.quotes-dlx-has-no-tweet-button figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 68px;
+}
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper {
   position: relative;
   background: var(--qdlx-dark-matter-primary, #2B2B2B);
@@ -98,7 +101,7 @@
   quotes: none;
   vertical-align: baseline;
   font-style: inherit;
-  padding: 60px 51px 60px 51px;
+  padding: 68px 51px 34px 51px;
   text-align: left;
 }
 @media (min-width: 768px) {
@@ -117,7 +120,7 @@
   display: flex;
   position: relative;
   background: var(--qdlx-dark-matter-primary, #2B2B2B);
-  padding: 45px 35px;
+  padding: 34px 51px 68px 51px;
   padding-top: 0;
 }
 .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon {
@@ -476,13 +479,16 @@
 }
 
 /* Fix for blockquote padding with citation */
-.quotes-dlx-has-citation .quotes-dlx-block-theme-dark-matter .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+.template-dark-matter {
+  /* Inner Link Styles */
+  /* Blockquote styles when there is no tweet button */
+  /* Citation Styles */
+}
+.template-dark-matter.quotes-dlx-has-citation .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
   padding-bottom: 34px;
 }
-
-/* Inner Link Styles */
-.quotes-dlx-text-wrapper a,
-.quotes-dlx-citation-wrapper a {
+.template-dark-matter .quotes-dlx-text-wrapper a,
+.template-dark-matter .quotes-dlx-citation-wrapper a {
   position: relative;
   color: var(--qdlx-dark-matter-link, #CC7000);
   text-transform: none;
@@ -490,14 +496,14 @@
   transition: all 0.35s ease-in-out;
   text-decoration: none !important; /* override core style */
 }
-.quotes-dlx-text-wrapper a:hover,
-.quotes-dlx-citation-wrapper a:hover {
+.template-dark-matter .quotes-dlx-text-wrapper a:hover,
+.template-dark-matter .quotes-dlx-citation-wrapper a:hover {
   color: var(--qdlx-dark-matter-link-hover, #CC7000);
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:after, .quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-dark-matter .quotes-dlx-text-wrapper a:after, .template-dark-matter .quotes-dlx-text-wrapper a:hover:after,
+.template-dark-matter .quotes-dlx-citation-wrapper a:after,
+.template-dark-matter .quotes-dlx-citation-wrapper a:hover:after {
   content: "";
   display: block;
   width: 100%;
@@ -509,30 +515,38 @@
   left: 0;
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-dark-matter .quotes-dlx-text-wrapper a:after,
+.template-dark-matter .quotes-dlx-citation-wrapper a:after {
+  background: transparent;
+}
+.template-dark-matter .quotes-dlx-text-wrapper a:hover:after,
+.template-dark-matter .quotes-dlx-citation-wrapper a:hover:after {
   background: var(--qdlx-dark-matter-link-underline-hover, #CC7000);
 }
-
-/* Citation Styles */
-.quotes-dlx-citation-wrapper {
+.template-dark-matter.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 68px;
+}
+.template-dark-matter.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 34px;
+}
+.template-dark-matter .quotes-dlx-citation-wrapper {
   padding-left: 51px;
   padding-right: 51px;
-  padding-bottom: 30px;
+  padding-bottom: 34px;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   color: var(--qdlx-dark-matter-text-color, #FFF);
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
   font-size: 1.25em;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-dark-matter .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   font-size: 1em;
 }
-.quotes-dlx-citation-wrapper .has-border {
+.template-dark-matter .quotes-dlx-citation-wrapper .has-border {
   border-color: var(--qdlx-dark-matter-text-color, #FFF);
 }
 

@@ -308,7 +308,7 @@ class Themes_Dark extends Themes_Addon {
 			array(
 				'name'  => __( 'Link', 'quotes-dlx' ),
 				'slug'  => 'link',
-				'color' => '#FFFFFF',
+				'color' => '#cc7000',
 			),
 			array(
 				'name'  => __( 'Link Hover', 'quotes-dlx' ),

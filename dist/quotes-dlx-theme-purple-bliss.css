@@ -55,18 +55,6 @@
 .quotes-dlx-block-theme-purple-bliss.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 0;
 }
-.quotes-dlx-block-theme-purple-bliss .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-purple-bliss-accent, #ff6900);
-  text-transform: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.35s ease-in-out;
-}
-.quotes-dlx-block-theme-purple-bliss .quotes-dlx-text-wrapper a:hover {
-  transition: all 0.35s ease-in-out;
-  color: var(--qdlx-purple-bliss-accent, #ff6900);
-  border-bottom: 2px solid var(--qdlx-purple-bliss-accent, #ff6900);
-}
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper {
   position: relative;
   background: transparent;
@@ -108,7 +96,7 @@
   quotes: none;
   vertical-align: baseline;
   font-style: inherit;
-  padding: 60px 35px 20px 35px;
+  padding: 60px 35px 30px 35px;
   text-align: center;
 }
 @media (min-width: 768px) {
@@ -128,7 +116,8 @@
   position: relative;
   background: var(--qdlx-purple-bliss-background, #f8f7fb);
   border-bottom: 2px solid var(--qdlx-purple-bliss-border-bottom, #cbc3e3);
-  padding: 20px 35px;
+  padding: 30px 34px;
+  padding-bottom: 60px;
   padding-top: 0;
 }
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon {
@@ -452,6 +441,75 @@
 .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
   display: inline-block;
   background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+
+.template-purple-bliss {
+  /* Inner Link Styles */
+  /* Blockquote styles when there is no tweet button */
+  /* Citation Styles */
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a,
+.template-purple-bliss .quotes-dlx-citation-wrapper a {
+  position: relative;
+  color: var(--qdlx-purple-bliss-link, #ff6900);
+  text-transform: none;
+  padding-bottom: 4px;
+  transition: all 0.35s ease-in-out;
+  text-decoration: none !important; /* override core style */
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:hover,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover {
+  color: var(--qdlx-purple-bliss-link-hover, #ff6900);
+  transition: all 0.35s ease-in-out;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:after, .template-purple-bliss .quotes-dlx-text-wrapper a:hover:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--qdlx-purple-bliss-link-underline, #FFFFFF);
+  transition: all 0.35s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.35s ease-in-out;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:after {
+  background: transparent;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:hover:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover:after {
+  background: var(--qdlx-purple-bliss-link-underline-hover, #FFFFFF);
+}
+.template-purple-bliss.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 68px;
+}
+.template-purple-bliss.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 34px;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper {
+  background: var(--qdlx-purple-bliss-background, #f8f7fb);
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 34px;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  color: var(--qdlx-purple-bliss-text, #393838);
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+  font-size: 1.25em;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  font-size: 1em;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .has-border {
+  border-color: var(--qdlx-purple-bliss-secondary, #67009C);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-purple-bliss.css.map*/

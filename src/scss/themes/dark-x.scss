@@ -591,60 +591,70 @@ $dark: #000;
 	}
 
 }
-
-/* Inner Link Styles */
-.quotes-dlx-text-wrapper,
-.quotes-dlx-citation-wrapper {
-	a {
-		position: relative;
-		color: var( --qdlx-dark-x-link, $link );
-		text-transform: none;
-		padding-bottom: 4px;
-		transition: all .35s ease-in-out;
-		text-decoration: none !important; /* override core style */
-
-		&:hover {
+.template-dark-x {
+	/* Inner Link Styles */
+	.quotes-dlx-text-wrapper,
+	.quotes-dlx-citation-wrapper {
+		a {
+			position: relative;
 			color: var( --qdlx-dark-x-link, $link );
-			transition: all 0.35s ease-in-out;
+			text-transform: none;
+			padding-bottom: 4px;
+			transition: all .35s ease-in-out;
+			text-decoration: none !important; /* override core style */
+
+			&:hover {
+				color: var( --qdlx-dark-x-link, $link );
+				transition: all 0.35s ease-in-out;
+			}
+			&:after,
+			&:hover:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: transparent;
+				transition: all 0.35s ease-in-out;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				transition: all 0.35s ease-in-out;
+			}
+			&:hover:after {
+				background: var( --qdlx-dark-x-link, $link );
+			}
 		}
-		&:after,
-		&:hover:after {
-			content: '';
-			display: block;
-			width: 100%;
-			height: 2px;
-			background: transparent;
-			transition: all 0.35s ease-in-out;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			transition: all 0.35s ease-in-out;
+	}
+
+	/* Citation Styles */
+	&.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button {
+		.quotes-dlx-citation-wrapper {
+			padding-bottom: 68px;
 		}
-		&:hover:after {
-			background: var( --qdlx-dark-x-link, $link );
+		.quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 34px;
+		}
+	}
+	.quotes-dlx-citation-wrapper  {
+		padding-left: 68px;
+		padding-right: 68px;
+		padding-bottom: 34px;
+
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-author,
+		.quotes-dlx-citation-source {
+			color: var( --qdlx-dark-x-accent, $accent );
+		}
+		.quotes-dlx-citation-author {
+			font-size: 1.25em;
+		}
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-source {
+			font-size: 1em;
+		}
+		.has-border {
+			border-color: var( --qdlx-dark-x-accent, $accent );
 		}
 	}
 }
 
-/* Citation Styles */
-.quotes-dlx-citation-wrapper  {
-	padding-left: 68px;
-	padding-right: 68px;
-	padding-bottom: 34px;
-
-	.quotes-dlx-citation-title,
-	.quotes-dlx-citation-author,
-	.quotes-dlx-citation-source {
-		color: var( --qdlx-dark-x-accent, $accent );
-	}
-	.quotes-dlx-citation-author {
-		font-size: 1.25em;
-	}
-	.quotes-dlx-citation-title,
-	.quotes-dlx-citation-source {
-		font-size: 1em;
-	}
-	.has-border {
-		border-color: var( --qdlx-dark-x-accent, $accent );
-	}
-}

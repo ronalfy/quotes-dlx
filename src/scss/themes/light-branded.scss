@@ -539,59 +539,75 @@ $link: #1DA1F2;
 	}
 
 }
-/* Inner Link Styles */
-.quotes-dlx-text-wrapper,
-.quotes-dlx-citation-wrapper {
-	a {
-		position: relative;
-		color: var( --qdlx-light-branded-link, $link );
-		text-transform: none;
-		padding-bottom: 4px;
-		transition: all .35s ease-in-out;
-		text-decoration: none !important; /* override core style */
+.template-light-branded {
+	/* Inner Link Styles */
+	.quotes-dlx-text-wrapper,
+	.quotes-dlx-citation-wrapper {
+		a {
+			position: relative;
+			color: var( --qdlx-light-branded-link, $link );
+			text-transform: none;
+			padding-bottom: 4px;
+			transition: all .35s ease-in-out;
+			text-decoration: none !important; /* override core style */
 
-		&:hover {
-			color: var( --qdlx-light-branded-link-hover, $link );
-			transition: all 0.35s ease-in-out;
-		}
-		&:after,
-		&:hover:after {
-			content: '';
-			display: block;
-			width: 100%;
-			height: 2px;
-			background: var( --qdlx-light-branded-link-underline, $link );
-			transition: all 0.35s ease-in-out;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			transition: all 0.35s ease-in-out;
-		}
-		&:hover:after {
-			background: var( --qdlx-light-branded-link-underline-hover, $link );
+			&:hover {
+				color: var( --qdlx-light-branded-link-hover, $link );
+				transition: all 0.35s ease-in-out;
+			}
+			&:after,
+			&:hover:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: var( --qdlx-light-branded-link-underline, $link );
+				transition: all 0.35s ease-in-out;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				transition: all 0.35s ease-in-out;
+			}
+			&:after {
+				background: transparent;
+			}
+			&:hover:after {
+				background: var( --qdlx-light-branded-link-underline-hover, $link );
+			}
 		}
 	}
-}
 
-/* Citation Styles */
-.quotes-dlx-citation-wrapper  {
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-bottom: 35px;
+	/* Blockquote styles when there is no tweet button */
+	&.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button {
+		.quotes-dlx-citation-wrapper {
+			padding-bottom: 70px;
+		}
+		.quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 25px;
+		}
+	}
 
-	.quotes-dlx-citation-title,
-	.quotes-dlx-citation-author,
-	.quotes-dlx-citation-source {
-		color: var( --qdlx-light-branded-secondary, $dark );
-	}
-	.quotes-dlx-citation-author {
-		font-size: 1.25em;
-	}
-	.quotes-dlx-citation-title,
-	.quotes-dlx-citation-source {
-		font-size: 1em;
-	}
-	.has-border {
-		border-color: var( --qdlx-light-branded-secondary, $dark );
+
+	/* Citation Styles */
+	.quotes-dlx-citation-wrapper  {
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-bottom: 35px;
+
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-author,
+		.quotes-dlx-citation-source {
+			color: var( --qdlx-light-branded-secondary, $dark );
+		}
+		.quotes-dlx-citation-author {
+			font-size: 1.25em;
+		}
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-source {
+			font-size: 1em;
+		}
+		.has-border {
+			border-color: var( --qdlx-light-branded-secondary, $dark );
+		}
 	}
 }

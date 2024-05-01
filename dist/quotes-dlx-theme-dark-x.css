@@ -503,9 +503,12 @@
   fill: var(--qdlx-dark-x-accent, #FFF);
 }
 
-/* Inner Link Styles */
-.quotes-dlx-text-wrapper a,
-.quotes-dlx-citation-wrapper a {
+.template-dark-x {
+  /* Inner Link Styles */
+  /* Citation Styles */
+}
+.template-dark-x .quotes-dlx-text-wrapper a,
+.template-dark-x .quotes-dlx-citation-wrapper a {
   position: relative;
   color: var(--qdlx-dark-x-link, #4E99EB);
   text-transform: none;
@@ -513,14 +516,14 @@
   transition: all 0.35s ease-in-out;
   text-decoration: none !important; /* override core style */
 }
-.quotes-dlx-text-wrapper a:hover,
-.quotes-dlx-citation-wrapper a:hover {
+.template-dark-x .quotes-dlx-text-wrapper a:hover,
+.template-dark-x .quotes-dlx-citation-wrapper a:hover {
   color: var(--qdlx-dark-x-link, #4E99EB);
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:after, .quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-dark-x .quotes-dlx-text-wrapper a:after, .template-dark-x .quotes-dlx-text-wrapper a:hover:after,
+.template-dark-x .quotes-dlx-citation-wrapper a:after,
+.template-dark-x .quotes-dlx-citation-wrapper a:hover:after {
   content: "";
   display: block;
   width: 100%;
@@ -532,30 +535,34 @@
   left: 0;
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-dark-x .quotes-dlx-text-wrapper a:hover:after,
+.template-dark-x .quotes-dlx-citation-wrapper a:hover:after {
   background: var(--qdlx-dark-x-link, #4E99EB);
 }
-
-/* Citation Styles */
-.quotes-dlx-citation-wrapper {
+.template-dark-x.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 68px;
+}
+.template-dark-x.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 34px;
+}
+.template-dark-x .quotes-dlx-citation-wrapper {
   padding-left: 68px;
   padding-right: 68px;
   padding-bottom: 34px;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   color: var(--qdlx-dark-x-accent, #FFF);
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
   font-size: 1.25em;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-dark-x .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   font-size: 1em;
 }
-.quotes-dlx-citation-wrapper .has-border {
+.template-dark-x .quotes-dlx-citation-wrapper .has-border {
   border-color: var(--qdlx-dark-x-accent, #FFF);
 }
 

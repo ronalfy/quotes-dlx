@@ -456,9 +456,13 @@
   fill: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
 }
 
-/* Inner Link Styles */
-.quotes-dlx-text-wrapper a,
-.quotes-dlx-citation-wrapper a {
+.template-light-branded {
+  /* Inner Link Styles */
+  /* Blockquote styles when there is no tweet button */
+  /* Citation Styles */
+}
+.template-light-branded .quotes-dlx-text-wrapper a,
+.template-light-branded .quotes-dlx-citation-wrapper a {
   position: relative;
   color: var(--qdlx-light-branded-link, #1DA1F2);
   text-transform: none;
@@ -466,14 +470,14 @@
   transition: all 0.35s ease-in-out;
   text-decoration: none !important; /* override core style */
 }
-.quotes-dlx-text-wrapper a:hover,
-.quotes-dlx-citation-wrapper a:hover {
+.template-light-branded .quotes-dlx-text-wrapper a:hover,
+.template-light-branded .quotes-dlx-citation-wrapper a:hover {
   color: var(--qdlx-light-branded-link-hover, #1DA1F2);
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:after, .quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-light-branded .quotes-dlx-text-wrapper a:after, .template-light-branded .quotes-dlx-text-wrapper a:hover:after,
+.template-light-branded .quotes-dlx-citation-wrapper a:after,
+.template-light-branded .quotes-dlx-citation-wrapper a:hover:after {
   content: "";
   display: block;
   width: 100%;
@@ -485,30 +489,38 @@
   left: 0;
   transition: all 0.35s ease-in-out;
 }
-.quotes-dlx-text-wrapper a:hover:after,
-.quotes-dlx-citation-wrapper a:hover:after {
+.template-light-branded .quotes-dlx-text-wrapper a:after,
+.template-light-branded .quotes-dlx-citation-wrapper a:after {
+  background: transparent;
+}
+.template-light-branded .quotes-dlx-text-wrapper a:hover:after,
+.template-light-branded .quotes-dlx-citation-wrapper a:hover:after {
   background: var(--qdlx-light-branded-link-underline-hover, #1DA1F2);
 }
-
-/* Citation Styles */
-.quotes-dlx-citation-wrapper {
+.template-light-branded.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 70px;
+}
+.template-light-branded.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 25px;
+}
+.template-light-branded .quotes-dlx-citation-wrapper {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 35px;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   color: var(--qdlx-light-branded-secondary, #2B2B2B);
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
   font-size: 1.25em;
 }
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
-.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-light-branded .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
   font-size: 1em;
 }
-.quotes-dlx-citation-wrapper .has-border {
+.template-light-branded .quotes-dlx-citation-wrapper .has-border {
   border-color: var(--qdlx-light-branded-secondary, #2B2B2B);
 }
 

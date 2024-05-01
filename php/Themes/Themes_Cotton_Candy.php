@@ -294,22 +294,22 @@ class Themes_Cotton_Candy extends Themes_Addon {
 			array(
 				'name'  => __( 'Link', 'quotes-dlx' ),
 				'slug'  => 'link',
-				'color' => '#EFBC8C',
+				'color' => '#f8cd99',
 			),
 			array(
 				'name'  => __( 'Link Hover', 'quotes-dlx' ),
 				'slug'  => 'link-hover',
-				'color' => '#333333',
+				'color' => '#f8cd99',
 			),
 			array(
 				'name'  => __( 'Link Underline', 'quotes-dlx' ),
 				'slug'  => 'link-underline',
-				'color' => '#EFBC8C',
+				'color' => '#f8cd99',
 			),
 			array(
 				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
 				'slug'  => 'link-underline-hover',
-				'color' => '#333333',
+				'color' => '#f8cd99',
 			),
 		);
 	}

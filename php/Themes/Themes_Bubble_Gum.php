@@ -274,12 +274,12 @@ class Themes_Bubble_Gum extends Themes_Addon {
 			array(
 				'name'  => __( 'Hover', 'quotes-dlx' ),
 				'slug'  => 'link-hover',
-				'color' => '#5480e7',
+				'color' => '#333333',
 			),
 			array(
 				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
 				'slug'  => 'link-underline-hover',
-				'color' => '#5480e7',
+				'color' => '#333333',
 			),
 		);
 	}

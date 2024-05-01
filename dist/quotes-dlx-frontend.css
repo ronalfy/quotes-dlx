@@ -29,6 +29,7 @@ p ~ .quotes-dlx.quotes-dlx-container {
 
 .quotes-dlx-citation-align-left {
   justify-content: flex-start;
+  text-align: left;
 }
 
 .quotes-dlx-citation-align-center {
@@ -53,6 +54,8 @@ p ~ .quotes-dlx.quotes-dlx-container {
 }
 .quotes-dlx-citation-image-wrapper.has-border {
   /* Color is set in theme scss */
+}
+.quotes-dlx-citation-image-wrapper.has-border img {
   border-width: 2px;
   border-style: solid;
 }

@@ -626,6 +626,9 @@ class Functions {
 			'class' => array(),
 		);
 		$allowed_tags['a']['class'] = array();
+		$allowed_tags['figcaption'] = array(
+			'class' => array(),
+		);
 
 		if ( ! $svg ) {
 			return $allowed_tags;

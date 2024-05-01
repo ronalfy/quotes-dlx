@@ -28,6 +28,7 @@ p ~ .quotes-dlx.quotes-dlx-container {
 }
 .quotes-dlx-citation-align-left {
 	justify-content: flex-start;
+	text-align: left;
 }
 .quotes-dlx-citation-align-center {
 	justify-content: center;
@@ -50,7 +51,10 @@ p ~ .quotes-dlx.quotes-dlx-container {
 	}
 	&.has-border {
 		/* Color is set in theme scss */
-		border-width: 2px;
-		border-style: solid;
+		img {
+			border-width: 2px;
+			border-style: solid;
+		}
+		
 	}
 }

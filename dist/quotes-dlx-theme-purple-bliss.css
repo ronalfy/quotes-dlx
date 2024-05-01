@@ -8,6 +8,65 @@
 /* Responsive styles - In hindsight, should've used mobile-first */
 /* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
 /* It's only used here, so no external file for mixin? */
+.quotes-dlx .quotes-dlx-wrapper {
+  padding: 1.875em;
+  margin: 0;
+}
+
+/* Top/Bottom Padding */
+.quotes-dlx-container {
+  padding: 1.2em 0;
+}
+
+p ~ .quotes-dlx.quotes-dlx-container {
+  padding-top: 0;
+}
+
+.quotes-dlx-wrapper .quotes-dlx-button {
+  text-transform: unset;
+  cursor: pointer;
+}
+
+.quotes-dlx-citation-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.quotes-dlx-citation-align-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.quotes-dlx-citation-align-center {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1em;
+  text-align: center;
+}
+
+.quotes-dlx-citation-align-right {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.quotes-dlx-citation-image-wrapper.is-round {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.is-round img {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.has-border {
+  /* Color is set in theme scss */
+}
+.quotes-dlx-citation-image-wrapper.has-border img {
+  border-width: 2px;
+  border-style: solid;
+}
+
 .quotes-dlx-block-theme-purple-bliss {
   font-size: var(--qdlx-purple-bliss-font-size-mobile, 14px);
   /* If these are set, we're in a preview */

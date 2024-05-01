@@ -341,9 +341,6 @@ class Blocks {
 				:root {
 					--qdlx-primary-font-family: <?php echo Functions::get_primary_font_family_css(); ?>;
 					--qdlx-secondary-font-family: <?php echo Functions::get_secondary_font_family_css(); ?>;
-					--qdlx-var-breakpoint-mobile: <?php echo esc_html( (float) $options_advanced['mobile_breakpoint'] ) . 'px'; ?>;
-					--qdlx-var-breakpoint-tablet: <?php echo esc_html( (float) $options_advanced['tablet_breakpoint'] ) . 'px'; ?>;
-					--qdlx-var-breakpoint-desktop: <?php echo esc_html( (float) $options_advanced['desktop_breakpoint'] ) . 'px'; ?>;
 				}
 			</style>
 			<style>
@@ -446,7 +443,6 @@ class Blocks {
 				}
 		</style>
 		<?php
-
 	}
 
 	/**
@@ -547,6 +543,7 @@ class Blocks {
 			'quotes-dlx-container',
 			'align' . $align,
 			'quotes-dlx-block-theme-' . $template_name,
+			'template-' . $template_name,
 		);
 		if ( $rtl ) {
 			$default_wrapper_classes[] = 'rtl';
@@ -556,6 +553,12 @@ class Blocks {
 		}
 		if ( ! $tweet_button_enabled && ! $facebook_button_enabled ) {
 			$default_wrapper_classes[] = 'quotes-dlx-has-no-tweet-button';
+		}
+
+		// Set citation classes.
+		$enable_citation = Functions::sanitize_attribute( $attributes, 'enableCitation', 'boolean' );
+		if ( $enable_citation ) {
+			$default_wrapper_classes[] = 'quotes-dlx-has-citation';
 		}
 
 		/**
@@ -617,6 +620,76 @@ class Blocks {
 							echo wp_kses_post( nl2br( $tweet_text_rich ) );
 						?>
 						</blockquote>
+						<?php
+						$enable_citation = $attributes['enableCitation'] ?? false;
+						if ( $enable_citation ) {
+							$figcaption_classes       = array(
+								'quotes-dlx-citation-wrapper',
+								'quotes-dlx-citation-align-' . $attributes['citationAlignment'],
+							);
+							$figcaption_image_classes = array(
+								'quotes-dlx-citation-image-wrapper',
+							);
+							$figcaption_image_id      = $attributes['citationImageId'] ?? 0;
+							$figcaption_image_url     = $attributes['citationImageUrl'] ?? '';
+							if ( $figcaption_image_id ) {
+								$figcaption_image_classes[] = 'has-image';
+								$figcaption_image_classes[] = 'round' === $attributes['citationImageAppearance'] ? 'is-round' : '';
+								$figcaption_image_classes[] = $attributes['citationImageHasBorder'] ? 'has-border' : '';
+							}
+							?>
+							<figcaption class="<?php echo esc_attr( implode( ' ', $figcaption_classes ) ); ?>">
+								<?php
+								if ( (bool) $attributes['enableCitationImage'] ) {
+									?>
+									<div class="<?php echo esc_attr( implode( ' ', $figcaption_image_classes ) ); ?>">
+										<img
+											src="<?php echo esc_url( $figcaption_image_url ); ?>"
+											alt="<?php esc_attr_e( 'Citation Image', 'quotes-dlx' ); ?>"
+											width="75"
+											height="75"
+										/>
+									</div>
+									<?php
+								}
+								?>
+								<div class="quotes-dlx-citation-text-wrapper">
+									<?php
+									// Output citation author.
+									$enable_citation_author = $attributes['enableCitationAuthor'] ?? false;
+									if ( (bool) $enable_citation_author ) {
+										?>
+										<div class="quotes-dlx-citation-author">
+											<?php echo wp_kses_post( $attributes['citationAuthor'] ); ?>
+										</div>
+										<?php
+									}
+
+									// Output citation title.
+									$enable_citation_title = $attributes['enableCitationTitle'] ?? false;
+									if ( (bool) $enable_citation_title ) {
+										?>
+										<div class="quotes-dlx-citation-title">
+											<?php echo wp_kses_post( $attributes['citationTitle'] ); ?>
+										</div>
+										<?php
+									}
+
+									// Output citation source.
+									$enable_citation_source = $attributes['enableCitationSource'] ?? false;
+									if ( (bool) $enable_citation_source ) {
+										?>
+										<div class="quotes-dlx-citation-source">
+											<?php echo wp_kses_post( $attributes['citationSource'] ); ?>
+										</div>
+										<?php
+									}
+									?>
+								</div>
+							</figcaption>
+							<?php
+						}
+						?>
 					</figure>
 					<?php
 					$tweet_button_display       = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );

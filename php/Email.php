@@ -183,11 +183,12 @@ class Email {
 
 		$recaptcha_site_key = Options_Advanced::get_options( 'recaptcha_site_key' );
 		$recaptcha_enabled  = Options_Advanced::get_options( 'recaptcha_enabled' );
+		$email_deps         = require_once Functions::get_plugin_dir( 'dist/quotes-dlx-email.asset.php' );
 		wp_register_script(
 			'qdlx_email_view',
 			Functions::get_plugin_url( 'dist/quotes-dlx-email.js' ),
-			array( 'wp-i18n' ),
-			Functions::get_plugin_version(),
+			$email_deps['dependencies'],
+			$email_deps['version'],
 			false
 		);
 		if ( $recaptcha_enabled && ! empty( $recaptcha_site_key ) ) {

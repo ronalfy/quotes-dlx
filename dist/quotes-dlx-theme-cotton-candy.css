@@ -55,18 +55,6 @@
 .quotes-dlx-block-theme-cotton-candy.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 50px;
 }
-.quotes-dlx-block-theme-cotton-candy .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-cotton-candy-accent, #FAC898);
-  text-transform: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.35s ease-in-out;
-}
-.quotes-dlx-block-theme-cotton-candy .quotes-dlx-text-wrapper a:hover {
-  color: var(--qdlx-cotton-candy-accent, #FAC898);
-  transition: all 0.35s ease-in-out;
-  border-bottom: 2px solid var(--qdlx-cotton-candy-accent, #FAC898);
-}
 .quotes-dlx-block-theme-cotton-candy.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
   margin-top: 20px;
@@ -478,6 +466,62 @@
 .quotes-dlx-block-theme-cotton-candy .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg path,
 .quotes-dlx-block-theme-cotton-candy .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item svg use {
   fill: var(--qdlx-cotton-candy-accent, #FAC898);
+}
+
+/* Inner Link Styles */
+.quotes-dlx-text-wrapper a,
+.quotes-dlx-citation-wrapper a {
+  position: relative;
+  color: var(--qdlx-cotton-candy-link, #FAC898);
+  text-transform: none;
+  padding-bottom: 4px;
+  transition: all 0.35s ease-in-out;
+  text-decoration: none !important; /* override core style */
+}
+.quotes-dlx-text-wrapper a:hover,
+.quotes-dlx-citation-wrapper a:hover {
+  color: var(--qdlx-cotton-candy-link-hover, #FAC898);
+  transition: all 0.35s ease-in-out;
+}
+.quotes-dlx-text-wrapper a:after, .quotes-dlx-text-wrapper a:hover:after,
+.quotes-dlx-citation-wrapper a:after,
+.quotes-dlx-citation-wrapper a:hover:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--qdlx-cotton-candy-link-underline, #FAC898);
+  transition: all 0.35s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.35s ease-in-out;
+}
+.quotes-dlx-text-wrapper a:hover:after,
+.quotes-dlx-citation-wrapper a:hover:after {
+  background: var(--qdlx-cotton-candy-link-underline-hover, #FAC898);
+}
+
+/* Citation Styles */
+.quotes-dlx-citation-wrapper {
+  padding-left: 68px;
+  padding-right: 68px;
+  padding-bottom: 24px;
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  color: var(--qdlx-cotton-candy-text-color, #FFFFFF);
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+  font-size: 1.25em;
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  font-size: 1em;
+}
+.quotes-dlx-citation-wrapper .has-border {
+  border-color: var(--qdlx-cotton-candy-text-color, #FFFFFF);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-cotton-candy.css.map*/

@@ -1885,7 +1885,9 @@ var TweetQuotes = function TweetQuotes(props) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, getCharacterBar(), tabContent);
   }))));
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.useBlockProps)({
-    className: "quotes-dlx template-".concat(template)
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx template-".concat(template), {
+      'quotes-dlx-has-citation': enableCitation
+    })
   });
   var stylesheet = false;
   themes.forEach(function (themeObject) {

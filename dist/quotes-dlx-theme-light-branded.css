@@ -56,18 +56,6 @@
 .quotes-dlx-block-theme-light-branded.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
   padding-right: 50px;
 }
-.quotes-dlx-block-theme-light-branded .quotes-dlx-text-wrapper a {
-  color: var(--qdlx-light-branded-accent, #1DA1F2);
-  text-transform: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.35s ease-in-out;
-}
-.quotes-dlx-block-theme-light-branded .quotes-dlx-text-wrapper a:hover {
-  color: var(--qdlx-light-branded-accent, #1DA1F2);
-  transition: all 0.35s ease-in-out;
-  border-bottom: 2px solid var(--qdlx-light-branded-accent, #1DA1F2);
-}
 .quotes-dlx-block-theme-light-branded.quotes-dlx .quotes-dlx-wrapper {
   padding: 0;
   margin-top: 65px;
@@ -466,6 +454,62 @@
 .quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg path,
 .quotes-dlx-block-theme-light-branded .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
   fill: var(--qdlx-light-branded-button-secondary-text-color, #FFF);
+}
+
+/* Inner Link Styles */
+.quotes-dlx-text-wrapper a,
+.quotes-dlx-citation-wrapper a {
+  position: relative;
+  color: var(--qdlx-light-branded-link, #1DA1F2);
+  text-transform: none;
+  padding-bottom: 4px;
+  transition: all 0.35s ease-in-out;
+  text-decoration: none !important; /* override core style */
+}
+.quotes-dlx-text-wrapper a:hover,
+.quotes-dlx-citation-wrapper a:hover {
+  color: var(--qdlx-light-branded-link-hover, #1DA1F2);
+  transition: all 0.35s ease-in-out;
+}
+.quotes-dlx-text-wrapper a:after, .quotes-dlx-text-wrapper a:hover:after,
+.quotes-dlx-citation-wrapper a:after,
+.quotes-dlx-citation-wrapper a:hover:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--qdlx-light-branded-link-underline, #1DA1F2);
+  transition: all 0.35s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.35s ease-in-out;
+}
+.quotes-dlx-text-wrapper a:hover:after,
+.quotes-dlx-citation-wrapper a:hover:after {
+  background: var(--qdlx-light-branded-link-underline-hover, #1DA1F2);
+}
+
+/* Citation Styles */
+.quotes-dlx-citation-wrapper {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 35px;
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  color: var(--qdlx-light-branded-secondary, #2B2B2B);
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+  font-size: 1.25em;
+}
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  font-size: 1em;
+}
+.quotes-dlx-citation-wrapper .has-border {
+  border-color: var(--qdlx-light-branded-secondary, #2B2B2B);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-light-branded.css.map*/

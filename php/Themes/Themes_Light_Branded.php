@@ -305,6 +305,26 @@ class Themes_Light_Branded extends Themes_Addon {
 				'slug'  => 'dark',
 				'color' => '#2B2B2B',
 			),
+			array(
+				'name'  => __( 'Link', 'quotes-dlx' ),
+				'slug'  => 'link',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Link Hover', 'quotes-dlx' ),
+				'slug'  => 'link-hover',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Link Underline', 'quotes-dlx' ),
+				'slug'  => 'link-underline',
+				'color' => '#1DA1F2',
+			),
+			array(
+				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
+				'slug'  => 'link-underline-hover',
+				'color' => '#309ADA',
+			),
 		);
 	}
 }

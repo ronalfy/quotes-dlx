@@ -47,7 +47,7 @@ class Themes_Cotton_Candy extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.0';
+	protected static $version = '1.0.1';
 
 	/**
 	 * Description for the theme.
@@ -290,6 +290,26 @@ class Themes_Cotton_Candy extends Themes_Addon {
 				'name'  => __( 'Dark', 'quotes-dlx' ),
 				'slug'  => 'dark',
 				'color' => '#000000',
+			),
+			array(
+				'name'  => __( 'Link', 'quotes-dlx' ),
+				'slug'  => 'link',
+				'color' => '#EFBC8C',
+			),
+			array(
+				'name'  => __( 'Link Hover', 'quotes-dlx' ),
+				'slug'  => 'link-hover',
+				'color' => '#333333',
+			),
+			array(
+				'name'  => __( 'Link Underline', 'quotes-dlx' ),
+				'slug'  => 'link-underline',
+				'color' => '#EFBC8C',
+			),
+			array(
+				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
+				'slug'  => 'link-underline-hover',
+				'color' => '#333333',
 			),
 		);
 	}

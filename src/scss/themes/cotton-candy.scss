@@ -12,6 +12,7 @@ $button_text_color: #8BC6FC;
 $button_text_color_hover: #FFFFFF;
 $light: #FFF;
 $dark: #000;
+$link: $accent;
 
 .quotes-dlx-block-theme-cotton-candy{
 	font-size: var( --qdlx-cotton-candy-font-size-mobile, 14px );
@@ -59,22 +60,6 @@ $dark: #000;
 
 	&.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
 		padding-right: 50px;
-	}
-
-	.quotes-dlx-text-wrapper {
-		a {
-			color: var( --qdlx-cotton-candy-accent, $accent );
-			text-transform: none;
-			padding-bottom: 4px;
-			border-bottom: 2px solid transparent;
-			transition: all .35s ease-in-out;
-
-			&:hover {
-				color: var( --qdlx-cotton-candy-accent, $accent );
-				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-cotton-candy-accent, $accent );
-			}
-		}
 	}
 
 	&.quotes-dlx .quotes-dlx-wrapper {
@@ -575,5 +560,62 @@ $dark: #000;
 		}
 	}
 
+}
+
+/* Inner Link Styles */
+.quotes-dlx-text-wrapper,
+.quotes-dlx-citation-wrapper {
+	a {
+		position: relative;
+		color: var( --qdlx-cotton-candy-link, $link );
+		text-transform: none;
+		padding-bottom: 4px;
+		transition: all .35s ease-in-out;
+		text-decoration: none !important; /* override core style */
+
+		&:hover {
+			color: var( --qdlx-cotton-candy-link-hover, $link );
+			transition: all 0.35s ease-in-out;
+		}
+		&:after,
+		&:hover:after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 2px;
+			background: var( --qdlx-cotton-candy-link-underline, $link );
+			transition: all 0.35s ease-in-out;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			transition: all 0.35s ease-in-out;
+		}
+		&:hover:after {
+			background: var( --qdlx-cotton-candy-link-underline-hover, $link );
+		}
+	}
+}
+
+/* Citation Styles */
+.quotes-dlx-citation-wrapper  {
+	padding-left: 68px;
+	padding-right: 68px;
+	padding-bottom: 24px;
+
+	.quotes-dlx-citation-title,
+	.quotes-dlx-citation-author,
+	.quotes-dlx-citation-source {
+		color: var( --qdlx-cotton-candy-text-color, $text_color );
+	}
+	.quotes-dlx-citation-author {
+		font-size: 1.25em;
+	}
+	.quotes-dlx-citation-title,
+	.quotes-dlx-citation-source {
+		font-size: 1em;
+	}
+	.has-border {
+		border-color: var( --qdlx-cotton-candy-text-color, $text_color );
+	}
 }
 

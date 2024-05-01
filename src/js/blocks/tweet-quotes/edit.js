@@ -1521,7 +1521,9 @@ const TweetQuotes = ( props ) => {
 	);
 
 	const blockProps = useBlockProps( {
-		className: `quotes-dlx template-${ template }`,
+		className: classnames( `quotes-dlx template-${ template }`, {
+			'quotes-dlx-has-citation': enableCitation,
+		} ),
 	} );
 
 	let stylesheet = false;

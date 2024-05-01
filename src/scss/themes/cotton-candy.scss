@@ -639,6 +639,7 @@ $link: $accent;
 	}
 
 	/* Blockquote styles when there is no tweet button */
+	&.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button,
 	&.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button {
 		.quotes-dlx-citation-wrapper {
 			padding-bottom: 68px;

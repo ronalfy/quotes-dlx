@@ -572,10 +572,10 @@ p ~ .quotes-dlx.quotes-dlx-container {
 .template-midnight-blue .quotes-dlx-citation-wrapper a:hover:after {
   background: var(--qdlx-midnight-blue-link-underline-hover, #FFFFFF);
 }
-.template-midnight-blue.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
-  padding-bottom: 68px;
+.template-midnight-blue.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper, .template-midnight-blue.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 0px;
 }
-.template-midnight-blue.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+.template-midnight-blue.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper, .template-midnight-blue.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
   padding-bottom: 34px;
 }
 .template-midnight-blue .quotes-dlx-citation-wrapper {

@@ -605,10 +605,10 @@ p ~ .quotes-dlx.quotes-dlx-container {
 .template-cotton-candy .quotes-dlx-citation-wrapper a:hover:after {
   background: var(--qdlx-cotton-candy-link-underline-hover, #FAC898);
 }
-.template-cotton-candy.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+.template-cotton-candy.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper, .template-cotton-candy.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
   padding-bottom: 68px;
 }
-.template-cotton-candy.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+.template-cotton-candy.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper, .template-cotton-candy.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
   padding-bottom: 34px;
 }
 .template-cotton-candy .quotes-dlx-citation-wrapper {

@@ -93,6 +93,7 @@ const ThemePreview = ( props ) => {
 			<div
 				className={ classNames( 'quotes-dlx', {
 					[ `quotes-dlx-block-theme-${ activeTheme }` ]: true,
+					[ `template-${ activeTheme }` ]: true,
 					'quotes-dlx-context-menu-disabled': false,
 					'quotes-dlx-has-no-tweet-button': false,
 					[ `quotes-dlx-screen-${ screen }` ]: true,

@@ -127,6 +127,18 @@ p ~ .quotes-dlx.quotes-dlx-container {
   text-align: right;
 }
 
+.quotes-dlx-citation-image-wrapper.is-round {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.is-round img {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.has-border {
+  /* Color is set in theme scss */
+  border-width: 2px;
+  border-style: solid;
+}
+
 :root {
   --quotes-dlx--preset--notice-warning-text-color: #664d03;
   --quotes-dlx--preset--notice-warning-icon-color: #664d03;

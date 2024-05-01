@@ -1612,7 +1612,32 @@ var TweetQuotes = function TweetQuotes(props) {
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  }))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
+  })))), enableCitation && /*#__PURE__*/React.createElement("figcaption", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-citation-wrapper quotes-dlx-citation-align-".concat(citationAlignment))
+  }, enableCitationImage && /*#__PURE__*/React.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx-citation-image-wrapper', {
+      'has-image': citationImageId,
+      'is-round': 'round' === citationImageAppearance,
+      'has-border': citationImageHasBorder
+    })
+  }, citationImageId && citationImageUrl && /*#__PURE__*/React.createElement("img", {
+    src: citationImageUrl,
+    alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Image', 'quotes-dlx'),
+    width: "75",
+    height: "75"
+  }), (!citationImageId || !citationImageUrl) && /*#__PURE__*/React.createElement(_components_icons_user__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    fill: "#333",
+    width: "75",
+    height: "75"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-citation-text-wrapper"
+  }, enableCitationAuthor && /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-citation-author"
+  }, htmlToReactParser.parse(citationAuthor)), enableCitationTitle && /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-citation-title"
+  }, htmlToReactParser.parse(citationTitle)), enableCitationSource && /*#__PURE__*/React.createElement("div", {
+    className: "quotes-dlx-citation-source"
+  }, htmlToReactParser.parse(citationSource))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
   React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({

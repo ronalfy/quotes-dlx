@@ -41,3 +41,16 @@ p ~ .quotes-dlx.quotes-dlx-container {
 	flex-direction: row-reverse;
 	text-align: right;
 }
+.quotes-dlx-citation-image-wrapper {
+	&.is-round {
+		border-radius: 100%;
+		img {
+			border-radius: 100%;
+		}
+	}
+	&.has-border {
+		/* Color is set in theme scss */
+		border-width: 2px;
+		border-style: solid;
+	}
+}

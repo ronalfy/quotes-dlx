@@ -521,7 +521,7 @@
   font-size: 1em;
 }
 .template-light-branded .quotes-dlx-citation-wrapper .has-border {
-  border-color: var(--qdlx-light-branded-secondary, #2B2B2B);
+  border-color: var(--qdlx-light-branded-primary, #2B2B2B);
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-light-branded.css.map*/

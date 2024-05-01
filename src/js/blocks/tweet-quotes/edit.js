@@ -1032,6 +1032,51 @@ const TweetQuotes = ( props ) => {
 									) }
 								</div>
 							</blockquote>
+							{ enableCitation && (
+								<figcaption className={ classnames( `quotes-dlx-citation-wrapper quotes-dlx-citation-align-${ citationAlignment }` ) }>
+									{ enableCitationImage && (
+										<div className={ classnames( 'quotes-dlx-citation-image-wrapper', {
+											'has-image': citationImageId,
+											'is-round': 'round' === citationImageAppearance,
+											'has-border': citationImageHasBorder,
+										} ) }>
+											{ ( citationImageId && citationImageUrl ) && (
+												<img
+													src={ citationImageUrl }
+													alt={ __( 'Citation Image', 'quotes-dlx' ) }
+													width="75"
+													height="75"
+												/>
+											) }
+											{ ( ! citationImageId || ! citationImageUrl ) && (
+												<UserIcon
+													fill="#333"
+													width="75" height="75"
+												/>
+											) }
+										</div>
+									) }
+									<div className="quotes-dlx-citation-text-wrapper">
+										{ enableCitationAuthor && (
+											<div className="quotes-dlx-citation-author">
+												{ htmlToReactParser.parse( citationAuthor ) }
+											</div>
+										) }
+										{ enableCitationTitle && (
+											<div className="quotes-dlx-citation-title">
+												{ htmlToReactParser.parse( citationTitle ) }
+											</div>
+										) }
+										{
+											enableCitationSource && (
+												<div className="quotes-dlx-citation-source">
+													{ htmlToReactParser.parse( citationSource ) }
+												</div>
+											)
+										}
+									</div>
+								</figcaption>
+							) }
 						</figure>
 						{ getClickToShareButton() }
 					</div>

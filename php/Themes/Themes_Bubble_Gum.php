@@ -7,7 +7,7 @@
 
 namespace MediaRonLLC\QuotesDLX\Themes;
 
-use MediaRonLLC\QuotesDLX\Functions as Functions;
+use MediaRonLLC\QuotesDLX\Functions;
 /**
  * Holds variables for the pink branded theme.
  */
@@ -47,7 +47,7 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.2';
+	protected static $version = '1.0.3';
 
 	/**
 	 * Description for the theme.
@@ -260,6 +260,26 @@ class Themes_Bubble_Gum extends Themes_Addon {
 				'name'  => __( 'Dark', 'quotes-dlx' ),
 				'slug'  => 'dark',
 				'color' => '#2B2B2B',
+			),
+			array(
+				'name'  => __( 'Link', 'quotes-dlx' ),
+				'slug'  => 'link',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Link Underline', 'quotes-dlx' ),
+				'slug'  => 'link-underline',
+				'color' => '#FFFFFF',
+			),
+			array(
+				'name'  => __( 'Hover', 'quotes-dlx' ),
+				'slug'  => 'link-hover',
+				'color' => '#333333',
+			),
+			array(
+				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
+				'slug'  => 'link-underline-hover',
+				'color' => '#333333',
 			),
 		);
 	}

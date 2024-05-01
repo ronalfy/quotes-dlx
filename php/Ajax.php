@@ -702,11 +702,12 @@ class Ajax {
 			Functions::get_plugin_version(),
 			false
 		);
+		$theme_deps = require_once Functions::get_plugin_dir( 'dist/quotes-dlx-theme-preview.asset.php' );
 		wp_register_script(
 			'qdlx_twitter_preview_js',
 			Functions::get_plugin_url( 'dist/quotes-dlx-theme-preview.js' ),
-			array(),
-			Functions::get_plugin_version(),
+			$theme_deps['dependencies'],
+			$theme_deps['version'],
 			false
 		);
 

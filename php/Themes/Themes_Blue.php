@@ -284,6 +284,26 @@ class Themes_Blue extends Themes_Addon {
 				'slug'  => 'dark',
 				'color' => '#2B2B2B',
 			),
+			array(
+				'name'  => __( 'Link', 'quotes-dlx' ),
+				'slug'  => 'link',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Link Hover', 'quotes-dlx' ),
+				'slug'  => 'link-hover',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Link Underline', 'quotes-dlx' ),
+				'slug'  => 'link-underline',
+				'color' => '#cc7000',
+			),
+			array(
+				'name'  => __( 'Link Underline Hover', 'quotes-dlx' ),
+				'slug'  => 'link-underline-hover',
+				'color' => '#cc7000',
+			),
 		);
 	}
 

@@ -1,10 +1,13 @@
 @import "../colors.scss";
 @import "../breakpoints-mixin.scss";
 @import "../breakpoints-mixin-variable.scss";
+@import "../themes.scss";
 
 $primary_color: #00316e;
 $secondary_color: #cc7000;
 $accent: #FFFFFF;
+$link: $secondary_color;
+$secondary: #FFFFFF;
 
 .quotes-dlx-block-theme-midnight-blue {
 	font-size: var( --qdlx-midnight-blue-font-size-mobile, 14px );
@@ -71,7 +74,7 @@ $accent: #FFFFFF;
 		border: 1px solid var( --qdlx-midnight-blue-border-color, #0876ff );
 		border-radius: 5px;
 		box-shadow: 1px 1px 3px 0px var( --qdlx-midnight-blue-primary, $primary_color );
-		padding-bottom: 1.875em;
+		padding: 68px 48px;
 
 		.quotes-dlx-meatball-button {
 			position: absolute;
@@ -88,7 +91,7 @@ $accent: #FFFFFF;
 			font-family: var( --qdlx-midnight-blue-primary-font-family, var( --qdlx-primary-font-family, inherit ) );
 			padding-left: 3.43em;
 			/* 5em:before / 2 + ( 1.875em / 2 ) */
-			padding-bottom: 1.075em;
+			padding-bottom: 34px;
 			/* 1.875 - (1.6/2) line-height = 1.075em */
 			padding-top: 0;
 			padding-right: 65px;
@@ -108,20 +111,6 @@ $accent: #FFFFFF;
 			@include respond-to('large') {
 				font-size: 1.5em;
 				line-height: var( --qdlx-midnight-blue-line-height-desktop, 1.65 );
-			}
-
-			a {
-				color: var( --qdlx-midnight-blue-accent, $white );
-				text-transform: none;
-				padding-bottom: 4px;
-				border-bottom: 2px solid var( --qdlx-midnight-blue-secondary, $white );
-				transition: all .35s ease-in-out;
-
-				&:hover {
-					transition: all 0.35s ease-in-out;
-					color: var( --qdlx-midnight-blue-secondary, $secondary_color );
-					border-bottom: 1px solid transparent;
-				}
 			}
 
 			&:before {
@@ -577,4 +566,76 @@ $accent: #FFFFFF;
 		}
 	}
 
+}
+
+.template-midnight-blue {
+	/* Inner Link Styles */
+	.quotes-dlx-text-wrapper,
+	.quotes-dlx-citation-wrapper {
+		a {
+			position: relative;
+			color: var( --qdlx-midnight-blue-link, $link );
+			text-transform: none;
+			padding-bottom: 4px;
+			transition: all .35s ease-in-out;
+			text-decoration: none !important; /* override core style */
+
+			&:hover {
+				color: var( --qdlx-midnight-blue-link-hover, $link );
+				transition: all 0.35s ease-in-out;
+			}
+			&:after,
+			&:hover:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: var( --qdlx-midnight-blue-link-underline, #FFFFFF );
+				transition: all 0.35s ease-in-out;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				transition: all 0.35s ease-in-out;
+			}
+			&:after {
+				background: transparent;
+			}
+			&:hover:after {
+				background: var( --qdlx-midnight-blue-link-underline-hover, #FFFFFF );
+			}
+		}
+	}
+
+	/* Blockquote styles when there is no tweet button */
+	&.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button,
+	&.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button {
+		.quotes-dlx-citation-wrapper {
+			padding-bottom: 0px;
+		}
+		.quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 34px;
+		}
+	}
+	/* Citation Styles */
+	.quotes-dlx-citation-wrapper  {
+		padding-left: 0;
+		padding-right: 48px;
+		padding-bottom: 34px;
+
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-author,
+		.quotes-dlx-citation-source {
+			color: var( --qdlx-midnight-blue-text-color, $white );
+		}
+		.quotes-dlx-citation-author {
+			font-size: 1.25em;
+		}
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-source {
+			font-size: 1em;
+		}
+		.has-border {
+			border-color: var( --qdlx-midnight-blue-secondary, $secondary );
+		}
+	}
 }

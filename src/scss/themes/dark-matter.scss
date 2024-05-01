@@ -1,10 +1,13 @@
 @import "../colors.scss";
 @import "../breakpoints-mixin.scss";
 @import "../breakpoints-mixin-variable.scss";
+@import "../themes.scss";
 
 $orange: #cc7000;
 $dark-bg: #2B2B2B;
 $accent-color: #FFF;
+$secondary: #FFF;
+$link: #CC7000;
 
 .quotes-dlx-block-theme-dark-matter {
 	font-size: var( --qdlx-dark-matter-font-size-mobile, 14px );
@@ -54,23 +57,14 @@ $accent-color: #FFF;
 		padding-right: 0;
 	}
 
-	.quotes-dlx-text-wrapper {
-		a {
-			color: var( --qdlx-dark-matter-accent, $orange );
-			text-transform: none;
-			padding-bottom: 4px;
-			border-bottom: 2px solid transparent;
-			transition: all .35s ease-in-out;
-
-			&:hover {
-				transition: all 0.35s ease-in-out;
-				border-bottom: 2px solid var( --qdlx-dark-matter-accent, $orange );
-			}
-		}
-	}
-
 	&.quotes-dlx .quotes-dlx-wrapper {
 		padding: 0;
+	}
+
+	&.quotes-dlx.quotes-dlx-has-no-tweet-button {
+		figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 68px;
+		}
 	}
 
 	.quotes-dlx-wrapper {
@@ -113,7 +107,7 @@ $accent-color: #FFF;
 			quotes: none;
 			vertical-align:baseline;
 			font-style: inherit;
-			padding: 60px 51px 60px 51px;
+			padding: 68px 51px 34px 51px;
 			text-align: left;
 
 			@include respond-to('medium') {
@@ -129,7 +123,7 @@ $accent-color: #FFF;
 			display: flex;
 			position: relative;
 			background: var( --qdlx-dark-matter-primary, $dark-bg );
-			padding: 45px 35px;
+			padding: 34px 51px 68px 51px;
 			padding-top: 0;
 
 			.quotes-dlx-button-icon {
@@ -571,4 +565,80 @@ $accent-color: #FFF;
 		}
 	}
 
+}
+/* Fix for blockquote padding with citation */
+
+.template-dark-matter {
+	&.quotes-dlx-has-citation .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+		padding-bottom: 34px;
+	}
+	/* Inner Link Styles */
+	.quotes-dlx-text-wrapper,
+	.quotes-dlx-citation-wrapper {
+		a {
+			position: relative;
+			color: var( --qdlx-dark-matter-link, $link );
+			text-transform: none;
+			padding-bottom: 4px;
+			transition: all .35s ease-in-out;
+			text-decoration: none !important; /* override core style */
+
+			&:hover {
+				color: var( --qdlx-dark-matter-link-hover, $link );
+				transition: all 0.35s ease-in-out;
+			}
+			&:after,
+			&:hover:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: var( --qdlx-dark-matter-link-underline, $link );
+				transition: all 0.35s ease-in-out;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				transition: all 0.35s ease-in-out;
+			}
+			&:after {
+				background: transparent;
+			}
+			&:hover:after {
+				background: var( --qdlx-dark-matter-link-underline-hover, $link );
+			}
+		}
+	}
+	/* Blockquote styles when there is no tweet button */
+	&.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button,
+	&.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button {
+		.quotes-dlx-citation-wrapper {
+			padding-bottom: 68px;
+		}
+		.quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+			padding-bottom: 34px;
+		}
+	}
+
+	/* Citation Styles */
+	.quotes-dlx-citation-wrapper  {
+		padding-left: 51px;
+		padding-right: 51px;
+		padding-bottom: 34px;
+
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-author,
+		.quotes-dlx-citation-source {
+			color: var( --qdlx-dark-matter-text-color, $secondary );
+		}
+		.quotes-dlx-citation-author {
+			font-size: 1.25em;
+		}
+		.quotes-dlx-citation-title,
+		.quotes-dlx-citation-source {
+			font-size: 1em;
+		}
+		.has-border {
+			border-color: var( --qdlx-dark-matter-text-color, $secondary );
+		}
+	}
 }

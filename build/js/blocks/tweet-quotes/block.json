@@ -212,6 +212,58 @@
     "themeColors": {
       "type": "array",
       "default": []
+    },
+    "enableCitation": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableCitationImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableCitationAuthor": {
+      "type": "boolean",
+      "default": true
+    },
+    "citationAuthor": {
+      "type": "string",
+      "default": ""
+    },
+    "enableCitationTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "citationTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "enableCitationSource": {
+      "type": "boolean",
+      "default": false
+    },
+    "citationSource": {
+      "type": "string",
+      "default": ""
+    },
+    "citationImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "citationImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "citationImageAppearance": {
+      "type": "string",
+      "default": "round"
+    },
+    "citationImageHasBorder": {
+      "type": "boolean",
+      "default": true
+    },
+    "citationAlignment": {
+      "type": "string",
+      "default": "left"
     }
   },
   "example": {

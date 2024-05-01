@@ -1,1 +1,574 @@
-.quotes-dlx-block-theme-purple-bliss{font-size:var(--qdlx-purple-bliss-font-size-mobile, 14px)}@media(min-width: 768px){.quotes-dlx-block-theme-purple-bliss{font-size:var(--qdlx-purple-bliss-font-size-tablet, 15px)}}@media(min-width: 1024px){.quotes-dlx-block-theme-purple-bliss{font-size:var(--qdlx-purple-bliss-font-size-desktop, 16px)}}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile{font-size:var(--qdlx-purple-bliss-font-size-mobile, 14px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile .quotes-dlx-button{font-size:var(--qdlx-purple-bliss-button-font-size-mobile, 14px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile .quotes-dlx-button-icon{font-size:var(--qdlx-purple-bliss-button-font-size-mobile, 14px) !important;top:calc(50% - (.125em + var(--qdlx-purple-bliss-button-font-size-mobile, 14px)/2)) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet{font-size:var(--qdlx-purple-bliss-font-size-tablet, 15px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet .quotes-dlx-button{font-size:var(--qdlx-purple-bliss-button-font-size-tablet, 15px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet .quotes-dlx-button-icon{font-size:var(--qdlx-purple-bliss-button-font-size-tablet, 15px) !important;top:calc(50% - (.125em + var(--qdlx-purple-bliss-button-font-size-tablet, 15px)/2)) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop{font-size:var(--qdlx-purple-bliss-font-size-desktop, 16px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop .quotes-dlx-button{font-size:var(--qdlx-purple-bliss-button-font-size-desktop, 16px) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop .quotes-dlx-button-icon{font-size:var(--qdlx-purple-bliss-button-font-size-desktop, 16px) !important;top:calc(50% - (.125em + var(--qdlx-purple-bliss-button-font-size-desktop, 16px)/2)) !important}.quotes-dlx-block-theme-purple-bliss.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper{padding-right:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-text-wrapper a{color:var(--qdlx-purple-bliss-accent, #ff6900);text-transform:none;padding-bottom:4px;border-bottom:2px solid rgba(0,0,0,0);transition:all .35s ease-in-out}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-text-wrapper a:hover{transition:all .35s ease-in-out;color:var(--qdlx-purple-bliss-accent, #ff6900);border-bottom:2px solid var(--qdlx-purple-bliss-accent, #ff6900)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper{position:relative;background:rgba(0,0,0,0)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure{position:relative;margin:0;margin-top:40px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure:before{display:inline-block;content:"“";position:absolute;border:1px solid var(--qdlx-purple-bliss-secondary, #67009C);border-radius:100%;background-color:var(--qdlx-purple-bliss-secondary, #67009C);color:var(--qdlx-purple-bliss-light, #FFFFFF);width:100px;height:100px;font-size:95px;line-height:145px;font-family:serif;text-align:center;top:-50px;left:calc(50% - 50px);z-index:2}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper{font-family:var(--qdlx-purple-bliss-primary-font-family, var(--qdlx-primary-font-family, inherit));font-weight:300;font-size:1.5em;line-height:var(--qdlx-purple-bliss-line-height-mobile, 1.3);background:var(--qdlx-purple-bliss-background, #f8f7fb);color:var(--qdlx-purple-bliss-text, #393838);margin:0 !important;border:0;border-top:5px solid var(--qdlx-purple-bliss-secondary, #67009C);quotes:none;vertical-align:baseline;font-style:inherit;padding:60px 35px 20px 35px;text-align:center}@media(min-width: 768px){.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper{font-size:1.35em;line-height:var(--qdlx-purple-bliss-line-height-tablet, 1.35)}}@media(min-width: 1024px){.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper{font-size:1.5em;line-height:var(--qdlx-purple-bliss-line-height-desktop, 1.65)}}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper{display:flex;position:relative;background:var(--qdlx-purple-bliss-background, #f8f7fb);border-bottom:2px solid var(--qdlx-purple-bliss-border-bottom, #cbc3e3);padding:20px 35px;padding-top:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon{position:absolute;width:1.2em;height:1.2em;top:calc(50% - .6em);bottom:0;right:20px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg{width:100%;height:100%}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg path,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg use{fill:var(--qdlx-purple-bliss-light, #FFFFFF);transition:all .3s ease-in-out}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-container{position:relative;display:inline-block}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.left{justify-content:flex-start}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.right{justify-content:flex-end}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.center{justify-content:center}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button{position:relative;background:var(--qdlx-purple-bliss-secondary, #67009C);color:var(--qdlx-purple-bliss-light, #FFFFFF);padding:12px 25px;border-radius:4px;border:1px solid var(--qdlx-purple-bliss-secondary, #67009C);display:inline-block;transition:all .3s ease-in-out;font-family:var(--qdlx-purple-bliss-secondary-font-family, var(--qdlx-secondary-font-family, inherit));font-weight:400;font-size:var(--qdlx-purple-bliss-button-font-size-mobile, 14px);line-height:1em;margin-right:5px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:last-child{margin-right:0}@media(min-width: 768px){.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button{font-size:var(--qdlx-purple-bliss-button-font-size-tablet, 15px)}}@media(min-width: 1024px){.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button{font-size:var(--qdlx-purple-bliss-button-font-size-desktop, 16px)}}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover{transition:all .3s ease-in-out;color:var(--qdlx-purple-bliss-secondary, #67009C);background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover svg path,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover svg use{fill:var(--qdlx-purple-bliss-secondary, #67009C);transition:all .3s ease-in-out}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-icon{right:auto;left:15px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-text{display:inline-block;padding-left:28px;padding-right:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.icon{padding:8px 20px;line-height:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.icon .quotes-dlx-button-icon{position:relative;top:auto;bottom:auto;right:auto;padding:0;margin:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.full .quotes-dlx-button-text{display:inline-block;padding-right:28px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text{display:inline-block;padding-right:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button{background:rgba(0,0,0,0);color:var(--qdlx-purple-bliss-secondary, #67009C);padding:6px;border:2px solid rgba(0,0,0,0)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover{border-color:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use{fill:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-menu{top:90px;right:3.75em}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content{position:relative;min-width:100%;height:100%;top:0;right:0;display:flex}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input{position:relative;display:block;min-width:40px;min-height:40px;right:0;top:0;z-index:3;order:3;opacity:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~ul{z-index:-1;list-style-type:none;width:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked)~ul{background:var(--qdlx-purple-bliss-light, #FFFFFF);position:relative;transition:opacity .75s ease-in-out;margin-right:2px;margin-top:0;border-radius:5px;opacity:0;visibility:hidden;height:0;overflow:hidden;border-radius:5px;width:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked)~ul li{background:inherit}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~ul{position:relative;width:100%;left:0;transition:opacity .75s ease-in-out;opacity:1;visibility:visible;height:100%;padding:0;margin:0;border-radius:5px;margin-right:12px;background:var(--qdlx-purple-bliss-light, #FFFFFF);border:1px solid var(--qdlx-purple-bliss-secondary, #67009C);z-index:10}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper{z-index:2}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div{display:flex;align-items:center;justify-content:center;position:absolute;width:100%;height:100%;z-index:2;top:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div span{content:"";display:inline-block;width:5px;height:5px;border-radius:100%;transform:rotate(0deg);transition:all .3s ease-in-out;background:var(--qdlx-purple-bliss-light, #FFFFFF);margin-right:5px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div:after{margin-bottom:0;margin-right:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div{transition:all .3s linear}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div span{transition:all .3s linear;background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:after{position:absolute;transition:all .3s linear;border-radius:2px;height:4px;z-index:1;width:50%;height:4px;bottom:unset;transform:rotate(-45deg) translate(0px, 0px)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:before{position:absolute;transition:all .3s linear;border-radius:2px;height:4px;z-index:3;width:50%;height:4px;margin:0;bottom:unset;transform:rotate(45deg) translate(0px, 0px)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper span{width:0;height:0;opacity:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item{border-bottom:0}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset{color:var(--qdlx-purple-bliss-dark, #333333)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover{background:var(--qdlx-purple-bliss-secondary, #67009C);color:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use{fill:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input{cursor:pointer}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover .quotes-dlx-meatball-icon-wrapper{background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover~.quotes-dlx-meatball-icon-wrapper{background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover~.quotes-dlx-meatball-icon-wrapper>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover~.quotes-dlx-meatball-icon-wrapper>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover~.quotes-dlx-meatball-icon-wrapper>div span{transition:all .3s linear;background:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper{max-width:30px;max-height:30px}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper{position:absolute;top:0;right:0;display:flex;z-index:2;padding:20px;background:var(--qdlx-purple-bliss-light, #FFFFFF);box-shadow:none;border-radius:100%;text-align:center;line-height:1;appearance:none;outline:none;cursor:pointer;font-size:0;justify-content:center;align-items:center;width:100%;height:100%;max-width:30px;max-height:30px;transition:all .3s linear;box-sizing:border-box}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover{transition:all .3s linear;background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div span{transition:all .3s linear}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:before:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:before:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:after:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div:after:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div span:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper:hover>div span:after{background:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input~.quotes-dlx-meatball-icon-wrapper>div span{transition:all .3s linear;background:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper{background:var(--qdlx-purple-bliss-light, #FFFFFF)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div:after,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div span{transition:all .3s linear;background:var(--qdlx-purple-bliss-secondary, #67009C)}.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div span:before,.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked~.quotes-dlx-meatball-icon-wrapper>div span:after{display:inline-block;background:var(--qdlx-purple-bliss-secondary, #67009C)}
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/scss/themes/purple-bliss.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
+/* Responsive styles - In hindsight, should've used mobile-first */
+/* Mixin from: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/ */
+/* It's only used here, so no external file for mixin? */
+.quotes-dlx .quotes-dlx-wrapper {
+  padding: 1.875em;
+  margin: 0;
+}
+
+/* Top/Bottom Padding */
+.quotes-dlx-container {
+  padding: 1.2em 0;
+}
+
+p ~ .quotes-dlx.quotes-dlx-container {
+  padding-top: 0;
+}
+
+.quotes-dlx-wrapper .quotes-dlx-button {
+  text-transform: unset;
+  cursor: pointer;
+}
+
+.quotes-dlx-citation-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.quotes-dlx-citation-align-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.quotes-dlx-citation-align-center {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1em;
+  text-align: center;
+}
+
+.quotes-dlx-citation-align-right {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.quotes-dlx-citation-image-wrapper.is-round {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.is-round img {
+  border-radius: 100%;
+}
+.quotes-dlx-citation-image-wrapper.has-border {
+  /* Color is set in theme scss */
+}
+.quotes-dlx-citation-image-wrapper.has-border img {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.quotes-dlx-block-theme-purple-bliss {
+  font-size: var(--qdlx-purple-bliss-font-size-mobile, 14px);
+  /* If these are set, we're in a preview */
+}
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-purple-bliss {
+    font-size: var(--qdlx-purple-bliss-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-purple-bliss {
+    font-size: var(--qdlx-purple-bliss-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile {
+  font-size: var(--qdlx-purple-bliss-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile .quotes-dlx-button {
+  font-size: var(--qdlx-purple-bliss-button-font-size-mobile, 14px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-mobile .quotes-dlx-button-icon {
+  font-size: var(--qdlx-purple-bliss-button-font-size-mobile, 14px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-purple-bliss-button-font-size-mobile, 14px) / 2)) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet {
+  font-size: var(--qdlx-purple-bliss-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet .quotes-dlx-button {
+  font-size: var(--qdlx-purple-bliss-button-font-size-tablet, 15px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-tablet .quotes-dlx-button-icon {
+  font-size: var(--qdlx-purple-bliss-button-font-size-tablet, 15px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-purple-bliss-button-font-size-tablet, 15px) / 2)) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop {
+  font-size: var(--qdlx-purple-bliss-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop .quotes-dlx-button {
+  font-size: var(--qdlx-purple-bliss-button-font-size-desktop, 16px) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-screen-desktop .quotes-dlx-button-icon {
+  font-size: var(--qdlx-purple-bliss-button-font-size-desktop, 16px) !important;
+  top: calc(50% - (0.125em + var(--qdlx-purple-bliss-button-font-size-desktop, 16px) / 2)) !important;
+}
+.quotes-dlx-block-theme-purple-bliss.quotes-dlx-context-menu-disabled .quotes-dlx-wrapper .quotes-dlx-text-wrapper {
+  padding-right: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper {
+  position: relative;
+  background: transparent;
+  /* Show only the icon and not the button wrappers */
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure {
+  position: relative;
+  margin: 0;
+  margin-top: 40px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure:before {
+  display: inline-block;
+  content: "“";
+  position: absolute;
+  border: 1px solid var(--qdlx-purple-bliss-secondary, #67009C);
+  border-radius: 100%;
+  background-color: var(--qdlx-purple-bliss-secondary, #67009C);
+  color: var(--qdlx-purple-bliss-light, #FFFFFF);
+  width: 100px;
+  height: 100px;
+  font-size: 95px;
+  line-height: 145px;
+  font-family: serif;
+  text-align: center;
+  top: -50px;
+  left: calc(50% - 50px);
+  z-index: 2;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  font-family: var(--qdlx-purple-bliss-primary-font-family, var(--qdlx-primary-font-family, inherit));
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: var(--qdlx-purple-bliss-line-height-mobile, 1.3);
+  background: var(--qdlx-purple-bliss-background, #f8f7fb);
+  color: var(--qdlx-purple-bliss-text, #393838);
+  margin: 0 !important; /* override core style */
+  border: 0;
+  border-top: 5px solid var(--qdlx-purple-bliss-secondary, #67009C);
+  quotes: none;
+  vertical-align: baseline;
+  font-style: inherit;
+  padding: 60px 35px 30px 35px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.35em;
+    line-height: var(--qdlx-purple-bliss-line-height-tablet, 1.35);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper figure blockquote.quotes-dlx-text-wrapper {
+    font-size: 1.5em;
+    line-height: var(--qdlx-purple-bliss-line-height-desktop, 1.65);
+  }
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper {
+  display: flex;
+  position: relative;
+  background: var(--qdlx-purple-bliss-background, #f8f7fb);
+  border-bottom: 2px solid var(--qdlx-purple-bliss-border-bottom, #cbc3e3);
+  padding: 30px 34px;
+  padding-bottom: 60px;
+  padding-top: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon {
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  top: calc(50% - 0.6em);
+  bottom: 0;
+  right: 20px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg path,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-icon svg use {
+  fill: var(--qdlx-purple-bliss-light, #FFFFFF);
+  transition: all 0.3s ease-in-out;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper .quotes-dlx-button-container {
+  position: relative;
+  display: inline-block;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.left {
+  justify-content: flex-start;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.right {
+  justify-content: flex-end;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.center {
+  justify-content: center;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button {
+  position: relative;
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+  color: var(--qdlx-purple-bliss-light, #FFFFFF);
+  padding: 12px 25px;
+  border-radius: 4px;
+  border: 1px solid var(--qdlx-purple-bliss-secondary, #67009C);
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--qdlx-purple-bliss-secondary-font-family, var(--qdlx-secondary-font-family, inherit));
+  font-weight: 400;
+  font-size: var(--qdlx-purple-bliss-button-font-size-mobile, 14px);
+  line-height: 1em;
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:last-child {
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-purple-bliss-button-font-size-tablet, 15px);
+  }
+}
+@media (min-width: 1024px) {
+  .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button {
+    font-size: var(--qdlx-purple-bliss-button-font-size-desktop, 16px);
+  }
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover {
+  transition: all 0.3s ease-in-out;
+  color: var(--qdlx-purple-bliss-secondary, #67009C);
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover svg path,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:hover svg use {
+  fill: var(--qdlx-purple-bliss-secondary, #67009C);
+  transition: all 0.3s ease-in-out;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-icon {
+  right: auto;
+  left: 15px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button:not(.text):not(.icon).quotes-dlx-button-icon-left .quotes-dlx-button-text {
+  display: inline-block;
+  padding-left: 28px;
+  padding-right: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.icon {
+  padding: 8px 20px;
+  line-height: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.icon .quotes-dlx-button-icon {
+  position: relative;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  padding: 0;
+  margin: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.full .quotes-dlx-button-text {
+  display: inline-block;
+  padding-right: 28px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button.text .quotes-dlx-button-text {
+  display: inline-block;
+  padding-right: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button {
+  background: transparent;
+  color: var(--qdlx-purple-bliss-secondary, #67009C);
+  padding: 6px;
+  border: 2px solid transparent;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button:hover {
+  border-color: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg path,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-button-wrapper.is-transparent-button .quotes-dlx-button svg use {
+  fill: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-menu {
+  top: 90px;
+  right: 3.75em;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: flex;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input {
+  position: relative;
+  display: block;
+  min-width: 40px;
+  min-height: 40px;
+  right: 0;
+  top: 0;
+  z-index: 3;
+  order: 3;
+  opacity: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ ul {
+  z-index: -1;
+  list-style-type: none;
+  width: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked) ~ ul {
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+  position: relative;
+  transition: opacity 0.75s ease-in-out;
+  margin-right: 2px;
+  margin-top: 0;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:not(:checked) ~ ul li {
+  background: inherit;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ ul {
+  position: relative;
+  width: 100%;
+  left: 0;
+  transition: opacity 0.75s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  margin-right: 12px;
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+  border: 1px solid var(--qdlx-purple-bliss-secondary, #67009C);
+  z-index: 10;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper {
+  z-index: 2;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-in-out;
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+  margin-right: 5px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after {
+  margin-bottom: 0;
+  margin-right: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div {
+  transition: all 0.3s linear;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
+  transition: all 0.3s linear;
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after {
+  position: absolute;
+  transition: all 0.3s linear;
+  border-radius: 2px;
+  height: 4px;
+  z-index: 1;
+  width: 50%;
+  height: 4px;
+  bottom: unset;
+  transform: rotate(-45deg) translate(0px, 0px);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before {
+  position: absolute;
+  transition: all 0.3s linear;
+  border-radius: 2px;
+  height: 4px;
+  z-index: 3;
+  width: 50%;
+  height: 4px;
+  margin: 0;
+  bottom: unset;
+  transform: rotate(45deg) translate(0px, 0px);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper span {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item {
+  border-bottom: 0;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset {
+  color: var(--qdlx-purple-bliss-dark, #333333);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover {
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+  color: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content li.quotes-dlx-meatball-menu-item button.button-reset:hover svg use {
+  fill: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input {
+  cursor: pointer;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover .quotes-dlx-meatball-icon-wrapper {
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper {
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:hover ~ .quotes-dlx-meatball-icon-wrapper > div span {
+  transition: all 0.3s linear;
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
+  max-width: 30px;
+  max-height: 30px;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  z-index: 2;
+  padding: 20px;
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+  box-shadow: none;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 1;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 30px;
+  max-height: 30px;
+  transition: all 0.3s linear;
+  box-sizing: border-box;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover {
+  transition: all 0.3s linear;
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span {
+  transition: all 0.3s linear;
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:before:after, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div:after:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:before,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper:hover > div span:after {
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input ~ .quotes-dlx-meatball-icon-wrapper > div span {
+  transition: all 0.3s linear;
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper {
+  background: var(--qdlx-purple-bliss-light, #FFFFFF);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div:after,
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span {
+  transition: all 0.3s linear;
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+.quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:before, .quotes-dlx-block-theme-purple-bliss .quotes-dlx-wrapper .quotes-dlx-meatball-content input:checked ~ .quotes-dlx-meatball-icon-wrapper > div span:after {
+  display: inline-block;
+  background: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+
+.template-purple-bliss {
+  /* Inner Link Styles */
+  /* Blockquote styles when there is no tweet button */
+  /* Citation Styles */
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a,
+.template-purple-bliss .quotes-dlx-citation-wrapper a {
+  position: relative;
+  color: var(--qdlx-purple-bliss-link, #ff6900);
+  text-transform: none;
+  padding-bottom: 4px;
+  transition: all 0.35s ease-in-out;
+  text-decoration: none !important; /* override core style */
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:hover,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover {
+  color: var(--qdlx-purple-bliss-link-hover, #ff6900);
+  transition: all 0.35s ease-in-out;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:after, .template-purple-bliss .quotes-dlx-text-wrapper a:hover:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--qdlx-purple-bliss-link-underline, #FFFFFF);
+  transition: all 0.35s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.35s ease-in-out;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:after {
+  background: transparent;
+}
+.template-purple-bliss .quotes-dlx-text-wrapper a:hover:after,
+.template-purple-bliss .quotes-dlx-citation-wrapper a:hover:after {
+  background: var(--qdlx-purple-bliss-link-underline-hover, #FFFFFF);
+}
+.template-purple-bliss.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper, .template-purple-bliss.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-citation-wrapper {
+  padding-bottom: 68px;
+}
+.template-purple-bliss.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper, .template-purple-bliss.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
+  padding-bottom: 34px;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper {
+  background: var(--qdlx-purple-bliss-background, #f8f7fb);
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 34px;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  color: var(--qdlx-purple-bliss-text, #393838);
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-author {
+  font-size: 1.25em;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
+.template-purple-bliss .quotes-dlx-citation-wrapper .quotes-dlx-citation-source {
+  font-size: 1em;
+}
+.template-purple-bliss .quotes-dlx-citation-wrapper .has-border {
+  border-color: var(--qdlx-purple-bliss-secondary, #67009C);
+}
+
+/*# sourceMappingURL=quotes-dlx-theme-purple-bliss.css.map*/

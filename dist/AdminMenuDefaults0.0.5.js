@@ -1,1 +1,963 @@
-(self.webpackChunkquotes_dlx=self.webpackChunkquotes_dlx||[]).push([[938],{8228:(e,t,n)=>{"use strict";n.d(t,{Z:()=>_});var l=n(9196),a=n.n(l),r=n(5697),o=n.n(r),i=n(5158),s=n(5609),c=n(4184),u=n.n(c);function d(){return d=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var l in n)Object.prototype.hasOwnProperty.call(n,l)&&(e[l]=n[l])}return e},d.apply(this,arguments)}function m(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var h=function(e){var t,n=e.message,r=e.status,o=e.politeness,c=e.icon,h=e.className,_=e.inline,p=e.children,b=e.animate,f=e.animationType;(0,l.useEffect)((function(){(0,i.speak)(n,o)}),[n,r,o]);var g,x=function(){return null!==c},v=u()(h,"qdlx-admin__notice",(m(t={"qdlx-admin__notice--has-icon":x()},"qdlx-admin__notice-type--".concat(r),!0),m(t,"qdlx-admin__notice-appearance--inline",_),m(t,"qdlx-admin__notice-appearance--block",!_),m(t,"qdlx-admin__notice-animate",b),m(t,"qdlx-admin__notice-animate--".concat(f),b),t));return a().createElement("div",{className:v},a().createElement(s.Notice,d({isDismissible:!1,spokenMessage:n,actions:[]},e),x()&&a().createElement("div",{className:"qdlx-admin__notice-icon"},(g=c,a().createElement(g,{width:16,height:16,fill:"#6c757d"}))),a().createElement("div",{className:"qldx-admin__notice-message"},a().createElement(a().Fragment,null,n," ",p," "))))};h.defaultProps={message:"",status:"info",politeness:"polite",icon:null,className:"",inline:!1,animate:!1,animationType:"fadein"},h.propTypes={message:o().string.isRequired,status:o().oneOf(["info","warning","success","error"]),politeness:o().oneOf(["assertive","polite"]),icon:o().func,className:o().string,inline:o().bool,animate:o().bool,animatitionType:o().oneOf(["fadein","fadeout"])};const _=h},6353:(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>T});var l=n(9196),a=n.n(l),r=n(5736),o=n(5609),i=n(5302),s=n(7536),c=n(4184),u=n.n(c),d=n(8474),m=n(8228),h=n(6183),_=n(7214),p=n(5715),b=(n(1136),n(7896)),f=n(984),g=n(3832),x=n(3631);function v(){return v=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var l in n)Object.prototype.hasOwnProperty.call(n,l)&&(e[l]=n[l])}return e},v.apply(this,arguments)}function y(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var l,a,r=[],o=!0,i=!1;try{for(n=n.call(e);!(o=(l=n.next()).done)&&(r.push(l.value),!t||r.length!==t);o=!0);}catch(e){i=!0,a=e}finally{try{o||null==n.return||n.return()}finally{if(i)throw a}}return r}}(e,t)||function(e,t){if(e){if("string"==typeof e)return E(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?E(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function E(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,l=new Array(t);n<t;n++)l[n]=e[n];return l}var q=function(){return(0,d.Z)("quotes_dlx_retrieve_admin_menu_options_defaults",{nonce:quotes_dlx_admin.options_retrieve_nonce})},w=function(e){var t,n,i,c,x,E,q="quotes_dlx_menu_defaults",w=(0,e.defaults)().data,T=w.data,C=(w.success,(0,l.useContext)(f.Z)),S=C.contextualMenuDefaultsDirtyCount,L=C.setContextualMenuDefaultsDirtyCount,N=y((0,l.useState)(T.enable_contextual_menu),2),k=(N[0],N[1]),Z=y((0,l.useState)(!0),2),O=Z[0],P=Z[1],M=y((0,l.useState)(!1),2),Q=M[0],F=M[1],j=y((0,l.useState)(!1),2),I=j[0],z=j[1],D=y((0,l.useState)(!1),2),A=D[0],B=D[1],V=y((0,l.useState)(!1),2),J=V[0],G=V[1],R=T.enable_global_contextual_menu,X=T.enable_contextual_menu,Y=T.enable_copy_text,U=T.enable_copy_tweet,$=T.enable_copy_link,H=T.enable_tweet_this,K=T.enable_share_this,W=T.enable_email_text,ee=T.email_text_label,te=T.copy_text_label,ne=T.copy_tweet_label,le=T.copy_link_label,ae=T.tweet_this_label,re=T.share_this_label,oe=(0,s.cI)({defaultValues:{enableGlobalContextualMenu:R,enableContextualMenu:X,enableCopyText:Y,enableCopyTweet:U,enableCopyLink:$,enableTweetThis:H,enableShareThis:K,enableEmailText:W,copyTextLabel:te,emailTextLabel:ee,copyTweetLabel:ne,copyLinkLabel:le,tweetThisLabel:ae,shareThisLabel:re}}),ie=(oe.register,oe.control),se=oe.handleSubmit,ce=oe.setValue,ue=oe.getValues,de=oe.reset,me=(0,s.qo)({control:ie}),he=(0,s.cl)({control:ie}),_e=he.errors,pe=he.isDirty,be=he.dirtyFields,fe=(he.touchedFields,function(){return Object.keys(_e).length>0});return(0,l.useEffect)((function(){var e=localStorage.getItem(q),t=localStorage.getItem(q+"_dirty_fields");if(null!==e){var n=JSON.parse(e);if(Object.keys(n.length>0)){var l={};null!==t&&(l=JSON.parse(t));for(var a=0,r=Object.entries(n);a<r.length;a++){var o=y(r[a],2),i=o[0],s=o[1];l.hasOwnProperty(i)?ce(i,s,{shouldDirty:!0,shouldValidate:!0}):ce(i,s,{shouldDirty:!1,shouldValidate:!1})}}}P(!1)}),[]),(0,l.useEffect)((function(){Q||A||O||((pe||S>0)&&(L(Object.keys(be).length),localStorage.setItem(q,JSON.stringify(me)),localStorage.setItem(q+"_dirty_fields",JSON.stringify(be))),P(!1))}),[me]),O?a().createElement(h.Z,null):a().createElement(a().Fragment,null,a().createElement("div",{className:"qdlx-admin__tabs--content-wrap"},a().createElement("form",{onSubmit:se((function(e){F(!0),(0,d.Z)("quotes_dlx_save_admin_menu_options",{nonce:quotes_dlx_admin.options_save_nonce,form_data:e}).then((function(e){var t=e.data.data;e.data.success&&(L(0),de(t),localStorage.setItem(q,JSON.stringify(t)),localStorage.removeItem(q+"_dirty_fields"),z(!0),setTimeout((function(){z(!1)}),3e3))})).catch((function(e){})).then((function(e){F(!1)}))}))},a().createElement("div",{className:"qdlx-admin__tabs--content-panel"},a().createElement("div",{className:"qdlx-admin__tabs--content-heading"},a().createElement("h1",null,a().createElement(b.Z,{width:48,height:48,"aria-hidden":"true"}),a().createElement("span",{className:"qdlx-admin__heading--text"},(0,r.__)("Contextual Menu Defaults","quotes-dlx"))),a().createElement("p",{className:"description"},(0,r.__)("A meatballs menu is three horizontal dots that resembles a meatball sandwich. It is enabled by default and sits on the top-right corner of your quote. This frees up screen real-estate and allows users to choose how to interact with your quote.","quotes-dlx"))),a().createElement("div",{className:"qdlx-admin__tabs--content-inner"},a().createElement("table",{className:"form-table",role:"presentation"},a().createElement("tbody",null,a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Menu Visibility","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableContextualMenu",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable or disable the menu by default.","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){k(e),n(e)},help:(0,r.__)("The contextual menu hides away some options so as to not clutter up the Quote interface","quotes-dlx"),disabled:Q||A})}}))),ue("enableContextualMenu")&&a().createElement(a().Fragment,null,a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Copy Quote","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableCopyText",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Copy Quote","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){n(e)},help:(0,r.__)("Enable the copying of the full quote.","quotes-dlx"),disabled:Q||A})}}),ue("enableCopyText")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"copyTextLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Copy Quote Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.copyTextLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true"}))}}),"required"===(null===(t=_e.copyTextLabel)||void 0===t?void 0:t.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z})))),a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Copy Post","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableCopyTweet",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Copy Post","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){n(e)},help:(0,r.__)("Enable the copying of the X post to be used elsewhere.","quotes-dlx"),disabled:Q||A})}}),ue("enableCopyTweet")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"copyTweetLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Copy Post Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.copyTweetLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true"}))}}),"required"===(null===(n=_e.copyTweetLabel)||void 0===n?void 0:n.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z})))),a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Copy Link","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableCopyLink",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Copy Link","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){n(e)},help:(0,r.__)("Enable the copying of the link to the post or quote.","quotes-dlx"),disabled:Q||A})}}),ue("enableCopyLink")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"copyLinkLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Copy Link Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.copyLinkLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true"}))}}),"required"===(null===(i=_e.copyLinkLabel)||void 0===i?void 0:i.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z})))),a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Post This","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableTweetThis",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Post This Button","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){n(e)},help:(0,r.__)("A Post This (formerly Tweet) option will show at the bottom of the menu with this selected.","quotes-dlx"),disabled:Q||A})}}),ue("enableTweetThis")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"tweetThisLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Post This Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.tweetThisLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true"}))}}),"required"===(null===(c=_e.tweetThisLabel)||void 0===c?void 0:c.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z})))),a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Share This","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableShareThis",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Share This (Facebook) Button","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){n(e)},help:(0,r.__)("A Share This (to Facebook) option will show at the bottom of the menu with this selected.","quotes-dlx"),disabled:Q||A})}}),ue("enableShareThis")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"shareThisLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Share This Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.shareThisLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true"}))}}),"required"===(null===(x=_e.shareThisLabel)||void 0===x?void 0:x.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z}))))))),a().createElement(m.Z,{message:(0,r.__)("The following features are experimental and may be removed or revised in a future release."),status:"warning",politeness:"polite",inline:!1,icon:p.Z}),a().createElement("table",{className:"form-table",role:"presentation"},a().createElement("tbody",null,a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Email Option","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableEmailText",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Enable Email Option","quotes-dlx"),help:(0,r.__)("Set whether users can email a quote to themselves or others.","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){k(e),n(e)},disabled:Q||A})}}),ue("enableEmailText")&&a().createElement(a().Fragment,null,a().createElement(s.Qr,{name:"emailTextLabel",control:ie,rules:{required:!0},render:function(e){var t,n=e.field;return a().createElement(o.TextControl,v({},n,{label:(0,r.__)("Email Quote Label","quotes-dlx"),className:u()("qdlx-admin__text-control",{"has-error":"required"===(null===(t=_e.emailTextLabel)||void 0===t?void 0:t.type),"is-required":!0}),"aria-required":"true",help:(0,r.__)("This text will be the text displayed for the Email Share option in the contextual menu.","quotes-dlx")}))}}),"required"===(null===(E=_e.emailTextLabel)||void 0===E?void 0:E.type)&&a().createElement(m.Z,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:_.Z})))),a().createElement("tr",null,a().createElement("th",{scope:"row"},(0,r.__)("Set Globally","quotes-dlx")),a().createElement("td",null,a().createElement(s.Qr,{name:"enableGlobalContextualMenu",control:ie,render:function(e){var t=e.field,n=t.onChange,l=t.value;return a().createElement(o.ToggleControl,{label:(0,r.__)("Set Contextual Menu Options Globally","quotes-dlx"),help:(0,r.__)("The options on this page will be applied globally throughout your site content.","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:l,onChange:function(e){k(e),n(e)},disabled:Q||A})}}))))),a().createElement("div",{className:"qdlx-admin__tabs--content-actions"},a().createElement(o.Button,{className:u()("qdlx__btn qdlx__btn-primary qdlx__btn--icon-right",{"has-error":fe()},{"has-icon":Q},{"is-saving":{saving:Q}}),type:"submit",text:Q?(0,r.__)("Saving…","quotes-dlx"):(0,r.__)("Save Menu Defaults","quotes-dlx"),icon:!!Q&&g.Z,iconSize:"18",iconPosition:"right",disabled:Q||A}),a().createElement(o.Button,{className:u()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":A},{"is-resetting":{resetting:A}}),type:"button",text:A?(0,r.__)("Resetting…","quotes-dlx"):(0,r.__)("Reset Menu Defaults","quotes-dlx"),icon:!!A&&g.Z,iconSize:"18",iconPosition:"right",disabled:Q||A,onClick:function(e){B(!0),B(!0),(0,d.Z)("quotes_dlx_reset_admin_menu_options",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){var t=e.data.data;e.data.success&&(L(0),de(t),localStorage.setItem(q,JSON.stringify(t)),localStorage.removeItem(q+"_dirty_fields"),k(t.enableContextualMenu),G(!0),setTimeout((function(){G(!1)}),3e3))})).catch((function(e){})).then((function(e){B(!1)}))}})),fe()&&a().createElement(m.Z,{message:(0,r.__)("There are form validation errors. Please correct them above."),status:"error",politeness:"polite"}),I&&a().createElement(m.Z,{message:(0,r.__)("Your settings have been saved."),status:"success",politeness:"assertive"}),J&&a().createElement(m.Z,{message:(0,r.__)("Your settings have been reset to defaults."),status:"success",politeness:"assertive"}))))))};const T=function(e){var t=y((0,i.useAsyncResource)(q,[]),2),n=t[0];return t[1],a().createElement(x.Z,{fallback:a().createElement("p",null,(0,r.__)("Could not load contextual menu defaults.","quotes-dlx"),a().createElement("br",null),a().createElement("a",{href:"https://dlxplugins.com/support/",target:"_blank",rel:"noopener noreferrer"},"DLX Plugins Support"))},a().createElement(l.Suspense,{fallback:a().createElement(h.Z,null)},a().createElement(w,v({defaults:n},e))))}},7214:(e,t,n)=>{"use strict";n.d(t,{Z:()=>s});var l=n(9196),a=n.n(l),r=n(5697),o=n.n(r),i=function(e){return a().createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},a().createElement("path",{fill:"var( ".concat(e.var,")"),d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"}))};i.defaultProps={width:16,height:16,fill:"#333333"},i.propTypes={width:o().number,height:o().number,fill:o().string};const s=i},1136:(e,t,n)=>{"use strict";n.d(t,{Z:()=>s});var l=n(9196),a=n.n(l),r=n(5697),o=n.n(r),i=function(e){return a().createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 512 512",width:e.width,height:e.height},a().createElement("path",{fill:e.fill,d:"M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"}))};i.defaultProps={width:16,height:16,fill:"#333333"},i.propTypes={width:o().number,height:o().number,fill:o().string};const s=i},3832:(e,t,n)=>{"use strict";n.d(t,{Z:()=>s});var l=n(9196),a=n.n(l),r=n(5697),o=n.n(r),i=function(e){return a().createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 576 512",width:e.width,height:e.height},a().createElement("path",{className:"fa-primary",fill:e.primaryColor,d:"M256 32c0-17.67 14.3-32 32-32 141.4 0 256 114.6 256 256 0 46.6-12.5 90.4-34.3 128-8.8 15.3-28.4 20.6-44.6 11.7-14.4-8.8-19.6-28.4-10.8-44.6 16.3-27.3 25.7-60.1 25.7-96 0-106-86-192-192-192-17.7 0-32-13.43-32-32v.9z"}),a().createElement("path",{d:"M287.1 64c-106 0-192 85.1-192 192 0 106 86 192 192 192 71 0 132.2-37.5 165.8-93.6l.1.1c-6.9 14.9-1.5 32.8 12.1 41.2 16.2 8.9 35.8 3.6 44.6-11.7.2-.3.4-.6.5-.9C466.1 460.1 383.1 512 288 512 146.6 512 32 397.4 32 256S146.6 0 288 0c-17.7 0-32 14.33-32 32s14.3 32 32 32h-.9z",fill:e.secondaryColor,style:{opacity:.4}}))};i.defaultProps={width:24,height:24,primaryColor:"currentColor",secondaryColor:"currentColor"},i.propTypes={width:o().number,height:o().number,primaryColor:o().string,secondaryColor:o().string};const s=i},8474:(e,t,n)=>{"use strict";n.d(t,{Z:()=>i});var l=n(9669),a=n.n(l),r=n(129),o=n.n(r);function i(e,t,n){var l={action:e},r={nonce:!1,action:e};for(var i in void 0===t&&(t={}),r)t.hasOwnProperty(i)||(t[i]=r[i]);var s={method:"post",url:null!=n?n:ajaxurl,params:l,paramsSerializer:function(e){return o().stringify(e,{arrayFormat:"brackets"})},data:o().stringify(t)};return a()(s)}},4654:()=>{}}]);
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminMenuDefaults0.0.5"],{
+
+/***/ "./src/js/admin-panel/admin-components/Notice/index.js":
+/*!*************************************************************!*\
+  !*** ./src/js/admin-panel/admin-components/Notice/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/a11y */ "@wordpress/a11y");
+/* harmony import */ var _wordpress_a11y__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+// eslint-disable-next-line no-unused-vars
+
+ // ES6
+
+
+
+var Notice = function Notice(props) {
+  var _classNames;
+  var message = props.message,
+    status = props.status,
+    politeness = props.politeness,
+    icon = props.icon,
+    className = props.className,
+    inline = props.inline,
+    children = props.children,
+    animate = props.animate,
+    animationType = props.animationType;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_wordpress_a11y__WEBPACK_IMPORTED_MODULE_1__.speak)(message, politeness);
+  }, [message, status, politeness]);
+  var hasIcon = function hasIcon() {
+    return icon !== null;
+  };
+  var getIcon = function getIcon(Icon) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Icon, {
+      width: 16,
+      height: 16,
+      fill: "#6c757d"
+    });
+  };
+  var containerClasses = classnames__WEBPACK_IMPORTED_MODULE_3___default()(className, 'qdlx-admin__notice', (_classNames = {
+    'qdlx-admin__notice--has-icon': hasIcon()
+  }, _defineProperty(_classNames, "qdlx-admin__notice-type--".concat(status), true), _defineProperty(_classNames, "qdlx-admin__notice-appearance--inline", inline), _defineProperty(_classNames, "qdlx-admin__notice-appearance--block", !inline), _defineProperty(_classNames, "qdlx-admin__notice-animate", animate), _defineProperty(_classNames, "qdlx-admin__notice-animate--".concat(animationType), animate), _classNames));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: containerClasses
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Notice, _extends({
+    isDismissible: false,
+    spokenMessage: message,
+    actions: []
+  }, props), hasIcon() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__notice-icon"
+  }, getIcon(icon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qldx-admin__notice-message"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, message, " ", children, " "))));
+};
+Notice.defaultProps = {
+  message: '',
+  status: 'info',
+  politeness: 'polite',
+  icon: null,
+  className: '',
+  inline: false,
+  animate: false,
+  animationType: 'fadein'
+};
+Notice.propTypes = {
+  message: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string).isRequired,
+  status: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['info', 'warning', 'success', 'error']),
+  politeness: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['assertive', 'polite']),
+  icon: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+  inline: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animate: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
+  animatitionType: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(['fadein', 'fadeout'])
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notice);
+
+/***/ }),
+
+/***/ "./src/js/admin-panel/views/AdminContextualMenu.js":
+/*!*********************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminContextualMenu.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/icons/FlaskIcon */ "./src/js/components/icons/FlaskIcon.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _components_icons_MenuIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/MenuIcon */ "./src/js/components/icons/MenuIcon.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var retrieveDefaults = function retrieveDefaults() {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_retrieve_admin_menu_options_defaults', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce
+  });
+};
+var AdminDefaults = function AdminDefaults(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_3__.useAsyncResource)(retrieveDefaults, []),
+    _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+    defaults = _useAsyncResource2[0],
+    getDefaults = _useAsyncResource2[1];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load contextual menu defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://dlxplugins.com/support/",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "DLX Plugins Support"))
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props))));
+};
+var Interface = function Interface(props) {
+  var _errors$copyTextLabel2, _errors$copyTweetLabe2, _errors$copyLinkLabel2, _errors$tweetThisLabe2, _errors$shareThisLabe2, _errors$emailTextLabe2;
+  var localStorageFieldValuesKey = 'quotes_dlx_menu_defaults';
+  var defaults = props.defaults;
+  var response = defaults();
+  var _response$data = response.data,
+    data = _response$data.data,
+    success = _response$data.success;
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_12__["default"]),
+    contextualMenuDefaultsDirtyCount = _useContext.contextualMenuDefaultsDirtyCount,
+    setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.enable_contextual_menu),
+    _useState2 = _slicedToArray(_useState, 2),
+    contextMenuActive = _useState2[0],
+    setContextMenuActive = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    saving = _useState6[0],
+    setSaving = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isSaved = _useState8[0],
+    setIsSaved = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    resetting = _useState10[0],
+    setResetting = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    isReset = _useState12[0],
+    setIsReset = _useState12[1];
+  var enable_global_contextual_menu = data.enable_global_contextual_menu,
+    enable_contextual_menu = data.enable_contextual_menu,
+    enable_copy_text = data.enable_copy_text,
+    enable_copy_tweet = data.enable_copy_tweet,
+    enable_copy_link = data.enable_copy_link,
+    enable_tweet_this = data.enable_tweet_this,
+    enable_share_this = data.enable_share_this,
+    enable_email_text = data.enable_email_text,
+    email_text_label = data.email_text_label,
+    copy_text_label = data.copy_text_label,
+    copy_tweet_label = data.copy_tweet_label,
+    copy_link_label = data.copy_link_label,
+    tweet_this_label = data.tweet_this_label,
+    share_this_label = data.share_this_label;
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useForm)({
+      defaultValues: {
+        enableGlobalContextualMenu: enable_global_contextual_menu,
+        enableContextualMenu: enable_contextual_menu,
+        enableCopyText: enable_copy_text,
+        enableCopyTweet: enable_copy_tweet,
+        enableCopyLink: enable_copy_link,
+        enableTweetThis: enable_tweet_this,
+        enableShareThis: enable_share_this,
+        enableEmailText: enable_email_text,
+        copyTextLabel: copy_text_label,
+        emailTextLabel: email_text_label,
+        copyTweetLabel: copy_tweet_label,
+        copyLinkLabel: copy_link_label,
+        tweetThisLabel: tweet_this_label,
+        shareThisLabel: share_this_label
+      }
+    }),
+    register = _useForm.register,
+    control = _useForm.control,
+    handleSubmit = _useForm.handleSubmit,
+    setValue = _useForm.setValue,
+    getValues = _useForm.getValues,
+    reset = _useForm.reset;
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useWatch)({
+    control: control
+  });
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useFormState)({
+      control: control
+    }),
+    errors = _useFormState.errors,
+    isDirty = _useFormState.isDirty,
+    dirtyFields = _useFormState.dirtyFields,
+    touchedFields = _useFormState.touchedFields;
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_save_admin_menu_options', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      form_data: formData
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset count.
+        setContextualMenuDefaultsDirtyCount(0);
+
+        // Clear form dirty.
+        reset(ajaxData);
+        localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageFieldValuesKey + '_dirty_fields');
+        setIsSaved(true);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_5__["default"])('quotes_dlx_reset_admin_menu_options', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset local storage.
+        setContextualMenuDefaultsDirtyCount(0);
+
+        // Clear form dirty.
+        // Set form fields.
+        reset(ajaxData);
+        localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageFieldValuesKey + '_dirty_fields');
+        setContextMenuActive(ajaxData.enableContextualMenu);
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
+    });
+  };
+  var hasErrors = function hasErrors() {
+    return Object.keys(errors).length > 0;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
+    var maybeSavedFormFields = localStorage.getItem(localStorageFieldValuesKey);
+    var maybeDirtyFields = localStorage.getItem(localStorageFieldValuesKey + '_dirty_fields');
+    if (null !== maybeSavedFormFields) {
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields);
+
+      // If saved form fields, proceed with setting fields.
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {};
+
+        // Get any dirty fields.
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
+        }
+        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+          // If key is in saved dirty fields, set dirty.
+
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, value, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, value, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
+    }
+    setLoading(false);
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (saving || resetting || loading) {
+      return;
+    }
+    if (isDirty || contextualMenuDefaultsDirtyCount > 0) {
+      // Get current dirty fields.
+      setContextualMenuDefaultsDirtyCount(Object.keys(dirtyFields).length);
+
+      // Save form values to local storage.
+      localStorage.setItem(localStorageFieldValuesKey, JSON.stringify(formValues));
+      localStorage.setItem(localStorageFieldValuesKey + '_dirty_fields', JSON.stringify(dirtyFields));
+    }
+    setLoading(false);
+  }, [formValues]);
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_7__["default"], null);
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_MenuIcon__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contextual Menu Defaults', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A meatballs menu is three horizontal dots that resembles a meatball sandwich. It is enabled by default and sits on the top-right corner of your quote. This frees up screen real-estate and allows users to choose how to interact with your quote.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Menu Visibility', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableContextualMenu",
+    control: control,
+    render: function render(_ref) {
+      var _ref$field = _ref.field,
+        _onChange = _ref$field.onChange,
+        value = _ref$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or disable the menu by default.', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setContextMenuActive(boolValue);
+          _onChange(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The contextual menu hides away some options so as to not clutter up the Quote interface', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }))), getValues('enableContextualMenu') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Quote', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableCopyText",
+    control: control,
+    render: function render(_ref2) {
+      var _ref2$field = _ref2.field,
+        _onChange2 = _ref2$field.onChange,
+        value = _ref2$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Copy Quote', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange2(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the copying of the full quote.', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableCopyText') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "copyTextLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref3) {
+      var _errors$copyTextLabel;
+      var field = _ref3.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Quote Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyTextLabel = errors.copyTextLabel) === null || _errors$copyTextLabel === void 0 ? void 0 : _errors$copyTextLabel.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyTextLabel2 = errors.copyTextLabel) === null || _errors$copyTextLabel2 === void 0 ? void 0 : _errors$copyTextLabel2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Post', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableCopyTweet",
+    control: control,
+    render: function render(_ref4) {
+      var _ref4$field = _ref4.field,
+        _onChange3 = _ref4$field.onChange,
+        value = _ref4$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Copy Post', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange3(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the copying of the X post to be used elsewhere.', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableCopyTweet') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "copyTweetLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref5) {
+      var _errors$copyTweetLabe;
+      var field = _ref5.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Post Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyTweetLabe = errors.copyTweetLabel) === null || _errors$copyTweetLabe === void 0 ? void 0 : _errors$copyTweetLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyTweetLabe2 = errors.copyTweetLabel) === null || _errors$copyTweetLabe2 === void 0 ? void 0 : _errors$copyTweetLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableCopyLink",
+    control: control,
+    render: function render(_ref6) {
+      var _ref6$field = _ref6.field,
+        _onChange4 = _ref6$field.onChange,
+        value = _ref6$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Copy Link', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange4(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable the copying of the link to the post or quote.', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableCopyLink') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "copyLinkLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref7) {
+      var _errors$copyLinkLabel;
+      var field = _ref7.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Copy Link Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$copyLinkLabel = errors.copyLinkLabel) === null || _errors$copyLinkLabel === void 0 ? void 0 : _errors$copyLinkLabel.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$copyLinkLabel2 = errors.copyLinkLabel) === null || _errors$copyLinkLabel2 === void 0 ? void 0 : _errors$copyLinkLabel2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post This', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableTweetThis",
+    control: control,
+    render: function render(_ref8) {
+      var _ref8$field = _ref8.field,
+        _onChange5 = _ref8$field.onChange,
+        value = _ref8$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Post This Button', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange5(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A Post This (formerly Tweet) option will show at the bottom of the menu with this selected.', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableTweetThis') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "tweetThisLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref9) {
+      var _errors$tweetThisLabe;
+      var field = _ref9.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post This Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$tweetThisLabe = errors.tweetThisLabel) === null || _errors$tweetThisLabe === void 0 ? void 0 : _errors$tweetThisLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$tweetThisLabe2 = errors.tweetThisLabel) === null || _errors$tweetThisLabe2 === void 0 ? void 0 : _errors$tweetThisLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableShareThis",
+    control: control,
+    render: function render(_ref10) {
+      var _ref10$field = _ref10.field,
+        _onChange6 = _ref10$field.onChange,
+        value = _ref10$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Share This (Facebook) Button', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange6(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('A Share This (to Facebook) option will show at the bottom of the menu with this selected.', 'quotes-dlx'),
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableShareThis') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "shareThisLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref11) {
+      var _errors$shareThisLabe;
+      var field = _ref11.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share This Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$shareThisLabe = errors.shareThisLabel) === null || _errors$shareThisLabe === void 0 ? void 0 : _errors$shareThisLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true"
+      }));
+    }
+  }), 'required' === ((_errors$shareThisLabe2 = errors.shareThisLabel) === null || _errors$shareThisLabe2 === void 0 ? void 0 : _errors$shareThisLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The following features are experimental and may be removed or revised in a future release.'),
+    status: "warning",
+    politeness: "polite",
+    inline: false,
+    icon: _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Option', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableEmailText",
+    control: control,
+    render: function render(_ref12) {
+      var _ref12$field = _ref12.field,
+        _onChange7 = _ref12$field.onChange,
+        value = _ref12$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Email Option', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set whether users can email a quote to themselves or others.', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setContextMenuActive(boolValue);
+          _onChange7(boolValue);
+        },
+        disabled: saving || resetting
+      });
+    }
+  }), getValues('enableEmailText') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "emailTextLabel",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref13) {
+      var _errors$emailTextLabe;
+      var field = _ref13.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Quote Label', 'quotes-dlx'),
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
+          'has-error': 'required' === ((_errors$emailTextLabe = errors.emailTextLabel) === null || _errors$emailTextLabe === void 0 ? void 0 : _errors$emailTextLabe.type),
+          'is-required': true
+        }),
+        "aria-required": "true",
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This text will be the text displayed for the Email Share option in the contextual menu.', 'quotes-dlx')
+      }));
+    }
+  }), 'required' === ((_errors$emailTextLabe2 = errors.emailTextLabel) === null || _errors$emailTextLabe2 === void 0 ? void 0 : _errors$emailTextLabe2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+    status: "error",
+    politeness: "assertive",
+    inline: true,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Globally', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_15__.Controller, {
+    name: "enableGlobalContextualMenu",
+    control: control,
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+        _onChange8 = _ref14$field.onChange,
+        value = _ref14$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Contextual Menu Options Globally', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The options on this page will be applied globally throughout your site content.', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          setContextMenuActive(boolValue);
+          _onChange8(boolValue);
+        },
+        disabled: saving || resetting
+      });
+    }
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+      'has-error': hasErrors()
+    }, {
+      'has-icon': saving
+    }, {
+      'is-saving': {
+        saving: saving
+      }
+    }),
+    type: "submit",
+    text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Menu Defaults', 'quotes-dlx'),
+    icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_13__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': resetting
+    }, {
+      'is-resetting': {
+        resetting: resetting
+      }
+    }),
+    type: "button",
+    text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Menu Defaults', 'quotes-dlx'),
+    icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_13__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting,
+    onClick: function onClick(e) {
+      setResetting(true);
+      handleReset(e);
+    }
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+    status: "error",
+    politeness: "polite"
+  }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
+    status: "success",
+    politeness: "assertive"
+  }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+    status: "success",
+    politeness: "assertive"
+  }))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDefaults);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularExplanation.js":
+/*!********************************************************!*\
+  !*** ./src/js/components/icons/CircularExplanation.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularExclamationIcon = function CircularExclamationIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: "var( ".concat(props["var"], ")"),
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-24 152c0-13.2 10.8-24 24-24s24 10.75 24 24v128c0 13.25-10.75 24-24 24s-24-10.7-24-24V152zm24 248c-17.36 0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"
+  }));
+};
+CircularExclamationIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularExclamationIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularExclamationIcon);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/CircularInfo.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/icons/CircularInfo.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var CircularInfo = function CircularInfo(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 128c17.67 0 32 14.33 32 32s-14.33 32-32 32-32-14.3-32-32 14.3-32 32-32zm40 256h-80c-13.2 0-24-10.7-24-24s10.75-24 24-24h16v-64h-8c-13.25 0-24-10.75-24-24s10.8-24 24-24h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24s-10.7 24-24 24z"
+  }));
+};
+CircularInfo.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+CircularInfo.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CircularInfo);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/Spinner.js":
+/*!********************************************!*\
+  !*** ./src/js/components/icons/Spinner.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var Spinner = function Spinner(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 576 512",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    className: "fa-primary",
+    fill: props.primaryColor,
+    d: "M256 32c0-17.67 14.3-32 32-32 141.4 0 256 114.6 256 256 0 46.6-12.5 90.4-34.3 128-8.8 15.3-28.4 20.6-44.6 11.7-14.4-8.8-19.6-28.4-10.8-44.6 16.3-27.3 25.7-60.1 25.7-96 0-106-86-192-192-192-17.7 0-32-13.43-32-32v.9z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M287.1 64c-106 0-192 85.1-192 192 0 106 86 192 192 192 71 0 132.2-37.5 165.8-93.6l.1.1c-6.9 14.9-1.5 32.8 12.1 41.2 16.2 8.9 35.8 3.6 44.6-11.7.2-.3.4-.6.5-.9C466.1 460.1 383.1 512 288 512 146.6 512 32 397.4 32 256S146.6 0 288 0c-17.7 0-32 14.33-32 32s14.3 32 32 32h-.9z",
+    fill: props.secondaryColor,
+    style: {
+      opacity: 0.4
+    }
+  }));
+};
+Spinner.defaultProps = {
+  width: 24,
+  height: 24,
+  primaryColor: 'currentColor',
+  secondaryColor: 'currentColor'
+};
+Spinner.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  primaryColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string),
+  secondaryColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Spinner);
+
+/***/ }),
+
+/***/ "./src/js/utils/SendCommand.js":
+/*!*************************************!*\
+  !*** ./src/js/utils/SendCommand.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ sendCommand)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
+
+
+function sendCommand(action, data, maybeAjaxUrl) {
+  var params = {
+    action: action
+  };
+  var default_data = {
+    nonce: false,
+    action: action
+  };
+  if ('undefined' === typeof data) {
+    data = {};
+  }
+  for (var opt in default_data) {
+    if (!data.hasOwnProperty(opt)) {
+      data[opt] = default_data[opt];
+    }
+  }
+  var options = {
+    method: 'post',
+    url: maybeAjaxUrl !== null && maybeAjaxUrl !== void 0 ? maybeAjaxUrl : ajaxurl,
+    params: params,
+    paramsSerializer: function paramsSerializer(jsparams) {
+      return qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(jsparams, {
+        arrayFormat: 'brackets'
+      });
+    },
+    data: qs__WEBPACK_IMPORTED_MODULE_1___default().stringify(data)
+  };
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()(options);
+}
+
+/***/ }),
+
+/***/ "?4f7e":
+/*!********************************!*\
+  !*** ./util.inspect (ignored) ***!
+  \********************************/
+/***/ (() => {
+
+/* (ignored) */
+
+/***/ })
+
+}]);
+//# sourceMappingURL=AdminMenuDefaults0.0.5.js.map

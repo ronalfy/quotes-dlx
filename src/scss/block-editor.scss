@@ -234,3 +234,33 @@ body .editor-styles-wrapper {
 .quotes-dlx.alignfull {
 	margin: 0 auto;
 }
+
+/* Image Citation Button */
+.quotes-dlx-citation-image-button-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: unset;
+	background: #f1f1f1;
+	padding: 5px;
+	width: 75px;
+	height: 75px;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	&.is-round {
+		border-radius: 100%;
+		img {
+			border-radius: 100%;
+		}
+	}
+	&.has-border {
+		/* Color is set in theme scss */
+		border-width: 2px;
+		border-style: solid;
+	}
+}
+.quotes-dlx-citation-image-button-wrapper.has-image {
+	background: transparent;
+	padding: 0;
+}

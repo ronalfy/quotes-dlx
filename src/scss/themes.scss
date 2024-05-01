@@ -20,3 +20,24 @@ p ~ .quotes-dlx.quotes-dlx-container {
 	text-transform: unset;
 	cursor: pointer;
 }
+.quotes-dlx-citation-wrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 1em;
+}
+.quotes-dlx-citation-align-left {
+	justify-content: flex-start;
+}
+.quotes-dlx-citation-align-center {
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 1em;
+	text-align: center;
+}
+.quotes-dlx-citation-align-right {
+	justify-content: flex-start;
+	flex-direction: row-reverse;
+	text-align: right;
+}

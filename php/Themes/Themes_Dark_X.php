@@ -47,7 +47,7 @@ class Themes_Dark_X extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.0';
+	protected static $version = '1.0.1';
 
 	/**
 	 * Description for the theme.
@@ -260,6 +260,16 @@ class Themes_Dark_X extends Themes_Addon {
 				'name'  => __( 'Dark', 'quotes-dlx' ),
 				'slug'  => 'dark',
 				'color' => '#2B2B2B',
+			),
+			array(
+				'name'  => __( 'Link', 'quotes-dlx' ),
+				'slug'  => 'link',
+				'color' => '#4E99EB',
+			),
+			array(
+				'name'  => __( 'Link Hover', 'quotes-dlx' ),
+				'slug'  => 'link-hover',
+				'color' => '#4E99EB',
 			),
 		);
 	}

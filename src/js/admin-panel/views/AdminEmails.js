@@ -1,0 +1,583 @@
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState, Suspense, useContext, createRef } from 'react';
+
+import { __ } from '@wordpress/i18n';
+import {
+	TextControl,
+	Button,
+	TextareaControl,
+	RadioControl,
+	FormTokenField,
+	ToggleControl,
+} from '@wordpress/components';
+import { isEmail } from '@wordpress/url';
+import { useAsyncResource } from 'use-async-resource';
+import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
+import classNames from 'classnames';
+import AtIcon from '../../components/icons/AtIcon';
+import sendCommand from '../../utils/SendCommand';
+import Notice from '../admin-components/Notice';
+import AdminDefaultsLoader from '../admin-components/Loaders/AdminDefaultsLoader';
+import CircularExclamationIcon from '../../components/icons/CircularExplanation';
+import twttr from '../../validation/twitter';
+import CircularInfo from '../../components/icons/CircularInfo';
+import TabsContext from '../contexts/TabsContext';
+import Spinner from '../../components/icons/Spinner';
+import ErrorBoundary from '../admin-components/ErrorBoundary';
+import EmailTemplateTags from '../admin-components/EmailTemplateTags/index';
+
+const ADDITIONAL_TEMPLATE_TAGS = [
+	{ name: __( 'From Name', 'quotes-dlx' ), tag: '{{from_name}}' },
+	{ name: __( 'From email', 'quotes-dlx' ), tag: '{{from_email}}' },
+	{ name: __( 'To email', 'quotes-dlx' ), tag: '{{to_email}}' },
+	{ name: __( 'Share Text', 'quotes-dlx' ), tag: '{{share_text}}' },
+];
+
+const retrieveDefaults = () => {
+	return sendCommand( 'quotes_dlx_retrieve_admin_options_emails', {
+		nonce: quotes_dlx_admin.options_retrieve_nonce,
+	} );
+};
+
+const AdminEmails = ( props ) => {
+	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
+
+	return (
+		<ErrorBoundary
+			fallback={
+				<p>
+					{ __( 'Could not load admin defaults.', 'quotes-dlx' ) }
+					<br />
+					<a
+						href="https://dlxplugins.com/support/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						DLX Plugins Support
+					</a>
+				</p>
+			}
+		>
+			<Suspense fallback={ <AdminDefaultsLoader /> }>
+				<Interface defaults={ defaults } { ...props } />
+			</Suspense>
+		</ErrorBoundary>
+	);
+};
+
+const Interface = ( props ) => {
+	const localStorageKey = 'quotes_dlx_form_emails';
+
+	const { defaults } = props;
+	const response = defaults();
+	const { data, success } = response.data;
+
+	const { emailTabDirtyCount, setEmailTabDirtyCount } = useContext( TabsContext );
+
+	// Set up refs.
+	const emailModalTitleInputRef = createRef();
+	const emailSubjectInputRef = createRef();
+	const emailBodyInputRef = createRef();
+
+	const [ loading, setLoading ] = useState( true );
+	const [ saving, setSaving ] = useState( false );
+	const [ isSaved, setIsSaved ] = useState( false );
+	const [ resetting, setResetting ] = useState( false );
+	const [ isReset, setIsReset ] = useState( false );
+
+	const getDefaultValues = () => {
+		return {
+			recaptchaEnabled: data.recaptchaEnabled,
+			recaptchaSiteKey: data.recaptchaSiteKey,
+			recaptchaSecretKey: data.recaptchaSecretKey,
+			recaptchaScoreThreshold: data.recaptchaScoreThreshold,
+			akismetEnabled: data.akismetEnabled,
+			turnstileEnabled: data.turnstileEnabled,
+			turnstileSiteKey: data.turnstileSiteKey,
+			turnstileSecret: data.turnstileSecret,
+			turnstileTheme: data.turnstileTheme,
+			turnstileLanguage: data.turnstileLanguage,
+			turnstileWidgetSize: data.turnstileWidgetSize,
+			fromName: data.fromName,
+			fromEmail: data.fromEmail,
+			emailSendType: data.emailSendType,
+			emailSubject: data.emailSubject,
+			emailBody: data.emailBody,
+		};
+	};
+
+	const { register, control, handleSubmit, setValue, getValues, reset } =
+		useForm( {
+			defaultValues: getDefaultValues(),
+		} );
+
+	const formValues = useWatch( { control } );
+
+	const { errors, isDirty, dirtyFields, touchedFields, setError, clearErrors } = useFormState( {
+		control,
+	} );
+
+	const onSubmit = ( formData ) => {
+		setSaving( true );
+
+		// Populate possible empty hashtags.
+		if ( formData.hashtags.length === 0 ) {
+			formData.hashtags = null;
+		}
+		sendCommand( 'quotes_dlx_save_admin_options_emails', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+			form_data: formData,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					// Reset count.
+					setEmailTabDirtyCount( 0 );
+
+					// Clear form dirty.
+					reset( ajaxData );
+					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
+
+					setIsSaved( true );
+					setTimeout( () => {
+						setIsSaved( false );
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setSaving( false );
+			} );
+	};
+
+	const handleReset = ( e ) => {
+		setResetting( true );
+		sendCommand( 'quotes_dlx_reset_admin_options_emails', {
+			nonce: quotes_dlx_admin.options_save_nonce,
+		} )
+			.then( ( ajaxResponse ) => {
+				const ajaxData = ajaxResponse.data.data;
+				const ajaxSuccess = ajaxResponse.data.success;
+				if ( ajaxSuccess ) {
+					// Reset local storage.
+					setEmailTabDirtyCount( 0 );
+
+					// Clear form dirty.
+					reset( ajaxData );
+					localStorage.setItem( localStorageKey, JSON.stringify( ajaxData ) );
+					localStorage.removeItem( localStorageKey + '_dirty_fields' );
+
+					setIsReset( true );
+					setTimeout( () => {
+						setIsReset( false );
+					}, 3000 );
+				} else {
+					// Error stuff.
+				}
+			} )
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setResetting( false );
+			} );
+	};
+
+	const hasErrors = () => {
+		return Object.keys( errors ).length > 0;
+	};
+
+	useEffect( () => {
+		// Get saved local storage JSON strings.
+		const maybeSavedFormFields = localStorage.getItem( localStorageKey );
+		const maybeDirtyFields = localStorage.getItem(
+			localStorageKey + '_dirty_fields'
+		);
+
+		if ( null !== maybeSavedFormFields ) {
+			// Parse saved JSON string into JSON object.
+			const savedFormFields = JSON.parse( maybeSavedFormFields );
+
+			// If saved form fields, proceed with setting fields.
+			if ( Object.keys( savedFormFields.length > 0 ) ) {
+				let savedDirtyFields = {};
+
+				// Get any dirty fields.
+				if ( null !== maybeDirtyFields ) {
+					savedDirtyFields = JSON.parse( maybeDirtyFields );
+				}
+
+				for ( const [ key, value ] of Object.entries( savedFormFields ) ) {
+					// If key is in saved dirty fields, set dirty.
+
+					if ( savedDirtyFields.hasOwnProperty( key ) ) {
+						// Key is dirty, so set dirty.
+						setValue( key, value, { shouldDirty: true, shouldValidate: true } );
+					} else {
+						// Key is not dirty, so set value without dirty.
+						setValue( key, value, { shouldDirty: false, shouldValidate: false } );
+					}
+				}
+			}
+		}
+		setLoading( false );
+	}, [] );
+
+	useEffect( () => {
+		if ( saving || resetting || loading ) {
+			return;
+		}
+		if ( isDirty || emailTabDirtyCount > 0 ) {
+			// Get current dirty fields.
+			setEmailTabDirtyCount( Object.keys( dirtyFields ).length );
+
+			// Save form values to local storage.
+			localStorage.setItem( localStorageKey, JSON.stringify( formValues ) );
+			localStorage.setItem(
+				localStorageKey + '_dirty_fields',
+				JSON.stringify( dirtyFields )
+			);
+		}
+		setLoading( false );
+	}, [ formValues ] );
+
+	if ( loading ) {
+		return <AdminDefaultsLoader />;
+	}
+
+	return (
+		<>
+			<div className="qdlx-admin__tabs--content-wrap">
+				<form onSubmit={ handleSubmit( onSubmit ) }>
+					<div className="qdlx-admin__tabs--content-panel">
+						<div className="qdlx-admin__tabs--content-heading">
+							<h1>
+								<AtIcon width={ 48 } height={ 48 } aria-hidden="true" />
+								<span className="qdlx-admin__heading--text">
+									{ __( 'Email Settings', 'quotes-dlx' ) }
+								</span>
+							</h1>
+							<p className="description">
+								{ __(
+									'Set spam protection and customize the email settings when someone shares a quote.',
+									'quotes-dlx'
+								) }
+							</p>
+						</div>
+						<div className="qdlx-admin__tabs--content-inner">
+							<table className="form-table" role="presentation">
+								<tbody>
+									<tr>
+										<th scope="row">{ __( 'Email Send Behavior', 'quotes-dlx' ) }</th>
+										<td>
+											<p className="qdlx-admin-description">
+												{ __( 'By default, emails are sent via a form. You can also send emails via a default email client.', 'quotes-dlx' ) }
+											</p>
+											<Controller
+												name="emailSendType"
+												control={ control }
+												render={ ( { field: { onChange, value } } ) => (
+													<RadioControl
+														selected={ value }
+														options={ [
+															{
+																label: __( 'Form', 'quotes-dlx' ),
+																value: 'form',
+															},
+															{
+																label: __( 'Email Client', 'quotes-dlx' ),
+																value: 'mailto',
+															},
+														] }
+														onChange={ ( newValue ) => {
+															onChange( newValue );
+														} }
+													/>
+												) }
+											/>
+										</td>
+									</tr>
+									{
+										getValues( 'emailSendType' ) === 'form' && (
+											<tr>
+												<th scope="row">{ __( 'Email Fields', 'quotes-dlx' ) }</th>
+												<td>
+													<p className="qdlx-admin-description">
+														{ __(
+															'Customize the fields that are displayed in the email form.',
+															'quotes-dlx'
+														) }
+													</p>
+													<div className="qdlx-admin-component-row">
+														<Controller
+															name="emailModalTitle"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field: { onChange, value } } ) => (
+																<div className="qdlx-admin-email-template-tag-row">
+																	<TextControl
+																		label={ __( 'Email Modal Title', 'quotes-dlx' ) }
+																		value={ value }
+																		onChange={ ( newValue ) => {
+																			onChange( newValue );
+																		} }
+																		className={ classNames( 'qdlx-admin__text-control', {
+																			'qdlx-error': 'required' === errors.emailModalTitle?.type,
+																			'is-required': true,
+																		} ) }
+																		ref={ emailModalTitleInputRef }
+																	/>
+																	<EmailTemplateTags
+																		onSelect={ ( tag ) => {
+																		// Focus on the input field.
+																			emailModalTitleInputRef.current.focus();
+																			// Insert the tag at the cursor position.
+																			const cursorPosition = emailModalTitleInputRef.current.selectionStart;
+																			const newSubject = [
+																				value.slice( 0, cursorPosition ),
+																				tag,
+																				value.slice( cursorPosition ),
+																			].join( '' );
+																			setValue( 'emailModalTitle', newSubject );
+																		} }
+																	/>
+																</div>
+															) }
+														/>
+														{ errors.emailSubject && (
+															<Notice
+																message={ __( 'This field is required.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ false }
+																icon={ CircularExclamationIcon }
+															/>
+														) }
+													</div>
+													<div className="qdlx-admin-component-row">
+														<Controller
+															name="fromEmail"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field: { onChange, value } } ) => (
+																<TextControl
+																	label={ __( 'From Email', 'quotes-dlx' ) }
+																	value={ value }
+																	onChange={ ( newValue ) => {
+																		if ( ! isEmail( newValue ) ) {
+																			setError( 'fromEmail', { shouldFocus: true } );
+																		} else {
+																			clearErrors( 'fromEmail' );
+																		}
+																		onChange( newValue );
+																	} }
+																	className={ classNames( 'qdlx-admin__text-control', {
+																		'qdlx-error': 'required' === errors.fromEmail?.type,
+																		'is-required': true,
+																	} ) }
+																/>
+															) }
+														/>
+														{ errors.fromEmail && (
+															<Notice
+																message={ __( 'This does not appear to be a valid email address.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ false }
+																icon={ CircularExclamationIcon }
+															/>
+														) }
+													</div>
+													<div className="qdlx-admin-component-row">
+														<Controller
+															name="fromName"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field: { onChange, value } } ) => (
+																<TextControl
+																	label={ __( 'From Name', 'quotes-dlx' ) }
+																	value={ value }
+																	onChange={ onChange }
+																	className={ classNames( 'qdlx-admin__text-control', {
+																		'qdlx-error': 'required' === errors.fromName?.type,
+																		'is-required': true,
+																	} ) }
+																	ref={ emailBodyInputRef }
+																/>
+															) }
+														/>
+													</div>
+													<div className="qdlx-admin-component-row">
+														<Controller
+															name="emailSubject"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field: { onChange, value } } ) => (
+																<div className="qdlx-admin-email-template-tag-row">
+																	<TextControl
+																		label={ __( 'Email Subject', 'quotes-dlx' ) }
+																		value={ value }
+																		onChange={ ( newValue ) => {
+																			onChange( newValue );
+																		} }
+																		className={ classNames( 'qdlx-admin__text-control', {
+																			'qdlx-error': 'required' === errors.emailSubject?.type,
+																			'is-required': true,
+																		} ) }
+																		ref={ emailSubjectInputRef }
+																	/>
+																	<EmailTemplateTags
+																		onSelect={ ( tag ) => {
+																		// Focus on the input field.
+																			emailSubjectInputRef.current.focus();
+																			// Insert the tag at the cursor position.
+																			const cursorPosition = emailSubjectInputRef.current.selectionStart;
+																			const newSubject = [
+																				value.slice( 0, cursorPosition ),
+																				tag,
+																				value.slice( cursorPosition ),
+																			].join( '' );
+																			setValue( 'emailSubject', newSubject );
+																		} }
+																	/>
+																</div>
+															) }
+														/>
+														{ errors.emailSubject && (
+															<Notice
+																message={ __( 'This field is required.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ false }
+																icon={ CircularExclamationIcon }
+															/>
+														) }
+													</div>
+													<div className="qdlx-admin-component-row">
+														<Controller
+															name="emailBody"
+															control={ control }
+															rules={ { required: true } }
+															render={ ( { field: { onChange, value } } ) => (
+																<div className="qdlx-admin-email-template-tag-row">
+																	<TextareaControl
+																		label={ __( 'Email Body', 'quotes-dlx' ) }
+																		value={ value }
+																		onChange={ ( newValue ) => {
+																			onChange( newValue );
+																		} }
+																		className={ classNames( 'qdlx-admin__text-area-control', {
+																			'qdlx-error': 'required' === errors.emailBody?.type,
+																			'is-required': true,
+																		} ) }
+																		innerRef={ emailBodyInputRef }
+																	/>
+																	<EmailTemplateTags
+																		onSelect={ ( tag ) => {
+																		// Focus on the input field.
+																			emailBodyInputRef.current.focus();
+																			// Insert the tag at the cursor position.
+																			const cursorPosition = emailBodyInputRef.current.selectionStart;
+																			const newBody = [
+																				value.slice( 0, cursorPosition ),
+																				tag,
+																				value.slice( cursorPosition ),
+																			].join( '' );
+																			setValue( 'emailBody', newBody );
+																		} }
+																		additionalTags={ ADDITIONAL_TEMPLATE_TAGS }
+																	/>
+																</div>
+															) }
+														/>
+														{ errors.emailBody && (
+															<Notice
+																message={ __( 'This field is required.' ) }
+																status="error"
+																politeness="assertive"
+																inline={ false }
+																icon={ CircularExclamationIcon }
+															/>
+														) }
+													</div>
+												</td>
+											</tr>
+										)
+									}
+								</tbody>
+							</table>
+							<div className="qdlx-admin__tabs--content-actions">
+								<Button
+									className={ classNames(
+										'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+										{ 'qdlx-error': hasErrors() },
+										{ 'qdlx-icon': saving },
+										{ 'is-saving': { saving } }
+									) }
+									type="submit"
+									text={
+										saving
+											? __( 'Saving…', 'quotes-dlx' )
+											: __( 'Save Defaults', 'quotes-dlx' )
+									}
+									icon={ saving ? Spinner : false }
+									iconSize="18"
+									iconPosition="right"
+									disabled={ saving || resetting }
+								/>
+								<Button
+									className={ classNames(
+										'qdlx__btn qdlx__btn-danger qdlx__btn--icon-right',
+										{ 'qdlx-icon': resetting },
+										{ 'is-resetting': { resetting } }
+									) }
+									type="button"
+									text={
+										resetting
+											? __( 'Resetting…', 'quotes-dlx' )
+											: __( 'Reset Defaults', 'quotes-dlx' )
+									}
+									icon={ resetting ? Spinner : false }
+									iconSize="18"
+									iconPosition="right"
+									disabled={ saving || resetting }
+									onClick={ ( e ) => {
+										setResetting( true );
+										handleReset( e );
+									} }
+								/>
+							</div>
+							{ hasErrors() && (
+								<Notice
+									message={ __(
+										'There are form validation errors. Please correct them above.'
+									) }
+									status="error"
+									politeness="polite"
+								/>
+							) }
+							{ isSaved && (
+								<Notice
+									message={ __( 'Your settings have been saved.' ) }
+									status="success"
+									politeness="assertive"
+								/>
+							) }
+							{ isReset && (
+								<Notice
+									message={ __( 'Your settings have been reset to defaults.' ) }
+									status="success"
+									politeness="assertive"
+								/>
+							) }
+						</div>
+					</div>
+				</form>
+			</div>
+		</>
+	);
+};
+
+export default AdminEmails;

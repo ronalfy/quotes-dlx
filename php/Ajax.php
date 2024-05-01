@@ -63,6 +63,10 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_font_families', array( static::class, 'ajax_save_theme_font_families' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_font_families', array( static::class, 'ajax_reset_theme_font_families' ) );
 
+		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_emails', array( static::class, 'ajax_retrieve_options_emails' ) );
+		add_action( 'wp_ajax_quotes_dlx_save_admin_options_emails', array( static::class, 'ajax_save_options_emails' ) );
+		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_emails', array( static::class, 'ajax_reset_options_emails' ) );
+
 		// For enabling or disabling the beta program.
 		add_action( 'wp_ajax_quotes_dlx_save_beta_option', array( static::class, 'ajax_save_beta_option' ) );
 
@@ -291,7 +295,6 @@ class Ajax {
 				'buttonFontSize' => $theme_button_font_size,
 			)
 		);
-
 	}
 
 	/**
@@ -407,7 +410,6 @@ class Ajax {
 				'secondaryFontFamily' => $secondary_font_family,
 			)
 		);
-
 	}
 
 	/**
@@ -1367,5 +1369,148 @@ class Ajax {
 		}
 
 		wp_send_json_error( array() );
+	}
+
+	/**
+	 * Retrieve admin options for the emails view.
+	 */
+	public static function ajax_retrieve_options_emails() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		} else {
+			$defaults = Options_Emails::get_options();
+			foreach ( $defaults as $field => $value ) {
+				// Convert to camelcase.
+				$new_field                       = Functions::to_camelcase( $field );
+				$options_to_return[ $new_field ] = $value;
+			}
+			wp_send_json_success(
+				$options_to_return
+			);
+		}
+	}
+
+	/**
+	 * Save form options for emails.
+	 */
+	public static function ajax_save_options_emails() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$options_to_save = Options_Defaults::get_options();
+
+		$form_data = $_POST['form_data']; // expect array.
+
+		// Ajax doesn't like empty arrays.
+		if ( isset( $form_data['hashtags'] ) ) {
+			if ( empty( $form_data['hashtags'] ) ) {
+				$form_data['hashtags'] = array();
+			}
+		}
+
+		// Iterate and sanitize.
+		foreach ( $form_data as $field => $field_value ) {
+			switch ( $field ) {
+				case 'maximumWidth':
+					$options_to_save['maximum_width'] = absint( $field_value );
+					break;
+				case 'maximumWidthUnit':
+					$options_to_save['maximum_width_unit'] = sanitize_text_field( $field_value );
+					break;
+				case 'twitterUsername':
+					$options_to_save['twitter_username'] = sanitize_text_field( $field_value );
+					break;
+				case 'hashtags':
+					$options_to_save['hashtags'] = array_map( 'sanitize_text_field', $field_value );
+					break;
+				case 'align':
+					$options_to_save['align'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetButtonEnabled':
+					$options_to_save['tweet_button_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'shareButtonText':
+					$options_to_save['share_button_text'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetButtonAlignment':
+					$options_to_save['tweet_button_alignment'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetIconAlignment':
+					$options_to_save['tweet_icon_alignment'] = sanitize_text_field( $field_value );
+					break;
+				case 'tweetButtonDisplay':
+					$options_to_save['tweet_button_display'] = sanitize_text_field( $field_value );
+					break;
+				case 'align':
+					$options_to_save['align'] = sanitize_text_field( $field_value );
+					break;
+				case 'anchorPrefix':
+					$options_to_save['anchor_prefix'] = sanitize_text_field( $field_value );
+					break;
+				case 'hasAnchor':
+					$options_to_save['has_anchor'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'enableLinksInTweet':
+					$options_to_save['enable_links_in_tweet'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'urlShorteningService':
+					$options_to_save['url_shortening_service'] = sanitize_text_field( $field_value );
+					break;
+				case 'urlShortener':
+					$options_to_save['url_shortener'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'template':
+					$options_to_save['template'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookShareButtonText':
+					$options_to_save['facebook_share_button_text'] = sanitize_text_field( $field_value );
+					break;
+				case 'facebookButtonEnabled':
+					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
+					break;
+				case 'iconAppearance':
+					$options_to_save['icon_appearance'] = sanitize_text_field( $field_value );
+					break;
+				default:
+					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
+					break;
+			}
+		}
+
+		Options_Defaults::update_options( '', $options_to_save );
+
+		$options_to_return = array();
+		// Format saved fields.
+		foreach ( $options_to_save as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
+	}
+
+	/**
+	 * Reset form options for default options.
+	 */
+	public static function ajax_reset_options_emails() {
+		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array() );
+		}
+
+		$options           = Options_Defaults::reset();
+		$options_to_return = array();
+
+		// Format saved fields.
+		foreach ( $options as $field => $value ) {
+			// Convert to camelcase.
+			$new_field                       = Functions::to_camelcase( $field );
+			$options_to_return[ $new_field ] = $value;
+		}
+		wp_send_json_success(
+			$options_to_return
+		);
 	}
 }

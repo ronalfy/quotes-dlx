@@ -1,0 +1,743 @@
+"use strict";
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminEmails0.0.1"],{
+
+/***/ "./src/js/admin-panel/admin-components/EmailTemplateTags/index.js":
+/*!************************************************************************!*\
+  !*** ./src/js/admin-panel/admin-components/EmailTemplateTags/index.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_icons_TextInsert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/icons/TextInsert */ "./src/js/components/icons/TextInsert.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var TEMPLATE_TAGS = [{
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Site Name', 'quotes-dlx'),
+  tag: '{{site_name}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Site URL', 'quotes-dlx'),
+  tag: '{{site_url}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post title', 'quotes-dlx'),
+  tag: '{{post_title}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post excerpt', 'quotes-dlx'),
+  tag: '{{post_excerpt}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Post URL', 'quotes-dlx'),
+  tag: '{{post_url}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share Type', 'quotes-dlx'),
+  tag: '{{share_type}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Date', 'quotes-dlx'),
+  tag: '{{date}}'
+}];
+var EmailTemplateTags = function EmailTemplateTags(props) {
+  var onSelect = props.onSelect;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isOpen = _useState2[0],
+    setIsOpen = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(TEMPLATE_TAGS.concat(props.additionalTags)),
+    _useState4 = _slicedToArray(_useState3, 1),
+    tags = _useState4[0];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    popoverAnchor = _useState6[0],
+    setPopoverAnchor = _useState6[1];
+  var togglePopover = function togglePopover() {
+    return setIsOpen(!isOpen);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-email-template-tags"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: "qdlx-icon",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Insert Email Template Tag', 'quotes-dlx'),
+    icon: _components_icons_TextInsert__WEBPACK_IMPORTED_MODULE_3__["default"],
+    onClick: togglePopover,
+    ref: setPopoverAnchor
+  })), isOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Popover, {
+    className: "qdlx-email-template-tags__popover",
+    placement: "right-end",
+    onClose: togglePopover,
+    anchor: popoverAnchor,
+    noArrow: false
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "qdlx-email-template-tags__popover-tags"
+  }, tags.map(function (tag) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: tag.tag
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      onClick: function onClick() {
+        onSelect(tag.tag);
+        togglePopover();
+      }
+    }, tag.name));
+  }))));
+};
+EmailTemplateTags.propTypes = {
+  onSelect: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func).isRequired,
+  additionalTags: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().array)
+};
+EmailTemplateTags.defaultProps = {
+  onSelect: function onSelect() {},
+  additionalTags: []
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EmailTemplateTags);
+
+/***/ }),
+
+/***/ "./src/js/admin-panel/views/AdminEmails.js":
+/*!*************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminEmails.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_icons_AtIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/AtIcon */ "./src/js/components/icons/AtIcon.js");
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+/* harmony import */ var _admin_components_EmailTemplateTags_index__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../admin-components/EmailTemplateTags/index */ "./src/js/admin-panel/admin-components/EmailTemplateTags/index.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ADDITIONAL_TEMPLATE_TAGS = [{
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Name', 'quotes-dlx'),
+  tag: '{{from_name}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From email', 'quotes-dlx'),
+  tag: '{{from_email}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('To email', 'quotes-dlx'),
+  tag: '{{to_email}}'
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Share Text', 'quotes-dlx'),
+  tag: '{{share_text}}'
+}];
+var retrieveDefaults = function retrieveDefaults() {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_retrieve_admin_options_emails', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce
+  });
+};
+var AdminEmails = function AdminEmails(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_4__.useAsyncResource)(retrieveDefaults, []),
+    _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+    defaults = _useAsyncResource2[0],
+    getDefaults = _useAsyncResource2[1];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load admin defaults.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://dlxplugins.com/support/",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "DLX Plugins Support"))
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_9__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props))));
+};
+var Interface = function Interface(props) {
+  var localStorageKey = 'quotes_dlx_form_emails';
+  var defaults = props.defaults;
+  var response = defaults();
+  var _response$data = response.data,
+    data = _response$data.data,
+    success = _response$data.success;
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_13__["default"]),
+    emailTabDirtyCount = _useContext.emailTabDirtyCount,
+    setEmailTabDirtyCount = _useContext.setEmailTabDirtyCount;
+
+  // Set up refs.
+  var emailModalTitleInputRef = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createRef)();
+  var emailSubjectInputRef = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createRef)();
+  var emailBodyInputRef = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createRef)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState2 = _slicedToArray(_useState, 2),
+    loading = _useState2[0],
+    setLoading = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    saving = _useState4[0],
+    setSaving = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isSaved = _useState6[0],
+    setIsSaved = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    resetting = _useState8[0],
+    setResetting = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState10 = _slicedToArray(_useState9, 2),
+    isReset = _useState10[0],
+    setIsReset = _useState10[1];
+  var getDefaultValues = function getDefaultValues() {
+    return {
+      recaptchaEnabled: data.recaptchaEnabled,
+      recaptchaSiteKey: data.recaptchaSiteKey,
+      recaptchaSecretKey: data.recaptchaSecretKey,
+      recaptchaScoreThreshold: data.recaptchaScoreThreshold,
+      akismetEnabled: data.akismetEnabled,
+      turnstileEnabled: data.turnstileEnabled,
+      turnstileSiteKey: data.turnstileSiteKey,
+      turnstileSecret: data.turnstileSecret,
+      turnstileTheme: data.turnstileTheme,
+      turnstileLanguage: data.turnstileLanguage,
+      turnstileWidgetSize: data.turnstileWidgetSize,
+      fromName: data.fromName,
+      fromEmail: data.fromEmail,
+      emailSendType: data.emailSendType,
+      emailSubject: data.emailSubject,
+      emailBody: data.emailBody
+    };
+  };
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_17__.useForm)({
+      defaultValues: getDefaultValues()
+    }),
+    register = _useForm.register,
+    control = _useForm.control,
+    handleSubmit = _useForm.handleSubmit,
+    setValue = _useForm.setValue,
+    getValues = _useForm.getValues,
+    reset = _useForm.reset;
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_17__.useWatch)({
+    control: control
+  });
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_17__.useFormState)({
+      control: control
+    }),
+    errors = _useFormState.errors,
+    isDirty = _useFormState.isDirty,
+    dirtyFields = _useFormState.dirtyFields,
+    touchedFields = _useFormState.touchedFields,
+    setError = _useFormState.setError,
+    clearErrors = _useFormState.clearErrors;
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true);
+
+    // Populate possible empty hashtags.
+    if (formData.hashtags.length === 0) {
+      formData.hashtags = null;
+    }
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_save_admin_options_emails', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      form_data: formData
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset count.
+        setEmailTabDirtyCount(0);
+
+        // Clear form dirty.
+        reset(ajaxData);
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+        setIsSaved(true);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_admin_options_emails', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset local storage.
+        setEmailTabDirtyCount(0);
+
+        // Clear form dirty.
+        reset(ajaxData);
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
+    });
+  };
+  var hasErrors = function hasErrors() {
+    return Object.keys(errors).length > 0;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
+    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
+    var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
+    if (null !== maybeSavedFormFields) {
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields);
+
+      // If saved form fields, proceed with setting fields.
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {};
+
+        // Get any dirty fields.
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
+        }
+        for (var _i2 = 0, _Object$entries = Object.entries(savedFormFields); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+          // If key is in saved dirty fields, set dirty.
+
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, value, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, value, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
+    }
+    setLoading(false);
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (saving || resetting || loading) {
+      return;
+    }
+    if (isDirty || emailTabDirtyCount > 0) {
+      // Get current dirty fields.
+      setEmailTabDirtyCount(Object.keys(dirtyFields).length);
+
+      // Save form values to local storage.
+      localStorage.setItem(localStorageKey, JSON.stringify(formValues));
+      localStorage.setItem(localStorageKey + '_dirty_fields', JSON.stringify(dirtyFields));
+    }
+    setLoading(false);
+  }, [formValues]);
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_9__["default"], null);
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_AtIcon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Settings', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set spam protection and customize the email settings when someone shares a quote.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Send Behavior', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "qdlx-admin-description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, emails are sent via a form. You can also send emails via a default email client.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "emailSendType",
+    control: control,
+    render: function render(_ref) {
+      var _ref$field = _ref.field,
+        _onChange = _ref$field.onChange,
+        value = _ref$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RadioControl, {
+        selected: value,
+        options: [{
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Form', 'quotes-dlx'),
+          value: 'form'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Client', 'quotes-dlx'),
+          value: 'mailto'
+        }],
+        onChange: function onChange(newValue) {
+          _onChange(newValue);
+        }
+      });
+    }
+  }))), getValues('emailSendType') === 'form' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Fields', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "qdlx-admin-description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Customize the fields that are displayed in the email form.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-component-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "emailModalTitle",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref2) {
+      var _errors$emailModalTit;
+      var _ref2$field = _ref2.field,
+        _onChange2 = _ref2$field.onChange,
+        value = _ref2$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "qdlx-admin-email-template-tag-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Modal Title', 'quotes-dlx'),
+        value: value,
+        onChange: function onChange(newValue) {
+          _onChange2(newValue);
+        },
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+          'qdlx-error': 'required' === ((_errors$emailModalTit = errors.emailModalTitle) === null || _errors$emailModalTit === void 0 ? void 0 : _errors$emailModalTit.type),
+          'is-required': true
+        }),
+        ref: emailModalTitleInputRef
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_EmailTemplateTags_index__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        onSelect: function onSelect(tag) {
+          // Focus on the input field.
+          emailModalTitleInputRef.current.focus();
+          // Insert the tag at the cursor position.
+          var cursorPosition = emailModalTitleInputRef.current.selectionStart;
+          var newSubject = [value.slice(0, cursorPosition), tag, value.slice(cursorPosition)].join('');
+          setValue('emailModalTitle', newSubject);
+        }
+      }));
+    }
+  }), errors.emailSubject && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is required.'),
+    status: "error",
+    politeness: "assertive",
+    inline: false,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-component-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "fromEmail",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref3) {
+      var _errors$fromEmail;
+      var _ref3$field = _ref3.field,
+        _onChange3 = _ref3$field.onChange,
+        value = _ref3$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Email', 'quotes-dlx'),
+        value: value,
+        onChange: function onChange(newValue) {
+          if (!(0,_wordpress_url__WEBPACK_IMPORTED_MODULE_3__.isEmail)(newValue)) {
+            setError('fromEmail', {
+              shouldFocus: true
+            });
+          } else {
+            clearErrors('fromEmail');
+          }
+          _onChange3(newValue);
+        },
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+          'qdlx-error': 'required' === ((_errors$fromEmail = errors.fromEmail) === null || _errors$fromEmail === void 0 ? void 0 : _errors$fromEmail.type),
+          'is-required': true
+        })
+      });
+    }
+  }), errors.fromEmail && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This does not appear to be a valid email address.'),
+    status: "error",
+    politeness: "assertive",
+    inline: false,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-component-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "fromName",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref4) {
+      var _errors$fromName;
+      var _ref4$field = _ref4.field,
+        onChange = _ref4$field.onChange,
+        value = _ref4$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Name', 'quotes-dlx'),
+        value: value,
+        onChange: onChange,
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+          'qdlx-error': 'required' === ((_errors$fromName = errors.fromName) === null || _errors$fromName === void 0 ? void 0 : _errors$fromName.type),
+          'is-required': true
+        }),
+        ref: emailBodyInputRef
+      });
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-component-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "emailSubject",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref5) {
+      var _errors$emailSubject;
+      var _ref5$field = _ref5.field,
+        _onChange4 = _ref5$field.onChange,
+        value = _ref5$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "qdlx-admin-email-template-tag-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Subject', 'quotes-dlx'),
+        value: value,
+        onChange: function onChange(newValue) {
+          _onChange4(newValue);
+        },
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+          'qdlx-error': 'required' === ((_errors$emailSubject = errors.emailSubject) === null || _errors$emailSubject === void 0 ? void 0 : _errors$emailSubject.type),
+          'is-required': true
+        }),
+        ref: emailSubjectInputRef
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_EmailTemplateTags_index__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        onSelect: function onSelect(tag) {
+          // Focus on the input field.
+          emailSubjectInputRef.current.focus();
+          // Insert the tag at the cursor position.
+          var cursorPosition = emailSubjectInputRef.current.selectionStart;
+          var newSubject = [value.slice(0, cursorPosition), tag, value.slice(cursorPosition)].join('');
+          setValue('emailSubject', newSubject);
+        }
+      }));
+    }
+  }), errors.emailSubject && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is required.'),
+    status: "error",
+    politeness: "assertive",
+    inline: false,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-component-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+    name: "emailBody",
+    control: control,
+    rules: {
+      required: true
+    },
+    render: function render(_ref6) {
+      var _errors$emailBody;
+      var _ref6$field = _ref6.field,
+        _onChange5 = _ref6$field.onChange,
+        value = _ref6$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "qdlx-admin-email-template-tag-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Body', 'quotes-dlx'),
+        value: value,
+        onChange: function onChange(newValue) {
+          _onChange5(newValue);
+        },
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-area-control', {
+          'qdlx-error': 'required' === ((_errors$emailBody = errors.emailBody) === null || _errors$emailBody === void 0 ? void 0 : _errors$emailBody.type),
+          'is-required': true
+        }),
+        innerRef: emailBodyInputRef
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_EmailTemplateTags_index__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        onSelect: function onSelect(tag) {
+          // Focus on the input field.
+          emailBodyInputRef.current.focus();
+          // Insert the tag at the cursor position.
+          var cursorPosition = emailBodyInputRef.current.selectionStart;
+          var newBody = [value.slice(0, cursorPosition), tag, value.slice(cursorPosition)].join('');
+          setValue('emailBody', newBody);
+        },
+        additionalTags: ADDITIONAL_TEMPLATE_TAGS
+      }));
+    }
+  }), errors.emailBody && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is required.'),
+    status: "error",
+    politeness: "assertive",
+    inline: false,
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_10__["default"]
+  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+      'qdlx-error': hasErrors()
+    }, {
+      'qdlx-icon': saving
+    }, {
+      'is-saving': {
+        saving: saving
+      }
+    }),
+    type: "submit",
+    text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Defaults', 'quotes-dlx'),
+    icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_14__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'qdlx-icon': resetting
+    }, {
+      'is-resetting': {
+        resetting: resetting
+      }
+    }),
+    type: "button",
+    text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Defaults', 'quotes-dlx'),
+    icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_14__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting,
+    onClick: function onClick(e) {
+      setResetting(true);
+      handleReset(e);
+    }
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+    status: "error",
+    politeness: "polite"
+  }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
+    status: "success",
+    politeness: "assertive"
+  }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+    status: "success",
+    politeness: "assertive"
+  }))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminEmails);
+
+/***/ }),
+
+/***/ "./src/js/components/icons/TextInsert.js":
+/*!***********************************************!*\
+  !*** ./src/js/components/icons/TextInsert.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+ // ES6
+
+var TextInsertIcon = function TextInsertIcon(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 512 512",
+    style: {
+      enableBackground: 'new 0 0 512 512'
+    },
+    xmlSpace: "preserve",
+    width: props.width,
+    height: props.height
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    fill: props.fill,
+    d: "M0 0v173.419h49.548V49.548h123.871V0zM338.581 0v49.548h123.871v123.871H512V0zM462.452 338.581v123.871H338.581V512H512V338.581zM49.548 462.452V338.581H0V512h173.419v-49.548zM280.774 231.226v-90.839h-49.548v90.839h-90.839v49.548h90.839v90.839h49.548v-90.839h90.839v-49.548z"
+  }));
+};
+TextInsertIcon.defaultProps = {
+  width: 16,
+  height: 16,
+  fill: '#333333'
+};
+TextInsertIcon.propTypes = {
+  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
+  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextInsertIcon);
+
+/***/ })
+
+}]);
+//# sourceMappingURL=AdminEmails0.0.1.js.map

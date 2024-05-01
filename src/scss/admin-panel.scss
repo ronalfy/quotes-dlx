@@ -528,6 +528,12 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 	}
 }
 
+p.qdlx-admin-description,
+td p.qdlx-admin-description {
+	font-size: 1.1em;
+	margin-bottom: 12px;
+}
+
 /* Un-saved notice bubble */
 .qdlx-admin__tabs--save-count {
 	position: absolute;
@@ -945,7 +951,7 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 		.components-radio-control__option {
 			display: flex;
 			align-items: center;
-			margin-bottom: 10px;
+			margin-bottom: 4px;
 
 			&:last-child {
 				margin-bottom: 0;

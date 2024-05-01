@@ -300,7 +300,7 @@ class Functions {
 		// Try to get theme setup colors (if available).
 		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
 
-		if ( false !== $theme_json_color_palette && is_array( $theme_setup_color_palette ) ) {
+		if ( false !== $theme_setup_color_palette && is_array( $theme_setup_color_palette ) ) {
 			$color_palette = $theme_setup_color_palette;
 		}
 
@@ -761,4 +761,3 @@ class Functions {
 		return $highest_priority;
 	}
 }
-

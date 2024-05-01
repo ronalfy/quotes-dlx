@@ -1,7 +1,7 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import { Popover, SlotFillProvider } from '@wordpress/components';
-import Wrapper from './Wrapper';
+import Wrapper from './wrapper';
 
 const container = document.getElementById('quotes-dlx-admin');
 const root = createRoot(container);

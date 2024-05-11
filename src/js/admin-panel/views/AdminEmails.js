@@ -9,6 +9,7 @@ import {
 	RadioControl,
 	FormTokenField,
 	ToggleControl,
+	SelectControl,
 } from '@wordpress/components';
 import { isEmail } from '@wordpress/url';
 import { useAsyncResource } from 'use-async-resource';
@@ -103,6 +104,7 @@ const Interface = ( props ) => {
 			emailSendType: data.emailSendType,
 			emailSubject: data.emailSubject,
 			emailBody: data.emailBody,
+			captchaType: data.captchaType,
 		};
 	};
 
@@ -120,10 +122,6 @@ const Interface = ( props ) => {
 	const onSubmit = ( formData ) => {
 		setSaving( true );
 
-		// Populate possible empty hashtags.
-		if ( formData.hashtags.length === 0 ) {
-			formData.hashtags = null;
-		}
 		sendCommand( 'quotes_dlx_save_admin_options_emails', {
 			nonce: quotes_dlx_admin.options_save_nonce,
 			form_data: formData,
@@ -247,6 +245,307 @@ const Interface = ( props ) => {
 		return <AdminDefaultsLoader />;
 	}
 
+	/**
+	 * Retrieves and displays spam protection settings.
+	 *
+	 * @return {null} Return component or null.
+	 */
+	const getSpamProtection = () => {
+		return (
+			<tr>
+				<th scope="row">{ __( 'Spam Protection', 'quotes-dlx' ) }</th>
+				<td>
+					<p className="qdlx-admin-description">
+						{ __(
+							'Enable spam protection to help prevent unwanted emails.',
+							'quotes-dlx'
+						) }
+					</p>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="captchaType"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<ToggleControl
+									label={ __( 'Enable Akismet Spam protection', 'quotes-dlx' ) }
+									className="qdlx-admin__toggle-control"
+									checked={ value }
+									onChange={ ( newValue ) => {
+										setValue( 'akismetEnabled', newValue );
+										onChange( newValue );
+									} }
+									disabled={ ! quotes_dlx_admin.akismet_plugin_active }
+								/>
+							) }
+						/>
+					</div>
+					{ ! quotes_dlx_admin.akismet_plugin_active && (
+						<Notice
+							message={ __(
+								'Akismet is not installed or activated. Please install and activate Akismet to use this feature.',
+								'quotes-dlx'
+							) }
+							status="warning"
+							politeness="assertive"
+						/>
+					) }
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="captchaType"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<RadioControl
+									label={ __( 'Choose which CAPTCHA version you would like to use', 'quotes-dlx' ) }
+									name="captchaType"
+									selected={ value }
+									options={
+										[
+											{
+												label: __( 'None', 'quotes-dlx' ),
+												value: 'none',
+											},
+											{
+												label: __( 'reCAPTCHA 3', 'quotes-dlx' ),
+												value: 'recaptcha',
+											},
+											{
+												label: __( 'Turnstile', 'quotes-dlx' ),
+												value: 'turnstile',
+											},
+										]
+									}
+									onChange={ ( newValue ) => {
+										setValue( 'captchaType', newValue );
+										onChange( newValue );
+									} }
+								/>
+							) }
+						/>
+
+					</div>
+				</td>
+			</tr>
+		);
+	};
+
+	/**
+	 * Outputs email fields and template tags.
+	 *
+	 * @return {null} Return component or null.
+	 */
+	const getEmailFields = () => {
+		if ( getValues( 'emailSendType' ) !== 'form' ) {
+			return null;
+		}
+		return (
+			<tr>
+				<th scope="row">{ __( 'Email Fields', 'quotes-dlx' ) }</th>
+				<td>
+					<p className="qdlx-admin-description">
+						{ __(
+							'Customize the fields that are displayed in the email form.',
+							'quotes-dlx'
+						) }
+					</p>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="emailModalTitle"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<div className="qdlx-admin-email-template-tag-row">
+									<TextControl
+										label={ __( 'Email Modal Title', 'quotes-dlx' ) }
+										value={ value }
+										onChange={ ( newValue ) => {
+											onChange( newValue );
+										} }
+										className={ classNames( 'qdlx-admin__text-control', {
+											'qdlx-error': 'required' === errors.emailModalTitle?.type,
+											'is-required': true,
+										} ) }
+										ref={ emailModalTitleInputRef }
+									/>
+									<EmailTemplateTags
+										onSelect={ ( tag ) => {
+											// Focus on the input field.
+											emailModalTitleInputRef.current.focus();
+											// Insert the tag at the cursor position.
+											const cursorPosition = emailModalTitleInputRef.current.selectionStart;
+											const newSubject = [
+												value.slice( 0, cursorPosition ),
+												tag,
+												value.slice( cursorPosition ),
+											].join( '' );
+											setValue( 'emailModalTitle', newSubject );
+										} }
+									/>
+								</div>
+							) }
+						/>
+						{ errors.emailSubject && (
+							<Notice
+								message={ __( 'This field is required.' ) }
+								status="error"
+								politeness="assertive"
+								inline={ false }
+								icon={ CircularExclamationIcon }
+							/>
+						) }
+					</div>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="fromEmail"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<TextControl
+									label={ __( 'From Email', 'quotes-dlx' ) }
+									value={ value }
+									onChange={ ( newValue ) => {
+										if ( ! isEmail( newValue ) ) {
+											setError( 'fromEmail', { shouldFocus: true } );
+										} else {
+											clearErrors( 'fromEmail' );
+										}
+										onChange( newValue );
+									} }
+									className={ classNames( 'qdlx-admin__text-control', {
+										'qdlx-error': 'required' === errors.fromEmail?.type,
+										'is-required': true,
+									} ) }
+								/>
+							) }
+						/>
+						{ errors.fromEmail && (
+							<Notice
+								message={ __( 'This does not appear to be a valid email address.' ) }
+								status="error"
+								politeness="assertive"
+								inline={ false }
+								icon={ CircularExclamationIcon }
+							/>
+						) }
+					</div>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="fromName"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<TextControl
+									label={ __( 'From Name', 'quotes-dlx' ) }
+									value={ value }
+									onChange={ onChange }
+									className={ classNames( 'qdlx-admin__text-control', {
+										'qdlx-error': 'required' === errors.fromName?.type,
+										'is-required': true,
+									} ) }
+									ref={ emailBodyInputRef }
+								/>
+							) }
+						/>
+					</div>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="emailSubject"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<div className="qdlx-admin-email-template-tag-row">
+									<TextControl
+										label={ __( 'Email Subject', 'quotes-dlx' ) }
+										value={ value }
+										onChange={ ( newValue ) => {
+											onChange( newValue );
+										} }
+										className={ classNames( 'qdlx-admin__text-control', {
+											'qdlx-error': 'required' === errors.emailSubject?.type,
+											'is-required': true,
+										} ) }
+										ref={ emailSubjectInputRef }
+									/>
+									<EmailTemplateTags
+										onSelect={ ( tag ) => {
+											// Focus on the input field.
+											emailSubjectInputRef.current.focus();
+											// Insert the tag at the cursor position.
+											const cursorPosition = emailSubjectInputRef.current.selectionStart;
+											const newSubject = [
+												value.slice( 0, cursorPosition ),
+												tag,
+												value.slice( cursorPosition ),
+											].join( '' );
+											setValue( 'emailSubject', newSubject );
+										} }
+									/>
+								</div>
+							) }
+						/>
+						{ errors.emailSubject && (
+							<Notice
+								message={ __( 'This field is required.' ) }
+								status="error"
+								politeness="assertive"
+								inline={ false }
+								icon={ CircularExclamationIcon }
+							/>
+						) }
+					</div>
+					<div className="qdlx-admin-component-row">
+						<Controller
+							name="emailBody"
+							control={ control }
+							rules={ { required: true } }
+							render={ ( { field: { onChange, value } } ) => (
+								<div className="qdlx-admin-email-template-tag-row">
+									<TextareaControl
+										label={ __( 'Email Body', 'quotes-dlx' ) }
+										value={ value }
+										onChange={ ( newValue ) => {
+											onChange( newValue );
+										} }
+										className={ classNames( 'qdlx-admin__text-area-control', {
+											'qdlx-error': 'required' === errors.emailBody?.type,
+											'is-required': true,
+										} ) }
+										innerRef={ emailBodyInputRef }
+									/>
+									<EmailTemplateTags
+										onSelect={ ( tag ) => {
+											// Focus on the input field.
+											emailBodyInputRef.current.focus();
+											// Insert the tag at the cursor position.
+											const cursorPosition = emailBodyInputRef.current.selectionStart;
+											const newBody = [
+												value.slice( 0, cursorPosition ),
+												tag,
+												value.slice( cursorPosition ),
+											].join( '' );
+											setValue( 'emailBody', newBody );
+										} }
+										additionalTags={ ADDITIONAL_TEMPLATE_TAGS }
+									/>
+								</div>
+							) }
+						/>
+						{ errors.emailBody && (
+							<Notice
+								message={ __( 'This field is required.' ) }
+								status="error"
+								politeness="assertive"
+								inline={ false }
+								icon={ CircularExclamationIcon }
+							/>
+						) }
+					</div>
+				</td>
+			</tr>
+		);
+	};
+
 	return (
 		<>
 			<div className="qdlx-admin__tabs--content-wrap">
@@ -299,213 +598,8 @@ const Interface = ( props ) => {
 											/>
 										</td>
 									</tr>
-									{
-										getValues( 'emailSendType' ) === 'form' && (
-											<tr>
-												<th scope="row">{ __( 'Email Fields', 'quotes-dlx' ) }</th>
-												<td>
-													<p className="qdlx-admin-description">
-														{ __(
-															'Customize the fields that are displayed in the email form.',
-															'quotes-dlx'
-														) }
-													</p>
-													<div className="qdlx-admin-component-row">
-														<Controller
-															name="emailModalTitle"
-															control={ control }
-															rules={ { required: true } }
-															render={ ( { field: { onChange, value } } ) => (
-																<div className="qdlx-admin-email-template-tag-row">
-																	<TextControl
-																		label={ __( 'Email Modal Title', 'quotes-dlx' ) }
-																		value={ value }
-																		onChange={ ( newValue ) => {
-																			onChange( newValue );
-																		} }
-																		className={ classNames( 'qdlx-admin__text-control', {
-																			'qdlx-error': 'required' === errors.emailModalTitle?.type,
-																			'is-required': true,
-																		} ) }
-																		ref={ emailModalTitleInputRef }
-																	/>
-																	<EmailTemplateTags
-																		onSelect={ ( tag ) => {
-																		// Focus on the input field.
-																			emailModalTitleInputRef.current.focus();
-																			// Insert the tag at the cursor position.
-																			const cursorPosition = emailModalTitleInputRef.current.selectionStart;
-																			const newSubject = [
-																				value.slice( 0, cursorPosition ),
-																				tag,
-																				value.slice( cursorPosition ),
-																			].join( '' );
-																			setValue( 'emailModalTitle', newSubject );
-																		} }
-																	/>
-																</div>
-															) }
-														/>
-														{ errors.emailSubject && (
-															<Notice
-																message={ __( 'This field is required.' ) }
-																status="error"
-																politeness="assertive"
-																inline={ false }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-													</div>
-													<div className="qdlx-admin-component-row">
-														<Controller
-															name="fromEmail"
-															control={ control }
-															rules={ { required: true } }
-															render={ ( { field: { onChange, value } } ) => (
-																<TextControl
-																	label={ __( 'From Email', 'quotes-dlx' ) }
-																	value={ value }
-																	onChange={ ( newValue ) => {
-																		if ( ! isEmail( newValue ) ) {
-																			setError( 'fromEmail', { shouldFocus: true } );
-																		} else {
-																			clearErrors( 'fromEmail' );
-																		}
-																		onChange( newValue );
-																	} }
-																	className={ classNames( 'qdlx-admin__text-control', {
-																		'qdlx-error': 'required' === errors.fromEmail?.type,
-																		'is-required': true,
-																	} ) }
-																/>
-															) }
-														/>
-														{ errors.fromEmail && (
-															<Notice
-																message={ __( 'This does not appear to be a valid email address.' ) }
-																status="error"
-																politeness="assertive"
-																inline={ false }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-													</div>
-													<div className="qdlx-admin-component-row">
-														<Controller
-															name="fromName"
-															control={ control }
-															rules={ { required: true } }
-															render={ ( { field: { onChange, value } } ) => (
-																<TextControl
-																	label={ __( 'From Name', 'quotes-dlx' ) }
-																	value={ value }
-																	onChange={ onChange }
-																	className={ classNames( 'qdlx-admin__text-control', {
-																		'qdlx-error': 'required' === errors.fromName?.type,
-																		'is-required': true,
-																	} ) }
-																	ref={ emailBodyInputRef }
-																/>
-															) }
-														/>
-													</div>
-													<div className="qdlx-admin-component-row">
-														<Controller
-															name="emailSubject"
-															control={ control }
-															rules={ { required: true } }
-															render={ ( { field: { onChange, value } } ) => (
-																<div className="qdlx-admin-email-template-tag-row">
-																	<TextControl
-																		label={ __( 'Email Subject', 'quotes-dlx' ) }
-																		value={ value }
-																		onChange={ ( newValue ) => {
-																			onChange( newValue );
-																		} }
-																		className={ classNames( 'qdlx-admin__text-control', {
-																			'qdlx-error': 'required' === errors.emailSubject?.type,
-																			'is-required': true,
-																		} ) }
-																		ref={ emailSubjectInputRef }
-																	/>
-																	<EmailTemplateTags
-																		onSelect={ ( tag ) => {
-																		// Focus on the input field.
-																			emailSubjectInputRef.current.focus();
-																			// Insert the tag at the cursor position.
-																			const cursorPosition = emailSubjectInputRef.current.selectionStart;
-																			const newSubject = [
-																				value.slice( 0, cursorPosition ),
-																				tag,
-																				value.slice( cursorPosition ),
-																			].join( '' );
-																			setValue( 'emailSubject', newSubject );
-																		} }
-																	/>
-																</div>
-															) }
-														/>
-														{ errors.emailSubject && (
-															<Notice
-																message={ __( 'This field is required.' ) }
-																status="error"
-																politeness="assertive"
-																inline={ false }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-													</div>
-													<div className="qdlx-admin-component-row">
-														<Controller
-															name="emailBody"
-															control={ control }
-															rules={ { required: true } }
-															render={ ( { field: { onChange, value } } ) => (
-																<div className="qdlx-admin-email-template-tag-row">
-																	<TextareaControl
-																		label={ __( 'Email Body', 'quotes-dlx' ) }
-																		value={ value }
-																		onChange={ ( newValue ) => {
-																			onChange( newValue );
-																		} }
-																		className={ classNames( 'qdlx-admin__text-area-control', {
-																			'qdlx-error': 'required' === errors.emailBody?.type,
-																			'is-required': true,
-																		} ) }
-																		innerRef={ emailBodyInputRef }
-																	/>
-																	<EmailTemplateTags
-																		onSelect={ ( tag ) => {
-																		// Focus on the input field.
-																			emailBodyInputRef.current.focus();
-																			// Insert the tag at the cursor position.
-																			const cursorPosition = emailBodyInputRef.current.selectionStart;
-																			const newBody = [
-																				value.slice( 0, cursorPosition ),
-																				tag,
-																				value.slice( cursorPosition ),
-																			].join( '' );
-																			setValue( 'emailBody', newBody );
-																		} }
-																		additionalTags={ ADDITIONAL_TEMPLATE_TAGS }
-																	/>
-																</div>
-															) }
-														/>
-														{ errors.emailBody && (
-															<Notice
-																message={ __( 'This field is required.' ) }
-																status="error"
-																politeness="assertive"
-																inline={ false }
-																icon={ CircularExclamationIcon }
-															/>
-														) }
-													</div>
-												</td>
-											</tr>
-										)
-									}
+									{ getEmailFields() }
+									{ getSpamProtection() }
 								</tbody>
 							</table>
 							<div className="qdlx-admin__tabs--content-actions">

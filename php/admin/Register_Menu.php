@@ -126,6 +126,7 @@ class Register_Menu {
 			'jetpack_plugin_active'    => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
 			'image_dir'                => Functions::get_plugin_url( 'images' ),
 			'should_disable_licensing' => Functions::should_disable_licensing(),
+			'akismet_plugin_active'    => Functions::is_activated( 'akismet/akismet.php' ),
 		);
 
 		wp_localize_script(

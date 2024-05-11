@@ -1398,87 +1398,19 @@ class Ajax {
 			wp_send_json_error( array() );
 		}
 
-		$options_to_save = Options_Defaults::get_options();
+		// Get form data.
+		$options_to_save = Options_Emails::get_options();
+		$form_data = Functions::sanitize_array_recursive( $_POST['form_data'] ); // expect array.
 
-		$form_data = $_POST['form_data']; // expect array.
-
-		// Ajax doesn't like empty arrays.
-		if ( isset( $form_data['hashtags'] ) ) {
-			if ( empty( $form_data['hashtags'] ) ) {
-				$form_data['hashtags'] = array();
-			}
-		}
-
-		// Iterate and sanitize.
+		// Iterate, convert to lowercase dashes.
 		foreach ( $form_data as $field => $field_value ) {
-			switch ( $field ) {
-				case 'maximumWidth':
-					$options_to_save['maximum_width'] = absint( $field_value );
-					break;
-				case 'maximumWidthUnit':
-					$options_to_save['maximum_width_unit'] = sanitize_text_field( $field_value );
-					break;
-				case 'twitterUsername':
-					$options_to_save['twitter_username'] = sanitize_text_field( $field_value );
-					break;
-				case 'hashtags':
-					$options_to_save['hashtags'] = array_map( 'sanitize_text_field', $field_value );
-					break;
-				case 'align':
-					$options_to_save['align'] = sanitize_text_field( $field_value );
-					break;
-				case 'tweetButtonEnabled':
-					$options_to_save['tweet_button_enabled'] = ( 'true' === $field_value ) ? true : false;
-					break;
-				case 'shareButtonText':
-					$options_to_save['share_button_text'] = sanitize_text_field( $field_value );
-					break;
-				case 'tweetButtonAlignment':
-					$options_to_save['tweet_button_alignment'] = sanitize_text_field( $field_value );
-					break;
-				case 'tweetIconAlignment':
-					$options_to_save['tweet_icon_alignment'] = sanitize_text_field( $field_value );
-					break;
-				case 'tweetButtonDisplay':
-					$options_to_save['tweet_button_display'] = sanitize_text_field( $field_value );
-					break;
-				case 'align':
-					$options_to_save['align'] = sanitize_text_field( $field_value );
-					break;
-				case 'anchorPrefix':
-					$options_to_save['anchor_prefix'] = sanitize_text_field( $field_value );
-					break;
-				case 'hasAnchor':
-					$options_to_save['has_anchor'] = ( 'true' === $field_value ) ? true : false;
-					break;
-				case 'enableLinksInTweet':
-					$options_to_save['enable_links_in_tweet'] = ( 'true' === $field_value ) ? true : false;
-					break;
-				case 'urlShorteningService':
-					$options_to_save['url_shortening_service'] = sanitize_text_field( $field_value );
-					break;
-				case 'urlShortener':
-					$options_to_save['url_shortener'] = ( 'true' === $field_value ) ? true : false;
-					break;
-				case 'template':
-					$options_to_save['template'] = sanitize_text_field( $field_value );
-					break;
-				case 'facebookShareButtonText':
-					$options_to_save['facebook_share_button_text'] = sanitize_text_field( $field_value );
-					break;
-				case 'facebookButtonEnabled':
-					$options_to_save['facebook_button_enabled'] = ( 'true' === $field_value ) ? true : false;
-					break;
-				case 'iconAppearance':
-					$options_to_save['icon_appearance'] = sanitize_text_field( $field_value );
-					break;
-				default:
-					$options_to_save[ sanitize_key( $field ) ] = sanitize_text_field( $field_value );
-					break;
-			}
+			$field_to_lower = Functions::to_underlines( $field );
+			$options_to_save[ $field_to_lower ] = $field_value;
+
+		
 		}
 
-		Options_Defaults::update_options( '', $options_to_save );
+		Options_Emails::update_options( '', $options_to_save );
 
 		$options_to_return = array();
 		// Format saved fields.

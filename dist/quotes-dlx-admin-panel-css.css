@@ -1683,12 +1683,119 @@ td p.qdlx-admin-description {
   padding-left: 5px;
 }
 
+.qdlx-email-template-tags__popover .components-popover__content {
+  padding: 15px;
+}
+
 .components-popover__content {
   background: var(--quotes-dlx-admin--color-white);
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border-radius: 2px;
   width: auto !important;
+}
+
+.components-popover__arrow.is-right {
+  left: -14px !important;
+  transform: rotate(90deg);
+}
+
+.components-popover__arrow {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  display: flex;
+}
+
+.components-popover__arrow:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 1px;
+  height: 2px;
+  right: 1px;
+  background-color: #fff;
+}
+
+.components-popover__triangle-bg {
+  fill: #FFF;
+}
+
+.components-popover__triangle-border {
+  fill: transparent;
+  stroke-width: 1px;
+  stroke: #ccc;
+}
+
+.qdlx-admin-email-template-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.qdlx-admin-email-template-tag-row .components-base-control.qdlx-admin__text-control {
+  margin-bottom: 0;
+}
+.qdlx-admin-email-template-tag-row .components-base-control.qdlx-admin__text-control .components-base-control__field {
+  margin-bottom: 0;
+}
+.qdlx-admin-email-template-tag-row .qdlx-email-template-tags button {
+  display: inline-flex;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 13px;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  background: none;
+  transition: box-shadow 0.1s linear;
+  height: 36px;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border-radius: 2px;
+  color: #1e1e1e;
+  margin-bottom: 0;
+}
+.qdlx-admin-email-template-tag-row .qdlx-admin__text-area-control {
+  flex: 1;
+  margin-bottom: 0;
+  max-width: 550px;
+}
+.qdlx-admin-email-template-tag-row .qdlx-admin__text-area-control textarea {
+  min-height: 200px;
+  display: block;
+  max-width: 550px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 5px 10px;
+  line-height: 2;
+  min-height: 24px;
+  margin: 0;
+  outline-style: none;
+  box-sizing: border-box;
+}
+
+.qdlx-email-template-tags__popover-tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  row-gap: 8px;
+  padding: 0 5px;
+}
+.qdlx-email-template-tags__popover-tags button {
+  border: 1px solid #ddd;
+  text-align: center;
+  display: block;
+  width: 100%;
+  padding: 15px 10px;
+  height: auto;
 }
 
 .components-circular-option-picker__option:after {

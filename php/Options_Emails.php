@@ -50,6 +50,7 @@ class Options_Emails extends Options_Abstract {
 			'akismet_enabled'           => true,
 			'recaptcha_enabled'         => false,
 			'recaptcha_site_key'        => '',
+			'captcha_type'              => 'none', // can be none|recaptcha|turnstile.
 			'recaptcha_secret_key'      => '',
 			'recaptcha_score_threshold' => 0.5,
 			'turnstile_enabled'         => false,

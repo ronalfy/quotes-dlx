@@ -186,6 +186,8 @@ var retrieveDefaults = function retrieveDefaults() {
     nonce: quotes_dlx_admin.options_retrieve_nonce
   });
 };
+var HtmlParser = (__webpack_require__(/*! html-to-react */ "./node_modules/html-to-react/index.js").Parser);
+var HtmlParserInstance = new HtmlParser();
 var AdminEmails = function AdminEmails(props) {
   var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_4__.useAsyncResource)(retrieveDefaults, []),
     _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
@@ -407,7 +409,7 @@ var Interface = function Interface(props) {
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable spam protection to help prevent unwanted emails.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin-component-row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
-      name: "captchaType",
+      name: "akismet_enabled",
       control: control,
       rules: {
         required: true
@@ -463,7 +465,208 @@ var Interface = function Interface(props) {
           }
         });
       }
-    }))));
+    }), 'turnstile' === getValues('captchaType') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "qdlx-admin-docs"
+    }, /* translators: %s: URL to Turnstile documentation */
+    HtmlParserInstance.parse((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please read this guide on <a href="%s">how to retrieve your Turnstile keys</a>.', 'quotes-dlx'), 'https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+      name: "turnstileSiteKey",
+      control: control,
+      rules: {
+        required: true
+      },
+      render: function render(_ref3) {
+        var _errors$turnstileSite;
+        var _ref3$field = _ref3.field,
+          _onChange3 = _ref3$field.onChange,
+          value = _ref3$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Site Key', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newValue) {
+            _onChange3(newValue);
+          },
+          name: "search-turnstile-site-key",
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+            'qdlx-error': 'required' === ((_errors$turnstileSite = errors.turnstileSiteKey) === null || _errors$turnstileSite === void 0 ? void 0 : _errors$turnstileSite.type),
+            'is-required': true
+          })
+        });
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+      name: "turnstileSecret",
+      control: control,
+      rules: {
+        required: true
+      },
+      render: function render(_ref4) {
+        var _errors$turnstileSecr;
+        var _ref4$field = _ref4.field,
+          _onChange4 = _ref4$field.onChange,
+          value = _ref4$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Turnstile Secret Key', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newValue) {
+            _onChange4(newValue);
+          },
+          type: "password",
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+            'qdlx-error': 'required' === ((_errors$turnstileSecr = errors.turnstileSecret) === null || _errors$turnstileSecr === void 0 ? void 0 : _errors$turnstileSecr.type),
+            'is-required': true
+          }),
+          name: "search-turnstile-secret-key"
+        });
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+      name: "widgetAppearance",
+      control: control,
+      render: function render(_ref5) {
+        var _ref5$field = _ref5.field,
+          _onChange5 = _ref5$field.onChange,
+          value = _ref5$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visibility', 'quotes-dlx'),
+          className: "dlx-admin__select-control",
+          value: value,
+          onChange: function onChange(stringValue) {
+            _onChange5(stringValue);
+          },
+          options: [/* light, dark, auto */
+          {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Always', 'quotes-dlx'),
+            value: 'always'
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Invisible', 'quotes-dlx'),
+            value: 'interaction-only'
+          }],
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set whether the widget is visible or invisible. Users can still be presented with a challenge if the widget is invisible.', 'quotes-dlx')
+        });
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+      name: "widgetSize",
+      control: control,
+      rules: {
+        required: true
+      },
+      render: function render(_ref6) {
+        var _ref6$field = _ref6.field,
+          _onChange6 = _ref6$field.onChange,
+          value = _ref6$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Widget Size', 'quotes-dlx'),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the size for the widget.', 'quotes-dlx'),
+          value: value,
+          options: [/* normal, compact */
+          {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Normal', 'quotes-dlx'),
+            value: 'normal'
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Compact', 'quotes-dlx'),
+            value: 'compact'
+          }],
+          onChange: function onChange(widgetSizeValue) {
+            _onChange6(widgetSizeValue);
+          }
+        });
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
+      name: "language",
+      control: control,
+      render: function render(_ref7) {
+        var _ref7$field = _ref7.field,
+          _onChange7 = _ref7$field.onChange,
+          value = _ref7$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Language', 'quotes-dlx'),
+          className: "dlx-admin__select-control",
+          value: value,
+          onChange: function onChange(stringValue) {
+            _onChange7(stringValue);
+          },
+          options: [{
+            value: 'ar',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Arabic', 'quotes-dlx')
+          }, {
+            value: 'ar-eg',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Arabic (Egypt)', 'quotes-dlx')
+          }, {
+            value: 'zh',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Chinese', 'quotes-dlx')
+          }, {
+            value: 'zh-cn',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Chinese (Simplified)', 'quotes-dlx')
+          }, {
+            value: 'zh-tw',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Chinese (Traditional)', 'quotes-dlx')
+          }, {
+            value: 'nl',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dutch', 'quotes-dlx')
+          }, {
+            value: 'en',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('English', 'quotes-dlx')
+          }, {
+            value: 'fa',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Farsi', 'quotes-dlx')
+          }, {
+            value: 'fr',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('French', 'quotes-dlx')
+          }, {
+            value: 'de',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('German', 'quotes-dlx')
+          }, {
+            value: 'id',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Indonesian', 'quotes-dlx')
+          }, {
+            value: 'it',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Italian', 'quotes-dlx')
+          }, {
+            value: 'ja',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Japanese', 'quotes-dlx')
+          }, {
+            value: 'ko',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Korean', 'quotes-dlx')
+          }, {
+            value: 'tlh',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Klingon', 'quotes-dlx')
+          }, {
+            value: 'pl',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Polish', 'quotes-dlx')
+          }, {
+            value: 'pt',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Portuguese', 'quotes-dlx')
+          }, {
+            value: 'pt-br',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Portuguese (Brazil)', 'quotes-dlx')
+          }, {
+            value: 'ru',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Russian', 'quotes-dlx')
+          }, {
+            value: 'es',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Spanish', 'quotes-dlx')
+          }, {
+            value: 'tr',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Turkish', 'quotes-dlx')
+          }, {
+            value: 'uk',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Ukrainian', 'quotes-dlx')
+          }, {
+            value: 'uk-ua',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Ukrainian (Ukraine)', 'quotes-dlx')
+          }],
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your Cloudflare Turnstile Language.', 'quotes-dlx')
+        });
+      }
+    }))))));
   };
 
   /**
@@ -487,18 +690,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref3) {
+      render: function render(_ref8) {
         var _errors$emailModalTit;
-        var _ref3$field = _ref3.field,
-          _onChange3 = _ref3$field.onChange,
-          value = _ref3$field.value;
+        var _ref8$field = _ref8.field,
+          _onChange8 = _ref8$field.onChange,
+          value = _ref8$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Modal Title', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange3(newValue);
+            _onChange8(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailModalTit = errors.emailModalTitle) === null || _errors$emailModalTit === void 0 ? void 0 : _errors$emailModalTit.type),
@@ -530,11 +733,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref4) {
+      render: function render(_ref9) {
         var _errors$fromEmail;
-        var _ref4$field = _ref4.field,
-          _onChange4 = _ref4$field.onChange,
-          value = _ref4$field.value;
+        var _ref9$field = _ref9.field,
+          _onChange9 = _ref9$field.onChange,
+          value = _ref9$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Email', 'quotes-dlx'),
           value: value,
@@ -546,7 +749,7 @@ var Interface = function Interface(props) {
             } else {
               clearErrors('fromEmail');
             }
-            _onChange4(newValue);
+            _onChange9(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$fromEmail = errors.fromEmail) === null || _errors$fromEmail === void 0 ? void 0 : _errors$fromEmail.type),
@@ -568,11 +771,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref5) {
+      render: function render(_ref10) {
         var _errors$fromName;
-        var _ref5$field = _ref5.field,
-          onChange = _ref5$field.onChange,
-          value = _ref5$field.value;
+        var _ref10$field = _ref10.field,
+          onChange = _ref10$field.onChange,
+          value = _ref10$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Name', 'quotes-dlx'),
           value: value,
@@ -592,18 +795,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref6) {
+      render: function render(_ref11) {
         var _errors$emailSubject;
-        var _ref6$field = _ref6.field,
-          _onChange5 = _ref6$field.onChange,
-          value = _ref6$field.value;
+        var _ref11$field = _ref11.field,
+          _onChange10 = _ref11$field.onChange,
+          value = _ref11$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Subject', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange5(newValue);
+            _onChange10(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailSubject = errors.emailSubject) === null || _errors$emailSubject === void 0 ? void 0 : _errors$emailSubject.type),
@@ -635,18 +838,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref7) {
+      render: function render(_ref12) {
         var _errors$emailBody;
-        var _ref7$field = _ref7.field,
-          _onChange6 = _ref7$field.onChange,
-          value = _ref7$field.value;
+        var _ref12$field = _ref12.field,
+          _onChange11 = _ref12$field.onChange,
+          value = _ref12$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Body', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange6(newValue);
+            _onChange11(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-area-control', {
             'qdlx-error': 'required' === ((_errors$emailBody = errors.emailBody) === null || _errors$emailBody === void 0 ? void 0 : _errors$emailBody.type),
@@ -701,10 +904,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, emails are sent via a form. You can also send emails via a default email client.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_17__.Controller, {
     name: "emailSendType",
     control: control,
-    render: function render(_ref8) {
-      var _ref8$field = _ref8.field,
-        _onChange7 = _ref8$field.onChange,
-        value = _ref8$field.value;
+    render: function render(_ref13) {
+      var _ref13$field = _ref13.field,
+        _onChange12 = _ref13$field.onChange,
+        value = _ref13$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RadioControl, {
         selected: value,
         options: [{
@@ -715,7 +918,7 @@ var Interface = function Interface(props) {
           value: 'mailto'
         }],
         onChange: function onChange(newValue) {
-          _onChange7(newValue);
+          _onChange12(newValue);
         }
       });
     }

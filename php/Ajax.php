@@ -1400,14 +1400,13 @@ class Ajax {
 
 		// Get form data.
 		$options_to_save = Options_Emails::get_options();
-		$form_data = Functions::sanitize_array_recursive( $_POST['form_data'] ); // expect array.
+		$form_data       = Functions::sanitize_array_recursive( $_POST['form_data'] ); // expect array.
 
 		// Iterate, convert to lowercase dashes.
 		foreach ( $form_data as $field => $field_value ) {
-			$field_to_lower = Functions::to_underlines( $field );
+			$field_to_lower                     = Functions::to_underlines( $field );
 			$options_to_save[ $field_to_lower ] = $field_value;
 
-		
 		}
 
 		Options_Emails::update_options( '', $options_to_save );

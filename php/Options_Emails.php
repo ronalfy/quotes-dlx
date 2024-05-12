@@ -54,7 +54,7 @@ class Options_Emails extends Options_Abstract {
 			'recaptcha_secret_key'      => '',
 			'recaptcha_score_threshold' => 0.5,
 			'turnstile_enabled'         => false,
-			'turnstile_sitekey'         => '',
+			'turnstile_site_key'        => '',
 			'turnstile_secret'          => '',
 			'turnstile_theme'           => 'auto',
 			'turnstile_language'        => 'auto',

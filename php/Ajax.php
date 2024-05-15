@@ -82,7 +82,86 @@ class Ajax {
 		// For importing the theme options.
 		add_action( 'wp_ajax_quotes_dlx_process_import_file', array( static::class, 'ajax_process_import_file' ) );
 
+		// For the Turnsile admin preview.
+		add_action( 'wp_ajax_quotes_dlx_turnstile_admin_preview', array( static::class, 'ajax_admin_preview' ) );
+
+		// For admin preview submit action.
+		add_action( 'wp_ajax_quotes_dlx_turnstile_admin_preview_validate', array( static::class, 'ajax_admin_preview_validate' ) );
+
 		return $self;
+	}
+
+	/**
+	 * Validate a form submitted in the preview modal.
+	 */
+	public static function ajax_admin_preview_validate() {
+		// Do permissions check.
+		$nonce = filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT );
+		if ( ! \wp_verify_nonce( $nonce, 'dlx-turnstile-admin-preview-iframe') || ! current_user_can( 'manage_options' ) ) {
+			\wp_send_json_error( array() );
+		}
+
+		// Get secret key.
+		$secret_key = filter_input( INPUT_GET, 'secretKey', FILTER_DEFAULT );
+
+		// Get token.
+		$token = filter_input( INPUT_GET, 'turnstyleToken', FILTER_DEFAULT );
+
+		$can_proceed = false;
+
+		// Make sure token is valid.
+		if ( $token ) {
+
+			$cloudflare_endpoint_api = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+			// Build data envelope.
+			$data = array(
+				'secret'   => sanitize_text_field( $secret_key ),
+				'response' => sanitize_text_field( $token ),
+			);
+
+			$args = array(
+				'body'      => $data,
+				'method'    => 'POST',
+				'sslverify' => true,
+			);
+
+			$response = wp_remote_post( esc_url( $cloudflare_endpoint_api ), $args );
+
+			// If error, show response.
+			if ( is_wp_error( $response ) ) {
+				$can_proceed = false;
+			}
+
+			// Get body.
+			$body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+			$is_success = $body['success'] ?? false;
+			// If not a success, error.
+			if ( ! $is_success ) {
+				$can_proceed = false;
+			} else {
+				$can_proceed = true;
+			}
+
+			// Success!
+			if ( $can_proceed ) {
+				\wp_send_json_success( array() );
+			}
+		}
+		\wp_send_json_error( array() );
+	}
+
+	/**
+	 * Let's get the preview template.
+	 */
+	public static function ajax_admin_preview() {
+		// We're getting the template.
+		$template_path = Functions::get_plugin_dir( 'templates/turnstile-preview.php' );
+		if ( \file_exists( $template_path ) ) {
+			include $template_path;
+		}
+		exit;
 	}
 
 	/**

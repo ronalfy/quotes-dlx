@@ -3,7 +3,7 @@
  * Main QuotesDLX front-end JS.
  */
 
-import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
+import { Fancybox } from '@fancyapps/ui';
 
 ( function() {
 	const { __ } = wp.i18n;
@@ -244,7 +244,7 @@ import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox";
 			newTweet += '&hashtags=' + hashtags;
 		}
 		if ( tweetText !== '' && tweetText !== null ) {
-			newTweet += '&text=' + tweetText + "\n\r";
+			newTweet += '&text=' + tweetText + '\n\r';
 		}
 
 		if ( newTweet !== '' ) {

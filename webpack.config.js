@@ -44,6 +44,7 @@ module.exports = ( env ) => {
 				'quotes-dlx-gfont-source-sans-pro': { import: './src/scss/fonts/source-sans-pro.scss' },
 				'quotes-dlx-gfont-spinnaker': { import: './src/scss/fonts/spinnaker.scss' },
 				'quotes-dlx-email': [ './src/js/views/Email/index.js', './src/js/views/Email/style.scss' ],
+				'quotes-dlx-turnstile-admin-preview': './src/js/turnstile/admin.js',
 			},
 			resolve: {
 				alias: {

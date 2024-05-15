@@ -3,8 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import '@fancyapps/ui/dist/fancybox.css';
+import { Fancybox } from '@fancyapps/ui';
 import { __, sprintf } from '@wordpress/i18n';
 import Notice from '../admin-components/Notice';
 

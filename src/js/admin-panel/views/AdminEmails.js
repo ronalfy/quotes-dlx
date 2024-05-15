@@ -14,6 +14,9 @@ import {
 import { isEmail } from '@wordpress/url';
 import { useAsyncResource } from 'use-async-resource';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { Fancybox } from '@fancyapps/ui';
 import classNames from 'classnames';
 import AtIcon from '../../components/icons/AtIcon';
 import sendCommand from '../../utils/SendCommand';
@@ -40,7 +43,7 @@ const retrieveDefaults = () => {
 	} );
 };
 
-const HtmlParser = require('html-to-react').Parser;
+const HtmlParser = require( 'html-to-react' ).Parser;
 const HtmlParserInstance = new HtmlParser();
 
 const AdminEmails = ( props ) => {
@@ -149,7 +152,7 @@ const Interface = ( props ) => {
 					// Error stuff.
 				}
 			} )
-			.catch( ( ajaxResponse ) => {} )
+			.catch( ( ajaxResponse ) => { } )
 			.then( ( ajaxResponse ) => {
 				setSaving( false );
 			} );
@@ -180,7 +183,7 @@ const Interface = ( props ) => {
 					// Error stuff.
 				}
 			} )
-			.catch( ( ajaxResponse ) => {} )
+			.catch( ( ajaxResponse ) => { } )
 			.then( ( ajaxResponse ) => {
 				setResetting( false );
 			} );
@@ -328,10 +331,12 @@ const Interface = ( props ) => {
 						/>
 						{ ( 'turnstile' === getValues( 'captchaType' ) ) && (
 							<>
-								<p className="qdlx-admin-docs">
-									{ /* translators: %s: URL to Turnstile documentation */
-										HtmlParserInstance.parse( sprintf( __( 'Please read this guide on <a href="%s">how to retrieve your Turnstile keys</a>.', 'quotes-dlx' ), 'https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/' ) ) }
-								</p>
+								<div className="qdlx-admin-component-row">
+									<p className="qdlx-admin-docs description">
+										{ /* translators: %s: URL to Turnstile documentation */
+											HtmlParserInstance.parse( sprintf( __( 'Please read this guide on <a href="%s">how to retrieve your Turnstile keys</a>.', 'quotes-dlx' ), 'https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/' ) ) }
+									</p>
+								</div>
 								<div className="qdlx-admin-component-row">
 									<Controller
 										name="turnstileSiteKey"
@@ -376,101 +381,153 @@ const Interface = ( props ) => {
 									/>
 								</div>
 								<div className="qdlx-admin-component-row">
-									<Controller
-										name="widgetAppearance"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<SelectControl
-												label={ __( 'Visibility', 'quotes-dlx' ) }
-												className="dlx-admin__select-control"
-												value={ value }
-												onChange={ ( stringValue ) => {
-													onChange( stringValue );
-												} }
-												options={ [
-													/* light, dark, auto */
-													{ label: __( 'Show Always', 'quotes-dlx' ), value: 'always' },
-													{ label: __( 'Invisible', 'quotes-dlx' ), value: 'interaction-only' },
-												] }
-												help={ __(
-													'Set whether the widget is visible or invisible. Users can still be presented with a challenge if the widget is invisible.',
-													'quotes-dlx'
-												) }
-											/>
-										) }
-									/>
-								</div>
-								<div className="qdlx-admin-component-row">
-									<Controller
-										name="widgetSize"
-										control={ control }
-										rules={ { required: true } }
-										render={ ( { field: { onChange, value } } ) => (
-											<SelectControl
-												label={ __( 'Widget Size', 'quotes-dlx' ) }
-												help={ __(
-													'Select the size for the widget.',
-													'quotes-dlx'
-												) }
-												value={ value }
-												options={ [
-													/* normal, compact */
-													{ label: __( 'Normal', 'quotes-dlx' ), value: 'normal' },
-													{ label: __( 'Compact', 'quotes-dlx' ), value: 'compact' },
-												] }
-												onChange={ ( widgetSizeValue ) => {
-													onChange( widgetSizeValue );
-												} }
-											/>
-										) }
-									/>
-								</div>
-								<div className="qdlx-admin-component-row">
-									<Controller
-										name="language"
-										control={ control }
-										render={ ( { field: { onChange, value } } ) => (
-											<SelectControl
-												label={ __( 'Language', 'quotes-dlx' ) }
-												className="dlx-admin__select-control"
-												value={ value }
-												onChange={ ( stringValue ) => {
-													onChange( stringValue );
-												} }
-												options={ [
+									{ ( getValues( 'turnstileSiteKey' ) && getValues( 'turnstileSecret' ) ) && (
+										<>
+											<div className="dlx-admin-component-row dlx-admin-component-row-button no-flex">
+												<Button
+													label={ __( 'Preview Turnstile', 'dlx-pmpro-turnstile' ) }
+													className="dlx-admin__button dlx__btn-white"
+													onClick={ () => {
+														// Build a URL from admin-ajax.
+														const adminAjaxUrl = quotes_dlx_admin.ajaxurl; // Can't use global `ajaxurl` here because `ajaxurl` is a relative path.
 
-													{ value: 'ar', label: __( 'Arabic', 'quotes-dlx' ) },
-													{ value: 'ar-eg', label: __( 'Arabic (Egypt)', 'quotes-dlx' ) },
-													{ value: 'zh', label: __( 'Chinese', 'quotes-dlx' ) },
-													{ value: 'zh-cn', label: __( 'Chinese (Simplified)', 'quotes-dlx' ) },
-													{ value: 'zh-tw', label: __( 'Chinese (Traditional)', 'quotes-dlx' ) },
-													{ value: 'nl', label: __( 'Dutch', 'quotes-dlx' ) },
-													{ value: 'en', label: __( 'English', 'quotes-dlx' ) },
-													{ value: 'fa', label: __( 'Farsi', 'quotes-dlx' ) },
-													{ value: 'fr', label: __( 'French', 'quotes-dlx' ) },
-													{ value: 'de', label: __( 'German', 'quotes-dlx' ) },
-													{ value: 'id', label: __( 'Indonesian', 'quotes-dlx' ) },
-													{ value: 'it', label: __( 'Italian', 'quotes-dlx' ) },
-													{ value: 'ja', label: __( 'Japanese', 'quotes-dlx' ) },
-													{ value: 'ko', label: __( 'Korean', 'quotes-dlx' ) },
-													{ value: 'tlh', label: __( 'Klingon', 'quotes-dlx' ) },
-													{ value: 'pl', label: __( 'Polish', 'quotes-dlx' ) },
-													{ value: 'pt', label: __( 'Portuguese', 'quotes-dlx' ) },
-													{ value: 'pt-br', label: __( 'Portuguese (Brazil)', 'quotes-dlx' ) },
-													{ value: 'ru', label: __( 'Russian', 'quotes-dlx' ) },
-													{ value: 'es', label: __( 'Spanish', 'quotes-dlx' ) },
-													{ value: 'tr', label: __( 'Turkish', 'quotes-dlx' ) },
-													{ value: 'uk', label: __( 'Ukrainian', 'quotes-dlx' ) },
-													{ value: 'uk-ua', label: __( 'Ukrainian (Ukraine)', 'quotes-dlx' ) },
-												]
-												}
-												help={ __(
-													'Your Cloudflare Turnstile Language.',
-													'quotes-dlx'
-												) }
-											/>
-										) }
-									/>
+														// Add query params to adminAjaxUrl.
+														const url = new URL( adminAjaxUrl );
+														url.searchParams.set( 'action', 'quotes_dlx_turnstile_admin_preview' );
+														url.searchParams.set( 'nonce', quotes_dlx_admin.preview_nonce );
+														url.searchParams.set( 'siteKey', formValues.turnstileSiteKey );
+														url.searchParams.set( 'secretKey', formValues.turnstileSecret );
+														url.searchParams.set( 'language', formValues.language ?? 'en' );
+														url.searchParams.set( 'widgetAppearance', formValues.widgetAppearance );
+														url.searchParams.set( 'widgetTheme', formValues.turnstileTheme );
+														url.searchParams.set( 'widgetSize', formValues.turnstileWidgetSize );
+
+														// Let's get the URL.
+														const iframeAjaxUrl = url.toString();
+
+														// Launch iframe in fancybox.
+														Fancybox.show( [ {
+															src: iframeAjaxUrl,
+															type: 'iframe',
+															autoStart: false,
+															id: 'dlx-quotes-turnstile-preview',
+														} ] );
+													} }
+													icon={ <FontAwesomeIcon size="1x" icon={ faEye } style={ { color: 'currentColor' } } /> }
+													iconSize="1x"
+
+												>
+													{ __( 'Preview and Test', 'dlx-pmpro-turnstile' ) }
+												</Button>
+												<Button
+													className="dlx-admin__button dlx__btn-white"
+													href="https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/"
+													icon={ <FontAwesomeIcon size="1x" icon={ faArrowUpRightFromSquare } style={ { color: 'currentColor' } } /> }
+													iconSize="1x"
+													target="_blank"
+												>
+													{ __( 'Find Your Keys', 'dlx-pmpro-turnstile' ) }
+												</Button>
+											</div>
+										</>
+									) }
+									<div className="qdlx-admin-component-row">
+										<Controller
+											name="widgetAppearance"
+											control={ control }
+											render={ ( { field: { onChange, value } } ) => (
+												<SelectControl
+													label={ __( 'Visibility', 'quotes-dlx' ) }
+													className="dlx-admin__select-control"
+													value={ value }
+													onChange={ ( stringValue ) => {
+														onChange( stringValue );
+													} }
+													options={ [
+														/* light, dark, auto */
+														{ label: __( 'Show Always', 'quotes-dlx' ), value: 'always' },
+														{ label: __( 'Invisible', 'quotes-dlx' ), value: 'interaction-only' },
+													] }
+													help={ __(
+														'Set whether the widget is visible or invisible. Users can still be presented with a challenge if the widget is invisible.',
+														'quotes-dlx'
+													) }
+												/>
+											) }
+										/>
+									</div>
+									<div className="qdlx-admin-component-row">
+										<Controller
+											name="widgetSize"
+											control={ control }
+											rules={ { required: true } }
+											render={ ( { field: { onChange, value } } ) => (
+												<SelectControl
+													label={ __( 'Widget Size', 'quotes-dlx' ) }
+													help={ __(
+														'Select the size for the widget.',
+														'quotes-dlx'
+													) }
+													value={ value }
+													options={ [
+														/* normal, compact */
+														{ label: __( 'Normal', 'quotes-dlx' ), value: 'normal' },
+														{ label: __( 'Compact', 'quotes-dlx' ), value: 'compact' },
+													] }
+													onChange={ ( widgetSizeValue ) => {
+														onChange( widgetSizeValue );
+													} }
+												/>
+											) }
+										/>
+									</div>
+									<div className="qdlx-admin-component-row">
+										<Controller
+											name="language"
+											control={ control }
+											render={ ( { field: { onChange, value } } ) => (
+												<SelectControl
+													label={ __( 'Language', 'quotes-dlx' ) }
+													className="dlx-admin__select-control"
+													value={ value }
+													onChange={ ( stringValue ) => {
+														onChange( stringValue );
+													} }
+													options={ [
+
+														{ value: 'ar', label: __( 'Arabic', 'quotes-dlx' ) },
+														{ value: 'ar-eg', label: __( 'Arabic (Egypt)', 'quotes-dlx' ) },
+														{ value: 'zh', label: __( 'Chinese', 'quotes-dlx' ) },
+														{ value: 'zh-cn', label: __( 'Chinese (Simplified)', 'quotes-dlx' ) },
+														{ value: 'zh-tw', label: __( 'Chinese (Traditional)', 'quotes-dlx' ) },
+														{ value: 'nl', label: __( 'Dutch', 'quotes-dlx' ) },
+														{ value: 'en', label: __( 'English', 'quotes-dlx' ) },
+														{ value: 'fa', label: __( 'Farsi', 'quotes-dlx' ) },
+														{ value: 'fr', label: __( 'French', 'quotes-dlx' ) },
+														{ value: 'de', label: __( 'German', 'quotes-dlx' ) },
+														{ value: 'id', label: __( 'Indonesian', 'quotes-dlx' ) },
+														{ value: 'it', label: __( 'Italian', 'quotes-dlx' ) },
+														{ value: 'ja', label: __( 'Japanese', 'quotes-dlx' ) },
+														{ value: 'ko', label: __( 'Korean', 'quotes-dlx' ) },
+														{ value: 'tlh', label: __( 'Klingon', 'quotes-dlx' ) },
+														{ value: 'pl', label: __( 'Polish', 'quotes-dlx' ) },
+														{ value: 'pt', label: __( 'Portuguese', 'quotes-dlx' ) },
+														{ value: 'pt-br', label: __( 'Portuguese (Brazil)', 'quotes-dlx' ) },
+														{ value: 'ru', label: __( 'Russian', 'quotes-dlx' ) },
+														{ value: 'es', label: __( 'Spanish', 'quotes-dlx' ) },
+														{ value: 'tr', label: __( 'Turkish', 'quotes-dlx' ) },
+														{ value: 'uk', label: __( 'Ukrainian', 'quotes-dlx' ) },
+														{ value: 'uk-ua', label: __( 'Ukrainian (Ukraine)', 'quotes-dlx' ) },
+													]
+													}
+													help={ __(
+														'Your Cloudflare Turnstile Language.',
+														'quotes-dlx'
+													) }
+												/>
+											) }
+										/>
+									</div>
 								</div>
 							</>
 						) }

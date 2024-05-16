@@ -259,6 +259,7 @@ var Interface = function Interface(props) {
       turnstileTheme: data.turnstileTheme,
       turnstileLanguage: data.turnstileLanguage,
       turnstileWidgetSize: data.turnstileWidgetSize,
+      widgetAppearance: data.widgetAppearance,
       fromName: data.fromName,
       fromEmail: data.fromEmail,
       emailSendType: data.emailSendType,
@@ -417,9 +418,6 @@ var Interface = function Interface(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
       name: "akismet_enabled",
       control: control,
-      rules: {
-        required: true
-      },
       render: function render(_ref) {
         var _ref$field = _ref.field,
           _onChange = _ref$field.onChange,
@@ -534,7 +532,7 @@ var Interface = function Interface(props) {
     }, getValues('turnstileSiteKey') && getValues('turnstileSecret') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "dlx-admin-component-row dlx-admin-component-row-button no-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Turnstile', 'dlx-pmpro-turnstile'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Turnstile', 'quotes-dlx'),
       className: "dlx-admin__button dlx__btn-white",
       onClick: function onClick() {
         var _formValues$language;
@@ -571,7 +569,7 @@ var Interface = function Interface(props) {
         }
       }),
       iconSize: "1x"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview and Test', 'dlx-pmpro-turnstile')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview and Test', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
       className: "dlx-admin__button dlx__btn-white",
       href: "https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/",
       icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__.FontAwesomeIcon, {
@@ -583,21 +581,51 @@ var Interface = function Interface(props) {
       }),
       iconSize: "1x",
       target: "_blank"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Find Your Keys', 'dlx-pmpro-turnstile')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Find Your Keys', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "qdlx-admin-component-row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
-      name: "widgetAppearance",
+      name: "turnstileTheme",
       control: control,
       render: function render(_ref5) {
         var _ref5$field = _ref5.field,
           _onChange5 = _ref5$field.onChange,
           value = _ref5$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visibility', 'quotes-dlx'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a Widget Theme', 'quotes-dlx'),
           className: "dlx-admin__select-control",
           value: value,
           onChange: function onChange(stringValue) {
             _onChange5(stringValue);
+          },
+          options: [/* light, dark, auto */
+          {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto', 'quotes-dlx'),
+            value: 'auto'
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Light', 'quotes-dlx'),
+            value: 'light'
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dark', 'quotes-dlx'),
+            value: 'dark'
+          }],
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your Cloudflare Turnstile Widget Theme. If you select `auto`, the widget will automatically change between light and dark based on the user’s operating system preference.', 'quotes-dlx')
+        });
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "widgetAppearance",
+      control: control,
+      render: function render(_ref6) {
+        var _ref6$field = _ref6.field,
+          _onChange6 = _ref6$field.onChange,
+          value = _ref6$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visibility', 'quotes-dlx'),
+          className: "dlx-admin__select-control",
+          value: value,
+          onChange: function onChange(stringValue) {
+            _onChange6(stringValue);
           },
           options: [/* light, dark, auto */
           {
@@ -618,10 +646,10 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref6) {
-        var _ref6$field = _ref6.field,
-          _onChange6 = _ref6$field.onChange,
-          value = _ref6$field.value;
+      render: function render(_ref7) {
+        var _ref7$field = _ref7.field,
+          _onChange7 = _ref7$field.onChange,
+          value = _ref7$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Widget Size', 'quotes-dlx'),
           help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the size for the widget.', 'quotes-dlx'),
@@ -635,7 +663,7 @@ var Interface = function Interface(props) {
             value: 'compact'
           }],
           onChange: function onChange(widgetSizeValue) {
-            _onChange6(widgetSizeValue);
+            _onChange7(widgetSizeValue);
           }
         });
       }
@@ -644,16 +672,16 @@ var Interface = function Interface(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
       name: "language",
       control: control,
-      render: function render(_ref7) {
-        var _ref7$field = _ref7.field,
-          _onChange7 = _ref7$field.onChange,
-          value = _ref7$field.value;
+      render: function render(_ref8) {
+        var _ref8$field = _ref8.field,
+          _onChange8 = _ref8$field.onChange,
+          value = _ref8$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Language', 'quotes-dlx'),
           className: "dlx-admin__select-control",
           value: value,
           onChange: function onChange(stringValue) {
-            _onChange7(stringValue);
+            _onChange8(stringValue);
           },
           options: [{
             value: 'ar',
@@ -752,18 +780,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref8) {
+      render: function render(_ref9) {
         var _errors$emailModalTit;
-        var _ref8$field = _ref8.field,
-          _onChange8 = _ref8$field.onChange,
-          value = _ref8$field.value;
+        var _ref9$field = _ref9.field,
+          _onChange9 = _ref9$field.onChange,
+          value = _ref9$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Modal Title', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange8(newValue);
+            _onChange9(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailModalTit = errors.emailModalTitle) === null || _errors$emailModalTit === void 0 ? void 0 : _errors$emailModalTit.type),
@@ -795,11 +823,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref9) {
+      render: function render(_ref10) {
         var _errors$fromEmail;
-        var _ref9$field = _ref9.field,
-          _onChange9 = _ref9$field.onChange,
-          value = _ref9$field.value;
+        var _ref10$field = _ref10.field,
+          _onChange10 = _ref10$field.onChange,
+          value = _ref10$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Email', 'quotes-dlx'),
           value: value,
@@ -811,7 +839,7 @@ var Interface = function Interface(props) {
             } else {
               clearErrors('fromEmail');
             }
-            _onChange9(newValue);
+            _onChange10(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$fromEmail = errors.fromEmail) === null || _errors$fromEmail === void 0 ? void 0 : _errors$fromEmail.type),
@@ -833,11 +861,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref10) {
+      render: function render(_ref11) {
         var _errors$fromName;
-        var _ref10$field = _ref10.field,
-          onChange = _ref10$field.onChange,
-          value = _ref10$field.value;
+        var _ref11$field = _ref11.field,
+          onChange = _ref11$field.onChange,
+          value = _ref11$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Name', 'quotes-dlx'),
           value: value,
@@ -857,18 +885,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref11) {
+      render: function render(_ref12) {
         var _errors$emailSubject;
-        var _ref11$field = _ref11.field,
-          _onChange10 = _ref11$field.onChange,
-          value = _ref11$field.value;
+        var _ref12$field = _ref12.field,
+          _onChange11 = _ref12$field.onChange,
+          value = _ref12$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Subject', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange10(newValue);
+            _onChange11(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailSubject = errors.emailSubject) === null || _errors$emailSubject === void 0 ? void 0 : _errors$emailSubject.type),
@@ -900,18 +928,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref12) {
+      render: function render(_ref13) {
         var _errors$emailBody;
-        var _ref12$field = _ref12.field,
-          _onChange11 = _ref12$field.onChange,
-          value = _ref12$field.value;
+        var _ref13$field = _ref13.field,
+          _onChange12 = _ref13$field.onChange,
+          value = _ref13$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Body', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange11(newValue);
+            _onChange12(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-area-control', {
             'qdlx-error': 'required' === ((_errors$emailBody = errors.emailBody) === null || _errors$emailBody === void 0 ? void 0 : _errors$emailBody.type),
@@ -966,10 +994,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, emails are sent via a form. You can also send emails via a default email client.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
     name: "emailSendType",
     control: control,
-    render: function render(_ref13) {
-      var _ref13$field = _ref13.field,
-        _onChange12 = _ref13$field.onChange,
-        value = _ref13$field.value;
+    render: function render(_ref14) {
+      var _ref14$field = _ref14.field,
+        _onChange13 = _ref14$field.onChange,
+        value = _ref14$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RadioControl, {
         selected: value,
         options: [{
@@ -980,7 +1008,7 @@ var Interface = function Interface(props) {
           value: 'mailto'
         }],
         onChange: function onChange(newValue) {
-          _onChange12(newValue);
+          _onChange13(newValue);
         }
       });
     }

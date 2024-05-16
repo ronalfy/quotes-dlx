@@ -105,6 +105,7 @@ const Interface = ( props ) => {
 			turnstileTheme: data.turnstileTheme,
 			turnstileLanguage: data.turnstileLanguage,
 			turnstileWidgetSize: data.turnstileWidgetSize,
+			widgetAppearance: data.widgetAppearance,
 			fromName: data.fromName,
 			fromEmail: data.fromEmail,
 			emailSendType: data.emailSendType,
@@ -271,7 +272,6 @@ const Interface = ( props ) => {
 						<Controller
 							name="akismet_enabled"
 							control={ control }
-							rules={ { required: true } }
 							render={ ( { field: { onChange, value } } ) => (
 								<ToggleControl
 									label={ __( 'Enable Akismet Spam protection', 'quotes-dlx' ) }
@@ -385,7 +385,7 @@ const Interface = ( props ) => {
 										<>
 											<div className="dlx-admin-component-row dlx-admin-component-row-button no-flex">
 												<Button
-													label={ __( 'Preview Turnstile', 'dlx-pmpro-turnstile' ) }
+													label={ __( 'Preview Turnstile', 'quotes-dlx' ) }
 													className="dlx-admin__button dlx__btn-white"
 													onClick={ () => {
 														// Build a URL from admin-ajax.
@@ -417,7 +417,7 @@ const Interface = ( props ) => {
 													iconSize="1x"
 
 												>
-													{ __( 'Preview and Test', 'dlx-pmpro-turnstile' ) }
+													{ __( 'Preview and Test', 'quotes-dlx' ) }
 												</Button>
 												<Button
 													className="dlx-admin__button dlx__btn-white"
@@ -426,11 +426,37 @@ const Interface = ( props ) => {
 													iconSize="1x"
 													target="_blank"
 												>
-													{ __( 'Find Your Keys', 'dlx-pmpro-turnstile' ) }
+													{ __( 'Find Your Keys', 'quotes-dlx' ) }
 												</Button>
 											</div>
 										</>
 									) }
+									<div className="qdlx-admin-component-row">
+										<Controller
+											name="turnstileTheme"
+											control={ control }
+											render={ ( { field: { onChange, value } } ) => (
+												<SelectControl
+													label={ __( 'Choose a Widget Theme', 'quotes-dlx' ) }
+													className="dlx-admin__select-control"
+													value={ value }
+													onChange={ ( stringValue ) => {
+														onChange( stringValue );
+													} }
+													options={ [
+														/* light, dark, auto */
+														{ label: __( 'Auto', 'quotes-dlx' ), value: 'auto' },
+														{ label: __( 'Light', 'quotes-dlx' ), value: 'light' },
+														{ label: __( 'Dark', 'quotes-dlx' ), value: 'dark' },
+													] }
+													help={ __(
+														'Your Cloudflare Turnstile Widget Theme. If you select `auto`, the widget will automatically change between light and dark based on the user’s operating system preference.',
+														'quotes-dlx'
+													) }
+												/>
+											) }
+										/>
+									</div>
 									<div className="qdlx-admin-component-row">
 										<Controller
 											name="widgetAppearance"

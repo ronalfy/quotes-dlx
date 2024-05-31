@@ -8,10 +8,14 @@ import {
 	Button,
 } from '@wordpress/components';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
+import { isEmail, getQueryArgs } from '@wordpress/url';
 import Notice from '../../admin-panel/admin-components/Notice';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import Spinner from '../../components/icons/Spinner';
 import sendCommand from '../../utils/SendCommand';
+
+const emailQueryVars = getQueryArgs( window.location.href );
+const emailPostId = emailQueryVars.postId;
 
 const View = () => {
 	const [ isSent, setIsSent ] = useState( false );
@@ -22,13 +26,12 @@ const View = () => {
 	const getDefaultValues = () => {
 		return {
 			toEmail: '',
-			fromEmail: '',
-			fromName: '',
 			subject: __( 'Check out this quote from {sitename}', 'quotes-dlx' ),
 			recaptchaToken: '',
 			nonce: qdlx_email.nonce,
 			permalink: qdlx_email.permalink,
 			shareText: qdlx_email.share_text,
+			postId: emailPostId,
 		};
 	};
 	const { control, handleSubmit, setValue } =
@@ -65,10 +68,10 @@ const View = () => {
 				setErrorMessage( ajaxData.message );
 			}
 		} )
-		.catch( ( ajaxResponse ) => {} )
-		.then( ( ajaxResponse ) => {
-			setIsSending( false );
-		} );
+			.catch( ( ajaxResponse ) => {} )
+			.then( ( ajaxResponse ) => {
+				setIsSending( false );
+			} );
 	};
 
 	const hasErrors = () => {
@@ -76,10 +79,7 @@ const View = () => {
 	};
 
 	const validateEmail = ( email ) => {
-		// From: https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
-		const regex =
-			/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-		if ( regex.test( email ) ) {
+		if ( isEmail( email ) ) {
 			return true;
 		}
 		return false;
@@ -89,85 +89,6 @@ const View = () => {
 		<section className="qdlx-email--content-wrap">
 			<h2>{ __( 'Email this Quote', 'quotes-dlx' ) }</h2>
 			<form id="qdlx-email-quote-form" onSubmit={ handleSubmit( onSubmit ) }>
-				<div className="qdlx-email-control-row">
-					<Controller
-						name="fromName"
-						control={ control }
-						rules={ {
-							required: true,
-						} }
-						render={ ( { field } ) => (
-							<TextControl
-								{ ...field }
-								label={ __( 'Your Name:', 'quotes-dlx' ) }
-								className={ classNames( 'qdlx-admin__text-control', {
-									'has-error': 'required' === errors.fromName?.type,
-									'is-required': true,
-								} ) }
-								register="fromName"
-								help={ __( 'Please enter your name.', 'quotes-dlx' ) }
-							/>
-						) }
-					/>
-					{ 'required' === errors.fromName?.type && (
-						<Notice
-							message={ __( 'This is a required field.' ) }
-							status="error"
-							politeness="assertive"
-							inline={ true }
-							icon={ CircularExclamationIcon }
-						/>
-					) }
-				</div>
-				<div className="qdlx-email-control-row">
-					<Controller
-						name="fromEmail"
-						control={ control }
-						rules={ {
-							validate: ( value ) => {
-								if ( validateEmail( value ) ) {
-									return true;
-								}
-								return false;
-							},
-							required: true,
-						} }
-						render={ ( { field } ) => (
-							<TextControl
-								{ ...field }
-								label={ __( 'From (email):', 'quotes-dlx' ) }
-								className={ classNames( 'qdlx-admin__text-control', {
-									'has-error': 'required' === errors.fromEmail?.type,
-									'is-required': true,
-								} ) }
-								register="fromEmail"
-								placeholder="you@yourdomain.com"
-								help={ __(
-									'Please add in your email address.',
-									'quotes-dlx'
-								) }
-							/>
-						) }
-					/>
-					{ 'validate' === errors.fromEmail?.type && (
-						<Notice
-							message={ __( 'The Email is Invalid.' ) }
-							status="error"
-							politeness="assertive"
-							inline={ true }
-							icon={ CircularExclamationIcon }
-						/>
-					) }
-					{ 'required' === errors.fromEmail?.type && (
-						<Notice
-							message={ __( 'This is a required field.' ) }
-							status="error"
-							politeness="assertive"
-							inline={ true }
-							icon={ CircularExclamationIcon }
-						/>
-					) }
-				</div>
 				<div className="qdlx-email-control-row">
 					<Controller
 						name="toEmail"
@@ -185,7 +106,7 @@ const View = () => {
 							<TextControl
 								{ ...field }
 								label={ __( 'To (email):', 'quotes-dlx' ) }
-								className={ classNames( 'qdlx-admin__text-control', {
+								className={ classNames( 'search-has-admin has-admin__text-control', {
 									'has-error': 'required' === errors.toEmail?.type,
 									'is-required': true,
 								} ) }
@@ -228,7 +149,7 @@ const View = () => {
 							<TextControl
 								{ ...field }
 								label={ __( 'Subject:', 'quotes-dlx' ) }
-								className={ classNames( 'qdlx-admin__text-control', {
+								className={ classNames( 'search-has-admin has-admin__text-control', {
 									'has-error': 'required' === errors.subject?.type,
 									'is-required': true,
 								} ) }
@@ -254,6 +175,13 @@ const View = () => {
 						control={ control }
 						render={ ( { field } ) => (
 							<TextControl { ...field } type="hidden" register="recaptchaToken" />
+						) }
+					/>
+					<Controller
+						name="postId"
+						control={ control }
+						render={ ( { field } ) => (
+							<TextControl { ...field } type="hidden" register="postId" />
 						) }
 					/>
 					<Controller
@@ -300,7 +228,7 @@ const View = () => {
 						onClick={ ( e ) => {
 							// eslint-disable-next-line no-undef
 							if (
-								qdlx_email.recaptcha_enabled &&
+								qdlx_email.captcha_type === 'recaptcha' &&
 								typeof grecaptcha !== 'undefined'
 							) {
 								grecaptcha.ready( function() {

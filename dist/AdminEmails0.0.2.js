@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminEmails0.0.1"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminEmails0.0.2"],{
 
 /***/ "./src/js/admin-panel/admin-components/EmailTemplateTags/index.js":
 /*!************************************************************************!*\
@@ -409,6 +409,7 @@ var Interface = function Interface(props) {
    * @return {null} Return component or null.
    */
   var getSpamProtection = function getSpamProtection() {
+    var _errors$recaptchaSite2, _errors$recaptchaSecr;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
       scope: "row"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Spam Protection', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -756,7 +757,90 @@ var Interface = function Interface(props) {
           help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your Cloudflare Turnstile Language.', 'quotes-dlx')
         });
       }
-    })))))));
+    })))), 'recaptcha' === getValues('captchaType') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "recaptchaSiteKey",
+      control: control,
+      rules: {
+        required: true
+      },
+      render: function render(_ref9) {
+        var _errors$recaptchaSite;
+        var field = _ref9.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Site Key', 'quotes-dlx')
+        }, field, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
+            'has-error': 'required' === ((_errors$recaptchaSite = errors.recaptchaSiteKey) === null || _errors$recaptchaSite === void 0 ? void 0 : _errors$recaptchaSite.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your Recaptcha 3 Site Key', 'comment-edit-pro'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$recaptchaSite2 = errors.recaptchaSiteKey) === null || _errors$recaptchaSite2 === void 0 ? void 0 : _errors$recaptchaSite2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_12__["default"]
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "recaptchaSecretKey",
+      control: control,
+      rules: {
+        required: true
+      },
+      render: function render(_ref10) {
+        var _errors$recaptchaSite3;
+        var field = _ref10.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Secret Key', 'quotes-dlx')
+        }, field, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
+            'has-error': 'required' === ((_errors$recaptchaSite3 = errors.recaptchaSiteKey) === null || _errors$recaptchaSite3 === void 0 ? void 0 : _errors$recaptchaSite3.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your Recaptcha 3 Secret Key', 'comment-edit-pro'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$recaptchaSecr = errors.recaptchaSecretKey) === null || _errors$recaptchaSecr === void 0 ? void 0 : _errors$recaptchaSecr.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_12__["default"]
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin-component-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "recaptchaScoreThreshold",
+      control: control,
+      render: function render(_ref11) {
+        var _ref11$field = _ref11.field,
+          _onChange9 = _ref11$field.onChange,
+          value = _ref11$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set reCAPTCHA Minimum Threshold', 'comment-edit-pro'),
+          step: 0.05,
+          value: value,
+          max: 1,
+          min: 0,
+          currentInput: value,
+          initialPosition: value,
+          allowReset: true,
+          className: "qdlx-admin__range-control",
+          onChange: function onChange(recaptchaThreshold) {
+            _onChange9(recaptchaThreshold);
+          },
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.', 'comment-edit-pro'),
+          trackColor: "#8019c4",
+          railColor: "#dad4eb"
+        }));
+      }
+    }))))));
   };
 
   /**
@@ -780,18 +864,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref9) {
+      render: function render(_ref12) {
         var _errors$emailModalTit;
-        var _ref9$field = _ref9.field,
-          _onChange9 = _ref9$field.onChange,
-          value = _ref9$field.value;
+        var _ref12$field = _ref12.field,
+          _onChange10 = _ref12$field.onChange,
+          value = _ref12$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Modal Title', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange9(newValue);
+            _onChange10(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailModalTit = errors.emailModalTitle) === null || _errors$emailModalTit === void 0 ? void 0 : _errors$emailModalTit.type),
@@ -823,11 +907,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref10) {
+      render: function render(_ref13) {
         var _errors$fromEmail;
-        var _ref10$field = _ref10.field,
-          _onChange10 = _ref10$field.onChange,
-          value = _ref10$field.value;
+        var _ref13$field = _ref13.field,
+          _onChange11 = _ref13$field.onChange,
+          value = _ref13$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Email', 'quotes-dlx'),
           value: value,
@@ -839,7 +923,7 @@ var Interface = function Interface(props) {
             } else {
               clearErrors('fromEmail');
             }
-            _onChange10(newValue);
+            _onChange11(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$fromEmail = errors.fromEmail) === null || _errors$fromEmail === void 0 ? void 0 : _errors$fromEmail.type),
@@ -861,11 +945,11 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref11) {
+      render: function render(_ref14) {
         var _errors$fromName;
-        var _ref11$field = _ref11.field,
-          onChange = _ref11$field.onChange,
-          value = _ref11$field.value;
+        var _ref14$field = _ref14.field,
+          onChange = _ref14$field.onChange,
+          value = _ref14$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From Name', 'quotes-dlx'),
           value: value,
@@ -885,18 +969,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref12) {
+      render: function render(_ref15) {
         var _errors$emailSubject;
-        var _ref12$field = _ref12.field,
-          _onChange11 = _ref12$field.onChange,
-          value = _ref12$field.value;
+        var _ref15$field = _ref15.field,
+          _onChange12 = _ref15$field.onChange,
+          value = _ref15$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Subject', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange11(newValue);
+            _onChange12(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-control', {
             'qdlx-error': 'required' === ((_errors$emailSubject = errors.emailSubject) === null || _errors$emailSubject === void 0 ? void 0 : _errors$emailSubject.type),
@@ -928,18 +1012,18 @@ var Interface = function Interface(props) {
       rules: {
         required: true
       },
-      render: function render(_ref13) {
+      render: function render(_ref16) {
         var _errors$emailBody;
-        var _ref13$field = _ref13.field,
-          _onChange12 = _ref13$field.onChange,
-          value = _ref13$field.value;
+        var _ref16$field = _ref16.field,
+          _onChange13 = _ref16$field.onChange,
+          value = _ref16$field.value;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "qdlx-admin-email-template-tag-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Body', 'quotes-dlx'),
           value: value,
           onChange: function onChange(newValue) {
-            _onChange12(newValue);
+            _onChange13(newValue);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx-admin__text-area-control', {
             'qdlx-error': 'required' === ((_errors$emailBody = errors.emailBody) === null || _errors$emailBody === void 0 ? void 0 : _errors$emailBody.type),
@@ -994,10 +1078,10 @@ var Interface = function Interface(props) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, emails are sent via a form. You can also send emails via a default email client.', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
     name: "emailSendType",
     control: control,
-    render: function render(_ref14) {
-      var _ref14$field = _ref14.field,
-        _onChange13 = _ref14$field.onChange,
-        value = _ref14$field.value;
+    render: function render(_ref17) {
+      var _ref17$field = _ref17.field,
+        _onChange14 = _ref17$field.onChange,
+        value = _ref17$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RadioControl, {
         selected: value,
         options: [{
@@ -1008,11 +1092,11 @@ var Interface = function Interface(props) {
           value: 'mailto'
         }],
         onChange: function onChange(newValue) {
-          _onChange13(newValue);
+          _onChange14(newValue);
         }
       });
     }
-  }))), getEmailFields(), getSpamProtection())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))), 'form' === getValues('emailSendType') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getEmailFields(), getSpamProtection()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
     className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
@@ -1113,4 +1197,4 @@ TextInsertIcon.propTypes = {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminEmails0.0.1.js.map
+//# sourceMappingURL=AdminEmails0.0.2.js.map

@@ -2422,11 +2422,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var _admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../admin-panel/admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
-/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
-/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
-/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../admin-panel/admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -2451,8 +2453,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+var emailQueryVars = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_4__.getQueryArgs)(window.location.href);
+var emailPostId = emailQueryVars.postId;
 var View = function View() {
-  var _errors$fromName2, _errors$fromEmail2, _errors$fromEmail3, _errors$toEmail2, _errors$toEmail3, _errors$subject2;
+  var _errors$toEmail2, _errors$toEmail3, _errors$subject2;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isSent = _useState2[0],
@@ -2472,22 +2477,21 @@ var View = function View() {
   var getDefaultValues = function getDefaultValues() {
     return {
       toEmail: '',
-      fromEmail: '',
-      fromName: '',
       subject: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Check out this quote from {sitename}', 'quotes-dlx'),
       recaptchaToken: '',
       nonce: qdlx_email.nonce,
       permalink: qdlx_email.permalink,
-      shareText: qdlx_email.share_text
+      shareText: qdlx_email.share_text,
+      postId: emailPostId
     };
   };
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_8__.useForm)({
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useForm)({
       defaultValues: getDefaultValues()
     }),
     control = _useForm.control,
     handleSubmit = _useForm.handleSubmit,
     setValue = _useForm.setValue;
-  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_8__.useFormState)({
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_9__.useFormState)({
       control: control
     }),
     errors = _useFormState.errors;
@@ -2497,7 +2501,7 @@ var View = function View() {
     setErrorMessage('');
 
     // Save stuff here.
-    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_send_email', _objectSpread({}, formData), qdlx_email.ajaxurl).then(function (ajaxResponse) {
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_8__["default"])('quotes_dlx_send_email', _objectSpread({}, formData), qdlx_email.ajaxurl).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
       var ajaxSuccess = ajaxResponse.data.success;
       if (ajaxSuccess) {
@@ -2517,9 +2521,7 @@ var View = function View() {
     return Object.keys(errors).length > 0;
   };
   var validateEmail = function validateEmail(email) {
-    // From: https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
-    var regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (regex.test(email)) {
+    if ((0,_wordpress_url__WEBPACK_IMPORTED_MODULE_4__.isEmail)(email)) {
       return true;
     }
     return false;
@@ -2531,74 +2533,7 @@ var View = function View() {
     onSubmit: handleSubmit(onSubmit)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-email-control-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
-    name: "fromName",
-    control: control,
-    rules: {
-      required: true
-    },
-    render: function render(_ref) {
-      var _errors$fromName;
-      var field = _ref.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your Name:', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$fromName = errors.fromName) === null || _errors$fromName === void 0 ? void 0 : _errors$fromName.type),
-          'is-required': true
-        }),
-        register: "fromName",
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please enter your name.', 'quotes-dlx')
-      }));
-    }
-  }), 'required' === ((_errors$fromName2 = errors.fromName) === null || _errors$fromName2 === void 0 ? void 0 : _errors$fromName2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-email-control-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
-    name: "fromEmail",
-    control: control,
-    rules: {
-      validate: function validate(value) {
-        if (validateEmail(value)) {
-          return true;
-        }
-        return false;
-      },
-      required: true
-    },
-    render: function render(_ref2) {
-      var _errors$fromEmail;
-      var field = _ref2.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('From (email):', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$fromEmail = errors.fromEmail) === null || _errors$fromEmail === void 0 ? void 0 : _errors$fromEmail.type),
-          'is-required': true
-        }),
-        register: "fromEmail",
-        placeholder: "you@yourdomain.com",
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please add in your email address.', 'quotes-dlx')
-      }));
-    }
-  }), 'validate' === ((_errors$fromEmail2 = errors.fromEmail) === null || _errors$fromEmail2 === void 0 ? void 0 : _errors$fromEmail2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The Email is Invalid.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), 'required' === ((_errors$fromEmail3 = errors.fromEmail) === null || _errors$fromEmail3 === void 0 ? void 0 : _errors$fromEmail3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "qdlx-email-control-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "toEmail",
     control: control,
     rules: {
@@ -2610,12 +2545,12 @@ var View = function View() {
       },
       required: true
     },
-    render: function render(_ref3) {
+    render: function render(_ref) {
       var _errors$toEmail;
-      var field = _ref3.field;
+      var field = _ref.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('To (email):', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx-admin__text-control', {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('search-has-admin has-admin__text-control', {
           'has-error': 'required' === ((_errors$toEmail = errors.toEmail) === null || _errors$toEmail === void 0 ? void 0 : _errors$toEmail.type),
           'is-required': true
         }),
@@ -2624,32 +2559,32 @@ var View = function View() {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please select who you would like to email.', 'quotes-dlx')
       }));
     }
-  }), 'validate' === ((_errors$toEmail2 = errors.toEmail) === null || _errors$toEmail2 === void 0 ? void 0 : _errors$toEmail2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), 'validate' === ((_errors$toEmail2 = errors.toEmail) === null || _errors$toEmail2 === void 0 ? void 0 : _errors$toEmail2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The Email is Invalid.'),
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), 'required' === ((_errors$toEmail3 = errors.toEmail) === null || _errors$toEmail3 === void 0 ? void 0 : _errors$toEmail3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), 'required' === ((_errors$toEmail3 = errors.toEmail) === null || _errors$toEmail3 === void 0 ? void 0 : _errors$toEmail3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This is a required field.'),
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_6__["default"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-email-control-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "subject",
     control: control,
     rules: {
       required: true
     },
-    render: function render(_ref4) {
+    render: function render(_ref2) {
       var _errors$subject;
-      var field = _ref4.field;
+      var field = _ref2.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Subject:', 'quotes-dlx'),
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx-admin__text-control', {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('search-has-admin has-admin__text-control', {
           'has-error': 'required' === ((_errors$subject = errors.subject) === null || _errors$subject === void 0 ? void 0 : _errors$subject.type),
           'is-required': true
         }),
@@ -2657,47 +2592,57 @@ var View = function View() {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please enter the subject of the email.', 'quotes-dlx')
       }));
     }
-  }), 'required' === ((_errors$subject2 = errors.subject) === null || _errors$subject2 === void 0 ? void 0 : _errors$subject2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), 'required' === ((_errors$subject2 = errors.subject) === null || _errors$subject2 === void 0 ? void 0 : _errors$subject2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This is a required field.'),
     status: "error",
     politeness: "assertive",
     inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "recaptchaToken",
     control: control,
-    render: function render(_ref5) {
-      var field = _ref5.field;
+    render: function render(_ref3) {
+      var field = _ref3.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         type: "hidden",
         register: "recaptchaToken"
       }));
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
+    name: "postId",
+    control: control,
+    render: function render(_ref4) {
+      var field = _ref4.field;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
+        type: "hidden",
+        register: "postId"
+      }));
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "nonce",
     control: control,
-    render: function render(_ref6) {
-      var field = _ref6.field;
+    render: function render(_ref5) {
+      var field = _ref5.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         type: "hidden",
         register: "nonce"
       }));
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "permalink",
     control: control,
-    render: function render(_ref7) {
-      var field = _ref7.field;
+    render: function render(_ref6) {
+      var field = _ref6.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         type: "hidden",
         register: "permalink"
       }));
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_8__.Controller, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "shareText",
     control: control,
-    render: function render(_ref8) {
-      var field = _ref8.field;
+    render: function render(_ref7) {
+      var field = _ref7.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, _extends({}, field, {
         type: "hidden",
         register: "shareText"
@@ -2718,13 +2663,13 @@ var View = function View() {
     }),
     type: "button",
     text: isSending ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sending…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Send', 'quotes-dlx'),
-    icon: isSending ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_6__["default"] : false,
+    icon: isSending ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_7__["default"] : false,
     iconSize: "18",
     iconPosition: "right",
     disabled: isSending || isSent,
     onClick: function onClick(e) {
       // eslint-disable-next-line no-undef
-      if (qdlx_email.recaptcha_enabled && typeof grecaptcha !== 'undefined') {
+      if (qdlx_email.captcha_type === 'recaptcha' && typeof grecaptcha !== 'undefined') {
         grecaptcha.ready(function () {
           grecaptcha.execute(qdlx_email.recaptcha_site_key, {
             action: 'submit'
@@ -2752,15 +2697,15 @@ var View = function View() {
     onClick: function onClick() {
       window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
     }
-  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
     status: "error",
     politeness: "polite"
-  }), formErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), formErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: errorMessage,
     status: "error",
     politeness: "polite"
-  }), isSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), isSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
     message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The email has been sent.'),
     status: "success",
     politeness: "assertive"
@@ -6612,6 +6557,17 @@ module.exports = window["wp"]["components"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/url":
+/*!*****************************!*\
+  !*** external ["wp","url"] ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["url"];
 
 /***/ }),
 

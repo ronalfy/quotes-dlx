@@ -860,6 +860,7 @@ class Blocks {
 										'permalink' => urlencode( $permalink ),
 										'nonce'     => $ajax_nonce,
 										'text'      => wp_strip_all_tags( $share_text_kses ),
+										'postId'	=> get_the_ID(),
 									),
 									$ajax_url
 								);

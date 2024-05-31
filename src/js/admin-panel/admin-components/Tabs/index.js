@@ -27,12 +27,12 @@ const AdminDefaults = lazy( () =>
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.9" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.10" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminMenuDefaults0.0.5" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.6" */ '../../views/AdminContextualMenu'
 	)
 );
 
@@ -59,7 +59,7 @@ const AdminLicense = lazy( () =>
 );
 
 const AdminEmails = lazy( () =>
-	import( /* webpackChunkName: "AdminEmails0.0.1" */ '../../views/AdminEmails' )
+	import( /* webpackChunkName: "AdminEmails0.0.2" */ '../../views/AdminEmails' )
 );
 
 const AdminTabs = ( props ) => {

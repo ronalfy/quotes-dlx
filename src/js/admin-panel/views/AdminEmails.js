@@ -7,7 +7,7 @@ import {
 	Button,
 	TextareaControl,
 	RadioControl,
-	FormTokenField,
+	RangeControl,
 	ToggleControl,
 	SelectControl,
 } from '@wordpress/components';
@@ -557,6 +557,103 @@ const Interface = ( props ) => {
 								</div>
 							</>
 						) }
+						{ ( 'recaptcha' === getValues( 'captchaType' ) ) && (
+							<>
+								
+								<div className="qdlx-admin-component-row">
+									<Controller
+										name="recaptchaSiteKey"
+										control={ control }
+										rules={ { required: true } }
+										render={ ( { field } ) => (
+											<TextControl
+												label={ __( 'Recaptcha 3 Site Key', 'quotes-dlx' ) }
+												{ ...field }
+												className={ classNames( 'qdlx-admin__text-control', {
+													'has-error': 'required' === errors.recaptchaSiteKey?.type,
+													'is-required': true,
+												} ) }
+												help={ __(
+													'Enter your Recaptcha 3 Site Key',
+													'comment-edit-pro'
+												) }
+												aria-required="true"
+											/>
+										) }
+									/>
+									{ 'required' === errors.recaptchaSiteKey?.type && (
+										<Notice
+											message={ __( 'This field is a required field.' ) }
+											status="error"
+											politeness="assertive"
+											inline={ true }
+											icon={ CircularExclamationIcon }
+										/>
+									) }
+								</div>
+								<div className="qdlx-admin-component-row">
+									<Controller
+										name="recaptchaSecretKey"
+										control={ control }
+										rules={ { required: true } }
+										render={ ( { field } ) => (
+											<TextControl
+												label={ __( 'Recaptcha 3 Secret Key', 'quotes-dlx' ) }
+												{ ...field }
+												className={ classNames( 'qdlx-admin__text-control', {
+													'has-error': 'required' === errors.recaptchaSiteKey?.type,
+													'is-required': true,
+												} ) }
+												help={ __(
+													'Enter your Recaptcha 3 Secret Key',
+													'comment-edit-pro'
+												) }
+												aria-required="true"
+											/>
+										) }
+									/>
+									{ 'required' === errors.recaptchaSecretKey?.type && (
+										<Notice
+											message={ __( 'This field is a required field.' ) }
+											status="error"
+											politeness="assertive"
+											inline={ true }
+											icon={ CircularExclamationIcon }
+										/>
+									) }
+								</div>
+								<div className="qdlx-admin-component-row">
+									<Controller
+										name="recaptchaScoreThreshold"
+										control={ control }
+										render={ ( { field: { onChange, value } } ) => (
+											<>
+												<RangeControl
+													label={ __( 'Set reCAPTCHA Minimum Threshold', 'comment-edit-pro' ) }
+													step={ 0.05 }
+													value={ value }
+													max={ 1 }
+													min={ 0 }
+													currentInput={ value }
+													initialPosition={ value }
+													allowReset={ true }
+													className="qdlx-admin__range-control"
+													onChange={ ( recaptchaThreshold ) => {
+														onChange( recaptchaThreshold );
+													} }
+													help={ __(
+														'The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.',
+														'comment-edit-pro'
+													) }
+													trackColor="#8019c4"
+													railColor="#dad4eb"
+												/>
+											</>
+										) }
+									/>
+								</div>
+							</>
+						) }
 					</div>
 				</td>
 			</tr>
@@ -831,8 +928,14 @@ const Interface = ( props ) => {
 											/>
 										</td>
 									</tr>
-									{ getEmailFields() }
-									{ getSpamProtection() }
+									{
+										'form' === getValues( 'emailSendType' ) && (
+											<>
+												{ getEmailFields() }
+												{ getSpamProtection() }
+											</>
+										)
+									}
 								</tbody>
 							</table>
 							<div className="qdlx-admin__tabs--content-actions">

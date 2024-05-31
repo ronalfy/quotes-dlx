@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.9"],{
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.10"],{
 
 /***/ "./src/fonts/fonts.js":
 /*!****************************!*\
@@ -180,7 +180,6 @@ var AdminAdvanced = function AdminAdvanced(props) {
   }, props))));
 };
 var Interface = function Interface(props) {
-  var _errors$recaptchaSite2, _errors$recaptchaSecr;
   var localStorageKey = 'quotes_dlx_form_advanced';
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_15__["default"]),
     advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
@@ -281,11 +280,7 @@ var Interface = function Interface(props) {
     activate_adobe_fonts_admin = data.activate_adobe_fonts_admin,
     activate_adobe_fonts_frontend = data.activate_adobe_fonts_frontend,
     template = data.template,
-    facebook_app_id = data.facebook_app_id,
-    recaptcha_enabled = data.recaptcha_enabled,
-    recaptcha_site_key = data.recaptcha_site_key,
-    recaptcha_secret_key = data.recaptcha_secret_key,
-    recaptcha_score_threshold = data.recaptcha_score_threshold;
+    facebook_app_id = data.facebook_app_id;
   var getDefaultValues = function getDefaultValues() {
     return {
       enableFonts: enable_fonts,
@@ -296,11 +291,7 @@ var Interface = function Interface(props) {
       enableAdobeFonts: enable_adobe_fonts,
       adobeProjectId: adobe_project_id,
       activateAdobeFontsAdmin: activate_adobe_fonts_admin,
-      activateAdobeFontsFrontend: activate_adobe_fonts_frontend,
-      recaptchaEnabled: recaptcha_enabled,
-      recaptchaSiteKey: recaptcha_site_key,
-      recaptchaSecretKey: recaptcha_secret_key,
-      recaptchaScoreThreshold: recaptcha_score_threshold
+      activateAdobeFontsFrontend: activate_adobe_fonts_frontend
     };
   };
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useForm)({
@@ -901,111 +892,7 @@ var Interface = function Interface(props) {
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.', 'quotes-dlx')
       });
     }
-  }))), getAdobeFontsInterface(), getFontOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The following features are experimental and may be removed or revised in a future release.'),
-    status: "warning",
-    politeness: "polite",
-    inline: false,
-    icon: _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_14__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
-    className: "form-table"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    scope: "row"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('reCAPTCHA 3', 'comment-edit-pro')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
-    name: "recaptchaEnabled",
-    control: control,
-    render: function render(_ref11) {
-      var _ref11$field = _ref11.field,
-        _onChange7 = _ref11$field.onChange,
-        value = _ref11$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Recaptcha 3', 'comment-edit-pro'),
-        className: "qdlx-admin__toggle-control",
-        checked: value,
-        onChange: function onChange(boolValue) {
-          _onChange7(boolValue);
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable or disable Recaptcha 3 support, which will be used for the email functionality.', 'comment-edit-pro')
-      });
-    }
-  }), getValues('recaptchaEnabled') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
-    name: "recaptchaSiteKey",
-    control: control,
-    rules: {
-      required: true
-    },
-    render: function render(_ref12) {
-      var _errors$recaptchaSite;
-      var field = _ref12.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Site Key', 'quotes-dlx')
-      }, field, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$recaptchaSite = errors.recaptchaSiteKey) === null || _errors$recaptchaSite === void 0 ? void 0 : _errors$recaptchaSite.type),
-          'is-required': true
-        }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your Recaptcha 3 Site Key', 'comment-edit-pro'),
-        "aria-required": "true"
-      }));
-    }
-  }), 'required' === ((_errors$recaptchaSite2 = errors.recaptchaSiteKey) === null || _errors$recaptchaSite2 === void 0 ? void 0 : _errors$recaptchaSite2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
-    name: "recaptchaSecretKey",
-    control: control,
-    rules: {
-      required: true
-    },
-    render: function render(_ref13) {
-      var _errors$recaptchaSite3;
-      var field = _ref13.field;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recaptcha 3 Secret Key', 'quotes-dlx')
-      }, field, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
-          'has-error': 'required' === ((_errors$recaptchaSite3 = errors.recaptchaSiteKey) === null || _errors$recaptchaSite3 === void 0 ? void 0 : _errors$recaptchaSite3.type),
-          'is-required': true
-        }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your Recaptcha 3 Secret Key', 'comment-edit-pro'),
-        "aria-required": "true"
-      }));
-    }
-  }), 'required' === ((_errors$recaptchaSecr = errors.recaptchaSecretKey) === null || _errors$recaptchaSecr === void 0 ? void 0 : _errors$recaptchaSecr.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
-    status: "error",
-    politeness: "assertive",
-    inline: true,
-    icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
-    name: "recaptchaScoreThreshold",
-    control: control,
-    render: function render(_ref14) {
-      var _ref14$field = _ref14.field,
-        _onChange8 = _ref14$field.onChange,
-        value = _ref14$field.value;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set reCAPTCHA Minimum Threshold', 'comment-edit-pro'),
-        step: 0.05,
-        value: value,
-        max: 1,
-        min: 0,
-        currentInput: value,
-        initialPosition: value,
-        allowReset: true,
-        className: "qdlx-admin__range-control",
-        onChange: function onChange(recaptchaThreshold) {
-          _onChange8(recaptchaThreshold);
-        },
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The threshold score is between 0 and 1. The higher the score, the higher the chance of a successful reCAPTCHA challenge. The default value is 0.5. Meaning that the reCAPTCHA challenge will succeed if the score is greater than or equal to 0.5.', 'comment-edit-pro'),
-        trackColor: "#8019c4",
-        railColor: "#dad4eb"
-      }));
-    }
-  })))), getValues('recaptchaEnabled') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))), getAdobeFontsInterface(), getFontOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
     className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
@@ -1168,4 +1055,4 @@ var Interface = function Interface(props) {
 /***/ })
 
 }]);
-//# sourceMappingURL=AdminAdvanced0.0.9.js.map
+//# sourceMappingURL=AdminAdvanced0.0.10.js.map

@@ -97,7 +97,7 @@ class Ajax {
 	public static function ajax_admin_preview_validate() {
 		// Do permissions check.
 		$nonce = filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT );
-		if ( ! \wp_verify_nonce( $nonce, 'dlx-turnstile-admin-preview-iframe') || ! current_user_can( 'manage_options' ) ) {
+		if ( ! \wp_verify_nonce( $nonce, 'dlx-turnstile-admin-preview-iframe' ) || ! current_user_can( 'manage_options' ) ) {
 			\wp_send_json_error( array() );
 		}
 

@@ -48,6 +48,14 @@ const View = () => {
 		setFormErrors( false );
 		setErrorMessage( '' );
 
+		// If turnstile, we need to get the token from the dom.
+		if ( qdlx_email.captcha_type === 'turnstile' ) {
+			const turnstileToken = document.querySelector( 'input[name="cf-turnstile-response"]' );
+
+			// Add to form data.
+			formData.turnstileToken = turnstileToken.value;
+		}
+
 		// Save stuff here.
 		sendCommand( 'quotes_dlx_send_email', {
 			...formData,
@@ -89,6 +97,29 @@ const View = () => {
 		<section className="qdlx-email--content-wrap">
 			<h2>{ __( 'Email this Quote', 'quotes-dlx' ) }</h2>
 			<form id="qdlx-email-quote-form" onSubmit={ handleSubmit( onSubmit ) }>
+				{ hasErrors() && (
+					<Notice
+						message={ __(
+							'There are form validation errors. Please correct them below.'
+						) }
+						status="error"
+						politeness="polite"
+					/>
+				) }
+				{ formErrors && (
+					<Notice
+						message={ errorMessage }
+						status="error"
+						politeness="polite"
+					/>
+				) }
+				{ isSent && (
+					<Notice
+						message={ __( 'The email has been sent.' ) }
+						status="success"
+						politeness="assertive"
+					/>
+				) }
 				<div className="qdlx-email-control-row">
 					<Controller
 						name="toEmail"
@@ -207,50 +238,74 @@ const View = () => {
 					/>
 				</div>
 				<div className="qdlx-admin__tabs--content-actions">
-					<Button
-						id="qdlx-recaptcha-submit"
-						className={ classNames(
-							'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha',
-							{ 'has-error': hasErrors() },
-							{ 'has-icon': isSending },
-							{ 'is-saving': { isSending } }
-						) }
-						type="button"
-						text={
-							isSending
-								? __( 'Sending…', 'quotes-dlx' )
-								: __( 'Send', 'quotes-dlx' )
-						}
-						icon={ isSending ? Spinner : false }
-						iconSize="18"
-						iconPosition="right"
-						disabled={ isSending || isSent }
-						onClick={ ( e ) => {
-							// eslint-disable-next-line no-undef
-							if (
-								qdlx_email.captcha_type === 'recaptcha' &&
-								typeof grecaptcha !== 'undefined'
-							) {
-								grecaptcha.ready( function() {
-									grecaptcha
-										.execute( qdlx_email.recaptcha_site_key, {
-											action: 'submit',
-										} )
-										.then( function( token ) {
-											setValue( 'recaptchaToken', token );
-											e.target.form.dispatchEvent(
-												new Event( 'submit', { cancelable: true, bubbles: true } )
-											);
-										} );
-								} );
-							} else {
-								// This force submits the form.
-								e.target.form.dispatchEvent(
-									new Event( 'submit', { cancelable: true, bubbles: true } )
-								);
+					{ ( qdlx_email.captcha_type === 'recaptcha' && typeof grecaptcha !== 'undefined' ) && (
+						<Button
+							id="qdlx-recaptcha-submit"
+							className={ classNames(
+								'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha',
+								{ 'has-error': hasErrors() },
+								{ 'has-icon': isSending },
+								{ 'is-saving': { isSending } }
+							) }
+							type="button"
+							text={
+								isSending
+									? __( 'Sending…', 'quotes-dlx' )
+									: __( 'Send', 'quotes-dlx' )
 							}
-						} }
-					/>
+							icon={ isSending ? Spinner : false }
+							iconSize="18"
+							iconPosition="right"
+							disabled={ isSending || isSent }
+							onClick={ ( e ) => {
+								// eslint-disable-next-line no-undef
+								if (
+									qdlx_email.captcha_type === 'recaptcha' &&
+							typeof grecaptcha !== 'undefined'
+								) {
+									grecaptcha.ready( function() {
+										grecaptcha
+											.execute( qdlx_email.recaptcha_site_key, {
+												action: 'submit',
+											} )
+											.then( function( token ) {
+												setValue( 'recaptchaToken', token );
+												e.target.form.dispatchEvent(
+													new Event( 'submit', { cancelable: true, bubbles: true } )
+												);
+											} );
+									} );
+								} else {
+									// This force submits the form.
+									e.target.form.dispatchEvent(
+										new Event( 'submit', { cancelable: true, bubbles: true } )
+									);
+								}
+							} }
+						/>
+					) }
+					{ ( qdlx_email.captcha_type === 'turnstile' ) && (
+						<Button
+							id="qdlx-turnstile-submit"
+							className={ classNames(
+								'qdlx__btn qdlx__btn-primary qdlx__btn--icon-right',
+								{ 'has-error': hasErrors() },
+								{ 'has-icon': isSending },
+								{ 'is-saving': { isSending } }
+							) }
+							type="submit"
+							text={
+								isSending
+									? __( 'Sending…', 'quotes-dlx' )
+									: __( 'Send', 'quotes-dlx' )
+							}
+							icon={ isSending ? Spinner : false }
+							iconSize="18"
+							iconPosition="right"
+							disabled={ isSending || isSent }
+						/>
+					) }
+
 					<Button
 						className={ classNames(
 							'qdlx__btn qdlx__btn-secondary qdlx__btn--icon-right'
@@ -265,28 +320,8 @@ const View = () => {
 						} }
 					/>
 				</div>
-				{ hasErrors() && (
-					<Notice
-						message={ __(
-							'There are form validation errors. Please correct them above.'
-						) }
-						status="error"
-						politeness="polite"
-					/>
-				) }
-				{ formErrors && (
-					<Notice
-						message={ errorMessage }
-						status="error"
-						politeness="polite"
-					/>
-				) }
-				{ isSent && (
-					<Notice
-						message={ __( 'The email has been sent.' ) }
-						status="success"
-						politeness="assertive"
-					/>
+				{ ( qdlx_email.captcha_type === 'turnstile' ) && (
+					<div id="qdlx-turnstile" />
 				) }
 			</form>
 		</section>

@@ -209,6 +209,11 @@ h2 {
   fill: var(--quotes-dlx-admin--color-notice--warning-alt);
 }
 
+#qdlx-turnstile {
+  margin-top: 20px;
+  min-height: 75px;
+}
+
 .qdlx-admin__tabs--content-actions {
   display: flex;
   justify-content: space-between;

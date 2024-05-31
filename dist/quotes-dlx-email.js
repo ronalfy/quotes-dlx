@@ -2500,6 +2500,14 @@ var View = function View() {
     setFormErrors(false);
     setErrorMessage('');
 
+    // If turnstile, we need to get the token from the dom.
+    if (qdlx_email.captcha_type === 'turnstile') {
+      var turnstileToken = document.querySelector('input[name="cf-turnstile-response"]');
+
+      // Add to form data.
+      formData.turnstileToken = turnstileToken.value;
+    }
+
     // Save stuff here.
     (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_8__["default"])('quotes_dlx_send_email', _objectSpread({}, formData), qdlx_email.ajaxurl).then(function (ajaxResponse) {
       var ajaxData = ajaxResponse.data.data;
@@ -2531,7 +2539,19 @@ var View = function View() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email this Quote', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     id: "qdlx-email-quote-form",
     onSubmit: handleSubmit(onSubmit)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them below.'),
+    status: "error",
+    politeness: "polite"
+  }), formErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: errorMessage,
+    status: "error",
+    politeness: "polite"
+  }), isSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The email has been sent.'),
+    status: "success",
+    politeness: "assertive"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-email-control-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_9__.Controller, {
     name: "toEmail",
@@ -2650,7 +2670,7 @@ var View = function View() {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  }, qdlx_email.captcha_type === 'recaptcha' && typeof grecaptcha !== 'undefined' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     id: "qdlx-recaptcha-submit",
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha', {
       'has-error': hasErrors()
@@ -2689,6 +2709,23 @@ var View = function View() {
         }));
       }
     }
+  }), qdlx_email.captcha_type === 'turnstile' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    id: "qdlx-turnstile-submit",
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+      'has-error': hasErrors()
+    }, {
+      'has-icon': isSending
+    }, {
+      'is-saving': {
+        isSending: isSending
+      }
+    }),
+    type: "submit",
+    text: isSending ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sending…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Send', 'quotes-dlx'),
+    icon: isSending ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_7__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: isSending || isSent
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-secondary qdlx__btn--icon-right'),
     type: "button",
@@ -2697,18 +2734,8 @@ var View = function View() {
     onClick: function onClick() {
       window.parent.window.qdlxfancy.close(); // See tweet-actions/actions.js for this variable.
     }
-  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
-    status: "error",
-    politeness: "polite"
-  }), formErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    message: errorMessage,
-    status: "error",
-    politeness: "polite"
-  }), isSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The email has been sent.'),
-    status: "success",
-    politeness: "assertive"
+  })), qdlx_email.captcha_type === 'turnstile' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "qdlx-turnstile"
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (View);

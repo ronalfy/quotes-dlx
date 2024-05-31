@@ -60,7 +60,7 @@ class Email {
 		$captcha_type         = $email_options['captcha_type'];
 		$email_from           = sanitize_text_field( $email_options['from_email'] );
 		$email_name           = sanitize_text_field( $email_options['from_name'] );
-		$post_id = absint( filter_input( INPUT_POST, 'postId', FILTER_VALIDATE_INT ) );
+		$post_id              = absint( filter_input( INPUT_POST, 'postId', FILTER_VALIDATE_INT ) );
 
 		if ( 'recaptcha' === $captcha_type ) {
 			if ( empty( $recaptcha_site_key ) || empty( $recaptcha_secret_key ) ) {
@@ -113,6 +113,44 @@ class Email {
 				wp_send_json_error(
 					array(
 						'message' => __( 'reCAPTCHA 3 security challenge has failed.', 'quotes-dlx' ),
+					)
+				);
+			}
+		} elseif ( 'turnstile' === $captcha_type ) {
+			$token = sanitize_text_field( filter_input( INPUT_POST, 'turnstileToken', FILTER_DEFAULT ) );
+			if ( ! $token ) {
+				wp_send_json_error(
+					array(
+						'message' => __( 'Invalid Turnstile token.', 'quotes-dlx' ),
+					)
+				);
+			}
+
+			// Get the secret key.
+			$turnstile_secret = $email_options['turnstile_secret'];
+			$url              = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+			$data             = array(
+				'secret'   => $turnstile_secret,
+				'response' => $token,
+			);
+			$args             = array(
+				'body'      => $data,
+				'method'    => 'POST',
+				'sslverify' => true,
+			);
+			$response         = wp_remote_post( esc_url( $url ), $args );
+			if ( is_wp_error( $response ) ) {
+				wp_send_json_error(
+					array(
+						'message' => __( 'Error validating Turnstile token.', 'quotes-dlx' ),
+					)
+				);
+			}
+			$body = json_decode( wp_remote_retrieve_body( $response ), true );
+			if ( ! $body['success'] ) {
+				wp_send_json_error(
+					array(
+						'message' => __( 'Turnstile security challenge has failed.', 'quotes-dlx' ),
 					)
 				);
 			}
@@ -214,6 +252,7 @@ class Email {
 				'turnstile_widget_size'       => $email_options['turnstile_widget_size'],
 				'turnstile_language'          => $email_options['turnstile_language'],
 				'captcha_type'                => $email_options['captcha_type'],
+				'turnstile_site_key'          => $email_options['turnstile_site_key'],
 			)
 		);
 		$script_handles = array( 'qdlx_email_view' );
@@ -228,6 +267,28 @@ class Email {
 				true
 			);
 			$script_handles[] = 'qdlx-recaptcha';
+		}
+		if ( 'turnstile' === $captcha_type ) {
+			wp_register_script(
+				'qdlx-turnstile',
+				esc_url_raw( 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=qdlxInitiateTurnstile' ),
+				array(),
+				Functions::get_plugin_version(),
+				array(
+					'in_footer' => true,
+					'async'     => true,
+					'defer'     => true,
+				)
+			);
+			wp_register_script(
+				'qdlx-turnstile-init',
+				Functions::get_plugin_url( 'dist/quotes-dlx-turnstile-frontend.js' ),
+				array( 'qdlx-turnstile' ),
+				Functions::get_plugin_version(),
+				true
+			);
+			$script_handles[] = 'qdlx-turnstile-init';
+			$script_handles[] = 'qdlx-turnstile';
 		}
 		wp_register_style(
 			'qdlx_email_view',

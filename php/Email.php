@@ -253,7 +253,7 @@ class Email {
 				'turnstile_language'          => $email_options['turnstile_language'],
 				'captcha_type'                => $email_options['captcha_type'],
 				'turnstile_site_key'          => $email_options['turnstile_site_key'],
-				'email_modal_title' => self::replace_template_tags( $email_options['email_modal_title'], 9 ),
+				'email_modal_title'           => self::replace_template_tags( $email_options['email_modal_title'], 9 ),
 			)
 		);
 		$script_handles = array( 'qdlx_email_view' );

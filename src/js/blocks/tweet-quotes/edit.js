@@ -857,14 +857,14 @@ const TweetQuotes = ( props ) => {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
-								label={ __( 'Enable Email Quote (Experimental)', 'quotes-dlx' ) }
+								label={ __( 'Enable Email Quote', 'quotes-dlx' ) }
 								checked={ enable_email_text }
 								onChange={ ( value ) => {
 									setAttributes( {
 										enable_email_text: value,
 									} );
 								} }
-								help={ __( '(Experimental) Enable email sharing of the quote.', 'quotes-dlx' ) }
+								help={ __( 'You can find additional email settings in the QuotesDLX admin under Emails.', 'quotes-dlx' ) }
 								disabled={ isContextualMenuGlobal() }
 							/>
 						</PanelRow>

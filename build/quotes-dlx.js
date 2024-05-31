@@ -1415,14 +1415,14 @@ var TweetQuotes = function TweetQuotes(props) {
     },
     disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Email Quote (Experimental)', 'quotes-dlx'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Email Quote', 'quotes-dlx'),
     checked: enable_email_text,
     onChange: function onChange(value) {
       setAttributes({
         enable_email_text: value
       });
     },
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('(Experimental) Enable email sharing of the quote.', 'quotes-dlx'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('You can find additional email settings in the QuotesDLX admin under Emails.', 'quotes-dlx'),
     disabled: isContextualMenuGlobal()
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Post This', 'quotes-dlx'),

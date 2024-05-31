@@ -2536,7 +2536,7 @@ var View = function View() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "qdlx-email--content-wrap"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email this Quote', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, qdlx_email.email_modal_title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     id: "qdlx-email-quote-form",
     onSubmit: handleSubmit(onSubmit)
   }, hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_panel_admin_components_Notice__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -2670,7 +2670,7 @@ var View = function View() {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-actions"
-  }, qdlx_email.captcha_type === 'recaptcha' && typeof grecaptcha !== 'undefined' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  }, qdlx_email.captcha_type === 'recaptcha' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     id: "qdlx-recaptcha-submit",
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right g-recaptcha', {
       'has-error': hasErrors()

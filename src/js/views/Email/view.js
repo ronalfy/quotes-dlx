@@ -95,7 +95,7 @@ const View = () => {
 
 	return (
 		<section className="qdlx-email--content-wrap">
-			<h2>{ __( 'Email this Quote', 'quotes-dlx' ) }</h2>
+			<h2>{ qdlx_email.email_modal_title }</h2>
 			<form id="qdlx-email-quote-form" onSubmit={ handleSubmit( onSubmit ) }>
 				{ hasErrors() && (
 					<Notice
@@ -238,7 +238,7 @@ const View = () => {
 					/>
 				</div>
 				<div className="qdlx-admin__tabs--content-actions">
-					{ ( qdlx_email.captcha_type === 'recaptcha' && typeof grecaptcha !== 'undefined' ) && (
+					{ ( qdlx_email.captcha_type === 'recaptcha' ) && (
 						<Button
 							id="qdlx-recaptcha-submit"
 							className={ classNames(

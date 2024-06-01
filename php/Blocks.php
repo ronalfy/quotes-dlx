@@ -48,7 +48,8 @@ class Blocks {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_editor_scripts' ) );
 
 		// Add SVGs and other footer items we need.
-		add_action( 'wp_footer', array( $this, 'add_footer_html' ) );
+		add_action( 'wp_footer', array( $this, 'add_footer_html' ) ); // Load SVGs for only blocks.
+		add_action( 'wp_footer', array( $this, 'add_shortcode_footer_html' ) ); // Load SVGs for only shortcodes.
 
 		// Pre-load font files.
 		add_action( 'wp_head', array( $this, 'add_header_fonts_preload' ) );
@@ -56,11 +57,38 @@ class Blocks {
 		// Output styles based on block attributes.
 		add_action( 'quotes_dlx_before_modal_scripts', array( $this, 'add_modal_styles' ) );
 
+		// Output scripts/styles if not ajax or admin.
 		if ( is_admin() ) {
 			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		} else {
 			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		}
+
+		// Modify allowed html for <link> tags.
+		add_filter( 'wp_kses_allowed_html', array( $this, 'add_tags_to_allowed_html' ), 10, 2 );
+	}
+
+	/**
+	 * Add the link tag to the allowed html.
+	 *
+	 * @param array  $allowed_html Allowed HTML tags.
+	 * @param string $context      Context for the allowed HTML.
+	 *
+	 * @return array Allowed HTML tags.
+	 */
+	public function add_tags_to_allowed_html( $allowed_html, $context ) {
+		if ( 'post' === $context ) {
+			$allowed_html['link']   = array(
+				'href' => true,
+				'rel'  => true,
+				'type' => true,
+			);
+			$allowed_html['script'] = array(
+				'src'  => true,
+				'type' => true,
+			);
+		}
+		return $allowed_html;
 	}
 
 	/**
@@ -70,6 +98,80 @@ class Blocks {
 	 */
 	public function add_modal_styles( $template ) {
 		$this->output_theme_style_root();
+	}
+
+	/**
+	 * Add theme styles to the shortcode.
+	 *
+	 * @param string $template The template slug.
+	 */
+	private function print_shortcode_theme_styles( $template ) {
+		// Try to get default template if there is no template.
+		if ( ! $template ) {
+			$block_defaults = Options_Defaults::get_defaults();
+			$template       = $block_defaults['template'] ?? false;
+		}
+		if ( $template ) {
+			$handle = 'quotes-dlx-' . $template;
+			if ( ! wp_script_is( $handle, 'done' ) ) {
+				wp_print_styles( array( $handle ) );
+			}
+		}
+	}
+
+	/**
+	 * Add font styles to a shortcode.
+	 */
+	private function print_shortcode_font_scripts() {
+		$primary_font   = Options_Advanced::get_options( 'primary_font_family' );
+		$secondary_font = Options_Advanced::get_options( 'secondary_font_family' );
+
+		// Check for custom value in the primary font and secondary font.
+		if ( 'custom' === $primary_font && 'custom' === $secondary_font ) {
+			return '';
+		}
+
+		$can_enqueue_primary   = true;
+		$can_enqueue_secondary = true;
+
+		// Adobe font init.
+		if ( ( Functions::is_adobe_font( $primary_font && $can_enqueue_primary ) ) || ( Functions::is_adobe_font( $secondary_font ) && $can_enqueue_secondary ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+
+			// Enqueue the Adobe Fonts stylesheet.
+			Adobe_Fonts::add_dns_prefetch();
+			Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+			wp_print_styles( 'quotes-dlx-adobe-fonts' ); // Style is registered in Adobe_Fonts.
+		}
+
+		// Enqueue the Google Fonts stylesheet.
+		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font && $can_enqueue_primary ) {
+			$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font . '.css' );
+			wp_register_style(
+				'quotes-dlx-gfont-primary-' . $primary_font,
+				esc_url( $primary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+			ob_start();
+			if ( wp_style_is( 'quotes-dlx-gfont-primary-' . $primary_font, 'registered' ) ) {
+				wp_print_styles( 'quotes-dlx-gfont-primary-' . $primary_font );
+			}
+		}
+		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font && $can_enqueue_secondary ) {
+			$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font . '.css' );
+			wp_register_style(
+				'quotes-dlx-gfont-secondary' . $secondary_font,
+				esc_url( $secondary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+			if ( wp_style_is( 'quotes-dlx-gfont-secondary-' . $secondary_font, 'registered' ) ) {
+				wp_print_styles( 'quotes-dlx-gfont-secondary-' . $secondary_font );
+			}
+		}
 	}
 
 	/**
@@ -214,7 +316,7 @@ class Blocks {
 						if ( ! Functions::is_adobe_font( $primary_theme_font_family ) && 'custom' !== $primary_theme_font_family ) {
 							$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_theme_font_family . '.css' );
 							wp_enqueue_style(
-								'quotes-dlx-gfont-' . $primary_theme_font_family,
+								'quotes-dlx-gfont-primary' . $primary_theme_font_family,
 								esc_url( $primary_font_url ),
 								array(),
 								Functions::get_plugin_version(),
@@ -224,7 +326,7 @@ class Blocks {
 						if ( ! Functions::is_adobe_font( $secondary_theme_font_family ) && 'custom' !== $secondary_theme_font_family ) {
 							$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_theme_font_family . '.css' );
 							wp_enqueue_style(
-								'quotes-dlx-gfont-' . $secondary_theme_font_family,
+								'quotes-dlx-gfont-secondary' . $secondary_theme_font_family,
 								esc_url( $secondary_font_url ),
 								array(),
 								Functions::get_plugin_version(),
@@ -308,6 +410,11 @@ class Blocks {
 	private function output_theme_style_root() {
 		// Get themes.
 		$themes = Themes::get_theme_data();
+
+		// If doing REST request, ignore. This prevents the editor from erroring on shortcodes.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			return;
+		}
 
 		// Set color root variables.
 		foreach ( $themes as $theme ) {
@@ -464,29 +571,28 @@ class Blocks {
 
 		$atts = shortcode_atts(
 			array(
-				'show_permalink'              => true,
 				'template'                    => $default_options['template'],
 				'share_text'                  => '', /* original share text */
 				'share_text_override'         => '', /* optimized share text */
-				'share_button_text'           => $default_options['share_button_text'],
-				'facebook_share_button_text'  => $default_options['facebook_share_button_text'],
 				'share_text_override_enabled' => false,
-				'align'                       => $default_options['align'], /* left, center, right, wide, full */
+				'share_button_text'           => $default_options['share_button_text'], /* for Twitter button text */
+				'facebook_share_button_text'  => $default_options['facebook_share_button_text'],
 				'hashtags'                    => $default_options['hashtags'],
 				'twitter_username'            => $default_options['twitter_username'],
-				'maximum_width'               => $default_options['maximum_width'],
-				'maximum_width_unit'          => $default_options['maximum_width_unit'],
 				'tweet_button_alignment'      => $default_options['tweet_button_alignment'],
-				'tweet_icon_alignment'        => $default_options['tweet_icon_alignment'],
+				'tweet_icon_alignment'        => $default_options['tweet_icon_alignment'], /* left, center, right */
 				'tweet_button_enabled'        => $default_options['tweet_button_enabled'],
 				'facebook_button_enabled'     => $default_options['facebook_button_enabled'],
-				'tweet_button_display'        => $default_options['tweet_button_display'],
-				'icon_appearance'             => $default_options['icon_appearance'],
+				'tweet_button_display'        => $default_options['tweet_button_display'], /* full, icon, text */
+				'icon_appearance'             => $default_options['icon_appearance'], /* button, transparent */
+				'maximum_width'               => $default_options['maximum_width'],
+				'maximum_width_unit'          => $default_options['maximum_width_unit'],
+				'align'                       => $default_options['align'], /* left, center, right, wide, full */
 				'anchor'                      => '',
 				'anchor_prefix'               => '',
-				'has_anchor'                  => $default_options['has_anchor'],
-				'url_shortener'               => $default_options['url_shortener'],
-				'url_shortening_service'      => $default_options['url_shortening_service'],
+				'has_anchor'                  => $default_options['has_anchor'], /* true or false */
+				'url_shortener'               => $default_options['url_shortener'], /* true or false */
+				'url_shortening_service'      => $default_options['url_shortening_service'], /* manual, bitly, jetpack */
 				'permalink'                   => '',
 				'manual_permalink'            => '',
 				'enable_links_in_tweet'       => $default_options['enable_links_in_tweet'],
@@ -526,6 +632,9 @@ class Blocks {
 			$atts['share_text'] = $content;
 		}
 
+		// Try to get the permalink the quote is on.
+		$atts['permalink'] = $this->get_permalink( $atts );
+
 		// Format hashtags into array.
 		if ( ! is_array( $atts['hashtags'] ) ) {
 			$attributes['hashtags'] = explode( ',', $atts['hashtags'] );
@@ -533,7 +642,16 @@ class Blocks {
 
 		$attributes = Functions::sanitize_array_recursive( $atts );
 
-		return $this->frontend( $attributes, 'shortcode' );
+		// Output scripts and styles.
+		ob_start();
+		$this->output_theme_style_root();
+		$this->print_shortcode_font_scripts();
+		$this->print_shortcode_theme_styles( $attributes['template'] );
+		$this->output_shortcode_frontend_scripts();
+
+		$output = ob_get_clean() . $this->frontend( $attributes, 'shortcode' );
+
+		return $output;
 	}
 
 	/**
@@ -788,6 +906,15 @@ class Blocks {
 					$share_button_text          = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
 					$hashtags                   = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
 					$twitter_username           = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+
+					// Get share classes.
+					$share_button_wrapper_classes = array(
+						'quotes-dlx-button-wrapper',
+						Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ),
+					);
+					if ( 'transparent' === $attributes['icon_appearance'] ) {
+						$share_button_wrapper_classes[] = 'is-transparent-button';
+					}
 					$share_button_classes       = array(
 						'quotes-dlx-button',
 						$tweet_button_display,
@@ -797,7 +924,7 @@ class Blocks {
 					$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
 					if ( $tweet_button_enabled || $facebook_button_enabled ) :
 						?>
-					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
+					<div class="<?php echo esc_attr( implode( ' ', $share_button_wrapper_classes ) ); ?>">
 						<?php
 						if ( $tweet_button_enabled ) :
 							?>
@@ -1157,6 +1284,67 @@ class Blocks {
 	}
 
 	/**
+	 * Register and print out any scripts needed for the shortcode.
+	 */
+	public function output_shortcode_frontend_scripts() {
+		wp_register_style(
+			'quotes-dlx-frontend',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Register Fancybox Script.
+		wp_register_script(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			true
+		);
+
+		// Register fancybox style.
+		wp_register_style(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		wp_print_styles(
+			array(
+				'quotes-dlx-frontend',
+				'quotes-dlx-fancybox',
+			)
+		);
+
+		wp_enqueue_script(
+			'quotes-dlx-actions',
+			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
+			array( 'wp-i18n', 'wp-a11y' ),
+			Functions::get_plugin_version(),
+			true
+		);
+		$email_options = Options_Emails::get_options();
+		wp_localize_script(
+			'quotes-dlx-actions',
+			'qdlx_actions',
+			array(
+				'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
+			)
+		);
+
+		wp_enqueue_scripts(
+			array(
+				'quotes-dlx-fancybox',
+
+			)
+		);
+	}
+
+	/**
 	 * Register front-end scripts/styles.
 	 */
 	public function register_frontend_scripts() {
@@ -1308,6 +1496,7 @@ class Blocks {
 	 */
 	private function get_permalink( $attributes ) {
 		$anchor                = Functions::sanitize_attribute( $attributes, 'anchor', 'string' );
+		$unique_id             = Functions::sanitize_attribute( $attributes, 'uniqueId', 'string' );
 		$has_anchor            = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
 		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
@@ -1316,11 +1505,33 @@ class Blocks {
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
+
+		// We could be in a shortcode, so we need to get the permalink from query id.
+		if ( is_wp_error( $permalink ) || '' === $permalink ) {
+			$permalink = get_permalink();
+		}
+
+		// Check unique_id for WP_Error.
+		if ( is_wp_error( $unique_id ) ) {
+			$unique_id = '';
+		}
+
+		// Make sure anchor is set with uniqueId.
+		if ( is_wp_error( $anchor ) || empty( $anchor ) ) {
+			$anchor = $unique_id;
+		}
+
 		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
-			$permalink = esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
+			$hash_permalink = esc_url( $permalink ) . ( $has_anchor && $anchor ? '#' . $anchor : '' );
+			if ( '' === $anchor ) {
+				return $hash_permalink;
+			}
 			return $permalink;
 		} elseif ( ! is_wp_error( $manual_permalink ) && strlen( $manual_permalink ) > 0 && $enable_links_in_tweet ) {
-			$permalink = esc_url( $manual_permalink ) . ( $has_anchor ? '#' . $anchor : '' );
+			$hash_permalink = esc_url( $manual_permalink );
+			if ( '' === $anchor ) {
+				return $hash_permalink;
+			}
 			return $permalink;
 		}
 		return false;
@@ -1464,9 +1675,13 @@ class Blocks {
 
 	/**
 	 * Add general interface and SVG sprites.
+	 *
+	 * @param bool $is_shortcode Whether this is a shortcode or not.
+	 *
+	 * see: add_shortcode_footer_html.
 	 */
-	public function add_footer_html() {
-		if ( ! has_block( 'mediaron/quotes-dlx' ) ) {
+	public function add_footer_html( $is_shortcode = false ) {
+		if ( ! has_block( 'mediaron/quotes-dlx' ) && ! $is_shortcode ) {
 			return;
 		}
 		?>
@@ -1491,5 +1706,12 @@ class Blocks {
 			</symbol>
 		</svg>
 		<?php
+	}
+
+	/**
+	 * Add footer icons to the shortcode.
+	 */
+	public function add_shortcode_footer_html() {
+		$this->add_footer_html( true );
 	}
 }

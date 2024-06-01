@@ -165,6 +165,7 @@ class Blocks {
 			$this->output_theme_style_root();
 			return;
 		}
+		$blocks = null;
 		$blocks = parse_blocks( $post_content );
 		$this->print_block_styles( $blocks );
 		$this->print_fancybox_styles( $blocks );
@@ -245,7 +246,7 @@ class Blocks {
 	 * @param array $blocks Array of blocks to parse.
 	 */
 	public function print_block_styles( $blocks ) {
-		if ( ! empty( $blocks ) ) {
+		if ( ! empty( $blocks ) && ! is_null( $blocks ) ) {
 			foreach ( $blocks as $block ) {
 				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
 					$template = $block['attrs']['template'] ?? false;
@@ -266,6 +267,8 @@ class Blocks {
 					$this->print_block_styles( $block['innerBlocks'] );
 				}
 			}
+		} else {
+			// Blocks is null, so assume shortcode.
 		}
 	}
 

@@ -10,6 +10,10 @@
 	"version": "1.0.0",
 	"textdomain": "quotes-dlx",
 	"attributes": {
+		"uniqueId": {
+			"type": "string",
+			"default": ""
+		},
 		"show_permalink": {
 			"type": "boolean",
 			"default": true

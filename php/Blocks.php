@@ -632,9 +632,6 @@ class Blocks {
 			$atts['share_text'] = $content;
 		}
 
-		// Try to get the permalink the quote is on.
-		$atts['permalink'] = $this->get_permalink( $atts );
-
 		// Format hashtags into array.
 		if ( ! is_array( $atts['hashtags'] ) ) {
 			$attributes['hashtags'] = explode( ',', $atts['hashtags'] );
@@ -1502,13 +1499,19 @@ class Blocks {
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
 		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
 		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manual_permalink', 'url' );
+		$url_shortening_service = Functions::sanitize_attribute( $attributes, 'url_shortening_service', 'string' );
+
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
 
 		// We could be in a shortcode, so we need to get the permalink from query id.
 		if ( is_wp_error( $permalink ) || '' === $permalink ) {
-			$permalink = get_permalink();
+			if ( 'manual' === $url_shortening_service && ! is_wp_error( $manual_permalink ) ) {
+				$permalink = $manual_permalink;
+			} else {
+				$permalink = get_permalink();
+			}
 		}
 
 		// Check unique_id for WP_Error.
@@ -1524,9 +1527,9 @@ class Blocks {
 		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$hash_permalink = esc_url( $permalink ) . ( $has_anchor && $anchor ? '#' . $anchor : '' );
 			if ( '' === $anchor ) {
-				return $hash_permalink;
+				return $permalink;
 			}
-			return $permalink;
+			return $hash_permalink;
 		} elseif ( ! is_wp_error( $manual_permalink ) && strlen( $manual_permalink ) > 0 && $enable_links_in_tweet ) {
 			$hash_permalink = esc_url( $manual_permalink );
 			if ( '' === $anchor ) {

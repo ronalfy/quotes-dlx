@@ -620,7 +620,7 @@ class Blocks {
 				'citation_image_id'           => 0,
 				'citation_image_url'          => '',
 				'citation_image_appearance'   => 'round',
-				'citation_image_has_border'   => false,
+				'citation_image_has_border'   => true,
 				'citation_alignment'          => 'left', /* can be left, right, center */
 			),
 			$atts,
@@ -831,17 +831,17 @@ class Blocks {
 						if ( $enable_citation ) {
 							$figcaption_classes       = array(
 								'quotes-dlx-citation-wrapper',
-								'quotes-dlx-citation-align-' . $attributes['citationAlignment'],
+								'quotes-dlx-citation-align-' . $attributes['citation_alignment'],
 							);
 							$figcaption_image_classes = array(
 								'quotes-dlx-citation-image-wrapper',
 							);
 							$figcaption_image_id      = $attributes['citation_image_id'] ?? 0;
 							$figcaption_image_url     = $attributes['citation_image_url'] ?? '';
-							if ( $figcaption_image_id ) {
+							if ( $figcaption_image_id || ! empty( $figcaption_image_url ) ) {
 								$figcaption_image_classes[] = 'has-image';
 								$figcaption_image_classes[] = 'round' === $attributes['citation_image_appearance'] ? 'is-round' : '';
-								$figcaption_image_classes[] = $attributes['citationImageHasBorder'] ? 'has-border' : '';
+								$figcaption_image_classes[] = $attributes['citation_image_has_border'] ? 'has-border' : '';
 							}
 							?>
 							<figcaption class="<?php echo esc_attr( implode( ' ', $figcaption_classes ) ); ?>">

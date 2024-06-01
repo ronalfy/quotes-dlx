@@ -22,6 +22,7 @@ class Blocks {
 	public static function run() {
 		$self = new self();
 		add_action( 'init', array( $self, 'init' ) );
+		add_shortcode( 'quotesdlx', array( $self, 'shortcode' ) );
 		return $self;
 	}
 
@@ -446,6 +447,93 @@ class Blocks {
 	}
 
 	/**
+	 * Shortcode output, which passthrough's the block.
+	 *
+	 * @param array  $atts    Shortcode attributes.
+	 * @param string $content Shortcode content.
+	 *
+	 * @return string Block output.
+	 */
+	public function shortcode( $atts, $content ) {
+		$default_options    = Options_Defaults::get_defaults();
+		$contextual_options = Options_Menu::get_defaults();
+		$theme_options      = Options_Theme::get_defaults();
+
+		$atts = shortcode_atts(
+			array(
+				'show_permalink'              => true,
+				'template'                    => $default_options['template'],
+				'share_text'                  => '', /* original share text */
+				'share_text_override'         => '', /* optimized share text */
+				'share_button_text'           => $default_options['share_button_text'],
+				'facebook_share_button_text'  => $default_options['facebook_share_button_text'],
+				'share_text_override_enabled' => false,
+				'align'                       => $default_options['align'], /* left, center, right, wide, full */
+				'hashtags'                    => $default_options['hashtags'],
+				'twitter_username'            => $default_options['twitter_username'],
+				'maximum_width'               => $default_options['maximum_width'],
+				'maximum_width_unit'          => $default_options['maximum_width_unit'],
+				'tweet_button_alignment'      => $default_options['tweet_button_alignment'],
+				'tweet_icon_alignment'        => $default_options['tweet_icon_alignment'],
+				'tweet_button_enabled'        => $default_options['tweet_button_enabled'],
+				'facebook_button_enabled'     => $default_options['facebook_button_enabled'],
+				'tweet_button_display'        => $default_options['tweet_button_display'],
+				'icon_appearance'             => $default_options['icon_appearance'],
+				'anchor'                      => '',
+				'anchor_prefix'               => '',
+				'has_anchor'                  => $default_options['has_anchor'],
+				'url_shortener'               => $default_options['url_shortener'],
+				'url_shortening_service'      => $default_options['url_shortening_service'],
+				'permalink'                   => '',
+				'manual_permalink'            => '',
+				'enable_links_in_tweet'       => $default_options['enable_links_in_tweet'],
+				'enable_contextual_menu'      => $contextual_options['enable_contextual_menu'],
+				'enable_copy_text'            => $contextual_options['enable_copy_text'],
+				'enable_copy_tweet'           => $contextual_options['enable_copy_tweet'],
+				'enable_copy_link'            => $contextual_options['enable_copy_link'],
+				'enable_tweet_this'           => $contextual_options['enable_tweet_this'],
+				'enable_email_text'           => $contextual_options['enable_email_text'],
+				'enable_share_this'           => $contextual_options['enable_share_this'],
+				'email_text_label'            => $contextual_options['email_text_label'],
+				'copy_text_label'             => $contextual_options['copy_text_label'],
+				'copy_tweet_label'            => $contextual_options['copy_tweet_label'],
+				'copy_link_label'             => $contextual_options['copy_link_label'],
+				'tweet_this_label'            => $contextual_options['tweet_this_label'],
+				'share_this_label'            => $contextual_options['share_this_label'],
+				'enable_citation'             => false,
+				'enable_citation_image'       => true,
+				'enable_citation_author'      => true,
+				'citation_author'             => '',
+				'enable_citation_title'       => true,
+				'citation_title'              => '',
+				'enable_citation_source'      => false,
+				'citation_source'             => '',
+				'citation_image_id'           => 0,
+				'citation_image_url'          => '',
+				'citation_image_appearance'   => 'round',
+				'citation_image_has_border'   => false,
+				'citation_alignment'          => 'left', /* can be left, right, center */
+			),
+			$atts,
+			'quotesdlx'
+		);
+
+		// override share_text with content.
+		if ( ! $atts['share_text'] && $content ) {
+			$atts['share_text'] = $content;
+		}
+
+		// Format hashtags into array.
+		if ( ! is_array( $atts['hashtags'] ) ) {
+			$attributes['hashtags'] = explode( ',', $atts['hashtags'] );
+		}
+
+		$attributes = Functions::sanitize_array_recursive( $atts );
+
+		return $this->frontend( $attributes, 'shortcode' );
+	}
+
+	/**
 	 * Output the front-end structure.
 	 *
 	 * @param array  $attributes Block editor attributes.
@@ -556,7 +644,7 @@ class Blocks {
 		}
 
 		// Set citation classes.
-		$enable_citation = Functions::sanitize_attribute( $attributes, 'enableCitation', 'boolean' );
+		$enable_citation = Functions::sanitize_attribute( $attributes, 'enable_citation', 'boolean' );
 		if ( $enable_citation ) {
 			$default_wrapper_classes[] = 'quotes-dlx-has-citation';
 		}
@@ -621,7 +709,7 @@ class Blocks {
 						?>
 						</blockquote>
 						<?php
-						$enable_citation = $attributes['enableCitation'] ?? false;
+						$enable_citation = $attributes['enable_citation'] ?? false;
 						if ( $enable_citation ) {
 							$figcaption_classes       = array(
 								'quotes-dlx-citation-wrapper',
@@ -630,17 +718,17 @@ class Blocks {
 							$figcaption_image_classes = array(
 								'quotes-dlx-citation-image-wrapper',
 							);
-							$figcaption_image_id      = $attributes['citationImageId'] ?? 0;
-							$figcaption_image_url     = $attributes['citationImageUrl'] ?? '';
+							$figcaption_image_id      = $attributes['citation_image_id'] ?? 0;
+							$figcaption_image_url     = $attributes['citation_image_url'] ?? '';
 							if ( $figcaption_image_id ) {
 								$figcaption_image_classes[] = 'has-image';
-								$figcaption_image_classes[] = 'round' === $attributes['citationImageAppearance'] ? 'is-round' : '';
+								$figcaption_image_classes[] = 'round' === $attributes['citation_image_appearance'] ? 'is-round' : '';
 								$figcaption_image_classes[] = $attributes['citationImageHasBorder'] ? 'has-border' : '';
 							}
 							?>
 							<figcaption class="<?php echo esc_attr( implode( ' ', $figcaption_classes ) ); ?>">
 								<?php
-								if ( (bool) $attributes['enableCitationImage'] ) {
+								if ( (bool) $attributes['enable_citation_image'] ) {
 									?>
 									<div class="<?php echo esc_attr( implode( ' ', $figcaption_image_classes ) ); ?>">
 										<img
@@ -656,31 +744,31 @@ class Blocks {
 								<div class="quotes-dlx-citation-text-wrapper">
 									<?php
 									// Output citation author.
-									$enable_citation_author = $attributes['enableCitationAuthor'] ?? false;
+									$enable_citation_author = $attributes['enable_citation_author'] ?? false;
 									if ( (bool) $enable_citation_author ) {
 										?>
 										<div class="quotes-dlx-citation-author">
-											<?php echo wp_kses_post( $attributes['citationAuthor'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_author'] ); ?>
 										</div>
 										<?php
 									}
 
 									// Output citation title.
-									$enable_citation_title = $attributes['enableCitationTitle'] ?? false;
+									$enable_citation_title = $attributes['enable_citation_title'] ?? false;
 									if ( (bool) $enable_citation_title ) {
 										?>
 										<div class="quotes-dlx-citation-title">
-											<?php echo wp_kses_post( $attributes['citationTitle'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_title'] ); ?>
 										</div>
 										<?php
 									}
 
 									// Output citation source.
-									$enable_citation_source = $attributes['enableCitationSource'] ?? false;
+									$enable_citation_source = $attributes['enable_citation_source'] ?? false;
 									if ( (bool) $enable_citation_source ) {
 										?>
 										<div class="quotes-dlx-citation-source">
-											<?php echo wp_kses_post( $attributes['citationSource'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_source'] ); ?>
 										</div>
 										<?php
 									}
@@ -764,10 +852,8 @@ class Blocks {
 				<?php
 				$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 				$enable_copy_text       = Functions::sanitize_attribute( $attributes, 'enable_copy_text', 'boolean' );
-				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
-				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
 				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
 				// Get text label values.
@@ -1025,7 +1111,7 @@ class Blocks {
 			$tweet_content .= $twitter_username;
 		}
 
-		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
+		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$tweet_content .= "\r\n\r\n";
 			$tweet_content .= esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 		}
@@ -1223,14 +1309,14 @@ class Blocks {
 		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
 		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
+		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manual_permalink', 'url' );
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
-		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
+		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$permalink = esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 			return $permalink;
-		} else {
+		} elseif ( ! is_wp_error( $manual_permalink ) && strlen( $manual_permalink ) > 0 && $enable_links_in_tweet ) {
 			$permalink = esc_url( $manual_permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 			return $permalink;
 		}

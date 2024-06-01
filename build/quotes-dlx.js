@@ -869,7 +869,7 @@ var TweetQuotes = function TweetQuotes(props) {
     url_shortener = attributes.url_shortener,
     url_shortening_service = attributes.url_shortening_service,
     permalink = attributes.permalink,
-    manualPermalink = attributes.manualPermalink,
+    manual_permalink = attributes.manual_permalink,
     enable_links_in_tweet = attributes.enable_links_in_tweet,
     enable_contextual_menu = attributes.enable_contextual_menu,
     enable_copy_text = attributes.enable_copy_text,
@@ -883,19 +883,19 @@ var TweetQuotes = function TweetQuotes(props) {
     defaultsApplied = attributes.defaultsApplied,
     transforming = attributes.transforming,
     icon_appearance = attributes.icon_appearance,
-    enableCitation = attributes.enableCitation,
-    enableCitationImage = attributes.enableCitationImage,
-    enableCitationAuthor = attributes.enableCitationAuthor,
-    citationAuthor = attributes.citationAuthor,
-    enableCitationSource = attributes.enableCitationSource,
-    citationSource = attributes.citationSource,
-    enableCitationTitle = attributes.enableCitationTitle,
-    citationTitle = attributes.citationTitle,
-    citationImageId = attributes.citationImageId,
-    citationImageUrl = attributes.citationImageUrl,
-    citationImageAppearance = attributes.citationImageAppearance,
-    citationAlignment = attributes.citationAlignment,
-    citationImageHasBorder = attributes.citationImageHasBorder;
+    enable_citation = attributes.enable_citation,
+    enable_citation_image = attributes.enable_citation_image,
+    enable_citation_author = attributes.enable_citation_author,
+    citation_author = attributes.citation_author,
+    enable_citation_source = attributes.enable_citation_source,
+    citation_source = attributes.citation_source,
+    enable_citation_title = attributes.enable_citation_title,
+    citation_title = attributes.citation_title,
+    citation_image_id = attributes.citation_image_id,
+    citation_image_url = attributes.citation_image_url,
+    citation_image_appearance = attributes.citation_image_appearance,
+    citation_alignment = attributes.citation_alignment,
+    citation_image_has_border = attributes.citation_image_has_border;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
     countCharacters();
     countInfoCharacters();
@@ -946,27 +946,27 @@ var TweetQuotes = function TweetQuotes(props) {
   }, [url_shortening_service]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(function () {
     var link = '' === permalink ? postObject.link : permalink;
-    var manualLink = '' === manualPermalink ? postObject.link : permalink;
+    var manualLink = '' === manual_permalink ? postObject.link : permalink;
     switch (url_shortening_service) {
       case 'none':
         setAttributes({
-          permalink: manualPermalink,
-          manualPermalink: postObject.link
+          permalink: manual_permalink,
+          manual_permalink: postObject.link
         });
         break;
       case 'bitly':
         setAttributes({
-          manualPermalink: tweet_quotes_block_vars.bitly_plugin_short_url
+          manual_permalink: tweet_quotes_block_vars.bitly_plugin_short_url
         });
         break;
       case 'jetpack':
         setAttributes({
-          manualPermalink: tweet_quotes_block_vars.jetpack_plugin_short_url
+          manual_permalink: tweet_quotes_block_vars.jetpack_plugin_short_url
         });
         break;
       case 'manual':
         setAttributes({
-          manualPermalink: link
+          manual_permalink: link
         });
     }
   }, [postObject, url_shortening_service]);
@@ -1105,72 +1105,72 @@ var TweetQuotes = function TweetQuotes(props) {
    * @return {Object} The citation.
    */
   var getCitation = function getCitation() {
-    if (enableCitation) {
+    if (enable_citation) {
       return /*#__PURE__*/React.createElement("figcaption", {
-        className: "quotes-dlx-citation-wrapper quotes-dlx-citation-align-".concat(citationAlignment)
-      }, enableCitationImage && /*#__PURE__*/React.createElement("div", {
+        className: "quotes-dlx-citation-wrapper quotes-dlx-citation-align-".concat(citation_alignment)
+      }, enable_citation_image && /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-citation-image-wrapper"
       }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.Button, {
         onClick: function onClick() {
           openMediaUploader({
-            attachmentId: citationImageId || 0
+            attachmentId: citation_image_id || 0
           }, function (media) {
             setAttributes({
-              citationImageId: media.id,
-              citationImageUrl: media.url
+              citation_image_id: media.id,
+              citation_image_url: media.url
             });
           });
         },
         className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx-citation-image-button-wrapper', {
-          'has-image': citationImageId,
-          'is-round': 'round' === citationImageAppearance,
-          'has-border': citationImageHasBorder
+          'has-image': citation_image_id,
+          'is-round': 'round' === citation_image_appearance,
+          'has-border': citation_image_has_border
         })
-      }, citationImageId && citationImageUrl && /*#__PURE__*/React.createElement("img", {
-        src: citationImageUrl,
+      }, citation_image_id !== 0 && citation_image_url && /*#__PURE__*/React.createElement("img", {
+        src: citation_image_url,
         alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Image', 'quotes-dlx'),
         width: "75",
         height: "75"
-      }), (!citationImageId || !citationImageUrl) && /*#__PURE__*/React.createElement(_components_icons_user__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      }), (!citation_image_id || !citation_image_url) && /*#__PURE__*/React.createElement(_components_icons_user__WEBPACK_IMPORTED_MODULE_14__["default"], {
         fill: "#333",
         width: "75",
         height: "75"
       }))), /*#__PURE__*/React.createElement("div", {
         className: "quotes-dlx-citation-text-wrapper"
-      }, enableCitationAuthor && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
+      }, enable_citation_author && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
         tagName: "div",
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter author name', 'quotes-dlx'),
-        value: citationAuthor,
+        value: citation_author,
         className: "quotes-dlx-citation-author",
         onChange: function onChange(value) {
           setAttributes({
-            citationAuthor: value
+            citation_author: value
           });
         },
         allowedFormats: ['core/bold', 'core/italic', 'core/text-color', 'core/link'],
         tabIndex: "-1"
-      }), enableCitationTitle && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
+      }), enable_citation_title && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
         tagName: "div",
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter author title', 'quotes-dlx'),
         disableLineBreaks: true,
-        value: citationTitle,
+        value: citation_title,
         className: "quotes-dlx-citation-title",
         onChange: function onChange(value) {
           setAttributes({
-            citationTitle: value
+            citation_title: value
           });
         },
         allowedFormats: ['core/bold', 'core/italic', 'core/text-color', 'core/link'],
         tabIndex: "-1"
-      }), enableCitationSource && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
+      }), enable_citation_source && /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.RichText, {
         tagName: "div",
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enter source', 'quotes-dlx'),
         disableLineBreaks: true,
-        value: citationSource,
+        value: citation_source,
         className: "quotes-dlx-citation-source",
         onChange: function onChange(value) {
           setAttributes({
-            citationSource: value
+            citation_source: value
           });
         },
         allowedFormats: ['core/bold', 'core/italic', 'core/text-color', 'core/link'],
@@ -1205,27 +1205,27 @@ var TweetQuotes = function TweetQuotes(props) {
     },
     ref: maximumWidthInput
   }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
-    initialOpen: enableCitation ? true : false,
+    initialOpen: enable_citation ? true : false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Settings', 'quotes-dlx')
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation', 'quotes-dlx'),
-    checked: enableCitation,
+    checked: enable_citation,
     onChange: function onChange(value) {
       setAttributes({
-        enableCitation: value
+        enable_citation: value
       });
     }
-  })), enableCitation && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
+  })), enable_citation && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation Image', 'quotes-dlx'),
-    checked: enableCitationImage,
+    checked: enable_citation_image,
     onChange: function onChange(value) {
       setAttributes({
-        enableCitationImage: value
+        enable_citation_image: value
       });
     }
-  })), enableCitationImage && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.SelectControl, {
+  })), enable_citation_image && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Image Appearance', 'quotes-dlx'),
-    value: citationImageAppearance,
+    value: citation_image_appearance,
     options: [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Rounded', 'quotes-dlx'),
       value: 'round'
@@ -1235,47 +1235,47 @@ var TweetQuotes = function TweetQuotes(props) {
     }],
     onChange: function onChange(value) {
       setAttributes({
-        citationImageAppearance: value
+        citation_image_appearance: value
       });
     }
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation Image Border', 'quotes-dlx'),
-    checked: citationImageHasBorder,
+    checked: citation_image_has_border,
     onChange: function onChange(value) {
       setAttributes({
-        citationImageHasBorder: value
+        citation_image_has_border: value
       });
     }
   }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation Author', 'quotes-dlx'),
-    checked: enableCitationAuthor,
+    checked: enable_citation_author,
     onChange: function onChange(value) {
       setAttributes({
-        enableCitationAuthor: value
+        enable_citation_author: value
       });
     }
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation Title', 'quotes-dlx'),
-    checked: enableCitationTitle,
+    checked: enable_citation_title,
     onChange: function onChange(value) {
       setAttributes({
-        enableCitationTitle: value
+        enable_citation_title: value
       });
     }
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Enable Citation Source', 'quotes-dlx'),
-    checked: enableCitationSource,
+    checked: enable_citation_source,
     onChange: function onChange(value) {
       setAttributes({
-        enableCitationSource: value
+        enable_citation_source: value
       });
     }
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelRow, null, /*#__PURE__*/React.createElement(_components_alignment__WEBPACK_IMPORTED_MODULE_10__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Alignment', 'quotes-dlx'),
-    alignment: citationAlignment,
+    alignment: citation_alignment,
     onClick: function onClick(value) {
       setAttributes({
-        citationAlignment: value
+        citation_alignment: value
       });
     }
   })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
@@ -1549,32 +1549,32 @@ var TweetQuotes = function TweetQuotes(props) {
       preserveWhiteSpace: true
     }),
     multilineTag: 'p'
-  })))), enableCitation && /*#__PURE__*/React.createElement("figcaption", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-citation-wrapper quotes-dlx-citation-align-".concat(citationAlignment))
-  }, enableCitationImage && /*#__PURE__*/React.createElement("div", {
+  })))), enable_citation && /*#__PURE__*/React.createElement("figcaption", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx-citation-wrapper quotes-dlx-citation-align-".concat(citation_alignment))
+  }, enable_citation_image && /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx-citation-image-wrapper', {
-      'has-image': citationImageId,
-      'is-round': 'round' === citationImageAppearance,
-      'has-border': citationImageHasBorder
+      'has-image': citation_image_id,
+      'is-round': 'round' === citation_image_appearance,
+      'has-border': citation_image_has_border
     })
-  }, citationImageId && citationImageUrl && /*#__PURE__*/React.createElement("img", {
-    src: citationImageUrl,
+  }, citation_image_id && citation_image_url && /*#__PURE__*/React.createElement("img", {
+    src: citation_image_url,
     alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Citation Image', 'quotes-dlx'),
     width: "75",
     height: "75"
-  }), (!citationImageId || !citationImageUrl) && /*#__PURE__*/React.createElement(_components_icons_user__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }), (!citation_image_id || !citation_image_url) && /*#__PURE__*/React.createElement(_components_icons_user__WEBPACK_IMPORTED_MODULE_14__["default"], {
     fill: "#333",
     width: "75",
     height: "75"
   })), /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-citation-text-wrapper"
-  }, enableCitationAuthor && /*#__PURE__*/React.createElement("div", {
+  }, enable_citation_author && /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-citation-author"
-  }, htmlToReactParser.parse(citationAuthor)), enableCitationTitle && /*#__PURE__*/React.createElement("div", {
+  }, htmlToReactParser.parse(citation_author)), enable_citation_title && /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-citation-title"
-  }, htmlToReactParser.parse(citationTitle)), enableCitationSource && /*#__PURE__*/React.createElement("div", {
+  }, htmlToReactParser.parse(citation_title)), enable_citation_source && /*#__PURE__*/React.createElement("div", {
     className: "quotes-dlx-citation-source"
-  }, htmlToReactParser.parse(citationSource))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
+  }, htmlToReactParser.parse(citation_source))))), getClickToShareButton()), enable_contextual_menu && !blockOnly && (enable_copy_text || enable_copy_tweet || enable_copy_link || enable_tweet_this || enable_share_this || enable_email_text) &&
   /*#__PURE__*/
   // eslint-disable-next-line react/jsx-indent
   React.createElement(React.Fragment, null, isContextualMenuGlobal() && /*#__PURE__*/React.createElement(_components_MeatballMenu__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
@@ -1832,11 +1832,11 @@ var TweetQuotes = function TweetQuotes(props) {
       }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Visit the Jetpack plugin on WordPress.org', 'quotes-dlx'))))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Page URL', 'quotes-dlx'),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('This displays the permanent URL to this block.'),
-        placeholder: manualPermalink,
-        value: manualPermalink !== null && manualPermalink !== void 0 ? manualPermalink : '',
+        placeholder: manual_permalink,
+        value: manual_permalink !== null && manual_permalink !== void 0 ? manual_permalink : '',
         onChange: function onChange(value) {
           setAttributes({
-            manualPermalink: value,
+            manual_permalink: value,
             permalink: value
           });
         },
@@ -1848,7 +1848,7 @@ var TweetQuotes = function TweetQuotes(props) {
   }))));
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("quotes-dlx template-".concat(template), {
-      'quotes-dlx-has-citation': enableCitation
+      'quotes-dlx-has-citation': enable_citation
     })
   });
   var stylesheet = false;
@@ -12316,7 +12316,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX","apiVersion":2,"name":"mediaron/quotes-dlx","category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"show_copy":{"type":"boolean","default":true},"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manualPermalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false},"themeColors":{"type":"array","default":[]},"enableCitation":{"type":"boolean","default":false},"enableCitationImage":{"type":"boolean","default":true},"enableCitationAuthor":{"type":"boolean","default":true},"citationAuthor":{"type":"string","default":""},"enableCitationTitle":{"type":"boolean","default":true},"citationTitle":{"type":"string","default":""},"enableCitationSource":{"type":"boolean","default":false},"citationSource":{"type":"string","default":""},"citationImageId":{"type":"number","default":0},"citationImageUrl":{"type":"string","default":""},"citationImageAppearance":{"type":"string","default":"round"},"citationImageHasBorder":{"type":"boolean","default":true},"citationAlignment":{"type":"string","default":"left"}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","title":"QuotesDLX","apiVersion":2,"name":"mediaron/quotes-dlx","category":"text","icon":"<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 4450 4450\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;\'\'><g transform=\'matrix(4.16667,0,0,4.16667,-1325.8,-2025.45)\'><path fill=\'#9932cc\' d=\'M852.07,1553.89C1146.14,1553.89 1385.98,1314.05 1385.98,1020.01C1385.98,725.948 1146.14,486.109 852.07,486.109C558.033,486.109 318.193,725.948 318.193,1020.01C318.193,1314.05 558.033,1553.89 852.07,1553.89Z\'/><path d=\'M645.766,833.41C718.162,813.992 792.571,856.965 811.989,929.362C838.72,1029.11 795.378,1186.69 610.36,1211.24C650.471,1170.11 675.614,1140.15 686.018,1100.12C624.08,1102.5 566.509,1062 549.813,999.605C530.396,927.208 573.368,852.798 645.766,833.41Z\' style=\'fill:white;\'/><path d=\'M988.445,833.41C1060.84,813.992 1135.28,856.965 1154.67,929.362C1181.4,1029.11 1138.09,1186.69 953.069,1211.24C993.151,1170.11 1018.29,1140.15 1028.7,1100.12C966.761,1102.5 909.188,1062 892.493,999.605C873.104,927.208 916.049,852.798 988.445,833.41Z\' style=\'fill:white;\'/></g></svg>","description":"WordPress Twitter block that makes it dead simple for users to share your quotes.","keywords":["click","tweet","twitter","share","quote","blockquote","dlx","quotes","dlx","quo"],"version":"1.0.0","textdomain":"quotes-dlx","attributes":{"show_permalink":{"type":"boolean","default":true},"template":{"type":"string","default":"light-branded"},"button_style":{"type":"string","default":"default"},"share_text":{"type":"string","default":""},"share_text_override":{"type":"string","default":""},"share_button_text":{"type":"string","default":"Click to Tweet"},"facebook_share_button_text":{"type":"string","default":"Share on Facebook"},"share_text_override_enabled":{"type":"boolean","default":false},"align":{"type":"string","default":"center"},"hashtags":{"type":"array","default":[]},"twitter_username":{"type":"string","default":""},"maximum_width":{"type":"number","default":850},"maximum_width_unit":{"type":"string","default":"px"},"rtl":{"type":"boolean","default":false},"tweet_button_alignment":{"type":"string","default":"right"},"tweet_icon_alignment":{"type":"string","default":"right"},"tweet_button_enabled":{"type":"boolean","default":true},"facebook_button_enabled":{"type":"boolean","default":false},"tweet_button_display":{"type":"string","default":"full"},"icon_appearance":{"type":"string","default":"button"},"tweet_styles_disabled":{"type":"boolean","default":false},"anchor":{"type":"string","default":""},"anchor_prefix":{"type":"string","default":"qdlx"},"has_anchor":{"type":"boolean","default":true},"url_shortener":{"type":"boolean","default":true},"url_shortening_service":{"type":"string","default":"none"},"permalink":{"type":"string","default":""},"manual_permalink":{"type":"string","default":""},"enable_links_in_tweet":{"type":"boolean","default":true},"enable_contextual_menu":{"type":"boolean","default":true},"enable_copy_text":{"type":"boolean","default":true},"enable_copy_tweet":{"type":"boolean","default":true},"enable_copy_link":{"type":"boolean","default":true},"enable_tweet_this":{"type":"boolean","default":true},"enable_email_text":{"type":"boolean","default":false},"enable_share_this":{"type":"boolean","default":false},"email_text_label":{"type":"string","default":"Email Quote"},"copy_text_label":{"type":"string","default":"Copy Quote"},"copy_tweet_label":{"type":"string","default":"Copy Tweet"},"copy_link_label":{"type":"string","default":"Copy Link"},"tweet_this_label":{"type":"string","default":"Tweet This"},"share_this_label":{"type":"string","default":"Share This"},"preview":{"type":"boolean","default":false},"blockOnly":{"type":"boolean","default":false},"defaultsApplied":{"type":"boolean","default":false},"transforming":{"type":"boolean","default":false},"themeColors":{"type":"array","default":[]},"enable_citation":{"type":"boolean","default":false},"enable_citation_image":{"type":"boolean","default":true},"enable_citation_author":{"type":"boolean","default":true},"citation_author":{"type":"string","default":""},"enable_citation_title":{"type":"boolean","default":true},"citation_title":{"type":"string","default":""},"enable_citation_source":{"type":"boolean","default":false},"citation_source":{"type":"string","default":""},"citation_image_id":{"type":"number","default":0},"citation_image_url":{"type":"string","default":""},"citation_image_appearance":{"type":"string","default":"round"},"citation_image_has_border":{"type":"boolean","default":true},"citation_alignment":{"type":"string","default":"left"}},"example":{"attributes":{"preview":true,"blockOnly":true,"share_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada dui id nisi vulputate semper. Nam sagittis ac nulla id pharetra. Maecenas congue, tellus a blandit cursus, lorem dolor hendrerit erat, sed luctus arcu velit eget ligula.","template":"purple-bliss","enable_contextual_menu":true,"enable_copy_text":true,"enable_copy_tweet":true,"enable_copy_link":true,"enable_tweet_this":true,"maximum_width":800,"maximum_width_unit":"px"}},"supports":{"anchor":true,"align":true,"className":true},"editorScript":"quotes-dlx-block","editorStyle":"quotes-dlx-block-editor-styles","style":"quotes-dlx-frontend","viewScript":"quotes-dlx-actions"}');
 
 /***/ })
 

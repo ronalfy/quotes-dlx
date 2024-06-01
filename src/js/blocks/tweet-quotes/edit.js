@@ -125,7 +125,7 @@ const TweetQuotes = ( props ) => {
 		url_shortener,
 		url_shortening_service,
 		permalink,
-		manualPermalink,
+		manual_permalink,
 		enable_links_in_tweet,
 		enable_contextual_menu,
 		enable_copy_text,
@@ -139,19 +139,19 @@ const TweetQuotes = ( props ) => {
 		defaultsApplied,
 		transforming,
 		icon_appearance,
-		enableCitation,
-		enableCitationImage,
-		enableCitationAuthor,
-		citationAuthor,
-		enableCitationSource,
-		citationSource,
-		enableCitationTitle,
-		citationTitle,
-		citationImageId,
-		citationImageUrl,
-		citationImageAppearance,
-		citationAlignment,
-		citationImageHasBorder,
+		enable_citation,
+		enable_citation_image,
+		enable_citation_author,
+		citation_author,
+		enable_citation_source,
+		citation_source,
+		enable_citation_title,
+		citation_title,
+		citation_image_id,
+		citation_image_url,
+		citation_image_appearance,
+		citation_alignment,
+		citation_image_has_border,
 	} = attributes;
 
 	useEffect( () => {
@@ -227,27 +227,27 @@ const TweetQuotes = ( props ) => {
 
 	useEffect( () => {
 		const link = '' === permalink ? postObject.link : permalink;
-		const manualLink = '' === manualPermalink ? postObject.link : permalink;
+		const manualLink = '' === manual_permalink ? postObject.link : permalink;
 
 		switch ( url_shortening_service ) {
 			case 'none':
 				setAttributes( {
-					permalink: manualPermalink,
-					manualPermalink: postObject.link,
+					permalink: manual_permalink,
+					manual_permalink: postObject.link,
 				} );
 				break;
 			case 'bitly':
 				setAttributes( {
-					manualPermalink: tweet_quotes_block_vars.bitly_plugin_short_url,
+					manual_permalink: tweet_quotes_block_vars.bitly_plugin_short_url,
 				} );
 				break;
 			case 'jetpack':
 				setAttributes( {
-					manualPermalink: tweet_quotes_block_vars.jetpack_plugin_short_url,
+					manual_permalink: tweet_quotes_block_vars.jetpack_plugin_short_url,
 				} );
 				break;
 			case 'manual':
-				setAttributes( { manualPermalink: link } );
+				setAttributes( { manual_permalink: link } );
 		}
 	}, [ postObject, url_shortening_service ] );
 
@@ -429,39 +429,39 @@ const TweetQuotes = ( props ) => {
 	 * @return {Object} The citation.
 	 */
 	const getCitation = () => {
-		if ( enableCitation ) {
+		if ( enable_citation ) {
 			return (
-				<figcaption className={ `quotes-dlx-citation-wrapper quotes-dlx-citation-align-${ citationAlignment }` }>
-					{ enableCitationImage && (
+				<figcaption className={ `quotes-dlx-citation-wrapper quotes-dlx-citation-align-${ citation_alignment }` }>
+					{ enable_citation_image && (
 						<div className="quotes-dlx-citation-image-wrapper">
 							<Button
 								onClick={ () => {
 									openMediaUploader( {
-										attachmentId: citationImageId || 0,
+										attachmentId: citation_image_id || 0,
 									}, ( media ) => {
 										setAttributes( {
-											citationImageId: media.id,
-											citationImageUrl: media.url,
+											citation_image_id: media.id,
+											citation_image_url: media.url,
 										} );
 									} );
 								} }
 								className={
 									classnames( 'quotes-dlx-citation-image-button-wrapper', {
-										'has-image': citationImageId,
-										'is-round': 'round' === citationImageAppearance,
-										'has-border': citationImageHasBorder,
+										'has-image': citation_image_id,
+										'is-round': 'round' === citation_image_appearance,
+										'has-border': citation_image_has_border,
 									} )
 								}
 							>
-								{ ( citationImageId && citationImageUrl ) && (
+								{ ( citation_image_id !== 0 && citation_image_url ) && (
 									<img
-										src={ citationImageUrl }
+										src={ citation_image_url }
 										alt={ __( 'Citation Image', 'quotes-dlx' ) }
 										width="75"
 										height="75"
 									/>
 								) }
-								{ ( ! citationImageId || ! citationImageUrl ) && (
+								{ ( ! citation_image_id || ! citation_image_url ) && (
 									<UserIcon
 										fill="#333"
 										width="75" height="75"
@@ -471,14 +471,14 @@ const TweetQuotes = ( props ) => {
 						</div>
 					) }
 					<div className="quotes-dlx-citation-text-wrapper">
-						{ enableCitationAuthor && (
+						{ enable_citation_author && (
 							<RichText
 								tagName="div"
 								placeholder={ __( 'Enter author name', 'quotes-dlx' ) }
-								value={ citationAuthor }
+								value={ citation_author }
 								className="quotes-dlx-citation-author"
 								onChange={ ( value ) => {
-									setAttributes( { citationAuthor: value } );
+									setAttributes( { citation_author: value } );
 								} }
 								allowedFormats={ [
 									'core/bold',
@@ -489,15 +489,15 @@ const TweetQuotes = ( props ) => {
 								tabIndex="-1"
 							/>
 						) }
-						{ enableCitationTitle && (
+						{ enable_citation_title && (
 							<RichText
 								tagName="div"
 								placeholder={ __( 'Enter author title', 'quotes-dlx' ) }
 								disableLineBreaks={ true }
-								value={ citationTitle }
+								value={ citation_title }
 								className="quotes-dlx-citation-title"
 								onChange={ ( value ) => {
-									setAttributes( { citationTitle: value } );
+									setAttributes( { citation_title: value } );
 								} }
 								allowedFormats={ [
 									'core/bold',
@@ -509,15 +509,15 @@ const TweetQuotes = ( props ) => {
 							/>
 						) }
 						{
-							enableCitationSource && (
+							enable_citation_source && (
 								<RichText
 									tagName="div"
 									placeholder={ __( 'Enter source', 'quotes-dlx' ) }
 									disableLineBreaks={ true }
-									value={ citationSource }
+									value={ citation_source }
 									className="quotes-dlx-citation-source"
 									onChange={ ( value ) => {
-										setAttributes( { citationSource: value } );
+										setAttributes( { citation_source: value } );
 									} }
 									allowedFormats={ [
 										'core/bold',
@@ -569,46 +569,46 @@ const TweetQuotes = ( props ) => {
 				</>
 			</PanelBody>
 			<PanelBody
-				initialOpen={ enableCitation ? true : false }
+				initialOpen={ enable_citation ? true : false }
 				title={ __( 'Citation Settings', 'quotes-dlx' ) }
 			>
 				<PanelRow>
 					<ToggleControl
 						label={ __( 'Enable Citation', 'quotes-dlx' ) }
-						checked={ enableCitation }
+						checked={ enable_citation }
 						onChange={ ( value ) => {
 							setAttributes( {
-								enableCitation: value,
+								enable_citation: value,
 							} );
 						} }
 					/>
 				</PanelRow>
-				{ enableCitation && (
+				{ enable_citation && (
 					<>
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Enable Citation Image', 'quotes-dlx' ) }
-								checked={ enableCitationImage }
+								checked={ enable_citation_image }
 								onChange={ ( value ) => {
 									setAttributes( {
-										enableCitationImage: value,
+										enable_citation_image: value,
 									} );
 								} }
 							/>
 						</PanelRow>
-						{ enableCitationImage && (
+						{ enable_citation_image && (
 							<>
 								<PanelRow>
 									<SelectControl
 										label={ __( 'Citation Image Appearance', 'quotes-dlx' ) }
-										value={ citationImageAppearance }
+										value={ citation_image_appearance }
 										options={ [
 											{ label: __( 'Rounded', 'quotes-dlx' ), value: 'round' },
 											{ label: __( 'Square', 'quotes-dlx' ), value: 'square' },
 										] }
 										onChange={ ( value ) => {
 											setAttributes( {
-												citationImageAppearance: value,
+												citation_image_appearance: value,
 											} );
 										} }
 									/>
@@ -616,10 +616,10 @@ const TweetQuotes = ( props ) => {
 								<PanelRow>
 									<ToggleControl
 										label={ __( 'Enable Citation Image Border', 'quotes-dlx' ) }
-										checked={ citationImageHasBorder }
+										checked={ citation_image_has_border }
 										onChange={ ( value ) => {
 											setAttributes( {
-												citationImageHasBorder: value,
+												citation_image_has_border: value,
 											} );
 										} }
 									/>
@@ -629,10 +629,10 @@ const TweetQuotes = ( props ) => {
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Enable Citation Author', 'quotes-dlx' ) }
-								checked={ enableCitationAuthor }
+								checked={ enable_citation_author }
 								onChange={ ( value ) => {
 									setAttributes( {
-										enableCitationAuthor: value,
+										enable_citation_author: value,
 									} );
 								} }
 							/>
@@ -640,10 +640,10 @@ const TweetQuotes = ( props ) => {
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Enable Citation Title', 'quotes-dlx' ) }
-								checked={ enableCitationTitle }
+								checked={ enable_citation_title }
 								onChange={ ( value ) => {
 									setAttributes( {
-										enableCitationTitle: value,
+										enable_citation_title: value,
 									} );
 								} }
 							/>
@@ -651,10 +651,10 @@ const TweetQuotes = ( props ) => {
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Enable Citation Source', 'quotes-dlx' ) }
-								checked={ enableCitationSource }
+								checked={ enable_citation_source }
 								onChange={ ( value ) => {
 									setAttributes( {
-										enableCitationSource: value,
+										enable_citation_source: value,
 									} );
 								} }
 							/>
@@ -662,9 +662,9 @@ const TweetQuotes = ( props ) => {
 						<PanelRow>
 							<AlignmentGroup
 								label={ __( 'Citation Alignment', 'quotes-dlx' ) }
-								alignment={ citationAlignment }
+								alignment={ citation_alignment }
 								onClick={ ( value ) => {
-									setAttributes( { citationAlignment: value } );
+									setAttributes( { citation_alignment: value } );
 								} }
 							/>
 						</PanelRow>
@@ -1032,23 +1032,23 @@ const TweetQuotes = ( props ) => {
 									) }
 								</div>
 							</blockquote>
-							{ enableCitation && (
-								<figcaption className={ classnames( `quotes-dlx-citation-wrapper quotes-dlx-citation-align-${ citationAlignment }` ) }>
-									{ enableCitationImage && (
+							{ enable_citation && (
+								<figcaption className={ classnames( `quotes-dlx-citation-wrapper quotes-dlx-citation-align-${ citation_alignment }` ) }>
+									{ enable_citation_image && (
 										<div className={ classnames( 'quotes-dlx-citation-image-wrapper', {
-											'has-image': citationImageId,
-											'is-round': 'round' === citationImageAppearance,
-											'has-border': citationImageHasBorder,
+											'has-image': citation_image_id,
+											'is-round': 'round' === citation_image_appearance,
+											'has-border': citation_image_has_border,
 										} ) }>
-											{ ( citationImageId && citationImageUrl ) && (
+											{ ( citation_image_id && citation_image_url ) && (
 												<img
-													src={ citationImageUrl }
+													src={ citation_image_url }
 													alt={ __( 'Citation Image', 'quotes-dlx' ) }
 													width="75"
 													height="75"
 												/>
 											) }
-											{ ( ! citationImageId || ! citationImageUrl ) && (
+											{ ( ! citation_image_id || ! citation_image_url ) && (
 												<UserIcon
 													fill="#333"
 													width="75" height="75"
@@ -1057,20 +1057,20 @@ const TweetQuotes = ( props ) => {
 										</div>
 									) }
 									<div className="quotes-dlx-citation-text-wrapper">
-										{ enableCitationAuthor && (
+										{ enable_citation_author && (
 											<div className="quotes-dlx-citation-author">
-												{ htmlToReactParser.parse( citationAuthor ) }
+												{ htmlToReactParser.parse( citation_author ) }
 											</div>
 										) }
-										{ enableCitationTitle && (
+										{ enable_citation_title && (
 											<div className="quotes-dlx-citation-title">
-												{ htmlToReactParser.parse( citationTitle ) }
+												{ htmlToReactParser.parse( citation_title ) }
 											</div>
 										) }
 										{
-											enableCitationSource && (
+											enable_citation_source && (
 												<div className="quotes-dlx-citation-source">
-													{ htmlToReactParser.parse( citationSource ) }
+													{ htmlToReactParser.parse( citation_source ) }
 												</div>
 											)
 										}
@@ -1532,11 +1532,11 @@ const TweetQuotes = ( props ) => {
 													help={ __(
 														'This displays the permanent URL to this block.'
 													) }
-													placeholder={ manualPermalink }
-													value={ manualPermalink ?? '' }
+													placeholder={ manual_permalink }
+													value={ manual_permalink ?? '' }
 													onChange={ ( value ) => {
 														setAttributes( {
-															manualPermalink: value,
+															manual_permalink: value,
 															permalink: value,
 														} );
 													} }
@@ -1567,7 +1567,7 @@ const TweetQuotes = ( props ) => {
 
 	const blockProps = useBlockProps( {
 		className: classnames( `quotes-dlx template-${ template }`, {
-			'quotes-dlx-has-citation': enableCitation,
+			'quotes-dlx-has-citation': enable_citation,
 		} ),
 	} );
 

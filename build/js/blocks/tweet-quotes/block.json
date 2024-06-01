@@ -21,10 +21,6 @@
   "version": "1.0.0",
   "textdomain": "quotes-dlx",
   "attributes": {
-    "show_copy": {
-      "type": "boolean",
-      "default": true
-    },
     "show_permalink": {
       "type": "boolean",
       "default": true
@@ -133,7 +129,7 @@
       "type": "string",
       "default": ""
     },
-    "manualPermalink": {
+    "manual_permalink": {
       "type": "string",
       "default": ""
     },
@@ -213,55 +209,55 @@
       "type": "array",
       "default": []
     },
-    "enableCitation": {
+    "enable_citation": {
       "type": "boolean",
       "default": false
     },
-    "enableCitationImage": {
+    "enable_citation_image": {
       "type": "boolean",
       "default": true
     },
-    "enableCitationAuthor": {
+    "enable_citation_author": {
       "type": "boolean",
       "default": true
     },
-    "citationAuthor": {
+    "citation_author": {
       "type": "string",
       "default": ""
     },
-    "enableCitationTitle": {
+    "enable_citation_title": {
       "type": "boolean",
       "default": true
     },
-    "citationTitle": {
+    "citation_title": {
       "type": "string",
       "default": ""
     },
-    "enableCitationSource": {
+    "enable_citation_source": {
       "type": "boolean",
       "default": false
     },
-    "citationSource": {
+    "citation_source": {
       "type": "string",
       "default": ""
     },
-    "citationImageId": {
+    "citation_image_id": {
       "type": "number",
       "default": 0
     },
-    "citationImageUrl": {
+    "citation_image_url": {
       "type": "string",
       "default": ""
     },
-    "citationImageAppearance": {
+    "citation_image_appearance": {
       "type": "string",
       "default": "round"
     },
-    "citationImageHasBorder": {
+    "citation_image_has_border": {
       "type": "boolean",
       "default": true
     },
-    "citationAlignment": {
+    "citation_alignment": {
       "type": "string",
       "default": "left"
     }

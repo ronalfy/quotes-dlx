@@ -634,7 +634,7 @@ class Blocks {
 
 		// Format hashtags into array.
 		if ( ! is_array( $atts['hashtags'] ) ) {
-			$attributes['hashtags'] = explode( ',', $atts['hashtags'] );
+			$atts['hashtags'] = explode( ',', $atts['hashtags'] );
 		}
 
 		$attributes = Functions::sanitize_array_recursive( $atts );
@@ -898,11 +898,11 @@ class Blocks {
 						?>
 					</figure>
 					<?php
-					$tweet_button_display       = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-					$tweet_icon_alignment       = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-					$share_button_text          = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-					$hashtags                   = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-					$twitter_username           = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
 
 					// Get share classes.
 					$share_button_wrapper_classes = array(
@@ -981,6 +981,8 @@ class Blocks {
 				$enable_copy_text       = Functions::sanitize_attribute( $attributes, 'enable_copy_text', 'boolean' );
 				$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
+				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
+				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
 				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
 				// Get text label values.
@@ -992,7 +994,7 @@ class Blocks {
 				$share_this_label  = Options_Menu::get_options( 'share_this_label' );
 
 				// Check to see if global options are set.
-				$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+				$enable_global_contextual_menu = Options_Menu::get_options( 'enable_global_contextual_menu' );
 				if ( $enable_global_contextual_menu ) {
 					$enable_contextual_menu = (bool) Options_Menu::get_options( 'enable_contextual_menu' );
 					$enable_email_text      = (bool) Options_Menu::get_options( 'enable_email_text' );
@@ -1492,13 +1494,13 @@ class Blocks {
 	 * @return string|boolean false if no permalink.
 	 */
 	private function get_permalink( $attributes ) {
-		$anchor                = Functions::sanitize_attribute( $attributes, 'anchor', 'string' );
-		$unique_id             = Functions::sanitize_attribute( $attributes, 'uniqueId', 'string' );
-		$has_anchor            = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
-		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
-		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
-		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manual_permalink', 'url' );
+		$anchor                 = Functions::sanitize_attribute( $attributes, 'anchor', 'string' );
+		$unique_id              = Functions::sanitize_attribute( $attributes, 'uniqueId', 'string' );
+		$has_anchor             = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
+		$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
+		$enable_links_in_tweet  = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
+		$permalink              = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
+		$manual_permalink       = Functions::sanitize_attribute( $attributes, 'manual_permalink', 'url' );
 		$url_shortening_service = Functions::sanitize_attribute( $attributes, 'url_shortening_service', 'string' );
 
 		if ( ! $enable_copy_link ) {

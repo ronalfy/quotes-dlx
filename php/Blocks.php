@@ -860,12 +860,12 @@ class Blocks {
 										'permalink' => urlencode( $permalink ),
 										'nonce'     => $ajax_nonce,
 										'text'      => wp_strip_all_tags( $share_text_kses ),
-										'postId'	=> get_the_ID(),
+										'postId'    => get_the_ID(),
 									),
 									$ajax_url
 								);
 								?>
-								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>" data-share-text="<?php echo esc_attr( wp_strip_all_tags( $share_text_kses ) ); ?>">
 									<button class="button-reset" data-ajax-url="<?php echo esc_url( $ajax_url ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
@@ -1106,6 +1106,14 @@ class Blocks {
 				array( 'wp-i18n', 'wp-a11y' ),
 				Functions::get_plugin_version(),
 				true
+			);
+			$email_options = Options_Emails::get_options();
+			wp_localize_script(
+				'quotes-dlx-actions',
+				'qdlx_actions',
+				array(
+					'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
+				)
 			);
 		}
 	}

@@ -72,11 +72,24 @@ import { Fancybox } from '@fancyapps/ui';
 			} );
 		}
 
-		const emailButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-email-link > button' );
+		const emailButtonWrapper = wrapper.querySelector( '.quotes-dlx-meatball-menu-item-email-link' );
 		if ( null !== emailButtonWrapper ) {
-			emailButtonWrapper.addEventListener( 'click', ( e ) => {
-				fancyboxEmail( e );
-			} );
+			const emailButton = emailButtonWrapper.querySelector( 'button' );
+			if ( null !== emailButton ) {
+				emailButton.addEventListener( 'click', ( e ) => {
+					// If mailto, just open the mail client.
+					if ( qdlx_actions.email_send_type === 'mailto' ) {
+						const shareText = emailButtonWrapper.getAttribute( 'data-share-text' );
+						const shareUrl = emailButtonWrapper.getAttribute( 'data-url' );
+						const subject = __( 'Here is a cool quote to check out', 'quotes-dlx' );
+
+						const mailtoLink = `mailto:?subject=${ subject }&body=${ shareText }%0D%0A%0D%0A${ __( 'From site:', 'quotes-dlx' ) } ${ shareUrl }`;
+						window.open( mailtoLink, '_blank' );
+					} else {
+						fancyboxEmail( e );
+					}
+				} );
+			}
 		}
 	} );
 

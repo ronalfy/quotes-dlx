@@ -150,11 +150,23 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         facebook(e);
       });
     }
-    var emailButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-email-link > button');
+    var emailButtonWrapper = wrapper.querySelector('.quotes-dlx-meatball-menu-item-email-link');
     if (null !== emailButtonWrapper) {
-      emailButtonWrapper.addEventListener('click', function (e) {
-        fancyboxEmail(e);
-      });
+      var emailButton = emailButtonWrapper.querySelector('button');
+      if (null !== emailButton) {
+        emailButton.addEventListener('click', function (e) {
+          // If mailto, just open the mail client.
+          if (qdlx_actions.email_send_type === 'mailto') {
+            var shareText = emailButtonWrapper.getAttribute('data-share-text');
+            var shareUrl = emailButtonWrapper.getAttribute('data-url');
+            var subject = __('Here is a cool quote to check out', 'quotes-dlx');
+            var mailtoLink = "mailto:?subject=".concat(subject, "&body=").concat(shareText, "%0D%0A%0D%0A").concat(__('From site:', 'quotes-dlx'), " ").concat(shareUrl);
+            window.open(mailtoLink, '_blank');
+          } else {
+            fancyboxEmail(e);
+          }
+        });
+      }
     }
   });
 

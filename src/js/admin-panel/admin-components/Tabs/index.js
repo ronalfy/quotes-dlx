@@ -362,7 +362,7 @@ const AdminTabs = ( props ) => {
 					<TabItem
 						icon={ GearIcon }
 						slug="defaults"
-						description={ __( 'Set block defaults', 'quotes-dlx' ) }
+						description={ __( 'Set block and shortcode defaults', 'quotes-dlx' ) }
 						label={ __( 'Defaults', 'quotes-dlx' ) }
 						tabClicked={ ( tab ) => {
 							onTabClick( tab );

@@ -273,7 +273,7 @@ const Interface = ( props ) => {
 						</h1>
 						<p className="description">
 							{ __(
-								'The default theme will automatically be selected when you insert the block.',
+								'The default theme will automatically be selected when you insert the block or shortcode.',
 								'quotes-dlx'
 							) }
 						</p>

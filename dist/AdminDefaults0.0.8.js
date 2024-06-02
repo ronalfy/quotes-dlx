@@ -350,9 +350,9 @@ var Interface = function Interface(props) {
     "aria-hidden": "true"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "qdlx-admin__heading--text"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Defaults', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block and Shortcode Defaults', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "description"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('These default options will automatically be set when you insert the Quotes block.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('These default options will automatically be set when you insert the Quotes block or use a shortcode.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
     className: "form-table",
@@ -629,7 +629,7 @@ var Interface = function Interface(props) {
         value = _ref10$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ButtonGroup, {
         className: "qdlx-admin__button-group--align"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('X Icon Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         variant: "primary",
         icon: "align-pull-left",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),
@@ -801,12 +801,12 @@ var Interface = function Interface(props) {
       var _errors$maximumWidth, _errors$maximumWidth2;
       var field = _ref16.field;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Maximum Width', 'quotes-dlx'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Maximum Width', 'quotes-dlx'),
         className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('qdlx-admin__text-control', {
           'has-error': 'pattern' === ((_errors$maximumWidth = errors.maximumWidth) === null || _errors$maximumWidth === void 0 ? void 0 : _errors$maximumWidth.type) || 'required' === ((_errors$maximumWidth2 = errors.maximumWidth) === null || _errors$maximumWidth2 === void 0 ? void 0 : _errors$maximumWidth2.type),
           'is-required': true
         }),
-        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you have a large layout for your theme, this will be the maximum width of the block.', 'quotes-dlx'),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you have a large layout for your theme, this will be the maximum width of the quote.', 'quotes-dlx'),
         "aria-required": "true"
       }));
     }
@@ -855,7 +855,7 @@ var Interface = function Interface(props) {
         value = _ref18$field.value;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ButtonGroup, {
         className: "qdlx-admin__button-group--align"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default block alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Default Quote Alignment', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         variant: "primary",
         icon: "align-pull-left",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Align Left', 'quotes-dlx'),

@@ -5438,7 +5438,7 @@ var AdminTabs = function AdminTabs(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_15__["default"], {
     icon: _components_icons_Gear__WEBPACK_IMPORTED_MODULE_9__["default"],
     slug: "defaults",
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set block defaults', 'quotes-dlx'),
+    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set block and shortcode defaults', 'quotes-dlx'),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Defaults', 'quotes-dlx'),
     tabClicked: function tabClicked(tab) {
       onTabClick(tab);

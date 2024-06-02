@@ -387,7 +387,7 @@ var Interface = function Interface(props) {
     className: "qdlx-admin__heading--text"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a Default Theme', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "description"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The default theme will automatically be selected when you insert the block.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The default theme will automatically be selected when you insert the block or shortcode.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__tabs--content-inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__themes--wrapper"

@@ -301,12 +301,12 @@ const Interface = ( props ) => {
 							<h1>
 								<GearIcon width={ 48 } height={ 48 } aria-hidden="true" />
 								<span className="qdlx-admin__heading--text">
-									{ __( 'Block Defaults', 'quotes-dlx' ) }
+									{ __( 'Block and Shortcode Defaults', 'quotes-dlx' ) }
 								</span>
 							</h1>
 							<p className="description">
 								{ __(
-									'These default options will automatically be set when you insert the Quotes block.',
+									'These default options will automatically be set when you insert the Quotes block or use a shortcode.',
 									'quotes-dlx'
 								) }
 							</p>
@@ -658,7 +658,7 @@ const Interface = ( props ) => {
 															render={ ( { field: { onClick, value } } ) => (
 																<ButtonGroup className="qdlx-admin__button-group--align">
 																	<label>
-																		{ __( 'X Icon Alignment', 'quotes-dlx' ) }
+																		{ __( 'Icon Alignment', 'quotes-dlx' ) }
 																	</label>
 																	<Button
 																		variant="primary"
@@ -905,7 +905,7 @@ const Interface = ( props ) => {
 												render={ ( { field } ) => (
 													<TextControl
 														{ ...field }
-														label={ __( 'Block Maximum Width', 'quotes-dlx' ) }
+														label={ __( 'Maximum Width', 'quotes-dlx' ) }
 														className={ classNames( 'qdlx-admin__text-control', {
 															'has-error':
 																'pattern' === errors.maximumWidth?.type ||
@@ -913,7 +913,7 @@ const Interface = ( props ) => {
 															'is-required': true,
 														} ) }
 														help={ __(
-															'If you have a large layout for your theme, this will be the maximum width of the block.',
+															'If you have a large layout for your theme, this will be the maximum width of the quote.',
 															'quotes-dlx'
 														) }
 														aria-required="true"
@@ -964,7 +964,7 @@ const Interface = ( props ) => {
 												render={ ( { field: { onClick, value } } ) => (
 													<ButtonGroup className="qdlx-admin__button-group--align">
 														<label>
-															{ __( 'Default block alignment', 'quotes-dlx' ) }
+															{ __( 'Default Quote Alignment', 'quotes-dlx' ) }
 														</label>
 														<Button
 															variant="primary"

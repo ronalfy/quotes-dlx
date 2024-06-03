@@ -128,6 +128,7 @@ const ThemeColorPicker = ( props ) => {
 										'quotes-dlx'
 									) }
 									style={ {
+										color: color ? hexToRgba( color, valueOpacity ) : 'transparent',
 										background: color
 											? hexToRgba( color, valueOpacity )
 											: 'transparent',

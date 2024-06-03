@@ -1,4 +1,5 @@
 @import 'admin-root.scss';
+@import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 @keyframes qdlx-fade-in {
 	from {
@@ -528,6 +529,12 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 	}
 }
 
+p.qdlx-admin-description,
+td p.qdlx-admin-description {
+	font-size: 1.1em;
+	margin-bottom: 12px;
+}
+
 /* Un-saved notice bubble */
 .qdlx-admin__tabs--save-count {
 	position: absolute;
@@ -945,7 +952,7 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 		.components-radio-control__option {
 			display: flex;
 			align-items: center;
-			margin-bottom: 10px;
+			margin-bottom: 4px;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -1520,6 +1527,10 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 	margin-bottom: 16px;
 	margin-top: 2px;
 
+	.ptam-component-color-picker-palette:before {
+		display: none;
+	}
+
 	&.color-picker-popup-visible {
 		z-index: 2;
 	}
@@ -1528,6 +1539,7 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 	}
 
 	> .components-base-control__field {
+		background: transparent;
 		position: relative;
 		display: inline-grid;
 		grid-template-columns: 150px 30px;
@@ -1641,13 +1653,118 @@ $secondary_font: 'Source Sans Pro', sans-serif;
 		padding-left: 5px;
 	}
 }
-
+.qdlx-email-template-tags__popover .components-popover__content {
+	padding: 15px;
+}
 .components-popover__content {
 	background: var(--quotes-dlx-admin--color-white);
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 6px rgb(0 0 0 / 5%);
 	border-radius: 2px;
 	width: auto !important;
+}
+.components-popover__arrow.is-right {
+    left: -14px !important;
+    transform: rotate(90deg);
+}
+.components-popover__arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    display: flex;
+}
+.components-popover__arrow:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 1px;
+    height: 2px;
+    right: 1px;
+    background-color: #fff;
+}
+.components-popover__triangle-bg {
+	fill: #FFF;
+}
+.components-popover__triangle-border {
+    fill: transparent;
+    stroke-width: 1px;
+    stroke: #ccc;
+}
+
+.qdlx-admin-email-template-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+	margin-bottom: 20px;
+
+	.components-base-control.qdlx-admin__text-control {
+		margin-bottom: 0;
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+	.qdlx-email-template-tags {
+		button {
+			display: inline-flex;
+			text-decoration: none;
+			font-family: inherit;
+			font-weight: normal;
+			font-size: 13px;
+			margin: 0;
+			border: 0;
+			cursor: pointer;
+			background: none;
+			transition: box-shadow 0.1s linear;
+			height: 36px;
+			align-items: flex-end;
+			box-sizing: border-box;
+			padding: 6px 12px;
+			border-radius: 2px;
+			color: #1e1e1e;
+			margin-bottom: 0;
+		}
+	}
+	.qdlx-admin__text-area-control {
+		flex: 1;
+		margin-bottom: 0;
+		max-width: 550px;
+	}
+	.qdlx-admin__text-area-control textarea {
+		min-height: 200px;
+		display: block;
+		max-width: 550px;
+		width: 100%;
+		background-color: #fff;
+		border-radius: 3px;
+		font-family: inherit;
+		font-size: .875rem;
+		line-height: 1.25rem;
+		padding: 5px 10px;
+		line-height: 2;
+		min-height: 24px;
+		margin: 0;
+		outline-style: none;
+		box-sizing: border-box;
+	}
+}
+.qdlx-email-template-tags__popover-tags {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 8px;
+	row-gap: 8px;
+	padding: 0 5px;
+
+	button {
+		border: 1px solid #ddd;
+		text-align: center;
+		display: block;
+		width: 100%;
+		padding: 15px 10px;
+		height: auto;
+	}
 }
 .components-circular-option-picker__option:after {
 	content: '';
@@ -1861,4 +1978,29 @@ table.form-table.qdlx-font-sizes {
 ol.qdlx-planning-for {
 	font-size: 1.2em;
 	line-height: 1.8em;
+}
+.dlx__btn-white,
+.components-button.dlx__btn-white {
+	display: inline-flex;
+	background: #fff;
+    color: #333;
+    border-color: #111;
+	justify-content: center;
+	align-items: center;
+    padding-right: 16px;
+    padding-left: 8px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+    gap: 4px;
+}
+.dlx-admin-component-row-button {
+	margin: 16px 0;
+}
+
+.fancybox__container {
+    z-index: 9999;
+}
+#dlx-quotes-turnstile-preview {
+	max-width: 600px;
+    margin: 0 auto;
 }

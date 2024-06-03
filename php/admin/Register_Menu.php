@@ -7,8 +7,8 @@
 
 namespace MediaRonLLC\QuotesDLX\Admin;
 
-use MediaRonLLC\QuotesDLX\Functions as Functions;
-use MediaRonLLC\QuotesDLX\Options_Defaults as Options_Defaults;
+use MediaRonLLC\QuotesDLX\Functions;
+use MediaRonLLC\QuotesDLX\Options_Defaults;
 use MediaRonLLC\QuotesDLX\Themes\Themes_Addon as Themes;
 
 /**
@@ -126,6 +126,9 @@ class Register_Menu {
 			'jetpack_plugin_active'    => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
 			'image_dir'                => Functions::get_plugin_url( 'images' ),
 			'should_disable_licensing' => Functions::should_disable_licensing(),
+			'akismet_plugin_active'    => Functions::is_activated( 'akismet/akismet.php' ),
+			'ajaxurl'                  => admin_url( 'admin-ajax.php' ),
+			'preview_nonce'            => wp_create_nonce( 'quotes-dlx-preview-nonce' ),
 		);
 
 		wp_localize_script(

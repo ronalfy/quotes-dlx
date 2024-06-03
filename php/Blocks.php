@@ -22,6 +22,7 @@ class Blocks {
 	public static function run() {
 		$self = new self();
 		add_action( 'init', array( $self, 'init' ) );
+		add_shortcode( 'quotesdlx', array( $self, 'shortcode' ) );
 		return $self;
 	}
 
@@ -47,7 +48,8 @@ class Blocks {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_editor_scripts' ) );
 
 		// Add SVGs and other footer items we need.
-		add_action( 'wp_footer', array( $this, 'add_footer_html' ) );
+		add_action( 'wp_footer', array( $this, 'add_footer_html' ) ); // Load SVGs for only blocks.
+		add_action( 'wp_footer', array( $this, 'add_shortcode_footer_html' ) ); // Load SVGs for only shortcodes.
 
 		// Pre-load font files.
 		add_action( 'wp_head', array( $this, 'add_header_fonts_preload' ) );
@@ -55,11 +57,38 @@ class Blocks {
 		// Output styles based on block attributes.
 		add_action( 'quotes_dlx_before_modal_scripts', array( $this, 'add_modal_styles' ) );
 
+		// Output scripts/styles if not ajax or admin.
 		if ( is_admin() ) {
 			add_action( 'admin_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		} else {
 			add_action( 'wp_head', array( $this, 'maybe_output_scripts_styles' ), 500 );
 		}
+
+		// Modify allowed html for <link> tags.
+		add_filter( 'wp_kses_allowed_html', array( $this, 'add_tags_to_allowed_html' ), 10, 2 );
+	}
+
+	/**
+	 * Add the link tag to the allowed html.
+	 *
+	 * @param array  $allowed_html Allowed HTML tags.
+	 * @param string $context      Context for the allowed HTML.
+	 *
+	 * @return array Allowed HTML tags.
+	 */
+	public function add_tags_to_allowed_html( $allowed_html, $context ) {
+		if ( 'post' === $context ) {
+			$allowed_html['link']   = array(
+				'href' => true,
+				'rel'  => true,
+				'type' => true,
+			);
+			$allowed_html['script'] = array(
+				'src'  => true,
+				'type' => true,
+			);
+		}
+		return $allowed_html;
 	}
 
 	/**
@@ -69,6 +98,80 @@ class Blocks {
 	 */
 	public function add_modal_styles( $template ) {
 		$this->output_theme_style_root();
+	}
+
+	/**
+	 * Add theme styles to the shortcode.
+	 *
+	 * @param string $template The template slug.
+	 */
+	private function print_shortcode_theme_styles( $template ) {
+		// Try to get default template if there is no template.
+		if ( ! $template ) {
+			$block_defaults = Options_Defaults::get_defaults();
+			$template       = $block_defaults['template'] ?? false;
+		}
+		if ( $template ) {
+			$handle = 'quotes-dlx-' . $template;
+			if ( ! wp_script_is( $handle, 'done' ) ) {
+				wp_print_styles( array( $handle ) );
+			}
+		}
+	}
+
+	/**
+	 * Add font styles to a shortcode.
+	 */
+	private function print_shortcode_font_scripts() {
+		$primary_font   = Options_Advanced::get_options( 'primary_font_family' );
+		$secondary_font = Options_Advanced::get_options( 'secondary_font_family' );
+
+		// Check for custom value in the primary font and secondary font.
+		if ( 'custom' === $primary_font && 'custom' === $secondary_font ) {
+			return '';
+		}
+
+		$can_enqueue_primary   = true;
+		$can_enqueue_secondary = true;
+
+		// Adobe font init.
+		if ( ( Functions::is_adobe_font( $primary_font && $can_enqueue_primary ) ) || ( Functions::is_adobe_font( $secondary_font ) && $can_enqueue_secondary ) ) {
+			$project_id = Options_Advanced::get_options( 'adobe_project_id' );
+
+			// Enqueue the Adobe Fonts stylesheet.
+			Adobe_Fonts::add_dns_prefetch();
+			Adobe_Fonts::enqueue_adobe_fonts( $project_id );
+			wp_print_styles( 'quotes-dlx-adobe-fonts' ); // Style is registered in Adobe_Fonts.
+		}
+
+		// Enqueue the Google Fonts stylesheet.
+		if ( ! Functions::is_adobe_font( $primary_font ) && 'custom' !== $primary_font && $can_enqueue_primary ) {
+			$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_font . '.css' );
+			wp_register_style(
+				'quotes-dlx-gfont-primary-' . $primary_font,
+				esc_url( $primary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+			ob_start();
+			if ( wp_style_is( 'quotes-dlx-gfont-primary-' . $primary_font, 'registered' ) ) {
+				wp_print_styles( 'quotes-dlx-gfont-primary-' . $primary_font );
+			}
+		}
+		if ( ! Functions::is_adobe_font( $secondary_font ) && 'custom' !== $secondary_font && $can_enqueue_secondary ) {
+			$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_font . '.css' );
+			wp_register_style(
+				'quotes-dlx-gfont-secondary' . $secondary_font,
+				esc_url( $secondary_font_url ),
+				array(),
+				Functions::get_plugin_version(),
+				'all'
+			);
+			if ( wp_style_is( 'quotes-dlx-gfont-secondary-' . $secondary_font, 'registered' ) ) {
+				wp_print_styles( 'quotes-dlx-gfont-secondary-' . $secondary_font );
+			}
+		}
 	}
 
 	/**
@@ -164,6 +267,7 @@ class Blocks {
 			$this->output_theme_style_root();
 			return;
 		}
+		$blocks = null;
 		$blocks = parse_blocks( $post_content );
 		$this->print_block_styles( $blocks );
 		$this->print_fancybox_styles( $blocks );
@@ -212,7 +316,7 @@ class Blocks {
 						if ( ! Functions::is_adobe_font( $primary_theme_font_family ) && 'custom' !== $primary_theme_font_family ) {
 							$primary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $primary_theme_font_family . '.css' );
 							wp_enqueue_style(
-								'quotes-dlx-gfont-' . $primary_theme_font_family,
+								'quotes-dlx-gfont-primary' . $primary_theme_font_family,
 								esc_url( $primary_font_url ),
 								array(),
 								Functions::get_plugin_version(),
@@ -222,7 +326,7 @@ class Blocks {
 						if ( ! Functions::is_adobe_font( $secondary_theme_font_family ) && 'custom' !== $secondary_theme_font_family ) {
 							$secondary_font_url = Functions::get_plugin_url( 'dist/quotes-dlx-gfont-' . $secondary_theme_font_family . '.css' );
 							wp_enqueue_style(
-								'quotes-dlx-gfont-' . $secondary_theme_font_family,
+								'quotes-dlx-gfont-secondary' . $secondary_theme_font_family,
 								esc_url( $secondary_font_url ),
 								array(),
 								Functions::get_plugin_version(),
@@ -244,7 +348,7 @@ class Blocks {
 	 * @param array $blocks Array of blocks to parse.
 	 */
 	public function print_block_styles( $blocks ) {
-		if ( ! empty( $blocks ) ) {
+		if ( ! empty( $blocks ) && ! is_null( $blocks ) ) {
 			foreach ( $blocks as $block ) {
 				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
 					$template = $block['attrs']['template'] ?? false;
@@ -265,6 +369,8 @@ class Blocks {
 					$this->print_block_styles( $block['innerBlocks'] );
 				}
 			}
+		} else {
+			// Blocks is null, so assume shortcode.
 		}
 	}
 
@@ -304,6 +410,11 @@ class Blocks {
 	private function output_theme_style_root() {
 		// Get themes.
 		$themes = Themes::get_theme_data();
+
+		// If doing REST request, ignore. This prevents the editor from erroring on shortcodes.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			return;
+		}
 
 		// Set color root variables.
 		foreach ( $themes as $theme ) {
@@ -446,6 +557,109 @@ class Blocks {
 	}
 
 	/**
+	 * Shortcode output, which passthrough's the block.
+	 *
+	 * @param array  $atts    Shortcode attributes.
+	 * @param string $content Shortcode content.
+	 *
+	 * @return string Block output.
+	 */
+	public function shortcode( $atts, $content ) {
+		$default_options    = Options_Defaults::get_defaults();
+		$contextual_options = Options_Menu::get_defaults();
+		$theme_options      = Options_Theme::get_defaults();
+
+		$atts = shortcode_atts(
+			array(
+				'template'                    => $default_options['template'],
+				'share_text'                  => '', /* original share text */
+				'share_text_override'         => '', /* optimized share text */
+				'share_text_override_enabled' => false,
+				'share_button_text'           => $default_options['share_button_text'], /* for Twitter button text */
+				'facebook_share_button_text'  => $default_options['facebook_share_button_text'],
+				'hashtags'                    => $default_options['hashtags'],
+				'twitter_username'            => $default_options['twitter_username'],
+				'tweet_button_alignment'      => $default_options['tweet_button_alignment'],
+				'tweet_icon_alignment'        => $default_options['tweet_icon_alignment'], /* left, center, right */
+				'tweet_button_enabled'        => $default_options['tweet_button_enabled'],
+				'facebook_button_enabled'     => $default_options['facebook_button_enabled'],
+				'tweet_button_display'        => $default_options['tweet_button_display'], /* full, icon, text */
+				'icon_appearance'             => $default_options['icon_appearance'], /* button, transparent */
+				'maximum_width'               => $default_options['maximum_width'],
+				'maximum_width_unit'          => $default_options['maximum_width_unit'],
+				'align'                       => $default_options['align'], /* left, center, right, wide, full */
+				'anchor'                      => '',
+				'anchor_prefix'               => '',
+				'has_anchor'                  => $default_options['has_anchor'], /* true or false */
+				'url_shortener'               => $default_options['url_shortener'], /* true or false */
+				'url_shortening_service'      => $default_options['url_shortening_service'], /* manual, bitly, jetpack */
+				'permalink'                   => '',
+				'manual_permalink'            => '',
+				'enable_links_in_tweet'       => $default_options['enable_links_in_tweet'],
+				'enable_contextual_menu'      => $contextual_options['enable_contextual_menu'],
+				'enable_copy_text'            => $contextual_options['enable_copy_text'],
+				'enable_copy_tweet'           => $contextual_options['enable_copy_tweet'],
+				'enable_copy_link'            => $contextual_options['enable_copy_link'],
+				'enable_tweet_this'           => $contextual_options['enable_tweet_this'],
+				'enable_email_text'           => $contextual_options['enable_email_text'],
+				'enable_share_this'           => $contextual_options['enable_share_this'],
+				'email_text_label'            => $contextual_options['email_text_label'],
+				'copy_text_label'             => $contextual_options['copy_text_label'],
+				'copy_tweet_label'            => $contextual_options['copy_tweet_label'],
+				'copy_link_label'             => $contextual_options['copy_link_label'],
+				'tweet_this_label'            => $contextual_options['tweet_this_label'],
+				'share_this_label'            => $contextual_options['share_this_label'],
+				'enable_citation'             => false,
+				'enable_citation_image'       => true,
+				'enable_citation_author'      => true,
+				'citation_author'             => '',
+				'enable_citation_title'       => true,
+				'citation_title'              => '',
+				'enable_citation_source'      => false,
+				'citation_source'             => '',
+				'citation_image_id'           => 0,
+				'citation_image_url'          => '',
+				'citation_image_appearance'   => 'round',
+				'citation_image_has_border'   => true,
+				'citation_alignment'          => 'left', /* can be left, right, center */
+			),
+			$atts,
+			'quotesdlx'
+		);
+
+		// override share_text with content.
+		if ( ! $atts['share_text'] && $content ) {
+			$atts['share_text'] = $content;
+		}
+
+		// Format hashtags into array.
+		if ( ! is_array( $atts['hashtags'] ) ) {
+			$atts['hashtags'] = explode( ',', $atts['hashtags'] );
+		}
+
+		$attributes = Functions::sanitize_array_recursive( $atts );
+
+		// Bring back share_text as it is escaped in block output.
+		$attributes['share_text'] = $atts['share_text'];
+
+		// Bring back citation_author, citation_title, citation_source as they are escaped in block output.
+		$attributes['citation_author'] = $atts['citation_author'];
+		$attributes['citation_title']  = $atts['citation_title'];
+		$attributes['citation_source'] = $atts['citation_source'];
+
+		// Output scripts and styles.
+		ob_start();
+		$this->output_theme_style_root();
+		$this->print_shortcode_font_scripts();
+		$this->print_shortcode_theme_styles( $attributes['template'] );
+		$this->output_shortcode_frontend_scripts();
+
+		$output = ob_get_clean() . $this->frontend( $attributes, 'shortcode' );
+
+		return $output;
+	}
+
+	/**
 	 * Output the front-end structure.
 	 *
 	 * @param array  $attributes Block editor attributes.
@@ -556,7 +770,7 @@ class Blocks {
 		}
 
 		// Set citation classes.
-		$enable_citation = Functions::sanitize_attribute( $attributes, 'enableCitation', 'boolean' );
+		$enable_citation = Functions::sanitize_attribute( $attributes, 'enable_citation', 'boolean' );
 		if ( $enable_citation ) {
 			$default_wrapper_classes[] = 'quotes-dlx-has-citation';
 		}
@@ -621,26 +835,26 @@ class Blocks {
 						?>
 						</blockquote>
 						<?php
-						$enable_citation = $attributes['enableCitation'] ?? false;
+						$enable_citation = $attributes['enable_citation'] ?? false;
 						if ( $enable_citation ) {
 							$figcaption_classes       = array(
 								'quotes-dlx-citation-wrapper',
-								'quotes-dlx-citation-align-' . $attributes['citationAlignment'],
+								'quotes-dlx-citation-align-' . $attributes['citation_alignment'],
 							);
 							$figcaption_image_classes = array(
 								'quotes-dlx-citation-image-wrapper',
 							);
-							$figcaption_image_id      = $attributes['citationImageId'] ?? 0;
-							$figcaption_image_url     = $attributes['citationImageUrl'] ?? '';
-							if ( $figcaption_image_id ) {
+							$figcaption_image_id      = $attributes['citation_image_id'] ?? 0;
+							$figcaption_image_url     = $attributes['citation_image_url'] ?? '';
+							if ( $figcaption_image_id || ! empty( $figcaption_image_url ) ) {
 								$figcaption_image_classes[] = 'has-image';
-								$figcaption_image_classes[] = 'round' === $attributes['citationImageAppearance'] ? 'is-round' : '';
-								$figcaption_image_classes[] = $attributes['citationImageHasBorder'] ? 'has-border' : '';
+								$figcaption_image_classes[] = 'round' === $attributes['citation_image_appearance'] ? 'is-round' : '';
+								$figcaption_image_classes[] = $attributes['citation_image_has_border'] ? 'has-border' : '';
 							}
 							?>
 							<figcaption class="<?php echo esc_attr( implode( ' ', $figcaption_classes ) ); ?>">
 								<?php
-								if ( (bool) $attributes['enableCitationImage'] ) {
+								if ( (bool) $attributes['enable_citation_image'] ) {
 									?>
 									<div class="<?php echo esc_attr( implode( ' ', $figcaption_image_classes ) ); ?>">
 										<img
@@ -656,31 +870,31 @@ class Blocks {
 								<div class="quotes-dlx-citation-text-wrapper">
 									<?php
 									// Output citation author.
-									$enable_citation_author = $attributes['enableCitationAuthor'] ?? false;
+									$enable_citation_author = $attributes['enable_citation_author'] ?? false;
 									if ( (bool) $enable_citation_author ) {
 										?>
 										<div class="quotes-dlx-citation-author">
-											<?php echo wp_kses_post( $attributes['citationAuthor'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_author'] ); ?>
 										</div>
 										<?php
 									}
 
 									// Output citation title.
-									$enable_citation_title = $attributes['enableCitationTitle'] ?? false;
+									$enable_citation_title = $attributes['enable_citation_title'] ?? false;
 									if ( (bool) $enable_citation_title ) {
 										?>
 										<div class="quotes-dlx-citation-title">
-											<?php echo wp_kses_post( $attributes['citationTitle'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_title'] ); ?>
 										</div>
 										<?php
 									}
 
 									// Output citation source.
-									$enable_citation_source = $attributes['enableCitationSource'] ?? false;
+									$enable_citation_source = $attributes['enable_citation_source'] ?? false;
 									if ( (bool) $enable_citation_source ) {
 										?>
 										<div class="quotes-dlx-citation-source">
-											<?php echo wp_kses_post( $attributes['citationSource'] ); ?>
+											<?php echo wp_kses_post( $attributes['citation_source'] ); ?>
 										</div>
 										<?php
 									}
@@ -692,11 +906,20 @@ class Blocks {
 						?>
 					</figure>
 					<?php
-					$tweet_button_display       = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
-					$tweet_icon_alignment       = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
-					$share_button_text          = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
-					$hashtags                   = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
-					$twitter_username           = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+					$tweet_button_display = Functions::sanitize_attribute( $attributes, 'tweet_button_display', 'string' );
+					$tweet_icon_alignment = Functions::sanitize_attribute( $attributes, 'tweet_icon_alignment', 'string' );
+					$share_button_text    = Functions::sanitize_attribute( $attributes, 'share_button_text', 'raw' );
+					$hashtags             = $this->get_hashtags( isset( $attributes['hashtags'] ) ? $attributes['hashtags'] : array(), ',' );
+					$twitter_username     = trim( Functions::sanitize_attribute( $attributes, 'twitter_username', 'string' ) );
+
+					// Get share classes.
+					$share_button_wrapper_classes = array(
+						'quotes-dlx-button-wrapper',
+						Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ),
+					);
+					if ( 'transparent' === $attributes['icon_appearance'] ) {
+						$share_button_wrapper_classes[] = 'is-transparent-button';
+					}
 					$share_button_classes       = array(
 						'quotes-dlx-button',
 						$tweet_button_display,
@@ -706,7 +929,7 @@ class Blocks {
 					$facebook_share_button_text = Functions::sanitize_attribute( $attributes, 'facebook_share_button_text', 'raw' );
 					if ( $tweet_button_enabled || $facebook_button_enabled ) :
 						?>
-					<div class="quotes-dlx-button-wrapper <?php echo esc_attr( Functions::sanitize_attribute( $attributes, 'tweet_button_alignment', 'string' ) ); ?>">
+					<div class="<?php echo esc_attr( implode( ' ', $share_button_wrapper_classes ) ); ?>">
 						<?php
 						if ( $tweet_button_enabled ) :
 							?>
@@ -764,9 +987,9 @@ class Blocks {
 				<?php
 				$enable_contextual_menu = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
 				$enable_copy_text       = Functions::sanitize_attribute( $attributes, 'enable_copy_text', 'boolean' );
-				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
+				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
 				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
@@ -779,7 +1002,7 @@ class Blocks {
 				$share_this_label  = Options_Menu::get_options( 'share_this_label' );
 
 				// Check to see if global options are set.
-				$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
+				$enable_global_contextual_menu = Options_Menu::get_options( 'enable_global_contextual_menu' );
 				if ( $enable_global_contextual_menu ) {
 					$enable_contextual_menu = (bool) Options_Menu::get_options( 'enable_contextual_menu' );
 					$enable_email_text      = (bool) Options_Menu::get_options( 'enable_email_text' );
@@ -860,11 +1083,12 @@ class Blocks {
 										'permalink' => urlencode( $permalink ),
 										'nonce'     => $ajax_nonce,
 										'text'      => wp_strip_all_tags( $share_text_kses ),
+										'postId'    => get_the_ID(),
 									),
 									$ajax_url
 								);
 								?>
-								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>">
+								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>" data-share-text="<?php echo esc_attr( wp_strip_all_tags( $share_text_kses ) ); ?>">
 									<button class="button-reset" data-ajax-url="<?php echo esc_url( $ajax_url ); ?>">
 										<span class="quotes-dlx-meatball-menu-icon">
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
@@ -1024,7 +1248,7 @@ class Blocks {
 			$tweet_content .= $twitter_username;
 		}
 
-		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
+		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
 			$tweet_content .= "\r\n\r\n";
 			$tweet_content .= esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
 		}
@@ -1067,6 +1291,67 @@ class Blocks {
 	}
 
 	/**
+	 * Register and print out any scripts needed for the shortcode.
+	 */
+	public function output_shortcode_frontend_scripts() {
+		wp_register_style(
+			'quotes-dlx-frontend',
+			Functions::get_plugin_url( 'dist/quotes-dlx-frontend.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		// Register Fancybox Script.
+		wp_register_script(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
+			array(),
+			Functions::get_plugin_version(),
+			true
+		);
+
+		// Register fancybox style.
+		wp_register_style(
+			'quotes-dlx-fancybox',
+			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
+			array(),
+			Functions::get_plugin_version(),
+			'all'
+		);
+
+		wp_print_styles(
+			array(
+				'quotes-dlx-frontend',
+				'quotes-dlx-fancybox',
+			)
+		);
+
+		wp_enqueue_script(
+			'quotes-dlx-actions',
+			Functions::get_plugin_url( 'dist/quotes-dlx-actions.js' ),
+			array( 'wp-i18n', 'wp-a11y' ),
+			Functions::get_plugin_version(),
+			true
+		);
+		$email_options = Options_Emails::get_options();
+		wp_localize_script(
+			'quotes-dlx-actions',
+			'qdlx_actions',
+			array(
+				'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
+			)
+		);
+
+		wp_enqueue_scripts(
+			array(
+				'quotes-dlx-fancybox',
+
+			)
+		);
+	}
+
+	/**
 	 * Register front-end scripts/styles.
 	 */
 	public function register_frontend_scripts() {
@@ -1105,6 +1390,14 @@ class Blocks {
 				array( 'wp-i18n', 'wp-a11y' ),
 				Functions::get_plugin_version(),
 				true
+			);
+			$email_options = Options_Emails::get_options();
+			wp_localize_script(
+				'quotes-dlx-actions',
+				'qdlx_actions',
+				array(
+					'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
+				)
 			);
 		}
 	}
@@ -1209,20 +1502,49 @@ class Blocks {
 	 * @return string|boolean false if no permalink.
 	 */
 	private function get_permalink( $attributes ) {
-		$anchor                = Functions::sanitize_attribute( $attributes, 'anchor', 'string' );
-		$has_anchor            = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
-		$enable_copy_link      = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
-		$enable_links_in_tweet = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
-		$permalink             = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
-		$manual_permalink      = Functions::sanitize_attribute( $attributes, 'manualPermalink', 'url' );
+		$anchor                 = Functions::sanitize_attribute( $attributes, 'anchor', 'string' );
+		$unique_id              = Functions::sanitize_attribute( $attributes, 'uniqueId', 'string' );
+		$has_anchor             = Functions::sanitize_attribute( $attributes, 'has_anchor', 'boolean' );
+		$enable_copy_link       = Functions::sanitize_attribute( $attributes, 'enable_copy_link', 'boolean' );
+		$enable_links_in_tweet  = Functions::sanitize_attribute( $attributes, 'enable_links_in_tweet', 'boolean' );
+		$permalink              = Functions::sanitize_attribute( $attributes, 'permalink', 'url' );
+		$manual_permalink       = Functions::sanitize_attribute( $attributes, 'manual_permalink', 'url' );
+		$url_shortening_service = Functions::sanitize_attribute( $attributes, 'url_shortening_service', 'string' );
+
 		if ( ! $enable_copy_link ) {
 			return false;
 		}
-		if ( strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
-			$permalink = esc_url( $permalink ) . ( $has_anchor ? '#' . $anchor : '' );
-			return $permalink;
-		} else {
-			$permalink = esc_url( $manual_permalink ) . ( $has_anchor ? '#' . $anchor : '' );
+
+		// We could be in a shortcode, so we need to get the permalink from query id.
+		if ( is_wp_error( $permalink ) || '' === $permalink ) {
+			if ( 'manual' === $url_shortening_service && ! is_wp_error( $manual_permalink ) ) {
+				$permalink = $manual_permalink;
+			} else {
+				$permalink = get_permalink();
+			}
+		}
+
+		// Check unique_id for WP_Error.
+		if ( is_wp_error( $unique_id ) ) {
+			$unique_id = '';
+		}
+
+		// Make sure anchor is set with uniqueId.
+		if ( is_wp_error( $anchor ) || empty( $anchor ) ) {
+			$anchor = $unique_id;
+		}
+
+		if ( ! is_wp_error( $permalink ) && strlen( $permalink ) > 0 && $enable_links_in_tweet ) {
+			$hash_permalink = esc_url( $permalink ) . ( $has_anchor && $anchor ? '#' . $anchor : '' );
+			if ( '' === $anchor ) {
+				return $permalink;
+			}
+			return $hash_permalink;
+		} elseif ( ! is_wp_error( $manual_permalink ) && strlen( $manual_permalink ) > 0 && $enable_links_in_tweet ) {
+			$hash_permalink = esc_url( $manual_permalink );
+			if ( '' === $anchor ) {
+				return $hash_permalink;
+			}
 			return $permalink;
 		}
 		return false;
@@ -1366,9 +1688,13 @@ class Blocks {
 
 	/**
 	 * Add general interface and SVG sprites.
+	 *
+	 * @param bool $is_shortcode Whether this is a shortcode or not.
+	 *
+	 * see: add_shortcode_footer_html.
 	 */
-	public function add_footer_html() {
-		if ( ! has_block( 'mediaron/quotes-dlx' ) ) {
+	public function add_footer_html( $is_shortcode = false ) {
+		if ( ! has_block( 'mediaron/quotes-dlx' ) && ! $is_shortcode ) {
 			return;
 		}
 		?>
@@ -1393,5 +1719,12 @@ class Blocks {
 			</symbol>
 		</svg>
 		<?php
+	}
+
+	/**
+	 * Add footer icons to the shortcode.
+	 */
+	public function add_shortcode_footer_html() {
+		$this->add_footer_html( true );
 	}
 }

@@ -113,6 +113,18 @@ class Functions {
 	}
 
 	/**
+	 * Take a camelcase field and converts it to underline case.
+	 *
+	 * @param string $field Field to convert to camelcase.
+	 *
+	 * @return string $field Field name in camelCase..
+	 */
+	public static function to_underlines( string $field ) {
+		$field = strtolower( preg_replace( '/([a-z])([A-Z])/', '$1_$2', $field ) );
+		return $field;
+	}
+
+	/**
 	 * Return the plugin slug.
 	 *
 	 * @return string plugin slug.
@@ -300,7 +312,7 @@ class Functions {
 		// Try to get theme setup colors (if available).
 		$theme_setup_color_palette = current( (array) get_theme_support( 'editor-color-palette' ) ); // will return false if not defined.
 
-		if ( false !== $theme_json_color_palette && is_array( $theme_setup_color_palette ) ) {
+		if ( false !== $theme_setup_color_palette && is_array( $theme_setup_color_palette ) ) {
 			$color_palette = $theme_setup_color_palette;
 		}
 
@@ -467,6 +479,61 @@ class Functions {
 		// Must be a google font.
 		$font = '"' . esc_attr( ucwords( str_replace( '-', ' ', $font ) ) ) . '"';
 		return $font;
+	}
+
+	/**
+	 * Array data that must be sanitized.
+	 *
+	 * @param array $data Data to be sanitized.
+	 *
+	 * @return array Sanitized data.
+	 */
+	public static function sanitize_array_recursive( array $data ) {
+		$sanitized_data = array();
+		foreach ( $data as $key => $value ) {
+			if ( '0' === $value ) {
+				$sanitized_data[ $key ] = 0;
+				continue;
+			}
+			if ( 'true' === $value ) {
+				$sanitized_data[ $key ] = true;
+				continue;
+			} elseif ( 'false' === $value ) {
+				$sanitized_data[ $key ] = false;
+				continue;
+			}
+			if ( is_array( $value ) ) {
+				$value                  = self::sanitize_array_recursive( $value );
+				$sanitized_data[ $key ] = $value;
+				continue;
+			}
+			if ( is_null( $value ) ) {
+				$sanitized_data[ $key ] = null;
+				continue;
+			}
+			if ( is_bool( $value ) ) {
+				$sanitized_data[ $key ] = filter_var( $value, FILTER_VALIDATE_BOOLEAN );
+				continue;
+			}
+			if ( is_float( $value ) ) {
+				$sanitized_data[ $key ] = filter_var( $value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+				continue;
+			}
+			if ( is_int( $value ) ) {
+				$sanitized_data[ $key ] = filter_var( $value, FILTER_SANITIZE_NUMBER_INT );
+				continue;
+			}
+			if ( is_numeric( $value ) ) {
+				$sanitized_data[ $key ] = (float) filter_var( $value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+				continue;
+			}
+			if ( is_string( $value ) ) {
+				$sanitized_data[ $key ] = sanitize_text_field( $value );
+				continue;
+			}
+			$sanitized_data[ $key ] = sanitize_text_field( $value );
+		}
+		return $sanitized_data;
 	}
 
 	/**
@@ -761,4 +828,3 @@ class Functions {
 		return $highest_priority;
 	}
 }
-

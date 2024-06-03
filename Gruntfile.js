@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 				{src: ['readme.md'], dest: '/', filter: 'isFile'}, // includes files in path
 				{src: ['readme.txt'], dest: '/', filter: 'isFile'},
 				{src: ['php/**'], dest: '/'}, // includes files in path and its subdirs
+				{src: ['templates/**'], dest: '/'}, // includes files in path and its subdirs
 				{src: ['images/**'], dest: '/'},
 				{src: ['lib/**'], dest: '/'}, // includes files in path and its subdirs
 				{src: ['fancybox/**'], dest: '/'}, // includes files in path and its subdirs

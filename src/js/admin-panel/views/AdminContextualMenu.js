@@ -587,16 +587,6 @@ const Interface = ( props ) => {
 									) }
 								</tbody>
 							</table>
-
-							<Notice
-								message={ __(
-									'The following features are experimental and may be removed or revised in a future release.',
-								) }
-								status="warning"
-								politeness="polite"
-								inline={ false }
-								icon={ FlaskIcon }
-							/>
 							<table className="form-table" role="presentation">
 								<tbody>
 									<tr>

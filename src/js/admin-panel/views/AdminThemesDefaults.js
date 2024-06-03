@@ -3,8 +3,7 @@
 import React, { useEffect, useState, Suspense, useContext } from 'react';
 import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
-import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import '@fancyapps/ui/dist/fancybox.css';
+import { Fancybox } from '@fancyapps/ui';
 import {
 	TextControl,
 	Button,
@@ -274,7 +273,7 @@ const Interface = ( props ) => {
 						</h1>
 						<p className="description">
 							{ __(
-								'The default theme will automatically be selected when you insert the block.',
+								'The default theme will automatically be selected when you insert the block or shortcode.',
 								'quotes-dlx'
 							) }
 						</p>

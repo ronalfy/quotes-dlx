@@ -6,6 +6,7 @@ import AdminThemeDefaultsLoader from '../Loaders/AdminThemeDefaultsLoader';
 import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import 'react-loading-skeleton/dist/skeleton.css';
 import CircularQuestionIcon from '../../../components/icons/CircularQuestion';
+import AtIcon from '../../../components/icons/AtIcon';
 import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
@@ -19,48 +20,52 @@ import ErrorBoundary from '../../admin-components/ErrorBoundary/index.js';
 
 // Lazy load components.
 const AdminHome = lazy( () =>
-	import( /* webpackChunkName: "AdminHome0.0.6" */ '../../views/AdminHome' )
+	import( /* webpackChunkName: "AdminHome0.0.7" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults0.0.8" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.9" */ '../../views/AdminDefaults' )
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.9" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.11" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminMenuDefaults0.0.5" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.7" */ '../../views/AdminContextualMenu'
 	)
 );
 
 const AdminThemesDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemesDefaults0.0.7" */ '../../views/AdminThemesDefaults'
+		/* webpackChunkName: "AdminThemesDefaults0.0.8" */ '../../views/AdminThemesDefaults'
 	)
 );
 
 const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeOptions0.0.9" */ '../../views/AdminThemeOptions'
+		/* webpackChunkName: "AdminThemeOptions0.0.10" */ '../../views/AdminThemeOptions'
 	)
 );
 
 const AdminSupport = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminSupport0.0.6" */ '../../views/AdminSupport'
+		/* webpackChunkName: "AdminSupport0.0.7" */ '../../views/AdminSupport'
 	)
 );
 
 const AdminLicense = lazy( () =>
-	import( /* webpackChunkName: "AdminLicense0.0.6" */ '../../views/AdminLicense' )
+	import( /* webpackChunkName: "AdminLicense0.0.8" */ '../../views/AdminLicense' )
+);
+
+const AdminEmails = lazy( () =>
+	import( /* webpackChunkName: "AdminEmails0.0.4" */ '../../views/AdminEmails' )
 );
 
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount } = useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount, emailTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -70,6 +75,7 @@ const AdminTabs = ( props ) => {
 		themesDefaultsDirtyCount,
 		licensesDirtyCount,
 		advancedTabDirtyCount,
+		emailTabDirtyCount,
 	] );
 
 	/**
@@ -114,7 +120,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminDefaults = (
 		<>
 			<ErrorBoundary
@@ -141,7 +147,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminLicense = (
 		<>
 			<ErrorBoundary
@@ -168,7 +174,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminContextualMenuDefaults = (
 		<>
 			<ErrorBoundary
@@ -195,7 +201,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminThemesDefaults = (
 		<>
 			<ErrorBoundary
@@ -222,7 +228,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminThemeOptions = (
 		<>
 			<ErrorBoundary
@@ -249,7 +255,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminSupport = (
 		<>
 			<ErrorBoundary
@@ -276,7 +282,7 @@ const AdminTabs = ( props ) => {
 			</ErrorBoundary>
 		</>
 	);
-	
+
 	const getAdminAdvanced = (
 		<>
 			<ErrorBoundary
@@ -299,6 +305,33 @@ const AdminTabs = ( props ) => {
 			>
 				<Suspense fallback={ <AdminDefaultsLoader /> }>
 					<AdminAdvanced />
+				</Suspense>
+			</ErrorBoundary>
+		</>
+	);
+
+	const getAdminEmails = (
+		<>
+			<ErrorBoundary
+				fallback={
+					<p>
+						{ __(
+							'Unable to load the Email screen for QuotesDLX. Please try refreshing and contact support at if the error persists.',
+							'quotes-dlx'
+						) }
+						<br />
+						<a
+							href="https://dlxplugins.com/support/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							DLX Plugins Support
+						</a>
+					</p>
+				}
+			>
+				<Suspense fallback={ <AdminDefaultsLoader /> }>
+					<AdminEmails />
 				</Suspense>
 			</ErrorBoundary>
 		</>
@@ -329,7 +362,7 @@ const AdminTabs = ( props ) => {
 					<TabItem
 						icon={ GearIcon }
 						slug="defaults"
-						description={ __( 'Set block defaults', 'quotes-dlx' ) }
+						description={ __( 'Set block and shortcode defaults', 'quotes-dlx' ) }
 						label={ __( 'Defaults', 'quotes-dlx' ) }
 						tabClicked={ ( tab ) => {
 							onTabClick( tab );
@@ -347,6 +380,17 @@ const AdminTabs = ( props ) => {
 						} }
 						isActive={ isActive }
 						dirtyCount={ contextualMenuDefaultsDirtyCount }
+					/>
+					<TabItem
+						icon={ AtIcon }
+						slug="emails"
+						description={ __( 'Set the email settings.', 'quotes-dlx' ) }
+						label={ __( 'Emails', 'quotes-dlx' ) }
+						tabClicked={ ( tab ) => {
+							onTabClick( tab );
+						} }
+						isActive={ isActive }
+						dirtyCount={ emailTabDirtyCount }
 					/>
 					<TabItem
 						icon={ PaintbrushIcon }
@@ -419,6 +463,11 @@ const AdminTabs = ( props ) => {
 								path="/menu"
 								exact
 								element={ getAdminContextualMenuDefaults }
+							/>
+							<Route
+								path="/emails"
+								exact
+								element={ getAdminEmails }
 							/>
 							<Route
 								path="/themes"

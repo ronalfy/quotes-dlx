@@ -53,16 +53,16 @@ class Options_Defaults extends Options_Abstract {
 			'maximum_width_unit'         => 'px',
 			'twitter_username'           => '',
 			'hashtags'                   => array(),
-			'align'                      => 'center',
+			'align'                      => 'center', /* left, center, right, wide, full */
 			'share_button_text'          => __( 'Click to Post', 'quotes-dlx' ),
-			'tweet_button_alignment'     => 'right',
-			'tweet_icon_alignment'       => 'right',
-			'tweet_button_display'       => 'full',
+			'tweet_button_alignment'     => 'right', /* left, center, right */
+			'tweet_icon_alignment'       => 'right', /* left, center, right */
+			'tweet_button_display'       => 'full', /* full, icon, text */
 			'tweet_button_enabled'       => true,
 			'has_anchor'                 => true,
 			'anchor_prefix'              => 'qdlx',
 			'enable_links_in_tweet'      => true,
-			'url_shortening_service'     => 'manual',
+			'url_shortening_service'     => 'manual', /* manual, bitly, jetpack */
 			'url_shortener'              => true,
 			'enable_contextual_menu'     => true,
 			'enable_copy_text'           => true,
@@ -74,7 +74,7 @@ class Options_Defaults extends Options_Abstract {
 			'template'                   => 'light-branded',
 			'facebook_button_enabled'    => false,
 			'facebook_share_button_text' => __( 'Share on Facebook', 'quotes-dlx' ),
-			'icon_appearance'            => 'button',
+			'icon_appearance'            => 'button', /* button, transparent */
 		);
 
 		/**

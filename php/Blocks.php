@@ -639,6 +639,14 @@ class Blocks {
 
 		$attributes = Functions::sanitize_array_recursive( $atts );
 
+		// Bring back share_text as it is escaped in block output.
+		$attributes['share_text'] = $atts['share_text'];
+
+		// Bring back citation_author, citation_title, citation_source as they are escaped in block output.
+		$attributes['citation_author'] = $atts['citation_author'];
+		$attributes['citation_title']  = $atts['citation_title'];
+		$attributes['citation_source'] = $atts['citation_source'];
+
 		// Output scripts and styles.
 		ob_start();
 		$this->output_theme_style_root();

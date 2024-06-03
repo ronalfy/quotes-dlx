@@ -1527,6 +1527,10 @@ td p.qdlx-admin-description {
 	margin-bottom: 16px;
 	margin-top: 2px;
 
+	.ptam-component-color-picker-palette:before {
+		display: none;
+	}
+
 	&.color-picker-popup-visible {
 		z-index: 2;
 	}
@@ -1535,6 +1539,7 @@ td p.qdlx-admin-description {
 	}
 
 	> .components-base-control__field {
+		background: transparent;
 		position: relative;
 		display: inline-grid;
 		grid-template-columns: 150px 30px;

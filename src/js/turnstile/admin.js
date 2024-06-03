@@ -97,6 +97,6 @@ window.onLoadDLXPMProPreviewCallback = () => {
 		size: dlxCF.size, /* can be compact|normal. */
 		theme: dlxCF.theme, /* can be light, dark, auto */
 		language: dlxCF.language,
-		appearance: dlxCF.appearance,
+		appearance: dlxCF.appearance || 'always',
 	} );
 };

@@ -300,7 +300,6 @@ const Interface = ( props ) => {
 						<Controller
 							name="captchaType"
 							control={ control }
-							rules={ { required: true } }
 							render={ ( { field: { onChange, value } } ) => (
 								<RadioControl
 									label={ __( 'Choose which CAPTCHA version you would like to use', 'quotes-dlx' ) }
@@ -486,7 +485,6 @@ const Interface = ( props ) => {
 										<Controller
 											name="widgetSize"
 											control={ control }
-											rules={ { required: true } }
 											render={ ( { field: { onChange, value } } ) => (
 												<SelectControl
 													label={ __( 'Widget Size', 'quotes-dlx' ) }
@@ -559,7 +557,6 @@ const Interface = ( props ) => {
 						) }
 						{ ( 'recaptcha' === getValues( 'captchaType' ) ) && (
 							<>
-								
 								<div className="qdlx-admin-component-row">
 									<Controller
 										name="recaptchaSiteKey"

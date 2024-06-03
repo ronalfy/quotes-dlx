@@ -18,6 +18,9 @@ $widget_appearance = sanitize_text_field( filter_input( INPUT_GET, 'widgetAppear
 $widget_theme      = sanitize_text_field( filter_input( INPUT_GET, 'widgetTheme', FILTER_DEFAULT ) );
 $widget_size       = sanitize_text_field( filter_input( INPUT_GET, 'widgetSize', FILTER_DEFAULT ) );
 
+// Set content security policy headers for unsafe inline.
+header( 'Content-Security-Policy: script-src \'self\' \'unsafe-inline\' https://challenges.cloudflare.com;' );
+
 // Let's start laying dowm some HTML.
 ?>
 <!DOCTYPE html>

@@ -20,46 +20,46 @@ import ErrorBoundary from '../../admin-components/ErrorBoundary/index.js';
 
 // Lazy load components.
 const AdminHome = lazy( () =>
-	import( /* webpackChunkName: "AdminHome0.0.6" */ '../../views/AdminHome' )
+	import( /* webpackChunkName: "AdminHome0.0.7" */ '../../views/AdminHome' )
 );
 const AdminDefaults = lazy( () =>
-	import( /* webpackChunkName: "AdminDefaults0.0.8" */ '../../views/AdminDefaults' )
+	import( /* webpackChunkName: "AdminDefaults0.0.9" */ '../../views/AdminDefaults' )
 );
 
 const AdminAdvanced = lazy( () =>
-	import( /* webpackChunkName: "AdminAdvanced0.0.10" */ '../../views/AdminAdvanced' )
+	import( /* webpackChunkName: "AdminAdvanced0.0.11" */ '../../views/AdminAdvanced' )
 );
 
 const AdminContextualMenuDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminMenuDefaults0.0.6" */ '../../views/AdminContextualMenu'
+		/* webpackChunkName: "AdminMenuDefaults0.0.7" */ '../../views/AdminContextualMenu'
 	)
 );
 
 const AdminThemesDefaults = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemesDefaults0.0.7" */ '../../views/AdminThemesDefaults'
+		/* webpackChunkName: "AdminThemesDefaults0.0.8" */ '../../views/AdminThemesDefaults'
 	)
 );
 
 const AdminThemeOptions = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminThemeOptions0.0.9" */ '../../views/AdminThemeOptions'
+		/* webpackChunkName: "AdminThemeOptions0.0.10" */ '../../views/AdminThemeOptions'
 	)
 );
 
 const AdminSupport = lazy( () =>
 	import(
-		/* webpackChunkName: "AdminSupport0.0.6" */ '../../views/AdminSupport'
+		/* webpackChunkName: "AdminSupport0.0.7" */ '../../views/AdminSupport'
 	)
 );
 
 const AdminLicense = lazy( () =>
-	import( /* webpackChunkName: "AdminLicense0.0.6" */ '../../views/AdminLicense' )
+	import( /* webpackChunkName: "AdminLicense0.0.8" */ '../../views/AdminLicense' )
 );
 
 const AdminEmails = lazy( () =>
-	import( /* webpackChunkName: "AdminEmails0.0.2" */ '../../views/AdminEmails' )
+	import( /* webpackChunkName: "AdminEmails0.0.4" */ '../../views/AdminEmails' )
 );
 
 const AdminTabs = ( props ) => {

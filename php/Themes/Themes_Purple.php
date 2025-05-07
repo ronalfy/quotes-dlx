@@ -47,7 +47,7 @@ class Themes_Purple extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.6';
+	protected static $version = '1.0.7';
 
 	/**
 	 * Description for the theme.

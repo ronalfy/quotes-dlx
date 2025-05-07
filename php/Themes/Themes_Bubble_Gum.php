@@ -47,7 +47,7 @@ class Themes_Bubble_Gum extends Themes_Addon {
 	 *
 	 * @var string $version The theme version.
 	 */
-	protected static $version = '1.0.3';
+	protected static $version = '1.0.4';
 
 	/**
 	 * Description for the theme.

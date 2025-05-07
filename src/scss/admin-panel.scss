@@ -939,6 +939,8 @@ td p.qdlx-admin-description {
 		}
 		label {
 			font-weight: 700;
+			display: inline-flex;
+			margin-right: 12px;
 		}
 		input[type='text'],
 		input[type='password'] {
@@ -1068,7 +1070,7 @@ td p.qdlx-admin-description {
 		vertical-align: middle;
 		content: '*';
 		top: 0;
-		right: -12px;
+		right: -16px;
 		color: var(--quotes-dlx-admin--color-red--required);
 		font-size: 1.4em;
 		line-height: 1.3;

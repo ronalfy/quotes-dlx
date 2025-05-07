@@ -1,2 +1,1058 @@
-/*! For license information please see AdminAdvanced0.0.11.js.LICENSE.txt */
-"use strict";(self.webpackChunkquotes_dlx=self.webpackChunkquotes_dlx||[]).push([[508],{4476:(e,t,n)=>{n.d(t,{A:()=>a});const a={"Josefin Sans":{name:"Josefin Sans",slug:"josefin-sans",family:"Josefin Sans",fallback:"Helvetica, Arial, sans-serif"},Karla:{name:"Karla",slug:"karla",family:"Karla",fallback:"Helvetica, Arial, sans-serif"},Lato:{name:"Lato",slug:"lato",family:"Lato",fallback:"Helvetica, Arial, sans-serif"},Montserrat:{name:"Montserrat",slug:"montserrat",family:"Montserrat",fallback:"Helvetica, Arial, sans-serif"},Nunito:{name:"Nunito",slug:"nunito",family:"Nunito",fallback:"sans-serif"},"Open Sans":{name:"Open Sans",slug:"open-sans",family:"Open Sans",fallback:"Helvetica, Arial, sans-serif"},Oxygen:{name:"Oxygen",slug:"oxygen",family:"Oxygen",fallback:"sans-serif"},"Playfair Display":{name:"Playfair Display",slug:"playfair-display",family:"Playfair Display",fallback:"Helvetica, Arial, sans-serif"},Raleway:{name:"Raleway",slug:"raleway",family:"Raleway",fallback:"Helvetica, Arial, sans-serif"},Roboto:{name:"Roboto",slug:"roboto",family:"Roboto",fallback:"Helvetica, Arial, sans-serif"},"Source Sans Pro":{name:"Source Sans Pro",slug:"source-sans-pro",family:"Source Sans Pro",fallback:"Helvetica, Arial, sans-serif"},Spinnaker:{name:"Spinnaker",slug:"spinnaker",family:"Spinnaker",fallback:"sans-serif"}}},7352:(e,t,n)=>{n.r(t),n.d(t,{default:()=>O});var a=n(1609),o=n.n(a),r=n(7723),l=n(6427),i=n(9877),s=n(4912),c=n(9785),u=n(6942),d=n.n(u),m=(n(7506),n(886)),f=n(2512),_=n(197),h=n(4102),p=n(6593),v=(n(8264),n(2988),n(2679)),y=n(3842),g=n(3380),b=n(4476),x=n(880);function q(e){return q="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},q(e)}function E(){E=function(){return t};var e,t={},n=Object.prototype,a=n.hasOwnProperty,o=Object.defineProperty||function(e,t,n){e[t]=n.value},r="function"==typeof Symbol?Symbol:{},l=r.iterator||"@@iterator",i=r.asyncIterator||"@@asyncIterator",s=r.toStringTag||"@@toStringTag";function c(e,t,n){return Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{c({},"")}catch(e){c=function(e,t,n){return e[t]=n}}function u(e,t,n,a){var r=t&&t.prototype instanceof v?t:v,l=Object.create(r.prototype),i=new I(a||[]);return o(l,"_invoke",{value:N(e,n,i)}),l}function d(e,t,n){try{return{type:"normal",arg:e.call(t,n)}}catch(e){return{type:"throw",arg:e}}}t.wrap=u;var m="suspendedStart",f="suspendedYield",_="executing",h="completed",p={};function v(){}function y(){}function g(){}var b={};c(b,l,(function(){return this}));var x=Object.getPrototypeOf,S=x&&x(x(P([])));S&&S!==n&&a.call(S,l)&&(b=S);var w=g.prototype=v.prototype=Object.create(b);function A(e){["next","throw","return"].forEach((function(t){c(e,t,(function(e){return this._invoke(t,e)}))}))}function F(e,t){function n(o,r,l,i){var s=d(e[o],e,r);if("throw"!==s.type){var c=s.arg,u=c.value;return u&&"object"==q(u)&&a.call(u,"__await")?t.resolve(u.__await).then((function(e){n("next",e,l,i)}),(function(e){n("throw",e,l,i)})):t.resolve(u).then((function(e){c.value=e,l(c)}),(function(e){return n("throw",e,l,i)}))}i(s.arg)}var r;o(this,"_invoke",{value:function(e,a){function o(){return new t((function(t,o){n(e,a,t,o)}))}return r=r?r.then(o,o):o()}})}function N(t,n,a){var o=m;return function(r,l){if(o===_)throw Error("Generator is already running");if(o===h){if("throw"===r)throw l;return{value:e,done:!0}}for(a.method=r,a.arg=l;;){var i=a.delegate;if(i){var s=k(i,a);if(s){if(s===p)continue;return s}}if("next"===a.method)a.sent=a._sent=a.arg;else if("throw"===a.method){if(o===m)throw o=h,a.arg;a.dispatchException(a.arg)}else"return"===a.method&&a.abrupt("return",a.arg);o=_;var c=d(t,n,a);if("normal"===c.type){if(o=a.done?h:f,c.arg===p)continue;return{value:c.arg,done:a.done}}"throw"===c.type&&(o=h,a.method="throw",a.arg=c.arg)}}}function k(t,n){var a=n.method,o=t.iterator[a];if(o===e)return n.delegate=null,"throw"===a&&t.iterator.return&&(n.method="return",n.arg=e,k(t,n),"throw"===n.method)||"return"!==a&&(n.method="throw",n.arg=new TypeError("The iterator does not provide a '"+a+"' method")),p;var r=d(o,t.iterator,n.arg);if("throw"===r.type)return n.method="throw",n.arg=r.arg,n.delegate=null,p;var l=r.arg;return l?l.done?(n[t.resultName]=l.value,n.next=t.nextLoc,"return"!==n.method&&(n.method="next",n.arg=e),n.delegate=null,p):l:(n.method="throw",n.arg=new TypeError("iterator result is not an object"),n.delegate=null,p)}function C(e){var t={tryLoc:e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function O(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function I(e){this.tryEntries=[{tryLoc:"root"}],e.forEach(C,this),this.reset(!0)}function P(t){if(t||""===t){var n=t[l];if(n)return n.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var o=-1,r=function n(){for(;++o<t.length;)if(a.call(t,o))return n.value=t[o],n.done=!1,n;return n.value=e,n.done=!0,n};return r.next=r}}throw new TypeError(q(t)+" is not iterable")}return y.prototype=g,o(w,"constructor",{value:g,configurable:!0}),o(g,"constructor",{value:y,configurable:!0}),y.displayName=c(g,s,"GeneratorFunction"),t.isGeneratorFunction=function(e){var t="function"==typeof e&&e.constructor;return!!t&&(t===y||"GeneratorFunction"===(t.displayName||t.name))},t.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,g):(e.__proto__=g,c(e,s,"GeneratorFunction")),e.prototype=Object.create(w),e},t.awrap=function(e){return{__await:e}},A(F.prototype),c(F.prototype,i,(function(){return this})),t.AsyncIterator=F,t.async=function(e,n,a,o,r){void 0===r&&(r=Promise);var l=new F(u(e,n,a,o),r);return t.isGeneratorFunction(n)?l:l.next().then((function(e){return e.done?e.value:l.next()}))},A(w),c(w,s,"Generator"),c(w,l,(function(){return this})),c(w,"toString",(function(){return"[object Generator]"})),t.keys=function(e){var t=Object(e),n=[];for(var a in t)n.push(a);return n.reverse(),function e(){for(;n.length;){var a=n.pop();if(a in t)return e.value=a,e.done=!1,e}return e.done=!0,e}},t.values=P,I.prototype={constructor:I,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=e,this.done=!1,this.delegate=null,this.method="next",this.arg=e,this.tryEntries.forEach(O),!t)for(var n in this)"t"===n.charAt(0)&&a.call(this,n)&&!isNaN(+n.slice(1))&&(this[n]=e)},stop:function(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var n=this;function o(a,o){return i.type="throw",i.arg=t,n.next=a,o&&(n.method="next",n.arg=e),!!o}for(var r=this.tryEntries.length-1;r>=0;--r){var l=this.tryEntries[r],i=l.completion;if("root"===l.tryLoc)return o("end");if(l.tryLoc<=this.prev){var s=a.call(l,"catchLoc"),c=a.call(l,"finallyLoc");if(s&&c){if(this.prev<l.catchLoc)return o(l.catchLoc,!0);if(this.prev<l.finallyLoc)return o(l.finallyLoc)}else if(s){if(this.prev<l.catchLoc)return o(l.catchLoc,!0)}else{if(!c)throw Error("try statement without catch or finally");if(this.prev<l.finallyLoc)return o(l.finallyLoc)}}}},abrupt:function(e,t){for(var n=this.tryEntries.length-1;n>=0;--n){var o=this.tryEntries[n];if(o.tryLoc<=this.prev&&a.call(o,"finallyLoc")&&this.prev<o.finallyLoc){var r=o;break}}r&&("break"===e||"continue"===e)&&r.tryLoc<=t&&t<=r.finallyLoc&&(r=null);var l=r?r.completion:{};return l.type=e,l.arg=t,r?(this.method="next",this.next=r.finallyLoc,p):this.complete(l)},complete:function(e,t){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&t&&(this.next=t),p},finish:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.finallyLoc===e)return this.complete(n.completion,n.afterLoc),O(n),p}},catch:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var n=this.tryEntries[t];if(n.tryLoc===e){var a=n.completion;if("throw"===a.type){var o=a.arg;O(n)}return o}}throw Error("illegal catch attempt")},delegateYield:function(t,n,a){return this.delegate={iterator:P(t),resultName:n,nextLoc:a},"next"===this.method&&(this.arg=e),p}},t}function S(e,t,n,a,o,r,l){try{var i=e[r](l),s=i.value}catch(e){return void n(e)}i.done?t(s):Promise.resolve(s).then(a,o)}function w(e){return function(){var t=this,n=arguments;return new Promise((function(a,o){var r=e.apply(t,n);function l(e){S(r,a,o,l,i,"next",e)}function i(e){S(r,a,o,l,i,"throw",e)}l(void 0)}))}}function A(){return A=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},A.apply(this,arguments)}function F(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var a,o,r,l,i=[],s=!0,c=!1;try{if(r=(n=n.call(e)).next,0===t){if(Object(n)!==n)return;s=!1}else for(;!(s=(a=r.call(n)).done)&&(i.push(a.value),i.length!==t);s=!0);}catch(e){c=!0,o=e}finally{try{if(!s&&null!=n.return&&(l=n.return(),Object(l)!==l))return}finally{if(c)throw o}}return i}}(e,t)||function(e,t){if(e){if("string"==typeof e)return N(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?N(e,t):void 0}}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function N(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,a=new Array(t);n<t;n++)a[n]=e[n];return a}var k=function(){return(0,m.A)("quotes_dlx_retrieve_admin_options_advanced",{nonce:quotes_dlx_admin.options_retrieve_nonce})},C=function(e){var t="quotes_dlx_form_advanced",n=(0,a.useContext)(y.A),s=n.advancedTabDirtyCount,u=n.setAdvancedTabDirtyCount,x=n.setThemesDefaultsDirtyCount,q=n.setLicensesDirtyCount,S=n.setBlockDefaultsDirtyCount,N=n.setContextualMenuDefaultsDirtyCount,k=n.defaultTheme,C=(0,e.defaults)().data,O=C.data,I=(C.success,F((0,a.useState)(O.tweet_button_enabled),2)),P=(I[0],I[1],F((0,a.useState)(O.tweet_button_display),2)),j=(P[0],P[1],F((0,a.useState)(O.has_anchor),2)),L=(j[0],j[1],F((0,a.useState)(O.enable_links_in_tweet),2)),D=(L[0],L[1],F((0,a.useState)(O.url_shortener),2)),T=(D[0],D[1],F((0,a.useState)(!0),2)),R=T[0],z=T[1],U=F((0,a.useState)(!1),2),H=U[0],G=U[1],J=F((0,a.useState)(!1),2),B=J[0],M=J[1],V=F((0,a.useState)(!1),2),X=V[0],Y=V[1],Q=F((0,a.useState)(!1),2),$=Q[0],K=Q[1],Z=F((0,a.useState)(!1),2),W=Z[0],ee=(Z[1],F((0,a.useState)(!1),2)),te=ee[0],ne=ee[1],ae=F((0,a.useState)(!1),2),oe=ae[0],re=ae[1],le=F((0,a.useState)(!1),2),ie=le[0],se=le[1],ce=F((0,a.useState)(!1),2),ue=ce[0],de=ce[1],me=F((0,a.useState)(!1),2),fe=me[0],_e=me[1],he=F((0,a.useState)(O.adobe_fonts),2),pe=he[0],ve=he[1],ye=F((0,a.useState)(!1),2),ge=ye[0],be=ye[1],xe=F((0,a.useState)(!1),2),qe=xe[0],Ee=xe[1],Se=O.enable_fonts,we=O.custom_font_primary,Ae=O.custom_font_secondary,Fe=O.primary_font_family,Ne=O.secondary_font_family,ke=O.enable_adobe_fonts,Ce=O.adobe_project_id,Oe=O.activate_adobe_fonts_admin,Ie=O.activate_adobe_fonts_frontend,Pe=O.template,je=(O.facebook_app_id,(0,c.mN)({defaultValues:{enableFonts:Se,customFontPrimary:we,customFontSecondary:Ae,primaryFontFamily:Fe,secondaryFontFamily:Ne,enableAdobeFonts:ke,adobeProjectId:Ce,activateAdobeFontsAdmin:Oe,activateAdobeFontsFrontend:Ie}})),Le=(je.register,je.control),De=je.handleSubmit,Te=je.setValue,Re=je.getValues,ze=je.reset,Ue=je.trigger,He=(0,c.FH)({control:Le}),Ge=(0,c.lN)({control:Le}),Je=Ge.errors,Be=Ge.isDirty,Me=Ge.dirtyFields;Ge.touchedFields,(0,a.useEffect)((function(){}),[]);var Ve=function(){return Object.keys(Je).length>0};if((0,a.useEffect)((function(){var e=localStorage.getItem(t),n=localStorage.getItem(t+"_dirty_fields");if(null!==e){var a=JSON.parse(e);if(Object.keys(a.length>0)){var o={};null!==n&&(o=JSON.parse(n));for(var r=0,l=Object.entries(a);r<l.length;r++){var i=F(l[r],2),s=i[0],c=i[1];o.hasOwnProperty(s)?Te(s,c,{shouldDirty:!0,shouldValidate:!0}):Te(s,c,{shouldDirty:!1,shouldValidate:!1})}}}z(!1)}),[]),(0,a.useEffect)((function(){H||$||R||((Be||s>0)&&(u(Object.keys(Me).length),localStorage.setItem(t,JSON.stringify(He)),localStorage.setItem(t+"_dirty_fields",JSON.stringify(Me))),z(!1))}),[He]),R)return o().createElement(h.A,null);var Xe,Ye,Qe,$e,Ke,Ze,We=function(){var e=[];!1!==pe&&void 0!==pe&&Re("enableAdobeFonts")&&pe.forEach((function(t){e.push({label:t.name,value:t.slug})}));for(var t=0,n=Object.entries(b.A);t<n.length;t++){var a=F(n[t],2),o=(a[0],a[1]);e.push({label:o.name,value:o.slug})}return e.push({label:(0,r.__)("Custom","quotes-dlx"),value:"custom"}),e},et=function(e){return e.replace(/(^[a-z])/g,(function(e){return e.toUpperCase()})).replace(/-([a-z])/gi,(function(e,t){return" "+t.toUpperCase()}))},tt=function(){var e=Pe;return""!==k&&(e=k),"".concat(ajaxurl,"?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65),"&buttonsize=").concat(encodeURIComponent(16),"&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce,"&template=").concat(encodeURIComponent(e),"&screen=tablet&primary_font_family=").concat(encodeURIComponent(et(Re("primaryFontFamily"))),"&secondary_font_family=").concat(encodeURIComponent(et(Re("secondaryFontFamily"))))},nt=function(){localStorage.removeItem("quotes_dlx_menu_defaults"),localStorage.removeItem("quotes_dlx_form_defaults"),localStorage.removeItem("quotes_dlx_licenses"),localStorage.removeItem("quotes_dlx_themes_defaults"),localStorage.removeItem("quotes_dlx_form_advanced"),u(0),x(0),q(0),S(0),N(0)};return o().createElement(o().Fragment,null,o().createElement("div",{className:"qdlx-admin__tabs--home-grid-wrap"},o().createElement("div",{className:"qdlx-admin__tabs--content-wrap"},o().createElement("form",{onSubmit:De((function(e){G(!0),(0,m.A)("quotes_dlx_save_admin_options_advanced",{nonce:quotes_dlx_admin.options_save_nonce,form_data:e}).then((function(e){var n=e.data.data;e.data.success&&(u(0),localStorage.setItem(t,JSON.stringify(n)),localStorage.removeItem(t+"_dirty_fields"),ze(n,{keepDirty:!1,keepDirtyValues:!1}),Y(!0),setTimeout((function(){Y(!1)}),3e3))})).catch((function(e){})).then((function(e){G(!1)}))}))},o().createElement("div",{className:"qdlx-admin__tabs--content-panel"},o().createElement("div",{className:"qdlx-admin__tabs--content-heading"},o().createElement("h1",null,o().createElement(v.A,{width:48,height:48,"aria-hidden":"true"}),o().createElement("span",{className:"qdlx-admin__heading--text"},(0,r.__)("Advanced Options","quotes-dlx"))),o().createElement("p",{className:"description"},(0,r.__)("Advanced options allow you to set default font families, breakpoints, and a reset options feature.","quotes-dlx"))),o().createElement("div",{className:"qdlx-admin__tabs--content-inner"},o().createElement("table",{className:"form-table",role:"presentation"},o().createElement("tbody",null,o().createElement("tr",null,o().createElement("th",{scope:"row"},(0,r.__)("Font Options","quotes-dlx")),o().createElement("td",null,o().createElement(c.xI,{name:"enableFonts",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.ToggleControl,{label:(0,r.__)("Enable Theme Fonts","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:a,onChange:function(e){n(e)},help:(0,r.__)("By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.","quotes-dlx")})}}))),Re("enableFonts")?o().createElement(o().Fragment,null,o().createElement("tr",null,o().createElement("th",{scope:"row"},(0,r.__)("Adobe Fonts","quotes-dlx")),o().createElement("td",null,o().createElement(c.xI,{name:"enableAdobeFonts",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.ToggleControl,{label:(0,r.__)("Enable Adobe Fonts","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:a,onChange:function(e){n(e)},help:(0,r.__)("If you are using Adobe Fonts, you can use them in QuotesDLX.","quotes-dlx")})}}),Re("enableAdobeFonts")&&o().createElement(o().Fragment,null,o().createElement(c.xI,{name:"activateAdobeFontsAdmin",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.ToggleControl,{label:(0,r.__)("Activate Adobe Fonts in the Admin","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:a,onChange:function(e){n(e)},help:(0,r.__)("If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.","quotes-dlx")})}}),o().createElement(c.xI,{name:"activateAdobeFontsFrontend",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.ToggleControl,{label:(0,r.__)("Activate Adobe Fonts on the Frontend","quotes-dlx"),className:"qdlx-admin__toggle-control",checked:a,onChange:function(e){n(e)},help:(0,r.__)("If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.","quotes-dlx")})}})),Re("enableAdobeFonts")&&o().createElement(o().Fragment,null,o().createElement(c.xI,{name:"adobeProjectId",control:Le,rules:{required:!0,pattern:/^[a-z0-9]+$/i},render:function(e){var t,n,a=e.field;return o().createElement(l.TextControl,A({},a,{type:"password",label:(0,r.__)("Adobe Fonts Project ID","quotes-dlx"),id:"search-qdlx-no-autofill",className:d()("qdlx-admin__text-control",{"has-error":"pattern"===(null===(t=Je.anchorPrefix)||void 0===t?void 0:t.type)||"required"===(null===(n=Je.anchorPrefix)||void 0===n?void 0:n.type),"is-required":!0}),"aria-required":"true",help:(0,r.__)("Enter the Adobe Project ID of the web project in order to load Adobe Fonts.","quotes-dlx")}))}}),"required"===(null===(Ke=Je.adobeProjectId)||void 0===Ke?void 0:Ke.type)&&o().createElement(f.A,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:p.A}),"pattern"===(null===(Ze=Je.adobeProjectId)||void 0===Ze?void 0:Ze.type)&&o().createElement(f.A,{message:(0,r.__)("Please use only lowercase letters and numbers."),status:"error",politeness:"assertive",inline:!0,icon:p.A}),!1!==pe&&o().createElement(o().Fragment,null,void 0===pe||!1===pe?o().createElement(o().Fragment,null):o().createElement(o().Fragment,null,o().createElement("div",{className:"components-base-control"},o().createElement("label",{htmlFor:"adobe-font-list",className:"components-base-control__label"},(0,r.__)("Current Adobe Fonts","quotes-dlx")),o().createElement("ul",{className:"quotes-dlx-adobe-font-list quotes-dlx-admin-list-ul",id:"adobe-font-list"},pe.map((function(e){return o().createElement("li",{key:e.slug},e.name)})))))),o().createElement("div",{className:"qdlx-admin__tabs--content-actions"},o().createElement(l.Button,{className:d()("qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent",{"has-error":Ve()},{"has-icon":B},{"is-saving":{refreshingFonts:B}}),type:"button",text:H?(0,r.__)("Getting Fonts…","quotes-dlx"):(0,r.__)("Refresh Fonts","quotes-dlx"),icon:!!B&&g.A,iconSize:"18",iconPosition:"right",disabled:B||$,onClick:w(E().mark((function e(){return E().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,Ue("adobeProjectId");case 2:e.sent&&(M(!0),(0,m.A)("quotes_dlx_retrieve_remote_adobe_fonts",{nonce:quotes_dlx_admin.options_save_nonce,project_id:Re("adobeProjectId")}).then((function(e){var t=e.data.data;e.data.success&&(ve(t),Y(!0),setTimeout((function(){Y(!1)}),3e3))})).catch((function(e){})).then((function(e){M(!1)})));case 4:case"end":return e.stop()}}),e)})))})))))):o().createElement(o().Fragment,null),Re("enableFonts")?o().createElement(o().Fragment,null,o().createElement("tr",null,o().createElement("th",{scope:"row"},(0,r.__)("Font Selection","quotes-dlx")),o().createElement("td",null,o().createElement("div",{className:"quotes-dlx-admin-theme-options__select span-2"},o().createElement(c.xI,{name:"primaryFontFamily",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.SelectControl,{className:"qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",label:(0,r.__)("Select a Primary Font","quotes-dlx"),value:a,onChange:function(e){return n(e)},options:We()})}}),"custom"===Re("primaryFontFamily")&&o().createElement(o().Fragment,null,o().createElement("div",{className:"quotes-dlx-admin-control-wrapper"},o().createElement(c.xI,{name:"customFontPrimary",control:Le,rules:{required:!0,pattern:/^[-\' ,A-Za-z0-9]+$/i},render:function(e){var t,n,a=e.field;return o().createElement(l.TextControl,A({},a,{value:(0,i.escapeAttribute)(a.value.replace(/\\\'/g,"'")),label:(0,r.__)("Enter your custom secondary font.","quotes-dlx"),placeholder:(0,r.__)("e.g. 'Open Sans', sans-serif'","quotes-dlx"),className:d()("qdlx-admin__text-control",{"has-error":"pattern"===(null===(t=Je.customFontPrimary)||void 0===t?void 0:t.type)||"required"===(null===(n=Je.customFontPrimary)||void 0===n?void 0:n.type),"is-required":!0}),help:(0,r.__)("Set the font and fallbacks. Double quotes are not permitted.","quotes-dlx"),"aria-required":"true"}))}}),"required"===(null===(Xe=Je.customFontPrimary)||void 0===Xe?void 0:Xe.type)&&o().createElement(f.A,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:p.A}),"pattern"===(null===(Ye=Je.customFontPrimary)||void 0===Ye?void 0:Ye.type)&&o().createElement(f.A,{message:(0,r.__)("There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end."),status:"error",politeness:"assertive",inline:!0,icon:p.A})))),o().createElement("div",{className:"quotes-dlx-admin-theme-options__select span-2"},o().createElement(c.xI,{name:"secondaryFontFamily",control:Le,render:function(e){var t=e.field,n=t.onChange,a=t.value;return o().createElement(l.SelectControl,{className:"qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",label:(0,r.__)("Select a Secondary Font","quotes-dlx"),value:a,onChange:function(e){return n(e)},options:We()})}}),"custom"===Re("secondaryFontFamily")&&o().createElement(o().Fragment,null,o().createElement("div",{className:"quotes-dlx-admin-control-wrapper"},o().createElement(c.xI,{name:"customFontSecondary",control:Le,rules:{required:!0,pattern:/^[-\' ,A-Za-z0-9]+$/i},render:function(e){var t,n,a=e.field;return o().createElement(l.TextControl,A({},a,{value:(0,i.escapeAttribute)(a.value.replace(/\\\'/g,"'")),label:(0,r.__)("Enter your custom secondary font.","quotes-dlx"),placeholder:(0,r.__)("e.g. 'Open Sans', sans-serif'","quotes-dlx"),className:d()("qdlx-admin__text-control",{"has-error":"pattern"===(null===(t=Je.customFontSecondary)||void 0===t?void 0:t.type)||"required"===(null===(n=Je.customFontSecondary)||void 0===n?void 0:n.type),"is-required":!0}),help:(0,r.__)("Set the font and fallbacks. Double quotes are not permitted.","quotes-dlx"),"aria-required":"true"}))}}),"required"===(null===(Qe=Je.customFontSecondary)||void 0===Qe?void 0:Qe.type)&&o().createElement(f.A,{message:(0,r.__)("This field is a required field."),status:"error",politeness:"assertive",inline:!0,icon:p.A}),"pattern"===(null===($e=Je.customFontSecondary)||void 0===$e?void 0:$e.type)&&o().createElement(f.A,{message:(0,r.__)("There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end."),status:"error",politeness:"assertive",inline:!0,icon:p.A})))),o().createElement("div",{className:"components-base-control"},o().createElement("a",{"data-fancybox":!0,onClick:function(e){e.preventDefault(),new _.lX([{src:tt(),type:"iframe"}],{mainClass:"qdlx-theme-preview-mobile",caption:(0,r.__)("Font Preview","quotes-dlx")})},href:tt()},(0,r.__)("Preview Fonts","quotes-dlx")))))):o().createElement(o().Fragment,null))),o().createElement("div",{className:"qdlx-admin__tabs--content-actions"},o().createElement(l.Button,{className:d()("qdlx__btn qdlx__btn-primary qdlx__btn--icon-right",{"has-error":Ve()},{"has-icon":H},{"is-saving":{saving:H}}),type:"submit",text:H?(0,r.__)("Saving…","quotes-dlx"):(0,r.__)("Save Advanced Options","quotes-dlx"),icon:!!H&&g.A,iconSize:"18",iconPosition:"right",disabled:H||$}),o().createElement(l.Button,{className:d()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":$},{"is-resetting":{resetting:$}}),type:"button",text:$?(0,r.__)("Resetting…","quotes-dlx"):(0,r.__)("Reset Advanced Options","quotes-dlx"),icon:!!$&&g.A,iconSize:"18",iconPosition:"right",disabled:H||$,onClick:function(e){K(!0),K(!0),(0,m.A)("quotes_dlx_reset_admin_options_advanced",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){var n=e.data.data;e.data.success&&(u(0),ze(n),localStorage.setItem(t,JSON.stringify(n)),localStorage.removeItem(t+"_dirty_fields"),_e(!0),setTimeout((function(){_e(!1)}),3e3))})).catch((function(e){})).then((function(e){K(!1)}))}})),Ve()&&o().createElement(f.A,{message:(0,r.__)("There are form validation errors. Please correct them above."),status:"error",politeness:"polite"}),X&&o().createElement(f.A,{message:(0,r.__)("Your settings have been saved."),status:"success",politeness:"assertive"}),fe&&o().createElement(f.A,{message:(0,r.__)("Your settings have been reset to defaults."),status:"success",politeness:"assertive"}))))),o().createElement("div",{className:"qdlx-admin__tabs--content-wrap"},o().createElement("form",{onSubmit:function(e){e.preventDefault()}},o().createElement("div",{className:"qdlx-admin__tabs--content-panel"},o().createElement("div",{className:"qdlx-admin__tabs--content-heading qdlx-danger"},o().createElement("h1",null,o().createElement(p.A,{width:48,height:48,"aria-hidden":"true"}),o().createElement("span",{className:"qdlx-admin__heading--text"},(0,r.__)("Reset Options","quotes-dlx"))),o().createElement("p",{className:"description"},(0,r.__)("Reset all options. Resetting can not be undone.","quotes-dlx"))),o().createElement("div",{className:"qdlx-admin__tabs--content-inner"},o().createElement("div",{className:"qdlx-admin__tabs--content-actions no-flex-grid"},o().createElement("div",{className:"qdlx-admin-reset-confirmation"},o().createElement("input",{type:"checkbox",id:"qdlx-admin__reset-confirm",onClick:function(e){be(e.target.checked)}}),o().createElement("label",{htmlFor:"qdlx-admin__reset-confirm",className:"qdlx-admin__reset-confirm-label"},(0,r.__)("I understand that this will reset all options.","quotes-dlx"))),o().createElement(l.Button,{className:d()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":$},{"is-resetting":{resetting:$}}),type:"button",text:te?(0,r.__)("Resetting…","quotes-dlx"):(0,r.__)("Reset Options","quotes-dlx"),icon:!!te&&g.A,iconSize:"18",iconPosition:"right",disabled:H||$||te||oe||!ge,onClick:function(e){nt(),ne(!0),(0,m.A)("quotes_dlx_reset_all_options",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){e.data.data,e.data.success&&(de(!0),setTimeout((function(){window.location.reload()}),3e3))})).catch((function(e){})).then((function(e){ne(!1)}))}})),ue&&o().createElement(f.A,{message:(0,r.__)("Your settings have been reset. Reloading…","quotes-dlx"),status:"warning",politeness:"assertive"}))))),o().createElement("div",{className:"qdlx-admin__tabs--content-wrap"},o().createElement("form",{onSubmit:function(e){e.preventDefault()}},o().createElement("div",{className:"qdlx-admin__tabs--content-panel"},o().createElement("div",{className:"qdlx-admin__tabs--content-heading qdlx-danger"},o().createElement("h1",null,o().createElement(p.A,{width:48,height:48,"aria-hidden":"true"}),o().createElement("span",{className:"qdlx-admin__heading--text"},(0,r.__)("Uninstall and Deactivate","quotes-dlx"))),o().createElement("p",{className:"description"},(0,r.__)("Remove all options and deactivate QuotesDLX.","quotes-dlx"))),o().createElement("div",{className:"qdlx-admin__tabs--content-inner"},o().createElement("div",{className:"qdlx-admin__tabs--content-actions no-flex-grid"},o().createElement("div",{className:"qdlx-admin-reset-confirmation"},o().createElement("input",{type:"checkbox",id:"qdlx-admin__uninstall-confirm",onClick:function(e){Ee(e.target.checked)}}),o().createElement("label",{htmlFor:"qdlx-admin__uninstall-confirm",className:"qdlx-admin__uninstall-confirm-label"},(0,r.__)("I understand that this remove all saved options and deactivate the plugin.","quotes-dlx"))),o().createElement(l.Button,{className:d()("qdlx__btn qdlx__btn-danger qdlx__btn--icon-right",{"has-icon":W},{"is-resetting":{uninstalling:W}}),type:"button",text:oe?(0,r.__)("Uninstalling…","quotes-dlx"):(0,r.__)("Uninstall QuotesDLX","quotes-dlx"),icon:!!oe&&g.A,iconSize:"18",iconPosition:"right",disabled:H||$||te||oe||!qe,onClick:function(e){nt(),re(!0),(0,m.A)("quotes_dlx_uninstall_and_deactivate",{nonce:quotes_dlx_admin.options_save_nonce}).then((function(e){var t=e.data.data;e.data.success&&(se(!0),setTimeout((function(){window.location.href=t.redirect_url}),3e3))})).catch((function(e){})).then((function(e){re(!1)}))}})),ie&&o().createElement(f.A,{message:(0,r.__)("QuotesDLX has been uninstalled. Redirecting to the plugins screen…","quotes-dlx"),status:"warning",politeness:"assertive"})))))))};const O=function(e){var t=F((0,s.useAsyncResource)(k,[]),2),n=t[0];return t[1],o().createElement(x.A,{fallback:o().createElement("p",null,(0,r.__)("Could not load advanced options.","quotes-dlx"),o().createElement("br",null),o().createElement("a",{href:"https://dlxplugins.com/support/",target:"_blank",rel:"noopener noreferrer"},"DLX Plugins Support"))},o().createElement(a.Suspense,{fallback:o().createElement(h.A,null)},o().createElement(C,A({defaults:n},e))))}}}]);
+"use strict";
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminAdvanced0.0.11"],{
+
+/***/ "./src/fonts/fonts.js":
+/*!****************************!*\
+  !*** ./src/fonts/fonts.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var fontFamilies = {
+  'Josefin Sans': {
+    name: 'Josefin Sans',
+    slug: 'josefin-sans',
+    family: 'Josefin Sans',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Karla: {
+    name: 'Karla',
+    slug: 'karla',
+    family: 'Karla',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Lato: {
+    name: 'Lato',
+    slug: 'lato',
+    family: 'Lato',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Montserrat: {
+    name: 'Montserrat',
+    slug: 'montserrat',
+    family: 'Montserrat',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Nunito: {
+    name: 'Nunito',
+    slug: 'nunito',
+    family: 'Nunito',
+    fallback: 'sans-serif'
+  },
+  'Open Sans': {
+    name: 'Open Sans',
+    slug: 'open-sans',
+    family: 'Open Sans',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Oxygen: {
+    name: 'Oxygen',
+    slug: 'oxygen',
+    family: 'Oxygen',
+    fallback: 'sans-serif'
+  },
+  'Playfair Display': {
+    name: 'Playfair Display',
+    slug: 'playfair-display',
+    family: 'Playfair Display',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Raleway: {
+    name: 'Raleway',
+    slug: 'raleway',
+    family: 'Raleway',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Roboto: {
+    name: 'Roboto',
+    slug: 'roboto',
+    family: 'Roboto',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  'Source Sans Pro': {
+    name: 'Source Sans Pro',
+    slug: 'source-sans-pro',
+    family: 'Source Sans Pro',
+    fallback: 'Helvetica, Arial, sans-serif'
+  },
+  Spinnaker: {
+    name: 'Spinnaker',
+    slug: 'spinnaker',
+    family: 'Spinnaker',
+    fallback: 'sans-serif'
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (fontFamilies);
+
+/***/ }),
+
+/***/ "./src/js/admin-panel/views/AdminAdvanced.js":
+/*!***************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminAdvanced.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/escape-html */ "@wordpress/escape-html");
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! use-async-resource */ "./node_modules/use-async-resource/lib/index.js");
+/* harmony import */ var use_async_resource__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(use_async_resource__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_icons_Gear__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/icons/Gear */ "./src/js/components/icons/Gear.js");
+/* harmony import */ var _utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/SendCommand */ "./src/js/utils/SendCommand.js");
+/* harmony import */ var _admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../admin-components/Notice */ "./src/js/admin-panel/admin-components/Notice/index.js");
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/index.esm.js");
+/* harmony import */ var _admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../admin-components/Loaders/AdminDefaultsLoader */ "./src/js/admin-panel/admin-components/Loaders/AdminDefaultsLoader.js");
+/* harmony import */ var _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/icons/CircularExplanation */ "./src/js/components/icons/CircularExplanation.js");
+/* harmony import */ var _validation_twitter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../validation/twitter */ "./src/js/validation/twitter.js");
+/* harmony import */ var _components_icons_CircularInfo__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/icons/CircularInfo */ "./src/js/components/icons/CircularInfo.js");
+/* harmony import */ var _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/icons/FlaskIcon */ "./src/js/components/icons/FlaskIcon.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../components/icons/Spinner */ "./src/js/components/icons/Spinner.js");
+/* harmony import */ var _fonts_fonts__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../fonts/fonts */ "./src/fonts/fonts.js");
+/* harmony import */ var _admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../admin-components/ErrorBoundary */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var retrieveDefaults = function retrieveDefaults() {
+  return (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_retrieve_admin_options_advanced', {
+    nonce: quotes_dlx_admin.options_retrieve_nonce
+  });
+};
+var AdminAdvanced = function AdminAdvanced(props) {
+  var _useAsyncResource = (0,use_async_resource__WEBPACK_IMPORTED_MODULE_4__.useAsyncResource)(retrieveDefaults, []),
+    _useAsyncResource2 = _slicedToArray(_useAsyncResource, 2),
+    defaults = _useAsyncResource2[0],
+    getDefaults = _useAsyncResource2[1];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Could not load advanced options.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "https://dlxplugins.com/support/",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, "DLX Plugins Support"))
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_10__["default"], null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Interface, _extends({
+    defaults: defaults
+  }, props))));
+};
+var Interface = function Interface(props) {
+  var localStorageKey = 'quotes_dlx_form_advanced';
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_15__["default"]),
+    advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
+    setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount,
+    setThemesDefaultsDirtyCount = _useContext.setThemesDefaultsDirtyCount,
+    setLicensesDirtyCount = _useContext.setLicensesDirtyCount,
+    setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount,
+    setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount,
+    defaultTheme = _useContext.defaultTheme;
+  var defaults = props.defaults;
+  var response = defaults();
+  var _response$data = response.data,
+    data = _response$data.data,
+    success = _response$data.success;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_enabled),
+    _useState2 = _slicedToArray(_useState, 2),
+    showButtonOptions = _useState2[0],
+    setShowButtonOptions = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.tweet_button_display),
+    _useState4 = _slicedToArray(_useState3, 2),
+    buttonDisplay = _useState4[0],
+    setButtonDisplay = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.has_anchor),
+    _useState6 = _slicedToArray(_useState5, 2),
+    anchorDisplay = _useState6[0],
+    setAnchorDisplay = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.enable_links_in_tweet),
+    _useState8 = _slicedToArray(_useState7, 2),
+    enableLinks = _useState8[0],
+    setEnableLinks = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.url_shortener),
+    _useState10 = _slicedToArray(_useState9, 2),
+    enableUrlShortener = _useState10[0],
+    setEnableUrlShortener = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState12 = _slicedToArray(_useState11, 2),
+    loading = _useState12[0],
+    setLoading = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    saving = _useState14[0],
+    setSaving = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    refreshingFonts = _useState16[0],
+    setRefreshingFonts = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isSaved = _useState18[0],
+    setIsSaved = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    resetting = _useState20[0],
+    setResetting = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    uninstalling = _useState22[0],
+    setUninstalling = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    hardReset = _useState24[0],
+    setHardReset = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    hardUninstall = _useState26[0],
+    setHardUninstall = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    isHardUninstall = _useState28[0],
+    setIsHardUninstall = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState30 = _slicedToArray(_useState29, 2),
+    isHardReset = _useState30[0],
+    setIsHardReset = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState32 = _slicedToArray(_useState31, 2),
+    isReset = _useState32[0],
+    setIsReset = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data.adobe_fonts),
+    _useState34 = _slicedToArray(_useState33, 2),
+    adobeFonts = _useState34[0],
+    setAdobeFonts = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState36 = _slicedToArray(_useState35, 2),
+    canResetOptions = _useState36[0],
+    setCanResetOptions = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState38 = _slicedToArray(_useState37, 2),
+    canUninstall = _useState38[0],
+    setCanUninstall = _useState38[1];
+  var enable_fonts = data.enable_fonts,
+    custom_font_primary = data.custom_font_primary,
+    custom_font_secondary = data.custom_font_secondary,
+    primary_font_family = data.primary_font_family,
+    secondary_font_family = data.secondary_font_family,
+    enable_adobe_fonts = data.enable_adobe_fonts,
+    adobe_project_id = data.adobe_project_id,
+    activate_adobe_fonts_admin = data.activate_adobe_fonts_admin,
+    activate_adobe_fonts_frontend = data.activate_adobe_fonts_frontend,
+    template = data.template,
+    facebook_app_id = data.facebook_app_id;
+  var getDefaultValues = function getDefaultValues() {
+    return {
+      enableFonts: enable_fonts,
+      customFontPrimary: custom_font_primary,
+      customFontSecondary: custom_font_secondary,
+      primaryFontFamily: primary_font_family,
+      secondaryFontFamily: secondary_font_family,
+      enableAdobeFonts: enable_adobe_fonts,
+      adobeProjectId: adobe_project_id,
+      activateAdobeFontsAdmin: activate_adobe_fonts_admin,
+      activateAdobeFontsFrontend: activate_adobe_fonts_frontend
+    };
+  };
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useForm)({
+      defaultValues: getDefaultValues()
+    }),
+    register = _useForm.register,
+    control = _useForm.control,
+    handleSubmit = _useForm.handleSubmit,
+    setValue = _useForm.setValue,
+    getValues = _useForm.getValues,
+    reset = _useForm.reset,
+    trigger = _useForm.trigger;
+  var formValues = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useWatch)({
+    control: control
+  });
+  var _useFormState = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_19__.useFormState)({
+      control: control
+    }),
+    errors = _useFormState.errors,
+    isDirty = _useFormState.isDirty,
+    dirtyFields = _useFormState.dirtyFields,
+    touchedFields = _useFormState.touchedFields;
+  var onSubmit = function onSubmit(formData) {
+    setSaving(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_save_admin_options_advanced', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      form_data: formData
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset count.
+        setAdvancedTabDirtyCount(0);
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+        // Clear form dirty.
+        reset(ajaxData, {
+          keepDirty: false,
+          keepDirtyValues: false
+        });
+        setIsSaved(true);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setSaving(false);
+    });
+  };
+  var handleReset = function handleReset(e) {
+    setResetting(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_admin_options_advanced', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        // Reset local storage.
+        setAdvancedTabDirtyCount(0);
+
+        // Clear form dirty.
+        reset(ajaxData);
+        localStorage.setItem(localStorageKey, JSON.stringify(ajaxData));
+        localStorage.removeItem(localStorageKey + '_dirty_fields');
+
+        // On save, add local storage variable with from contents: qdlx_advanced_save
+        // Read in saved local storage variable qdlx_advanced_save
+        // Replace with saved local storage with no dirty update.
+        // Remove local storage variable.
+
+        // Reset toggles.
+        // Override variable upon save.
+
+        setIsReset(true);
+        setTimeout(function () {
+          setIsReset(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setResetting(false);
+    });
+  };
+  var refreshAdobeFonts = function refreshAdobeFonts() {
+    setRefreshingFonts(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_retrieve_remote_adobe_fonts', {
+      nonce: quotes_dlx_admin.options_save_nonce,
+      project_id: getValues('adobeProjectId')
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        setAdobeFonts(ajaxData);
+        setIsSaved(true);
+        setTimeout(function () {
+          setIsSaved(false);
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setRefreshingFonts(false);
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
+  var hasErrors = function hasErrors() {
+    return Object.keys(errors).length > 0;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get saved local storage JSON strings.
+    var maybeSavedFormFields = localStorage.getItem(localStorageKey);
+    var maybeDirtyFields = localStorage.getItem(localStorageKey + '_dirty_fields');
+    if (null !== maybeSavedFormFields) {
+      // Parse saved JSON string into JSON object.
+      var savedFormFields = JSON.parse(maybeSavedFormFields);
+
+      // If saved form fields, proceed with setting fields.
+      if (Object.keys(savedFormFields.length > 0)) {
+        var savedDirtyFields = {};
+
+        // Get any dirty fields.
+        if (null !== maybeDirtyFields) {
+          savedDirtyFields = JSON.parse(maybeDirtyFields);
+        }
+        for (var _i = 0, _Object$entries = Object.entries(savedFormFields); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+          // If key is in saved dirty fields, set dirty.
+
+          if (savedDirtyFields.hasOwnProperty(key)) {
+            // Key is dirty, so set dirty.
+            setValue(key, value, {
+              shouldDirty: true,
+              shouldValidate: true
+            });
+          } else {
+            // Key is not dirty, so set value without dirty.
+            setValue(key, value, {
+              shouldDirty: false,
+              shouldValidate: false
+            });
+          }
+        }
+      }
+    }
+    setLoading(false);
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (saving || resetting || loading) {
+      return;
+    }
+    if (isDirty || advancedTabDirtyCount > 0) {
+      // Get current dirty fields.
+      setAdvancedTabDirtyCount(Object.keys(dirtyFields).length);
+
+      // Save form values to local storage.
+      localStorage.setItem(localStorageKey, JSON.stringify(formValues));
+      localStorage.setItem(localStorageKey + '_dirty_fields', JSON.stringify(dirtyFields));
+    }
+    setLoading(false);
+  }, [formValues]);
+  if (loading) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_10__["default"], null);
+  }
+  var getAdobeFonts = function getAdobeFonts() {
+    if (undefined === adobeFonts || false === adobeFonts) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "components-base-control"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "adobe-font-list",
+      className: "components-base-control__label"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Current Adobe Fonts', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      className: "quotes-dlx-adobe-font-list quotes-dlx-admin-list-ul",
+      id: "adobe-font-list"
+    }, adobeFonts.map(function (font) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        key: font.slug
+      }, font.name);
+    }))));
+  };
+  var getFontFamilies = function getFontFamilies() {
+    // Get font families in value label pair.
+    var families = [];
+
+    // Try to get adobe fonts. Push them to the top.
+    if (false !== adobeFonts && undefined !== adobeFonts && getValues('enableAdobeFonts')) {
+      adobeFonts.forEach(function (font) {
+        families.push({
+          label: font.name,
+          value: font.slug
+        });
+      });
+    }
+
+    // Get the rest of the fonts.
+    for (var _i2 = 0, _Object$entries2 = Object.entries(_fonts_fonts__WEBPACK_IMPORTED_MODULE_17__["default"]); _i2 < _Object$entries2.length; _i2++) {
+      var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+        key = _Object$entries2$_i[0],
+        fontfamily = _Object$entries2$_i[1];
+      families.push({
+        label: fontfamily.name,
+        value: fontfamily.slug
+      });
+    }
+    families.push({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Custom', 'quotes-dlx'),
+      value: 'custom'
+    });
+    return families;
+  };
+  var toTitleCase = function toTitleCase(string) {
+    var firstLetterRegex = /(^[a-z])/g;
+    var newString = string.replace(firstLetterRegex, function (match) {
+      return match.toUpperCase();
+    });
+    return newString.replace(/-([a-z])/gi, function (all, letter) {
+      return ' ' + letter.toUpperCase();
+    });
+  };
+  var getPreviewLink = function getPreviewLink() {
+    var selectedTemplate = template;
+    if ('' !== defaultTheme) {
+      selectedTemplate = defaultTheme;
+    }
+    return "".concat(ajaxurl, "?action=quotes_dlx_theme_preview&fontsize=16\n\t\t) }&lineheight=").concat(encodeURIComponent(1.65), "&buttonsize=").concat(encodeURIComponent(16), "&nonce=").concat(quotes_dlx_admin.options_retrieve_nonce, "&template=").concat(encodeURIComponent(selectedTemplate), "&screen=tablet&primary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('primaryFontFamily'))), "&secondary_font_family=").concat(encodeURIComponent(toTitleCase(getValues('secondaryFontFamily'))));
+  };
+
+  /**
+   * Remove all local storage keys and context.
+   */
+  var clearLocalStorage = function clearLocalStorage() {
+    localStorage.removeItem('quotes_dlx_menu_defaults');
+    localStorage.removeItem('quotes_dlx_form_defaults');
+    localStorage.removeItem('quotes_dlx_licenses');
+    localStorage.removeItem('quotes_dlx_themes_defaults');
+    localStorage.removeItem('quotes_dlx_form_advanced');
+    setAdvancedTabDirtyCount(0);
+    setThemesDefaultsDirtyCount(0);
+    setLicensesDirtyCount(0);
+    setBlockDefaultsDirtyCount(0);
+    setContextualMenuDefaultsDirtyCount(0);
+  };
+
+  /**
+   * Uninstall and deactivate the QuotesDLX Plugin.
+   */
+  var uninstallAndDeactivate = function uninstallAndDeactivate() {
+    // Clear local storage keys.
+    clearLocalStorage();
+    setHardUninstall(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_uninstall_and_deactivate', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        setIsHardUninstall(true);
+        setTimeout(function () {
+          window.location.href = ajaxData.redirect_url;
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setHardUninstall(false);
+    });
+  };
+  var resetAllOptions = function resetAllOptions() {
+    // Clear local storage keys.
+    clearLocalStorage();
+    setHardReset(true);
+    (0,_utils_SendCommand__WEBPACK_IMPORTED_MODULE_7__["default"])('quotes_dlx_reset_all_options', {
+      nonce: quotes_dlx_admin.options_save_nonce
+    }).then(function (ajaxResponse) {
+      var ajaxData = ajaxResponse.data.data;
+      var ajaxSuccess = ajaxResponse.data.success;
+      if (ajaxSuccess) {
+        setIsHardReset(true);
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000);
+      } else {
+        // Error stuff.
+      }
+    })["catch"](function (ajaxResponse) {}).then(function (ajaxResponse) {
+      setHardReset(false);
+    });
+  };
+  var getAdobeFontsInterface = function getAdobeFontsInterface() {
+    var _errors$adobeProjectI, _errors$adobeProjectI2;
+    if (!getValues('enableFonts')) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      scope: "row"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adobe Fonts', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "enableAdobeFonts",
+      control: control,
+      render: function render(_ref) {
+        var _ref$field = _ref.field,
+          _onChange = _ref$field.onChange,
+          value = _ref$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Adobe Fonts', 'quotes-dlx'),
+          className: "qdlx-admin__toggle-control",
+          checked: value,
+          onChange: function onChange(boolValue) {
+            _onChange(boolValue);
+          },
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are using Adobe Fonts, you can use them in QuotesDLX.', 'quotes-dlx')
+        });
+      }
+    }), getValues('enableAdobeFonts') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "activateAdobeFontsAdmin",
+      control: control,
+      render: function render(_ref2) {
+        var _ref2$field = _ref2.field,
+          _onChange2 = _ref2$field.onChange,
+          value = _ref2$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate Adobe Fonts in the Admin', 'quotes-dlx'),
+          className: "qdlx-admin__toggle-control",
+          checked: value,
+          onChange: function onChange(boolValue) {
+            _onChange2(boolValue);
+          },
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are not using a plugin to add Adobe fonts to your install, you can check this option to load Adobe Fonts in the admin area of your site.', 'quotes-dlx')
+        });
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "activateAdobeFontsFrontend",
+      control: control,
+      render: function render(_ref3) {
+        var _ref3$field = _ref3.field,
+          _onChange3 = _ref3$field.onChange,
+          value = _ref3$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Activate Adobe Fonts on the Frontend', 'quotes-dlx'),
+          className: "qdlx-admin__toggle-control",
+          checked: value,
+          onChange: function onChange(boolValue) {
+            _onChange3(boolValue);
+          },
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If you are not using a plugin to add Adobe fonts to your site, you can check this option to load Adobe Fonts on the frontend area of your site.', 'quotes-dlx')
+        });
+      }
+    })), getValues('enableAdobeFonts') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "adobeProjectId",
+      control: control,
+      rules: {
+        required: true,
+        pattern: /^[a-z0-9]+$/i
+      },
+      render: function render(_ref4) {
+        var _errors$anchorPrefix, _errors$anchorPrefix2;
+        var field = _ref4.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+          type: "password",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Adobe Fonts Project ID', 'quotes-dlx'),
+          id: "search-qdlx-no-autofill",
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+            'has-error': 'pattern' === ((_errors$anchorPrefix = errors.anchorPrefix) === null || _errors$anchorPrefix === void 0 ? void 0 : _errors$anchorPrefix.type) || 'required' === ((_errors$anchorPrefix2 = errors.anchorPrefix) === null || _errors$anchorPrefix2 === void 0 ? void 0 : _errors$anchorPrefix2.type),
+            'is-required': true
+          }),
+          "aria-required": "true",
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter the Adobe Project ID of the web project in order to load Adobe Fonts.', 'quotes-dlx')
+        }));
+      }
+    }), 'required' === ((_errors$adobeProjectI = errors.adobeProjectId) === null || _errors$adobeProjectI === void 0 ? void 0 : _errors$adobeProjectI.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    }), 'pattern' === ((_errors$adobeProjectI2 = errors.adobeProjectId) === null || _errors$adobeProjectI2 === void 0 ? void 0 : _errors$adobeProjectI2.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please use only lowercase letters and numbers.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    }), false !== adobeFonts && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getAdobeFonts()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "qdlx-admin__tabs--content-actions"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right qdlx__btn-accent', {
+        'has-error': hasErrors()
+      }, {
+        'has-icon': refreshingFonts
+      }, {
+        'is-saving': {
+          refreshingFonts: refreshingFonts
+        }
+      }),
+      type: "button",
+      text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Getting Fonts…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Refresh Fonts', 'quotes-dlx'),
+      icon: refreshingFonts ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__["default"] : false,
+      iconSize: "18",
+      iconPosition: "right",
+      disabled: refreshingFonts || resetting,
+      onClick: /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return trigger('adobeProjectId');
+            case 2:
+              result = _context.sent;
+              if (result) {
+                refreshAdobeFonts();
+              }
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))
+    }))))));
+  };
+  var getFontOptions = function getFontOptions() {
+    var _errors$customFontPri3, _errors$customFontPri4, _errors$customFontSec3, _errors$customFontSec4;
+    if (!getValues('enableFonts')) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
+    }
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+      scope: "row"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Selection', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-theme-options__select span-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "primaryFontFamily",
+      control: control,
+      render: function render(_ref6) {
+        var _ref6$field = _ref6.field,
+          _onChange4 = _ref6$field.onChange,
+          value = _ref6$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Primary Font', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newFont) {
+            return _onChange4(newFont);
+          },
+          options: getFontFamilies()
+        });
+      }
+    }), 'custom' === getValues('primaryFontFamily') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-control-wrapper"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "customFontPrimary",
+      control: control,
+      rules: {
+        required: true,
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
+      },
+      render: function render(_ref7) {
+        var _errors$customFontPri, _errors$customFontPri2;
+        var field = _ref7.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+            'has-error': 'pattern' === ((_errors$customFontPri = errors.customFontPrimary) === null || _errors$customFontPri === void 0 ? void 0 : _errors$customFontPri.type) || 'required' === ((_errors$customFontPri2 = errors.customFontPrimary) === null || _errors$customFontPri2 === void 0 ? void 0 : _errors$customFontPri2.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$customFontPri3 = errors.customFontPrimary) === null || _errors$customFontPri3 === void 0 ? void 0 : _errors$customFontPri3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    }), 'pattern' === ((_errors$customFontPri4 = errors.customFontPrimary) === null || _errors$customFontPri4 === void 0 ? void 0 : _errors$customFontPri4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-theme-options__select span-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "secondaryFontFamily",
+      control: control,
+      render: function render(_ref8) {
+        var _ref8$field = _ref8.field,
+          _onChange5 = _ref8$field.onChange,
+          value = _ref8$field.value;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          className: "qdlx-admin__themes--content-inner qdlx-admin__theme-fonts-select",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Secondary Font', 'quotes-dlx'),
+          value: value,
+          onChange: function onChange(newFont) {
+            return _onChange5(newFont);
+          },
+          options: getFontFamilies()
+        });
+      }
+    }), 'custom' === getValues('secondaryFontFamily') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "quotes-dlx-admin-control-wrapper"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+      name: "customFontSecondary",
+      control: control,
+      rules: {
+        required: true,
+        pattern: /^[-\' ,A-Za-z0-9]+$/i
+      },
+      render: function render(_ref9) {
+        var _errors$customFontSec, _errors$customFontSec2;
+        var field = _ref9.field;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, _extends({}, field, {
+          value: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__.escapeAttribute)(field.value.replace(/\\\'/g, "'")),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter your custom secondary font.', 'quotes-dlx'),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("e.g. 'Open Sans', sans-serif'", 'quotes-dlx'),
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx-admin__text-control', {
+            'has-error': 'pattern' === ((_errors$customFontSec = errors.customFontSecondary) === null || _errors$customFontSec === void 0 ? void 0 : _errors$customFontSec.type) || 'required' === ((_errors$customFontSec2 = errors.customFontSecondary) === null || _errors$customFontSec2 === void 0 ? void 0 : _errors$customFontSec2.type),
+            'is-required': true
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the font and fallbacks. Double quotes are not permitted.', 'quotes-dlx'),
+          "aria-required": "true"
+        }));
+      }
+    }), 'required' === ((_errors$customFontSec3 = errors.customFontSecondary) === null || _errors$customFontSec3 === void 0 ? void 0 : _errors$customFontSec3.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('This field is a required field.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    }), 'pattern' === ((_errors$customFontSec4 = errors.customFontSecondary) === null || _errors$customFontSec4 === void 0 ? void 0 : _errors$customFontSec4.type) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are invalid characters in the custom font. Make sure you are using single quotes and leave out the semi-colon at the end.'),
+      status: "error",
+      politeness: "assertive",
+      inline: true,
+      icon: _components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"]
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "components-base-control"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      "data-fancybox": true,
+      onClick: function onClick(e) {
+        e.preventDefault();
+        new _fancyapps_ui__WEBPACK_IMPORTED_MODULE_9__.Fancybox([{
+          src: getPreviewLink(),
+          type: 'iframe'
+        }], {
+          mainClass: 'qdlx-theme-preview-mobile',
+          caption: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Preview', 'quotes-dlx')
+        });
+      },
+      href: getPreviewLink()
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preview Fonts', 'quotes-dlx'))))));
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--home-grid-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced Options', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced options allow you to set default font families, breakpoints, and a reset options feature.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "form-table",
+    role: "presentation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    scope: "row"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Font Options', 'quotes-dlx')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hook_form__WEBPACK_IMPORTED_MODULE_19__.Controller, {
+    name: "enableFonts",
+    control: control,
+    render: function render(_ref10) {
+      var _ref10$field = _ref10.field,
+        _onChange6 = _ref10$field.onChange,
+        value = _ref10$field.value;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enable Theme Fonts', 'quotes-dlx'),
+        className: "qdlx-admin__toggle-control",
+        checked: value,
+        onChange: function onChange(boolValue) {
+          _onChange6(boolValue);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('By default, the themes load their own fonts. If you would like to supply your own fonts, you can disable this option.', 'quotes-dlx')
+      });
+    }
+  }))), getAdobeFontsInterface(), getFontOptions())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-primary qdlx__btn--icon-right', {
+      'has-error': hasErrors()
+    }, {
+      'has-icon': saving
+    }, {
+      'is-saving': {
+        saving: saving
+      }
+    }),
+    type: "submit",
+    text: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Advanced Options', 'quotes-dlx'),
+    icon: saving ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': resetting
+    }, {
+      'is-resetting': {
+        resetting: resetting
+      }
+    }),
+    type: "button",
+    text: resetting ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Advanced Options', 'quotes-dlx'),
+    icon: resetting ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting,
+    onClick: function onClick(e) {
+      setResetting(true);
+      handleReset(e);
+    }
+  })), hasErrors() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('There are form validation errors. Please correct them above.'),
+    status: "error",
+    politeness: "polite"
+  }), isSaved && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been saved.'),
+    status: "success",
+    politeness: "assertive"
+  }), isReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset to defaults.'),
+    status: "success",
+    politeness: "assertive"
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading qdlx-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Options', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset all options. Resetting can not be undone.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions no-flex-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-reset-confirmation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "checkbox",
+    id: "qdlx-admin__reset-confirm",
+    onClick: function onClick(e) {
+      setCanResetOptions(e.target.checked);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "qdlx-admin__reset-confirm",
+    className: "qdlx-admin__reset-confirm-label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that this will reset all options.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': resetting
+    }, {
+      'is-resetting': {
+        resetting: resetting
+      }
+    }),
+    type: "button",
+    text: hardReset ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Resetting…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset Options', 'quotes-dlx'),
+    icon: hardReset ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting || hardReset || hardUninstall || !canResetOptions,
+    onClick: function onClick(e) {
+      resetAllOptions();
+    }
+  })), isHardReset && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Your settings have been reset. Reloading…', 'quotes-dlx'),
+    status: "warning",
+    politeness: "assertive"
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: function onSubmit(e) {
+      e.preventDefault();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-heading qdlx-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularExplanation__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstall and Deactivate', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove all options and deactivate QuotesDLX.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__tabs--content-actions no-flex-grid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin-reset-confirmation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "checkbox",
+    id: "qdlx-admin__uninstall-confirm",
+    onClick: function onClick(e) {
+      setCanUninstall(e.target.checked);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "qdlx-admin__uninstall-confirm",
+    className: "qdlx-admin__uninstall-confirm-label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('I understand that this remove all saved options and deactivate the plugin.', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()('qdlx__btn qdlx__btn-danger qdlx__btn--icon-right', {
+      'has-icon': uninstalling
+    }, {
+      'is-resetting': {
+        uninstalling: uninstalling
+      }
+    }),
+    type: "button",
+    text: hardUninstall ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstalling…', 'quotes-dlx') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uninstall QuotesDLX', 'quotes-dlx'),
+    icon: hardUninstall ? _components_icons_Spinner__WEBPACK_IMPORTED_MODULE_16__["default"] : false,
+    iconSize: "18",
+    iconPosition: "right",
+    disabled: saving || resetting || hardReset || hardUninstall || !canUninstall,
+    onClick: function onClick(e) {
+      uninstallAndDeactivate();
+    }
+  })), isHardUninstall && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Notice__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('QuotesDLX has been uninstalled. Redirecting to the plugins screen…', 'quotes-dlx'),
+    status: "warning",
+    politeness: "assertive"
+  })))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminAdvanced);
+
+/***/ })
+
+}]);
+//# sourceMappingURL=AdminAdvanced0.0.11.js.map

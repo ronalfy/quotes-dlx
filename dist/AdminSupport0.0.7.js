@@ -1,1 +1,115 @@
-"use strict";(self.webpackChunkquotes_dlx=self.webpackChunkquotes_dlx||[]).push([[127],{359:(e,t,n)=>{n.r(t),n.d(t,{default:()=>m});var a=n(1609),l=n.n(a),s=n(982),i=n(7723),o=n(6427),c=n(5685),d=n(956);const m=function(){return l().createElement(l().Fragment,null,l().createElement("div",{className:"qdlx-admin__support-wrapper"},l().createElement("div",{className:"qdlx-admin__support--content-panel"},l().createElement("div",{className:"qdlx-admin__support--content-heading"},l().createElement("h1",null,l().createElement(d.A,{width:48,height:48,"aria-hidden":"true"}),l().createElement("span",{className:"qdlx-admin__heading--text"},(0,i.__)("Support and Documentation","quotes-dlx"))),l().createElement("p",{className:"description"},(0,i.__)("On this screen you will find helpful support links and some pointers to some documentation.","quotes-dlx")))),l().createElement("div",{className:"qdlx-admin__support--content-panel"},l().createElement("div",{className:"qdlx-admin__support--content-heading"},l().createElement("h2",null,l().createElement("span",{className:"qdlx-admin__heading--text"},(0,i.__)("View the Documentation","quotes-dlx"))),l().createElement("p",{className:"description"},(0,i.__)("If you need help setting up the plugin, the docs are a great place to start.")),l().createElement("div",{className:"qdlx-button-primary"},l().createElement(o.Button,{className:"qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",icon:l().createElement(s.g,{size:"1x",icon:c.E4g}),size:"1x",iconSize:"1x",iconPosition:"left",href:"https://qdlx.dlxplugins.com/"},(0,i.__)("Go to the Documentation","quotes-dlx"))))),l().createElement("div",{className:"qdlx-admin__support--content-panel"},l().createElement("div",{className:"qdlx-admin__support--content-heading"},l().createElement("h2",null,l().createElement("span",{className:"qdlx-admin__heading--text"},(0,i.__)("Visit the QuotesDLX Overview Page","quotes-dlx"))),l().createElement("p",{className:"description"},(0,i.__)("Check out QuotesDLX.com")),l().createElement("div",{className:"qdlx-button-primary"},l().createElement(o.Button,{className:"qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",icon:l().createElement(s.g,{size:"1x",icon:c.CQO}),size:"1x",iconSize:"1x",iconPosition:"left",href:"https://dlxplugins.com/plugins/quotesdlx/"},(0,i.__)("View QuotesDLX","quotes-dlx"))))),l().createElement("div",{className:"qdlx-admin__support--content-panel"},l().createElement("div",{className:"qdlx-admin__support--content-heading"},l().createElement("h2",null,l().createElement("span",{className:"qdlx-admin__heading--text"},(0,i.__)("One-on-One Support","quotes-dlx"))),l().createElement("p",{className:"description"},(0,i.__)("If you need one-on-one paid support, please get ahold of the plugin author (Ronald Huereca - MediaRon LLC).")),l().createElement("div",{className:"qdlx-button-primary"},l().createElement(o.Button,{className:"qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",icon:l().createElement(s.g,{size:"1x",icon:c._CD}),size:"1x",iconSize:"1x",iconPosition:"left",href:"https://dlxplugins.com/support/"},(0,i.__)("Get Personalized Support","quotes-dlx")))))))}}}]);
+"use strict";
+(self["webpackChunkquotes_dlx"] = self["webpackChunkquotes_dlx"] || []).push([["AdminSupport0.0.7"],{
+
+/***/ "./src/js/admin-panel/views/AdminSupport.js":
+/*!**************************************************!*\
+  !*** ./src/js/admin-panel/views/AdminSupport.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.mjs");
+/* harmony import */ var _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/CircularQuestion */ "./src/js/components/icons/CircularQuestion.js");
+/* eslint-disable no-unused-vars */
+
+
+
+
+
+
+
+
+
+var AdminSupport = function AdminSupport() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    width: 48,
+    height: 48,
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Support and Documentation', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('On this screen you will find helpful support links and some pointers to some documentation.', 'quotes-dlx')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View the Documentation', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('If you need help setting up the plugin, the docs are a great place to start.')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-button-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+      size: '1x',
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faBookSparkles
+    }),
+    size: '1x',
+    iconSize: "1x",
+    iconPosition: "left",
+    href: "https://qdlx.dlxplugins.com/"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Go to the Documentation', 'quotes-dlx'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Visit the QuotesDLX Overview Page', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Check out QuotesDLX.com')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-button-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+      size: '1x',
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faLink
+    }),
+    size: '1x',
+    iconSize: "1x",
+    iconPosition: "left",
+    href: "https://dlxplugins.com/plugins/quotesdlx/"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View QuotesDLX', 'quotes-dlx'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-admin__support--content-heading"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "qdlx-admin__heading--text"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('One-on-One Support', 'quotes-dlx'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "description"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('If you need one-on-one paid support, please get ahold of the plugin author (Ronald Huereca - MediaRon LLC).')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "qdlx-button-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+      size: '1x',
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faHandshakeAngle
+    }),
+    size: '1x',
+    iconSize: "1x",
+    iconPosition: "left",
+    href: "https://dlxplugins.com/support/"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Get Personalized Support', 'quotes-dlx')))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminSupport);
+
+/***/ })
+
+}]);
+//# sourceMappingURL=AdminSupport0.0.7.js.map

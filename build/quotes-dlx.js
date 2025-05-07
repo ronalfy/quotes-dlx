@@ -3056,10 +3056,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 var _this = undefined;
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -3067,7 +3065,6 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-
 
 var getCropSettings = function getCropSettings() {
   var overrides = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -3080,8 +3077,8 @@ var getCropSettings = function getCropSettings() {
     suggestedHeight: '500',
     nonce: '',
     postId: 0,
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image', 'quotes-dlx'),
-    buttonLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image', 'quotes-dlx'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image', 'quotes-dlx'),
+    buttonLabel: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Image', 'quotes-dlx'),
     main: _this
   };
   settings = _objectSpread(_objectSpread({}, settings), overrides);
@@ -3104,98 +3101,106 @@ var getCropControl = function getCropControl() {
   };
   return cropControl;
 };
-
-/**
- * Retrieve crop options for an attachment.
- *
- * @param {Object} attachment Attachment image object.
- * @param {Object} controller Media controller object.
- * @return {Object} Cropping options.
- */
-var cropOptions = function cropOptions(attachment, controller) {
-  var settings = getCropSettings();
-  var control = controller.get('control');
-  var realWidth = attachment.get('width');
-  var realHeight = attachment.get('height');
-  var xInit = parseInt(control.params.width, 10);
-  var yInit = parseInt(control.params.height, 10);
-  var ratio = xInit / yInit;
-  var ratioReal = realWidth / realHeight;
-
-  // Determine if user can skip crop.
-  var canSkipCrop = false;
-
-  // If ratios match, can skip crop.
-  if (ratio === ratioReal) {
-    canSkipCrop = true;
-  }
-  controller.set('canSkipCrop', canSkipCrop);
-  var xImg = xInit;
-  var yImg = yInit;
-  if (realWidth / realHeight > ratio) {
-    if (yImg > realHeight) {
-      yImg = realHeight;
-    }
-    yInit = yImg;
-    xInit = yInit * ratio;
-  } else {
-    if (xImg > realWidth) {
-      xImg = realWidth;
-    }
-    xInit = xImg;
-    yInit = xInit / ratio;
-  }
-  var x1 = (realWidth - xInit) / 2;
-  var y1 = (realHeight - yInit) / 2;
-  if (x1 === 0) {
-    if (ratio > 0) {
-      x1 = y1 * ratio;
-    } else {
-      x1 = y1 / ratio;
-    }
-  }
-  if (y1 === 0) {
-    if (ratio > 0) {
-      y1 = x1 * ratio;
-    } else {
-      y1 = x1 / ratio;
-    }
-  }
-  var cropWidthX2 = 0;
-  var cropHeightY2 = 0;
-  if (xInit + x1 > realWidth) {
-    cropWidthX2 = xInit - 1;
-  } else {
-    cropWidthX2 = xInit + x1;
-  }
-  if (yInit + y1 > realHeight) {
-    cropHeightY2 = yInit - 1;
-  } else {
-    cropHeightY2 = yInit + y1;
-  }
-  var imgSelectOptions = {
-    handles: true,
-    keys: true,
-    instance: true,
-    persistent: true,
-    imageWidth: realWidth,
-    imageHeight: realHeight,
-    x1: x1,
-    y1: y1,
-    x2: cropWidthX2,
-    y2: cropHeightY2,
-    aspectRatio: settings.aspectRatio
-  };
-  return imgSelectOptions;
-};
 var useMediaUploader = function useMediaUploader(props) {
+  /**
+   * Retrieve crop options for an attachment.
+   *
+   * @param {Object} attachment   Attachment image object.
+   * @param {Object} controller   Media controller object.
+   * @param {Object} cropSettings Crop settings.
+   *
+   * @return {Object} Cropping options.
+   */
+  var cropOptions = function cropOptions(attachment, controller, cropSettings) {
+    var settings = getCropSettings(cropSettings);
+    var control = controller.get('control');
+    var realWidth = attachment.get('width');
+    var realHeight = attachment.get('height');
+    var xInit = parseInt(control.params.width, 10);
+    var yInit = parseInt(control.params.height, 10);
+    var ratio = xInit / yInit;
+    var ratioReal = realWidth / realHeight;
+
+    // Determine if user can skip crop.
+    var canSkipCrop = false;
+
+    // If ratios match, can skip crop.
+    if (ratio === ratioReal) {
+      canSkipCrop = true;
+    }
+    controller.set('canSkipCrop', canSkipCrop);
+    var xImg = xInit;
+    var yImg = yInit;
+    if (realWidth / realHeight > ratio) {
+      if (yImg > realHeight) {
+        yImg = realHeight;
+      }
+      yInit = yImg;
+      xInit = yInit * ratio;
+    } else {
+      if (xImg > realWidth) {
+        xImg = realWidth;
+      }
+      xInit = xImg;
+      yInit = xInit / ratio;
+    }
+    var x1 = (realWidth - xInit) / 2;
+    var y1 = (realHeight - yInit) / 2;
+    if (x1 === 0) {
+      if (ratio > 0) {
+        x1 = y1 * ratio;
+      } else {
+        x1 = y1 / ratio;
+      }
+    }
+    if (y1 === 0) {
+      if (ratio > 0) {
+        y1 = x1 * ratio;
+      } else {
+        y1 = x1 / ratio;
+      }
+    }
+    var cropWidthX2 = 0;
+    var cropHeightY2 = 0;
+    if (xInit + x1 >= realWidth) {
+      cropWidthX2 = xInit - 1;
+    } else {
+      cropWidthX2 = xInit + x1;
+    }
+    if (yInit + y1 >= realHeight) {
+      cropHeightY2 = yInit - 1;
+    } else {
+      cropHeightY2 = yInit + y1;
+    }
+    if (x1 > realWidth) {
+      x1 = 0;
+    }
+    if (y1 > realHeight) {
+      y1 = 0;
+    }
+    var imgSelectOptions = {
+      handles: true,
+      keys: true,
+      instance: true,
+      persistent: true,
+      imageWidth: realWidth,
+      imageHeight: realHeight,
+      x1: x1,
+      y1: y1,
+      x2: cropWidthX2,
+      y2: cropHeightY2,
+      aspectRatio: settings.aspectRatio
+    };
+    console.log(imgSelectOptions);
+    return imgSelectOptions;
+  };
   return {
     openMediaUploader: function openMediaUploader(cropSettings, callback) {
       var settings = getCropSettings(cropSettings);
       var cropControl = getCropControl(cropSettings);
       var uploader = wp.media({
         states: [new wp.media.controller.Library({
-          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Author Avatar', 'quotes-dlx'),
+          title: cropSettings.title || settings.title,
           library: wp.media.query({
             type: 'image'
           }),
@@ -3206,7 +3211,9 @@ var useMediaUploader = function useMediaUploader(props) {
           suggestedHeight: settings.suggestedHeight
         }), new wp.media.controller.CustomizeImageCropper({
           control: cropControl,
-          imgSelectOptions: cropOptions
+          imgSelectOptions: function imgSelectOptions(attachment, controller) {
+            return cropOptions(attachment, controller, cropSettings);
+          }
         })]
       });
 
@@ -3215,7 +3222,7 @@ var useMediaUploader = function useMediaUploader(props) {
         var options = {};
         options.items = {};
         options.items.select = {
-          text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save Image', 'quotes-dlx'),
+          text: settings.buttonLabel,
           style: 'primary',
           click: wp.media.view.Toolbar.Select.prototype.clickSelect,
           requires: {
@@ -3251,14 +3258,10 @@ var useMediaUploader = function useMediaUploader(props) {
         }
       });
       //When the remove buttons is clicked
-      uploader.on('remove', function () {
-        console.log('remove');
-      });
+      uploader.on('remove', function () {});
 
       //For when the window is closed (update the thumbnail)
-      uploader.on('escape', function () {
-        console.log('escape');
-      });
+      uploader.on('escape', function () {});
 
       // When image is cropped.
       uploader.on('cropped', function (croppedImage) {

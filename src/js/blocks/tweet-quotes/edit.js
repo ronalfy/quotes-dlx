@@ -152,6 +152,10 @@ const TweetQuotes = ( props ) => {
 		citation_image_appearance,
 		citation_alignment,
 		citation_image_has_border,
+		show_rating,
+		rating_value,
+		rating_alignment,
+		rating_position,
 	} = attributes;
 
 	useEffect( () => {
@@ -535,6 +539,14 @@ const TweetQuotes = ( props ) => {
 		}
 	};
 
+	const getRating = () => {
+		return (
+			<div className="quotes-dlx-rating-wrapper">
+				test
+			</div>
+		);
+	};
+
 	const inspectorControls = (
 		<>
 			<PanelBody initialOpen={ true } title={ __( 'Characters', 'quotes-dlx' ) }>
@@ -567,6 +579,65 @@ const TweetQuotes = ( props ) => {
 						ref={ maximumWidthInput }
 					/>
 				</>
+			</PanelBody>
+			<PanelBody
+				initialOpen={ true }
+				title={ __( 'Rating Settings', 'quotes-dlx' ) }
+			>
+				<PanelRow>
+					<ToggleControl
+						label={ __( 'Enable Rating', 'quotes-dlx' ) }
+						checked={ show_rating }
+						onChange={ ( value ) => {
+							setAttributes( {
+								show_rating: value,
+							} );
+						} }
+						help={ __( 'Show or hide a star rating in the quote.', 'quotes-dlx' ) }
+					/>
+				</PanelRow>
+				{ show_rating && (
+					<>
+						<PanelRow>
+							<TextControl
+								label={ __( 'Rating Value', 'quotes-dlx' ) }
+								value={ rating_value }
+								onChange={ ( value ) => {
+									setAttributes( {
+										rating_value: value,
+									} );
+								} }
+								type="number"
+								min="0"
+								max="100"
+								help={ __( 'Enter the rating value between 0 and 100.', 'quotes-dlx' ) }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<AlignmentGroup
+								label={ __( 'Rating Alignment', 'quotes-dlx' ) }
+								alignment={ rating_alignment }
+								onClick={ ( value ) => {
+									setAttributes( { rating_alignment: value } );
+								} }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Rating Position', 'quotes-dlx' ) }
+								value={ rating_position }
+								options={ [
+									{ label: __( 'Above Quote', 'quotes-dlx' ), value: 'above_quote' },
+									{ label: __( 'Below Quote', 'quotes-dlx' ), value: 'below_quote' },
+									{ label: __( 'Below Citation', 'quotes-dlx' ), value: 'below_citation' },
+								] }
+								onChange={ ( value ) => {
+									setAttributes( { rating_position: value } );
+								} }
+							/>
+						</PanelRow>
+					</>
+			) }
 			</PanelBody>
 			<PanelBody
 				initialOpen={ enable_citation ? true : false }
@@ -1147,6 +1218,11 @@ const TweetQuotes = ( props ) => {
 											<div className="quotes-dlx-content-wrapper">
 												<>
 													<figure>
+														{
+															( show_rating && rating_position === 'above_quote' ) && (
+																getRating()
+															)
+														}
 														<RichText
 															tagName="blockquote"
 															placeholder={ __( 'Add text to share', 'quotes-dlx' ) }
@@ -1167,7 +1243,17 @@ const TweetQuotes = ( props ) => {
 															} }
 															ref={ shareTextInput }
 														/>
+														{
+															( show_rating && rating_position === 'below_quote' ) && (
+																getRating()
+															)
+														}
 														{ getCitation() }
+														{
+															( show_rating && rating_position === 'below_citation' ) && (
+																getRating()
+															)
+														}
 													</figure>
 													{ getClickToShareButton() }
 													{ enable_contextual_menu &&

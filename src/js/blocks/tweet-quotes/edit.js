@@ -542,7 +542,30 @@ const TweetQuotes = ( props ) => {
 	const getRating = () => {
 		return (
 			<div className="quotes-dlx-rating-wrapper">
-				test
+				<style>
+					{ `
+						#${ uniqueId } .quotes-dlx-rating-wrapper {
+							position: relative;
+							display: flex;
+							vertical-align: baseline;
+							margin-left: 0 !important;
+						}
+						#${ uniqueId } .quotes-dlx-rating-wrapper::before {
+							--percent: ${ parseInt( rating_value ) }%;
+							content: \'★★★★★\';
+							display: inline-block;
+							position: relative;
+							top: 0;
+							letter-spacing: 0.04em;
+							left: 0;
+							font-size: 24px;
+							line-height: 1;
+							color: rgba(0,0,0,0.2);
+							-webkit-background-clip: text;
+							-webkit-text-fill-color: transparent;
+						}
+					` }
+				</style>
 			</div>
 		);
 	};
@@ -1074,6 +1097,8 @@ const TweetQuotes = ( props ) => {
 		</>
 	);
 
+	console.log( rating_alignment );
+
 	const htmlToReactParser = new HtmlToReactParser();
 	const previewBlock = (
 		<>
@@ -1085,6 +1110,7 @@ const TweetQuotes = ( props ) => {
 					'quotes-dlx-context-menu-disabled': ! enable_contextual_menu,
 					'quotes-dlx-has-no-tweet-button': ! tweet_button_enabled,
 				} ) }
+				id={ uniqueId }
 			>
 				<div className="quotes-dlx-wrapper">
 					<div className="quotes-dlx-content-wrapper">
@@ -1184,6 +1210,7 @@ const TweetQuotes = ( props ) => {
 					'quotes-dlx-context-menu-disabled': ! enable_contextual_menu,
 					'quotes-dlx-has-no-tweet-button': ! tweet_button_enabled,
 				} ) }
+				id={ uniqueId }
 			>
 				<div className="quotes-dlx-tabs">
 					<TabPanel
@@ -1654,6 +1681,13 @@ const TweetQuotes = ( props ) => {
 	const blockProps = useBlockProps( {
 		className: classnames( `quotes-dlx template-${ template }`, {
 			'quotes-dlx-has-citation': enable_citation,
+			'quotes-dlx-has-rating': show_rating,
+			'quotes-dlx-has-rating-top': show_rating && rating_position === 'above_quote',
+			'quotes-dlx-has-rating-bottom': show_rating && rating_position === 'below_quote',
+			'quotes-dlx-has-rating-below-citation': show_rating && rating_position === 'below_citation',
+			'quotes-dlx-has-rating-left': rating_alignment === 'left',
+			'quotes-dlx-has-rating-right': rating_alignment === 'right',
+			'quotes-dlx-has-rating-center': rating_alignment === 'center',
 		} ),
 	} );
 

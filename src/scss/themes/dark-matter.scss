@@ -9,6 +9,11 @@ $accent-color: #FFF;
 $secondary: #FFF;
 $link: #CC7000;
 
+.template-dark-matter {
+	--qdlx-rating-star-color: #CCAF00;
+	--qdlx-rating-star-color-inactive: #FFF;
+}
+
 .quotes-dlx-block-theme-dark-matter {
 	font-size: var( --qdlx-dark-matter-font-size-mobile, 14px );
 	@include respond-to('medium') {
@@ -641,4 +646,32 @@ $link: #CC7000;
 			border-color: var( --qdlx-dark-matter-text-color, $secondary );
 		}
 	}
+}
+
+.template-dark-matter.quotes-dlx-has-rating.quotes-dlx-has-rating-top {
+	figure blockquote.quotes-dlx-text-wrapper {
+		padding-top: 34px;
+	}
+	.quotes-dlx-rating-wrapper {
+		padding-top: 68px;
+		padding-left: 51px;
+	}
+}
+.template-dark-matter.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	padding-right: 51px;
+}
+.template-dark-matter.quotes-dlx-has-rating-bottom {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 34px;
+		padding-left: 51px;
+	}
+}
+.template-dark-matter.quotes-dlx-has-rating-below-citation {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 34px;
+		padding-left: 51px;
+	}
+}
+.template-dark-matter .quotes-dlx-rating-wrapper::before {
+	background: linear-gradient(90deg, var( --qdlx-dark-matter-star-color ) var(--percent), var( --qdlx-dark-matter-star-color-inactive, rgba(246, 246, 246, 0.52) ) var(--percent));
 }

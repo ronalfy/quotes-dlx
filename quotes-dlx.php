@@ -82,15 +82,15 @@ class QuotesDLX {
 		 * @since 1.0.0
 		 */
 		do_action( 'quotes_dlx_loaded' );
-
-		// Init all the core themes.
-		Themes\Themes_Init::run();
 	}
 
 	/**
 	 * Init all the things.
 	 */
 	public function init() {
+
+		// Init all the core themes.
+		Themes\Themes_Init::run();
 
 		if ( ! Functions::should_disable_licensing() ) {
 			// Setup EDD licensing.

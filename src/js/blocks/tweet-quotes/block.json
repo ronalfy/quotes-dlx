@@ -259,8 +259,8 @@
 			"default": false
 		},
 		"rating_value": {
-			"type": "number",
-			"default": 100
+			"type": "string",
+			"default": "100"
 		},
 		"rating_alignment": {
 			"type": "string",

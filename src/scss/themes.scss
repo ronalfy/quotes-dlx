@@ -58,3 +58,25 @@ p ~ .quotes-dlx.quotes-dlx-container {
 		
 	}
 }
+
+:root {
+	--qdlx-rating-star-color: #ffd700;
+	--qdlx-rating-star-color-inactive: #f6f6f6;
+}
+
+.quotes-dlx-has-rating-left .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	padding-right: 0;
+}
+.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	padding-left: 0;
+}
+.quotes-dlx-has-rating-center .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: center;
+	padding-left: 0;
+	padding-right: 0;
+}

@@ -31,12 +31,33 @@ class Blocks {
 	 */
 	public function init() {
 
-		register_block_type(
-			Functions::get_plugin_dir( 'build/js/blocks/tweet-quotes/block.json' ),
-			array(
-				'render_callback' => array( $this, 'frontend' ),
-			)
+		$render_callbacks = array(
+			'mediaron/quotes-dlx' => array( $this, 'frontend' ),
 		);
+
+		add_filter(
+			'block_type_metadata_settings',
+			function ( $settings, $metadata ) use ( $render_callbacks ) {
+				if ( isset( $render_callbacks[ $metadata['name'] ] ) ) {
+					$settings['render_callback'] = $render_callbacks[ $metadata['name'] ];
+				}
+				return $settings;
+			},
+			10,
+			2
+		);
+
+		if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
+			wp_register_block_types_from_metadata_collection( Functions::get_plugin_dir( 'build/js/blocks/' ), Functions::get_plugin_dir( 'build/blocks-manifest.php' ) );
+		} else {
+			if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
+				wp_register_block_metadata_collection( Functions::get_plugin_dir( 'build/js/blocks/' ), Functions::get_plugin_dir( 'build/blocks-manifest.php' ) );
+			}
+			$manifest_data = require Functions::get_plugin_dir( 'build/blocks-manifest.php' );
+			foreach ( array_keys( $manifest_data ) as $block_type ) {
+				register_block_type( __DIR__ . "/build/js/blocks/{$block_type}" );
+			}
+		}
 
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );

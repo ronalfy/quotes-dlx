@@ -18,8 +18,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.mjs");
-/* harmony import */ var _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/icons/CircularQuestion */ "./src/js/components/icons/CircularQuestion.js");
+/* harmony import */ var _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/pro-solid-svg-icons */ "./node_modules/@fortawesome/pro-solid-svg-icons/index.mjs");
+/* harmony import */ var _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/icons/CircularQuestion */ "./src/js/components/icons/CircularQuestion.js");
 /* eslint-disable no-unused-vars */
 
 
@@ -37,7 +37,7 @@ var AdminSupport = function AdminSupport() {
     className: "qdlx-admin__support--content-panel"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "qdlx-admin__support--content-heading"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_5__["default"], {
     width: 48,
     height: 48,
     "aria-hidden": "true"
@@ -59,7 +59,7 @@ var AdminSupport = function AdminSupport() {
     className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
     icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       size: '1x',
-      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faBookSparkles
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faBookSparkles
     }),
     size: '1x',
     iconSize: "1x",
@@ -79,7 +79,7 @@ var AdminSupport = function AdminSupport() {
     className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
     icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       size: '1x',
-      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faLink
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLink
     }),
     size: '1x',
     iconSize: "1x",
@@ -99,7 +99,7 @@ var AdminSupport = function AdminSupport() {
     className: "qdlx__btn qdlx__btn-primary qdlx__btn--icon-left",
     icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       size: '1x',
-      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faHandshakeAngle
+      icon: _fortawesome_pro_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faHandshakeAngle
     }),
     size: '1x',
     iconSize: "1x",

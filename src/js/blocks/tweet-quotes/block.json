@@ -253,6 +253,26 @@
 		"citation_alignment": {
 			"type": "string",
 			"default": "left"
+		},
+		"show_rating": {
+			"type": "boolean",
+			"default": false
+		},
+		"rating_value": {
+			"type": "string",
+			"default": "100"
+		},
+		"rating_alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"rating_position": {
+			"type": "string",
+			"default": "above_quote"
+		},
+		"rating_appearance": {
+			"type": "string",
+			"default": "stars"
 		}
 	},
 	"example": {

@@ -271,6 +271,16 @@ class Themes_Dark_X extends Themes_Addon {
 				'slug'  => 'link-hover',
 				'color' => '#4E99EB',
 			),
+			array(
+				'name'  => __( 'Rating Star Color', 'quotes-dlx' ),
+				'slug'  => 'star-color',
+				'color' => '#FFDB00',
+			),
+			array(
+				'name'  => __( 'Rating Star Color Inactive', 'quotes-dlx' ),
+				'slug'  => 'star-color-inactive',
+				'color' => '#FFFFFF',
+			),
 		);
 	}
 }

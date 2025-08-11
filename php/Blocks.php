@@ -31,12 +31,33 @@ class Blocks {
 	 */
 	public function init() {
 
-		register_block_type(
-			Functions::get_plugin_dir( 'build/js/blocks/tweet-quotes/block.json' ),
-			array(
-				'render_callback' => array( $this, 'frontend' ),
-			)
+		$render_callbacks = array(
+			'mediaron/quotes-dlx' => array( $this, 'frontend' ),
 		);
+
+		add_filter(
+			'block_type_metadata_settings',
+			function ( $settings, $metadata ) use ( $render_callbacks ) {
+				if ( isset( $render_callbacks[ $metadata['name'] ] ) ) {
+					$settings['render_callback'] = $render_callbacks[ $metadata['name'] ];
+				}
+				return $settings;
+			},
+			10,
+			2
+		);
+
+		if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
+			wp_register_block_types_from_metadata_collection( Functions::get_plugin_dir( 'build/js/blocks/' ), Functions::get_plugin_dir( 'build/blocks-manifest.php' ) );
+		} else {
+			if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
+				wp_register_block_metadata_collection( Functions::get_plugin_dir( 'build/js/blocks/' ), Functions::get_plugin_dir( 'build/blocks-manifest.php' ) );
+			}
+			$manifest_data = require Functions::get_plugin_dir( 'build/blocks-manifest.php' );
+			foreach ( array_keys( $manifest_data ) as $block_type ) {
+				register_block_type( __DIR__ . "/build/js/blocks/{$block_type}" );
+			}
+		}
 
 		// Enqueue general front-end style.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
@@ -720,7 +741,11 @@ class Blocks {
 		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
 		$facebook_button_enabled = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
 		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
-
+		$rating_value            = Functions::sanitize_attribute( $attributes, 'rating_value', 'integer' );
+		$show_rating             = Functions::sanitize_attribute( $attributes, 'show_rating', 'boolean' );
+		$rating_position         = Functions::sanitize_attribute( $attributes, 'rating_position', 'string' );
+		$rating_alignment        = Functions::sanitize_attribute( $attributes, 'rating_alignment', 'string' );
+		$rating_appearance       = Functions::sanitize_attribute( $attributes, 'rating_appearance', 'string' );
 		// If a theme is removed, find a default fallback.
 		$has_theme   = false;
 		$first_theme = null;
@@ -773,6 +798,20 @@ class Blocks {
 		$enable_citation = Functions::sanitize_attribute( $attributes, 'enable_citation', 'boolean' );
 		if ( $enable_citation ) {
 			$default_wrapper_classes[] = 'quotes-dlx-has-citation';
+		}
+
+		// Get rating classes.
+		if ( $show_rating ) {
+			$position_class = 'top';
+			if ( 'below_quote' === $rating_position ) {
+				$position_class = 'bottom';
+			} elseif ( 'below_citation' === $rating_position ) {
+				$position_class = 'below-citation';
+			}
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating';
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $position_class;
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $rating_alignment;
+			$default_wrapper_classes[] = 'quotes-dlx-rating-appearance-' . $rating_appearance;
 		}
 
 		/**
@@ -828,12 +867,38 @@ class Blocks {
 			<div class="quotes-dlx-wrapper">
 				<div class="quotes-dlx-content-wrapper">
 					<figure>
+						<?php
+						if ( $show_rating && 'above_quote' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
+							<?php
+						}
+						?>
 						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
 						<?php
 							$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
 							echo wp_kses_post( nl2br( $tweet_text_rich ) );
 						?>
 						</blockquote>
+						<?php
+						if ( $show_rating && 'below_quote' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
+							<?php
+						}
+						?>
 						<?php
 						$enable_citation = $attributes['enable_citation'] ?? false;
 						if ( $enable_citation ) {
@@ -901,6 +966,19 @@ class Blocks {
 									?>
 								</div>
 							</figcaption>
+							<?php
+						}
+						?>
+						<?php
+						if ( $show_rating && 'below_citation' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
 							<?php
 						}
 						?>

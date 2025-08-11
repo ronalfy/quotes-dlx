@@ -325,6 +325,16 @@ class Themes_Light_Branded extends Themes_Addon {
 				'slug'  => 'link-underline-hover',
 				'color' => '#309ADA',
 			),
+			array(
+				'name'  => __( 'Rating Star Color', 'quotes-dlx' ),
+				'slug'  => 'star-color',
+				'color' => '#F1911E',
+			),
+			array(
+				'name'  => __( 'Rating Star Color Inactive', 'quotes-dlx' ),
+				'slug'  => 'star-color-inactive',
+				'color' => '#B3B3B1',
+			),
 		);
 	}
 }

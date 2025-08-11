@@ -639,3 +639,29 @@ $secondary: #FFFFFF;
 		}
 	}
 }
+
+
+.template-midnight-blue.quotes-dlx-has-rating.quotes-dlx-has-rating-top {
+	.quotes-dlx-rating-wrapper {
+		padding-top: 0;
+		padding-bottom: 34px;
+	}
+}
+.template-midnight-blue.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	padding-right: 48px;
+}
+.template-midnight-blue.quotes-dlx-has-rating-bottom {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 34px;
+		padding-left: 0;
+	}
+}
+.template-midnight-blue.quotes-dlx-has-rating-below-citation {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 34px;
+		padding-left: 0;
+	}
+}
+.template-midnight-blue .quotes-dlx-rating-wrapper::before {
+	background-image: linear-gradient(90deg, var( --qdlx-midnight-blue-star-color ) var(--percent), var( --qdlx-midnight-blue-star-color-inactive, rgba(246, 246, 246, 0.52) ) var(--percent));
+}

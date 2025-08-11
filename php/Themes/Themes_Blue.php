@@ -304,7 +304,16 @@ class Themes_Blue extends Themes_Addon {
 				'slug'  => 'link-underline-hover',
 				'color' => '#cc7000',
 			),
+			array(
+				'name'  => __( 'Rating Star Color', 'quotes-dlx' ),
+				'slug'  => 'star-color',
+				'color' => '#FFDB00',
+			),
+			array(
+				'name'  => __( 'Rating Star Color Inactive', 'quotes-dlx' ),
+				'slug'  => 'star-color-inactive',
+				'color' => '#FFFFFF',
+			),
 		);
 	}
-
 }

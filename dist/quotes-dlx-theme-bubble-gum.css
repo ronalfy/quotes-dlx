@@ -34,6 +34,11 @@ p ~ .quotes-dlx.quotes-dlx-container {
   column-gap: 1em;
 }
 
+.quotes-dlx-citation-align-center {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .quotes-dlx-citation-align-left {
   justify-content: flex-start;
   text-align: left;
@@ -65,6 +70,68 @@ p ~ .quotes-dlx.quotes-dlx-container {
 .quotes-dlx-citation-image-wrapper.has-border img {
   border-width: 2px;
   border-style: solid;
+}
+
+.quotes-dlx-content-wrapper figure {
+  margin-bottom: 0;
+}
+
+:root {
+  --qdlx-rating-star-color: #ffd700;
+  --qdlx-rating-star-color-inactive: #f6f6f6;
+}
+
+.quotes-dlx-has-rating-left .quotes-dlx-rating-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 0;
+}
+
+.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 0;
+}
+
+.quotes-dlx-has-rating-center .quotes-dlx-rating-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.quotes-dlx-rating-wrapper {
+  position: relative;
+  display: flex;
+  vertical-align: baseline;
+  margin-left: 0 !important;
+}
+
+.quotes-dlx-rating-wrapper::before {
+  content: "★★★★★";
+  display: inline-block;
+  position: relative;
+  top: 0;
+  letter-spacing: 0.04em;
+  left: 0;
+  font-size: 24px;
+  line-height: 1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.quotes-dlx-rating-appearance-hearts .quotes-dlx-rating-wrapper::before {
+  content: "♥♥♥♥♥";
+}
+
+.quotes-dlx-rating-appearance-diamonds .quotes-dlx-rating-wrapper::before {
+  content: "♦♦♦♦♦";
+}
+
+.quotes-dlx-rating-appearance-circles .quotes-dlx-rating-wrapper::before {
+  content: "⚪⚪⚪⚪⚪";
+  letter-spacing: 0.25em;
 }
 
 .quotes-dlx-block-theme-bubble-gum {
@@ -596,12 +663,12 @@ p ~ .quotes-dlx.quotes-dlx-container {
   padding-bottom: 68px;
 }
 .template-bubble-gum.quotes-dlx-has-citation.quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper, .template-bubble-gum.quotes-dlx-has-citation .quotes-dlx-has-no-tweet-button .quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
-  padding-bottom: 34px;
+  padding-bottom: 24px;
 }
 .template-bubble-gum .quotes-dlx-citation-wrapper {
   padding-left: 68px;
   padding-right: 68px;
-  padding-bottom: 34px;
+  padding-bottom: 24px;
 }
 .template-bubble-gum .quotes-dlx-citation-wrapper .quotes-dlx-citation-title,
 .template-bubble-gum .quotes-dlx-citation-wrapper .quotes-dlx-citation-author,
@@ -617,6 +684,32 @@ p ~ .quotes-dlx.quotes-dlx-container {
 }
 .template-bubble-gum .quotes-dlx-citation-wrapper .has-border {
   border-color: var(--qdlx-bubble-gum-secondary, #fdeef2);
+}
+
+.template-bubble-gum.quotes-dlx-has-rating.quotes-dlx-has-rating-top figure blockquote.quotes-dlx-text-wrapper {
+  padding-top: 24px;
+}
+.template-bubble-gum.quotes-dlx-has-rating.quotes-dlx-has-rating-top .quotes-dlx-rating-wrapper {
+  padding-top: 68px;
+  padding-left: 68px;
+}
+
+.template-bubble-gum.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+  padding-right: 68px;
+}
+
+.template-bubble-gum.quotes-dlx-has-rating-bottom .quotes-dlx-rating-wrapper {
+  padding-bottom: 24px;
+  padding-left: 68px;
+}
+
+.template-bubble-gum.quotes-dlx-has-rating-below-citation .quotes-dlx-rating-wrapper {
+  padding-bottom: 24px;
+  padding-left: 68px;
+}
+
+.template-bubble-gum .quotes-dlx-rating-wrapper::before {
+  background-image: linear-gradient(90deg, var(--qdlx-bubble-gum-star-color) var(--percent), var(--qdlx-bubble-gum-star-color-inactive, rgba(246, 246, 246, 0.52)) var(--percent));
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-bubble-gum.css.map*/

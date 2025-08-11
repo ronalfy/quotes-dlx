@@ -281,6 +281,16 @@ class Themes_Bubble_Gum extends Themes_Addon {
 				'slug'  => 'link-underline-hover',
 				'color' => '#333333',
 			),
+			array(
+				'name'  => __( 'Rating Star Color', 'quotes-dlx' ),
+				'slug'  => 'star-color',
+				'color' => '#E7D654',
+			),
+			array(
+				'name'  => __( 'Rating Star Color Inactive', 'quotes-dlx' ),
+				'slug'  => 'star-color-inactive',
+				'color' => '#B3B3B1',
+			),
 		);
 	}
 }

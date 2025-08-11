@@ -26,6 +26,10 @@ p ~ .quotes-dlx.quotes-dlx-container {
 	align-items: center;
 	column-gap: 1em;
 }
+.quotes-dlx-citation-align-center {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
 .quotes-dlx-citation-align-left {
 	justify-content: flex-start;
 	text-align: left;
@@ -57,4 +61,60 @@ p ~ .quotes-dlx.quotes-dlx-container {
 		}
 		
 	}
+}
+
+.quotes-dlx-content-wrapper figure {
+	margin-bottom: 0;
+}
+
+:root {
+	--qdlx-rating-star-color: #ffd700;
+	--qdlx-rating-star-color-inactive: #f6f6f6;
+}
+
+.quotes-dlx-has-rating-left .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	padding-right: 0;
+}
+.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	padding-left: 0;
+}
+.quotes-dlx-has-rating-center .quotes-dlx-rating-wrapper {
+	display: flex;
+	justify-content: center;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.quotes-dlx-rating-wrapper {
+	position: relative;
+	display: flex;
+	vertical-align: baseline;
+	margin-left: 0 !important;
+}
+.quotes-dlx-rating-wrapper::before {
+	content: '★★★★★';
+	display: inline-block;
+	position: relative;
+	top: 0;
+	letter-spacing: 0.04em;
+	left: 0;
+	font-size: 24px;
+	line-height: 1;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.quotes-dlx-rating-appearance-hearts .quotes-dlx-rating-wrapper::before {
+	content: '♥♥♥♥♥';
+}
+.quotes-dlx-rating-appearance-diamonds .quotes-dlx-rating-wrapper::before {
+	content: '♦♦♦♦♦';
+}
+.quotes-dlx-rating-appearance-circles .quotes-dlx-rating-wrapper::before {
+	content: '⚪⚪⚪⚪⚪';
+	letter-spacing: 0.25em;
 }

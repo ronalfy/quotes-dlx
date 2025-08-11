@@ -629,14 +629,14 @@ $dark: #000;
 			padding-bottom: 68px;
 		}
 		.quotes-dlx-content-wrapper figure blockquote.quotes-dlx-text-wrapper {
-			padding-bottom: 34px;
+			padding-bottom: 24px;
 		}
 	}
 	/* Citation Styles */
 	.quotes-dlx-citation-wrapper  {
 		padding-left: 68px;
 		padding-right: 68px;
-		padding-bottom: 34px;
+		padding-bottom: 24px;
 
 		.quotes-dlx-citation-title,
 		.quotes-dlx-citation-author,
@@ -654,4 +654,33 @@ $dark: #000;
 			border-color: var( --qdlx-bubble-gum-secondary, $secondary );
 		}
 	}
+}
+
+
+.template-bubble-gum.quotes-dlx-has-rating.quotes-dlx-has-rating-top {
+	figure blockquote.quotes-dlx-text-wrapper {
+		padding-top: 24px;
+	}
+	.quotes-dlx-rating-wrapper {
+		padding-top: 68px;
+		padding-left: 68px;
+	}
+}
+.template-bubble-gum.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	padding-right: 68px;
+}
+.template-bubble-gum.quotes-dlx-has-rating-bottom {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 24px;
+		padding-left: 68px;
+	}
+}
+.template-bubble-gum.quotes-dlx-has-rating-below-citation {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 24px;
+		padding-left: 68px;
+	}
+}
+.template-bubble-gum .quotes-dlx-rating-wrapper::before {
+	background-image: linear-gradient(90deg, var( --qdlx-bubble-gum-star-color ) var(--percent), var( --qdlx-bubble-gum-star-color-inactive, rgba(246, 246, 246, 0.52) ) var(--percent));
 }

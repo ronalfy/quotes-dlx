@@ -720,6 +720,10 @@ class Blocks {
 		$tweet_button_enabled    = Functions::sanitize_attribute( $attributes, 'tweet_button_enabled', 'boolean' );
 		$facebook_button_enabled = Functions::sanitize_attribute( $attributes, 'facebook_button_enabled', 'boolean' );
 		$enable_contextual_menu  = Functions::sanitize_attribute( $attributes, 'enable_contextual_menu', 'boolean' );
+		$rating_value            = Functions::sanitize_attribute( $attributes, 'rating_value', 'integer' );
+		$show_rating             = Functions::sanitize_attribute( $attributes, 'show_rating', 'boolean' );
+		$rating_position         = Functions::sanitize_attribute( $attributes, 'rating_position', 'string' );
+		$rating_alignment        = Functions::sanitize_attribute( $attributes, 'rating_alignment', 'string' );
 
 		// If a theme is removed, find a default fallback.
 		$has_theme   = false;
@@ -775,6 +779,19 @@ class Blocks {
 			$default_wrapper_classes[] = 'quotes-dlx-has-citation';
 		}
 
+		// Get rating classes.
+		if ( $show_rating ) {
+			$position_class = 'top';
+			if ( 'below_quote' === $rating_position ) {
+				$position_class = 'bottom';
+			} elseif ( 'below_citation' === $rating_position ) {
+				$position_class = 'below-citation';
+			}
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating';
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $position_class;
+			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $rating_alignment;
+		}
+
 		/**
 		 * Filter: quotes_dlx_block_wrapper_classes
 		 *
@@ -828,12 +845,38 @@ class Blocks {
 			<div class="quotes-dlx-wrapper">
 				<div class="quotes-dlx-content-wrapper">
 					<figure>
+						<?php
+						if ( $show_rating && 'above_quote' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
+							<?php
+						}
+						?>
 						<blockquote class="quotes-dlx-text quotes-dlx-text-wrapper">
 						<?php
 							$tweet_text_rich = Functions::sanitize_attribute( $attributes, 'share_text', 'raw' );
 							echo wp_kses_post( nl2br( $tweet_text_rich ) );
 						?>
 						</blockquote>
+						<?php
+						if ( $show_rating && 'below_quote' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
+							<?php
+						}
+						?>
 						<?php
 						$enable_citation = $attributes['enable_citation'] ?? false;
 						if ( $enable_citation ) {
@@ -901,6 +944,19 @@ class Blocks {
 									?>
 								</div>
 							</figcaption>
+							<?php
+						}
+						?>
+						<?php
+						if ( $show_rating && 'below_citation' === $rating_position ) {
+							?>
+							<div class="quotes-dlx-rating-wrapper">
+								<style>
+									#<?php echo esc_attr( $block_id ); ?> .quotes-dlx-rating-wrapper::before {
+										--percent: <?php echo esc_attr( $rating_value ); ?>%;
+									}
+								</style>
+							</div>
 							<?php
 						}
 						?>

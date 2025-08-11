@@ -643,7 +643,7 @@ const TweetQuotes = ( props ) => {
 							/>
 						</PanelRow>
 					</>
-			) }
+				) }
 			</PanelBody>
 			<PanelBody
 				initialOpen={ enable_citation ? true : false }
@@ -1079,8 +1079,6 @@ const TweetQuotes = ( props ) => {
 			</PanelBody>
 		</>
 	);
-
-	console.log( rating_alignment );
 
 	const htmlToReactParser = new HtmlToReactParser();
 	const previewBlock = (

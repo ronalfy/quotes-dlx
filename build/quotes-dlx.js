@@ -1590,7 +1590,6 @@ var TweetQuotes = function TweetQuotes(props) {
       });
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_18__.__)('Turn Preview Mode Off', 'quotes-dlx'))));
-  console.log(rating_alignment);
   var htmlToReactParser = new HtmlToReactParser();
   var previewBlock = /*#__PURE__*/React.createElement(React.Fragment, null, !blockOnly && blockToolbar, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_21__.InspectorControls, null, previewBlockInspectorControls), /*#__PURE__*/React.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('quotes-dlx', _defineProperty(_defineProperty(_defineProperty({}, "quotes-dlx-block-theme-".concat(template), true), 'quotes-dlx-context-menu-disabled', !enable_contextual_menu), 'quotes-dlx-has-no-tweet-button', !tweet_button_enabled)),

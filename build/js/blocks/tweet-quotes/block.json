@@ -280,6 +280,10 @@
     "rating_position": {
       "type": "string",
       "default": "above_quote"
+    },
+    "rating_appearance": {
+      "type": "string",
+      "default": "stars"
     }
   },
   "example": {

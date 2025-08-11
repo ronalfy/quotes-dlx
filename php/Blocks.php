@@ -724,7 +724,7 @@ class Blocks {
 		$show_rating             = Functions::sanitize_attribute( $attributes, 'show_rating', 'boolean' );
 		$rating_position         = Functions::sanitize_attribute( $attributes, 'rating_position', 'string' );
 		$rating_alignment        = Functions::sanitize_attribute( $attributes, 'rating_alignment', 'string' );
-
+		$rating_appearance       = Functions::sanitize_attribute( $attributes, 'rating_appearance', 'string' );
 		// If a theme is removed, find a default fallback.
 		$has_theme   = false;
 		$first_theme = null;
@@ -790,6 +790,7 @@ class Blocks {
 			$default_wrapper_classes[] = 'quotes-dlx-has-rating';
 			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $position_class;
 			$default_wrapper_classes[] = 'quotes-dlx-has-rating-' . $rating_alignment;
+			$default_wrapper_classes[] = 'quotes-dlx-rating-appearance-' . $rating_appearance;
 		}
 
 		/**

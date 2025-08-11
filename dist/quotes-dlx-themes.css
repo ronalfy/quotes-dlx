@@ -61,6 +61,10 @@ p ~ .quotes-dlx.quotes-dlx-container {
   border-style: solid;
 }
 
+.quotes-dlx-content-wrapper figure {
+  margin-bottom: 0;
+}
+
 :root {
   --qdlx-rating-star-color: #ffd700;
   --qdlx-rating-star-color-inactive: #f6f6f6;
@@ -104,6 +108,19 @@ p ~ .quotes-dlx.quotes-dlx-container {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.quotes-dlx-rating-appearance-hearts .quotes-dlx-rating-wrapper::before {
+  content: "♥♥♥♥♥";
+}
+
+.quotes-dlx-rating-appearance-diamonds .quotes-dlx-rating-wrapper::before {
+  content: "♦♦♦♦♦";
+}
+
+.quotes-dlx-rating-appearance-circles .quotes-dlx-rating-wrapper::before {
+  content: "⚪⚪⚪⚪⚪";
+  letter-spacing: 0.25em;
 }
 
 /*# sourceMappingURL=quotes-dlx-themes.css.map*/

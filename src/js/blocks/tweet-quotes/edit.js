@@ -156,6 +156,7 @@ const TweetQuotes = ( props ) => {
 		rating_value,
 		rating_alignment,
 		rating_position,
+		rating_appearance,
 	} = attributes;
 
 	useEffect( () => {
@@ -617,6 +618,21 @@ const TweetQuotes = ( props ) => {
 								min="0"
 								max="100"
 								help={ __( 'Enter the rating value between 0 and 100.', 'quotes-dlx' ) }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Rating Appearance', 'quotes-dlx' ) }
+								value={ rating_appearance }
+								options={ [
+									{ label: __( 'Stars', 'quotes-dlx' ), value: 'stars' },
+									{ label: __( 'Circles', 'quotes-dlx' ), value: 'circles' },
+									{ label: __( 'Hearts', 'quotes-dlx' ), value: 'hearts' },
+									{ label: __( 'Diamonds', 'quotes-dlx' ), value: 'diamonds' },
+								] }
+								onChange={ ( value ) => {
+									setAttributes( { rating_appearance: value } );
+								} }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -1660,7 +1676,7 @@ const TweetQuotes = ( props ) => {
 	);
 
 	const blockProps = useBlockProps( {
-		className: classnames( `quotes-dlx template-${ template }`, {
+		className: classnames( `quotes-dlx template-${ template } quotes-dlx-rating-appearance-${ rating_appearance }`, {
 			'quotes-dlx-has-citation': enable_citation,
 			'quotes-dlx-has-rating': show_rating,
 			'quotes-dlx-has-rating-top': show_rating && rating_position === 'above_quote',

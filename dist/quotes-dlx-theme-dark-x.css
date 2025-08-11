@@ -670,4 +670,30 @@ p ~ .quotes-dlx.quotes-dlx-container {
   border-color: var(--qdlx-dark-x-accent, #FFF);
 }
 
+.template-dark-x.quotes-dlx-has-rating.quotes-dlx-has-rating-top figure blockquote.quotes-dlx-text-wrapper {
+  padding-top: 24px;
+}
+.template-dark-x.quotes-dlx-has-rating.quotes-dlx-has-rating-top .quotes-dlx-rating-wrapper {
+  padding-top: 72px;
+  padding-left: 68px;
+}
+
+.template-dark-x.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+  padding-right: 68px;
+}
+
+.template-dark-x.quotes-dlx-has-rating-bottom .quotes-dlx-rating-wrapper {
+  padding-bottom: 24px;
+  padding-left: 68px;
+}
+
+.template-dark-x.quotes-dlx-has-rating-below-citation .quotes-dlx-rating-wrapper {
+  padding-bottom: 34px;
+  padding-left: 68px;
+}
+
+.template-dark-x .quotes-dlx-rating-wrapper::before {
+  background-image: linear-gradient(90deg, var(--qdlx-dark-x-star-color) var(--percent), var(--qdlx-dark-x-star-color-inactive, rgba(246, 246, 246, 0.52)) var(--percent));
+}
+
 /*# sourceMappingURL=quotes-dlx-theme-dark-x.css.map*/

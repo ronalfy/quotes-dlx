@@ -91,6 +91,27 @@ p ~ .quotes-dlx.quotes-dlx-container {
   padding-right: 0;
 }
 
+.quotes-dlx-rating-wrapper {
+  position: relative;
+  display: flex;
+  vertical-align: baseline;
+  margin-left: 0 !important;
+}
+
+.quotes-dlx-rating-wrapper::before {
+  content: "★★★★★";
+  display: inline-block;
+  position: relative;
+  top: 0;
+  letter-spacing: 0.04em;
+  left: 0;
+  font-size: 24px;
+  line-height: 1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .template-dark-matter {
   --qdlx-rating-star-color: #CCAF00;
   --qdlx-rating-star-color-inactive: #FFF;
@@ -661,7 +682,7 @@ p ~ .quotes-dlx.quotes-dlx-container {
 }
 
 .template-dark-matter .quotes-dlx-rating-wrapper::before {
-  background: linear-gradient(90deg, var(--qdlx-dark-matter-star-color) var(--percent), var(--qdlx-dark-matter-star-color-inactive, rgba(246, 246, 246, 0.52)) var(--percent));
+  background-image: linear-gradient(90deg, var(--qdlx-dark-matter-star-color) var(--percent), var(--qdlx-dark-matter-star-color-inactive, rgba(246, 246, 246, 0.52)) var(--percent));
 }
 
 /*# sourceMappingURL=quotes-dlx-theme-dark-matter.css.map*/

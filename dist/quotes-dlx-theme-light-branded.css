@@ -91,6 +91,27 @@ p ~ .quotes-dlx.quotes-dlx-container {
   padding-right: 0;
 }
 
+.quotes-dlx-rating-wrapper {
+  position: relative;
+  display: flex;
+  vertical-align: baseline;
+  margin-left: 0 !important;
+}
+
+.quotes-dlx-rating-wrapper::before {
+  content: "★★★★★";
+  display: inline-block;
+  position: relative;
+  top: 0;
+  letter-spacing: 0.04em;
+  left: 0;
+  font-size: 24px;
+  line-height: 1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .quotes-dlx-block-theme-light-branded {
   font-size: var(--qdlx-light-branded-font-size-mobile, 14px);
   /* If these are set, we're in a preview */

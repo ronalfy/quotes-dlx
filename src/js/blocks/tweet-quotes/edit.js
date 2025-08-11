@@ -544,25 +544,8 @@ const TweetQuotes = ( props ) => {
 			<div className="quotes-dlx-rating-wrapper">
 				<style>
 					{ `
-						#${ uniqueId } .quotes-dlx-rating-wrapper {
-							position: relative;
-							display: flex;
-							vertical-align: baseline;
-							margin-left: 0 !important;
-						}
 						#${ uniqueId } .quotes-dlx-rating-wrapper::before {
 							--percent: ${ parseInt( rating_value ) }%;
-							content: \'★★★★★\';
-							display: inline-block;
-							position: relative;
-							top: 0;
-							letter-spacing: 0.04em;
-							left: 0;
-							font-size: 24px;
-							line-height: 1;
-							color: rgba(0,0,0,0.2);
-							-webkit-background-clip: text;
-							-webkit-text-fill-color: transparent;
 						}
 					` }
 				</style>

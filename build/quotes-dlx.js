@@ -1185,7 +1185,7 @@ var TweetQuotes = function TweetQuotes(props) {
   var getRating = function getRating() {
     return /*#__PURE__*/React.createElement("div", {
       className: "quotes-dlx-rating-wrapper"
-    }, /*#__PURE__*/React.createElement("style", null, "\n\t\t\t\t\t\t#".concat(uniqueId, " .quotes-dlx-rating-wrapper {\n\t\t\t\t\t\t\tposition: relative;\n\t\t\t\t\t\t\tdisplay: flex;\n\t\t\t\t\t\t\tvertical-align: baseline;\n\t\t\t\t\t\t\tmargin-left: 0 !important;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t#").concat(uniqueId, " .quotes-dlx-rating-wrapper::before {\n\t\t\t\t\t\t\t--percent: ").concat(parseInt(rating_value), "%;\n\t\t\t\t\t\t\tcontent: '\u2605\u2605\u2605\u2605\u2605';\n\t\t\t\t\t\t\tdisplay: inline-block;\n\t\t\t\t\t\t\tposition: relative;\n\t\t\t\t\t\t\ttop: 0;\n\t\t\t\t\t\t\tletter-spacing: 0.04em;\n\t\t\t\t\t\t\tleft: 0;\n\t\t\t\t\t\t\tfont-size: 24px;\n\t\t\t\t\t\t\tline-height: 1;\n\t\t\t\t\t\t\tcolor: rgba(0,0,0,0.2);\n\t\t\t\t\t\t\t-webkit-background-clip: text;\n\t\t\t\t\t\t\t-webkit-text-fill-color: transparent;\n\t\t\t\t\t\t}\n\t\t\t\t\t")));
+    }, /*#__PURE__*/React.createElement("style", null, "\n\t\t\t\t\t\t#".concat(uniqueId, " .quotes-dlx-rating-wrapper::before {\n\t\t\t\t\t\t\t--percent: ").concat(parseInt(rating_value), "%;\n\t\t\t\t\t\t}\n\t\t\t\t\t")));
   };
   var inspectorControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_20__.PanelBody, {
     initialOpen: true,

@@ -289,6 +289,16 @@ class Themes_Purple extends Themes_Addon {
 				'slug'  => 'link-underline-hover',
 				'color' => '#ff6900',
 			),
+			array(
+				'name'  => __( 'Rating Star Color', 'quotes-dlx' ),
+				'slug'  => 'star-color',
+				'color' => '#67009C',
+			),
+			array(
+				'name'  => __( 'Rating Star Color Inactive', 'quotes-dlx' ),
+				'slug'  => 'star-color-inactive',
+				'color' => '#CCCCCC',
+			),
 		);
 	}
 }

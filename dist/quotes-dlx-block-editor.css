@@ -110,6 +110,11 @@ p ~ .quotes-dlx.quotes-dlx-container {
   column-gap: 1em;
 }
 
+.quotes-dlx-citation-align-center {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .quotes-dlx-citation-align-left {
   justify-content: flex-start;
   text-align: left;
@@ -167,8 +172,8 @@ p ~ .quotes-dlx.quotes-dlx-container {
 .quotes-dlx-has-rating-center .quotes-dlx-rating-wrapper {
   display: flex;
   justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .quotes-dlx-rating-wrapper {

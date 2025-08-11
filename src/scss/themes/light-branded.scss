@@ -613,3 +613,32 @@ $link: #1DA1F2;
 		}
 	}
 }
+
+
+.template-light-branded.quotes-dlx-has-rating.quotes-dlx-has-rating-top {
+	figure blockquote.quotes-dlx-text-wrapper {
+		padding-top: 35px;
+	}
+	.quotes-dlx-rating-wrapper {
+		padding-top: 60px;
+		padding-left: 50px;
+	}
+}
+.template-light-branded.quotes-dlx-has-rating-right .quotes-dlx-rating-wrapper {
+	padding-right: 50px;
+}
+.template-light-branded.quotes-dlx-has-rating-bottom {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 35px;
+		padding-left: 50px;
+	}
+}
+.template-light-branded.quotes-dlx-has-rating-below-citation {
+	.quotes-dlx-rating-wrapper {
+		padding-bottom: 35px;
+		padding-left: 50px;
+	}
+}
+.template-light-branded .quotes-dlx-rating-wrapper::before {
+	background-image: linear-gradient(90deg, var( --qdlx-light-branded-star-color ) var(--percent), var( --qdlx-light-branded-star-color-inactive, rgba(246, 246, 246, 0.52) ) var(--percent));
+}

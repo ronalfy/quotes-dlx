@@ -2,20 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Fancybox } from '@fancyapps/ui';
 import { __, sprintf } from '@wordpress/i18n';
+import { Code, GitBranch, Hand, Library, Palette, Settings } from 'lucide-react';
 import Notice from '../admin-components/Notice';
-
-import {
-	faHandWave,
-	faCode,
-	faPalette,
-	faGears,
-	faPuzzle,
-	faCodeBranch,
-	faBooks,
-} from '@fortawesome/pro-solid-svg-icons';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
 const AdminHome = () => {
@@ -56,7 +46,7 @@ const AdminHome = () => {
 				<div className="qdlx-admin__tabs--content-panel">
 					<div className="qdlx-admin__tabs--content-heading">
 						<h1>
-							<FontAwesomeIcon size={ '1x' } icon={ faPalette } />
+							<Palette aria-hidden="true" />
 							<span className="qdlx-admin__heading--text">
 								{ __( 'Default Theme', 'quotes-dlx' ) }
 							</span>
@@ -112,7 +102,7 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faHandWave } />
+									<Hand aria-hidden="true" />
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Welcome to Quotes Deluxe!', 'quotes-dlx' ) }
 									</span>
@@ -158,7 +148,7 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faGears } />
+									<Settings aria-hidden="true" />
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Block Defaults', 'quotes-dlx' ) }
 									</span>
@@ -186,7 +176,7 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faCodeBranch } />
+									<GitBranch aria-hidden="true" />
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Changelog', 'quotes-dlx' ) }
 									</span>
@@ -214,7 +204,7 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faBooks } />
+									<Library aria-hidden="true" />
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Need Help?', 'quotes-dlx' ) }
 									</span>
@@ -242,7 +232,7 @@ const AdminHome = () => {
 						<div className="qdlx-admin__tabs--content-panel">
 							<div className="qdlx-admin__tabs--content-heading">
 								<h1>
-									<FontAwesomeIcon size={ '1x' } icon={ faCode } />
+									<Code aria-hidden="true" />
 									<span className="qdlx-admin__heading--text">
 										{ __( 'Upcoming features', 'quotes-dlx' ) }
 									</span>

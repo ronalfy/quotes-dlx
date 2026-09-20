@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext } from 'react';
-import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
 import { Fancybox } from '@fancyapps/ui';
 import {

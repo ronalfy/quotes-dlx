@@ -5,10 +5,12 @@ import { __ } from '@wordpress/i18n';
 import {
 	TextControl,
 	Button,
-	ButtonGroup,
 	RadioControl,
 	FormTokenField,
 	ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from '@wordpress/components';
 import { useAsyncResource } from 'use-async-resource';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
@@ -591,63 +593,28 @@ const Interface = ( props ) => {
 													<Controller
 														name="tweetButtonAlignment"
 														control={ control }
-														render={ ( { field: { onClick, value } } ) => (
-															<ButtonGroup className="qdlx-admin__button-group--align">
-																<label>
-																	{ __( 'Default Button Alignment', 'quotes-dlx' ) }
-																</label>
-																<Button
-																	variant="primary"
+														render={ ( { field: { onChange, value } } ) => (
+															<ToggleGroupControl className="qdlx-admin__button-group--align"
+															label={ __( 'Default Button Alignment', 'quotes-dlx' ) }
+															value={ value }
+															onChange={ onChange }
+															>
+																<ToggleGroupControlOptionIcon 
 																	icon="align-pull-left"
 																	label={ __( 'Align Left', 'quotes-dlx' ) }
-																	title={ __( 'Align Left', 'quotes-dlx' ) }
 																	value="left"
-																	className={ classNames( {
-																		'is-active': 'left' === value,
-																	} ) }
-																	onClick={ ( e ) => {
-																		setValue( 'tweetButtonAlignment', 'left', {
-																			shouldDirty: true,
-																		} );
-																	} }
 																/>
-																<Button
-																	variant="primary"
+																<ToggleGroupControlOptionIcon 
 																	icon="align-center"
 																	label={ __( 'Align Center', 'quotes-dlx' ) }
-																	title={ __( 'Align Center', 'quotes-dlx' ) }
 																	value="center"
-																	className={ classNames( {
-																		'is-active': 'center' === value,
-																	} ) }
-																	onClick={ ( e ) => {
-																		setValue( 'tweetButtonAlignment', 'center', {
-																			shouldDirty: true,
-																		} );
-																	} }
 																/>
-																<Button
-																	variant="primary"
+																<ToggleGroupControlOptionIcon 
 																	icon="align-pull-right"
 																	label={ __( 'Align Right', 'quotes-dlx' ) }
-																	title={ __( 'Align Right', 'quotes-dlx' ) }
 																	value="right"
-																	className={ classNames( {
-																		'is-active': 'right' === value,
-																	} ) }
-																	onClick={ ( e ) => {
-																		setValue( 'tweetButtonAlignment', 'right', {
-																			shouldDirty: true,
-																		} );
-																	} }
 																/>
-																<p className="components-base-control__help">
-																	{ __(
-																		'Right alignment is recommended.',
-																		'quotes-dlx'
-																	) }
-																</p>
-															</ButtonGroup>
+															</ToggleGroupControl>
 														) }
 													/>
 													{ ( 'icon' === buttonDisplay ||
@@ -655,48 +622,29 @@ const Interface = ( props ) => {
 														<Controller
 															name="tweetIconAlignment"
 															control={ control }
-															render={ ( { field: { onClick, value } } ) => (
-																<ButtonGroup className="qdlx-admin__button-group--align">
-																	<label>
-																		{ __( 'Icon Alignment', 'quotes-dlx' ) }
-																	</label>
-																	<Button
-																		variant="primary"
+															render={ ( { field: { onChange, value } } ) => (
+																<ToggleGroupControl
+																	className="qdlx-admin__button-group--align"
+																	label={ __( 'Icon Alignment', 'quotes-dlx' ) }
+																	value={ value }
+																	onChange={ onChange }
+																>
+																	<ToggleGroupControlOptionIcon 
 																		icon="align-pull-left"
 																		label={ __( 'Align Left', 'quotes-dlx' ) }
-																		title={ __( 'Align Left', 'quotes-dlx' ) }
 																		value="left"
-																		className={ classNames( {
-																			'is-active': 'left' === value,
-																		} ) }
-																		onClick={ ( e ) => {
-																			setValue( 'tweetIconAlignment', 'left', {
-																				shouldDirty: true,
-																			} );
-																		} }
 																	/>
-																	<Button
-																		variant="primary"
+																	<ToggleGroupControlOptionIcon 
 																		icon="align-pull-right"
 																		label={ __( 'Align Right', 'quotes-dlx' ) }
-																		title={ __( 'Align Right', 'quotes-dlx' ) }
 																		value="right"
-																		className={ classNames( {
-																			'is-active': 'right' === value,
-																		} ) }
-																		onClick={ ( e ) => {
-																			setValue( 'tweetIconAlignment', 'right', {
-																				shouldDirty: true,
-																			} );
-																		} }
 																	/>
-																	<p className="components-base-control__help">
-																		{ __(
-																			'Adjust the icon to the left or right of the button.',
-																			'quotes-dlx'
-																		) }
-																	</p>
-																</ButtonGroup>
+																	<ToggleGroupControlOptionIcon 
+																		icon="align-center"
+																		label={ __( 'Align Center', 'quotes-dlx' ) }
+																		value="center"
+																	/>
+																</ToggleGroupControl>
 															) }
 														/>
 													) }
@@ -961,93 +909,37 @@ const Interface = ( props ) => {
 											<Controller
 												name="align"
 												control={ control }
-												render={ ( { field: { onClick, value } } ) => (
-													<ButtonGroup className="qdlx-admin__button-group--align">
-														<label>
-															{ __( 'Default Quote Alignment', 'quotes-dlx' ) }
-														</label>
-														<Button
-															variant="primary"
+												render={ ( { field: { onChange, value } } ) => (
+													<ToggleGroupControl 	className="qdlx-admin__button-group--align"
+													value={ value }
+													onChange={ onChange }
+													label={ __( 'Default Quote Alignment', 'quotes-dlx' ) }>
+														<ToggleGroupControlOptionIcon 
 															icon="align-pull-left"
 															label={ __( 'Align Left', 'quotes-dlx' ) }
-															title={ __( 'Align Left', 'quotes-dlx' ) }
 															value="left"
-															className={ classNames( {
-																'is-active': 'left' === value,
-															} ) }
-															onClick={ ( e ) => {
-																setValue( 'align', 'left', {
-																	shouldDirty: true,
-																} );
-															} }
 														/>
-														<Button
-															variant="primary"
+														<ToggleGroupControlOptionIcon 
 															icon="align-center"
 															label={ __( 'Align Center', 'quotes-dlx' ) }
-															title={ __( 'Align Center', 'quotes-dlx' ) }
 															value="center"
-															className={ classNames( {
-																'is-active': 'center' === value,
-															} ) }
-															onClick={ ( e ) => {
-																setValue( 'align', 'center', {
-																	shouldDirty: true,
-																} );
-															} }
 														/>
-														<Button
-															variant="primary"
+														<ToggleGroupControlOptionIcon 
 															icon="align-pull-right"
 															label={ __( 'Align Right', 'quotes-dlx' ) }
-															title={ __( 'Align Right', 'quotes-dlx' ) }
 															value="right"
-															className={ classNames( {
-																'is-active': 'right' === value,
-															} ) }
-															onClick={ ( e ) => {
-																setValue( 'align', 'right', {
-																	shouldDirty: true,
-																} );
-															} }
 														/>
-														<Button
-															variant="primary"
+														<ToggleGroupControlOptionIcon 
 															icon="align-wide"
 															label={ __( 'Wide Width', 'quotes-dlx' ) }
-															title={ __( 'Wide Width', 'quotes-dlx' ) }
 															value="wide"
-															className={ classNames( {
-																'is-active': 'wide' === value,
-															} ) }
-															onClick={ ( e ) => {
-																setValue( 'align', 'wide', {
-																	shouldDirty: true,
-																} );
-															} }
 														/>
-														<Button
-															variant="primary"
+														<ToggleGroupControlOptionIcon 
 															icon="align-full-width"
 															label={ __( 'Full Width', 'quotes-dlx' ) }
-															title={ __( 'Full Width', 'quotes-dlx' ) }
 															value="full"
-															className={ classNames( {
-																'is-active': 'full' === value,
-															} ) }
-															onClick={ ( e ) => {
-																setValue( 'align', 'full', {
-																	shouldDirty: true,
-																} );
-															} }
 														/>
-														<p className="components-base-control__help">
-															{ __(
-																'Center alignment is recommended.',
-																'quotes-dlx'
-															) }
-														</p>
-													</ButtonGroup>
+													</ToggleGroupControl>
 												) }
 											/>
 										</td>

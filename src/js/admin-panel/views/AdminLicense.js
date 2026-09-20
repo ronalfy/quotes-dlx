@@ -24,8 +24,7 @@ import Spinner from '../../components/icons/Spinner';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import CircularInfo from '../../components/icons/CircularInfo';
 import CodeBranchIcon from '../../components/icons/CodeBranchIcon';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/pro-solid-svg-icons';
+import { Eye, EyeOff } from 'lucide-react';
 import ErrorBoundary from '../admin-components/ErrorBoundary';
 
 const retrieveDefaults = () => {
@@ -434,9 +433,9 @@ const Interface = ( props ) => {
 												</span>
 												<span className="quotes-dlx-license-show-hide--icon">
 													{ ! showSecret ? (
-														<FontAwesomeIcon size={ '1x' } icon={ faEye } />
+														<Eye aria-hidden="true" />
 													) : (
-														<FontAwesomeIcon size={ '1x' } icon={ faEyeSlash } />
+														<EyeOff aria-hidden="true" />
 													) }
 												</span>
 											</label>

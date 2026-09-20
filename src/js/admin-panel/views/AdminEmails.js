@@ -14,8 +14,7 @@ import {
 import { isEmail } from '@wordpress/url';
 import { useAsyncResource } from 'use-async-resource';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { Eye, ExternalLink } from 'lucide-react';
 import { Fancybox } from '@fancyapps/ui';
 import classNames from 'classnames';
 import AtIcon from '../../components/icons/AtIcon';
@@ -412,8 +411,8 @@ const Interface = ( props ) => {
 															id: 'dlx-quotes-turnstile-preview',
 														} ] );
 													} }
-													icon={ <FontAwesomeIcon size="1x" icon={ faEye } style={ { color: 'currentColor' } } /> }
-													iconSize="1x"
+													icon={ <Eye size={ 20 } /> }
+													iconSize={ 20 }
 
 												>
 													{ __( 'Preview and Test', 'quotes-dlx' ) }
@@ -421,8 +420,8 @@ const Interface = ( props ) => {
 												<Button
 													className="dlx-admin__button dlx__btn-white"
 													href="https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/"
-													icon={ <FontAwesomeIcon size="1x" icon={ faArrowUpRightFromSquare } style={ { color: 'currentColor' } } /> }
-													iconSize="1x"
+													icon={ <ExternalLink size={ 20 } /> }
+													iconSize={ 20 }
 													target="_blank"
 												>
 													{ __( 'Find Your Keys', 'quotes-dlx' ) }

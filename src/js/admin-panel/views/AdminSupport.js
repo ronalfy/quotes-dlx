@@ -1,15 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-
-import { more } from '@wordpress/icons';
 import { __, sprintf } from '@wordpress/i18n';
 import {
 	Button,
 } from '@wordpress/components';
-import { faHandshakeAngle, faHeart, faBookSparkles, faStar, faLink } from '@fortawesome/pro-solid-svg-icons';
-import { faWordpress, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { BookOpen, HeartHandshake, Link } from 'lucide-react';
 import CircularQuestionIcon from '../../components/icons/CircularQuestion';
 const AdminSupport = () => {
 	return (
@@ -43,9 +38,8 @@ const AdminSupport = () => {
 						<div className="qdlx-button-primary">
 							<Button
 								className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-								icon={ <FontAwesomeIcon size={ '1x' } icon={ faBookSparkles } /> }
-								size={ '1x' }
-								iconSize="1x"
+								icon={ <BookOpen size={ 20 } /> }
+								iconSize={ 20 }
 								iconPosition="left"
 								href="https://qdlx.dlxplugins.com/"
 							>
@@ -69,9 +63,8 @@ const AdminSupport = () => {
 						<div className="qdlx-button-primary">
 							<Button
 								className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-								icon={ <FontAwesomeIcon size={ '1x' } icon={ faLink } /> }
-								size={ '1x' }
-								iconSize="1x"
+								icon={ <Link size={ 20 } /> }
+								iconSize={ 20 }
 								iconPosition="left"
 								href="https://dlxplugins.com/plugins/quotesdlx/"
 							>
@@ -95,9 +88,8 @@ const AdminSupport = () => {
 						<div className="qdlx-button-primary">
 							<Button
 								className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-								icon={ <FontAwesomeIcon size={ '1x' } icon={ faHandshakeAngle } /> }
-								size={ '1x' }
-								iconSize="1x"
+								icon={ <HeartHandshake size={ 20 } /> }
+								iconSize={ 20 }
 								iconPosition="left"
 								href="https://dlxplugins.com/support/"
 							>

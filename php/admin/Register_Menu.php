@@ -112,23 +112,19 @@ class Register_Menu {
 		$themes = Themes::get_theme_data();
 
 		$script_options = array(
-			'plugin_url'               => Functions::get_plugin_uri(),
-			'plugin_docs_url'          => Functions::get_plugin_docs_uri(),
-			'plugin_ratings_url'       => Functions::get_plugin_ratings_uri(),
-			'plugin_support_url'       => Functions::get_plugin_support_uri(),
-			'plugin_settings_url'      => Functions::get_plugin_settings_uri(),
-			'defaults'                 => $defaults,
-			'themes'                   => $themes,
-			'options_save_nonce'       => wp_create_nonce( Functions::get_admin_save_nonce() ),
-			'options_retrieve_nonce'   => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
-			'options_export_nonce'     => wp_create_nonce( Functions::get_admin_export_nonce() ),
-			'bitly_plugin_active'      => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
-			'jetpack_plugin_active'    => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
-			'image_dir'                => Functions::get_plugin_url( 'images' ),
-			'should_disable_licensing' => Functions::should_disable_licensing(),
-			'akismet_plugin_active'    => Functions::is_activated( 'akismet/akismet.php' ),
-			'ajaxurl'                  => admin_url( 'admin-ajax.php' ),
-			'preview_nonce'            => wp_create_nonce( 'quotes-dlx-preview-nonce' ),
+			'plugin_url'             => Functions::get_plugin_uri(),
+			'plugin_settings_url'    => Functions::get_plugin_settings_uri(),
+			'defaults'               => $defaults,
+			'themes'                 => $themes,
+			'options_save_nonce'     => wp_create_nonce( Functions::get_admin_save_nonce() ),
+			'options_retrieve_nonce' => wp_create_nonce( Functions::get_admin_retrieve_nonce() ),
+			'options_export_nonce'   => wp_create_nonce( Functions::get_admin_export_nonce() ),
+			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
+			'jetpack_plugin_active'  => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
+			'image_dir'              => Functions::get_plugin_url( 'images' ),
+			'akismet_plugin_active'  => Functions::is_activated( 'akismet/akismet.php' ),
+			'ajaxurl'                => admin_url( 'admin-ajax.php' ),
+			'preview_nonce'          => wp_create_nonce( 'quotes-dlx-preview-nonce' ),
 		);
 
 		wp_localize_script(

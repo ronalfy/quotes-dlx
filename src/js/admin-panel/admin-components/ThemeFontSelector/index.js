@@ -35,14 +35,6 @@ const ThemeFontSelector = ( props ) => {
 						'Could not load theme font options.',
 						'quotes-dlx'
 					) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>

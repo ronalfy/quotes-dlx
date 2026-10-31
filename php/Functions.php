@@ -238,54 +238,6 @@ class Functions {
 	}
 
 	/**
-	 * Retrieve the plugin support URI.
-	 */
-	public static function get_plugin_support_uri() {
-		/**
-		 * Filer the output of the plugin support URI.
-		 *
-		 * Potentially change branding of the plugin.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param string Plugin Support URI.
-		 */
-		return apply_filters( 'quotes_dlx_plugin_support_uri', 'https://dlxplugins.com/support/' );
-	}
-
-	/**
-	 * Retrieve the plugin documentation URI.
-	 */
-	public static function get_plugin_docs_uri() {
-		/**
-		 * Filer the output of the plugin docs URI.
-		 *
-		 * Potentially change branding of the plugin.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param string Plugin Docs URI.
-		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://qdlx.dlxplugins.com/' );
-	}
-
-	/**
-	 * Retrieve the plugin documentation URI.
-	 */
-	public static function get_plugin_ratings_uri() {
-		/**
-		 * Filer the output of the plugin ratings URI.
-		 *
-		 * Potentially change branding of the plugin.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param string Plugin ratings URI.
-		 */
-		return apply_filters( 'quotes_dlx_plugin_docs_uri', 'https://dlxplugins.com/support/' );
-	}
-
-	/**
 	 * Retrieve the plugin settings URI.
 	 */
 	public static function get_plugin_settings_uri() {
@@ -796,18 +748,6 @@ class Functions {
 	 */
 	public static function get_admin_import_nonce() {
 		return 'quotes-dlx-admin-import-theme-options';
-	}
-
-	/**
-	 * Whether licensing should be disabled.
-	 *
-	 * @return bool true to disable licensing, false to not.
-	 */
-	public static function should_disable_licensing() {
-		if ( self::is_activated( 'gutenberg-market/gutenberg-market.php' ) ) {
-			return true;
-		}
-		return false;
 	}
 
 	/**

@@ -13,7 +13,6 @@ import XIcon from '../../components/icons/x';
 import FacebookIcon from '../../components/icons/FacebookIcon';
 import PaintbrushIcon from '../../components/icons/paintbrush';
 import PreviewIcon from '../../components/icons/Preview';
-import NewWindowIcon from '../../components/icons/NewWindow';
 import CircularExclamationIcon from '../../components/icons/CircularExplanation';
 import AlignmentGroup from '../../components/alignment';
 import CircularCount from '../../components/CircularCount';
@@ -1524,22 +1523,6 @@ const TweetQuotes = ( props ) => {
 																		'quotes-dlx'
 																	) }
 																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://wordpress.org/plugins/wp-bitly/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Bitly plugin on WordPress.org',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
 															</Notice>
 														) }
 														{ url_shortening_service === 'jetpack' &&
@@ -1570,22 +1553,6 @@ const TweetQuotes = ( props ) => {
 																		'quotes-dlx'
 																	) }
 																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://jetpack.com/support/wp-me-shortlinks/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Jetpack Shortlink Documentation',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
 															</Notice>
 														) }
 
@@ -1617,22 +1584,6 @@ const TweetQuotes = ( props ) => {
 																		'quotes-dlx'
 																	) }
 																</p>
-																<div className="quotes-dlx-notice-button">
-																	<Button
-																		variant="link"
-																		href="https://wordpress.org/plugins/jetpack/"
-																		target="_blank"
-																		icon={
-																			<NewWindowIcon width={ 12 } height={ 12 } />
-																		}
-																		iconPosition="right"
-																	>
-																		{ __(
-																			'Visit the Jetpack plugin on WordPress.org',
-																			'quotes-dlx'
-																		) }
-																	</Button>
-																</div>
 															</Notice>
 														) }
 													</>

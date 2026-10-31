@@ -7,8 +7,6 @@
 
 namespace MediaRonLLC\QuotesDLX;
 
-use MediaRonLLC\QuotesDLX\Admin\Plugin_License as License;
-
 /**
  * Helper class for registering Ajax calls.
  */
@@ -34,11 +32,6 @@ class Ajax {
 
 		// For saving/resetting the themes defaults.
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_themes_defaults', array( static::class, 'ajax_retrieve_themes_defaults' ) );
-
-		// For retrieving/validating/revoking plugin license.
-		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_license_core', array( static::class, 'ajax_retrieve_license_core' ) );
-		add_action( 'wp_ajax_quotes_dlx_save_admin_license_core', array( static::class, 'ajax_save_license_core' ) );
-		add_action( 'wp_ajax_quotes_dlx_revoke_admin_license_core', array( static::class, 'ajax_revoke_license_core' ) );
 
 		// For retrieving a theme's options.
 		add_action( 'wp_ajax_quotes_dlx_get_theme_options', array( static::class, 'ajax_get_theme_options' ) );
@@ -66,9 +59,6 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_emails', array( static::class, 'ajax_retrieve_options_emails' ) );
 		add_action( 'wp_ajax_quotes_dlx_save_admin_options_emails', array( static::class, 'ajax_save_options_emails' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_emails', array( static::class, 'ajax_reset_options_emails' ) );
-
-		// For enabling or disabling the beta program.
-		add_action( 'wp_ajax_quotes_dlx_save_beta_option', array( static::class, 'ajax_save_beta_option' ) );
 
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
@@ -286,26 +276,6 @@ class Ajax {
 	}
 
 	/**
-	 * Save whether the licensee is opted in to betas.
-	 */
-	public static function ajax_save_beta_option() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-
-		$beta    = (bool) filter_input( INPUT_POST, 'beta', FILTER_VALIDATE_BOOLEAN );
-		$options = Options_License::get_options();
-		if ( $beta ) {
-			$options['beta'] = true;
-		} else {
-			$options['beta'] = false;
-		}
-		Options_License::update_options( '', $options, true );
-
-		wp_send_json_success( $options );
-	}
-
-	/**
 	 * Uninstall options and deactivate.
 	 */
 	public static function ajax_uninstall_and_deactivate() {
@@ -315,7 +285,6 @@ class Ajax {
 
 		// Reset all the things.
 		Options_Defaults::reset( true );
-		Options_License::reset( true );
 		Options_Menu::reset( true );
 		Options_Theme::reset( true );
 
@@ -341,7 +310,6 @@ class Ajax {
 
 		// Reset all the things.
 		Options_Defaults::reset( true );
-		Options_License::reset( true );
 		Options_Menu::reset( true );
 		Options_Theme::reset( true );
 
@@ -1379,75 +1347,6 @@ class Ajax {
 				'enable_fonts'        => (bool) $enable_fonts,
 			)
 		);
-	}
-
-	/**
-	 * Retrieve any saved license data (labeled core in case there are additional add-ons).
-	 */
-	public static function ajax_retrieve_license_core() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-		$license_helper = new License();
-		$response       = $license_helper->perform_action( 'check_license', '', true );
-
-		if ( $response['license_errors'] ) {
-			wp_send_json_error( $response );
-		}
-
-		$response['beta'] = Options_License::get_options( 'beta' );
-
-		wp_send_json_success( $response );
-	}
-
-	/**
-	 * Save license data (labeled core in case there are additional add-ons).
-	 */
-	public static function ajax_save_license_core() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-
-		$license_key    = sanitize_text_field( filter_input( INPUT_POST, 'license_key', FILTER_DEFAULT ) );
-		$license_helper = new License();
-		$response       = $license_helper->perform_action( 'activate_license', $license_key, true );
-
-		if ( $response['license_errors'] ) {
-			$license_helper->set_activated_status( false );
-			wp_send_json_error( $response );
-		}
-
-		if ( 'valid' === $response['license'] ) {
-			$license_helper->set_activated_status( true );
-			$response['license_valid']     = true;
-			$response['license_activated'] = true;
-		} else {
-			$license_helper->set_activated_status( false );
-			$response['license_valid']     = false;
-			$response['license_activated'] = false;
-		}
-		$response['quotesdlxLicense'] = $license_key;
-
-		wp_send_json_success( $response );
-	}
-
-	/**
-	 * Revoke license data (labeled core in case there are additional add-ons).
-	 */
-	public static function ajax_revoke_license_core() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-
-		$license_helper = new License();
-		$response       = $license_helper->perform_action( 'deactivate_license' );
-
-		if ( ! $response['license_errors'] ) {
-			$license_helper->set_activated_status( false );
-			wp_send_json_success( $response );
-		}
-
-		wp_send_json_error( array() );
 	}
 
 	/**

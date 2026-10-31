@@ -43,14 +43,6 @@ const AdminAdvanced = ( props ) => {
 			fallback={
 				<p>
 					{ __( 'Could not load advanced options.', 'quotes-dlx' ) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>
@@ -68,7 +60,6 @@ const Interface = ( props ) => {
 		advancedTabDirtyCount,
 		setAdvancedTabDirtyCount,
 		setThemesDefaultsDirtyCount,
-		setLicensesDirtyCount,
 		setBlockDefaultsDirtyCount,
 		setContextualMenuDefaultsDirtyCount,
 		defaultTheme,
@@ -390,13 +381,11 @@ const Interface = ( props ) => {
 	const clearLocalStorage = () => {
 		localStorage.removeItem( 'quotes_dlx_menu_defaults' );
 		localStorage.removeItem( 'quotes_dlx_form_defaults' );
-		localStorage.removeItem( 'quotes_dlx_licenses' );
 		localStorage.removeItem( 'quotes_dlx_themes_defaults' );
 		localStorage.removeItem( 'quotes_dlx_form_advanced' );
 
 		setAdvancedTabDirtyCount( 0 );
 		setThemesDefaultsDirtyCount( 0 );
-		setLicensesDirtyCount( 0 );
 		setBlockDefaultsDirtyCount( 0 );
 		setContextualMenuDefaultsDirtyCount( 0 );
 	};
@@ -429,7 +418,7 @@ const Interface = ( props ) => {
 			.then( ( ajaxResponse ) => {
 				setHardUninstall( false );
 			} );
-	}
+	};
 
 	const resetAllOptions = () => {
 		// Clear local storage keys.

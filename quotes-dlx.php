@@ -61,12 +61,12 @@ class QuotesDLX {
 
 		Blocks::run();
 		Ajax::run();
-		Email::run();
 		Adobe_Fonts::run();
 
 		Admin\Plugin_Settings_Links::run();
 		Admin\Register_Menu::run();
 		self::purge_legacy_license_data();
+		self::remove_email_feature();
 
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -104,6 +104,25 @@ class QuotesDLX {
 		delete_site_option( 'quotesdlx_options_license' );
 		delete_site_transient( 'quotes_dlx_core_license_check' );
 		update_option( 'quotesdlx_license_data_purged', '1', false );
+	}
+
+	/**
+	 * Remove the quote email feature and any stored mail or captcha secrets.
+	 */
+	private static function remove_email_feature() {
+		if ( get_option( 'quotesdlx_email_feature_removed' ) ) {
+			return;
+		}
+
+		delete_option( 'quotesdlx_options_emails' );
+		delete_site_option( 'quotesdlx_options_emails' );
+		Options_Menu::update_options(
+			'',
+			array(
+				'enable_email_text' => false,
+			)
+		);
+		update_option( 'quotesdlx_email_feature_removed', '1', false );
 	}
 }
 

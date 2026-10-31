@@ -5,7 +5,6 @@ import AdminDefaultsLoader from '../Loaders/AdminDefaultsLoader';
 import AdminThemeDefaultsLoader from '../Loaders/AdminThemeDefaultsLoader';
 import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import 'react-loading-skeleton/dist/skeleton.css';
-import AtIcon from '../../../components/icons/AtIcon';
 import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
@@ -46,14 +45,10 @@ const AdminThemeOptions = lazy( () =>
 	)
 );
 
-const AdminEmails = lazy( () =>
-	import( /* webpackChunkName: "AdminEmails0.0.4" */ '../../views/AdminEmails' )
-);
-
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, advancedTabDirtyCount, emailTabDirtyCount } = useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, advancedTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -62,7 +57,6 @@ const AdminTabs = ( props ) => {
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
 		advancedTabDirtyCount,
-		emailTabDirtyCount,
 	] );
 
 	/**
@@ -195,25 +189,6 @@ const AdminTabs = ( props ) => {
 		</>
 	);
 
-	const getAdminEmails = (
-		<>
-			<ErrorBoundary
-				fallback={
-					<p>
-						{ __(
-							'Unable to load the Email screen for QuotesDLX. Please try refreshing if the error persists.',
-							'quotes-dlx'
-						) }
-					</p>
-				}
-			>
-				<Suspense fallback={ <AdminDefaultsLoader /> }>
-					<AdminEmails />
-				</Suspense>
-			</ErrorBoundary>
-		</>
-	);
-
 	// Set browser unload event if dirtycounts are not zero.
 	window.onbeforeunload = function() {
 		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || advancedTabDirtyCount ) {
@@ -257,17 +232,6 @@ const AdminTabs = ( props ) => {
 						} }
 						isActive={ isActive }
 						dirtyCount={ contextualMenuDefaultsDirtyCount }
-					/>
-					<TabItem
-						icon={ AtIcon }
-						slug="emails"
-						description={ __( 'Set the email settings.', 'quotes-dlx' ) }
-						label={ __( 'Emails', 'quotes-dlx' ) }
-						tabClicked={ ( tab ) => {
-							onTabClick( tab );
-						} }
-						isActive={ isActive }
-						dirtyCount={ emailTabDirtyCount }
 					/>
 					<TabItem
 						icon={ PaintbrushIcon }
@@ -314,11 +278,6 @@ const AdminTabs = ( props ) => {
 								path="/menu"
 								exact
 								element={ getAdminContextualMenuDefaults }
-							/>
-							<Route
-								path="/emails"
-								exact
-								element={ getAdminEmails }
 							/>
 							<Route
 								path="/themes"

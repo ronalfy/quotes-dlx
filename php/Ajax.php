@@ -56,10 +56,6 @@ class Ajax {
 		add_action( 'wp_ajax_quotes_dlx_save_theme_font_families', array( static::class, 'ajax_save_theme_font_families' ) );
 		add_action( 'wp_ajax_quotes_dlx_reset_theme_font_families', array( static::class, 'ajax_reset_theme_font_families' ) );
 
-		add_action( 'wp_ajax_quotes_dlx_retrieve_admin_options_emails', array( static::class, 'ajax_retrieve_options_emails' ) );
-		add_action( 'wp_ajax_quotes_dlx_save_admin_options_emails', array( static::class, 'ajax_save_options_emails' ) );
-		add_action( 'wp_ajax_quotes_dlx_reset_admin_options_emails', array( static::class, 'ajax_reset_options_emails' ) );
-
 		// For resetting all options.
 		add_action( 'wp_ajax_quotes_dlx_reset_all_options', array( static::class, 'ajax_reset_all_options' ) );
 
@@ -72,86 +68,7 @@ class Ajax {
 		// For importing the theme options.
 		add_action( 'wp_ajax_quotes_dlx_process_import_file', array( static::class, 'ajax_process_import_file' ) );
 
-		// For the Turnsile admin preview.
-		add_action( 'wp_ajax_quotes_dlx_turnstile_admin_preview', array( static::class, 'ajax_admin_preview' ) );
-
-		// For admin preview submit action.
-		add_action( 'wp_ajax_quotes_dlx_turnstile_admin_preview_validate', array( static::class, 'ajax_admin_preview_validate' ) );
-
 		return $self;
-	}
-
-	/**
-	 * Validate a form submitted in the preview modal.
-	 */
-	public static function ajax_admin_preview_validate() {
-		// Do permissions check.
-		$nonce = filter_input( INPUT_GET, 'nonce', FILTER_DEFAULT );
-		if ( ! \wp_verify_nonce( $nonce, 'dlx-turnstile-admin-preview-iframe' ) || ! current_user_can( 'manage_options' ) ) {
-			\wp_send_json_error( array() );
-		}
-
-		// Get secret key.
-		$secret_key = filter_input( INPUT_GET, 'secretKey', FILTER_DEFAULT );
-
-		// Get token.
-		$token = filter_input( INPUT_GET, 'turnstyleToken', FILTER_DEFAULT );
-
-		$can_proceed = false;
-
-		// Make sure token is valid.
-		if ( $token ) {
-
-			$cloudflare_endpoint_api = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-
-			// Build data envelope.
-			$data = array(
-				'secret'   => sanitize_text_field( $secret_key ),
-				'response' => sanitize_text_field( $token ),
-			);
-
-			$args = array(
-				'body'      => $data,
-				'method'    => 'POST',
-				'sslverify' => true,
-			);
-
-			$response = wp_remote_post( esc_url( $cloudflare_endpoint_api ), $args );
-
-			// If error, show response.
-			if ( is_wp_error( $response ) ) {
-				$can_proceed = false;
-			}
-
-			// Get body.
-			$body = json_decode( wp_remote_retrieve_body( $response ), true );
-
-			$is_success = $body['success'] ?? false;
-			// If not a success, error.
-			if ( ! $is_success ) {
-				$can_proceed = false;
-			} else {
-				$can_proceed = true;
-			}
-
-			// Success!
-			if ( $can_proceed ) {
-				\wp_send_json_success( array() );
-			}
-		}
-		\wp_send_json_error( array() );
-	}
-
-	/**
-	 * Let's get the preview template.
-	 */
-	public static function ajax_admin_preview() {
-		// We're getting the template.
-		$template_path = Functions::get_plugin_dir( 'templates/turnstile-preview.php' );
-		if ( \file_exists( $template_path ) ) {
-			include $template_path;
-		}
-		exit;
 	}
 
 	/**
@@ -639,9 +556,6 @@ class Ajax {
 				case 'enableGlobalContextualMenu':
 					$options_to_save['enable_global_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
 					break;
-				case 'enableEmailText':
-					$options_to_save['enable_email_text'] = ( 'true' === $field_value ) ? true : false;
-					break;
 				case 'enableContextualMenu':
 					$options_to_save['enable_contextual_menu'] = ( 'true' === $field_value ) ? true : false;
 					break;
@@ -663,9 +577,6 @@ class Ajax {
 				case 'copyTextLabel':
 					$options_to_save['copy_text_label'] = sanitize_text_field( $field_value );
 					break;
-				case 'emailTextLabel':
-					$options_to_save['email_text_label'] = sanitize_text_field( $field_value );
-					break;
 				case 'copyTweetLabel':
 					$options_to_save['copy_tweet_label'] = sanitize_text_field( $field_value );
 					break;
@@ -681,6 +592,7 @@ class Ajax {
 			}
 		}
 
+		$options_to_save['enable_email_text'] = false;
 		Options_Menu::update_options( '', $options_to_save );
 
 		$options_to_return = array();
@@ -1346,80 +1258,6 @@ class Ajax {
 				'line_height_mobile'  => $theme_line_height_mobile,
 				'enable_fonts'        => (bool) $enable_fonts,
 			)
-		);
-	}
-
-	/**
-	 * Retrieve admin options for the emails view.
-	 */
-	public static function ajax_retrieve_options_emails() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_retrieve_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		} else {
-			$defaults = Options_Emails::get_options();
-			foreach ( $defaults as $field => $value ) {
-				// Convert to camelcase.
-				$new_field                       = Functions::to_camelcase( $field );
-				$options_to_return[ $new_field ] = $value;
-			}
-			wp_send_json_success(
-				$options_to_return
-			);
-		}
-	}
-
-	/**
-	 * Save form options for emails.
-	 */
-	public static function ajax_save_options_emails() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-
-		// Get form data.
-		$options_to_save = Options_Emails::get_options();
-		$form_data       = Functions::sanitize_array_recursive( $_POST['form_data'] ); // expect array.
-
-		// Iterate, convert to lowercase dashes.
-		foreach ( $form_data as $field => $field_value ) {
-			$field_to_lower                     = Functions::to_underlines( $field );
-			$options_to_save[ $field_to_lower ] = $field_value;
-
-		}
-
-		Options_Emails::update_options( '', $options_to_save );
-
-		$options_to_return = array();
-		// Format saved fields.
-		foreach ( $options_to_save as $field => $value ) {
-			// Convert to camelcase.
-			$new_field                       = Functions::to_camelcase( $field );
-			$options_to_return[ $new_field ] = $value;
-		}
-		wp_send_json_success(
-			$options_to_return
-		);
-	}
-
-	/**
-	 * Reset form options for default options.
-	 */
-	public static function ajax_reset_options_emails() {
-		if ( ! wp_verify_nonce( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ), Functions::get_admin_save_nonce() ) || ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array() );
-		}
-
-		$options           = Options_Defaults::reset();
-		$options_to_return = array();
-
-		// Format saved fields.
-		foreach ( $options as $field => $value ) {
-			// Convert to camelcase.
-			$new_field                       = Functions::to_camelcase( $field );
-			$options_to_return[ $new_field ] = $value;
-		}
-		wp_send_json_success(
-			$options_to_return
 		);
 	}
 }

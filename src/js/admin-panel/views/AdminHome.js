@@ -3,8 +3,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { Fancybox } from '@fancyapps/ui';
-import { __, sprintf } from '@wordpress/i18n';
-import { Code, GitBranch, Hand, Library, Palette, Settings } from 'lucide-react';
+import { __ } from '@wordpress/i18n';
+import { Code, Palette, Settings } from 'lucide-react';
 import Notice from '../admin-components/Notice';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
@@ -98,51 +98,6 @@ const AdminHome = () => {
 		<>
 			<div className="qdlx-admin__tabs--home-grid">
 				<div className="qdlx-admin__tabs--home-grid-wrap">
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<Hand aria-hidden="true" />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Welcome to Quotes Deluxe!', 'quotes-dlx' ) }
-									</span>
-								</h1>
-								<p className="description">
-									{ __(
-										'For a quick overview, please check out the video below.',
-										'quotes-dlx'
-									) }
-								</p>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<div className="qdlx-admin__themes--wrapper">
-									<a href="https://www.youtube.com/embed/kQxFr3Jt_ro?rel=0&amp;controls=0&amp;showinfo=0" className="qdlx-admin__themes--video" onClick={ ( e ) => {
-										e.preventDefault();
-										new Fancybox(
-											[
-												{
-													src: 'https://www.youtube.com/embed/kQxFr3Jt_ro?rel=0&amp;controls=0&amp;showinfo=0',
-													type: 'iframe',
-												},
-											],
-											{
-												mainClass: 'qdlx-theme-preview-mobile',
-												caption: __( 'QuotesDLX Overview Video', 'quotes-dlx' ),
-											}
-										);
-									} }>
-										<img 
-											src={ `${ quotes_dlx_admin.image_dir }/quotes-dlx-video.jpg` }
-											width="1600"
-											height="900"
-											alt="Quotes Deluxe Video"
-											style={{ maxWidth: '100%', height: 'auto' }}
-										/>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 					{ outputCurrentTheme() }
 					<div className="qdlx-admin__tabs--content-wrap">
 						<div className="qdlx-admin__tabs--content-panel">
@@ -167,62 +122,6 @@ const AdminHome = () => {
 										href={ `#/defaults` }
 									>
 										{ __( 'Change the Block Defaults', 'quotes-dlx' ) }
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<GitBranch aria-hidden="true" />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Changelog', 'quotes-dlx' ) }
-									</span>
-								</h1>
-								<p className="description">
-									{ __(
-										'View what has changed.',
-										'quotes-dlx'
-									) }
-								</p>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<div className="qdlx-button-primary">
-									<a
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-										href={ `https://docs.dlxplugins.com/v/quotes-dlx/developers/changelog` }
-									>
-										{ __( 'View the Changelog', 'quotes-dlx' ) }
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<Library aria-hidden="true" />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Need Help?', 'quotes-dlx' ) }
-									</span>
-								</h1>
-								<p className="description">
-									{ __(
-										'View the extensive documentation for the plugin.',
-										'quotes-dlx'
-									) }
-								</p>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<div className="qdlx-button-primary">
-									<a
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-										href={ `https://docs.dlxplugins.com/v/quotes-dlx/` }
-									>
-										{ __( 'View the Documentation', 'quotes-dlx' ) }
 									</a>
 								</div>
 							</div>
@@ -263,14 +162,6 @@ const AdminHome = () => {
 										<strong>Overrides (coming later)</strong>: Override the default settings for a specific theme.
 									</li>
 								</ol>
-								<div className="qdlx-button-primary">
-									<a
-										className="qdlx__btn qdlx__btn-primary qdlx__btn--icon-left"
-										href="https://docs.dlxplugins.com/developers/changelog"
-									>
-										{ __( 'Read the Changelog', 'quotes-dlx' ) }
-									</a>
-								</div>
 							</div>
 						</div>
 					</div>

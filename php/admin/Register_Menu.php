@@ -113,9 +113,6 @@ class Register_Menu {
 
 		$script_options = array(
 			'plugin_url'             => Functions::get_plugin_uri(),
-			'plugin_docs_url'        => Functions::get_plugin_docs_uri(),
-			'plugin_ratings_url'     => Functions::get_plugin_ratings_uri(),
-			'plugin_support_url'     => Functions::get_plugin_support_uri(),
 			'plugin_settings_url'    => Functions::get_plugin_settings_uri(),
 			'defaults'               => $defaults,
 			'themes'                 => $themes,

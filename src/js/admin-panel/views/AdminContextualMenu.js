@@ -37,14 +37,6 @@ const AdminDefaults = ( props ) => {
 			fallback={
 				<p>
 					{ __( 'Could not load contextual menu defaults.', 'quotes-dlx' ) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>

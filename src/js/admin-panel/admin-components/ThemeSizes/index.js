@@ -32,14 +32,6 @@ const ThemeSizes = ( props ) => {
 						'Could not load theme sizes.',
 						'quotes-dlx'
 					) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>

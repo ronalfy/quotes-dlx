@@ -93,6 +93,7 @@ module.exports = ( env ) => {
 							{
 								loader: 'sass-loader',
 								options: {
+									api: 'modern',
 									sourceMap: true,
 								},
 							},
@@ -132,7 +133,12 @@ module.exports = ( env ) => {
 									sourceMap: true,
 								},
 							},
-							'sass-loader',
+							{
+								loader: 'sass-loader',
+								options: {
+									api: 'modern',
+								},
+							},
 						],
 					},
 					{

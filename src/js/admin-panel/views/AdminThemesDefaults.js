@@ -38,14 +38,6 @@ const AdminDefaults = ( props ) => {
 			fallback={
 				<p>
 					{ __( 'Could not load admin theme defaults.', 'quotes-dlx' ) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>
@@ -96,7 +88,7 @@ const Interface = ( props ) => {
 	};
 
 	const getAuthor = ( selectedTheme ) => {
-		return <a href={ selectedTheme.author_url }>{ selectedTheme.author_name }</a>;
+		return selectedTheme.author_name;
 	};
 
 	const getButtonText = ( themeSlug ) => {

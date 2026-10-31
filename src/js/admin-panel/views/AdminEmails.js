@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useContext, createRef } from 'react';
 
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import {
 	TextControl,
 	Button,
@@ -14,7 +14,7 @@ import {
 import { isEmail } from '@wordpress/url';
 import { useAsyncResource } from 'use-async-resource';
 import { useForm, Controller, useWatch, useFormState } from 'react-hook-form';
-import { Eye, ExternalLink } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { Fancybox } from '@fancyapps/ui';
 import classNames from 'classnames';
 import AtIcon from '../../components/icons/AtIcon';
@@ -42,9 +42,6 @@ const retrieveDefaults = () => {
 	} );
 };
 
-const HtmlParser = require( 'html-to-react' ).Parser;
-const HtmlParserInstance = new HtmlParser();
-
 const AdminEmails = ( props ) => {
 	const [ defaults, getDefaults ] = useAsyncResource( retrieveDefaults, [] );
 
@@ -53,14 +50,6 @@ const AdminEmails = ( props ) => {
 			fallback={
 				<p>
 					{ __( 'Could not load admin defaults.', 'quotes-dlx' ) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>
@@ -330,12 +319,6 @@ const Interface = ( props ) => {
 						{ ( 'turnstile' === getValues( 'captchaType' ) ) && (
 							<>
 								<div className="qdlx-admin-component-row">
-									<p className="qdlx-admin-docs description">
-										{ /* translators: %s: URL to Turnstile documentation */
-											HtmlParserInstance.parse( sprintf( __( 'Please read this guide on <a href="%s">how to retrieve your Turnstile keys</a>.', 'quotes-dlx' ), 'https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/' ) ) }
-									</p>
-								</div>
-								<div className="qdlx-admin-component-row">
 									<Controller
 										name="turnstileSiteKey"
 										control={ control }
@@ -416,15 +399,6 @@ const Interface = ( props ) => {
 
 												>
 													{ __( 'Preview and Test', 'quotes-dlx' ) }
-												</Button>
-												<Button
-													className="dlx-admin__button dlx__btn-white"
-													href="https://dlxplugins.com/how-to/how-to-retrieve-your-cloudflare-turnstile-site-and-secret-keys/"
-													icon={ <ExternalLink size={ 20 } /> }
-													iconSize={ 20 }
-													target="_blank"
-												>
-													{ __( 'Find Your Keys', 'quotes-dlx' ) }
 												</Button>
 											</div>
 										</>

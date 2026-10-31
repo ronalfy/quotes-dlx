@@ -5,7 +5,6 @@ import AdminDefaultsLoader from '../Loaders/AdminDefaultsLoader';
 import AdminThemeDefaultsLoader from '../Loaders/AdminThemeDefaultsLoader';
 import AdminThemeColorsLoader from '../Loaders/AdminThemeColorsLoader';
 import 'react-loading-skeleton/dist/skeleton.css';
-import CircularQuestionIcon from '../../../components/icons/CircularQuestion';
 import AtIcon from '../../../components/icons/AtIcon';
 import HomeIcon from '../../../components/icons/Home';
 import GearIcon from '../../../components/icons/Gear';
@@ -44,12 +43,6 @@ const AdminThemesDefaults = lazy( () =>
 const AdminThemeOptions = lazy( () =>
 	import(
 		/* webpackChunkName: "AdminThemeOptions0.0.10" */ '../../views/AdminThemeOptions'
-	)
-);
-
-const AdminSupport = lazy( () =>
-	import(
-		/* webpackChunkName: "AdminSupport0.0.7" */ '../../views/AdminSupport'
 	)
 );
 
@@ -94,17 +87,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Home screen for QuotesDLX. Please try refreshing and contact support at dlxplugins.com/support/ if the error persists.',
+							'Unable to load the Home screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -121,17 +106,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'Unable to load the Defaults screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -148,17 +125,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Contextual Menu screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'Unable to load the Contextual Menu screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -175,17 +144,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Theme Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'Unable to load the Theme Defaults screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -202,49 +163,14 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Theme Colors and Font Sizes screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
+							'Unable to load the Theme Colors and Font Sizes screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
 				<Suspense fallback={ <AdminThemeColorsLoader showHeader={ true } /> }>
 					<AdminThemeOptions />
-				</Suspense>
-			</ErrorBoundary>
-		</>
-	);
-
-	const getAdminSupport = (
-		<>
-			<ErrorBoundary
-				fallback={
-					<p>
-						{ __(
-							'Unable to load the Admin Support screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
-							'quotes-dlx'
-						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
-					</p>
-				}
-			>
-				<Suspense fallback={ <AdminDefaultsLoader /> }>
-					<AdminSupport />
 				</Suspense>
 			</ErrorBoundary>
 		</>
@@ -256,17 +182,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Advanced screen for QuotesDLX. Please try refreshing and contact support at if the error persists.',
+							'Unable to load the Advanced screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -283,17 +201,9 @@ const AdminTabs = ( props ) => {
 				fallback={
 					<p>
 						{ __(
-							'Unable to load the Email screen for QuotesDLX. Please try refreshing and contact support at if the error persists.',
+							'Unable to load the Email screen for QuotesDLX. Please try refreshing if the error persists.',
 							'quotes-dlx'
 						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
 					</p>
 				}
 			>
@@ -392,17 +302,6 @@ const AdminTabs = ( props ) => {
 						isActive={ isActive }
 						dirtyCount={ advancedTabDirtyCount }
 					/>
-					<TabItem
-						icon={ CircularQuestionIcon }
-						slug="support"
-						description={ __( 'Quick links for docs and support.', 'quotes-dlx' ) }
-						label={ __( 'Support & Docs', 'quotes-dlx' ) }
-						tabClicked={ ( tab ) => {
-							onTabClick( tab );
-						} }
-						isActive={ isActive }
-						dirtyCount={ 0 }
-					/>
 				</Router>
 			</nav>
 			<span aria-hidden="true"></span>
@@ -435,11 +334,6 @@ const AdminTabs = ( props ) => {
 								path="/advanced"
 								exact
 								element={ getAdminAdvanced }
-							/>
-							<Route
-								path="/support"
-								exact
-								element={ getAdminSupport }
 							/>
 							<Route path="/" exact element={ getAdminHome } />
 							<Route path="*" element={ <Navigate to="/" /> } />

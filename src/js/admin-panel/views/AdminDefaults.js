@@ -40,14 +40,6 @@ const AdminDefaults = ( props ) => {
 			fallback={
 				<p>
 					{ __( 'Could not load admin defaults.', 'quotes-dlx' ) }
-					<br />
-					<a
-						href="https://dlxplugins.com/support/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						DLX Plugins Support
-					</a>
 				</p>
 			}
 		>
@@ -790,28 +782,7 @@ const Interface = ( props ) => {
 																politeness="polite"
 																inline={ false }
 																icon={ CircularInfo }
-															>
-																<p className="description">
-																	<a
-																		href="https://wordpress.org/plugins/wp-bitly/"
-																		target="_blank"
-																		rel="noreferrer"
-																	>
-																		{ __( 'Visit the Bitly plugin', 'quotes-dlx' ) }
-																	</a>
-																	&nbsp;|&nbsp;
-																	<a
-																		href="https://wordpress.org/plugins/jetpack/"
-																		target="_blank"
-																		rel="noreferrer"
-																	>
-																		{ __(
-																			'Visit the Jetpack plugin',
-																			'quotes-dlx'
-																		) }
-																	</a>
-																</p>
-															</Notice>
+															/>
 															{ linkShortenerServices.length > 0 && (
 																<Controller
 																	control={ control }

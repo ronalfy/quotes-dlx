@@ -1,0 +1,18 @@
+---
+description: QuotesDLX layout, build, and working rules
+alwaysApply: true
+---
+
+# QuotesDLX
+
+Archived WordPress plugin. It is not actively maintained. Text domain `quotes-dlx`. Namespace `MediaRonLLC\QuotesDLX`. Entry `quotes-dlx.php`. Block `mediaron/quotes-dlx`. Shortcode `[quotesdlx]`.
+
+Admin React app: `src/js/admin-panel` (hash router in `admin-components/Tabs/index.js`). Front-end actions: `src/js/tweet-actions/actions.js`.
+
+Production build is `npm run build` (`@wordpress/scripts` plus `webpack.config.js`). Block editor assets go to `build/`. Admin, front end, themes, fonts, and actions go to `dist/`. Steps are in `README.md`. Further layout and option keys are in `AGENTS.md`.
+
+PHP uses WordPress-Core and WordPress-Docs (`phpcs.xml.dist`), tabs, and static `run()` methods started from `QuotesDLX::plugins_loaded()`. Options classes use `Options_Trait` and `update_option`.
+
+JavaScript uses the spacing in `.eslintrc.json`. Admin strings use text domain `quotes-dlx`.
+
+Follow `.cursor/rules/retired-features.mdc` and `.cursor/rules/styles.mdc`.

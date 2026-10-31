@@ -1,0 +1,27 @@
+---
+description: Fancybox, rating colors, Sass, and react-is constraints
+alwaysApply: true
+---
+
+# Styles and preview libraries
+
+Admin theme and font previews use Fancybox 5 (`@fancyapps/ui`).
+
+- Live previews import `{ Fancybox } from '@fancyapps/ui'`.
+- `src/scss/admin-panel.scss` imports `node_modules/@fancyapps/ui/dist/fancybox/fancybox.css` and sets `.fancybox__container { z-index: 100000 }`.
+- `src/js/admin-panel/admin-components/Fancybox/index.js` is unused. Do not treat it as the preview implementation.
+
+Do not enqueue the vendored `fancybox/fancybox.js` (Fancybox 4) on the front end. The Grunt zip still packs `fancybox/`.
+
+Rating stars use `--qdlx-{slug}-star-color` and `--qdlx-{slug}-star-color-inactive`. The active color has no CSS fallback.
+
+```scss
+// Keep the active color without a fallback.
+background-image: linear-gradient(90deg, var(--qdlx-midnight-blue-star-color) var(--percent), var(--qdlx-midnight-blue-star-color-inactive, rgba(246, 246, 246, 0.52)) var(--percent));
+```
+
+`Blocks::output_theme_style_root()` prints those variables on the front end. The editor canvas is an iframe, so `Blocks::register_editor_styles()` must keep adding the same CSS to stylesheet `quotes-dlx-block-editor-styles` through `get_theme_color_variables_css()`.
+
+`sass-loader` in `webpack.config.js` uses `api: 'modern'`. Do not switch it to the legacy API. Leave existing Sass `@import` rules in place.
+
+Keep `react-is` in `devDependencies`. `styled-components` peers it.

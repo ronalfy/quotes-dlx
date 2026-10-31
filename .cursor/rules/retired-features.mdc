@@ -1,0 +1,21 @@
+---
+description: Removed QuotesDLX features that must stay removed
+alwaysApply: true
+---
+
+# Removed features
+
+The public email feature was removed as a security risk. Do not add `php/Email.php`, `Options_Emails`, an admin Emails tab, `mailto:`, a Turnstile or reCAPTCHA email form, or Ajax actions `quotes_dlx_email_interface` / `quotes_dlx_send_email` (including `nopriv`). Do not add another send path.
+
+Keep block attributes `enable_email_text` and `email_text_label` in `src/js/blocks/tweet-quotes/block.json`. The editor UI and `Blocks::frontend()` ignore them. `Ajax::ajax_save_admin_menu_options()` forces `enable_email_text` to false. Leave that assignment.
+
+Do not restore outbound docs, support, or marketing links: the Support & Docs tab, dlxplugins docs or support URLs, the YouTube overview, theme author links, or Bitly/Jetpack visit links. Keep hash routes, theme preview iframes, and font stylesheet link tags.
+
+Do not restore the EDD license UI or `quotesdlx_options_license`. Leave `QuotesDLX::purge_legacy_license_data()` in place.
+
+Do not put the upcoming-features card back on `src/js/admin-panel/views/AdminHome.js`.
+
+```js
+// Wrong: a new email action or mailto fallback.
+// Right: leave enable_email_text in block.json and keep ignoring it in the editor and front end.
+```

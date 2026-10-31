@@ -11,7 +11,6 @@ const Wrapper = () => {
 	] = useState( 0 );
 	const [ themesDefaultsDirtyCount, setThemesDefaultsDirtyCount ] = useState( 0 );
 	const [ advancedTabDirtyCount, setAdvancedTabDirtyCount ] = useState( 0 );
-	const [ emailTabDirtyCount, setEmailTabDirtyCount ] = useState( 0 );
 	const [ defaultTheme, setDefaultTheme ] = useState( '' );
 	return (
 		<>
@@ -22,8 +21,6 @@ const Wrapper = () => {
 					contextualMenuDefaultsDirtyCount,
 					setBlockDefaultsDirtyCount,
 					setContextualMenuDefaultsDirtyCount,
-					emailTabDirtyCount,
-					setEmailTabDirtyCount,
 					themesDefaultsDirtyCount,
 					setThemesDefaultsDirtyCount,
 					advancedTabDirtyCount,

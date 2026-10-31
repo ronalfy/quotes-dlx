@@ -1979,12 +1979,6 @@ table.form-table.qdlx-font-sizes {
 	}
 }
 
-/* Planning for section on the homepage */
-ol.qdlx-planning-for {
-	font-size: 1.2em;
-	line-height: 1.8em;
-}
-
 .dlx__btn-white,
 .components-button.dlx__btn-white {
 	display: inline-flex;
@@ -2004,8 +1998,10 @@ ol.qdlx-planning-for {
 	margin: 16px 0;
 }
 
+@import '../../node_modules/@fancyapps/ui/dist/fancybox/fancybox.css';
+
 .fancybox__container {
-	z-index: 9999;
+	z-index: 100000;
 }
 
 #dlx-quotes-turnstile-preview {

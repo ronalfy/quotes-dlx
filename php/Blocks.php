@@ -291,7 +291,6 @@ class Blocks {
 		$blocks = null;
 		$blocks = parse_blocks( $post_content );
 		$this->print_block_styles( $blocks );
-		$this->print_fancybox_styles( $blocks );
 	}
 
 	/**
@@ -396,36 +395,6 @@ class Blocks {
 	}
 
 	/**
-	 * Recursive function for printing out fancybox styles.
-	 *
-	 * @param array $blocks Array of blocks to parse.
-	 */
-	public function print_fancybox_styles( $blocks ) {
-		if ( ! empty( $blocks ) ) {
-			foreach ( $blocks as $block ) {
-				if ( 'mediaron/quotes-dlx' === $block['blockName'] ) {
-					$email_text_option             = (bool) ( $block['attrs']['enable_email_text'] ?? false );
-					$enable_global_contextual_menu = (bool) Options_Menu::get_options( 'enable_global_contextual_menu' );
-					if ( $enable_global_contextual_menu ) {
-						$email_text_option = (bool) Options_Menu::get_options( 'enable_email_text' );
-					}
-					if ( $email_text_option ) {
-						$handle = 'quotes-dlx-fancybox';
-						if ( ! wp_script_is( $handle, 'done' ) ) {
-							wp_print_styles( array( $handle ) );
-						}
-						wp_enqueue_script( 'quotes-dlx-fancybox' );
-					}
-				}
-				if ( ! empty( $block['innerBlocks'] ) ) {
-					$this->print_fancybox_styles( $block['innerBlocks'] );
-				}
-			}
-		}
-	}
-
-
-	/**
 	 * Print out root css vars for the block.
 	 */
 	private function output_theme_style_root() {
@@ -480,51 +449,51 @@ class Blocks {
 					<?php
 					foreach ( $themes as $theme_options ) {
 						// Line height.
-						echo sprintf(
+						printf(
 							'--qdlx-%s-line-height-mobile: %s;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'mobile' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-line-height-tablet: %s;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'tablet' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-line-height-desktop: %s;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'line_height', 'desktop' ) )
 						);
 
 						// Font sizes.
-						echo sprintf(
+						printf(
 							'--qdlx-%s-font-size-mobile: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'mobile' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-font-size-tablet: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'tablet' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-font-size-desktop: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'font_size', 'desktop' ) )
 						);
 
 						// Button Font Sizes.
-						echo sprintf(
+						printf(
 							'--qdlx-%s-button-font-size-mobile: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'mobile' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-button-font-size-tablet: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'tablet' ) )
 						);
-						echo sprintf(
+						printf(
 							'--qdlx-%s-button-font-size-desktop: %spx;',
 							esc_attr( $theme_options['slug'] ),
 							esc_html( Functions::get_theme_font_sizes( $theme_options['slug'], 'button_font_size', 'desktop' ) )
@@ -536,12 +505,12 @@ class Blocks {
 						$secondary_font_family = sanitize_text_field( filter_input( INPUT_GET, 'secondary_font_family', FILTER_DEFAULT ) );
 						if ( ! empty( $primary_font_family ) && ! empty( $secondary_font_family ) ) {
 							$override_theme_fonts = true;
-							echo sprintf(
+							printf(
 								'--qdlx-%s-primary-font-family: %s;',
 								esc_attr( $theme_options['slug'] ),
 								sanitize_text_field( Functions::format_font_family( $primary_font_family ) )
 							);
-							echo sprintf(
+							printf(
 								'--qdlx-%s-secondary-font-family: %s;',
 								esc_attr( $theme_options['slug'] ),
 								sanitize_text_field( Functions::format_font_family( $secondary_font_family ) )
@@ -556,14 +525,14 @@ class Blocks {
 							$theme_primary_font   = Functions::get_font_family( 'primary', $theme_options['slug'], $format_for_display );
 							$theme_secondary_font = Functions::get_font_family( 'secondary', $theme_options['slug'], $format_for_display );
 							if ( $theme_primary_font ) {
-								echo sprintf(
+								printf(
 									'--qdlx-%s-primary-font-family: %s;',
 									esc_attr( $theme_options['slug'] ),
 									sanitize_text_field( $theme_primary_font )
 								);
 							}
 							if ( $theme_secondary_font ) {
-								echo sprintf(
+								printf(
 									'--qdlx-%s-secondary-font-family: %s;',
 									esc_attr( $theme_options['slug'] ),
 									sanitize_text_field( $theme_secondary_font )
@@ -1069,21 +1038,18 @@ class Blocks {
 				$enable_tweet_this      = Functions::sanitize_attribute( $attributes, 'enable_tweet_this', 'boolean' );
 				$enable_copy_tweet      = Functions::sanitize_attribute( $attributes, 'enable_copy_tweet', 'boolean' );
 				$enable_share_this      = Functions::sanitize_attribute( $attributes, 'enable_share_this', 'boolean' );
-				$enable_email_text      = Functions::sanitize_attribute( $attributes, 'enable_email_text', 'boolean' );
 
 				// Get text label values.
-				$copy_text_label   = Options_Menu::get_options( 'copy_text_label' );
-				$copy_tweet_label  = Options_Menu::get_options( 'copy_tweet_label' );
-				$copy_link_label   = Options_Menu::get_options( 'copy_link_label' );
-				$email_quote_label = Options_Menu::get_options( 'email_text_label' );
-				$tweet_this_label  = Options_Menu::get_options( 'tweet_this_label' );
-				$share_this_label  = Options_Menu::get_options( 'share_this_label' );
+				$copy_text_label  = Options_Menu::get_options( 'copy_text_label' );
+				$copy_tweet_label = Options_Menu::get_options( 'copy_tweet_label' );
+				$copy_link_label  = Options_Menu::get_options( 'copy_link_label' );
+				$tweet_this_label = Options_Menu::get_options( 'tweet_this_label' );
+				$share_this_label = Options_Menu::get_options( 'share_this_label' );
 
 				// Check to see if global options are set.
 				$enable_global_contextual_menu = Options_Menu::get_options( 'enable_global_contextual_menu' );
 				if ( $enable_global_contextual_menu ) {
 					$enable_contextual_menu = (bool) Options_Menu::get_options( 'enable_contextual_menu' );
-					$enable_email_text      = (bool) Options_Menu::get_options( 'enable_email_text' );
 					$enable_copy_text       = (bool) Options_Menu::get_options( 'enable_copy_text' );
 					$enable_copy_tweet      = (bool) Options_Menu::get_options( 'enable_copy_tweet' );
 					$enable_copy_link       = (bool) Options_Menu::get_options( 'enable_copy_link' );
@@ -1091,7 +1057,7 @@ class Blocks {
 					$enable_share_this      = (bool) Options_Menu::get_options( 'enable_share_this' );
 				}
 
-				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_copy_link || $enable_tweet_this || $enable_share_this || $enable_email_text ) ) :
+				if ( $enable_contextual_menu && ( $enable_copy_link || $enable_copy_tweet || $enable_tweet_this || $enable_share_this ) ) :
 					?>
 				<div class="quotes-dlx-meatball-menu">
 					<div class="quotes-dlx-meatball-content">
@@ -1146,32 +1112,6 @@ class Blocks {
 											<svg width="24" height="24"><use xlink:href="#quotes-dlx-link-icon"></use></svg>
 										</span>
 										<?php echo esc_html( $copy_link_label ); ?>
-									</button>
-								</li>
-								<?php
-							endif;
-							?>
-							<?php
-							if ( $enable_email_text ) :
-								$ajax_nonce = wp_create_nonce( 'qdlx_share_' . $permalink );
-								$ajax_url   = admin_url( 'admin-ajax.php' );
-								$ajax_url   = add_query_arg(
-									array(
-										'action'    => 'quotes_dlx_email_interface',
-										'permalink' => urlencode( $permalink ),
-										'nonce'     => $ajax_nonce,
-										'text'      => wp_strip_all_tags( $share_text_kses ),
-										'postId'    => get_the_ID(),
-									),
-									$ajax_url
-								);
-								?>
-								<li class="quotes-dlx-meatball-menu-item quotes-dlx-meatball-menu-item-email-link" data-url="<?php echo esc_attr( $permalink ); ?>" data-share-text="<?php echo esc_attr( wp_strip_all_tags( $share_text_kses ) ); ?>">
-									<button class="button-reset" data-ajax-url="<?php echo esc_url( $ajax_url ); ?>">
-										<span class="quotes-dlx-meatball-menu-icon">
-											<svg width="24" height="24"><use xlink:href="#quotes-dlx-at-icon"></use></svg>
-										</span>
-										<?php echo esc_html( $email_quote_label ); ?>
 									</button>
 								</li>
 								<?php
@@ -1241,10 +1181,8 @@ class Blocks {
 						$hashtag
 					);
 				}
-			} else {
-				if ( strlen( $separator ) > 0 && is_string( $separator ) ) {
+			} elseif ( strlen( $separator ) > 0 && is_string( $separator ) ) {
 					$hashtag_return = implode( $separator, $hashtags );
-				}
 			}
 		}
 		return $hashtag_return;
@@ -1380,28 +1318,9 @@ class Blocks {
 			'all'
 		);
 
-		// Register Fancybox Script.
-		wp_register_script(
-			'quotes-dlx-fancybox',
-			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
-			array(),
-			Functions::get_plugin_version(),
-			true
-		);
-
-		// Register fancybox style.
-		wp_register_style(
-			'quotes-dlx-fancybox',
-			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
-
 		wp_print_styles(
 			array(
 				'quotes-dlx-frontend',
-				'quotes-dlx-fancybox',
 			)
 		);
 
@@ -1411,21 +1330,6 @@ class Blocks {
 			array( 'wp-i18n', 'wp-a11y' ),
 			Functions::get_plugin_version(),
 			true
-		);
-		$email_options = Options_Emails::get_options();
-		wp_localize_script(
-			'quotes-dlx-actions',
-			'qdlx_actions',
-			array(
-				'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
-			)
-		);
-
-		wp_enqueue_scripts(
-			array(
-				'quotes-dlx-fancybox',
-
-			)
 		);
 	}
 
@@ -1443,24 +1347,6 @@ class Blocks {
 			'all'
 		);
 
-		// Register Fancybox Script.
-		wp_register_script(
-			'quotes-dlx-fancybox',
-			Functions::get_plugin_url( 'fancybox/fancybox.js' ),
-			array(),
-			Functions::get_plugin_version(),
-			true
-		);
-
-		// Register fancybox style.
-		wp_register_style(
-			'quotes-dlx-fancybox',
-			Functions::get_plugin_url( 'fancybox/fancybox.css' ),
-			array(),
-			Functions::get_plugin_version(),
-			'all'
-		);
-
 		if ( has_block( 'mediaron/quotes-dlx' ) ) {
 			wp_enqueue_script(
 				'quotes-dlx-actions',
@@ -1468,14 +1354,6 @@ class Blocks {
 				array( 'wp-i18n', 'wp-a11y' ),
 				Functions::get_plugin_version(),
 				true
-			);
-			$email_options = Options_Emails::get_options();
-			wp_localize_script(
-				'quotes-dlx-actions',
-				'qdlx_actions',
-				array(
-					'email_send_type' => sanitize_text_field( $email_options['email_send_type'] ),
-				)
 			);
 		}
 	}

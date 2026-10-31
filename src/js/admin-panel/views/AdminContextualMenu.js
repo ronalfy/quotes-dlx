@@ -75,8 +75,6 @@ const Interface = ( props ) => {
 		enable_copy_link,
 		enable_tweet_this,
 		enable_share_this,
-		enable_email_text,
-		email_text_label,
 		copy_text_label,
 		copy_tweet_label,
 		copy_link_label,
@@ -94,9 +92,7 @@ const Interface = ( props ) => {
 				enableCopyLink: enable_copy_link,
 				enableTweetThis: enable_tweet_this,
 				enableShareThis: enable_share_this,
-				enableEmailText: enable_email_text,
 				copyTextLabel: copy_text_label,
-				emailTextLabel: email_text_label,
 				copyTweetLabel: copy_tweet_label,
 				copyLinkLabel: copy_link_label,
 				tweetThisLabel: tweet_this_label,
@@ -581,69 +577,6 @@ const Interface = ( props ) => {
 							</table>
 							<table className="form-table" role="presentation">
 								<tbody>
-									<tr>
-										<th scope="row">{ __( 'Email Option', 'quotes-dlx' ) }</th>
-										<td>
-											<Controller
-												name="enableEmailText"
-												control={ control }
-												render={ ( { field: { onChange, value } } ) => (
-													<ToggleControl
-														label={ __( 'Enable Email Option', 'quotes-dlx' ) }
-														help={ __(
-															'Set whether users can email a quote to themselves or others.',
-															'quotes-dlx'
-														) }
-														className="qdlx-admin__toggle-control"
-														checked={ value }
-														onChange={ ( boolValue ) => {
-															setContextMenuActive( boolValue );
-															onChange( boolValue );
-														} }
-														disabled={ saving || resetting }
-													/>
-												) }
-											/>
-											{ getValues( 'enableEmailText' ) && (
-												<>
-													<Controller
-														name="emailTextLabel"
-														control={ control }
-														rules={ { required: true } }
-														render={ ( { field } ) => (
-															<TextControl
-																{ ...field }
-																label={ __( 'Email Quote Label', 'quotes-dlx' ) }
-																className={ classNames(
-																	'qdlx-admin__text-control',
-																	{
-																		'has-error':
-																			'required' ===
-																			errors.emailTextLabel?.type,
-																		'is-required': true,
-																	}
-																) }
-																aria-required="true"
-																help={ __(
-																	'This text will be the text displayed for the Email Share option in the contextual menu.',
-																	'quotes-dlx'
-																) }
-															/>
-														) }
-													/>
-													{ 'required' === errors.emailTextLabel?.type && (
-														<Notice
-															message={ __( 'This field is a required field.' ) }
-															status="error"
-															politeness="assertive"
-															inline={ true }
-															icon={ CircularExclamationIcon }
-														/>
-													) }
-												</>
-											) }
-										</td>
-									</tr>
 									<tr>
 										<th scope="row">{ __( 'Set Globally', 'quotes-dlx' ) }</th>
 										<td>

@@ -132,7 +132,6 @@ const TweetQuotes = ( props ) => {
 		enable_copy_link,
 		enable_tweet_this,
 		enable_share_this,
-		enable_email_text,
 		preview,
 		blockOnly,
 		defaultsApplied,
@@ -949,19 +948,6 @@ const TweetQuotes = ( props ) => {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
-								label={ __( 'Enable Email Quote', 'quotes-dlx' ) }
-								checked={ enable_email_text }
-								onChange={ ( value ) => {
-									setAttributes( {
-										enable_email_text: value,
-									} );
-								} }
-								help={ __( 'You can find additional email settings in the QuotesDLX admin under Emails.', 'quotes-dlx' ) }
-								disabled={ isContextualMenuGlobal() }
-							/>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl
 								label={ __( 'Enable Post This', 'quotes-dlx' ) }
 								checked={ enable_tweet_this }
 								onChange={ ( value ) => {
@@ -1179,8 +1165,7 @@ const TweetQuotes = ( props ) => {
 							enable_copy_tweet ||
 							enable_copy_link ||
 							enable_tweet_this ||
-							enable_share_this ||
-							enable_email_text ) && (
+							enable_share_this ) && (
 						// eslint-disable-next-line react/jsx-indent
 						<>
 							{ isContextualMenuGlobal() && (
@@ -1284,7 +1269,6 @@ const TweetQuotes = ( props ) => {
 															enable_copy_tweet ||
 															enable_copy_link ||
 															enable_tweet_this ||
-															enable_email_text ||
 															enable_share_this ) && (
 														// eslint-disable-next-line react/jsx-indent
 														<>

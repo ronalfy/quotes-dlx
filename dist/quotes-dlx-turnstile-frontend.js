@@ -1,1 +1,0 @@
-window.qdlxInitiateTurnstile=function(){var e;"undefined"!=typeof turnstile&&(e=turnstile.render("#qdlx-turnstile",{sitekey:qdlx_email.turnstile_site_key,callback:function(t){setTimeout(function(){turnstile.reset(e)},3e5)},size:qdlx_email.turnstile_size,theme:qdlx_email.turnstile_theme,language:qdlx_email.turnstile_language}))};

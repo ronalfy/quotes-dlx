@@ -122,7 +122,6 @@ class Register_Menu {
 			'bitly_plugin_active'    => Functions::is_activated( 'wp-bitly/wp-bitly.php', 'plugin' ),
 			'jetpack_plugin_active'  => Functions::is_activated( 'jetpack/jetpack.php', 'plugin' ),
 			'image_dir'              => Functions::get_plugin_url( 'images' ),
-			'akismet_plugin_active'  => Functions::is_activated( 'akismet/akismet.php' ),
 			'ajaxurl'                => admin_url( 'admin-ajax.php' ),
 			'preview_nonce'          => wp_create_nonce( 'quotes-dlx-preview-nonce' ),
 		);

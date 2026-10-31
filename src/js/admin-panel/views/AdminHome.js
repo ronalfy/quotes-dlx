@@ -4,7 +4,7 @@
 import React, { useContext } from 'react';
 import { Fancybox } from '@fancyapps/ui';
 import { __ } from '@wordpress/i18n';
-import { Code, Palette, Settings } from 'lucide-react';
+import { Palette, Settings } from 'lucide-react';
 import Notice from '../admin-components/Notice';
 import TabsContext from '../contexts/TabsContext';
 const { defaults, themes } = quotes_dlx_admin;
@@ -124,44 +124,6 @@ const AdminHome = () => {
 										{ __( 'Change the Block Defaults', 'quotes-dlx' ) }
 									</a>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div className="qdlx-admin__tabs--content-wrap">
-						<div className="qdlx-admin__tabs--content-panel">
-							<div className="qdlx-admin__tabs--content-heading">
-								<h1>
-									<Code aria-hidden="true" />
-									<span className="qdlx-admin__heading--text">
-										{ __( 'Upcoming features', 'quotes-dlx' ) }
-									</span>
-								</h1>
-								<p className="description">
-									{ __(
-										'Here is what is next for the plugin.',
-										'quotes-dlx'
-									) }
-									.
-								</p>
-							</div>
-							<div className="qdlx-admin__tabs--content-inner">
-								<ol className="qdlx-planning-for">
-									<li>
-										<strong>Setup Wizard</strong>: A setup wizard to help you more easily set up the plugin.
-									</li>
-									<li>
-										<strong>More Fonts</strong>: As users request them, I will be adding fonts one-by-one.
-									</li>
-									<li>
-										<strong>More themes</strong>: More DLX themes are planned.
-									</li>
-									<li>
-										<strong>Presets (coming later)</strong>: Create presets that are portable across installs.
-									</li>
-									<li>
-										<strong>Overrides (coming later)</strong>: Override the default settings for a specific theme.
-									</li>
-								</ol>
 							</div>
 						</div>
 					</div>

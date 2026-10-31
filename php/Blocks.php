@@ -66,6 +66,7 @@ class Blocks {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_font_scripts' ) );
 
 		// Enqueue block assets.
+		add_action( 'enqueue_block_assets', array( $this, 'register_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_editor_scripts' ) );
 
 		// Add SVGs and other footer items we need.
@@ -395,6 +396,44 @@ class Blocks {
 	}
 
 	/**
+	 * CSS custom properties for each theme's saved colors, including rating stars.
+	 *
+	 * The block editor canvas is a separate document, so these variables have to
+	 * be attached to an editor stylesheet. The front end prints the same rules.
+	 *
+	 * @return string
+	 */
+	private function get_theme_color_variables_css() {
+		$declarations = '';
+
+		foreach ( Themes::get_theme_data() as $theme ) {
+			$theme_colors = Options_Theme::get_theme_colors( $theme['slug'] );
+			if ( empty( $theme_colors ) || ! is_array( $theme_colors ) ) {
+				continue;
+			}
+
+			foreach ( $theme_colors as $color ) {
+				if ( empty( $color['slug'] ) || ! isset( $color['color'] ) || '' === $color['color'] ) {
+					continue;
+				}
+
+				$declarations .= sprintf(
+					'--qdlx-%1$s-%2$s:%3$s;',
+					esc_attr( $theme['slug'] ),
+					esc_attr( $color['slug'] ),
+					esc_attr( $color['color'] )
+				);
+			}
+		}
+
+		if ( '' === $declarations ) {
+			return '';
+		}
+
+		return ':root{' . $declarations . '}';
+	}
+
+	/**
 	 * Print out root css vars for the block.
 	 */
 	private function output_theme_style_root() {
@@ -407,28 +446,9 @@ class Blocks {
 		}
 
 		// Set color root variables.
-		foreach ( $themes as $theme ) {
-			$theme_colors = Options_Theme::get_theme_colors( $theme['slug'] );
-			if ( ! empty( $theme_colors ) ) {
-				?>
-				<style>
-					:root {
-				<?php
-				foreach ( $theme_colors as $color ) {
-					echo esc_html(
-						sprintf(
-							'--qdlx-%s-%s: %s;',
-							esc_attr( $theme['slug'] ),
-							esc_attr( $color['slug'] ),
-							esc_attr( $color['color'] )
-						)
-					);
-				}
-				?>
-					}
-				</style>
-				<?php
-			}
+		$color_variables_css = $this->get_theme_color_variables_css();
+		if ( $color_variables_css ) {
+			echo '<style>' . $color_variables_css . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Values are escaped in get_theme_color_variables_css().
 		}
 
 		// Get options.
@@ -1359,9 +1379,20 @@ class Blocks {
 	}
 
 	/**
-	 * Register the block editor script with localized vars.
+	 * Register editor styles and the theme color variables those styles depend on.
+	 *
+	 * Runs before the editor canvas is built so the variables are inside the iframe.
 	 */
-	public function register_block_editor_scripts() {
+	public function register_editor_styles() {
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		static $registered = false;
+		if ( $registered ) {
+			return;
+		}
+		$registered = true;
 
 		// Register styles here because array in block.json fails when using array of styles (enqueues wrong script).
 		wp_register_style(
@@ -1378,6 +1409,19 @@ class Blocks {
 			Functions::get_plugin_version(),
 			'all'
 		);
+
+		$color_variables_css = $this->get_theme_color_variables_css();
+		if ( $color_variables_css ) {
+			wp_add_inline_style( 'quotes-dlx-block-editor-styles', $color_variables_css );
+		}
+	}
+
+	/**
+	 * Register the block editor script with localized vars.
+	 */
+	public function register_block_editor_scripts() {
+		$this->register_editor_styles();
+
 		$deps = require_once Functions::get_plugin_dir( 'build/quotes-dlx.asset.php' );
 		wp_register_script(
 			'quotes-dlx-block',

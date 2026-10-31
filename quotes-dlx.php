@@ -58,11 +58,6 @@ class QuotesDLX {
 	 * Class initializer.
 	 */
 	public function plugins_loaded() {
-		load_plugin_textdomain(
-			'quotes-dlx',
-			false,
-			basename( dirname( __FILE__ ) ) . '/languages'
-		);
 
 		Blocks::run();
 		Ajax::run();
@@ -71,6 +66,7 @@ class QuotesDLX {
 
 		Admin\Plugin_Settings_Links::run();
 		Admin\Register_Menu::run();
+		self::purge_legacy_license_data();
 
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -91,30 +87,29 @@ class QuotesDLX {
 
 		// Init all the core themes.
 		Themes\Themes_Init::run();
+	}
 
-		if ( ! Functions::should_disable_licensing() ) {
-			// Setup EDD licensing.
-			$license     = \MediaRonLLC\QuotesDLX\Options_License::get_options();
-			$license_key = $license['license_key'] ?? '';
-			$beta        = (bool) ( $license['beta'] ?? false );
-			$edd_updater = new \MediaRonLLC\QuotesDLX\Admin\Plugin_Updater(
-				'https://dlxplugins.com',
-				__FILE__,
-				array(
-					'version' => QUOTES_DLX_VERSION,
-					'license' => $license_key,
-					'item_id' => 676,
-					'author'  => 'DLX Plugins',
-					'beta'    => $beta,
-				)
-			);
+	/**
+	 * Remove stored EDD license data left by earlier versions.
+	 *
+	 * Runs once per site. Shared EDD updater caches are left alone so other
+	 * plugins using the same store are not affected.
+	 */
+	private static function purge_legacy_license_data() {
+		if ( get_option( 'quotesdlx_license_data_purged' ) ) {
+			return;
 		}
+
+		delete_option( 'quotesdlx_options_license' );
+		delete_site_option( 'quotesdlx_options_license' );
+		delete_site_transient( 'quotes_dlx_core_license_check' );
+		update_option( 'quotesdlx_license_data_purged', '1', false );
 	}
 }
 
 add_action(
 	'plugins_loaded',
-	function() {
+	function () {
 		$quotes_dlx = QuotesDLX::get_instance();
 		$quotes_dlx->plugins_loaded();
 	}

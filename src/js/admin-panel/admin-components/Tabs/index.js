@@ -12,7 +12,6 @@ import GearIcon from '../../../components/icons/Gear';
 import MenuIcon from '../../../components/icons/MenuIcon';
 import PaintbrushIcon from '../../../components/icons/paintbrush';
 import ColorPaletteIcon from '../../../components/icons/ColorPalette';
-import KeyIcon from '../../../components/icons/KeyIcon';
 import FlaskIcon from '../../../components/icons/FlaskIcon';
 import TabItem from '../TabItem';
 import TabsContext from '../../contexts/TabsContext';
@@ -54,10 +53,6 @@ const AdminSupport = lazy( () =>
 	)
 );
 
-const AdminLicense = lazy( () =>
-	import( /* webpackChunkName: "AdminLicense0.0.8" */ '../../views/AdminLicense' )
-);
-
 const AdminEmails = lazy( () =>
 	import( /* webpackChunkName: "AdminEmails0.0.4" */ '../../views/AdminEmails' )
 );
@@ -65,7 +60,7 @@ const AdminEmails = lazy( () =>
 const AdminTabs = ( props ) => {
 	const onSelect = ( tabName ) => {};
 
-	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount, emailTabDirtyCount } = useContext( TabsContext );
+	const { blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, advancedTabDirtyCount, emailTabDirtyCount } = useContext( TabsContext );
 
 	const onTabClick = ( tab ) => {};
 
@@ -73,7 +68,6 @@ const AdminTabs = ( props ) => {
 		blockDefaultsDirtyCount,
 		contextualMenuDefaultsDirtyCount,
 		themesDefaultsDirtyCount,
-		licensesDirtyCount,
 		advancedTabDirtyCount,
 		emailTabDirtyCount,
 	] );
@@ -143,33 +137,6 @@ const AdminTabs = ( props ) => {
 			>
 				<Suspense fallback={ <AdminDefaultsLoader /> }>
 					<AdminDefaults />
-				</Suspense>
-			</ErrorBoundary>
-		</>
-	);
-
-	const getAdminLicense = (
-		<>
-			<ErrorBoundary
-				fallback={
-					<p>
-						{ __(
-							'Unable to load the License screen for QuotesDLX. Please try refreshing and contact support if the error persists.',
-							'quotes-dlx'
-						) }
-						<br />
-						<a
-							href="https://dlxplugins.com/support/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							DLX Plugins Support
-						</a>
-					</p>
-				}
-			>
-				<Suspense fallback={ <AdminDefaultsLoader /> }>
-					<AdminLicense />
 				</Suspense>
 			</ErrorBoundary>
 		</>
@@ -339,7 +306,7 @@ const AdminTabs = ( props ) => {
 
 	// Set browser unload event if dirtycounts are not zero.
 	window.onbeforeunload = function() {
-		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount ) {
+		if ( blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || advancedTabDirtyCount ) {
 			return true;
 		}
 	};
@@ -414,21 +381,6 @@ const AdminTabs = ( props ) => {
 						isActive={ isActive }
 						dirtyCount={ 0 }
 					/>
-					{ ! quotes_dlx_admin.should_disable_licensing && (
-						<>
-							<TabItem
-								icon={ KeyIcon }
-								slug="licenses"
-								description={ __( 'Set the license for support and updates.', 'quotes-dlx' ) }
-								label={ __( 'License', 'quotes-dlx' ) }
-								tabClicked={ ( tab ) => {
-									onTabClick( tab );
-								} }
-								isActive={ isActive }
-								dirtyCount={ licensesDirtyCount }
-							/>
-						</>
-					) }
 					<TabItem
 						icon={ FlaskIcon }
 						slug="advanced"
@@ -489,15 +441,6 @@ const AdminTabs = ( props ) => {
 								exact
 								element={ getAdminSupport }
 							/>
-							{ ! quotes_dlx_admin.should_disable_licensing && (
-								<>
-									<Route
-										path="/licenses"
-										exact
-										element={ getAdminLicense }
-									/>
-								</>
-							) }
 							<Route path="/" exact element={ getAdminHome } />
 							<Route path="*" element={ <Navigate to="/" /> } />
 						</Routes>

@@ -1540,116 +1540,6 @@ td p.qdlx-admin-description {
 	}
 }
 
-/* Licenses Screen */
-.qdlx-admin__license--wrapper {
-	.qdlx-admin__text-control-license {
-		label {
-			font-size: 0.8125rem;
-			font-weight: 500;
-		}
-
-		input[type='text'],
-		input[type='password'] {
-			max-width: 100%;
-			width: 100%;
-			background-color: #fff;
-			border-radius: 3px;
-			font-family: inherit;
-			font-size: 0.875rem;
-			line-height: 1.25rem;
-			padding: 0.6875rem 1rem;
-			line-height: 2;
-			min-height: 30px;
-			margin: 0;
-			outline-style: none;
-			box-sizing: border-box;
-		}
-	}
-
-	.qdlx-admin__license--input-wrapper {
-		position: relative;
-	}
-
-	.qdlx-admin__license--input-preview {
-		position: absolute;
-		width: 40px;
-		height: 40px;
-		overflow: hidden;
-		top: calc(0.8125rem + 8px + 0.6875rem);
-		/* Label font-size + bottom margin + input padding */
-		right: 1rem;
-		line-height: 0;
-		font-size: 0;
-
-		input[type='checkbox'] {
-			position: absolute;
-			display: block;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			z-index: 2;
-			opacity: 0;
-			margin: 0;
-			padding: 0;
-
-			&:hover {
-				&~label {
-					svg path {
-						fill: var(--quotes-dlx-admin--color-text-link-color--hover);
-					}
-
-					svg.lucide {
-						color: var(--quotes-dlx-admin--color-text-link-color--hover);
-
-						path {
-							fill: none;
-							stroke: currentColor;
-						}
-					}
-				}
-			}
-		}
-
-		label {
-			position: absolute;
-			display: block;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			z-index: 1;
-
-			span.quotes-dlx-license-show-hide--label {
-				display: none;
-			}
-
-			.quotes-dlx-license-show-hide--icon {
-				position: relative;
-
-				svg {
-					display: block;
-					width: 100%;
-					height: 100%;
-
-					path {
-						fill: var(--quotes-dlx-admin--color-text-link-color);
-					}
-
-					&.lucide {
-						color: var(--quotes-dlx-admin--color-text-link-color);
-
-						path {
-							fill: none;
-							stroke: currentColor;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 /* Table Styles */
 .quotes-dlx-table {
 	box-sizing: border-box;
@@ -2146,18 +2036,6 @@ table.form-table.qdlx-font-sizes {
 		display: block;
 		left: 0;
 		top: calc(1.1em/2 - 4px);
-	}
-}
-
-.qdlx-admin__license-beta-saving {
-	svg {
-		width: 32px;
-		height: 32px;
-		animation: qdlx-rotate 1s linear infinite;
-
-		path {
-			fill: var(--quotes-dlx-admin--color-accent);
-		}
 	}
 }
 

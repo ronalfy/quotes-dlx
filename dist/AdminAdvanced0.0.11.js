@@ -185,7 +185,6 @@ var Interface = function Interface(props) {
     advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
     setAdvancedTabDirtyCount = _useContext.setAdvancedTabDirtyCount,
     setThemesDefaultsDirtyCount = _useContext.setThemesDefaultsDirtyCount,
-    setLicensesDirtyCount = _useContext.setLicensesDirtyCount,
     setBlockDefaultsDirtyCount = _useContext.setBlockDefaultsDirtyCount,
     setContextualMenuDefaultsDirtyCount = _useContext.setContextualMenuDefaultsDirtyCount,
     defaultTheme = _useContext.defaultTheme;
@@ -531,12 +530,10 @@ var Interface = function Interface(props) {
   var clearLocalStorage = function clearLocalStorage() {
     localStorage.removeItem('quotes_dlx_menu_defaults');
     localStorage.removeItem('quotes_dlx_form_defaults');
-    localStorage.removeItem('quotes_dlx_licenses');
     localStorage.removeItem('quotes_dlx_themes_defaults');
     localStorage.removeItem('quotes_dlx_form_advanced');
     setAdvancedTabDirtyCount(0);
     setThemesDefaultsDirtyCount(0);
-    setLicensesDirtyCount(0);
     setBlockDefaultsDirtyCount(0);
     setContextualMenuDefaultsDirtyCount(0);
   };

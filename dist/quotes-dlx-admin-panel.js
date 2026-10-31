@@ -5837,12 +5837,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_icons_MenuIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../components/icons/MenuIcon */ "./src/js/components/icons/MenuIcon.js");
 /* harmony import */ var _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../components/icons/paintbrush */ "./src/js/components/icons/paintbrush.js");
 /* harmony import */ var _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../components/icons/ColorPalette */ "./src/js/components/icons/ColorPalette.js");
-/* harmony import */ var _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../components/icons/KeyIcon */ "./src/js/components/icons/KeyIcon.js");
-/* harmony import */ var _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../components/icons/FlaskIcon */ "./src/js/components/icons/FlaskIcon.js");
-/* harmony import */ var _TabItem__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../TabItem */ "./src/js/admin-panel/admin-components/TabItem/index.js");
-/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
-/* harmony import */ var _admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../admin-components/ErrorBoundary/index.js */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
-
+/* harmony import */ var _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../components/icons/FlaskIcon */ "./src/js/components/icons/FlaskIcon.js");
+/* harmony import */ var _TabItem__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../TabItem */ "./src/js/admin-panel/admin-components/TabItem/index.js");
+/* harmony import */ var _contexts_TabsContext__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../contexts/TabsContext */ "./src/js/admin-panel/contexts/TabsContext.js");
+/* harmony import */ var _admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../admin-components/ErrorBoundary/index.js */ "./src/js/admin-panel/admin-components/ErrorBoundary/index.js");
 
 
 
@@ -5870,7 +5868,7 @@ var AdminDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(fun
   return Promise.all(/*! import() | AdminDefaults0.0.9 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminDefaults0.0.9")]).then(() => (__webpack_require__(/*! ../../views/AdminDefaults */ "./src/js/admin-panel/views/AdminDefaults.js")));
 });
 var AdminAdvanced = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminAdvanced0.0.11 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminAdvanced0.0.11")]).then(() => (__webpack_require__(/*! ../../views/AdminAdvanced */ "./src/js/admin-panel/views/AdminAdvanced.js")));
+  return Promise.all(/*! import() | AdminAdvanced0.0.11 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminAdvanced0.0.11")]).then(() => (__webpack_require__(/*! ../../views/AdminAdvanced */ "./src/js/admin-panel/views/AdminAdvanced.js")));
 });
 var AdminContextualMenuDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return Promise.all(/*! import() | AdminMenuDefaults0.0.7 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("AdminMenuDefaults0.0.7")]).then(() => (__webpack_require__(/*! ../../views/AdminContextualMenu */ "./src/js/admin-panel/views/AdminContextualMenu.js")));
@@ -5879,28 +5877,24 @@ var AdminThemesDefaults = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.laz
   return Promise.all(/*! import() | AdminThemesDefaults0.0.8 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("AdminThemesDefaults0.0.8")]).then(() => (__webpack_require__(/*! ../../views/AdminThemesDefaults */ "./src/js/admin-panel/views/AdminThemesDefaults.js")));
 });
 var AdminThemeOptions = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminThemeOptions0.0.10 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("AdminThemeOptions0.0.10")]).then(() => (__webpack_require__(/*! ../../views/AdminThemeOptions */ "./src/js/admin-panel/views/AdminThemeOptions.js")));
+  return Promise.all(/*! import() | AdminThemeOptions0.0.10 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("AdminThemeOptions0.0.10")]).then(() => (__webpack_require__(/*! ../../views/AdminThemeOptions */ "./src/js/admin-panel/views/AdminThemeOptions.js")));
 });
 var AdminSupport = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
   return __webpack_require__.e(/*! import() | AdminSupport0.0.7 */ "AdminSupport0.0.7").then(() => (__webpack_require__(/*! ../../views/AdminSupport */ "./src/js/admin-panel/views/AdminSupport.js")));
 });
-var AdminLicense = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminLicense0.0.8 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("AdminLicense0.0.8")]).then(() => (__webpack_require__(/*! ../../views/AdminLicense */ "./src/js/admin-panel/views/AdminLicense.js")));
-});
 var AdminEmails = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {
-  return Promise.all(/*! import() | AdminEmails0.0.4 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("vendors-node_modules_html-to-react_index_js-node_modules_lucide-react_dist_esm_icons_external-737723"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminEmails0.0.4")]).then(() => (__webpack_require__(/*! ../../views/AdminEmails */ "./src/js/admin-panel/views/AdminEmails.js")));
+  return Promise.all(/*! import() | AdminEmails0.0.4 */[__webpack_require__.e("vendors-node_modules_qs_lib_index_js-node_modules_use-async-resource_lib_index_js-node_module-8e1f07"), __webpack_require__.e("vendors-node_modules_fancyapps_ui_dist_index_esm_js"), __webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_mjs"), __webpack_require__.e("vendors-node_modules_html-to-react_index_js-node_modules_lucide-react_dist_esm_icons_external-737723"), __webpack_require__.e("src_js_admin-panel_admin-components_Notice_index_js-src_js_components_icons_CircularExplanati-4f50e7"), __webpack_require__.e("AdminEmails0.0.4")]).then(() => (__webpack_require__(/*! ../../views/AdminEmails */ "./src/js/admin-panel/views/AdminEmails.js")));
 });
 var AdminTabs = function AdminTabs(props) {
   var onSelect = function onSelect(tabName) {};
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_18__["default"]),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_17__["default"]),
     blockDefaultsDirtyCount = _useContext.blockDefaultsDirtyCount,
     contextualMenuDefaultsDirtyCount = _useContext.contextualMenuDefaultsDirtyCount,
     themesDefaultsDirtyCount = _useContext.themesDefaultsDirtyCount,
-    licensesDirtyCount = _useContext.licensesDirtyCount,
     advancedTabDirtyCount = _useContext.advancedTabDirtyCount,
     emailTabDirtyCount = _useContext.emailTabDirtyCount;
   var onTabClick = function onTabClick(tab) {};
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, licensesDirtyCount, advancedTabDirtyCount, emailTabDirtyCount]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [blockDefaultsDirtyCount, contextualMenuDefaultsDirtyCount, themesDefaultsDirtyCount, advancedTabDirtyCount, emailTabDirtyCount]);
 
   /**
    *
@@ -5917,7 +5911,7 @@ var AdminTabs = function AdminTabs(props) {
     }
     return false;
   };
-  var getAdminHome = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminHome = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Home screen for QuotesDLX. Please try refreshing and contact support at dlxplugins.com/support/ if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5926,7 +5920,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminHome, null))));
-  var getAdminDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5935,16 +5929,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminDefaults, null))));
-  var getAdminLicense = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the License screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-      href: "https://dlxplugins.com/support/",
-      target: "_blank",
-      rel: "noopener noreferrer"
-    }, "DLX Plugins Support"))
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminLicense, null))));
-  var getAdminContextualMenuDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminContextualMenuDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Contextual Menu screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5953,7 +5938,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminContextualMenuDefaults, null))));
-  var getAdminThemesDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminThemesDefaults = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Theme Defaults screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5962,7 +5947,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminThemeDefaultsLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemesDefaults, null))));
-  var getAdminThemeOptions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminThemeOptions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Theme Colors and Font Sizes screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5973,7 +5958,7 @@ var AdminTabs = function AdminTabs(props) {
       showHeader: true
     })
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminThemeOptions, null))));
-  var getAdminSupport = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminSupport = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Admin Support screen for QuotesDLX. Please try refreshing and contact support if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5982,7 +5967,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminSupport, null))));
-  var getAdminAdvanced = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminAdvanced = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Advanced screen for QuotesDLX. Please try refreshing and contact support at if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -5991,7 +5976,7 @@ var AdminTabs = function AdminTabs(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Loaders_AdminDefaultsLoader__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AdminAdvanced, null))));
-  var getAdminEmails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_19__["default"], {
+  var getAdminEmails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_ErrorBoundary_index_js__WEBPACK_IMPORTED_MODULE_18__["default"], {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to load the Email screen for QuotesDLX. Please try refreshing and contact support at if the error persists.', 'quotes-dlx'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "https://dlxplugins.com/support/",
       target: "_blank",
@@ -6003,7 +5988,7 @@ var AdminTabs = function AdminTabs(props) {
 
   // Set browser unload event if dirtycounts are not zero.
   window.onbeforeunload = function () {
-    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || licensesDirtyCount || advancedTabDirtyCount) {
+    if (blockDefaultsDirtyCount || contextualMenuDefaultsDirtyCount || advancedTabDirtyCount) {
       return true;
     }
   };
@@ -6012,7 +5997,7 @@ var AdminTabs = function AdminTabs(props) {
     id: "qdlx-admin-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     className: "qdlx-admin__tabs--nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_Home__WEBPACK_IMPORTED_MODULE_10__["default"],
     slug: "home",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Main screen options', 'quotes-dlx'),
@@ -6022,7 +6007,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: 0
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_Gear__WEBPACK_IMPORTED_MODULE_11__["default"],
     slug: "defaults",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set block and shortcode defaults', 'quotes-dlx'),
@@ -6032,7 +6017,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: blockDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_MenuIcon__WEBPACK_IMPORTED_MODULE_12__["default"],
     slug: "menu",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the Tweet menu defaults', 'quotes-dlx'),
@@ -6042,7 +6027,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: contextualMenuDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_AtIcon__WEBPACK_IMPORTED_MODULE_9__["default"],
     slug: "emails",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the email settings.', 'quotes-dlx'),
@@ -6052,7 +6037,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: emailTabDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_paintbrush__WEBPACK_IMPORTED_MODULE_13__["default"],
     slug: "themes",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the default theme for the plugin.', 'quotes-dlx'),
@@ -6062,7 +6047,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: themesDefaultsDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_ColorPalette__WEBPACK_IMPORTED_MODULE_14__["default"],
     slug: "theme-options",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the theme color, line-height, and font sizes', 'quotes-dlx'),
@@ -6072,18 +6057,8 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: 0
-  }), !quotes_dlx_admin.should_disable_licensing && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
-    icon: _components_icons_KeyIcon__WEBPACK_IMPORTED_MODULE_15__["default"],
-    slug: "licenses",
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the license for support and updates.', 'quotes-dlx'),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('License', 'quotes-dlx'),
-    tabClicked: function tabClicked(tab) {
-      onTabClick(tab);
-    },
-    isActive: isActive,
-    dirtyCount: licensesDirtyCount
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
-    icon: _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_16__["default"],
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    icon: _components_icons_FlaskIcon__WEBPACK_IMPORTED_MODULE_15__["default"],
     slug: "advanced",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Reset options and set global theme fonts.', 'quotes-dlx'),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced', 'quotes-dlx'),
@@ -6092,7 +6067,7 @@ var AdminTabs = function AdminTabs(props) {
     },
     isActive: isActive,
     dirtyCount: advancedTabDirtyCount
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TabItem__WEBPACK_IMPORTED_MODULE_16__["default"], {
     icon: _components_icons_CircularQuestion__WEBPACK_IMPORTED_MODULE_8__["default"],
     slug: "support",
     description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Quick links for docs and support.', 'quotes-dlx'),
@@ -6134,11 +6109,7 @@ var AdminTabs = function AdminTabs(props) {
     path: "/support",
     exact: true,
     element: getAdminSupport
-  }), !quotes_dlx_admin.should_disable_licensing && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
-    path: "/licenses",
-    exact: true,
-    element: getAdminLicense
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
     path: "/",
     exact: true,
     element: getAdminHome
@@ -6213,20 +6184,16 @@ var Wrapper = function Wrapper() {
     setThemesDefaultsDirtyCount = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState8 = _slicedToArray(_useState7, 2),
-    licensesDirtyCount = _useState8[0],
-    setLicensesDirtyCount = _useState8[1];
+    advancedTabDirtyCount = _useState8[0],
+    setAdvancedTabDirtyCount = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState0 = _slicedToArray(_useState9, 2),
-    advancedTabDirtyCount = _useState0[0],
-    setAdvancedTabDirtyCount = _useState0[1];
-  var _useState1 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    emailTabDirtyCount = _useState0[0],
+    setEmailTabDirtyCount = _useState0[1];
+  var _useState1 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState10 = _slicedToArray(_useState1, 2),
-    emailTabDirtyCount = _useState10[0],
-    setEmailTabDirtyCount = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState12 = _slicedToArray(_useState11, 2),
-    defaultTheme = _useState12[0],
-    setDefaultTheme = _useState12[1];
+    defaultTheme = _useState10[0],
+    setDefaultTheme = _useState10[1];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_admin_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_contexts_TabsContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
     value: {
       blockDefaultsDirtyCount: blockDefaultsDirtyCount,
@@ -6237,8 +6204,6 @@ var Wrapper = function Wrapper() {
       setEmailTabDirtyCount: setEmailTabDirtyCount,
       themesDefaultsDirtyCount: themesDefaultsDirtyCount,
       setThemesDefaultsDirtyCount: setThemesDefaultsDirtyCount,
-      licensesDirtyCount: licensesDirtyCount,
-      setLicensesDirtyCount: setLicensesDirtyCount,
       advancedTabDirtyCount: advancedTabDirtyCount,
       setAdvancedTabDirtyCount: setAdvancedTabDirtyCount,
       defaultTheme: defaultTheme,
@@ -6498,49 +6463,6 @@ HomeIcon.propTypes = {
   fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomeIcon);
-
-/***/ },
-
-/***/ "./src/js/components/icons/KeyIcon.js"
-/*!********************************************!*\
-  !*** ./src/js/components/icons/KeyIcon.js ***!
-  \********************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-
- // ES6
-
-var KeyIcon = function KeyIcon(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 512 512",
-    width: props.width,
-    height: props.height
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-    fill: props.fill,
-    d: "m282.3 343.7-34.2 32.4c-3.6 5.4-9.7 7.9-16.1 7.9h-40v40c0 13.3-10.7 24-24 24h-40v40c0 13.3-10.7 24-24 24H24c-13.25 0-24-10.7-24-24v-80c0-6.4 2.529-12.5 7.029-17L168.3 229.7c-5.4-16.9-8.3-35-8.3-53.7C160 78.8 238.8 0 336 0s176 78.8 176 176-78.8 176-176 176c-18.7 0-36.8-2.9-53.7-8.3zM376 176c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40z"
-  }));
-};
-KeyIcon.defaultProps = {
-  width: 16,
-  height: 16,
-  fill: '#333333'
-};
-KeyIcon.propTypes = {
-  width: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
-  height: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
-  fill: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (KeyIcon);
 
 /***/ },
 

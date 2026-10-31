@@ -799,18 +799,6 @@ class Functions {
 	}
 
 	/**
-	 * Whether licensing should be disabled.
-	 *
-	 * @return bool true to disable licensing, false to not.
-	 */
-	public static function should_disable_licensing() {
-		if ( self::is_activated( 'gutenberg-market/gutenberg-market.php' ) ) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * Gets the highest priority for a filter.
 	 *
 	 * @param int $subtract The amount to subtract from the high priority.
